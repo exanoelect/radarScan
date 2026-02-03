@@ -46,7 +46,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 32,
+				"line" : 35,
 				"parent" : 0
 			},
 			{
@@ -70,7 +70,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 45,
+				"line" : 48,
 				"parent" : 0
 			},
 			{
@@ -218,7 +218,7 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 40,
+				"line" : 43,
 				"parent" : 0
 			}
 		]
@@ -253,6 +253,10 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::WebSockets::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
 		}
 	],
 	"compileGroups" : 
@@ -408,7 +412,8 @@
 				0,
 				1,
 				2,
-				5
+				5,
+				7
 			]
 		}
 	],
@@ -461,6 +466,11 @@
 			{
 				"backtrace" : 5,
 				"fragment" : "/Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/QtWebSockets",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lgpiod",
 				"role" : "libraries"
 			},
 			{
@@ -541,6 +551,14 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::WebSockets::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"fragment" : "gpiod"
 		}
 	],
 	"name" : "MyQt6App",
@@ -548,17 +566,17 @@
 	"orderDependencies" : 
 	[
 		{
+			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
+		},
+		{
 			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 0,
 			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
-		},
-		{
-			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
-		},
-		{
-			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
@@ -573,8 +591,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				8,
-				9
+				10,
+				11
 			]
 		},
 		{
@@ -583,7 +601,8 @@
 			[
 				1,
 				2,
-				5
+				5,
+				7
 			]
 		},
 		{
@@ -592,7 +611,8 @@
 			[
 				3,
 				6,
-				7
+				8,
+				9
 			]
 		},
 		{
@@ -606,7 +626,7 @@
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				10
+				12
 			]
 		}
 	],
@@ -650,6 +670,17 @@
 		{
 			"backtrace" : 4,
 			"path" : "qcustomplot.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "socketioclient.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "socketioclient.h",
 			"sourceGroupIndex" : 2
 		},
 		{

@@ -13,6 +13,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Network
     Multimedia
     WebSockets
+    Core
 )
 
 # Jika pakai .ui file
@@ -50,6 +51,8 @@ target_link_libraries(MyQt6App PRIVATE
     Qt6::Network
     Qt6::Multimedia
     Qt6::WebSockets
+    Qt6::Core
+    gpiod
 )
 
 # Untuk macOS bundling

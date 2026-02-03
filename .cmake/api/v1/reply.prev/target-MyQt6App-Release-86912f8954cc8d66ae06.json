@@ -253,6 +253,10 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::WebSockets::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
 		}
 	],
 	"compileGroups" : 
@@ -465,6 +469,11 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 5,
+				"fragment" : "-lgpiod",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 11,
 				"fragment" : "/Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui",
 				"role" : "libraries"
@@ -542,6 +551,14 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::WebSockets::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 5,
+			"fragment" : "gpiod"
 		}
 	],
 	"name" : "MyQt6App",
@@ -549,10 +566,10 @@
 	"orderDependencies" : 
 	[
 		{
-			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
+			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
+			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		},
 		{
 			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
