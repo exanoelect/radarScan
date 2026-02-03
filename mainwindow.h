@@ -36,6 +36,10 @@
 
 //#define AUTOSTART_ONRPI 1
 
+extern "C" {
+#include <gpiod.h>
+}
+
 enum SOCKET_STATE{
     SOCKET_IDDLE,
     SOCKET_CONNECTING,
@@ -158,6 +162,28 @@ private slots:
     void on_btnTestFall_clicked();
     void on_btnTestFall2_clicked();
 
+    void on_btnColor1_clicked();
+
+    void on_pushButton2_clicked();
+
+    void on_btnColor3_clicked();
+
+    void on_btnColor4_clicked();
+
+    void on_hsBrightness_valueChanged(int value);
+
+    void on_btnGetBrightness_clicked();
+
+    void on_btnsetBrightness_clicked();
+
+    void on_btnPlaySound_clicked();
+
+    void on_btnGetVol_clicked();
+
+    void on_hsVol_valueChanged(int value);
+
+    void on_btnsetVol_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -205,6 +231,9 @@ private:
     QTimer *m_socketTimer2;
     QTimer *m_initRadarTimer2;
 
+    gpiod_line *line17;
+    gpiod_line *line27;
+
     //QCustomPlot *m_plot;
 
     FrameRadarData radarFrame;
@@ -239,6 +268,19 @@ private:
 
     void socketIO_Client_Disconnect();
     void socketIO_Client_Disconnect2();
+
+    //GPIO LEd strip
+    int setupGPIO();
+    void setColor(qint8 color);
+
+    //Brightness Controller
+    int getBrightness();
+    bool setBrightnessPercent(int percent);
+
+    //Volume control
+    int getVolumePercent();                 // return 0–100, -1 jika gagal
+    bool setVolumePercent(int percent);     // set 0–100%
+    bool mute(bool enable);                 // true = mute, false = unmute
 
 };
 

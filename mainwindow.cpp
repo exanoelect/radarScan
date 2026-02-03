@@ -9,6 +9,7 @@
 
 // Jika qcustomplot butuh include spesifik, sudah di header
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_processTimer2->start(50); // proses tiap 50 ms
 
     // Setup sound (Qt6: include path QtMultimedia/QSoundEffect)
-    sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
+    sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));//("/Volumes/DATA/wav/alarm1.wav"));
     sound.setLoopCount(1);
     sound.setVolume(1.0f);
 
@@ -46,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_socketTimer->start(500); // proses tiap 500 ms
     socketState = SOCKET_IDDLE;
     socketIO_Client_Prepare();
+
+    setupGPIO();
 
 #ifdef AUTOSTART_ONRPI
     ui->cbSocket->setChecked(true);
@@ -2658,10 +2661,10 @@ void MainWindow::socketIO_Client_Prepare()
 
 
     // Event error
-    connect(ws, &QWebSocket::errorOccurred, this, [this](QAbstractSocket::SocketError err){
-        Q_UNUSED(err);
-        ui->logEdit->appendPlainText("WebSocket error: " + ws->errorString());
-    });
+   // connect(ws, &QWebSocket::error, this, [this](QAbstractSocket::SocketError err){
+   //     Q_UNUSED(err);
+   //     ui->logEdit->appendPlainText("WebSocket error: " + ws->errorString());
+   // });
 }
 
 //------------------------------------------------------------------------
@@ -2747,6 +2750,130 @@ void MainWindow::socketIO_Client_Disconnect2()
 }
 
 //------------------------------------------------------------------------
+int MainWindow::setupGPIO()
+{
+    const char *chipname = "gpiochip4";   // RPi 5
+    const unsigned int GPIO17 = 17;
+    const unsigned int GPIO27 = 27;
+
+    gpiod_chip *chip = gpiod_chip_open_by_name(chipname);
+    if (!chip) {
+        qCritical() << "Failed to open" << chipname;
+        return -1;
+    }
+
+    line17 = gpiod_chip_get_line(chip, GPIO17);
+    line27 = gpiod_chip_get_line(chip, GPIO27);
+
+    if (!line17 || !line27) {
+        qCritical() << "Failed to get GPIO lines";
+        gpiod_chip_close(chip);
+        return -1;
+    }
+
+    if (gpiod_line_request_output(line17, "qt-gpio17", 0) < 0 ||
+        gpiod_line_request_output(line27, "qt-gpio22", 0) < 0) {
+        qCritical() << "Failed to request GPIO output";
+        gpiod_chip_close(chip);
+        return -1;
+    }
+
+    qDebug() << "GPIO 17 & 27 ready.";
+    return 1;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::setColor(qint8 color)
+{
+    int val17 = 0;
+    int val27 = 0;
+
+    switch (color) {
+      case 0: val17 = 0; val27 = 0; break; // 00
+      case 1: val17 = 0; val27 = 1; break; // 01
+      case 2: val17 = 1; val27 = 0; break; // 10
+      case 3: val17 = 1; val27 = 1; break; // 11
+      default: val17 = 0; val27 = 0; break; // 00
+    }
+
+    gpiod_line_set_value(line17, val17);
+    gpiod_line_set_value(line27, val27);
+
+    qDebug() << "color " << color << " GPIO17 =" << val17 << "GPIO22 =" << val27;
+}
+
+//------------------------------------------------------------------------
+int MainWindow::getBrightness()
+{
+    QProcess proc;
+    proc.start("brightnessctl", {"get"});
+    proc.waitForFinished();
+
+    QString output = proc.readAllStandardOutput().trimmed();
+    bool ok = false;
+    int value = output.toInt(&ok);
+
+    if (!ok) {
+        qWarning() << "Failed to parse brightness:" << output;
+        return -1;
+    }
+    return value;
+}
+
+//------------------------------------------------------------------------
+bool MainWindow::setBrightnessPercent(int percent)
+{
+    if((percent < 0 ) || (percent > 100)) return false;
+
+     QProcess proc;
+     proc.start("brightnessctl", {"set", QString::number(percent) + "%"});
+     proc.waitForFinished();
+
+     return proc.exitStatus() == QProcess::NormalExit &&
+             proc.exitCode() == 0;
+}
+
+//------------------------------------------------------------------------
+int MainWindow::getVolumePercent()
+{
+    QProcess proc;
+    proc.start("bash", {"-c", "pactl get-sink-volume @DEFAULT_SINK@"});
+    proc.waitForFinished();
+
+    QString output = proc.readAllStandardOutput();
+    QString error  = proc.readAllStandardError();
+    QString all    = output + error;
+
+    qDebug() << "pactl output:" << all;
+
+    QRegularExpression re("(\\d+)%");
+    QRegularExpressionMatch match = re.match(all);
+
+    if (!match.hasMatch()) {
+        qWarning() << "Failed to parse volume:" << all;
+        return -1;
+    }
+
+    return match.captured(1).toInt();
+
+
+}
+
+//------------------------------------------------------------------------
+bool MainWindow::setVolumePercent(int percent)
+{
+    if ((percent < 0) || (percent > 150)) return false; // PipeWire bisa >100%, batasi sesuai kebutuhan
+
+    QProcess proc;
+    proc.start("pactl", {"set-sink-volume", "@DEFAULT_SINK@", QString::number(percent) + "%"});
+    proc.waitForFinished();
+
+    return proc.exitStatus() == QProcess::NormalExit &&
+           proc.exitCode() == 0;
+
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnTestFall_clicked()
 {
     if(ui->cbSocket->isChecked()){
@@ -2765,4 +2892,79 @@ void MainWindow::on_btnTestFall2_clicked()
     }
 }
 
+//------------------------------------------------------------------------
+void MainWindow::on_btnColor1_clicked()
+{
+    setColor(0);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_pushButton2_clicked()
+{
+    setColor(1);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnColor3_clicked()
+{
+    setColor(2);
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnColor4_clicked()
+{
+    setColor(3);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_hsBrightness_valueChanged(int value)
+{
+    ui->lBrightness->setText(QString::number(value));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnGetBrightness_clicked()
+{
+    ui->leBrightness->setText(QString::number(getBrightness()));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnsetBrightness_clicked()
+{
+   if(setBrightnessPercent(ui->hsBrightness->value())){
+       qDebug() << "Success Set brightness " << ui->hsBrightness->value();
+   }else{
+       qDebug() << "Fail Set brightness " << ui->hsBrightness->value();
+   }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnPlaySound_clicked()
+{
+    sound.stop();
+    sound.play();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnGetVol_clicked()
+{
+    ui->leVol->setText(QString::number(getVolumePercent()));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_hsVol_valueChanged(int value)
+{
+    ui->lVol->setText(QString::number(value));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnsetVol_clicked()
+{
+    if(setVolumePercent(ui->hsVol->value())){
+        qDebug() << "Success Set Volume " << ui->hsVol->value();
+    }else{
+        qDebug() << "Fail Set Volume " << ui->hsVol->value();
+    }
+}
 

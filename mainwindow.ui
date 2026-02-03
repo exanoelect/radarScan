@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -474,10 +474,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence">
        <property name="geometry">
@@ -513,10 +510,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection">
        <property name="geometry">
@@ -541,10 +535,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -568,10 +559,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill">
        <property name="geometry">
@@ -596,10 +584,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_2">
         <property name="geometry">
@@ -740,10 +725,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking">
        <property name="geometry">
@@ -838,10 +820,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking2">
        <property name="geometry">
@@ -996,10 +975,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence2">
        <property name="geometry">
@@ -1048,10 +1024,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection2">
        <property name="geometry">
@@ -1076,10 +1049,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -1093,10 +1063,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill2">
        <property name="geometry">
@@ -1121,10 +1088,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_6">
         <property name="geometry">
@@ -1260,7 +1224,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1491,7 +1455,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1596,6 +1560,227 @@
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>Test</string>
+     </attribute>
+     <widget class="QPushButton" name="btnColor1">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color 1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton2">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>20</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color 2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnColor3">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>20</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color 3</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnColor4">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>20</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Color 4</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnsetBrightness">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>321</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>set Brightness</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leBrightness">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnGetBrightness">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>60</y>
+        <width>231</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>get Brightness</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lBrightness">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>100</y>
+        <width>57</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="text">
+       <string>%</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="hsBrightness">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>90</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPlaySound">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>321</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Play Sound</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="leVol">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>230</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnGetVol">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>230</y>
+        <width>231</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>get Volume</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="hsVol">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>280</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="value">
+       <number>90</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lVol">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>270</y>
+        <width>57</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="text">
+       <string>%</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnsetVol">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>310</y>
+        <width>321</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>set Volume</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
    <widget class="QCustomPlot" name="plotRadar" native="true">
     <property name="geometry">
@@ -1684,7 +1869,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>30</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>
