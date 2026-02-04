@@ -311,7 +311,8 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
             }
 
             handleIncomingEvent(eventName, dataValue.toObject(), ackId);
-            emit eventReceived(eventName, dataValue.toObject());
+            //emit eventReceived(eventName, dataValue.toObject());
+            emit eventReceived(eventName, dataValue);
         }
         else if (subType == 3) { // ACK
             // Format: 3[ackId,"RESPONSE"]
@@ -491,7 +492,7 @@ void SocketIOClient::sendSocketIOPacket(int type, const QString &data)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
+void SocketIOClient::emitEvent1(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -511,7 +512,7 @@ void SocketIOClient::emitEvent(const QString &eventName,const QJsonValue &data,s
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent(const QString &eventName, const QString message)
+void SocketIOClient::emitEvent2(const QString &eventName, const QString message)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -526,7 +527,7 @@ void SocketIOClient::emitEvent(const QString &eventName, const QString message)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent(const QString &eventName,
+void SocketIOClient::emitEvent3(const QString &eventName,
                                const QJsonValue &data)
 {
     if (!m_isConnected || !m_webSocket) {
@@ -630,7 +631,7 @@ void SocketIOClient::sendFallDetected()
         {"timestamp", QDateTime::currentDateTime().toString(Qt::ISODate)}
     };
     //emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload);
-    emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload, [](QJsonValue ackVal) {
+    emitEvent1("INCIDENT_FALL_DOWN_DETECTED", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 
@@ -643,7 +644,7 @@ void SocketIOClient::sendNoResponseFall(const QString &originalTimestamp)
         {"timestamp", originalTimestamp}
     };
     //emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload);
-    emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload, [](QJsonValue ackVal) {
+    emitEvent1("INCIDENT_FALL_DOWN_NO_RESPONSE", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 }
@@ -662,7 +663,7 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
         {"volume", volume}
     };
     //emitEvent("DEVICE_READY", payload);
-    emitEvent("DEVICE_READY", payload, [](QJsonValue ackVal) {
+    emitEvent1("DEVICE_READY", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 }
@@ -671,7 +672,7 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
 void SocketIOClient::sendScheduleEvent(const QString &scheduleType,
                                        const QJsonObject &dateParams)
 {
-    emitEvent(scheduleType, dateParams);
+    emitEvent3(scheduleType, dateParams);
 }
 
 //------------------------------------------------------------------------

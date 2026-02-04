@@ -45,9 +45,9 @@ public:
     bool isConnected() const { return m_isConnected; }
 
     //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
-    void emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
-    void emitEvent(const QString &eventName, const QString message);
-    void emitEvent(const QString &eventName, const QJsonValue &data);
+    void emitEvent1(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
+    void emitEvent2(const QString &eventName, const QString message);
+    void emitEvent3(const QString &eventName, const QJsonValue &data);
 
     void emitEventWithAck(const QString &eventName,
                           const QJsonObject &data,
@@ -79,9 +79,8 @@ signals:
     void disconnected();
     void connectionError(const QString &error);
     //void eventReceived(const QString &eventName, const QJsonObject &data);
-    void eventReceived(const QString &eventName, const QString &message);
+    //void eventReceived(const QString &eventName, const QString &message);
     void eventReceived(const QString &eventName, const QJsonValue &payload);
-
 
     // Specific events dari frontend
     void screenBrightnessSet(int level);

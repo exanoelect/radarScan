@@ -43,8 +43,6 @@ extern "C" {
 }
 #endif
 
-
-
 enum SOCKET_STATE{
     SOCKET_IDDLE,
     SOCKET_CONNECTING,
@@ -168,6 +166,8 @@ private slots:
     void on_btnTestFall2_clicked();
     void on_btnPlaySound_clicked();
 
+    void onSocketEventReceived(const QString &eventName, const QJsonValue &data);
+
 
 #ifdef PLATFORM_LINUX
     void on_btnColor1_clicked();
@@ -194,15 +194,12 @@ private slots:
 
     void on_btnConnect_clicked();
 
+    void on_btnFallSimulation_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
     //QString demoName2;
-
-
-    QWebSocket *ws;
-    bool isConnected = false;
-    bool namespaceConnected = false;
 
     SocketIOClient *client;
 
@@ -226,10 +223,8 @@ private:
     QSerialPort *m_serial2 = nullptr;
     QByteArray m_buffer2;
 
-
-    QQueue<QByteArray> m_payloadQueue;    
-    QQueue<quint8> m_socketQueue;
-    quint8 socketState;
+    QQueue<QByteArray> m_payloadQueue;
+    QQueue<QPair<QString, QJsonValue>> m_eventQueue;
 
     QQueue<QByteArray> m_payloadQueue2;
     QQueue<quint8> m_socketQueue2;
@@ -276,13 +271,6 @@ private:
 
     void drawRealTimeetsgram2(QString motion);
     void drawRealTimeVelocity2(QString velocity);
-
-    void socketIO_Client_Prepare();
-    void socketIO_Client_Connect();
-    void socketIO_Client_Write();
-
-    void socketIO_Client_Disconnect();
-    void socketIO_Client_Disconnect2();
 
 #ifdef PLATFORM_LINUX
     //GPIO LEd strip

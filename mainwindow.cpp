@@ -18,12 +18,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Timer untuk proses payload
     m_processTimer = new QTimer(this);
-    connect(m_processTimer, &QTimer::timeout, this, &MainWindow::processPayload);
+    connect(m_processTimer, &QTimer::timeout,
+            this, &MainWindow::processPayload);
     m_processTimer->start(50); // proses tiap 50 ms
 
     // Timer untuk proses payload
     m_processTimer2 = new QTimer(this);
-    connect(m_processTimer2, &QTimer::timeout, this, &MainWindow::processPayload2);
+    connect(m_processTimer2, &QTimer::timeout,
+            this, &MainWindow::processPayload2);
     m_processTimer2->start(50); // proses tiap 50 ms
 
     // Setup sound (Qt6: include path QtMultimedia/QSoundEffect)
@@ -47,14 +49,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Timer utk sokcet
     m_socketTimer = new QTimer(this);
-    ws = new QWebSocket();
+    connect(m_socketTimer, &QTimer::timeout,
+            this, &MainWindow::processPayloadSocket);
+    m_socketTimer->start(500); // proses tiap 500 ms
+
+    //ws = new QWebSocket();
 
     client = new SocketIOClient();
 
-    connect(m_socketTimer, &QTimer::timeout, this, &MainWindow::processPayloadSocket);
-    m_socketTimer->start(500); // proses tiap 500 ms
+    connect(client, &SocketIOClient::eventReceived,
+            this,   &MainWindow::onSocketEventReceived);
 
-    socketState = SOCKET_IDDLE;
+
+    //socketState = SOCKET_IDDLE;
 
     //socketIO_Client_Prepare();
 
@@ -790,7 +797,8 @@ void MainWindow::processPayload()
                     sound.stop();
                     sound.play();
                     if(ui->cbSocket->isChecked()){
-                        m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
+                        client->emitEvent3("FALL","FALL");
+                        //m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
                     }
                 }
                 break;
@@ -914,6 +922,27 @@ void MainWindow::processPayload()
 //---------------------------------------------------------------------------------------
 void MainWindow::processPayloadSocket()
 {
+    while (!m_eventQueue.isEmpty()) {
+        auto event = m_eventQueue.dequeue();
+        const QString &eventName = event.first;
+        const QJsonValue &data = event.second;
+
+        qDebug() << "Timer processing event:" << eventName << "data:" << data;
+
+        if (eventName == "LISTEN" && data.isString()) {
+            QString state = data.toString();
+            qDebug() << "Process LISTEN:" << state;
+            // aksi di sini
+        }
+        else if (eventName == "TALKING" && data.isString()) {
+            QString state = data.toString();
+            qDebug() << "Process TALKING:" << state;
+            // aksi di sini
+        }
+        // tambah event lain di sini
+    }
+
+    /*
     while (!m_socketQueue.isEmpty()) {
         quint8 sockQueue = m_socketQueue.dequeue();
         if (sockQueue == 0){ //no queue
@@ -932,7 +961,7 @@ void MainWindow::processPayloadSocket()
     case SOCKET_CONNECTING:{
         socketState = SOCKET_WAITING_CONNECTED;
         ui->logEdit->appendPlainText("q2. queue connecting");
-        socketIO_Client_Connect();
+        //socketIO_Client_Connect();
         break;
     }
     case SOCKET_WAITING_CONNECTED:{
@@ -946,7 +975,7 @@ void MainWindow::processPayloadSocket()
     case SOCKET_SENDING:{
         socketState = SOCKET_WAITING_SENT;
         ui->logEdit->appendPlainText("q4. queue sending");
-        socketIO_Client_Write();
+        //socketIO_Client_Write();
         break;
     }
     case SOCKET_WAITING_SENT:{
@@ -956,7 +985,7 @@ void MainWindow::processPayloadSocket()
     case SOCKET_SENT:{
         socketState = SOCKET_CLOSING;
         ui->logEdit->appendPlainText("q6. queue disconnected");
-        socketIO_Client_Disconnect();
+        //socketIO_Client_Disconnect();
         break;
     }
     case SOCKET_CLOSING:{
@@ -968,6 +997,7 @@ void MainWindow::processPayloadSocket()
         //ui->logEdit->appendPlainText("q8");
         break;
     }
+*/
 }
 
 //---------------------------------------------------------------------------------------
@@ -1470,67 +1500,6 @@ void MainWindow::processPayload2()
         }
     }
 }
-
-//---------------------------------------------------------------------------------------
-/*
-void MainWindow::processPayloadSocket2()
-{
-    while (!m_socketQueue2.isEmpty()) {
-        quint8 sockQueue = m_socketQueue2.dequeue();
-        if (sockQueue == 0){ //no queue
-            break;
-        }else{ //queue available, process
-            socketState2 = SOCKET_CONNECTING;
-            ui->logEdit2->appendPlainText("q0. Queue rcv");
-        }
-    }
-
-    switch (socketState2) {
-    case SOCKET_IDDLE:{
-        //ui->logEdit->appendPlainText("q1. queue iddle0");
-        break;
-    }
-    case SOCKET_CONNECTING:{
-        socketState2 = SOCKET_WAITING_CONNECTED;
-        ui->logEdit2->appendPlainText("q2. queue connecting");
-        socketIO_Client_Connect();
-        break;
-    }
-    case SOCKET_WAITING_CONNECTED:{
-        break;
-    }
-    case SOCKET_CONNECTED:{
-        socketState2 = SOCKET_SENDING;
-        ui->logEdit2->appendPlainText("q3. queue connected");
-        break;
-    }
-    case SOCKET_SENDING:{
-        socketState2 = SOCKET_WAITING_SENT;
-        ui->logEdit2->appendPlainText("q4. queue sending");
-        socketIO_Client_Write();
-        break;
-    }
-    case SOCKET_WAITING_SENT:{
-        ui->logEdit2->appendPlainText("q5. queue waiting sent");
-        break;
-    }
-    case SOCKET_SENT:{
-        socketState2 = SOCKET_CLOSING;
-        ui->logEdit2->appendPlainText("q6. queue disconnected");
-        socketIO_Client_Disconnect2();
-        break;
-    }
-    case SOCKET_CLOSING:{
-        socketState2 = SOCKET_IDDLE;
-        //ui->logEdit->appendPlainText("q7. queue iddle1");
-        break;
-    }
-    default:
-        //ui->logEdit->appendPlainText("q8");
-        break;
-    }
-}
-*/
 
 //---------------------------------------------------------------------------------------
 void MainWindow::writeData2(const QByteArray &data)
@@ -2633,137 +2602,6 @@ void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
         ));
 }
 
-//------------------------------------------------------------------------
-void MainWindow::socketIO_Client_Prepare()
-{
-    // Event connected
-    connect(ws, &QWebSocket::connected, this, [this]() {
-        ui->logEdit->appendPlainText("Connected to server!");
-        isConnected = true;
-
-        // Join namespace /radar setelah connected
-        ws->sendTextMessage("40");
-        ui->logEdit->appendPlainText("Sent namespace connect: 40/radar");
-    });
-
-    // Event textMessageReceived
-    connect(ws, &QWebSocket::textMessageReceived, this, [this](const QString &msg){
-        ui->logEdit->appendPlainText("Received: " + msg);
-
-        // -------------------------------
-        // 1. Balas ping Engine.IO otomatis
-        if(msg == "2") {           // ping dari server
-            ws->sendTextMessage("3"); // pong
-            ui->logEdit->appendPlainText("Sent pong: 3");
-            return;
-        }
-
-        // -------------------------------
-        // 2. Deteksi ack namespace connect
-        if(msg.startsWith("40")) {
-            namespaceConnected = true;
-            ui->logEdit->appendPlainText("Namespace connected, ready to send payload");
-            socketState = SOCKET_CONNECTED;
-        }
-
-        // -------------------------------
-        // 3. Bisa tambahkan parser event lain nanti
-        // Misal: 42/radar,[...] ΓåÆ event server
-        if(msg.startsWith("42")) {
-            ui->logEdit->appendPlainText("Payload received: " + msg.mid(9)); // skip "42/radar"
-            socketState = SOCKET_SENT;
-        }
-    });
-
-
-    // Event error
-   // connect(ws, &QWebSocket::error, this, [this](QAbstractSocket::SocketError err){
-   //     Q_UNUSED(err);
-   //     ui->logEdit->appendPlainText("WebSocket error: " + ws->errorString());
-   // });
-}
-
-//------------------------------------------------------------------------
-void MainWindow::socketIO_Client_Connect()
-{
-    if(!isConnected) {
-        //ws->open(QUrl("ws://192.168.1.100:3000/socket.io/?EIO=4&transport=websocket"));
-        //ws->open(QUrl("ws://localhost:3000/radar/?EIO=4&transport=websocket"));
-        ws->open(QUrl("ws://localhost:3000/socket.io/?EIO=4&transport=websocket"));
-        ui->logEdit->appendPlainText("Opening WebSocket...");
-    } else {
-        ui->logEdit->appendPlainText("Already connected");
-    }
-}
-
-//------------------------------------------------------------------------
-void MainWindow::socketIO_Client_Write()
-{
-    if(isConnected && namespaceConnected) {
-        //QString payload = "42[\"navigateCommand\",\"/fall\"]";
-        ws->sendTextMessage("42[\"navigateCommand\",\"/fall\"]");
-        //ws->sendTextMessage(payload);
-        ui->logEdit->appendPlainText("Sent payload: ");// + payload);
-    } else if(!isConnected) {
-        ui->logEdit->appendPlainText("Not connected yet!");
-    } else {
-        ui->logEdit->appendPlainText("Namespace not connected yet!");
-    }
-}
-
-//------------------------------------------------------------------------
-void MainWindow::socketIO_Client_Disconnect()
-{
-    if(isConnected) {
-
-        ui->logEdit->appendPlainText("Sending namespace disconnect...");
-
-        // 1. Kirim paket disconnect namespace
-        // Socket.IO format: 41/<namespace>
-        ws->sendTextMessage("41/radar");
-
-        ui->logEdit->appendPlainText("Closing WebSocket...");
-
-        // 2. Tutup koneksi WebSocket
-        ws->close();
-
-        // 3. Reset status
-        isConnected = false;
-        namespaceConnected = false;
-
-        ui->logEdit->appendPlainText("Disconnected.");
-    }
-    else {
-        ui->logEdit->appendPlainText("Already disconnected.");
-    }
-}
-
-//------------------------------------------------------------------------
-void MainWindow::socketIO_Client_Disconnect2()
-{
-    if(isConnected) {
-
-        ui->logEdit2->appendPlainText("Sending namespace disconnect...");
-
-        // 1. Kirim paket disconnect namespace
-        // Socket.IO format: 41/<namespace>
-        ws->sendTextMessage("41/radar");
-
-        ui->logEdit2->appendPlainText("Closing WebSocket...");
-
-        // 2. Tutup koneksi WebSocket
-        ws->close();
-
-        // 3. Reset status
-        isConnected = false;
-        namespaceConnected = false;
-
-        ui->logEdit2->appendPlainText("Disconnected.");
-    }
-    else {
-        ui->logEdit2->appendPlainText("Already disconnected.");
-    }
-}
 
 #ifdef PLATFORM_LINUX
 //------------------------------------------------------------------------------------------------------------------------
@@ -2899,7 +2737,8 @@ bool MainWindow::setVolumePercent(int percent)
 void MainWindow::on_btnTestFall_clicked()
 {
     if(ui->cbSocket->isChecked()){
-       m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
+       //m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
+       client->emitEvent3("FALL","FALL");
        ui->logEdit->appendPlainText("Test FALL");
     }
 }
@@ -2919,6 +2758,50 @@ void MainWindow::on_btnPlaySound_clicked()
 {
     sound.stop();
     sound.play();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValue &data)
+{
+    qDebug() << "UI received event:" << eventName << "data:" << data;
+    m_eventQueue.enqueue(qMakePair(eventName, data));
+
+    /*
+    QString strValue;
+    int intValue = 0;
+    qDebug() << "UI received event:" << eventName << "data:" << data;
+
+    if (eventName == "LISTEN") {
+        if (data.isString()) {
+            strValue = data.toString();
+            qDebug() << "UI LISTEN Data:" << strValue;
+        }
+        else if (data.isDouble()) {
+            intValue = data.toInt();
+            qDebug() << "UI LISTEN Data:" << intValue;
+        }
+        else if (data.isObject()) {
+            QJsonObject obj = data.toObject();
+            qDebug() << "UI LISTEN Data:" << obj;
+            // ambil field sesuai kebutuhan
+        }
+    }
+    else if (eventName == "TALKING") {
+        if (data.isString()) {
+            strValue = data.toString();
+            qDebug() << "UI TALKING Data:" << strValue;
+        }
+        else if (data.isDouble()) {
+            intValue = data.toInt();
+            qDebug() << "UI TALKING Data:" << intValue;
+        }
+        else if (data.isObject()) {
+            QJsonObject obj = data.toObject();
+            qDebug() << "UI TALKING Data:" << obj;
+            // ambil field sesuai kebutuhan
+        }
+    }
+*/
 }
 
 #ifdef PLATFORM_LINUX
@@ -3000,5 +2883,11 @@ void MainWindow::on_btnsetVol_clicked()
 void MainWindow::on_btnConnect_clicked()
 {
     client->connectToServer("localhost", 3000);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnFallSimulation_clicked()
+{
+    client->emitEvent3("FALL","FALL");
 }
 
