@@ -163,21 +163,52 @@ void SocketIOClient::parseSocketIOMessage(const QString &message)
         return;
     }
 
-    // Socket.IO packet format: "packetType[data]"
     bool ok;
     int packetType = QString(message[0]).toInt(&ok);
-
     if (!ok) {
         qWarning() << "Invalid packet type:" << message;
         return;
     }
 
-    QString data = message.mid(1); // Semua karakter setelah packet type
-    handleSocketIOPacket(packetType, data);
+    QString data = message.mid(1);
+    handleSocketIOJsonPacket(packetType, data);
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::handleSocketIOPacket(int type, const QString &data)
+void SocketIOClient::parseEventPayload(const QString &jsonArrayText)
+{
+    QJsonParseError err;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonArrayText.toUtf8(), &err);
+    if (err.error != QJsonParseError::NoError || !doc.isArray()) {
+        qWarning() << "Invalid event JSON:" << jsonArrayText;
+        return;
+    }
+
+    QJsonArray arr = doc.array();
+    if (arr.size() < 2) {
+        qWarning() << "Invalid event format:" << arr;
+        return;
+    }
+
+    QString eventName = arr[0].toString();
+    QJsonValue dataValue = arr[1];
+
+    int ackId = -1;
+    if (arr.size() >= 3 && arr[2].isDouble()) {
+        ackId = arr[2].toInt();
+    }
+
+    qDebug() << "Parse Event:" << eventName
+             << "Data:" << dataValue
+             << "AckId:" << ackId;
+
+    handleIncomingEvent(eventName, dataValue.toObject(), ackId);
+    emit eventReceived(eventName, dataValue.toObject());
+}
+
+
+//------------------------------------------------------------------------
+void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
 {
     switch (type) {
     case 0: { // CONNECT
@@ -224,57 +255,87 @@ void SocketIOClient::handleSocketIOPacket(int type, const QString &data)
         qDebug() << "Received PONG";
         break;
 
-    case 4: { // MESSAGE
-        if (!data.isEmpty()) {
-            QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
+    case 4: { // MESSAGE (Engine.IO)
+        if (data.isEmpty()) break;
 
-            if (doc.isArray()) {
-                QJsonArray arr = doc.array();  // SEKARANG AMAN
+        // Data seharusnya diawali dengan subtype Socket.IO, misalnya:
+        // 2["EVENT","DATA"]
+        // 3[ackId,"RESPONSE"]
 
-                // Format: [eventName, data, ackId?]
-                if (arr.size() >= 2) {
-                    QString eventName = arr[0].toString();
-                    QJsonValue dataValue = arr[1];
+        QChar subTypeChar = data[0];
+        QString subData = data.mid(1);
 
-                    // Handle acknowledgment
-                    int ackId = -1;
-                    if (arr.size() >= 3 && arr[2].isDouble()) {
-                        ackId = arr[2].toInt();
-                    }
+        int subType = subTypeChar.digitValue();
 
-                    // Parse data (bisa object atau array)
-                    QJsonObject payload;
-                    if (dataValue.isObject()) {
-                        payload = dataValue.toObject();
-                    } else if (dataValue.isArray()) {
-                        // Convert array ke object jika perlu
-                        QJsonArray dataArr = dataValue.toArray();
-                        if (!dataArr.isEmpty() && dataArr[0].isObject()) {
-                            payload = dataArr[0].toObject();
-                        }
-                    }
+        if (subType == 2) { // EVENT
+            // subData harus JSON array: ["EVENT","DATA"]
+            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8());
+            if (!doc.isArray()) {
+                qWarning() << "Invalid event JSON:" << subData;
+                return;
+            }
 
-                    qDebug() << "Event:" << eventName
-                             << "Data:" << payload
-                             << "AckId:" << ackId;
+            QJsonArray arr = doc.array();
+            if (arr.size() < 2) {
+                qWarning() << "Invalid event format:" << arr;
+                return;
+            }
 
-                    // Handle events dari frontend
-                    handleIncomingEvent(eventName, payload, ackId);
+            QString eventName = arr[0].toString();
+            QJsonValue dataValue = arr[1];
 
-                    emit eventReceived(eventName, payload);
-                } else {
-                    qWarning() << "Invalid message array size:" << arr.size();
-                }
-            } else if (doc.isObject()) {
-                // Alternative format (legacy)
-                QJsonObject obj = doc.object();
-                qDebug() << "Message object:" << obj;
-            } else {
-                qWarning() << "Invalid JSON format in message";
+            int ackId = -1;
+            if (arr.size() >= 3 && arr[2].isDouble()) {
+                ackId = arr[2].toInt();
+            }
+
+            qDebug() << "Parse Event:" << eventName
+                     << "Data:" << dataValue
+                     << "AckId:" << ackId;
+
+            QString strValue;
+            int intValue = 0;
+
+            if (dataValue.isString()) {
+                strValue = dataValue.toString();
+                qDebug() << "Parse Data:" << strValue;
+            }
+            else if (dataValue.isDouble()) {
+                intValue = dataValue.toInt();
+                qDebug() << "Parse Data:" << intValue;
+            }
+            else if (dataValue.isObject()) {
+                QJsonObject obj = dataValue.toObject();
+                qDebug() << "Parse Data:" << obj;
+                // ambil field sesuai kebutuhan
+            }
+
+            handleIncomingEvent(eventName, dataValue.toObject(), ackId);
+            emit eventReceived(eventName, dataValue.toObject());
+        }
+        else if (subType == 3) { // ACK
+            // Format: 3[ackId,"RESPONSE"]
+            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8());
+            if (!doc.isArray()) {
+                qWarning() << "Invalid ACK JSON:" << subData;
+                return;
+            }
+
+            QJsonArray arr = doc.array();
+            if (arr.size() >= 1) {
+                int ackId = arr[0].toInt();
+                QJsonValue ackData = (arr.size() >= 2) ? arr[1] : QJsonValue();
+                qDebug() << "ACK received:" << ackId << ackData;
+                handleIncomingAck(ackId, ackData);
             }
         }
+        else {
+            qDebug() << "Unhandled Socket.IO subtype:" << subType << "Data:" << subData;
+        }
+
         break;
     }
+
 
     case 5: // UPGRADE (WebSocket upgrade)
         qDebug() << "Upgrade packet received";
@@ -290,23 +351,49 @@ void SocketIOClient::handleSocketIOPacket(int type, const QString &data)
     }
 }
 
+
+//------------------------------------------------------------------------
+void SocketIOClient::handleIncomingAck(int ackId, const QJsonValue &data)
+{
+    qDebug() << "ACK received for id:" << ackId << "Data:" << data;
+
+    auto it = m_ackCallbacks.find(ackId);
+    if (it != m_ackCallbacks.end()) {
+        auto callback = it->second;
+        m_ackCallbacks.erase(it);
+        callback(data);
+    } else {
+        qWarning() << "No callback found for ACK id:" << ackId;
+    }
+}
+
+
 //------------------------------------------------------------------------
 void SocketIOClient::handleIncomingEvent(const QString &eventName,
-                                         const QJsonObject &payload,
+                                         const QJsonValue &payload,
                                          int ackId)
 {
     // Kirim acknowledgment jika ada ackId
     if (ackId != -1) {
+        // Kirim payload apa adanya (bisa object/string/array)
         sendAcknowledgment(eventName, ackId, payload);
     }
 
+    // Jika payload bukan object, tetap log dan keluar aman
+    if (!payload.isObject()) {
+        qDebug() << "Event with non-object payload:" << eventName << payload;
+        return;
+    }
+
+    QJsonObject obj = payload.toObject();
+
     // Route events ke handler yang sesuai
     if (eventName == "SCREEN_BRIGHTNESS_SET") {
-        int level = payload["level"].toInt(75);
+        int level = obj["level"].toInt(75);
         emit screenBrightnessSet(level);
     }
     else if (eventName == "VOLUME_SET") {
-        int volume = payload["volume"].toInt(75);
+        int volume = obj["volume"].toInt(75);
         emit volumeSet(volume);
     }
     else if (eventName == "DEVICE_OFF") {
@@ -322,53 +409,62 @@ void SocketIOClient::handleIncomingEvent(const QString &eventName,
         emit pingDeviceUp();
     }
     else if (eventName == "INCIDENT_HELP_EVENT_DETECTED") {
-        QString timestamp = payload["timestamp"].toString();
+        QString timestamp = obj["timestamp"].toString();
         emit helpEvent(timestamp);
     }
     else if (eventName == "INCIDENT_OK_EVENT_DETECTED") {
-        QString timestamp = payload["timestamp"].toString();
+        QString timestamp = obj["timestamp"].toString();
         emit okEvent(timestamp);
     }
     else if (eventName == "INCIDENT_NOT_OK_EVENT_DETECTED") {
-        QString timestamp = payload["timestamp"].toString();
+        QString timestamp = obj["timestamp"].toString();
         emit notOkEvent(timestamp);
     }
     // Handle schedule requests
     else if (eventName.startsWith("SHOW_")) {
-        qDebug() << "Schedule request:" << eventName << payload;
+        qDebug() << "Schedule request:" << eventName << obj;
         // Event ini akan ditangani oleh eventReceived signal
     }
 }
 
+
 //------------------------------------------------------------------------
 void SocketIOClient::sendAcknowledgment(const QString &eventName,
                                         int ackId,
-                                        const QJsonObject &originalData)
+                                        const QJsonValue &originalData)
 {
     if (!m_webSocket || m_webSocket->state() != QAbstractSocket::ConnectedState) {
         qWarning() << "Cannot send acknowledgment, socket not connected";
         return;
     }
 
-    // Format: 42[eventName + "_ACK", data, ackId]
-    QJsonObject ackData;
+    QJsonValue ackPayload;
 
     // Buat data acknowledgment berdasarkan event
-    if (eventName == "SCREEN_BRIGHTNESS_SET") {
-        ackData["level"] = originalData["level"];
+    if (eventName == "SCREEN_BRIGHTNESS_SET" && originalData.isObject()) {
+        QJsonObject obj;
+        obj["level"] = originalData.toObject()["level"];
+        ackPayload = obj;
     }
-    else if (eventName == "VOLUME_SET") {
-        ackData["volume"] = originalData["volume"];
+    else if (eventName == "VOLUME_SET" && originalData.isObject()) {
+        QJsonObject obj;
+        obj["volume"] = originalData.toObject()["volume"];
+        ackPayload = obj;
     }
     else {
-        ackData["ack"] = true;
-        ackData["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+        // Default ACK payload
+        QJsonObject obj;
+        obj["ack"] = true;
+        obj["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+        ackPayload = obj;
     }
 
+    // Format Socket.IO ACK packet:
+    // 42["EVENT_ACK", data, ackId]
     QJsonArray eventArray;
     eventArray.append(eventName + "_ACK");
-    eventArray.append(ackData);
-    eventArray.append(ackId); // Socket.IO perlu ackId di posisi ketiga
+    eventArray.append(ackPayload);
+    eventArray.append(ackId);
 
     QJsonDocument doc(eventArray);
     QString message = "42" + doc.toJson(QJsonDocument::Compact);
@@ -376,6 +472,7 @@ void SocketIOClient::sendAcknowledgment(const QString &eventName,
     m_webSocket->sendTextMessage(message);
     qDebug() << "Sent acknowledgment for" << eventName << "ackId:" << ackId;
 }
+
 
 //------------------------------------------------------------------------
 void SocketIOClient::sendSocketIOPacket(int type, const QString &data)
@@ -394,7 +491,7 @@ void SocketIOClient::sendSocketIOPacket(int type, const QString &data)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent(const QString &eventName, const QJsonObject &data)
+void SocketIOClient::emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -414,12 +511,129 @@ void SocketIOClient::emitEvent(const QString &eventName, const QJsonObject &data
 }
 
 //------------------------------------------------------------------------
+void SocketIOClient::emitEvent(const QString &eventName, const QString message)
+{
+    if (!m_isConnected || !m_webSocket) {
+        qWarning() << "Not connected, cannot emit:" << eventName;
+        return;
+    }
+
+    // Format Socket.IO message: 42["eventName"]
+    QString data = "42[\"" + message + "\"" + "]";
+
+    m_webSocket->sendTextMessage(message);
+    qDebug() << "Emitted event:" << eventName << "message:" << data;
+}
+
+//------------------------------------------------------------------------
+void SocketIOClient::emitEvent(const QString &eventName,
+                               const QJsonValue &data)
+{
+    if (!m_isConnected || !m_webSocket) {
+        qWarning() << "Not connected, cannot emit:" << eventName;
+        return;
+    }
+
+    QJsonArray packetArray;
+    packetArray.append(eventName);
+    packetArray.append(data);
+
+    QJsonDocument doc(packetArray);
+    QString message = "42" + QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
+
+    m_webSocket->sendTextMessage(message);
+    qDebug() << "Emitted event:" << eventName;
+}
+
+
+//------------------------------------------------------------------------
+/*void SocketIOClient::emitEventWithAck(const QString &eventName,
+                                      const QJsonObject &data,
+                                      std::function<void(const QJsonObject&)> callback)
+{
+    if (!m_isConnected || !m_webSocket) {
+        qWarning() << "Not connected, cannot emit:" << eventName;
+        return;
+    }
+
+    int ackId = m_nextAckId++;
+    m_ackCallbacks[ackId] = callback;
+
+    QJsonArray packetArray;
+    packetArray.append(eventName);
+    packetArray.append(data);
+    packetArray.append(ackId);
+
+    QJsonDocument doc(packetArray);
+    QString message = "42" + doc.toJson(QJsonDocument::Compact);
+
+    m_webSocket->sendTextMessage(message);
+    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
+}
+*/
+
+//------------------------------------------------------------------------
+void SocketIOClient::emitEventWithAck(const QString &eventName,
+                                      const QString &data,
+                                      std::function<void(const QString&)> callback)
+{
+    if (!m_isConnected || !m_webSocket) {
+        qWarning() << "Not connected, cannot emit:" << eventName;
+        return;
+    }
+
+    int ackId = m_nextAckId++;
+    m_ackCallbacksQString[ackId] = callback;
+
+    QJsonArray packetArray;
+    packetArray.append(eventName);
+    packetArray.append(data);
+    packetArray.append(ackId);
+
+    QJsonDocument doc(packetArray);
+    QString message = "42" + doc.toJson(QJsonDocument::Compact);
+
+    m_webSocket->sendTextMessage(message);
+    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
+}
+
+//------------------------------------------------------------------------
+void SocketIOClient::emitEventWithAck(const QString &eventName,
+                                      const QJsonObject &data,
+                                      std::function<void(QJsonValue)> callback)
+{
+    if (!m_isConnected || !m_webSocket) {
+        qWarning() << "Not connected, cannot emit:" << eventName;
+        return;
+    }
+
+    int ackId = m_nextAckId++;
+    m_ackCallbacks[ackId] = callback;
+
+    QJsonArray packetArray;
+    packetArray.append(eventName);
+    packetArray.append(data);
+    packetArray.append(ackId);
+
+    QJsonDocument doc(packetArray);
+    QString message = "42" + QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
+
+    m_webSocket->sendTextMessage(message);
+    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
+}
+
+
+//------------------------------------------------------------------------
 void SocketIOClient::sendFallDetected()
 {
     QJsonObject payload{
         {"timestamp", QDateTime::currentDateTime().toString(Qt::ISODate)}
     };
-    emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload);
+    //emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload);
+    emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload, [](QJsonValue ackVal) {
+        qDebug() << ackVal;
+    });
+
 }
 
 //------------------------------------------------------------------------
@@ -428,7 +642,10 @@ void SocketIOClient::sendNoResponseFall(const QString &originalTimestamp)
     QJsonObject payload{
         {"timestamp", originalTimestamp}
     };
-    emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload);
+    //emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload);
+    emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload, [](QJsonValue ackVal) {
+        qDebug() << ackVal;
+    });
 }
 
 //------------------------------------------------------------------------
@@ -444,7 +661,10 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
         {"brightness", brightness},
         {"volume", volume}
     };
-    emitEvent("DEVICE_READY", payload);
+    //emitEvent("DEVICE_READY", payload);
+    emitEvent("DEVICE_READY", payload, [](QJsonValue ackVal) {
+        qDebug() << ackVal;
+    });
 }
 
 //------------------------------------------------------------------------
@@ -493,3 +713,5 @@ void SocketIOClient::attemptReconnect()
         constructWebSocketUrl();
     }
 }
+
+

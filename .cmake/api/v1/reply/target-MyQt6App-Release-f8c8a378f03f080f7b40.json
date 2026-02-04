@@ -21,6 +21,7 @@
 			"__find_dependency_common",
 			"find_dependency",
 			"_qt_internal_find_qt_dependencies",
+			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -46,7 +47,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 35,
+				"line" : 36,
 				"parent" : 0
 			},
 			{
@@ -70,7 +71,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 48,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
@@ -218,7 +219,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 43,
+				"line" : 55,
+				"parent" : 0
+			},
+			{
+				"command" : 12,
+				"file" : 1,
+				"line" : 42,
 				"parent" : 0
 			}
 		]
@@ -270,6 +277,10 @@
 			],
 			"defines" : 
 			[
+				{
+					"backtrace" : 32,
+					"define" : "PLATFORM_MACOS"
+				},
 				{
 					"backtrace" : 23,
 					"define" : "QT_CORE_LIB"
@@ -348,7 +359,7 @@
 					"path" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/include"
 				},
 				{
-					"backtrace" : 32,
+					"backtrace" : 33,
 					"path" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
 				},
 				{
@@ -469,11 +480,6 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 5,
-				"fragment" : "-lgpiod",
-				"role" : "libraries"
-			},
-			{
 				"backtrace" : 11,
 				"fragment" : "/Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui",
 				"role" : "libraries"
@@ -555,10 +561,6 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 5,
-			"fragment" : "gpiod"
 		}
 	],
 	"name" : "MyQt6App",
@@ -569,14 +571,14 @@
 			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 0,
 			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 

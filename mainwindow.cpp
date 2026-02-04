@@ -27,7 +27,13 @@ MainWindow::MainWindow(QWidget *parent) :
     m_processTimer2->start(50); // proses tiap 50 ms
 
     // Setup sound (Qt6: include path QtMultimedia/QSoundEffect)
-    sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));//("/Volumes/DATA/wav/alarm1.wav"));
+#ifdef PLATFORM_LINUX
+    sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));
+#else
+    sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
+#endif
+
+
     sound.setLoopCount(1);
     sound.setVolume(1.0f);
 
@@ -43,10 +49,14 @@ MainWindow::MainWindow(QWidget *parent) :
     m_socketTimer = new QTimer(this);
     ws = new QWebSocket();
 
-    connect(m_socketTimer, &QTimer::timeout, this, &MainWindow::processFayloadSocket);
+    client = new SocketIOClient();
+
+    connect(m_socketTimer, &QTimer::timeout, this, &MainWindow::processPayloadSocket);
     m_socketTimer->start(500); // proses tiap 500 ms
+
     socketState = SOCKET_IDDLE;
-    socketIO_Client_Prepare();
+
+    //socketIO_Client_Prepare();
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
@@ -902,7 +912,7 @@ void MainWindow::processPayload()
 }
 
 //---------------------------------------------------------------------------------------
-void MainWindow::processFayloadSocket()
+void MainWindow::processPayloadSocket()
 {
     while (!m_socketQueue.isEmpty()) {
         quint8 sockQueue = m_socketQueue.dequeue();
@@ -1462,7 +1472,8 @@ void MainWindow::processPayload2()
 }
 
 //---------------------------------------------------------------------------------------
-void MainWindow::processFayloadSocket2()
+/*
+void MainWindow::processPayloadSocket2()
 {
     while (!m_socketQueue2.isEmpty()) {
         quint8 sockQueue = m_socketQueue2.dequeue();
@@ -1519,10 +1530,13 @@ void MainWindow::processFayloadSocket2()
         break;
     }
 }
+*/
 
+//---------------------------------------------------------------------------------------
 void MainWindow::writeData2(const QByteArray &data)
 {
-
+    if (!m_serial2) return;
+    m_serial2->write(data);
 }
 
 
@@ -2752,6 +2766,8 @@ void MainWindow::socketIO_Client_Disconnect2()
 }
 
 #ifdef PLATFORM_LINUX
+//------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
 int MainWindow::setupGPIO()
 {
     const char *chipname = "gpiochip4";   // RPi 5
@@ -2875,6 +2891,9 @@ bool MainWindow::setVolumePercent(int percent)
 
 }
 #endif
+//------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
+
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnTestFall_clicked()
@@ -2903,7 +2922,8 @@ void MainWindow::on_btnPlaySound_clicked()
 }
 
 #ifdef PLATFORM_LINUX
-//------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
 void MainWindow::on_btnColor1_clicked()
 {
     setColor(0);
@@ -2973,3 +2993,12 @@ void MainWindow::on_btnsetVol_clicked()
 }
 
 #endif
+//------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnConnect_clicked()
+{
+    client->connectToServer("localhost", 3000);
+}
+

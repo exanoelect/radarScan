@@ -808,14 +808,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MyQt6App::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MyQt6App-Release-7de4b8cf4fa9a2a4dfa6.json",
+					"jsonFile" : "target-MyQt6App-Release-2adfeaf93761c9c89fab.json",
 					"name" : "MyQt6App",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MyQt6App_autogen-Release-45bca9d366b419dd12d4.json",
+					"jsonFile" : "target-MyQt6App_autogen-Release-b1fbbd0083fd5ecdfe7d.json",
 					"name" : "MyQt6App_autogen",
 					"projectIndex" : 0
 				},

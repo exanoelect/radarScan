@@ -55,13 +55,12 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "showPortInfo",
         "idx",
         "processPayload",
-        "processFayloadSocket",
+        "processPayloadSocket",
         "writeData",
         "data",
         "closeSerialPort2",
         "showPortInfo2",
         "processPayload2",
-        "processFayloadSocket2",
         "writeData2",
         "on_btnLoad_clicked",
         "on_btnOpenSerialPort_clicked",
@@ -105,7 +104,8 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_btnSetAngle2_clicked",
         "on_btnTestFall_clicked",
         "on_btnTestFall2_clicked",
-        "on_btnPlaySound_clicked"
+        "on_btnPlaySound_clicked",
+        "on_btnConnect_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -141,7 +141,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         }}),
         // Slot 'processPayload'
         QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'processFayloadSocket'
+        // Slot 'processPayloadSocket'
         QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'writeData'
         QtMocHelpers::SlotData<void(const QByteArray &)>(16, 2, QMC::AccessPrivate, QMetaType::Void, {{
@@ -155,117 +155,117 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         }}),
         // Slot 'processPayload2'
         QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'processFayloadSocket2'
-        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'writeData2'
-        QtMocHelpers::SlotData<void(const QByteArray &)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QByteArray &)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::QByteArray, 17 },
         }}),
         // Slot 'on_btnLoad_clicked'
-        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnOpenSerialPort_clicked'
-        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnLoad2_clicked'
-        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnOpenSerialPort2_clicked'
-        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetProductID_clicked'
-        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetProductModel_clicked'
-        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetFirmwareVersion_clicked'
-        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetProductID2_clicked'
-        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetProductModel2_clicked'
-        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetFirmwareVersion2_clicked'
-        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'realtimeDataSlot'
-        QtMocHelpers::SlotData<void(QString)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 34 },
+        QtMocHelpers::SlotData<void(QString)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 33 },
         }}),
         // Slot 'realtimeDataVelocity'
-        QtMocHelpers::SlotData<void(QString)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 34 },
+        QtMocHelpers::SlotData<void(QString)>(34, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 33 },
         }}),
         // Slot 'realtimeDataSlot2'
-        QtMocHelpers::SlotData<void(QString)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 34 },
+        QtMocHelpers::SlotData<void(QString)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 33 },
         }}),
         // Slot 'realtimeDataVelocity2'
-        QtMocHelpers::SlotData<void(QString)>(37, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 34 },
+        QtMocHelpers::SlotData<void(QString)>(36, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 33 },
         }}),
         // Slot 'on_btnHWModel_clicked'
-        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnCmdInitCompleteCek_clicked'
-        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(38, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnHWModel2_clicked'
-        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnCmdInitCompleteCek2_clicked'
-        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetAngleInst_clicked'
-        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetHeightInst_clicked'
-        QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetAngleInst2_clicked'
-        QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnGetHeightInst2_clicked'
-        QtMocHelpers::SlotData<void()>(45, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_cbPresence_toggled'
-        QtMocHelpers::SlotData<void(bool)>(46, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(45, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_cbFallDetection_toggled'
-        QtMocHelpers::SlotData<void(bool)>(48, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(47, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_btnGetFallDuration_clicked'
-        QtMocHelpers::SlotData<void()>(49, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(48, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_cbStandStill_toggled'
-        QtMocHelpers::SlotData<void(bool)>(50, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(49, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_cbTraceTracking_toggled'
-        QtMocHelpers::SlotData<void(bool)>(51, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(50, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_cbPresence2_toggled'
-        QtMocHelpers::SlotData<void(bool)>(52, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(51, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_cbFallDetection2_toggled'
-        QtMocHelpers::SlotData<void(bool)>(53, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(52, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_btnGetFallDuration2_clicked'
-        QtMocHelpers::SlotData<void()>(54, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(53, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_cbStandStill2_toggled'
-        QtMocHelpers::SlotData<void(bool)>(55, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(54, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_cbTraceTracking2_toggled'
-        QtMocHelpers::SlotData<void(bool)>(56, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 47 },
+        QtMocHelpers::SlotData<void(bool)>(55, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
         }}),
         // Slot 'on_btnSetHeight_clicked'
-        QtMocHelpers::SlotData<void()>(57, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(56, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetHeight2_clicked'
-        QtMocHelpers::SlotData<void()>(58, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(57, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetFallDuration_clicked'
-        QtMocHelpers::SlotData<void()>(59, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(58, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetAngle_clicked'
-        QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(59, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetFallDuration2_clicked'
-        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetAngle2_clicked'
-        QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnTestFall_clicked'
-        QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnTestFall2_clicked'
-        QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnPlaySound_clicked'
+        QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnConnect_clicked'
         QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
@@ -301,54 +301,54 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->closeSerialPort(); break;
         case 9: _t->showPortInfo((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 10: _t->processPayload(); break;
-        case 11: _t->processFayloadSocket(); break;
+        case 11: _t->processPayloadSocket(); break;
         case 12: _t->writeData((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
         case 13: _t->closeSerialPort2(); break;
         case 14: _t->showPortInfo2((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 15: _t->processPayload2(); break;
-        case 16: _t->processFayloadSocket2(); break;
-        case 17: _t->writeData2((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
-        case 18: _t->on_btnLoad_clicked(); break;
-        case 19: _t->on_btnOpenSerialPort_clicked(); break;
-        case 20: _t->on_btnLoad2_clicked(); break;
-        case 21: _t->on_btnOpenSerialPort2_clicked(); break;
-        case 22: _t->on_btnGetProductID_clicked(); break;
-        case 23: _t->on_btnGetProductModel_clicked(); break;
-        case 24: _t->on_btnGetFirmwareVersion_clicked(); break;
-        case 25: _t->on_btnGetProductID2_clicked(); break;
-        case 26: _t->on_btnGetProductModel2_clicked(); break;
-        case 27: _t->on_btnGetFirmwareVersion2_clicked(); break;
-        case 28: _t->realtimeDataSlot((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 29: _t->realtimeDataVelocity((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 30: _t->realtimeDataSlot2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 31: _t->realtimeDataVelocity2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 32: _t->on_btnHWModel_clicked(); break;
-        case 33: _t->on_btnCmdInitCompleteCek_clicked(); break;
-        case 34: _t->on_btnHWModel2_clicked(); break;
-        case 35: _t->on_btnCmdInitCompleteCek2_clicked(); break;
-        case 36: _t->on_btnGetAngleInst_clicked(); break;
-        case 37: _t->on_btnGetHeightInst_clicked(); break;
-        case 38: _t->on_btnGetAngleInst2_clicked(); break;
-        case 39: _t->on_btnGetHeightInst2_clicked(); break;
-        case 40: _t->on_cbPresence_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 41: _t->on_cbFallDetection_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 42: _t->on_btnGetFallDuration_clicked(); break;
-        case 43: _t->on_cbStandStill_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 44: _t->on_cbTraceTracking_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 45: _t->on_cbPresence2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 46: _t->on_cbFallDetection2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 47: _t->on_btnGetFallDuration2_clicked(); break;
-        case 48: _t->on_cbStandStill2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 49: _t->on_cbTraceTracking2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 50: _t->on_btnSetHeight_clicked(); break;
-        case 51: _t->on_btnSetHeight2_clicked(); break;
-        case 52: _t->on_btnSetFallDuration_clicked(); break;
-        case 53: _t->on_btnSetAngle_clicked(); break;
-        case 54: _t->on_btnSetFallDuration2_clicked(); break;
-        case 55: _t->on_btnSetAngle2_clicked(); break;
-        case 56: _t->on_btnTestFall_clicked(); break;
-        case 57: _t->on_btnTestFall2_clicked(); break;
-        case 58: _t->on_btnPlaySound_clicked(); break;
+        case 16: _t->writeData2((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 17: _t->on_btnLoad_clicked(); break;
+        case 18: _t->on_btnOpenSerialPort_clicked(); break;
+        case 19: _t->on_btnLoad2_clicked(); break;
+        case 20: _t->on_btnOpenSerialPort2_clicked(); break;
+        case 21: _t->on_btnGetProductID_clicked(); break;
+        case 22: _t->on_btnGetProductModel_clicked(); break;
+        case 23: _t->on_btnGetFirmwareVersion_clicked(); break;
+        case 24: _t->on_btnGetProductID2_clicked(); break;
+        case 25: _t->on_btnGetProductModel2_clicked(); break;
+        case 26: _t->on_btnGetFirmwareVersion2_clicked(); break;
+        case 27: _t->realtimeDataSlot((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 28: _t->realtimeDataVelocity((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 29: _t->realtimeDataSlot2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 30: _t->realtimeDataVelocity2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 31: _t->on_btnHWModel_clicked(); break;
+        case 32: _t->on_btnCmdInitCompleteCek_clicked(); break;
+        case 33: _t->on_btnHWModel2_clicked(); break;
+        case 34: _t->on_btnCmdInitCompleteCek2_clicked(); break;
+        case 35: _t->on_btnGetAngleInst_clicked(); break;
+        case 36: _t->on_btnGetHeightInst_clicked(); break;
+        case 37: _t->on_btnGetAngleInst2_clicked(); break;
+        case 38: _t->on_btnGetHeightInst2_clicked(); break;
+        case 39: _t->on_cbPresence_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 40: _t->on_cbFallDetection_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 41: _t->on_btnGetFallDuration_clicked(); break;
+        case 42: _t->on_cbStandStill_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 43: _t->on_cbTraceTracking_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 44: _t->on_cbPresence2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 45: _t->on_cbFallDetection2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 46: _t->on_btnGetFallDuration2_clicked(); break;
+        case 47: _t->on_cbStandStill2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 48: _t->on_cbTraceTracking2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 49: _t->on_btnSetHeight_clicked(); break;
+        case 50: _t->on_btnSetHeight2_clicked(); break;
+        case 51: _t->on_btnSetFallDuration_clicked(); break;
+        case 52: _t->on_btnSetAngle_clicked(); break;
+        case 53: _t->on_btnSetFallDuration2_clicked(); break;
+        case 54: _t->on_btnSetAngle2_clicked(); break;
+        case 55: _t->on_btnTestFall_clicked(); break;
+        case 56: _t->on_btnTestFall2_clicked(); break;
+        case 57: _t->on_btnPlaySound_clicked(); break;
+        case 58: _t->on_btnConnect_clicked(); break;
         default: ;
         }
     }

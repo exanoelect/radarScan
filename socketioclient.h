@@ -44,10 +44,22 @@ public:
     void disconnectFromServer();
     bool isConnected() const { return m_isConnected; }
 
-    void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
+    //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
+    void emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
+    void emitEvent(const QString &eventName, const QString message);
+    void emitEvent(const QString &eventName, const QJsonValue &data);
+
     void emitEventWithAck(const QString &eventName,
                           const QJsonObject &data,
                           std::function<void(const QJsonObject&)> callback);
+
+    void emitEventWithAck(const QString &eventName,
+                          const QString &data,
+                          std::function<void(const QString&)> callback);
+
+    void emitEventWithAck(const QString &eventName,
+                          const QJsonObject &data,
+                          std::function<void(QJsonValue)> callback);
 
     // Robot commands
     void sendFallDetected();
@@ -66,7 +78,10 @@ signals:
     void connected(const QString &socketId);
     void disconnected();
     void connectionError(const QString &error);
-    void eventReceived(const QString &eventName, const QJsonObject &data);
+    //void eventReceived(const QString &eventName, const QJsonObject &data);
+    void eventReceived(const QString &eventName, const QString &message);
+    void eventReceived(const QString &eventName, const QJsonValue &payload);
+
 
     // Specific events dari frontend
     void screenBrightnessSet(int level);
@@ -89,24 +104,31 @@ private:
     int m_packetId;
     int m_reconnectAttempts;
     bool namespaceConnected = false;
+    int m_nextAckId;
 
     QString m_host;
     quint16 m_port;
     SocketIOVersion m_version;
 
-    std::map<int, std::function<void(const QJsonObject&)>> m_ackCallbacks;
+    std::map<int, std::function<void(const QString&)>> m_ackCallbacksQString;
+    std::map<int, std::function<void(QJsonValue)>> m_ackCallbacks;
 
     void setupWebSocket();
     void constructWebSocketUrl();
     void parseSocketIOMessage(const QString &message);
-    void handleSocketIOPacket(int type, const QString &data);
+    void parseEventPayload(const QString &jsonArrayText);
+    void handleSocketIOJsonPacket(int type, const QString &data);
+    void handleIncomingAck(int ackId, const QJsonValue &data);
+
     void sendSocketIOPacket(int type, const QString &data = QString());
     void handleIncomingEvent(const QString &eventName,
-                             const QJsonObject &payload,
+                             const QJsonValue &payload,
                              int ackId);
+
     void sendAcknowledgment(const QString &eventName,
                             int ackId,
-                            const QJsonObject &originalData);
+                            const QJsonValue &originalData);
+
     void scheduleReconnect();
 
 private slots:

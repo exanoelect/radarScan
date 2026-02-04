@@ -102,13 +102,13 @@ private slots:
     void closeSerialPort();
     void showPortInfo(int idx);
     void processPayload();
-    void processFayloadSocket();
+    void processPayloadSocket();
     void writeData(const QByteArray &data);
 
     void closeSerialPort2();
     void showPortInfo2(int idx);
     void processPayload2();
-    void processFayloadSocket2();
+    //void processPayloadSocket2();
     void writeData2(const QByteArray &data);
 
     void on_btnLoad_clicked();
@@ -192,6 +192,8 @@ private slots:
     void on_btnsetVol_clicked();
 #endif
 
+    void on_btnConnect_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -201,6 +203,8 @@ private:
     QWebSocket *ws;
     bool isConnected = false;
     bool namespaceConnected = false;
+
+    SocketIOClient *client;
 
     float radarX = 0;
     float radarY = 0;
