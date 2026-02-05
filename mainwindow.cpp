@@ -933,11 +933,68 @@ void MainWindow::processPayloadSocket()
             QString state = data.toString();
             qDebug() << "Process LISTEN:" << state;
             // aksi di sini
+            if(state == "ON"){
+#ifdef PLATFORM_LINUX
+                //GPIO LEd strip
+                setColor(COLOR_LISTEN);
+#endif
+            }else{
+                if(state == "OFF"){
+#ifdef PLATFORM_LINUX
+                    //GPIO LEd strip
+                    setColor(COLOR_STANDBY);
+#endif
+                }
+            }
         }
         else if (eventName == "TALKING" && data.isString()) {
             QString state = data.toString();
             qDebug() << "Process TALKING:" << state;
             // aksi di sini
+            if(state == "ON"){
+#ifdef PLATFORM_LINUX
+                //GPIO LEd strip
+                setColor(COLOR_TALKING);
+#endif
+            }else{
+                if(state == "OFF"){
+#ifdef PLATFORM_LINUX
+                    //GPIO LEd strip
+                    setColor(COLOR_STANDBY);
+#endif
+                }
+            }
+
+        }else if(eventName == "VOLUME_GET"){
+#ifdef PLATFORM_LINUX
+           int currentVol = getVolumePercent();
+           client->emitEvent3("VOLUME_GET_ACK",QString::number(currentVol));
+#endif
+        }else if(eventName == "VOLUME_SET" && data.isString()){
+#ifdef PLATFORM_LINUX
+            int valSet = data.toString().toInt();
+            if(setVolumePercent(valSet)){
+                qDebug() << "Success setVol " << volSet;
+            }
+#endif
+        }else if(eventName == "PING_DEVICE_UP"){
+#ifdef PLATFORM_LINUX
+            int brightGet = setBrightnessPercent();
+            client->emitEvent3("PING_DEVICE_UP_FRONTEND",QString::number(brightGet));
+#endif
+        }else if(eventName == "SLEEP"){
+#ifdef PLATFORM_LINUX
+            int getBright = getBrightness();
+            client->emitEvent3("SLEEP_FRONTEND",QString::number(brightGet));
+#endif
+        }else if(eventName == "BRIGHTNESS_SET"){
+#ifdef PLATFORM_LINUX
+            QString state = data.toString();
+            qDebug() << "Brightness Set:" << state;
+            if(setBrightnessPercent(state.toInt()){
+               qDebug() << "Brightness Set " << state;
+            }
+#endif
         }
         // tambah event lain di sini
     }
