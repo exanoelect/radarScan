@@ -37,6 +37,9 @@
 #define CMD_SET_MOTION_INFO_REPORTING_ACTIVE "53598002000102315443"
 #define CMD_TEST "5359820200160001000023003900C780000101008040006F00C60002"
 
+//int volCurrent;
+//int brightnessCurrent;
+
 // ==============================
 // Radar Frame Struct
 // ==============================

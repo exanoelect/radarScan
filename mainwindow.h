@@ -180,6 +180,7 @@ private slots:
     void on_btnPlaySound_clicked();
 
     void onSocketEventReceived(const QString &eventName, const QJsonValue &data);
+    void onDeviceReadyConnected(int vol, int bright);
 
 
 #ifdef PLATFORM_LINUX
@@ -221,7 +222,6 @@ private slots:
     void onBrihtnessIncreaseReq();
     void onBrightnessDecreaseReq();
 
-
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -231,6 +231,8 @@ private:
     QThread *m_workerThread;
     //QString demoName2;
 
+    //int volCurrent;
+    //int brightnessCurrent;
 
     float radarX = 0;
     float radarY = 0;

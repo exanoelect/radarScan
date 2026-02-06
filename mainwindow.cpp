@@ -51,6 +51,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(client, &SocketIOClient::eventReceived,
             this,   &MainWindow::onSocketEventReceived);
 
+    //connect(client, &SocketIOClient::deviceready,
+    //        this,   &SocketIOClient:sendDeviceReady);
+
     // Worker setup
     m_workerThread = new QThread(this);
     m_worker = new SocketEventWorker();
@@ -96,6 +99,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setColor(COLOR_WHITE);
     init_port("ttyAMA0");
     init_port2("ttyAMA1");
+
+    //volCurrent = getVolumePercent();
+    //brightnessCurrent = getBrightness();
 #endif
 
 #ifdef AUTOSTART_ONRPI
@@ -2714,6 +2720,12 @@ void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValu
     m_worker->enqueue(eventName, data);
 }
 
+//------------------------------------------------------------------------
+void MainWindow::onDeviceReadyConnected(int vol, int bright)
+{
+
+}
+
 #ifdef PLATFORM_LINUX
 //------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------
@@ -2896,12 +2908,34 @@ void MainWindow::onBrightnessSetRequested(int bst)
 void MainWindow::onVolumeIncreaseReq()
 {
     qDebug() << "UI onVolumeIncreaseReq";
+#ifdef PLATFORM_LINUX
+    int currentVol = getVolumePercent();
+    currentVol = currentVol + 5;
+    if((currentVol > 20) && (currentVol <= 99)){
+        if(setVolumePercent(currentVol)){
+            qDebug() << "UI succes Inc Vol " << currentVol;
+        }else{
+            qDebug() << "UI fail Inc Vol " << currentVol;
+        }
+    }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeDecreaseReq()
 {
     qDebug() << "UI onVolumeDecreaseReq";
+#ifdef PLATFORM_LINUX
+    int currentVol = getVolumePercent();
+    currentVol = currentVol - 5;
+    if((currentVol > 20) && (currentVol <= 99)){
+        if(setVolumePercent(currentVol)){
+            qDebug() << "UI succes Inc Vol " << currentVol;
+        }else{
+            qDebug() << "UI fail Inc Vol " << currentVol;
+        }
+    }
+#endif
 
 }
 
@@ -2909,14 +2943,36 @@ void MainWindow::onVolumeDecreaseReq()
 void MainWindow::onBrihtnessIncreaseReq()
 {
     qDebug() << "UI onBrihtnessIncreaseReq";
-
+#ifdef PLATFORM_LINUX
+    int currentBrightness = getBrightness();
+    currentBrightness = currentBrightness + 5;
+    if((currentBrightness > 20) && (currentBrightness <= 99)){
+        if(setBrightnessPercent(currentBrightness)){
+            qDebug() << "UI succes Inc Brightness " << currentBrightness;
+        }else{
+            qDebug() << "UI fail Inc v " << currentBrightness;
+        }
+    }else{
+    }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessDecreaseReq()
 {
     qDebug() << "UI onBrightnessDecreaseReq";
-
+#ifdef PLATFORM_LINUX
+    int currentBrightness = getBrightness();
+    currentBrightness = currentBrightness - 5;
+    if((currentBrightness > 20) && (currentBrightness <= 99)){
+        if(setBrightnessPercent(currentBrightness)){
+            qDebug() << "UI succes Inc Brightness " << currentBrightness;
+        }else{
+            qDebug() << "UI fail Inc v " << currentBrightness;
+        }
+    }else{
+    }
+#endif
 }
 
 

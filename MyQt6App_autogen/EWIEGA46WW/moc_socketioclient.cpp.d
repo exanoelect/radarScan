@@ -905,4 +905,5 @@
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qtwebsocketsexports.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocket.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocketprotocol.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsockets_global.h
+  /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsockets_global.h \
+  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h

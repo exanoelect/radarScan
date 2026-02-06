@@ -7,6 +7,8 @@
 //#include <iostream>
 #include <QRandomGenerator>  // <-- TAMBAHKAN INI
 
+
+
 SocketIOClient::SocketIOClient(QObject *parent)
     : QObject(parent)
     , m_webSocket(nullptr)
@@ -201,6 +203,7 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
                 // Kirim device ready event setelah connect
                 QTimer::singleShot(1000, this, [this]() {
                     sendDeviceReady();
+                    emit deviceready();
                 });
             }
         }

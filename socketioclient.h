@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <functional>
 #include <map>
+#include <radar.h>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -76,6 +77,7 @@ public:
 
 signals:
     void connected(const QString &socketId);
+    void deviceready();
     void disconnected();
     void connectionError(const QString &error);
     //void eventReceived(const QString &eventName, const QJsonObject &data);
