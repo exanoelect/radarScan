@@ -91,8 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_workerThread->start();
 
-    //client->connectToServer("192.168.1.100", 3000);
-    client->connectToServer("localhost", 3000);
+    client->connectToServer("192.168.1.27", 3000);
+    //client->connectToServer("localhost", 3000);
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
@@ -2593,7 +2593,7 @@ int MainWindow::setupGPIO()
     }
 
     if (gpiod_line_request_output(line17, "qt-gpio17", 0) < 0 ||
-        gpiod_line_request_output(line27, "qt-gpio27", 0) < 0) {
+        gpiod_line_request_output(line27, "qt-gpio27", 0) < 0 ||
         gpiod_line_request_output(line22, "qt-gpio22", 0) < 0) {
 
         qCritical() << "Failed to request GPIO output";
