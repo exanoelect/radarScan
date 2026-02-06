@@ -92,6 +92,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_workerThread->start();
 
+    //client->connectToServer("192.168.1.100", 3000);
+    client->connectToServer("localhost", 3000);
+
     //socketState = SOCKET_IDDLE;
 
     //socketIO_Client_Prepare();
@@ -2672,6 +2675,7 @@ int MainWindow::setupGPIO()
     const char *chipname = "gpiochip4";   // RPi 5
     const unsigned int GPIO17 = 17;
     const unsigned int GPIO27 = 27;
+    const unsigned int GPIO22 = 22;
 
     gpiod_chip *chip = gpiod_chip_open_by_name(chipname);
     if (!chip) {
@@ -2681,6 +2685,7 @@ int MainWindow::setupGPIO()
 
     line17 = gpiod_chip_get_line(chip, GPIO17);
     line27 = gpiod_chip_get_line(chip, GPIO27);
+    line22 = gpiod_chip_get_line(chip, GPIO22);
 
     if (!line17 || !line27) {
         qCritical() << "Failed to get GPIO lines";
@@ -2689,13 +2694,15 @@ int MainWindow::setupGPIO()
     }
 
     if (gpiod_line_request_output(line17, "qt-gpio17", 0) < 0 ||
-        gpiod_line_request_output(line27, "qt-gpio22", 0) < 0) {
+        gpiod_line_request_output(line27, "qt-gpio27", 0) < 0) {
+        gpiod_line_request_output(line22, "qt-gpio22", 0) < 0) {
+
         qCritical() << "Failed to request GPIO output";
         gpiod_chip_close(chip);
         return -1;
     }
 
-    qDebug() << "GPIO 17 & 27 ready.";
+    qDebug() << "GPIO 17 & 27 r& 22 eady.";
     return 1;
 }
 
@@ -2704,6 +2711,7 @@ void MainWindow::setColor(qint8 color)
 {
     int val17 = 0;
     int val27 = 0;
+    int val22 = 0;
 
     switch (color) {
       case 0: val17 = 0; val27 = 0; break; // 00
@@ -2715,8 +2723,10 @@ void MainWindow::setColor(qint8 color)
 
     gpiod_line_set_value(line17, val17);
     gpiod_line_set_value(line27, val27);
+    gpiod_line_set_value(line22, val22);
 
-    qDebug() << "color " << color << " GPIO17 =" << val17 << "GPIO22 =" << val27;
+
+    qDebug() << "color " << color << " GPIO17 =" << val17 << "GPIO27 =" << val27 << "GPIO22 =" << val22;
 }
 
 //------------------------------------------------------------------------
@@ -2955,24 +2965,27 @@ void MainWindow::on_btnFallSimulation_clicked()
     client->emitEvent3("FALL","FALL");
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onListenStateChanged(const QString &state)
 {
 #ifdef PLATFORM_LINUX
     qDebug() << "Process LISTEN:" << state;
-    if (state == "ON") setColor(1);
-    else if (state == "OFF") setColor(3);
+    if (state == "ON") setColor(COLOR_GREEN);
+    else if (state == "OFF") setColor(COLOR_WHITE);
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
 #ifdef PLATFORM_LINUX
     qDebug() << "Process TALKING:" << state;
-    if (state == "ON") setColor(1);
-    else if (state == "OFF") setColor(3);
+    if (state == "ON") setColor(COLOR_RED_BLINKY);
+    else if (state == "OFF") setColor(COLOR_GREEN);
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onVolumeGetRequested()
 {
 #ifdef PLATFORM_LINUX
@@ -2981,6 +2994,7 @@ void MainWindow::onVolumeGetRequested()
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onVolumeSetRequested(int vt)
 {
 #ifdef PLATFORM_LINUX
@@ -2993,6 +3007,7 @@ void MainWindow::onVolumeSetRequested(int vt)
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onPingDeviceUpRequested()
 {
 #ifdef PLATFORM_LINUX
@@ -3001,6 +3016,7 @@ void MainWindow::onPingDeviceUpRequested()
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onSleepRequested()
 {
 #ifdef PLATFORM_LINUX
@@ -3009,6 +3025,7 @@ void MainWindow::onSleepRequested()
 #endif
 }
 
+//------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
 #ifdef PLATFORM_LINUX
