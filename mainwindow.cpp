@@ -88,8 +88,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_workerThread->start();
 
-    //client->connectToServer("192.168.1.100", 3000);
-    client->connectToServer("localhost", 3000);
+    client->connectToServer("192.168.1.100", 3000);
+    //client->connectToServer("localhost", 3000);
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
@@ -951,117 +951,6 @@ void MainWindow::processPayload()
         }
     }
 }
-
-//---------------------------------------------------------------------------------------
-/*
-void MainWindow::processPayloadSocket()
-{
-    while (!m_eventQueue.isEmpty()) {
-        auto event = m_eventQueue.dequeue();
-        const QString &eventName = event.first;
-        const QJsonValue &data = event.second;
-
-        qDebug() << "Timer processing event:" << eventName << "data:" << data;
-
-        if (eventName == "LISTEN" && data.isString()) {
-            QString state = data.toString();
-            qDebug() << "Process LISTEN:" << state;
-            // aksi di sini
-            if(state == "ON"){
-#ifdef PLATFORM_LINUX
-                //GPIO LEd strip
-                setColor(1);
-#endif
-            }else{
-                if(state == "OFF"){
-#ifdef PLATFORM_LINUX
-                    //GPIO LEd strip
-                    setColor(3);
-#endif
-                }
-            }
-        }
-        else if (eventName == "TALKING" && data.isString()) {
-            QString state = data.toString();
-            qDebug() << "Process TALKING:" << state;
-            // aksi di sini
-            if(state == "ON"){
-#ifdef PLATFORM_LINUX
-                //GPIO LEd strip
-                setColor(1);
-#endif
-            }else{
-                if(state == "OFF"){
-#ifdef PLATFORM_LINUX
-                    //GPIO LEd strip
-                    setColor(3);
-#endif
-                }
-            }
-
-        }else if(eventName == "VOLUME_GET"){
-#ifdef PLATFORM_LINUX
-            int currentVol = getVolumePercent();
-            client->emitEvent3("VOLUME_GET_ACK",QString::number(currentVol));
-#endif
-        }else if (eventName == "VOLUME_SET") {
-#ifdef PLATFORM_LINUX
-                int vt = 0;
-
-                if (data.isDouble()) {
-                   vt = data.toInt();  // atau static_cast<int>(data.toDouble())
-                } else if (data.isString()) {
-                   vt = data.toString().toInt();
-                } else if (data.isObject()) {
-                   QJsonObject obj = data.toObject();
-                   vt = obj.value("level").toInt(0); // kalau formatnya object
-                }
-
-                qDebug() << "UI vol Set:" << vt;
-
-                if (vt > 0 && setVolumePercent(vt)) {
-                   qDebug() << "UI vol successfully set to" << vt;
-                } else {
-                    qDebug() << "fail setVol" << vt;
-                }
-#endif
-        }
-         else if(eventName == "PING_DEVICE_UP"){
-#ifdef PLATFORM_LINUX
-                 int brightGet = setBrightnessPercent(80);
-                 client->emitEvent3("PING_DEVICE_UP_FRONTEND",QString::number(brightGet));
-#endif
-        }else if(eventName == "SLEEP"){
-#ifdef PLATFORM_LINUX
-            int getBright = getBrightness();
-            client->emitEvent3("SLEEP_FRONTEND",QString::number(getBright));
-#endif
-        }else if (eventName == "BRIGHTNESS_SET") {
-#ifdef PLATFORM_LINUX
-               int bst = 0;
-
-               if (data.isDouble()) {
-                   bst = data.toInt();  // atau (int)data.toDouble()
-                } else if (data.isString()) {
-                   bst = data.toString().toInt();
-                } else if (data.isObject()) {
-                   QJsonObject obj = data.toObject();
-                   bst = obj.value("level").toInt(0); // kalau formatnya object
-                }
-
-                qDebug() << "Brightness Set:" << bst;
-
-                if (bst > 0 && setBrightnessPercent(bst)) {
-                   qDebug() << "Brightness successfully set to" << bst;
-                }
-#endif
-        }
-
-        // tambah event lain di sini
-    }
-}
-*/
-
 
 //---------------------------------------------------------------------------------------
 void MainWindow::writeData(const QByteArray &data)
@@ -2919,8 +2808,9 @@ void MainWindow::on_btnFallSimulation_clicked()
 //------------------------------------------------------------------------
 void MainWindow::onListenStateChanged(const QString &state)
 {
-#ifdef PLATFORM_LINUX
     qDebug() << "UI Process LISTEN:" << state;
+
+#ifdef PLATFORM_LINUX
     if (state == "ON") setColor(COLOR_GREEN);
     else if (state == "OFF") setColor(COLOR_WHITE);
 #endif
@@ -2929,8 +2819,8 @@ void MainWindow::onListenStateChanged(const QString &state)
 //------------------------------------------------------------------------
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
-#ifdef PLATFORM_LINUX
     qDebug() << "UI Process TALKING:" << state;
+#ifdef PLATFORM_LINUX
     if (state == "ON") setColor(COLOR_RED_BLINKY);
     else if (state == "OFF") setColor(COLOR_GREEN);
 #endif
@@ -2939,17 +2829,22 @@ void MainWindow::onTalkingStateChanged(const QString &state)
 //------------------------------------------------------------------------
 void MainWindow::onVolumeGetRequested()
 {
+    qDebug() << "UI Process VOL get req";
 #ifdef PLATFORM_LINUX
     int currentVol = getVolumePercent();
     client->emitEvent3("VOLUME_GET_ACK", QString::number(currentVol));
+#endif
+
+#ifndef PLATFORM_LINUX
+    client->emitEvent3("VOLUME_GET_ACK", QString::number(70));
 #endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeSetRequested(int vt)
 {
-#ifdef PLATFORM_LINUX
     qDebug() << "UI vol Set:" << vt;
+#ifdef PLATFORM_LINUX
     if (vt > 0 && setVolumePercent(vt)) {
         qDebug() << "UI vol successfully set to" << vt;
     } else {
@@ -2961,26 +2856,36 @@ void MainWindow::onVolumeSetRequested(int vt)
 //------------------------------------------------------------------------
 void MainWindow::onPingDeviceUpRequested()
 {
+    qDebug() << "UI PingDeviceUpReq";
 #ifdef PLATFORM_LINUX
     int brightGet = setBrightnessPercent(80);
     client->emitEvent3("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+#endif
+
+#ifndef PLATFORM_LINUX
+    client->emitEvent3("PING_DEVICE_UP_FRONTEND", QString::number(50));
 #endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onSleepRequested()
 {
+    qDebug() << "UI SleepReq";
 #ifdef PLATFORM_LINUX
     int getBright = getBrightness();
     client->emitEvent3("SLEEP_FRONTEND", QString::number(getBright));
+#endif
+
+#ifndef PLATFORM_LINUX
+    client->emitEvent3("SLEEP_FRONTEND", QString::number(60));
 #endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
-#ifdef PLATFORM_LINUX
     qDebug() << "Brightness Set:" << bst;
+#ifdef PLATFORM_LINUX
     if (bst > 0 && setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
     }
