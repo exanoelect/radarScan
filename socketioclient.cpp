@@ -226,7 +226,8 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
     case 4: { // MESSAGE (Engine.IO)
         if (data.isEmpty()) break;
 
-        // Data seharusnya diawali dengan subtype Socket.IO, misalnya:
+        // Data diawali subtype Socket.IO:
+        // 0{...} -> CONNECT
         // 2["EVENT","DATA"]
         // 3[ackId,"RESPONSE"]
 
@@ -235,7 +236,20 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
 
         int subType = subTypeChar.digitValue();
 
-        if (subType == 2) { // EVENT
+        if (subType == 0) { // CONNECT
+            QJsonParseError err;
+            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8(), &err);
+            if (err.error == QJsonParseError::NoError && doc.isObject()) {
+                QJsonObject obj = doc.object();
+                QString sid = obj["sid"].toString();
+                qDebug() << "Socket.IO connected, SID:" << sid;
+                emit connected(sid);
+            } else {
+                qWarning() << "Invalid CONNECT payload:" << subData;
+            }
+        }
+
+        else if (subType == 2) { // EVENT
             QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8());
             if (!doc.isArray()) {
                 qWarning() << "Invalid event JSON:" << subData;
@@ -291,16 +305,8 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
                 handleIncomingAck(ackId, ackData);
             }
         }
-        else if (subType == '0') { // CONNECT
-            QJsonParseError err;
-            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8(), &err);
-            if (err.error == QJsonParseError::NoError && doc.isObject()) {
-                QJsonObject obj = doc.object();
-                QString sid = obj["sid"].toString();
-                qDebug() << "Socket.IO connected, SID:" << sid;
-                emit connected(sid);
-            }
-        }else {
+
+        else {
             qDebug() << "Unhandled Socket.IO subtype:" << subType << "Data:" << subData;
         }
 

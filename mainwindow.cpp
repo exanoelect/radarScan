@@ -88,8 +88,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_workerThread->start();
 
-    client->connectToServer("192.168.1.100", 3000);
-    //client->connectToServer("localhost", 3000);
+    //client->connectToServer("192.168.1.100", 3000);
+    client->connectToServer("localhost", 3000);
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
