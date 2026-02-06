@@ -30,6 +30,8 @@ set(SOURCES
     qcustomplot.h
     socketioclient.cpp
     socketioclient.h
+    socketeventworker.h
+    socketeventworker.cpp
 )
 
 # Generate executable

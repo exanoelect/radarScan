@@ -917,6 +917,7 @@ MyQt6App_autogen/timestamp: \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QMultiMap \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QMutex \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
+	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QPair \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QPointF \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QPointer \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QProcess \
@@ -932,12 +933,14 @@ MyQt6App_autogen/timestamp: \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QString \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QStringList \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTextStream \
+	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QThread \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimeZone \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrl \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrlQuery \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QVariant \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QVector \
+	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QWaitCondition \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCoreDepends \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QtEndian \
@@ -1800,6 +1803,8 @@ MyQt6App_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.cpp \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.h \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXInformation.cmake \

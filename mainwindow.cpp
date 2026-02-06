@@ -48,10 +48,10 @@ MainWindow::MainWindow(QWidget *parent) :
     setupPlotRadar2(ui->plotRadar2);
 
     //Timer utk sokcet
-    m_socketTimer = new QTimer(this);
-    connect(m_socketTimer, &QTimer::timeout,
-            this, &MainWindow::processPayloadSocket);
-    m_socketTimer->start(500); // proses tiap 500 ms
+    //m_socketTimer = new QTimer(this);
+    //connect(m_socketTimer, &QTimer::timeout,
+    //        this, &MainWindow::processPayloadSocket);
+    //m_socketTimer->start(500); // proses tiap 500 ms
 
     //ws = new QWebSocket();
 
@@ -60,6 +60,37 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(client, &SocketIOClient::eventReceived,
             this,   &MainWindow::onSocketEventReceived);
 
+    // Worker setup
+    m_workerThread = new QThread(this);
+    m_worker = new SocketEventWorker();
+    m_worker->moveToThread(m_workerThread);
+
+    connect(m_workerThread, &QThread::started,
+            m_worker, &SocketEventWorker::process);
+
+    // Hubungkan signal worker ke aksi UI / device
+    connect(m_worker, &SocketEventWorker::listenStateChanged,
+            this, &MainWindow::onListenStateChanged);
+
+    connect(m_worker, &SocketEventWorker::talkingStateChanged,
+            this, &MainWindow::onTalkingStateChanged);
+
+    connect(m_worker, &SocketEventWorker::volumeGetRequested,
+            this, &MainWindow::onVolumeGetRequested);
+
+    connect(m_worker, &SocketEventWorker::volumeSetRequested,
+            this, &MainWindow::onVolumeSetRequested);
+
+    connect(m_worker, &SocketEventWorker::pingDeviceUpRequested,
+            this, &MainWindow::onPingDeviceUpRequested);
+
+    connect(m_worker, &SocketEventWorker::sleepRequested,
+            this, &MainWindow::onSleepRequested);
+
+    connect(m_worker, &SocketEventWorker::brightnessSetRequested,
+            this, &MainWindow::onBrightnessSetRequested);
+
+    m_workerThread->start();
 
     //socketState = SOCKET_IDDLE;
 
@@ -920,6 +951,7 @@ void MainWindow::processPayload()
 }
 
 //---------------------------------------------------------------------------------------
+/*
 void MainWindow::processPayloadSocket()
 {
     while (!m_eventQueue.isEmpty()) {
@@ -1026,7 +1058,7 @@ void MainWindow::processPayloadSocket()
         // tambah event lain di sini
     }
 }
-
+*/
 
 
 //---------------------------------------------------------------------------------------
@@ -2793,7 +2825,10 @@ void MainWindow::on_btnPlaySound_clicked()
 void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValue &data)
 {
     qDebug() << "UI received event:" << eventName << "data:" << data;
-    m_eventQueue.enqueue(qMakePair(eventName, data));
+    //m_eventQueue.enqueue(qMakePair(eventName, data));
+
+    qDebug() << "UI received event:" << eventName << "data:" << data;
+    m_worker->enqueue(eventName, data);
 
     /*
     QString strValue;
@@ -2918,5 +2953,69 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     client->emitEvent3("FALL","FALL");
+}
+
+void MainWindow::onListenStateChanged(const QString &state)
+{
+#ifdef PLATFORM_LINUX
+    qDebug() << "Process LISTEN:" << state;
+    if (state == "ON") setColor(1);
+    else if (state == "OFF") setColor(3);
+#endif
+}
+
+void MainWindow::onTalkingStateChanged(const QString &state)
+{
+#ifdef PLATFORM_LINUX
+    qDebug() << "Process TALKING:" << state;
+    if (state == "ON") setColor(1);
+    else if (state == "OFF") setColor(3);
+#endif
+}
+
+void MainWindow::onVolumeGetRequested()
+{
+#ifdef PLATFORM_LINUX
+    int currentVol = getVolumePercent();
+    client->emitEvent3("VOLUME_GET_ACK", QString::number(currentVol));
+#endif
+}
+
+void MainWindow::onVolumeSetRequested(int vt)
+{
+#ifdef PLATFORM_LINUX
+    qDebug() << "UI vol Set:" << vt;
+    if (vt > 0 && setVolumePercent(vt)) {
+        qDebug() << "UI vol successfully set to" << vt;
+    } else {
+        qDebug() << "fail setVol" << vt;
+    }
+#endif
+}
+
+void MainWindow::onPingDeviceUpRequested()
+{
+#ifdef PLATFORM_LINUX
+    int brightGet = setBrightnessPercent(80);
+    client->emitEvent3("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+#endif
+}
+
+void MainWindow::onSleepRequested()
+{
+#ifdef PLATFORM_LINUX
+    int getBright = getBrightness();
+    client->emitEvent3("SLEEP_FRONTEND", QString::number(getBright));
+#endif
+}
+
+void MainWindow::onBrightnessSetRequested(int bst)
+{
+#ifdef PLATFORM_LINUX
+    qDebug() << "Brightness Set:" << bst;
+    if (bst > 0 && setBrightnessPercent(bst)) {
+        qDebug() << "Brightness successfully set to" << bst;
+    }
+#endif
 }
 

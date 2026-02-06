@@ -31,6 +31,8 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebSocket>
+#include <socketeventworker.h>
+#include <QThread>
 #include <radar.h>
 #include <socketioclient.h>
 
@@ -107,7 +109,7 @@ private slots:
     void closeSerialPort();
     void showPortInfo(int idx);
     void processPayload();
-    void processPayloadSocket();
+    //void processPayloadSocket();
     void writeData(const QByteArray &data);
 
     void closeSerialPort2();
@@ -203,12 +205,24 @@ private slots:
 
     void on_btnFallSimulation_clicked();
 
+    void onListenStateChanged(const QString &state);
+    void onTalkingStateChanged(const QString &state);
+    void onVolumeGetRequested();
+    void onVolumeSetRequested(int value);
+    void onPingDeviceUpRequested();
+    void onSleepRequested();
+    void onBrightnessSetRequested(int value);
+
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
-    //QString demoName2;
 
     SocketIOClient *client;
+    SocketEventWorker *m_worker;
+    QThread *m_workerThread;
+    //QString demoName2;
+
 
     float radarX = 0;
     float radarY = 0;

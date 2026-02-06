@@ -475,6 +475,12 @@
 			null
 		],
 		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.h",
+			"MU",
+			"EWIEGA46WW/moc_socketeventworker.cpp",
+			null
+		],
+		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.h",
 			"MU",
 			"EWIEGA46WW/moc_socketioclient.cpp",
@@ -572,6 +578,11 @@
 		],
 		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.cpp",
 			"MU",
 			null
 		],
