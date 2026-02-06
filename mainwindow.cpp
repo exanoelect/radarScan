@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
     sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
 #endif
 
-
     sound.setLoopCount(1);
     sound.setVolume(1.0f);
 
@@ -46,14 +45,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setupRealtimeDataMotion2(ui->plottsgram2);
     setupRealtimeDataVelocity2(ui->plottsVelocity2);
     setupPlotRadar2(ui->plotRadar2);
-
-    //Timer utk sokcet
-    //m_socketTimer = new QTimer(this);
-    //connect(m_socketTimer, &QTimer::timeout,
-    //        this, &MainWindow::processPayloadSocket);
-    //m_socketTimer->start(500); // proses tiap 500 ms
-
-    //ws = new QWebSocket();
 
     client = new SocketIOClient();
 
@@ -94,10 +85,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //client->connectToServer("192.168.1.100", 3000);
     client->connectToServer("localhost", 3000);
-
-    //socketState = SOCKET_IDDLE;
-
-    //socketIO_Client_Prepare();
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
@@ -833,10 +820,14 @@ void MainWindow::processPayload()
                 if(val == 1){
                     sound.stop();
                     sound.play();
-                    if(ui->cbSocket->isChecked()){
-                        client->emitEvent3("FALL","FALL");
+                    //if(ui->cbSocket->isChecked()){
+                    if(client->isConnected()){
+                        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
                         //m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
+                    }else{
+                        qDebug() << " Socket DC";
                     }
+                    //}
                 }
                 break;
             }
@@ -1446,9 +1437,14 @@ void MainWindow::processPayload2()
                 if(val == 1){
                     sound.stop();
                     sound.play();
-                    if(ui->cbSocket2->isChecked()){
-                        m_socketQueue2.enqueue(SOCKET_REQ_FALL); //send to socket queue
+                    //if(ui->cbSocket2->isChecked()){
+                        //m_socketQueue2.enqueue(SOCKET_REQ_FALL); //send to socket queue
+                    if(client->isConnected()){
+                        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
+                    }else{
+                        qDebug() << " Socket DC";
                     }
+                    //}
                 }
                 break;
             }
@@ -2808,26 +2804,6 @@ bool MainWindow::setVolumePercent(int percent)
 
 
 //------------------------------------------------------------------------
-void MainWindow::on_btnTestFall_clicked()
-{
-    if(ui->cbSocket->isChecked()){
-       //m_socketQueue.enqueue(SOCKET_REQ_FALL); //send to socket queue
-       client->emitEvent3("FALL","FALL");
-       ui->logEdit->appendPlainText("Test FALL");
-    }
-}
-
-
-//------------------------------------------------------------------------
-void MainWindow::on_btnTestFall2_clicked()
-{
-    if(ui->cbSocket2->isChecked()){
-        m_socketQueue2.enqueue(SOCKET_REQ_FALL); //send to socket queue
-        ui->logEdit2->appendPlainText("Test FALL");
-    }
-}
-
-//------------------------------------------------------------------------
 void MainWindow::on_btnPlaySound_clicked()
 {
     sound.stop();
@@ -2965,14 +2941,18 @@ void MainWindow::on_btnConnect_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_btnFallSimulation_clicked()
 {
-    client->emitEvent3("FALL","FALL");
+    if(client->isConnected()){
+       client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
+    }else{
+        qDebug() << " Socket DC";
+    }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onListenStateChanged(const QString &state)
 {
 #ifdef PLATFORM_LINUX
-    qDebug() << "Process LISTEN:" << state;
+    qDebug() << "UI Process LISTEN:" << state;
     if (state == "ON") setColor(COLOR_GREEN);
     else if (state == "OFF") setColor(COLOR_WHITE);
 #endif
@@ -2982,7 +2962,7 @@ void MainWindow::onListenStateChanged(const QString &state)
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
 #ifdef PLATFORM_LINUX
-    qDebug() << "Process TALKING:" << state;
+    qDebug() << "UI Process TALKING:" << state;
     if (state == "ON") setColor(COLOR_RED_BLINKY);
     else if (state == "OFF") setColor(COLOR_GREEN);
 #endif

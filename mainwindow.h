@@ -175,8 +175,8 @@ private slots:
     void on_btnSetFallDuration2_clicked();
     void on_btnSetAngle2_clicked();
 
-    void on_btnTestFall_clicked();
-    void on_btnTestFall2_clicked();
+    //void on_btnTestFall_clicked();
+    //void on_btnTestFall2_clicked();
     void on_btnPlaySound_clicked();
 
     void onSocketEventReceived(const QString &eventName, const QJsonValue &data);
@@ -252,7 +252,7 @@ private:
     QQueue<QPair<QString, QJsonValue>> m_eventQueue;
 
     QQueue<QByteArray> m_payloadQueue2;
-    QQueue<quint8> m_socketQueue2;
+    //QQueue<quint8> m_socketQueue2;
     quint8 socketState2;
 
     QTimer *m_processTimer;

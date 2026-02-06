@@ -101,8 +101,6 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_btnSetAngle_clicked",
         "on_btnSetFallDuration2_clicked",
         "on_btnSetAngle2_clicked",
-        "on_btnTestFall_clicked",
-        "on_btnTestFall2_clicked",
         "on_btnPlaySound_clicked",
         "onSocketEventReceived",
         "eventName",
@@ -268,40 +266,36 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(59, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnSetAngle2_clicked'
         QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnTestFall_clicked'
-        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnTestFall2_clicked'
-        QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnPlaySound_clicked'
-        QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onSocketEventReceived'
-        QtMocHelpers::SlotData<void(const QString &, const QJsonValue &)>(64, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 65 }, { 0x80000000 | 66, 16 },
+        QtMocHelpers::SlotData<void(const QString &, const QJsonValue &)>(62, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 63 }, { 0x80000000 | 64, 16 },
         }}),
         // Slot 'on_btnConnect_clicked'
-        QtMocHelpers::SlotData<void()>(67, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnFallSimulation_clicked'
-        QtMocHelpers::SlotData<void()>(68, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(66, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onListenStateChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(69, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 70 },
+        QtMocHelpers::SlotData<void(const QString &)>(67, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 68 },
         }}),
         // Slot 'onTalkingStateChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(71, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 70 },
+        QtMocHelpers::SlotData<void(const QString &)>(69, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 68 },
         }}),
         // Slot 'onVolumeGetRequested'
-        QtMocHelpers::SlotData<void()>(72, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(70, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onVolumeSetRequested'
-        QtMocHelpers::SlotData<void(int)>(73, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(71, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 32 },
         }}),
         // Slot 'onPingDeviceUpRequested'
-        QtMocHelpers::SlotData<void()>(74, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(72, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onSleepRequested'
-        QtMocHelpers::SlotData<void()>(75, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(73, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onBrightnessSetRequested'
-        QtMocHelpers::SlotData<void(int)>(76, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(74, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 32 },
         }}),
     };
@@ -381,19 +375,17 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 51: _t->on_btnSetAngle_clicked(); break;
         case 52: _t->on_btnSetFallDuration2_clicked(); break;
         case 53: _t->on_btnSetAngle2_clicked(); break;
-        case 54: _t->on_btnTestFall_clicked(); break;
-        case 55: _t->on_btnTestFall2_clicked(); break;
-        case 56: _t->on_btnPlaySound_clicked(); break;
-        case 57: _t->onSocketEventReceived((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QJsonValue>>(_a[2]))); break;
-        case 58: _t->on_btnConnect_clicked(); break;
-        case 59: _t->on_btnFallSimulation_clicked(); break;
-        case 60: _t->onListenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 61: _t->onTalkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 62: _t->onVolumeGetRequested(); break;
-        case 63: _t->onVolumeSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 64: _t->onPingDeviceUpRequested(); break;
-        case 65: _t->onSleepRequested(); break;
-        case 66: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 54: _t->on_btnPlaySound_clicked(); break;
+        case 55: _t->onSocketEventReceived((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QJsonValue>>(_a[2]))); break;
+        case 56: _t->on_btnConnect_clicked(); break;
+        case 57: _t->on_btnFallSimulation_clicked(); break;
+        case 58: _t->onListenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 59: _t->onTalkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 60: _t->onVolumeGetRequested(); break;
+        case 61: _t->onVolumeSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 62: _t->onPingDeviceUpRequested(); break;
+        case 63: _t->onSleepRequested(); break;
+        case 64: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -418,14 +410,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 67)
+        if (_id < 65)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 67;
+        _id -= 65;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 67)
+        if (_id < 65)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 67;
+        _id -= 65;
     }
     return _id;
 }
