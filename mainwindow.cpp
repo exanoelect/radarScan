@@ -104,7 +104,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setColor(COLOR_WHITE);
     init_port("ttyAMA0");
     init_port2("ttyAMA1");
-
 #endif
 
 #ifdef AUTOSTART_ONRPI

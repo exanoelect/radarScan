@@ -267,6 +267,7 @@ private:
 
     gpiod_line *line17;
     gpiod_line *line27;
+    gpiod_line *line22;
 #endif
 
     //QCustomPlot *m_plot;
