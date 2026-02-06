@@ -197,7 +197,6 @@ private slots:
 
     void on_btnsetBrightness_clicked();
 
-
     void on_btnGetVol_clicked();
 
     void on_hsVol_valueChanged(int value);
@@ -216,6 +215,11 @@ private slots:
     void onPingDeviceUpRequested();
     void onSleepRequested();
     void onBrightnessSetRequested(int value);
+
+    void onVolumeIncreaseReq();
+    void onVolumeDecreaseReq();
+    void onBrihtnessIncreaseReq();
+    void onBrightnessDecreaseReq();
 
 
 private:

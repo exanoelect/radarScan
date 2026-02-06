@@ -19,7 +19,15 @@ public:
 signals:
     void volumeGetRequested();
     void volumeSetRequested(int value);
+
+    void volumeIncreaseReq();
+    void volumeDecreaseReq();
+
     void brightnessSetRequested(int value);
+
+    void brightnessIncreaseReq();
+    void brightnessDecreaseReq();
+
     void sleepRequested();
     void pingDeviceUpRequested();
     void listenStateChanged(const QString &state);

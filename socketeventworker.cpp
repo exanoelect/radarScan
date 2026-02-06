@@ -76,6 +76,14 @@ void SocketEventWorker::process()
                 bst = obj.value("level").toInt(0);
             }
             emit brightnessSetRequested(bst);
+        }else if(eventName == "INCREASE_VOLUME"){
+            emit volumeIncreaseReq();
+        }else if(eventName == "DECREASE_VOLUME"){
+            emit volumeDecreaseReq();
+        }else if(eventName == "INCREASE_BRIGHTNESS"){
+            emit brightnessIncreaseReq();
+        }else if(eventName == "DECREASE_BRIGHTNESS"){
+            emit brightnessDecreaseReq();
         }
     }
 }

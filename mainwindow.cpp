@@ -62,24 +62,29 @@ MainWindow::MainWindow(QWidget *parent) :
     // Hubungkan signal worker ke aksi UI / device
     connect(m_worker, &SocketEventWorker::listenStateChanged,
             this, &MainWindow::onListenStateChanged);
-
     connect(m_worker, &SocketEventWorker::talkingStateChanged,
             this, &MainWindow::onTalkingStateChanged);
-
     connect(m_worker, &SocketEventWorker::volumeGetRequested,
             this, &MainWindow::onVolumeGetRequested);
-
     connect(m_worker, &SocketEventWorker::volumeSetRequested,
             this, &MainWindow::onVolumeSetRequested);
-
     connect(m_worker, &SocketEventWorker::pingDeviceUpRequested,
             this, &MainWindow::onPingDeviceUpRequested);
-
     connect(m_worker, &SocketEventWorker::sleepRequested,
             this, &MainWindow::onSleepRequested);
-
     connect(m_worker, &SocketEventWorker::brightnessSetRequested,
             this, &MainWindow::onBrightnessSetRequested);
+
+    //Add on
+    connect(m_worker, &SocketEventWorker::volumeIncreaseReq,
+            this, &MainWindow::onVolumeIncreaseReq);
+    connect(m_worker, &SocketEventWorker::volumeDecreaseReq,
+            this, &MainWindow::onVolumeDecreaseReq);
+    connect(m_worker, &SocketEventWorker::brightnessIncreaseReq,
+            this, &MainWindow::onBrihtnessIncreaseReq);
+    connect(m_worker, &SocketEventWorker::brightnessDecreaseReq,
+            this, &MainWindow::onBrightnessDecreaseReq);
+
 
     m_workerThread->start();
 
@@ -2818,43 +2823,6 @@ void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValu
 
     qDebug() << "UI received event:" << eventName << "data:" << data;
     m_worker->enqueue(eventName, data);
-
-    /*
-    QString strValue;
-    int intValue = 0;
-    qDebug() << "UI received event:" << eventName << "data:" << data;
-
-    if (eventName == "LISTEN") {
-        if (data.isString()) {
-            strValue = data.toString();
-            qDebug() << "UI LISTEN Data:" << strValue;
-        }
-        else if (data.isDouble()) {
-            intValue = data.toInt();
-            qDebug() << "UI LISTEN Data:" << intValue;
-        }
-        else if (data.isObject()) {
-            QJsonObject obj = data.toObject();
-            qDebug() << "UI LISTEN Data:" << obj;
-            // ambil field sesuai kebutuhan
-        }
-    }
-    else if (eventName == "TALKING") {
-        if (data.isString()) {
-            strValue = data.toString();
-            qDebug() << "UI TALKING Data:" << strValue;
-        }
-        else if (data.isDouble()) {
-            intValue = data.toInt();
-            qDebug() << "UI TALKING Data:" << intValue;
-        }
-        else if (data.isObject()) {
-            QJsonObject obj = data.toObject();
-            qDebug() << "UI TALKING Data:" << obj;
-            // ambil field sesuai kebutuhan
-        }
-    }
-*/
 }
 
 #ifdef PLATFORM_LINUX
@@ -2862,26 +2830,26 @@ void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValu
 //------------------------------------------------------------------------------------------------------------------------
 void MainWindow::on_btnColor1_clicked()
 {
-    setColor(0);
+    setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor2_clicked()
 {
-    setColor(1);
+    setColor(COLOR_WHITE_BLINKY);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
-    setColor(2);
+    setColor(COLOR_RED);
 
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
-    setColor(3);
+    setColor(COLOR_RED_BLINKY);
 }
 
 //------------------------------------------------------------------------
@@ -3018,4 +2986,32 @@ void MainWindow::onBrightnessSetRequested(int bst)
     }
 #endif
 }
+
+//------------------------------------------------------------------------
+void MainWindow::onVolumeIncreaseReq()
+{
+    qDebug() << "UI onVolumeIncreaseReq";
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onVolumeDecreaseReq()
+{
+    qDebug() << "UI onVolumeDecreaseReq";
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onBrihtnessIncreaseReq()
+{
+    qDebug() << "UI onBrihtnessIncreaseReq";
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onBrightnessDecreaseReq()
+{
+    qDebug() << "UI onBrightnessDecreaseReq";
+
+}
+
 

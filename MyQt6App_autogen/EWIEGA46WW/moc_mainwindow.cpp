@@ -114,7 +114,11 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onVolumeSetRequested",
         "onPingDeviceUpRequested",
         "onSleepRequested",
-        "onBrightnessSetRequested"
+        "onBrightnessSetRequested",
+        "onVolumeIncreaseReq",
+        "onVolumeDecreaseReq",
+        "onBrihtnessIncreaseReq",
+        "onBrightnessDecreaseReq"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -298,6 +302,14 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void(int)>(74, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 32 },
         }}),
+        // Slot 'onVolumeIncreaseReq'
+        QtMocHelpers::SlotData<void()>(75, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeDecreaseReq'
+        QtMocHelpers::SlotData<void()>(76, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrihtnessIncreaseReq'
+        QtMocHelpers::SlotData<void()>(77, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrightnessDecreaseReq'
+        QtMocHelpers::SlotData<void()>(78, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -386,6 +398,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 62: _t->onPingDeviceUpRequested(); break;
         case 63: _t->onSleepRequested(); break;
         case 64: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 65: _t->onVolumeIncreaseReq(); break;
+        case 66: _t->onVolumeDecreaseReq(); break;
+        case 67: _t->onBrihtnessIncreaseReq(); break;
+        case 68: _t->onBrightnessDecreaseReq(); break;
         default: ;
         }
     }
@@ -410,14 +426,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 65)
+        if (_id < 69)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 65;
+        _id -= 69;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 65)
+        if (_id < 69)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 65;
+        _id -= 69;
     }
     return _id;
 }
