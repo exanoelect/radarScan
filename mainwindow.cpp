@@ -101,6 +101,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
+    setColor(COLOR_WHITE);
+    init_port("ttyAMA0");
+    init_port2("ttyAMA1");
+
 #endif
 
 #ifdef AUTOSTART_ONRPI
