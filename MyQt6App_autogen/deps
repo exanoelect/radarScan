@@ -896,6 +896,7 @@ MyQt6App_autogen/timestamp: \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/xsaveoptintrin.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/xsavesintrin.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/xtestintrin.h \
+	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QByteArray \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QCache \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QDateTime \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
@@ -1800,6 +1801,8 @@ MyQt6App_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/main.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.h \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.cpp \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h \

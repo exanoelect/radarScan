@@ -35,6 +35,7 @@
 #include <QThread>
 #include <radar.h>
 #include <socketioclient.h>
+#include <payloadprocessor.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -98,29 +99,29 @@ public slots:
     //void updatePlot(const QVector<double> &values);   //
 
 private slots:
-    void init_port();
-    void init_port(QString portname);
-    void readData();
+    //void init_port();
+    //void init_port(QString portname);
+    //void readData();
 
-    void init_port2();
-    void init_port2(QString portname);
-    void readData2();
+    //void init_port2();
+    //void init_port2(QString portname);
+    //void readData2();
 
     // Qt6: SerialPortError → SerialError
-    void handleError(QSerialPort::SerialPortError error);
-    void handleError2(QSerialPort::SerialPortError error);
+    //void handleError(QSerialPort::SerialPortError error);
+    //void handleError2(QSerialPort::SerialPortError error);
 
-    void closeSerialPort();
+    //void closeSerialPort();
     void showPortInfo(int idx);
-    void processPayload();
+    //void processPayload();
     //void processPayloadSocket();
-    void writeData(const QByteArray &data);
+    //void writeData(const QByteArray &data);
 
-    void closeSerialPort2();
+    //void closeSerialPort2();
     void showPortInfo2(int idx);
-    void processPayload2();
+    //void processPayload2();
     //void processPayloadSocket2();
-    void writeData2(const QByteArray &data);
+    //void writeData2(const QByteArray &data);
 
     void on_btnLoad_clicked();
     void on_btnOpenSerialPort_clicked();
@@ -229,6 +230,14 @@ private:
     SocketIOClient *client;
     SocketEventWorker *m_worker;
     QThread *m_workerThread;
+
+    QThread *m_threadA;
+    QThread *m_threadB;
+
+    PayloadProcessor *m_procA;
+    PayloadProcessor *m_procB;
+
+
     //QString demoName2;
 
     //int volCurrent;

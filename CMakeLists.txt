@@ -32,6 +32,8 @@ set(SOURCES
     socketioclient.h
     socketeventworker.h
     socketeventworker.cpp
+    payloadprocessor.h
+    payloadprocessor.cpp
 )
 
 # Generate executable

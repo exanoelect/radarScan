@@ -109,6 +109,16 @@ build CMakeFiles/MyQt6App.dir/socketeventworker.cpp.o: CXX_COMPILER__MyQt6App_un
   OBJECT_FILE_DIR = CMakeFiles/MyQt6App.dir
   TARGET_SUPPORT_DIR = CMakeFiles/MyQt6App.dir
 
+build CMakeFiles/MyQt6App.dir/payloadprocessor.cpp.o: CXX_COMPILER__MyQt6App_unscanned_Release /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.cpp || cmake_object_order_depends_target_MyQt6App
+  CONFIG = Release
+  DEFINES = -DPLATFORM_MACOS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALPORT_LIB -DQT_WEBSOCKETS_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/MyQt6App.dir/payloadprocessor.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -fcolor-diagnostics
+  INCLUDES = -I/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/include -I/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan -isystem /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/user/Qt/6.10.1/macos/lib -isystem /Users/user/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/user/Qt/6.10.1/macos/include -isystem /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Headers
+  OBJECT_DIR = CMakeFiles/MyQt6App.dir
+  OBJECT_FILE_DIR = CMakeFiles/MyQt6App.dir
+  TARGET_SUPPORT_DIR = CMakeFiles/MyQt6App.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MyQt6App
@@ -117,7 +127,7 @@ build CMakeFiles/MyQt6App.dir/socketeventworker.cpp.o: CXX_COMPILER__MyQt6App_un
 #############################################
 # Link the executable MyQt6App.app/Contents/MacOS/MyQt6App
 
-build MyQt6App.app/Contents/MacOS/MyQt6App: CXX_EXECUTABLE_LINKER__MyQt6App_Release CMakeFiles/MyQt6App.dir/MyQt6App_autogen/mocs_compilation.cpp.o CMakeFiles/MyQt6App.dir/main.cpp.o CMakeFiles/MyQt6App.dir/mainwindow.cpp.o CMakeFiles/MyQt6App.dir/qcustomplot.cpp.o CMakeFiles/MyQt6App.dir/socketioclient.cpp.o CMakeFiles/MyQt6App.dir/socketeventworker.cpp.o | /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/QtWebSockets /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || MyQt6App_autogen MyQt6App_autogen_timestamp_deps
+build MyQt6App.app/Contents/MacOS/MyQt6App: CXX_EXECUTABLE_LINKER__MyQt6App_Release CMakeFiles/MyQt6App.dir/MyQt6App_autogen/mocs_compilation.cpp.o CMakeFiles/MyQt6App.dir/main.cpp.o CMakeFiles/MyQt6App.dir/mainwindow.cpp.o CMakeFiles/MyQt6App.dir/qcustomplot.cpp.o CMakeFiles/MyQt6App.dir/socketioclient.cpp.o CMakeFiles/MyQt6App.dir/socketeventworker.cpp.o CMakeFiles/MyQt6App.dir/payloadprocessor.cpp.o | /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/QtWebSockets /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || MyQt6App_autogen MyQt6App_autogen_timestamp_deps
   CONFIG = Release
   FLAGS = -O3 -DNDEBUG -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
   LINK_FLAGS = -Wl,-search_paths_first -Wl,-headerpad_max_install_names

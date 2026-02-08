@@ -17,16 +17,16 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Timer untuk proses payload
-    m_processTimer = new QTimer(this);
-    connect(m_processTimer, &QTimer::timeout,
-            this, &MainWindow::processPayload);
-    m_processTimer->start(50); // proses tiap 50 ms
+    //m_processTimer = new QTimer(this);
+    //connect(m_processTimer, &QTimer::timeout,
+    //        this, &MainWindow::processPayload);
+    //m_processTimer->start(50); // proses tiap 50 ms
 
     // Timer untuk proses payload
-    m_processTimer2 = new QTimer(this);
-    connect(m_processTimer2, &QTimer::timeout,
-            this, &MainWindow::processPayload2);
-    m_processTimer2->start(50); // proses tiap 50 ms
+    //m_processTimer2 = new QTimer(this);
+    //connect(m_processTimer2, &QTimer::timeout,
+    //        this, &MainWindow::processPayload2);
+    //m_processTimer2->start(50); // proses tiap 50 ms
 
     // Setup sound (Qt6: include path QtMultimedia/QSoundEffect)
 #ifdef PLATFORM_LINUX
@@ -115,25 +115,202 @@ MainWindow::MainWindow(QWidget *parent) :
     //m_processTimer->start(50); // proses tiap 50 ms
 
 #endif
+
+    // === Worker A ===
+    m_threadA = new QThread(this);
+    m_procA = new PayloadProcessor(UART_PORT0);
+    m_procA->moveToThread(m_threadA);
+
+    // === Worker B ===
+    m_threadB = new QThread(this);
+    m_procB = new PayloadProcessor(UART_PORT1);
+    m_procB->moveToThread(m_threadB);
+
+    // Connect UI update (dipakai bersama)
+    auto connectProcessor = [this](PayloadProcessor *p){
+
+        // =========================
+        // Radar point (plot posisi)
+        // =========================
+        connect(p, &PayloadProcessor::radarPoint, this,
+                [=](const QString &src, double x, double y){
+                    if (src == UART_PORT0)
+                        updateRadarPoint(x, y);
+                    else if (src == UART_PORT1)
+                        updateRadarPoint2(x, y);
+                }, Qt::QueuedConnection);
+
+        // =========================
+        // Velocity plot
+        // =========================
+        connect(p, &PayloadProcessor::velocityUpdate, this,
+                [=](const QString &src, const QString &v){
+                    if (src == UART_PORT0)
+                        drawRealTimeVelocity(v);
+                    else if (src == UART_PORT1)
+                        drawRealTimeVelocity2(v);
+                }, Qt::QueuedConnection);
+
+        // =========================
+        // Motion / ETS gram plot
+        // =========================
+        connect(p, &PayloadProcessor::motionUpdate, this,
+                [=](const QString &src, const QString &motion){
+                    if (src == UART_PORT0)
+                        drawRealTimeetsgram(motion);
+                    else if (src == UART_PORT1)
+                        drawRealTimeetsgram2(motion);
+                }, Qt::QueuedConnection);
+
+        // =========================
+        // Fall detected event
+        // =========================
+        connect(p, &PayloadProcessor::fallDetected, this,
+                [=](const QString &src){
+                    Q_UNUSED(src);
+                    sound.stop();
+                    sound.play();
+
+                    if (client->isConnected()) {
+                        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED", "");
+                    } else {
+                        qDebug() << "Socket DC";
+                    }
+                });
+
+        // =========================
+        // Debug & serial state
+        // =========================
+        connect(p, &PayloadProcessor::debugMessage,
+                this, [](const QString &msg){ qDebug() << msg; });
+
+        connect(p, &PayloadProcessor::serialOpened,
+                this, [=](bool ok){
+                    ui->btnOpenSerialPort->setEnabled(!ok);
+                    ui->btnLoad->setEnabled(!ok);
+                });
+
+        connect(p, &PayloadProcessor::serialError,
+                this, [=](const QString &err){
+                    qDebug() << "Serial error:" << err;
+                });
+
+        // =========================
+        // UI update berbasis key + src
+        // =========================
+        connect(p, &PayloadProcessor::uiUpdate, this,
+                [=](const QString &src, const QString &key, const QString &value){
+
+                    if (key == "fallDetection") {
+                        if (src == UART_PORT0) ui->leFallDetection->setText(value);
+                        else if (src == UART_PORT1) ui->leFallDetection2->setText(value);
+                    }
+                    else if (key == "fallStateText") {
+                        if (src == UART_PORT0) ui->leFallState->setText(value);
+                        else if (src == UART_PORT1) ui->leFallState2->setText(value);
+                    }
+                    else if (key == "fallStateColor") {
+                        QString style = (value == "red")
+                        ? "background-color: red; color: yellow;"
+                        : "background-color: green; color: black;";
+
+                        if (src == UART_PORT0) ui->leFallState->setStyleSheet(style);
+                        else if (src == UART_PORT1) ui->leFallState2->setStyleSheet(style);
+                    }
+                    else if (key == "fallPosX") {
+                        if (src == UART_PORT0) ui->leFallPosX->setText(value);
+                        else if (src == UART_PORT1) ui->leFallPosX2->setText(value);
+                    }
+                    else if (key == "fallPosY") {
+                        if (src == UART_PORT0) ui->leFallPosY->setText(value);
+                        else if (src == UART_PORT1) ui->leFallPosY2->setText(value);
+                    }
+                    else if (key == "fallDuration") {
+                        if (src == UART_PORT0) ui->leFallDuration->setText(value);
+                        else if (src == UART_PORT1) ui->leFallDuration2->setText(value);
+                    }
+                    else if (key == "initStatus") {
+                        if (src == UART_PORT0) ui->leInitComplete->setText("Inited");
+                        else if (src == UART_PORT1) ui->leInitComplete2->setText("Inited");
+                    }
+                    else if (key == "angleX") {
+                        if (src == UART_PORT0) ui->leAngleXInstallation->setText(value);
+                        else if (src == UART_PORT1) ui->leAngleXInstallation2->setText(value);
+                    }
+                    else if (key == "angleY") {
+                        if (src == UART_PORT0) ui->leAngleYInstallation->setText(value);
+                        else if (src == UART_PORT1) ui->leAngleYInstallation2->setText(value);
+                    }
+                    else if (key == "angleZ") {
+                        if (src == UART_PORT0) ui->leAngleZInstallation->setText(value);
+                        else if (src == UART_PORT1) ui->leAngleZInstallation2->setText(value);
+                    }
+                    else if (key == "height") {
+                        if (src == UART_PORT0) ui->leHeightInstallation->setText(value);
+                        else if (src == UART_PORT1) ui->leHeightInstallation2->setText(value);
+                    }
+                    else if (key == "traceTracking") {
+                        if (src == UART_PORT0) ui->leTraceTracking->setText(value);
+                        else if (src == UART_PORT1) ui->leTraceTracking2->setText(value);
+                    }
+                    else if (key == "traceNumber") {
+                        if (src == UART_PORT0) ui->leTraceNumber->setText(value);
+                        else if (src == UART_PORT1) ui->leTraceNumber2->setText(value);
+                    }
+                    else if (key == "velocity") {
+                        if (src == UART_PORT0) ui->leVelocity->setText(value);
+                        else if (src == UART_PORT1) ui->leVelocity2->setText(value);
+                    }
+                    else if (key == "presence") {
+                        if (src == UART_PORT0) ui->lePresence->setText(value);
+                        else if (src == UART_PORT1) ui->lePresence2->setText(value);
+                    }
+                    else if (key == "motionStyle") {
+                        QString style;
+                        if (value == "presence")
+                            style = "background-color: blue; color: yellow;";
+                        else if (value == "no_presence")
+                            style = "background-color: green; color: black;";
+                        else if (value == "motion_high")
+                            style = "background-color: grey; color: black;";
+                        else if (value == "motion_low")
+                            style = "background-color: orange; color: black;";
+
+                        if (src == UART_PORT0) ui->leMotion->setStyleSheet(style);
+                        else if (src == UART_PORT1) ui->leMotion2->setStyleSheet(style);
+                    }
+                    else if (key == "motionValue") {
+                        if (src == UART_PORT0) ui->leMotion->setText(value);
+                        else if (src == UART_PORT1) ui->leMotion2->setText(value);
+                    }
+                });
+    };
+
+    connectProcessor(m_procA);
+    connectProcessor(m_procB);
+
+    m_threadA->start();
+    m_threadB->start();
 }
 
 //---------------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
     // Pastikan timer dan serial ditutup dengan rapi
-    if (m_processTimer) {
-        m_processTimer->stop();
-    }
-    if (m_serial) {
-        if (m_serial->isOpen()) m_serial->close();
-        m_serial->deleteLater();
-        m_serial = nullptr;
-    }
+    //if (m_processTimer) {
+    //    m_processTimer->stop();
+    //}
+    //if (m_serial) {
+    //    if (m_serial->isOpen()) m_serial->close();
+    //    m_serial->deleteLater();
+    //    m_serial = nullptr;
+    //}
 
     delete ui;
 }
 
 //---------------------------------------------------------------------------------------
+/*
 void MainWindow::init_port()
 {
     // Periksa apakah port sudah diinisialisasi dan terbuka
@@ -477,6 +654,7 @@ void MainWindow::closeSerialPort()
         ui->btnLoad->setEnabled(true);
     }
 }
+*/
 
 //---------------------------------------------------------------------------------------
 void MainWindow::showPortInfo(int idx)
@@ -488,6 +666,7 @@ void MainWindow::showPortInfo(int idx)
 }
 
 //---------------------------------------------------------------------------------------
+/*
 void MainWindow::processPayload()
 {
     while (!m_payloadQueue.isEmpty()) {
@@ -981,6 +1160,7 @@ void MainWindow::closeSerialPort2()
         ui->btnLoad2->setEnabled(true);
     }
 }
+*/
 
 //---------------------------------------------------------------------------------------
 void MainWindow::showPortInfo2(int idx)
@@ -991,6 +1171,7 @@ void MainWindow::showPortInfo2(int idx)
     Q_UNUSED(list);
 }
 
+/*
 //---------------------------------------------------------------------------------------
 void MainWindow::processPayload2()
 {
@@ -1470,6 +1651,7 @@ void MainWindow::writeData2(const QByteArray &data)
     if (!m_serial2) return;
     m_serial2->write(data);
 }
+*/
 
 
 //---------------------------------------------------------------------------------------
@@ -1536,9 +1718,14 @@ void MainWindow::on_btnOpenSerialPort_clicked()
 {
     if (ui->serialPortInfoListBox->currentText().isEmpty()) return;
 
-#ifndef AUTOSTART_ONRPI
-    init_port();
-#endif
+    const QString portName = ui->serialPortInfoListBox->currentText();
+    QMetaObject::invokeMethod(m_procA, "initPort",
+                              Qt::QueuedConnection,
+                              Q_ARG(QString, portName));
+
+//#ifndef AUTOSTART_ONRPI
+    //init_port();
+//#endif
 }
 
 //---------------------------------------------------------------------------------------
@@ -1556,9 +1743,14 @@ void MainWindow::on_btnOpenSerialPort2_clicked()
 {
     if (ui->serialPortInfoListBox2->currentText().isEmpty()) return;
 
-#ifndef AUTOSTART_ONRPI
-    init_port2();
-#endif
+    const QString portName = ui->serialPortInfoListBox2->currentText();
+    QMetaObject::invokeMethod(m_procB, "initPort",
+                              Qt::QueuedConnection,
+                              Q_ARG(QString, portName));
+
+//#ifndef AUTOSTART_ONRPI
+//    init_port2();
+//#endif
 }
 
 //---------------------------------------------------------------------------------------

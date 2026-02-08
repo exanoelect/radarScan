@@ -5,6 +5,9 @@
 #include <QtCore/qtypes.h>
 #endif
 
+#define UART_PORT0 "ttyAMA0"
+#define UART_PORT1 "ttyAMA1"
+
 #define CMD_GET_PRODUCT_MODEL    QByteArray::fromHex("535902A100010F") //53	59	02	A1	00	01	0F
 #define CMD_GET_PRODUCT_ID       QByteArray::fromHex("535902A200010F") //53	59	02	A2	00	01	0F
 #define CMD_GET_HARDWARE_MODEL   QByteArray::fromHex("535902A300010F") //53	59	02	A3	00	01	0F

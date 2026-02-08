@@ -463,6 +463,12 @@
 			null
 		],
 		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h",
+			"MU",
+			"EWIEGA46WW/moc_payloadprocessor.cpp",
+			null
+		],
+		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h",
 			"MU",
 			"EWIEGA46WW/moc_qcustomplot.cpp",
@@ -573,6 +579,11 @@
 		],
 		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.cpp",
 			"MU",
 			null
 		],
