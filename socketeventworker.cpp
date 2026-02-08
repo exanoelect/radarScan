@@ -7,6 +7,7 @@ SocketEventWorker::SocketEventWorker(QObject *parent)
 {
 }
 
+//------------------------------------------------------------------------
 void SocketEventWorker::stop()
 {
     QMutexLocker locker(&m_mutex);
@@ -14,6 +15,7 @@ void SocketEventWorker::stop()
     m_cond.wakeAll();
 }
 
+//------------------------------------------------------------------------
 void SocketEventWorker::enqueue(const QString &eventName, const QJsonValue &data)
 {
     QMutexLocker locker(&m_mutex);
@@ -21,6 +23,7 @@ void SocketEventWorker::enqueue(const QString &eventName, const QJsonValue &data
     m_cond.wakeOne();
 }
 
+//------------------------------------------------------------------------
 void SocketEventWorker::process()
 {
     while (true) {

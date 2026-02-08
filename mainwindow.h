@@ -99,30 +99,6 @@ public slots:
     //void updatePlot(const QVector<double> &values);   //
 
 private slots:
-    //void init_port();
-    //void init_port(QString portname);
-    //void readData();
-
-    //void init_port2();
-    //void init_port2(QString portname);
-    //void readData2();
-
-    // Qt6: SerialPortError → SerialError
-    //void handleError(QSerialPort::SerialPortError error);
-    //void handleError2(QSerialPort::SerialPortError error);
-
-    //void closeSerialPort();
-    void showPortInfo(int idx);
-    //void processPayload();
-    //void processPayloadSocket();
-    //void writeData(const QByteArray &data);
-
-    //void closeSerialPort2();
-    void showPortInfo2(int idx);
-    //void processPayload2();
-    //void processPayloadSocket2();
-    //void writeData2(const QByteArray &data);
-
     void on_btnLoad_clicked();
     void on_btnOpenSerialPort_clicked();
 
@@ -300,6 +276,11 @@ private:
 
     QSoundEffect sound;
     QSoundEffect sound2;
+
+    void initSound();
+    void initGraphics();
+    void initRadar();
+    void initSocketIO();
 
     void setupPlotTs();
     void setupPlotTsVelocity();
