@@ -1774,7 +1774,7 @@ void MainWindow::onBrightnessSetRequested(int bst)
         qDebug() << "Brightness successfully set to" << bst;
         bst = getBrightness();
         qDebug() << "prepare emit brightness set ack " << bst;
-        client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
+        //client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
 #endif
 }

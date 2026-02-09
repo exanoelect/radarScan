@@ -51,10 +51,10 @@ void SocketEventWorker::process()
         else if (eventName == "TALKING" && data.isString()) {
             emit talkingStateChanged(data.toString());
         }
-        else if (eventName == "VOLUME_GET") {
+        else if (eventName == "SOUND_VOLUME_GET") {
             emit volumeGetRequested();
         }
-        else if (eventName == "VOLUME_SET") {
+        else if (eventName == "SOUND_VOLUME_SET") {
             int vt = 0;
             if (data.isDouble()) vt = data.toInt();
             else if (data.isString()) vt = data.toString().toInt();
@@ -63,12 +63,6 @@ void SocketEventWorker::process()
                 vt = obj.value("level").toInt(0);
             }
             emit volumeSetRequested(vt);
-        }
-        else if (eventName == "PING_DEVICE_UP") {
-            emit pingDeviceUpRequested();
-        }
-        else if (eventName == "SLEEP") {
-            emit sleepRequested();
         }
         else if (eventName == "SCREEN_BRIGHTNESS_SET") {
             int bst = 0;
@@ -89,6 +83,12 @@ void SocketEventWorker::process()
             emit brightnessDecreaseReq();
         }else if(eventName == "SCREEN_BRIGHTNESS_GET"){
             emit brightnessGetRequested();
+        }
+        else if (eventName == "PING_DEVICE_UP") {
+            emit pingDeviceUpRequested();
+        }
+        else if (eventName == "SLEEP") {
+            emit sleepRequested();
         }
     }
 }

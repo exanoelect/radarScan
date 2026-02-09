@@ -30,6 +30,7 @@ signals:
     void brightnessDecreaseReq();
 
     void sleepRequested();
+    void wakeupRequested();
     void pingDeviceUpRequested();
     void listenStateChanged(const QString &state);
     void talkingStateChanged(const QString &state);
