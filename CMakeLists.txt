@@ -34,6 +34,8 @@ set(SOURCES
     socketeventworker.cpp
     payloadprocessor.h
     payloadprocessor.cpp
+    configmanager.h
+    configmanager.cpp
 )
 
 # Generate executable

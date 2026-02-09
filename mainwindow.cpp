@@ -6,6 +6,7 @@
 #include <QTime>
 #include <QElapsedTimer>
 #include <QSharedPointer>
+#include "configmanager.h"
 
 // Jika qcustomplot butuh include spesifik, sudah di header
 
@@ -27,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //volCurrent = getVolumePercent();
     //brightnessCurrent = getBrightness();
 #endif
-
 }
 
 //---------------------------------------------------------------------------------------
@@ -106,8 +106,14 @@ void MainWindow::initSocketIO()
 
     m_workerThread->start();
 
-    client->connectToServer("192.168.1.27", 3000);
-    //client->connectToServer("localhost", 3000);
+    QString serverIp = ConfigManager::getServerIp();
+    int serverPort = ConfigManager::getServerPort();
+
+    qDebug() << "Server IP:" << serverIp;
+    qDebug() << "Server Port:" << serverPort;
+
+    //client->connectToServer("192.168.1.27", 3000);
+    client->connectToServer(serverIp, serverPort);
 }
 
 //---------------------------------------------------------------------------------------

@@ -863,11 +863,13 @@
  mdp:/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h
  mdp:/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h
  mdp:/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h
+/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.cpp
+/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.cpp
+/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.h
+/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.cpp
 /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.cpp
 /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h
 /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.cpp
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.cpp
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.cpp
 /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h
  mmc:Q_OBJECT
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h

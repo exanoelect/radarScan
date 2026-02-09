@@ -1798,6 +1798,8 @@ MyQt6App_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/4.2.1/CMakeSystem.cmake \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeLists.txt \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.cpp \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/main.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.h \
