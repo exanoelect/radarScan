@@ -87,6 +87,8 @@ void SocketEventWorker::process()
             emit brightnessIncreaseReq();
         }else if(eventName == "DECREASE_BRIGHTNESS"){
             emit brightnessDecreaseReq();
+        }else if(eventName == "SCREEN_BRIGHTNESS_GET"){
+            emit brightnessGetRequested();
         }
     }
 }

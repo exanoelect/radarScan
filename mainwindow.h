@@ -303,6 +303,7 @@ private:
     //Brightness Controller
     int getBrightness();
     bool setBrightnessPercent(int percent);
+    bool setBrightness(int value);
 
     //Volume control
     int getVolumePercent();                 // return 0–100, -1 jika gagal

@@ -42,6 +42,8 @@ set(SOURCES
 qt_add_executable(MyQt6App
     ${SOURCES}
     radar.h
+
+
 )
 
 # Tambahkan folder tempat qcustomplot berada

@@ -24,6 +24,7 @@ signals:
     void volumeDecreaseReq();
 
     void brightnessSetRequested(int value);
+    void brightnessGetRequested();
 
     void brightnessIncreaseReq();
     void brightnessDecreaseReq();

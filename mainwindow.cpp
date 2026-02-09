@@ -103,6 +103,8 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onBrihtnessIncreaseReq);
     connect(m_worker, &SocketEventWorker::brightnessDecreaseReq,
             this, &MainWindow::onBrightnessDecreaseReq);
+    connect(m_worker, &SocketEventWorker::brightnessGetRequested,
+            this, &MainWindow::onBrightnessGetRequested);
 
     m_workerThread->start();
 
@@ -1517,6 +1519,19 @@ bool MainWindow::setBrightnessPercent(int percent)
 }
 
 //------------------------------------------------------------------------
+bool MainWindow::setBrightness(int value)
+{
+    if((value < 0 ) || (value > 255)) return false;
+
+     QProcess proc;
+     proc.start("brightnessctl", {"set", QString::number(value)});
+     proc.waitForFinished();
+
+     return proc.exitStatus() == QProcess::NormalExit &&
+             proc.exitCode() == 0;
+}
+
+//------------------------------------------------------------------------
 int MainWindow::getVolumePercent()
 {
     QProcess proc;
@@ -1755,8 +1770,11 @@ void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
 #ifdef PLATFORM_LINUX
-    if (bst > 0 && setBrightnessPercent(bst)) {
+    if (bst > 0 && setBrightness(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
+        bst = getBrightness();
+        qDebug() << "prepare emit brightness set ack " << bst;
+        client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
 #endif
 }
@@ -1818,7 +1836,7 @@ void MainWindow::onBrihtnessIncreaseReq()
     int currentBrightness = getBrightness();
     currentBrightness = currentBrightness + 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(setBrightnessPercent(currentBrightness)){
+        if(setBrightness(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc  " << currentBrightness;
@@ -1837,7 +1855,7 @@ void MainWindow::onBrightnessDecreaseReq()
     int currentBrightness = getBrightness();
     currentBrightness = currentBrightness - 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(setBrightnessPercent(currentBrightness)){
+        if(setBrightness(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc v " << currentBrightness;

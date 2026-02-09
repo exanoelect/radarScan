@@ -46,6 +46,7 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         "volumeIncreaseReq",
         "volumeDecreaseReq",
         "brightnessSetRequested",
+        "brightnessGetRequested",
         "brightnessIncreaseReq",
         "brightnessDecreaseReq",
         "sleepRequested",
@@ -71,24 +72,26 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         QtMocHelpers::SignalData<void(int)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 4 },
         }}),
-        // Signal 'brightnessIncreaseReq'
+        // Signal 'brightnessGetRequested'
         QtMocHelpers::SignalData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'brightnessDecreaseReq'
+        // Signal 'brightnessIncreaseReq'
         QtMocHelpers::SignalData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'sleepRequested'
+        // Signal 'brightnessDecreaseReq'
         QtMocHelpers::SignalData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'pingDeviceUpRequested'
+        // Signal 'sleepRequested'
         QtMocHelpers::SignalData<void()>(11, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'pingDeviceUpRequested'
+        QtMocHelpers::SignalData<void()>(12, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'listenStateChanged'
-        QtMocHelpers::SignalData<void(const QString &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 13 },
+        QtMocHelpers::SignalData<void(const QString &)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 14 },
         }}),
         // Signal 'talkingStateChanged'
-        QtMocHelpers::SignalData<void(const QString &)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 13 },
+        QtMocHelpers::SignalData<void(const QString &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 14 },
         }}),
         // Slot 'process'
-        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -117,13 +120,14 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 2: _t->volumeIncreaseReq(); break;
         case 3: _t->volumeDecreaseReq(); break;
         case 4: _t->brightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 5: _t->brightnessIncreaseReq(); break;
-        case 6: _t->brightnessDecreaseReq(); break;
-        case 7: _t->sleepRequested(); break;
-        case 8: _t->pingDeviceUpRequested(); break;
-        case 9: _t->listenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 10: _t->talkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 11: _t->process(); break;
+        case 5: _t->brightnessGetRequested(); break;
+        case 6: _t->brightnessIncreaseReq(); break;
+        case 7: _t->brightnessDecreaseReq(); break;
+        case 8: _t->sleepRequested(); break;
+        case 9: _t->pingDeviceUpRequested(); break;
+        case 10: _t->listenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->talkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 12: _t->process(); break;
         default: ;
         }
     }
@@ -138,17 +142,19 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
             return;
         if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(int )>(_a, &SocketEventWorker::brightnessSetRequested, 4))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::brightnessIncreaseReq, 5))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::brightnessGetRequested, 5))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::brightnessDecreaseReq, 6))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::brightnessIncreaseReq, 6))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::sleepRequested, 7))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::brightnessDecreaseReq, 7))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::pingDeviceUpRequested, 8))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::sleepRequested, 8))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::listenStateChanged, 9))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::pingDeviceUpRequested, 9))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::talkingStateChanged, 10))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::listenStateChanged, 10))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::talkingStateChanged, 11))
             return;
     }
 }
@@ -172,14 +178,14 @@ int SocketEventWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }
@@ -215,38 +221,44 @@ void SocketEventWorker::brightnessSetRequested(int _t1)
 }
 
 // SIGNAL 5
-void SocketEventWorker::brightnessIncreaseReq()
+void SocketEventWorker::brightnessGetRequested()
 {
     QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 
 // SIGNAL 6
-void SocketEventWorker::brightnessDecreaseReq()
+void SocketEventWorker::brightnessIncreaseReq()
 {
     QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
 }
 
 // SIGNAL 7
-void SocketEventWorker::sleepRequested()
+void SocketEventWorker::brightnessDecreaseReq()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 
 // SIGNAL 8
-void SocketEventWorker::pingDeviceUpRequested()
+void SocketEventWorker::sleepRequested()
 {
     QMetaObject::activate(this, &staticMetaObject, 8, nullptr);
 }
 
 // SIGNAL 9
-void SocketEventWorker::listenStateChanged(const QString & _t1)
+void SocketEventWorker::pingDeviceUpRequested()
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 9, nullptr, _t1);
+    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
 }
 
 // SIGNAL 10
-void SocketEventWorker::talkingStateChanged(const QString & _t1)
+void SocketEventWorker::listenStateChanged(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 10, nullptr, _t1);
+}
+
+// SIGNAL 11
+void SocketEventWorker::talkingStateChanged(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 11, nullptr, _t1);
 }
 QT_WARNING_POP
