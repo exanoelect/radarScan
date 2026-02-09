@@ -193,6 +193,7 @@ private slots:
     void onPingDeviceUpRequested();
     void onSleepRequested();
     void onBrightnessSetRequested(int value);
+    void onBrightnessGetRequested();
 
     void onVolumeIncreaseReq();
     void onVolumeDecreaseReq();

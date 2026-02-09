@@ -70,7 +70,7 @@ void SocketEventWorker::process()
         else if (eventName == "SLEEP") {
             emit sleepRequested();
         }
-        else if (eventName == "BRIGHTNESS_SET") {
+        else if (eventName == "SCREEN_BRIGHTNESS_SET") {
             int bst = 0;
             if (data.isDouble()) bst = data.toInt();
             else if (data.isString()) bst = data.toString().toInt();

@@ -89,3 +89,12 @@
 1800	19441	1770571284945871972	CMakeFiles/MyQt6App.dir/mainwindow.cpp.o	bf5cb7ba7cfb94ae
 1800	24552	1770571284945183196	CMakeFiles/MyQt6App.dir/MyQt6App_autogen/mocs_compilation.cpp.o	76312947d5750057
 24552	25017	1770571307696941863	MyQt6App.app/Contents/MacOS/MyQt6App	211b1aed838e3107
+61	2050	1770603923684829000	MyQt6App_autogen/timestamp	71b62ebb0f7a7aa
+61	2050	1770603923684829000	MyQt6App_autogen/mocs_compilation.cpp	71b62ebb0f7a7aa
+61	2050	1770603923684829000	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/timestamp	71b62ebb0f7a7aa
+61	2050	1770603923684829000	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/mocs_compilation.cpp	71b62ebb0f7a7aa
+2055	12456	1770603923771800072	CMakeFiles/MyQt6App.dir/socketeventworker.cpp.o	94e635e2f763fe9a
+2054	13692	1770603923771291672	CMakeFiles/MyQt6App.dir/main.cpp.o	67c12c805ca966ac
+2054	21429	1770603923771555622	CMakeFiles/MyQt6App.dir/mainwindow.cpp.o	bf5cb7ba7cfb94ae
+2054	26544	1770603923770870727	CMakeFiles/MyQt6App.dir/MyQt6App_autogen/mocs_compilation.cpp.o	76312947d5750057
+26544	27046	1770603948261024283	MyQt6App.app/Contents/MacOS/MyQt6App	211b1aed838e3107

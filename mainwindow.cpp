@@ -1662,7 +1662,7 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     if(client->isConnected()){
-       client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
+        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
     }else{
         qDebug() << " Socket DC";
     }
@@ -1756,6 +1756,20 @@ void MainWindow::onBrightnessSetRequested(int bst)
 }
 
 //------------------------------------------------------------------------
+void MainWindow::onBrightnessGetRequested()
+{
+    qDebug() << "UI Brightness get:";
+#ifdef PLATFORM_LINUX
+    int bst = getBrightness();
+    //if (bst > 0 && setBrightnessPercent(bst)) {
+    qDebug() << "UI emit Brightness get start" << bst;
+    client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
+    qDebug() << "UI emit Brightness get end" << bst;
+    //}
+#endif
+}
+
+//------------------------------------------------------------------------
 void MainWindow::onVolumeIncreaseReq()
 {
     qDebug() << "UI onVolumeIncreaseReq";
@@ -1797,13 +1811,14 @@ void MainWindow::onBrihtnessIncreaseReq()
 #ifdef PLATFORM_LINUX
     int currentBrightness = getBrightness();
     currentBrightness = currentBrightness + 5;
-    if((currentBrightness > 20) && (currentBrightness <= 99)){
+    if((currentBrightness > 20) && (currentBrightness <= 255)){
         if(setBrightnessPercent(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
-            qDebug() << "UI fail Inc v " << currentBrightness;
+            qDebug() << "UI fail Inc  " << currentBrightness;
         }
     }else{
+        qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
 #endif
 }
@@ -1815,15 +1830,15 @@ void MainWindow::onBrightnessDecreaseReq()
 #ifdef PLATFORM_LINUX
     int currentBrightness = getBrightness();
     currentBrightness = currentBrightness - 5;
-    if((currentBrightness > 20) && (currentBrightness <= 99)){
+    if((currentBrightness > 20) && (currentBrightness <= 255)){
         if(setBrightnessPercent(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc v " << currentBrightness;
         }
     }else{
+        qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
 #endif
 }
-
 

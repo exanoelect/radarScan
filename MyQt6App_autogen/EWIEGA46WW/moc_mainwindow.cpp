@@ -100,6 +100,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onPingDeviceUpRequested",
         "onSleepRequested",
         "onBrightnessSetRequested",
+        "onBrightnessGetRequested",
         "onVolumeIncreaseReq",
         "onVolumeDecreaseReq",
         "onBrihtnessIncreaseReq",
@@ -243,14 +244,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void(int)>(59, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 13 },
         }}),
-        // Slot 'onVolumeIncreaseReq'
+        // Slot 'onBrightnessGetRequested'
         QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onVolumeDecreaseReq'
+        // Slot 'onVolumeIncreaseReq'
         QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onBrihtnessIncreaseReq'
+        // Slot 'onVolumeDecreaseReq'
         QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onBrightnessDecreaseReq'
+        // Slot 'onBrihtnessIncreaseReq'
         QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrightnessDecreaseReq'
+        QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -324,10 +327,11 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 47: _t->onPingDeviceUpRequested(); break;
         case 48: _t->onSleepRequested(); break;
         case 49: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 50: _t->onVolumeIncreaseReq(); break;
-        case 51: _t->onVolumeDecreaseReq(); break;
-        case 52: _t->onBrihtnessIncreaseReq(); break;
-        case 53: _t->onBrightnessDecreaseReq(); break;
+        case 50: _t->onBrightnessGetRequested(); break;
+        case 51: _t->onVolumeIncreaseReq(); break;
+        case 52: _t->onVolumeDecreaseReq(); break;
+        case 53: _t->onBrihtnessIncreaseReq(); break;
+        case 54: _t->onBrightnessDecreaseReq(); break;
         default: ;
         }
     }
@@ -352,14 +356,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 54)
+        if (_id < 55)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 54;
+        _id -= 55;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 54)
+        if (_id < 55)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 54;
+        _id -= 55;
     }
     return _id;
 }
