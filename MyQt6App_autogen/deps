@@ -1356,9 +1356,14 @@ MyQt6App_autogen/timestamp: \
 	/Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindow.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput \
+	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QSoundEffect \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
+	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h \
+	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h \
+	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
 	/Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h \
@@ -1798,6 +1803,8 @@ MyQt6App_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/4.2.1/CMakeSystem.cmake \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeLists.txt \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.cpp \
+	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.cpp \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.h \
 	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/main.cpp \

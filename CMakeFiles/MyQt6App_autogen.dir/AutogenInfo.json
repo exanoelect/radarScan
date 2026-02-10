@@ -457,6 +457,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.h",
+			"MU",
+			"EWIEGA46WW/moc_audioworker.cpp",
+			null
+		],
+		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.h",
 			"MU",
 			"EWIEGA46WW/moc_configmanager.cpp",
@@ -578,6 +584,11 @@
 	"SETTINGS_FILE" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/MyQt6App_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.cpp",
+			"MU",
+			null
+		],
 		[
 			"/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.cpp",
 			"MU",

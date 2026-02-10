@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initSocketIO();
     initRadar();
 
+
 #ifdef PLATFORM_LINUX
     setupGPIO();
     setColor(COLOR_WHITE);
@@ -49,14 +50,24 @@ MainWindow::~MainWindow()
 //---------------------------------------------------------------------------------------
 void MainWindow::initSound()
 {
+    m_audioThread = new QThread(this);
+    m_audioWorker = new AudioWorker();
+    m_audioWorker->moveToThread(m_audioThread);
+
+    connect(m_audioThread, &QThread::finished,
+            m_audioWorker, &QObject::deleteLater);
+
+    m_audioThread->start();
+
+
 #ifdef PLATFORM_LINUX
-    sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));
+    //sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));
 #else
-    sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
+    //sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
 #endif
 
-    sound.setLoopCount(1);
-    sound.setVolume(1.0f);
+    //sound.setLoopCount(1);
+    //sound.setVolume(1.0f);
 }
 
 //---------------------------------------------------------------------------------------
@@ -105,6 +116,17 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onBrightnessDecreaseReq);
     connect(m_worker, &SocketEventWorker::brightnessGetRequested,
             this, &MainWindow::onBrightnessGetRequested);
+
+    //Sound
+    connect(m_worker, &SocketEventWorker::incidentFall,
+            this, &MainWindow::onIncidentFallOccur);
+    connect(m_worker, &SocketEventWorker::incidentHelp,
+            this, &MainWindow::onIncidentIamnotOK);
+    connect(m_worker, &SocketEventWorker::incidentIamOK,
+            this, &MainWindow::onIncidentIamOK);
+    connect(m_worker, &SocketEventWorker::incidentIamnotOK,
+            this, &MainWindow::onIncidentIamnotOK);
+
 
     m_workerThread->start();
 
@@ -1116,6 +1138,33 @@ void MainWindow::drawRealTimeVelocity2(QString velocity)
 }
 
 //---------------------------------------------------------------------------------------
+void MainWindow::soundPlay(int request)
+{
+    switch (request){
+    case SOUND_FALL_OCCUR:
+        qDebug() << "Request 1 received";
+        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, SOUND_FALL_OCCUR));
+        break;
+    case SOUND_HELP:
+        qDebug() << "Request 2 received";
+        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, SOUND_HELP));
+        break;
+    case SOUND_IAM_OK:
+        qDebug() << "Request 3 received";
+        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, SOUND_IAM_OK));
+        break;
+    default:
+        break;
+    }
+}
+
+//---------------------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
 {
     demoName = "Real Time Data Demo";
@@ -1578,8 +1627,7 @@ bool MainWindow::setVolumePercent(int percent)
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlaySound_clicked()
 {
-    sound.stop();
-    sound.play();
+    soundPlay(SOUND_FALL_OCCUR);
 }
 
 //------------------------------------------------------------------------
@@ -1864,5 +1912,42 @@ void MainWindow::onBrightnessDecreaseReq()
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
 #endif
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallOccur()
+{
+    soundPlay(SOUND_FALL_OCCUR);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentIamnotOK()
+{
+    soundPlay(SOUND_HELP);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentIamOK()
+{
+    soundPlay(SOUND_IAM_OK);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnPlayFall_clicked()
+{
+    soundPlay(SOUND_FALL_OCCUR);
+}
+
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnPlayHelp_clicked()
+{
+    soundPlay(SOUND_HELP);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnPlayIamOK_clicked()
+{
+    soundPlay(SOUND_IAM_OK);
 }
 

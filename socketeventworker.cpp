@@ -89,6 +89,12 @@ void SocketEventWorker::process()
         }
         else if (eventName == "SLEEP") {
             emit sleepRequested();
+        }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){
+            emit incidentFall();
+        }else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
+            emit incidentIamnotOK();
+        }else if (eventName == "i_am_ok"){
+            emit incidentIamOK();
         }
     }
 }

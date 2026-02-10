@@ -35,6 +35,11 @@ signals:
     void listenStateChanged(const QString &state);
     void talkingStateChanged(const QString &state);
 
+    void incidentFall();
+    void incidentHelp();
+    void incidentIamOK();
+    void incidentIamnotOK();
+
 public slots:
     void process();
 

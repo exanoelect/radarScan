@@ -36,6 +36,8 @@ set(SOURCES
     payloadprocessor.cpp
     configmanager.h
     configmanager.cpp
+    audioworker.h
+    audioworker.cpp
 )
 
 # Generate executable

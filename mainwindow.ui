@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1693,9 +1693,9 @@
      <widget class="QPushButton" name="btnPlaySound">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>80</x>
         <y>130</y>
-        <width>321</width>
+        <width>81</width>
         <height>32</height>
        </rect>
       </property>
@@ -1703,7 +1703,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>Play Sound</string>
+       <string>Play Alarm</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="leVol">
@@ -1858,6 +1858,38 @@
       </property>
       <property name="text">
        <string>Fall</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPlayHelp">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>130</y>
+        <width>71</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Play Help</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPlayIamOK">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>130</y>
+        <width>81</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Play IamOK</string>
       </property>
      </widget>
     </widget>

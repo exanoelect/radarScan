@@ -36,6 +36,8 @@
 #include <radar.h>
 #include <socketioclient.h>
 #include <payloadprocessor.h>
+#include <QThread>
+#include <audioworker.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -200,6 +202,14 @@ private slots:
     void onBrihtnessIncreaseReq();
     void onBrightnessDecreaseReq();
 
+    void onIncidentFallOccur();
+    void onIncidentIamnotOK();
+    void onIncidentIamOK();
+
+    void on_btnPlayFall_clicked();
+    void on_btnPlayHelp_clicked();
+    void on_btnPlayIamOK_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -214,6 +224,8 @@ private:
     PayloadProcessor *m_procA;
     PayloadProcessor *m_procB;
 
+    QThread *m_audioThread;
+    AudioWorker *m_audioWorker;
 
     //QString demoName2;
 
@@ -240,20 +252,20 @@ private:
     QSerialPort *m_serial2 = nullptr;
     QByteArray m_buffer2;
 
-    QQueue<QByteArray> m_payloadQueue;
-    QQueue<QPair<QString, QJsonValue>> m_eventQueue;
+    //QQueue<QByteArray> m_payloadQueue;
+    //QQueue<QPair<QString, QJsonValue>> m_eventQueue;
 
-    QQueue<QByteArray> m_payloadQueue2;
+    //QQueue<QByteArray> m_payloadQueue2;
     //QQueue<quint8> m_socketQueue2;
-    quint8 socketState2;
+    //quint8 socketState2;
 
-    QTimer *m_processTimer;
-    QTimer *m_socketTimer;
-    QTimer *m_initRadarTimer;
+    //QTimer *m_processTimer;
+    //QTimer *m_socketTimer;
+    //QTimer *m_initRadarTimer;
 
-    QTimer *m_processTimer2;
-    QTimer *m_socketTimer2;
-    QTimer *m_initRadarTimer2;
+    //QTimer *m_processTimer2;
+    //QTimer *m_socketTimer2;
+    //QTimer *m_initRadarTimer2;
 
 #ifdef PLATFORM_LINUX
 
@@ -294,6 +306,8 @@ private:
 
     void drawRealTimeetsgram2(QString motion);
     void drawRealTimeVelocity2(QString velocity);
+
+    void soundPlay(int request);
 
 #ifdef PLATFORM_LINUX
     //GPIO LEd strip

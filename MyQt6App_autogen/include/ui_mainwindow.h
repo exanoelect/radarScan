@@ -184,6 +184,8 @@ public:
     QPushButton *btnPing;
     QLabel *labelGetBrightnessRequest;
     QPushButton *btnFallSimulation;
+    QPushButton *btnPlayHelp;
+    QPushButton *btnPlayIamOK;
     QCustomPlot *plotRadar;
     QCustomPlot *plottsVelocity;
     QCustomPlot *plottsgram2;
@@ -655,7 +657,7 @@ public:
         hsBrightness->setOrientation(Qt::Orientation::Horizontal);
         btnPlaySound = new QPushButton(tab_7);
         btnPlaySound->setObjectName("btnPlaySound");
-        btnPlaySound->setGeometry(QRect(10, 130, 321, 32));
+        btnPlaySound->setGeometry(QRect(80, 130, 81, 32));
         btnPlaySound->setStyleSheet(QString::fromUtf8(""));
         leVol = new QLineEdit(tab_7);
         leVol->setObjectName("leVol");
@@ -697,6 +699,14 @@ public:
         btnFallSimulation->setObjectName("btnFallSimulation");
         btnFallSimulation->setGeometry(QRect(10, 350, 81, 32));
         btnFallSimulation->setStyleSheet(QString::fromUtf8(""));
+        btnPlayHelp = new QPushButton(tab_7);
+        btnPlayHelp->setObjectName("btnPlayHelp");
+        btnPlayHelp->setGeometry(QRect(170, 130, 71, 32));
+        btnPlayHelp->setStyleSheet(QString::fromUtf8(""));
+        btnPlayIamOK = new QPushButton(tab_7);
+        btnPlayIamOK->setObjectName("btnPlayIamOK");
+        btnPlayIamOK->setGeometry(QRect(250, 130, 81, 32));
+        btnPlayIamOK->setStyleSheet(QString::fromUtf8(""));
         tw->addTab(tab_7, QString());
         plotRadar = new QCustomPlot(centralWidget);
         plotRadar->setObjectName("plotRadar");
@@ -737,7 +747,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tw->setCurrentIndex(1);
+        tw->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -825,7 +835,7 @@ public:
         btnsetBrightness->setText(QCoreApplication::translate("MainWindow", "set Brightness", nullptr));
         btnGetBrightness->setText(QCoreApplication::translate("MainWindow", "get Brightness", nullptr));
         lBrightness->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
-        btnPlaySound->setText(QCoreApplication::translate("MainWindow", "Play Sound", nullptr));
+        btnPlaySound->setText(QCoreApplication::translate("MainWindow", "Play Alarm", nullptr));
         btnGetVol->setText(QCoreApplication::translate("MainWindow", "get Volume", nullptr));
         lVol->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
         btnsetVol->setText(QCoreApplication::translate("MainWindow", "set Volume", nullptr));
@@ -834,6 +844,8 @@ public:
         btnPing->setText(QCoreApplication::translate("MainWindow", "Ping", nullptr));
         labelGetBrightnessRequest->setText(QCoreApplication::translate("MainWindow", "Bright", nullptr));
         btnFallSimulation->setText(QCoreApplication::translate("MainWindow", "Fall", nullptr));
+        btnPlayHelp->setText(QCoreApplication::translate("MainWindow", "Play Help", nullptr));
+        btnPlayIamOK->setText(QCoreApplication::translate("MainWindow", "Play IamOK", nullptr));
         tw->setTabText(tw->indexOf(tab_7), QCoreApplication::translate("MainWindow", "Test", nullptr));
     } // retranslateUi
 
