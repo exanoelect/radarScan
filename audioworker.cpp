@@ -41,7 +41,7 @@ QString AudioWorker::requestToFile(int requestId)
     switch (requestId) {
     case SOUND_FALL_OCCUR:
 #ifdef PLATFORM_LINUX
-        return "/home/pi/wav/fall-detected.wav";
+        return "/home/pi/wav/alarm.wav";
 #else
         return "/Volumes/DATA/wav/alarm.wav";
 #endif
