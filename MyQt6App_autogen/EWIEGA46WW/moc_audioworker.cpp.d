@@ -722,11 +722,8 @@
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QMutex \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QQueue \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QWaitCondition \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
@@ -758,7 +755,6 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontainertools_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h \
@@ -780,7 +776,6 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetatype.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qminmax.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmutex.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qnamespace.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qnumeric.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qobject.h \
@@ -823,7 +818,6 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtresource.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtsan_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qttranslation.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtversion.h \
@@ -833,7 +827,6 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qurl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qutf8stringview.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
-  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qwaitcondition.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h \
   /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h \

@@ -3,8 +3,6 @@
 
 #include <QObject>
 #include <QQueue>
-#include <QMutex>
-#include <QWaitCondition>
 #include <QMediaPlayer>
 #include <QAudioOutput>
 
@@ -20,6 +18,7 @@ public:
     ~AudioWorker();
 
 public slots:
+    void init();               // <-- init di thread sendiri
     void enqueueSound(int requestId);
 
 signals:
@@ -32,9 +31,8 @@ private:
     QString requestToFile(int requestId);
 
     QQueue<int> m_queue;
-    QMediaPlayer *m_player;
-    QAudioOutput *m_audioOutput;
+    QMediaPlayer *m_player = nullptr;
+    QAudioOutput *m_audioOutput = nullptr;
 };
-
 
 #endif // AUDIOWORKER_H

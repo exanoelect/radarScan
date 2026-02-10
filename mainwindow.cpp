@@ -54,20 +54,13 @@ void MainWindow::initSound()
     m_audioWorker = new AudioWorker();
     m_audioWorker->moveToThread(m_audioThread);
 
+    connect(m_audioThread, &QThread::started,
+            m_audioWorker, &AudioWorker::init);   // <-- penting!
+
     connect(m_audioThread, &QThread::finished,
             m_audioWorker, &QObject::deleteLater);
 
     m_audioThread->start();
-
-
-#ifdef PLATFORM_LINUX
-    //sound.setSource(QUrl::fromLocalFile("/home/pi/wav/alarm.wav"));
-#else
-    //sound.setSource(QUrl::fromLocalFile("/Volumes/DATA/wav/alarm1.wav"));
-#endif
-
-    //sound.setLoopCount(1);
-    //sound.setVolume(1.0f);
 }
 
 //---------------------------------------------------------------------------------------

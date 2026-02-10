@@ -1,13 +1,21 @@
-#include <audioworker.h>
+#include "audioworker.h"
 #include <QUrl>
-#include <QThread>
 #include <QDebug>
 
 AudioWorker::AudioWorker(QObject *parent)
-    : QObject(parent),
-    m_player(new QMediaPlayer(this)),
-    m_audioOutput(new QAudioOutput(this))
+    : QObject(parent)
 {
+}
+
+AudioWorker::~AudioWorker()
+{
+}
+
+//---------------------------------------------------------------------------------------
+void AudioWorker::init()
+{
+    m_player = new QMediaPlayer(this);
+    m_audioOutput = new QAudioOutput(this);
     m_player->setAudioOutput(m_audioOutput);
 
     connect(m_player, &QMediaPlayer::mediaStatusChanged,
@@ -19,17 +27,11 @@ AudioWorker::AudioWorker(QObject *parent)
 }
 
 //---------------------------------------------------------------------------------------
-AudioWorker::~AudioWorker()
-{
-}
-
-//---------------------------------------------------------------------------------------
 void AudioWorker::enqueueSound(int requestId)
 {
     qDebug() << "enqueueSound received:" << requestId;
     m_queue.enqueue(requestId);
 
-    // Jika player idle, langsung play
     if (m_player->playbackState() != QMediaPlayer::PlayingState) {
         playNext();
     }
