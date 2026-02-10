@@ -36,6 +36,8 @@ private:
     QMediaPlayer *m_player = nullptr;
     QAudioOutput *m_audioOutput = nullptr;
     QTimer *m_timer = nullptr;
+
+    int m_currentRequestId = -1;   // <-- TARUH DI SINI
 };
 
 #endif // AUDIOWORKER_H

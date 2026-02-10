@@ -68,8 +68,8 @@ void AudioWorker::playNext()
     if (m_queue.isEmpty())
         return;
 
-    int requestId = m_queue.dequeue();
-    QString filePath = requestToFile(requestId);
+    m_currentRequestId = m_queue.dequeue();
+    QString filePath = requestToFile(m_currentRequestId);
     if (filePath.isEmpty())
         return;
 
@@ -77,14 +77,13 @@ void AudioWorker::playNext()
     m_player->setSource(QUrl::fromLocalFile(filePath));
     m_player->play();
 
-    emit finishedPlaying(requestId);
-
-    // Asumsi durasi max 3 detik → set 4 detik
+    // Mulai timer durasi playback
     m_timer->start(4000);
 }
 
 //---------------------------------------------------------------------------------------
 void AudioWorker::onPlaybackTimeout()
 {
+    emit finishedPlaying(m_currentRequestId);  // <-- lebih logis di sini
     playNext();
 }
