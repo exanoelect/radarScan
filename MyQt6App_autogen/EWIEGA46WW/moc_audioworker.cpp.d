@@ -724,11 +724,13 @@
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QQueue \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23type_traits.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qanystringview.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qarraydata.h \
@@ -738,6 +740,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h \
@@ -755,6 +758,8 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontainertools_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeventloop.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h \
@@ -814,6 +819,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtdeprecationmarkers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h \

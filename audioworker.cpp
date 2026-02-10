@@ -18,12 +18,10 @@ void AudioWorker::init()
     m_audioOutput = new QAudioOutput(this);
     m_player->setAudioOutput(m_audioOutput);
 
-    connect(m_player, &QMediaPlayer::mediaStatusChanged,
-            this, [this](QMediaPlayer::MediaStatus status) {
-                if (status == QMediaPlayer::EndOfMedia) {
-                    playNext();
-                }
-            });
+    m_timer = new QTimer(this);
+    m_timer->setSingleShot(true);
+    connect(m_timer, &QTimer::timeout,
+            this, &AudioWorker::onPlaybackTimeout);
 }
 
 //---------------------------------------------------------------------------------------
@@ -80,4 +78,13 @@ void AudioWorker::playNext()
     m_player->play();
 
     emit finishedPlaying(requestId);
+
+    // Asumsi durasi max 3 detik → set 4 detik
+    m_timer->start(4000);
+}
+
+//---------------------------------------------------------------------------------------
+void AudioWorker::onPlaybackTimeout()
+{
+    playNext();
 }

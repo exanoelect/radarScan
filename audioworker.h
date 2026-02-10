@@ -5,6 +5,7 @@
 #include <QQueue>
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include <QTimer>
 
 #define SOUND_FALL_OCCUR 1
 #define SOUND_HELP       2
@@ -18,7 +19,7 @@ public:
     ~AudioWorker();
 
 public slots:
-    void init();               // <-- init di thread sendiri
+    void init();
     void enqueueSound(int requestId);
 
 signals:
@@ -26,6 +27,7 @@ signals:
 
 private slots:
     void playNext();
+    void onPlaybackTimeout();
 
 private:
     QString requestToFile(int requestId);
@@ -33,6 +35,7 @@ private:
     QQueue<int> m_queue;
     QMediaPlayer *m_player = nullptr;
     QAudioOutput *m_audioOutput = nullptr;
+    QTimer *m_timer = nullptr;
 };
 
 #endif // AUDIOWORKER_H
