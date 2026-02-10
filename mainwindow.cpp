@@ -204,6 +204,7 @@ void MainWindow::initRadar()
                     sound.play();
 
                     if (client->isConnected()) {
+                        soundPlay(SOUND_FALL_OCCUR);
                         client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED", "");
                     } else {
                         qDebug() << "Socket DC";
