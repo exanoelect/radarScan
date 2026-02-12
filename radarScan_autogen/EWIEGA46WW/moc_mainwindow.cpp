@@ -106,6 +106,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onBrihtnessIncreaseReq",
         "onBrightnessDecreaseReq",
         "onIncidentFallOccur",
+        "onIncidentFallCancel",
         "onIncidentIamnotOK",
         "onIncidentIamOK",
         "on_btnPlayFall_clicked",
@@ -262,16 +263,18 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIncidentFallOccur'
         QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentIamnotOK'
+        // Slot 'onIncidentFallCancel'
         QtMocHelpers::SlotData<void()>(66, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentIamOK'
+        // Slot 'onIncidentIamnotOK'
         QtMocHelpers::SlotData<void()>(67, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayFall_clicked'
+        // Slot 'onIncidentIamOK'
         QtMocHelpers::SlotData<void()>(68, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayHelp_clicked'
+        // Slot 'on_btnPlayFall_clicked'
         QtMocHelpers::SlotData<void()>(69, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayIamOK_clicked'
+        // Slot 'on_btnPlayHelp_clicked'
         QtMocHelpers::SlotData<void()>(70, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayIamOK_clicked'
+        QtMocHelpers::SlotData<void()>(71, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -351,11 +354,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 53: _t->onBrihtnessIncreaseReq(); break;
         case 54: _t->onBrightnessDecreaseReq(); break;
         case 55: _t->onIncidentFallOccur(); break;
-        case 56: _t->onIncidentIamnotOK(); break;
-        case 57: _t->onIncidentIamOK(); break;
-        case 58: _t->on_btnPlayFall_clicked(); break;
-        case 59: _t->on_btnPlayHelp_clicked(); break;
-        case 60: _t->on_btnPlayIamOK_clicked(); break;
+        case 56: _t->onIncidentFallCancel(); break;
+        case 57: _t->onIncidentIamnotOK(); break;
+        case 58: _t->onIncidentIamOK(); break;
+        case 59: _t->on_btnPlayFall_clicked(); break;
+        case 60: _t->on_btnPlayHelp_clicked(); break;
+        case 61: _t->on_btnPlayIamOK_clicked(); break;
         default: ;
         }
     }
@@ -380,14 +384,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 61)
+        if (_id < 62)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 61;
+        _id -= 62;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 61)
+        if (_id < 62)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 61;
+        _id -= 62;
     }
     return _id;
 }

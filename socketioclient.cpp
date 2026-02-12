@@ -652,7 +652,7 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
 void SocketIOClient::sendScheduleEvent(const QString &scheduleType,
                                        const QJsonObject &dateParams)
 {
-    emitEvent3(scheduleType, dateParams);
+    emitEventStringMsg(scheduleType, dateParams);
 }
 
 //------------------------------------------------------------------------
