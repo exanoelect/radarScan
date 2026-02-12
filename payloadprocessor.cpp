@@ -580,7 +580,8 @@ void PayloadProcessor::processQueue()
                     qDebug() << "Fall Cancel Position -> X:" << posX << "Y:" << posY;
                     qDebug() << "83 17 Fall Cancel=" << payload;
 
-                    emit fallDetected(m_id); // still trigger alert if needed
+                    //emit fallDetected(m_id); // still trigger alert if needed
+                    emit fallCancel(m_id);
                 }
                 break;
             }

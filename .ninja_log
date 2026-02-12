@@ -29,3 +29,5 @@
 2811	32569	1770879054061355028	CMakeFiles/radarScan.dir/payloadprocessor.cpp.o	d8d4a7bab130e080
 2810	41568	1770879054060434750	CMakeFiles/radarScan.dir/mainwindow.cpp.o	d1a850dd73bb2e0c
 2810	47896	1770879054059786176	CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o	edf4c7e18baaf075
+2810	67727	1770879054060671913	CMakeFiles/radarScan.dir/qcustomplot.cpp.o	9fd7d641cb2dcfa5
+67727	68381	1770879118976860472	radarScan.app/Contents/MacOS/radarScan	5a2f630bf1796ef6

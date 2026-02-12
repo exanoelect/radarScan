@@ -201,12 +201,26 @@ void MainWindow::initRadar()
         connect(p, &PayloadProcessor::fallDetected, this,
                 [=](const QString &src){
                     Q_UNUSED(src);
-                    sound.stop();
-                    sound.play();
+                    //sound.stop();
+                    //sound.play();
 
                     if (client->isConnected()) {
                         soundPlay(SOUND_FALL_OCCUR);
-                        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED", "");
+                        client->emitEventStringMsg("INCIDENT_FALL_DOWN_DETECTED", "");
+                    } else {
+                        qDebug() << "Socket DC";
+                    }
+                });
+
+        connect(p, &PayloadProcessor::fallCancel, this,
+                [=](const QString &src){
+                    Q_UNUSED(src);
+                    //sound.stop();
+                    //sound.play();
+
+                    if (client->isConnected()) {
+                        soundPlay(SOUND_FALL_OCCUR);
+                        client->emitEventStringMsg("INCIDENT_FALL_CANCEL", "");
                     } else {
                         qDebug() << "Socket DC";
                     }
@@ -1727,7 +1741,7 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     if(client->isConnected()){
-        client->emitEvent3("INCIDENT_FALL_DOWN_DETECTED","");
+        client->emitEventStringMsg("INCIDENT_FALL_DOWN_DETECTED","");
     }else{
         qDebug() << " Socket DC";
     }
@@ -1760,11 +1774,11 @@ void MainWindow::onVolumeGetRequested()
     qDebug() << "UI Process VOL get req";
 #ifdef PLATFORM_LINUX
     int currentVol = getVolumePercent();
-    client->emitEvent3("VOLUME_GET_ACK", QString::number(currentVol));
+    client->emitEventStringMsg("VOLUME_GET_ACK", QString::number(currentVol));
 #endif
 
 #ifndef PLATFORM_LINUX
-    client->emitEvent3("VOLUME_GET_ACK", QString::number(70));
+    client->emitEventStringMsg("VOLUME_GET_ACK", QString::number(70));
 #endif
 }
 
@@ -1787,11 +1801,11 @@ void MainWindow::onPingDeviceUpRequested()
     qDebug() << "UI PingDeviceUpReq";
 #ifdef PLATFORM_LINUX
     int brightGet = setBrightnessPercent(80);
-    client->emitEvent3("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+    client->emitEventStringMsg("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
 #endif
 
 #ifndef PLATFORM_LINUX
-    client->emitEvent3("PING_DEVICE_UP_FRONTEND", QString::number(50));
+    client->emitEventStringMsg("PING_DEVICE_UP_FRONTEND", QString::number(50));
 #endif
 }
 
@@ -1801,11 +1815,11 @@ void MainWindow::onSleepRequested()
     qDebug() << "UI SleepReq";
 #ifdef PLATFORM_LINUX
     int getBright = getBrightness();
-    client->emitEvent3("SLEEP_FRONTEND", QString::number(getBright));
+    client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(getBright));
 #endif
 
 #ifndef PLATFORM_LINUX
-    client->emitEvent3("SLEEP_FRONTEND", QString::number(60));
+    client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(60));
 #endif
 }
 
@@ -1818,7 +1832,7 @@ void MainWindow::onBrightnessSetRequested(int bst)
         qDebug() << "Brightness successfully set to" << bst;
         bst = getBrightness();
         qDebug() << "prepare emit brightness set ack " << bst;
-        //client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
+        //client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
 #endif
 }
@@ -1831,7 +1845,7 @@ void MainWindow::onBrightnessGetRequested()
     int bst = getBrightness();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
-    client->emitEvent3("BRIGHTNESS_GET_ACK",QString::number(bst));
+    client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
     //}
 #endif
@@ -1914,6 +1928,12 @@ void MainWindow::onBrightnessDecreaseReq()
 void MainWindow::onIncidentFallOccur()
 {
     soundPlay(SOUND_FALL_OCCUR);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallCancel()
+{
+
 }
 
 //------------------------------------------------------------------------

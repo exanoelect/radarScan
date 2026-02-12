@@ -506,7 +506,7 @@ void SocketIOClient::emitEvent2(const QString &eventName, const QString message)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent3(const QString &eventName,
+void SocketIOClient::emitEventStringMsg(const QString &eventName,
                                const QJsonValue &data)
 {
     if (!m_isConnected || !m_webSocket) {

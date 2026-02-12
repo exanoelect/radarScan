@@ -203,6 +203,7 @@ private slots:
     void onBrightnessDecreaseReq();
 
     void onIncidentFallOccur();
+    void onIncidentFallCancel();
     void onIncidentIamnotOK();
     void onIncidentIamOK();
 

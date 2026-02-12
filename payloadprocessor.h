@@ -26,7 +26,7 @@ signals:
     void serialOpened(bool ok);
     void serialError(const QString &err);
     void fallDetected(const QString &source);   // trigger sound / socket
-
+    void fallCancel(const QString &source);     //ga jadi fall
 
 private:
     void processQueue();
