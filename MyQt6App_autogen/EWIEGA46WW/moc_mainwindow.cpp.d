@@ -1,5 +1,5 @@
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_mainwindow.cpp: /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_mainwindow.cpp: /Volumes/DATA/qt6pro/radarScan/mainwindow.h \
+  /Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/moc_predefs.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \
@@ -1548,9 +1548,9 @@
   /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidgetaction.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwizard.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.h
+  /Volumes/DATA/qt6pro/radarScan/audioworker.h \
+  /Volumes/DATA/qt6pro/radarScan/payloadprocessor.h \
+  /Volumes/DATA/qt6pro/radarScan/qcustomplot.h \
+  /Volumes/DATA/qt6pro/radarScan/radar.h \
+  /Volumes/DATA/qt6pro/radarScan/socketeventworker.h \
+  /Volumes/DATA/qt6pro/radarScan/socketioclient.h

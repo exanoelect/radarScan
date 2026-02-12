@@ -808,7 +808,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MyQt6App::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MyQt6App-Release-5eb33a47ba2b7e4d57af.json",
+					"jsonFile" : "target-MyQt6App-Release-dab37b14811c7ebd9da7.json",
 					"name" : "MyQt6App",
 					"projectIndex" : 0
 				},
@@ -832,8 +832,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan",
-		"source" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+		"build" : "/Volumes/DATA/qt6pro/radarScan",
+		"source" : "/Volumes/DATA/qt6pro/radarScan"
 	},
 	"version" : 
 	{

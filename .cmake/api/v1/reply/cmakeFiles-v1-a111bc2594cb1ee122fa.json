@@ -1862,14 +1862,14 @@
 			"path" : "/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in"
 		},
 		{
-			"path" : ".qt/info_plist/MyQt6App/Info.plist"
+			"path" : ".qt/info_plist/radarScan/Info.plist"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan",
-		"source" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+		"build" : "/Volumes/DATA/qt6pro/radarScan",
+		"source" : "/Volumes/DATA/qt6pro/radarScan"
 	},
 	"version" : 
 	{

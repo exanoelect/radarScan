@@ -5,8 +5,13 @@
 #include <QtCore/qtypes.h>
 #endif
 
+#ifdef PLATFORM_LINUX
 #define UART_PORT0 "ttyAMA0"
 #define UART_PORT1 "ttyAMA1"
+#else
+#define UART_PORT0 "cu-usbserial-120"
+#define UART_PORT1 "cu-usbserial-130"
+#endif
 
 #define CMD_GET_PRODUCT_MODEL    QByteArray::fromHex("535902A100010F") //53	59	02	A1	00	01	0F
 #define CMD_GET_PRODUCT_ID       QByteArray::fromHex("535902A200010F") //53	59	02	A2	00	01	0F

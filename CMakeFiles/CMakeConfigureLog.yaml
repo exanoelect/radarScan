@@ -236,7 +236,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
       
       The CXX compiler identification is AppleClang, found in:
-        /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/4.2.1/CompilerIdCXX/CMakeCXXCompilerId.o
+        /Volumes/DATA/qt6pro/radarScan/CMakeFiles/4.2.1/CompilerIdCXX/CMakeCXXCompilerId.o
       
   -
     kind: "message-v1"
@@ -800,8 +800,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ"
-      binary: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ"
+      source: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5"
+      binary: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -814,17 +814,17 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ'
+        Change Dir: '/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5'
         
-        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_91e7d
-        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_9abbb
+        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 17.0.0 (clang-1700.4.4.1)
         Target: x86_64-apple-darwin25.3.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
         clang++: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple x86_64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=2 -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -fdebug-compilation-dir=/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple x86_64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=2 -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -fdebug-compilation-dir=/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5 -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5 -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target x86_64-apple-darwin25.3.0
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"
         ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"
@@ -837,12 +837,12 @@ events:
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
          /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)
         End of search list.
-        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_91e7d   && :
+        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_9abbb   && :
         Apple clang version 17.0.0 (clang-1700.4.4.1)
         Target: x86_64-apple-darwin25.3.0
         Thread model: posix
         InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 26.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_91e7d -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
+         "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 26.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_9abbb -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld PROJECT:ld-1230.1
         BUILD 16:17:14 Oct 17 2025
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em armv8m.main armv8.1m.main
@@ -897,17 +897,17 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ']
+        ignore line: [Change Dir: '/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5']
         ignore line: []
-        ignore line: [Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_91e7d]
-        ignore line: [[1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_9abbb]
+        ignore line: [[1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++   -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
         ignore line: [Target: x86_64-apple-darwin25.3.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
         ignore line: [clang++: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"]
-        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple x86_64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=2 -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -fdebug-compilation-dir=/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-0veoVZ -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple x86_64-apple-macosx26.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=all -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=2 -target-sdk-version=26.1 -fvisibility-inlines-hidden-static-local-var -fdefine-target-os-macros -fno-assume-unique-vtables -fno-modulemap-allow-subdirectory-search -target-cpu penryn -tune-cpu generic -debugger-tuning=lldb -fdebug-compilation-dir=/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5 -target-linker-version 1230.1 -v -fcoverage-compilation-dir=/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-SiZuh5 -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17 -dependency-file CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks -internal-iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -fdeprecated-macro -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -clang-vendor-feature=+disableAtImportPrivateFrameworkInImplementationError -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 17.0.0 (clang-1700.4.4.1) default target x86_64-apple-darwin25.3.0]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/Library/Frameworks"]
@@ -920,12 +920,12 @@ events:
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/SubFrameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [[2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_91e7d   && :]
+        ignore line: [[2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_9abbb   && :]
         ignore line: [Apple clang version 17.0.0 (clang-1700.4.4.1)]
         ignore line: [Target: x86_64-apple-darwin25.3.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 26.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_91e7d -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -platform_version macos 26.0.0 26.1 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mllvm -enable-linkonceodr-outlining -o cmTC_9abbb -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -942,11 +942,11 @@ events:
           arg [-mllvm] ==> ignore
           arg [-enable-linkonceodr-outlining] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_91e7d] ==> ignore
+          arg [cmTC_9abbb] ==> ignore
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_91e7d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_9abbb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/lib/darwin/libclang_rt.osx.a]
@@ -1000,8 +1000,8 @@ events:
       - ".qtc/package-manager/maintenance_tool_provider.cmake:315 (find_package)"
       - "CMakeLists.txt:10 (find_package)"
     directories:
-      source: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-ykuNd1"
-      binary: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-ykuNd1"
+      source: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-CN7BWs"
+      binary: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-CN7BWs"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1014,11 +1014,11 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-ykuNd1'
+        Change Dir: '/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-CN7BWs'
         
-        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_7de00
-        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -MD -MT CMakeFiles/cmTC_7de00.dir/src.cxx.o -MF CMakeFiles/cmTC_7de00.dir/src.cxx.o.d -o CMakeFiles/cmTC_7de00.dir/src.cxx.o -c /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-ykuNd1/src.cxx
-        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_7de00.dir/src.cxx.o -o cmTC_7de00   && :
+        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_35d05
+        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -MD -MT CMakeFiles/cmTC_35d05.dir/src.cxx.o -MF CMakeFiles/cmTC_35d05.dir/src.cxx.o.d -o CMakeFiles/cmTC_35d05.dir/src.cxx.o -c /Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-CN7BWs/src.cxx
+        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_35d05.dir/src.cxx.o -o cmTC_35d05   && :
         
       exitCode: 0
   -
@@ -1068,11 +1068,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6Config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6Config.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2586,11 +2586,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6CoreToolsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6CoreToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6coretools-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6coretools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2696,11 +2696,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6GuiToolsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6GuiToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6guitools-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6guitools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2802,11 +2802,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6WidgetsToolsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6WidgetsToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6widgetstools-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6widgetstools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -2881,8 +2881,8 @@ events:
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-72Zfss"
-      binary: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-72Zfss"
+      source: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-9KfpYp"
+      binary: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-9KfpYp"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -2895,11 +2895,11 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: '/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-72Zfss'
+        Change Dir: '/Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-9KfpYp'
         
-        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_d7228
-        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -DHAVE_STDATOMIC  -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -MD -MT CMakeFiles/cmTC_d7228.dir/src.cxx.o -MF CMakeFiles/cmTC_d7228.dir/src.cxx.o.d -o CMakeFiles/cmTC_d7228.dir/src.cxx.o -c /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/CMakeScratch/TryCompile-72Zfss/src.cxx
-        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_d7228.dir/src.cxx.o -o cmTC_d7228   && :
+        Run Build Command(s): /Users/user/Qt/Tools/Ninja/ninja -v cmTC_71189
+        [1/2] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -DHAVE_STDATOMIC  -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -MD -MT CMakeFiles/cmTC_71189.dir/src.cxx.o -MF CMakeFiles/cmTC_71189.dir/src.cxx.o.d -o CMakeFiles/cmTC_71189.dir/src.cxx.o -c /Volumes/DATA/qt6pro/radarScan/CMakeFiles/CMakeScratch/TryCompile-9KfpYp/src.cxx
+        [2/2] : && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_71189.dir/src.cxx.o -o cmTC_71189   && :
         
       exitCode: 0
   -
@@ -3058,11 +3058,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6CoreConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6CoreConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6core-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6core-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -3678,11 +3678,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6DBusToolsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6DBusToolsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6dbustools-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6dbustools-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -3792,11 +3792,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6DBusConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6DBusConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6dbus-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6dbus-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -3916,11 +3916,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6GuiConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6GuiConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6gui-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6gui-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4027,11 +4027,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6WidgetsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6WidgetsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6widgets-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6widgets-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4141,11 +4141,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6SerialPortConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6SerialPortConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6serialport-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6serialport-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4247,11 +4247,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6NetworkConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6NetworkConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6network-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6network-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4363,11 +4363,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6ConcurrentConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6ConcurrentConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6concurrent-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6concurrent-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4461,11 +4461,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6MultimediaConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6MultimediaConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6multimedia-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6multimedia-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -4599,11 +4599,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/Qt6WebSocketsConfig.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/Qt6WebSocketsConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects/qt6websockets-config.cmake"
+        path: "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects/qt6websockets-config.cmake"
         mode: "config"
         reason: "no_exist"
       -

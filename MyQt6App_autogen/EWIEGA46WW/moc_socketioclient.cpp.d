@@ -1,5 +1,5 @@
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_socketioclient.cpp: /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_socketioclient.cpp: /Volumes/DATA/qt6pro/radarScan/socketioclient.h \
+  /Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/moc_predefs.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \
@@ -906,4 +906,4 @@
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocket.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsocketprotocol.h \
   /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/Headers/qwebsockets_global.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h
+  /Volumes/DATA/qt6pro/radarScan/radar.h

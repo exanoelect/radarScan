@@ -1,5 +1,5 @@
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_payloadprocessor.cpp: /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_payloadprocessor.cpp: /Volumes/DATA/qt6pro/radarScan/payloadprocessor.h \
+  /Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/moc_predefs.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \
@@ -857,4 +857,4 @@
   /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/Headers/qserialport.h \
   /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/Headers/qserialportglobal.h \
   /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/Headers/qtserialportexports.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h
+  /Volumes/DATA/qt6pro/radarScan/radar.h

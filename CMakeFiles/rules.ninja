@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: MyQt6App
+# Project: radarScan
 # Configurations: Release
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__MyQt6App_unscanned_Release
+rule CXX_COMPILER__radarScan_unscanned_Release
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__MyQt6App_unscanned_Release
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__MyQt6App_Release
+rule CXX_EXECUTABLE_LINKER__radarScan_Release
   command = $PRE_LINK && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/local/Cellar/cmake/4.2.1/bin/cmake --regenerate-during-build -S/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan -B/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan
+  command = /usr/local/Cellar/cmake/4.2.1/bin/cmake --regenerate-during-build -S/Volumes/DATA/qt6pro/radarScan -B/Volumes/DATA/qt6pro/radarScan
   description = Re-running CMake...
   generator = 1
 

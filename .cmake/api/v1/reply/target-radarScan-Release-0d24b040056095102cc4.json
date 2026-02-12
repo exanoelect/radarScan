@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MyQt6App.app/Contents/MacOS/MyQt6App"
+			"path" : "radarScan.app/Contents/MacOS/radarScan"
 		}
 	],
 	"backtrace" : 4,
@@ -356,11 +356,11 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/include"
+					"path" : "/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/include"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+					"path" : "/Volumes/DATA/qt6pro/radarScan"
 				},
 				{
 					"backtrace" : 23,
@@ -435,14 +435,14 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 0,
-			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "MyQt6App::@6890427a1f51a3e7e1df",
+	"id" : "radarScan::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -567,8 +567,8 @@
 			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
 		}
 	],
-	"name" : "MyQt6App",
-	"nameOnDisk" : "MyQt6App",
+	"name" : "radarScan",
+	"nameOnDisk" : "radarScan",
 	"orderDependencies" : 
 	[
 		{
@@ -578,11 +578,11 @@
 			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 0,
-			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
@@ -650,7 +650,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/mocs_compilation.cpp",
+			"path" : "radarScan_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -749,19 +749,19 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/include/ui_mainwindow.h",
+			"path" : "radarScan_autogen/include/ui_mainwindow.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/timestamp",
+			"path" : "radarScan_autogen/timestamp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/timestamp.rule",
+			"path" : "radarScan_autogen/timestamp.rule",
 			"sourceGroupIndex" : 4
 		}
 	],

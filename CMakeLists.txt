@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(MyQt6App VERSION 1.0 LANGUAGES CXX)
+project(radarScan VERSION 1.0 LANGUAGES CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
@@ -41,7 +41,7 @@ set(SOURCES
 )
 
 # Generate executable
-qt_add_executable(MyQt6App
+qt_add_executable(radarScan
     ${SOURCES}
     radar.h
 
@@ -49,7 +49,7 @@ qt_add_executable(MyQt6App
 )
 
 # Tambahkan folder tempat qcustomplot berada
-target_include_directories(MyQt6App
+target_include_directories(radarScan
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -58,15 +58,15 @@ target_include_directories(MyQt6App
 if(UNIX AND NOT APPLE)
     message(STATUS "Linux build detected (RPi 5) — linking gpiod")
     find_library(GPIOD_LIBRARY gpiod REQUIRED)
-    target_link_libraries(MyQt6App PRIVATE ${GPIOD_LIBRARY})
-    target_compile_definitions(MyQt6App PRIVATE PLATFORM_LINUX)
+    target_link_libraries(radarScan PRIVATE ${GPIOD_LIBRARY})
+    target_compile_definitions(radarScan PRIVATE PLATFORM_LINUX)
 elseif(APPLE)
     message(STATUS "macOS build detected — gpiod stub mode")
-    target_compile_definitions(MyQt6App PRIVATE PLATFORM_MACOS)
+    target_compile_definitions(radarScan PRIVATE PLATFORM_MACOS)
 endif()
 
 # Link Qt modules (common)
-target_link_libraries(MyQt6App PRIVATE
+target_link_libraries(radarScan PRIVATE
     Qt6::Widgets
     Qt6::SerialPort
     Qt6::Network
@@ -78,9 +78,9 @@ target_link_libraries(MyQt6App PRIVATE
 
 # macOS bundle settings
 if(APPLE)
-    set_target_properties(MyQt6App PROPERTIES
+    set_target_properties(radarScan PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_GUI_IDENTIFIER "com.example.myqt6app"
-        MACOSX_BUNDLE_BUNDLE_NAME "MyQt6App"
+        MACOSX_BUNDLE_BUNDLE_NAME "radarScan"
     )
 endif()

@@ -1,4 +1,4 @@
-# Install script for directory: /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan
+# Install script for directory: /Volumes/DATA/qt6pro/radarScan
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,7 +40,7 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/install_local_manifest.txt"
+  file(WRITE "/Volumes/DATA/qt6pro/radarScan/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Volumes/DATA/qt6pro/radarScan/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

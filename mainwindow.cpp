@@ -19,12 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     initSound();
     initGraphics();
     initSocketIO();
-    initRadar();
-
 
 #ifdef PLATFORM_LINUX
     setupGPIO();
     setColor(COLOR_WHITE);
+    initRadar();
 
     //volCurrent = getVolumePercent();
     //brightnessCurrent = getBrightness();
@@ -145,9 +144,11 @@ void MainWindow::initGraphics()
     setupPlotRadar2(ui->plotRadar2);
 }
 
+
 //---------------------------------------------------------------------------------------
+//#ifdef PLATFORM_LINUX
 void MainWindow::initRadar()
-{
+{    
     // === Worker A ===
     m_threadA = new QThread(this);
     m_procA = new PayloadProcessor(UART_PORT0);
@@ -335,6 +336,7 @@ void MainWindow::initRadar()
                               Q_ARG(QString, "/dev/ttyAMA1"));
 #endif
 }
+//#endif
 
 //---------------------------------------------------------------------------------------
 void MainWindow::fillPortsInfo()

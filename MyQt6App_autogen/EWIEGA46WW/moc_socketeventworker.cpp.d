@@ -1,5 +1,5 @@
-/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_socketeventworker.cpp: /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.h \
-  /Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
+/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/EWIEGA46WW/moc_socketeventworker.cpp: /Volumes/DATA/qt6pro/radarScan/socketeventworker.h \
+  /Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/moc_predefs.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternal.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h \

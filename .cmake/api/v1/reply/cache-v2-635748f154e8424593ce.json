@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -447,7 +447,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/pkgRedirects"
+			"value" : "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -519,7 +519,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1095,7 +1095,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/.qtc/package-manager/auto-setup.cmake"
+			"value" : "/Volumes/DATA/qt6pro/radarScan/.qtc/package-manager/auto-setup.cmake"
 		},
 		{
 			"name" : "CMAKE_PROJECT_NAME",
@@ -1107,7 +1107,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "MyQt6App"
+			"value" : "radarScan"
 		},
 		{
 			"name" : "CMAKE_PROJECT_SPDX_LICENSE",
@@ -1523,7 +1523,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		},
 		{
 			"name" : "MyQt6App_IS_TOP_LEVEL",
@@ -1547,7 +1547,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan"
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		},
 		{
 			"name" : "OPENGL_GLU_INCLUDE_DIR",
@@ -7540,6 +7540,42 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "/tmp"
+		},
+		{
+			"name" : "radarScan_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
+		},
+		{
+			"name" : "radarScan_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "radarScan_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		}
 	],
 	"kind" : "cache",

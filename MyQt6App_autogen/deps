@@ -1797,45 +1797,103 @@ MyQt6App_autogen/timestamp: \
 	/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
 	/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/.qtc/package-manager/auto-setup.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/.qtc/package-manager/maintenance_tool_provider.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/4.2.1/CMakeCXXCompiler.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeFiles/4.2.1/CMakeSystem.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/CMakeLists.txt \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/MyQt6App_autogen/moc_predefs.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/audioworker.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/configmanager.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/main.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/payloadprocessor.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/qcustomplot.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/radar.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketeventworker.h \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.cpp \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/socketioclient.h \
+	/Volumes/DATA/qt6pro/radarScan/.qtc/package-manager/auto-setup.cmake \
+	/Volumes/DATA/qt6pro/radarScan/.qtc/package-manager/maintenance_tool_provider.cmake \
+	/Volumes/DATA/qt6pro/radarScan/CMakeFiles/4.2.1/CMakeCXXCompiler.cmake \
+	/Volumes/DATA/qt6pro/radarScan/CMakeFiles/4.2.1/CMakeSystem.cmake \
+	/Volumes/DATA/qt6pro/radarScan/CMakeLists.txt \
+	/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/moc_predefs.h \
+	/Volumes/DATA/qt6pro/radarScan/audioworker.cpp \
+	/Volumes/DATA/qt6pro/radarScan/audioworker.h \
+	/Volumes/DATA/qt6pro/radarScan/configmanager.cpp \
+	/Volumes/DATA/qt6pro/radarScan/configmanager.h \
+	/Volumes/DATA/qt6pro/radarScan/main.cpp \
+	/Volumes/DATA/qt6pro/radarScan/mainwindow.cpp \
+	/Volumes/DATA/qt6pro/radarScan/mainwindow.h \
+	/Volumes/DATA/qt6pro/radarScan/payloadprocessor.cpp \
+	/Volumes/DATA/qt6pro/radarScan/payloadprocessor.h \
+	/Volumes/DATA/qt6pro/radarScan/qcustomplot.cpp \
+	/Volumes/DATA/qt6pro/radarScan/qcustomplot.h \
+	/Volumes/DATA/qt6pro/radarScan/radar.h \
+	/Volumes/DATA/qt6pro/radarScan/socketeventworker.cpp \
+	/Volumes/DATA/qt6pro/radarScan/socketeventworker.h \
+	/Volumes/DATA/qt6pro/radarScan/socketioclient.cpp \
+	/Volumes/DATA/qt6pro/radarScan/socketioclient.h \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompiler.cmake.in \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXInformation.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCommonLanguageInclude.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCompilerIdDetection.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineCompilerABI.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineCompilerId.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeDetermineSystem.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeFindBinUtils.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeFindDependencyMacro.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeGenericSystem.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeInitializeConfigs.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeLanguageInformation.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeNinjaFindMake.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeSystem.cmake.in \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeSystemSpecificInformation.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeTestCXXCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeTestCompilerCommon.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CheckCXXCompilerFlag.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CheckCXXSourceCompiles.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CheckIncludeFileCXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CheckLibraryExists.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/AppleClang-CXX.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Clang.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Diab-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/GNU.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Renesas-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/FindOpenGL.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/FindPackageHandleStandardArgs.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/FindPackageMessage.cmake \
@@ -1843,19 +1901,23 @@ MyQt6App_autogen/timestamp: \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/GNUInstallDirs.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CheckCompilerFlag.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CheckFlagCommonConfig.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/CheckSourceCompiles.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Internal/FeatureTesting.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Linker/AppleClang-CXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Linker/AppleClang.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/MacroAddFileDependencies.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Apple-Clang-CXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Apple-Clang.cmake \
+	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Darwin-Determine-CXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Darwin-Initialize.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Darwin.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/UnixPaths.cmake \
-	/Volumes/DATA/qt6pro/radarCap/radarScanSocket/radarscan/radarScan/mainwindow.ui \
+	/Volumes/DATA/qt6pro/radarScan/mainwindow.ui \
 	/usr/local/Cellar/cmake/4.2.1/bin/cmake
