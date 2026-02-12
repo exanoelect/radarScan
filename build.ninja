@@ -139,6 +139,36 @@ build CMakeFiles/radarScan.dir/audioworker.cpp.o: CXX_COMPILER__radarScan_unscan
   OBJECT_FILE_DIR = CMakeFiles/radarScan.dir
   TARGET_SUPPORT_DIR = CMakeFiles/radarScan.dir
 
+build CMakeFiles/radarScan.dir/gpio.cpp.o: CXX_COMPILER__radarScan_unscanned_Release /Volumes/DATA/qt6pro/radarScan/gpio.cpp || cmake_object_order_depends_target_radarScan
+  CONFIG = Release
+  DEFINES = -DPLATFORM_MACOS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALPORT_LIB -DQT_WEBSOCKETS_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/radarScan.dir/gpio.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -fcolor-diagnostics
+  INCLUDES = -I/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/include -I/Volumes/DATA/qt6pro/radarScan -isystem /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/user/Qt/6.10.1/macos/lib -isystem /Users/user/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/user/Qt/6.10.1/macos/include -isystem /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Headers
+  OBJECT_DIR = CMakeFiles/radarScan.dir
+  OBJECT_FILE_DIR = CMakeFiles/radarScan.dir
+  TARGET_SUPPORT_DIR = CMakeFiles/radarScan.dir
+
+build CMakeFiles/radarScan.dir/volume.cpp.o: CXX_COMPILER__radarScan_unscanned_Release /Volumes/DATA/qt6pro/radarScan/volume.cpp || cmake_object_order_depends_target_radarScan
+  CONFIG = Release
+  DEFINES = -DPLATFORM_MACOS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALPORT_LIB -DQT_WEBSOCKETS_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/radarScan.dir/volume.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -fcolor-diagnostics
+  INCLUDES = -I/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/include -I/Volumes/DATA/qt6pro/radarScan -isystem /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/user/Qt/6.10.1/macos/lib -isystem /Users/user/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/user/Qt/6.10.1/macos/include -isystem /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Headers
+  OBJECT_DIR = CMakeFiles/radarScan.dir
+  OBJECT_FILE_DIR = CMakeFiles/radarScan.dir
+  TARGET_SUPPORT_DIR = CMakeFiles/radarScan.dir
+
+build CMakeFiles/radarScan.dir/brightness.cpp.o: CXX_COMPILER__radarScan_unscanned_Release /Volumes/DATA/qt6pro/radarScan/brightness.cpp || cmake_object_order_depends_target_radarScan
+  CONFIG = Release
+  DEFINES = -DPLATFORM_MACOS -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_SERIALPORT_LIB -DQT_WEBSOCKETS_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/radarScan.dir/brightness.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=gnu++17 -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -fcolor-diagnostics
+  INCLUDES = -I/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/include -I/Volumes/DATA/qt6pro/radarScan -isystem /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/user/Qt/6.10.1/macos/lib -isystem /Users/user/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/user/Qt/6.10.1/macos/include -isystem /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Headers -isystem /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Headers
+  OBJECT_DIR = CMakeFiles/radarScan.dir
+  OBJECT_FILE_DIR = CMakeFiles/radarScan.dir
+  TARGET_SUPPORT_DIR = CMakeFiles/radarScan.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target radarScan
@@ -147,7 +177,7 @@ build CMakeFiles/radarScan.dir/audioworker.cpp.o: CXX_COMPILER__radarScan_unscan
 #############################################
 # Link the executable radarScan.app/Contents/MacOS/radarScan
 
-build radarScan.app/Contents/MacOS/radarScan: CXX_EXECUTABLE_LINKER__radarScan_Release CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o CMakeFiles/radarScan.dir/main.cpp.o CMakeFiles/radarScan.dir/mainwindow.cpp.o CMakeFiles/radarScan.dir/qcustomplot.cpp.o CMakeFiles/radarScan.dir/socketioclient.cpp.o CMakeFiles/radarScan.dir/socketeventworker.cpp.o CMakeFiles/radarScan.dir/payloadprocessor.cpp.o CMakeFiles/radarScan.dir/configmanager.cpp.o CMakeFiles/radarScan.dir/audioworker.cpp.o | /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/QtWebSockets /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || radarScan_autogen radarScan_autogen_timestamp_deps
+build radarScan.app/Contents/MacOS/radarScan: CXX_EXECUTABLE_LINKER__radarScan_Release CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o CMakeFiles/radarScan.dir/main.cpp.o CMakeFiles/radarScan.dir/mainwindow.cpp.o CMakeFiles/radarScan.dir/qcustomplot.cpp.o CMakeFiles/radarScan.dir/socketioclient.cpp.o CMakeFiles/radarScan.dir/socketeventworker.cpp.o CMakeFiles/radarScan.dir/payloadprocessor.cpp.o CMakeFiles/radarScan.dir/configmanager.cpp.o CMakeFiles/radarScan.dir/audioworker.cpp.o CMakeFiles/radarScan.dir/gpio.cpp.o CMakeFiles/radarScan.dir/volume.cpp.o CMakeFiles/radarScan.dir/brightness.cpp.o | /Users/user/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/user/Qt/6.10.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort /Users/user/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia /Users/user/Qt/6.10.1/macos/lib/QtWebSockets.framework/Versions/A/QtWebSockets /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/user/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || radarScan_autogen radarScan_autogen_timestamp_deps
   CONFIG = Release
   FLAGS = -O3 -DNDEBUG -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
   LINK_FLAGS = -Wl,-search_paths_first -Wl,-headerpad_max_install_names

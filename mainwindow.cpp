@@ -20,14 +20,19 @@ MainWindow::MainWindow(QWidget *parent) :
     initGraphics();
     initSocketIO();
 
-#ifdef PLATFORM_LINUX
-    setupGPIO();
-    setColor(COLOR_WHITE);
+    m_gpio = new gpio();
+    m_gpio->setupGPIO();
+    m_gpio->setColor(COLOR_WHITE);
+
+    m_volume = new volume();
+    m_brightness = new brightness();
+
     initRadar();
 
-    //volCurrent = getVolumePercent();
-    //brightnessCurrent = getBrightness();
-#endif
+//#ifdef PLATFORM_LINUX
+    //setupGPIO();
+
+//#endif
 }
 
 //---------------------------------------------------------------------------------------
@@ -1484,156 +1489,6 @@ void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
 }
 
 
-#ifdef PLATFORM_LINUX
-//------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------
-int MainWindow::setupGPIO()
-{
-    const char *chipname = "gpiochip4";   // RPi 5
-    const unsigned int GPIO17 = 17;
-    const unsigned int GPIO27 = 27;
-    const unsigned int GPIO22 = 22;
-
-    gpiod_chip *chip = gpiod_chip_open_by_name(chipname);
-    if (!chip) {
-        qCritical() << "Failed to open" << chipname;
-        return -1;
-    }
-
-    line17 = gpiod_chip_get_line(chip, GPIO17);
-    line27 = gpiod_chip_get_line(chip, GPIO27);
-    line22 = gpiod_chip_get_line(chip, GPIO22);
-
-    if (!line17 || !line27) {
-        qCritical() << "Failed to get GPIO lines";
-        gpiod_chip_close(chip);
-        return -1;
-    }
-
-    if (gpiod_line_request_output(line17, "qt-gpio17", 0) < 0 ||
-        gpiod_line_request_output(line27, "qt-gpio27", 0) < 0 ||
-        gpiod_line_request_output(line22, "qt-gpio22", 0) < 0) {
-
-        qCritical() << "Failed to request GPIO output";
-        gpiod_chip_close(chip);
-        return -1;
-    }
-
-    qDebug() << "GPIO 17 & 27 r& 22 eady.";
-    return 1;
-}
-
-//------------------------------------------------------------------------
-void MainWindow::setColor(qint8 color)
-{
-    int val17 = 0;
-    int val27 = 0;
-    int val22 = 0;
-
-    switch (color) {
-      case 0: val17 = 0; val27 = 0; break; // 00
-      case 1: val17 = 0; val27 = 1; break; // 01
-      case 2: val17 = 1; val27 = 0; break; // 10
-      case 3: val17 = 1; val27 = 1; break; // 11
-      default: val17 = 0; val27 = 0; break; // 00
-    }
-
-    gpiod_line_set_value(line17, val17);
-    gpiod_line_set_value(line27, val27);
-    gpiod_line_set_value(line22, val22);
-
-
-    qDebug() << "color " << color << " GPIO17 =" << val17 << "GPIO27 =" << val27 << "GPIO22 =" << val22;
-}
-
-//------------------------------------------------------------------------
-int MainWindow::getBrightness()
-{
-    QProcess proc;
-    proc.start("brightnessctl", {"get"});
-    proc.waitForFinished();
-
-    QString output = proc.readAllStandardOutput().trimmed();
-    bool ok = false;
-    int value = output.toInt(&ok);
-
-    if (!ok) {
-        qWarning() << "Failed to parse brightness:" << output;
-        return -1;
-    }
-    return value;
-}
-
-//------------------------------------------------------------------------
-bool MainWindow::setBrightnessPercent(int percent)
-{
-    if((percent < 0 ) || (percent > 100)) return false;
-
-     QProcess proc;
-     proc.start("brightnessctl", {"set", QString::number(percent) + "%"});
-     proc.waitForFinished();
-
-     return proc.exitStatus() == QProcess::NormalExit &&
-             proc.exitCode() == 0;
-}
-
-//------------------------------------------------------------------------
-bool MainWindow::setBrightness(int value)
-{
-    if((value < 0 ) || (value > 255)) return false;
-
-     QProcess proc;
-     proc.start("brightnessctl", {"set", QString::number(value)});
-     proc.waitForFinished();
-
-     return proc.exitStatus() == QProcess::NormalExit &&
-             proc.exitCode() == 0;
-}
-
-//------------------------------------------------------------------------
-int MainWindow::getVolumePercent()
-{
-    QProcess proc;
-    proc.start("bash", {"-c", "pactl get-sink-volume @DEFAULT_SINK@"});
-    proc.waitForFinished();
-
-    QString output = proc.readAllStandardOutput();
-    QString error  = proc.readAllStandardError();
-    QString all    = output + error;
-
-    qDebug() << "pactl output:" << all;
-
-    QRegularExpression re("(\\d+)%");
-    QRegularExpressionMatch match = re.match(all);
-
-    if (!match.hasMatch()) {
-        qWarning() << "Failed to parse volume:" << all;
-        return -1;
-    }
-
-    return match.captured(1).toInt();
-
-
-}
-
-//------------------------------------------------------------------------
-bool MainWindow::setVolumePercent(int percent)
-{
-    if ((percent < 0) || (percent > 150)) return false; // PipeWire bisa >100%, batasi sesuai kebutuhan
-
-    QProcess proc;
-    proc.start("pactl", {"set-sink-volume", "@DEFAULT_SINK@", QString::number(percent) + "%"});
-    proc.waitForFinished();
-
-    return proc.exitStatus() == QProcess::NormalExit &&
-           proc.exitCode() == 0;
-
-}
-#endif
-//------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------
-
-
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlaySound_clicked()
 {
@@ -1656,31 +1511,29 @@ void MainWindow::onDeviceReadyConnected(int vol, int bright)
 
 }
 
-#ifdef PLATFORM_LINUX
-//------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------
 void MainWindow::on_btnColor1_clicked()
 {
-    setColor(COLOR_WHITE);
+    m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor2_clicked()
 {
-    setColor(COLOR_WHITE_BLINKY);
+    m_gpio->setColor(COLOR_WHITE_BLINKY);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
-    setColor(COLOR_RED);
+    m_gpio->setColor(COLOR_RED);
 
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
-    setColor(COLOR_RED_BLINKY);
+    m_gpio->setColor(COLOR_RED_BLINKY);
 }
 
 //------------------------------------------------------------------------
@@ -1692,13 +1545,13 @@ void MainWindow::on_hsBrightness_valueChanged(int value)
 //------------------------------------------------------------------------
 void MainWindow::on_btnGetBrightness_clicked()
 {
-    ui->leBrightness->setText(QString::number(getBrightness()));
+    ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnsetBrightness_clicked()
 {
-   if(setBrightnessPercent(ui->hsBrightness->value())){
+   if(m_brightness->setBrightnessPercent(ui->hsBrightness->value())){
        qDebug() << "Success Set brightness " << ui->hsBrightness->value();
    }else{
        qDebug() << "Fail Set brightness " << ui->hsBrightness->value();
@@ -1708,7 +1561,7 @@ void MainWindow::on_btnsetBrightness_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_btnGetVol_clicked()
 {
-    ui->leVol->setText(QString::number(getVolumePercent()));
+    ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
 }
 
 //------------------------------------------------------------------------
@@ -1720,14 +1573,13 @@ void MainWindow::on_hsVol_valueChanged(int value)
 //------------------------------------------------------------------------
 void MainWindow::on_btnsetVol_clicked()
 {
-    if(setVolumePercent(ui->hsVol->value())){
+    if(m_volume->setVolumePercent(ui->hsVol->value())){
         qDebug() << "Success Set Volume " << ui->hsVol->value();
     }else{
         qDebug() << "Fail Set Volume " << ui->hsVol->value();
     }
 }
 
-#endif
 //------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -1752,149 +1604,116 @@ void MainWindow::onListenStateChanged(const QString &state)
 {
     qDebug() << "UI Process LISTEN:" << state;
 
-#ifdef PLATFORM_LINUX
-    if (state == "ON") setColor(COLOR_GREEN);
-    else if (state == "OFF") setColor(COLOR_WHITE);
-#endif
+    if (state == "ON") m_gpio->setColor(COLOR_GREEN);
+    else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
     qDebug() << "UI Process TALKING:" << state;
-#ifdef PLATFORM_LINUX
-    if (state == "ON") setColor(COLOR_RED_BLINKY);
-    else if (state == "OFF") setColor(COLOR_GREEN);
-#endif
+    if (state == "ON") m_gpio->setColor(COLOR_RED_BLINKY);
+    else if (state == "OFF") m_gpio->setColor(COLOR_GREEN);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
-#ifdef PLATFORM_LINUX
-    int currentVol = getVolumePercent();
+    int currentVol = m_volume->getVolumePercent();
     client->emitEventStringMsg("VOLUME_GET_ACK", QString::number(currentVol));
-#endif
 
-#ifndef PLATFORM_LINUX
-    client->emitEventStringMsg("VOLUME_GET_ACK", QString::number(70));
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeSetRequested(int vt)
 {
     qDebug() << "UI vol Set:" << vt;
-#ifdef PLATFORM_LINUX
-    if (vt > 0 && setVolumePercent(vt)) {
+    if (vt > 0 && m_volume->setVolumePercent(vt)) {
         qDebug() << "UI vol successfully set to" << vt;
     } else {
         qDebug() << "fail setVol" << vt;
     }
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onPingDeviceUpRequested()
 {
     qDebug() << "UI PingDeviceUpReq";
-#ifdef PLATFORM_LINUX
-    int brightGet = setBrightnessPercent(80);
+    int brightGet = m_brightness->setBrightnessPercent(80);
     client->emitEventStringMsg("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
-#endif
-
-#ifndef PLATFORM_LINUX
-    client->emitEventStringMsg("PING_DEVICE_UP_FRONTEND", QString::number(50));
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onSleepRequested()
 {
     qDebug() << "UI SleepReq";
-#ifdef PLATFORM_LINUX
-    int getBright = getBrightness();
+    int getBright = m_brightness->getBrightness();
     client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(getBright));
-#endif
-
-#ifndef PLATFORM_LINUX
-    client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(60));
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
-#ifdef PLATFORM_LINUX
-    if (bst > 0 && setBrightness(bst)) {
+    if (bst > 0 && m_brightness->setBrightness(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
-        bst = getBrightness();
+        bst = m_brightness->getBrightness();
         qDebug() << "prepare emit brightness set ack " << bst;
         //client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessGetRequested()
 {
     qDebug() << "UI Brightness get:";
-#ifdef PLATFORM_LINUX
-    int bst = getBrightness();
+    int bst = m_brightness->getBrightness();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
     client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
     //}
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeIncreaseReq()
 {
     qDebug() << "UI onVolumeIncreaseReq";
-#ifdef PLATFORM_LINUX
-    int currentVol = getVolumePercent();
+    int currentVol = m_volume->getVolumePercent();
     currentVol = currentVol + 5;
     if((currentVol > 20) && (currentVol <= 99)){
-        if(setVolumePercent(currentVol)){
+        if(m_volume->setVolumePercent(currentVol)){
             qDebug() << "UI succes Inc Vol " << currentVol;
         }else{
             qDebug() << "UI fail Inc Vol " << currentVol;
         }
     }
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onVolumeDecreaseReq()
 {
     qDebug() << "UI onVolumeDecreaseReq";
-#ifdef PLATFORM_LINUX
-    int currentVol = getVolumePercent();
+    int currentVol = m_volume->getVolumePercent();
     currentVol = currentVol - 5;
     if((currentVol > 20) && (currentVol <= 99)){
-        if(setVolumePercent(currentVol)){
+        if(m_volume->setVolumePercent(currentVol)){
             qDebug() << "UI succes Inc Vol " << currentVol;
         }else{
             qDebug() << "UI fail Inc Vol " << currentVol;
         }
     }
-#endif
-
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrihtnessIncreaseReq()
 {
     qDebug() << "UI onBrihtnessIncreaseReq";
-#ifdef PLATFORM_LINUX
-    int currentBrightness = getBrightness();
+    int currentBrightness = m_brightness->getBrightness();
     currentBrightness = currentBrightness + 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(setBrightness(currentBrightness)){
+        if(m_brightness->setBrightness(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc  " << currentBrightness;
@@ -1902,18 +1721,16 @@ void MainWindow::onBrihtnessIncreaseReq()
     }else{
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
-#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessDecreaseReq()
 {
     qDebug() << "UI onBrightnessDecreaseReq";
-#ifdef PLATFORM_LINUX
-    int currentBrightness = getBrightness();
+    int currentBrightness = m_brightness->getBrightness();
     currentBrightness = currentBrightness - 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(setBrightness(currentBrightness)){
+        if(m_brightness->setBrightness(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc v " << currentBrightness;
@@ -1921,7 +1738,6 @@ void MainWindow::onBrightnessDecreaseReq()
     }else{
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
-#endif
 }
 
 //------------------------------------------------------------------------

@@ -38,6 +38,9 @@
 #include <payloadprocessor.h>
 #include <QThread>
 #include <audioworker.h>
+#include <gpio.h>
+#include <volume.h>
+#include <brightness.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -161,31 +164,20 @@ private slots:
     void onSocketEventReceived(const QString &eventName, const QJsonValue &data);
     void onDeviceReadyConnected(int vol, int bright);
 
-
-#ifdef PLATFORM_LINUX
     void on_btnColor1_clicked();
-
     void on_btnColor2_clicked();
-
     void on_btnColor3_clicked();
-
     void on_btnColor4_clicked();
 
     void on_hsBrightness_valueChanged(int value);
-
     void on_btnGetBrightness_clicked();
-
     void on_btnsetBrightness_clicked();
-
     void on_btnGetVol_clicked();
 
     void on_hsVol_valueChanged(int value);
-
     void on_btnsetVol_clicked();
-#endif
 
     void on_btnConnect_clicked();
-
     void on_btnFallSimulation_clicked();
 
     void onListenStateChanged(const QString &state);
@@ -227,6 +219,10 @@ private:
 
     QThread *m_audioThread;
     AudioWorker *m_audioWorker;
+
+    gpio *m_gpio;
+    volume *m_volume;
+    brightness *m_brightness;
 
     //QString demoName2;
 
@@ -311,21 +307,21 @@ private:
 
     void soundPlay(int request);
 
-#ifdef PLATFORM_LINUX
+//#ifdef PLATFORM_LINUX
     //GPIO LEd strip
-    int setupGPIO();
-    void setColor(qint8 color);
+    //int setupGPIO();
+    //void setColor(qint8 color);
+//#endif
 
     //Brightness Controller
-    int getBrightness();
-    bool setBrightnessPercent(int percent);
-    bool setBrightness(int value);
+    //int getBrightness();
+    //bool setBrightnessPercent(int percent);
+    //bool setBrightness(int value);
 
     //Volume control
-    int getVolumePercent();                 // return 0–100, -1 jika gagal
-    bool setVolumePercent(int percent);     // set 0–100%
-    bool mute(bool enable);                 // true = mute, false = unmute
-#endif
+    //int getVolumePercent();                 // return 0–100, -1 jika gagal
+    //bool setVolumePercent(int percent);     // set 0–100%
+    //bool mute(bool enable);                 // true = mute, false = unmute
 
 };
 

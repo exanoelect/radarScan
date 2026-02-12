@@ -90,6 +90,16 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onDeviceReadyConnected",
         "vol",
         "bright",
+        "on_btnColor1_clicked",
+        "on_btnColor2_clicked",
+        "on_btnColor3_clicked",
+        "on_btnColor4_clicked",
+        "on_hsBrightness_valueChanged",
+        "on_btnGetBrightness_clicked",
+        "on_btnsetBrightness_clicked",
+        "on_btnGetVol_clicked",
+        "on_hsVol_valueChanged",
+        "on_btnsetVol_clicked",
         "on_btnConnect_clicked",
         "on_btnFallSimulation_clicked",
         "onListenStateChanged",
@@ -225,56 +235,80 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void(int, int)>(47, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 48 }, { QMetaType::Int, 49 },
         }}),
-        // Slot 'on_btnConnect_clicked'
+        // Slot 'on_btnColor1_clicked'
         QtMocHelpers::SlotData<void()>(50, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnFallSimulation_clicked'
+        // Slot 'on_btnColor2_clicked'
         QtMocHelpers::SlotData<void()>(51, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnColor3_clicked'
+        QtMocHelpers::SlotData<void()>(52, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnColor4_clicked'
+        QtMocHelpers::SlotData<void()>(53, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_hsBrightness_valueChanged'
+        QtMocHelpers::SlotData<void(int)>(54, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 13 },
+        }}),
+        // Slot 'on_btnGetBrightness_clicked'
+        QtMocHelpers::SlotData<void()>(55, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnsetBrightness_clicked'
+        QtMocHelpers::SlotData<void()>(56, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetVol_clicked'
+        QtMocHelpers::SlotData<void()>(57, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_hsVol_valueChanged'
+        QtMocHelpers::SlotData<void(int)>(58, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 13 },
+        }}),
+        // Slot 'on_btnsetVol_clicked'
+        QtMocHelpers::SlotData<void()>(59, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnConnect_clicked'
+        QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnFallSimulation_clicked'
+        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onListenStateChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(52, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 53 },
+        QtMocHelpers::SlotData<void(const QString &)>(62, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 63 },
         }}),
         // Slot 'onTalkingStateChanged'
-        QtMocHelpers::SlotData<void(const QString &)>(54, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 53 },
+        QtMocHelpers::SlotData<void(const QString &)>(64, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 63 },
         }}),
         // Slot 'onVolumeGetRequested'
-        QtMocHelpers::SlotData<void()>(55, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onVolumeSetRequested'
-        QtMocHelpers::SlotData<void(int)>(56, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(66, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 13 },
         }}),
         // Slot 'onPingDeviceUpRequested'
-        QtMocHelpers::SlotData<void()>(57, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(67, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onSleepRequested'
-        QtMocHelpers::SlotData<void()>(58, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(68, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onBrightnessSetRequested'
-        QtMocHelpers::SlotData<void(int)>(59, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int)>(69, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 13 },
         }}),
         // Slot 'onBrightnessGetRequested'
-        QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onVolumeIncreaseReq'
-        QtMocHelpers::SlotData<void()>(61, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onVolumeDecreaseReq'
-        QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onBrihtnessIncreaseReq'
-        QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onBrightnessDecreaseReq'
-        QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentFallOccur'
-        QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentFallCancel'
-        QtMocHelpers::SlotData<void()>(66, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentIamnotOK'
-        QtMocHelpers::SlotData<void()>(67, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onIncidentIamOK'
-        QtMocHelpers::SlotData<void()>(68, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayFall_clicked'
-        QtMocHelpers::SlotData<void()>(69, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayHelp_clicked'
         QtMocHelpers::SlotData<void()>(70, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayIamOK_clicked'
+        // Slot 'onVolumeIncreaseReq'
         QtMocHelpers::SlotData<void()>(71, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeDecreaseReq'
+        QtMocHelpers::SlotData<void()>(72, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrihtnessIncreaseReq'
+        QtMocHelpers::SlotData<void()>(73, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrightnessDecreaseReq'
+        QtMocHelpers::SlotData<void()>(74, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallOccur'
+        QtMocHelpers::SlotData<void()>(75, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallCancel'
+        QtMocHelpers::SlotData<void()>(76, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentIamnotOK'
+        QtMocHelpers::SlotData<void()>(77, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentIamOK'
+        QtMocHelpers::SlotData<void()>(78, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayFall_clicked'
+        QtMocHelpers::SlotData<void()>(79, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayHelp_clicked'
+        QtMocHelpers::SlotData<void()>(80, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayIamOK_clicked'
+        QtMocHelpers::SlotData<void()>(81, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -339,27 +373,37 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 38: _t->on_btnPlaySound_clicked(); break;
         case 39: _t->onSocketEventReceived((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QJsonValue>>(_a[2]))); break;
         case 40: _t->onDeviceReadyConnected((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
-        case 41: _t->on_btnConnect_clicked(); break;
-        case 42: _t->on_btnFallSimulation_clicked(); break;
-        case 43: _t->onListenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 44: _t->onTalkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 45: _t->onVolumeGetRequested(); break;
-        case 46: _t->onVolumeSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 47: _t->onPingDeviceUpRequested(); break;
-        case 48: _t->onSleepRequested(); break;
-        case 49: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 50: _t->onBrightnessGetRequested(); break;
-        case 51: _t->onVolumeIncreaseReq(); break;
-        case 52: _t->onVolumeDecreaseReq(); break;
-        case 53: _t->onBrihtnessIncreaseReq(); break;
-        case 54: _t->onBrightnessDecreaseReq(); break;
-        case 55: _t->onIncidentFallOccur(); break;
-        case 56: _t->onIncidentFallCancel(); break;
-        case 57: _t->onIncidentIamnotOK(); break;
-        case 58: _t->onIncidentIamOK(); break;
-        case 59: _t->on_btnPlayFall_clicked(); break;
-        case 60: _t->on_btnPlayHelp_clicked(); break;
-        case 61: _t->on_btnPlayIamOK_clicked(); break;
+        case 41: _t->on_btnColor1_clicked(); break;
+        case 42: _t->on_btnColor2_clicked(); break;
+        case 43: _t->on_btnColor3_clicked(); break;
+        case 44: _t->on_btnColor4_clicked(); break;
+        case 45: _t->on_hsBrightness_valueChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 46: _t->on_btnGetBrightness_clicked(); break;
+        case 47: _t->on_btnsetBrightness_clicked(); break;
+        case 48: _t->on_btnGetVol_clicked(); break;
+        case 49: _t->on_hsVol_valueChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 50: _t->on_btnsetVol_clicked(); break;
+        case 51: _t->on_btnConnect_clicked(); break;
+        case 52: _t->on_btnFallSimulation_clicked(); break;
+        case 53: _t->onListenStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 54: _t->onTalkingStateChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 55: _t->onVolumeGetRequested(); break;
+        case 56: _t->onVolumeSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 57: _t->onPingDeviceUpRequested(); break;
+        case 58: _t->onSleepRequested(); break;
+        case 59: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 60: _t->onBrightnessGetRequested(); break;
+        case 61: _t->onVolumeIncreaseReq(); break;
+        case 62: _t->onVolumeDecreaseReq(); break;
+        case 63: _t->onBrihtnessIncreaseReq(); break;
+        case 64: _t->onBrightnessDecreaseReq(); break;
+        case 65: _t->onIncidentFallOccur(); break;
+        case 66: _t->onIncidentFallCancel(); break;
+        case 67: _t->onIncidentIamnotOK(); break;
+        case 68: _t->onIncidentIamOK(); break;
+        case 69: _t->on_btnPlayFall_clicked(); break;
+        case 70: _t->on_btnPlayHelp_clicked(); break;
+        case 71: _t->on_btnPlayIamOK_clicked(); break;
         default: ;
         }
     }
@@ -384,14 +428,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 62)
+        if (_id < 72)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 62;
+        _id -= 72;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 62)
+        if (_id < 72)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 62;
+        _id -= 72;
     }
     return _id;
 }

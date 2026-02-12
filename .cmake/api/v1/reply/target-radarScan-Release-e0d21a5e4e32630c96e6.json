@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MyQt6App.app/Contents/MacOS/MyQt6App"
+			"path" : "radarScan.app/Contents/MacOS/radarScan"
 		}
 	],
 	"backtrace" : 4,
@@ -71,7 +71,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 69,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
@@ -219,13 +219,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 65,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
 				"command" : 12,
 				"file" : 1,
-				"line" : 52,
+				"line" : 55,
 				"parent" : 0
 			}
 		]
@@ -356,7 +356,7 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "/Volumes/DATA/qt6pro/radarScan/MyQt6App_autogen/include"
+					"path" : "/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/include"
 				},
 				{
 					"backtrace" : 33,
@@ -428,7 +428,10 @@
 				10,
 				12,
 				14,
-				16
+				16,
+				19,
+				21,
+				23
 			]
 		}
 	],
@@ -436,13 +439,13 @@
 	[
 		{
 			"backtrace" : 0,
-			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "MyQt6App::@6890427a1f51a3e7e1df",
+	"id" : "radarScan::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -567,8 +570,8 @@
 			"id" : "Qt6::Core::@6890427a1f51a3e7e1df"
 		}
 	],
-	"name" : "MyQt6App",
-	"nameOnDisk" : "MyQt6App",
+	"name" : "radarScan",
+	"nameOnDisk" : "radarScan",
 	"orderDependencies" : 
 	[
 		{
@@ -579,10 +582,10 @@
 		},
 		{
 			"backtrace" : 0,
-			"id" : "MyQt6App_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
@@ -597,8 +600,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				18,
-				19
+				24,
+				25
 			]
 		},
 		{
@@ -612,7 +615,10 @@
 				10,
 				12,
 				14,
-				16
+				16,
+				19,
+				21,
+				23
 			]
 		},
 		{
@@ -626,7 +632,10 @@
 				11,
 				13,
 				15,
-				17
+				17,
+				18,
+				20,
+				22
 			]
 		},
 		{
@@ -640,7 +649,7 @@
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				20
+				26
 			]
 		}
 	],
@@ -650,7 +659,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/mocs_compilation.cpp",
+			"path" : "radarScan_autogen/mocs_compilation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -747,21 +756,54 @@
 			"sourceGroupIndex" : 2
 		},
 		{
+			"backtrace" : 4,
+			"path" : "gpio.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gpio.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "volume.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "volume.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "brightness.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "brightness.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/include/ui_mainwindow.h",
+			"path" : "radarScan_autogen/include/ui_mainwindow.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/timestamp",
+			"path" : "radarScan_autogen/timestamp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "MyQt6App_autogen/timestamp.rule",
+			"path" : "radarScan_autogen/timestamp.rule",
 			"sourceGroupIndex" : 4
 		}
 	],

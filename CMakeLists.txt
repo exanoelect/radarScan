@@ -44,6 +44,9 @@ set(SOURCES
 qt_add_executable(radarScan
     ${SOURCES}
     radar.h
+    gpio.h gpio.cpp
+    volume.h volume.cpp
+    brightness.h brightness.cpp
 
 
 )

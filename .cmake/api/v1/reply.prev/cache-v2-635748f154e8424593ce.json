@@ -1107,7 +1107,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "MyQt6App"
+			"value" : "radarScan"
 		},
 		{
 			"name" : "CMAKE_PROJECT_SPDX_LICENSE",
@@ -7539,7 +7539,43 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/usr/local"
+			"value" : "/tmp"
+		},
+		{
+			"name" : "radarScan_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
+		},
+		{
+			"name" : "radarScan_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "radarScan_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Volumes/DATA/qt6pro/radarScan"
 		}
 	],
 	"kind" : "cache",

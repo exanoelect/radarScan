@@ -23,9 +23,9 @@
 	{
 		"name" : "QtInternalTargets"
 	},
-	"id" : "MyQt6App_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+	"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
 	"isGeneratorProvided" : true,
-	"name" : "MyQt6App_autogen_timestamp_deps",
+	"name" : "radarScan_autogen_timestamp_deps",
 	"orderDependencies" : 
 	[
 		{

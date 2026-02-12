@@ -200,7 +200,7 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=/Volumes/DATA/qt6pro/radarScan/.qtc/package-manager/auto-setup.cmake
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=MyQt6App
+CMAKE_PROJECT_NAME:STATIC=radarScan
 
 //Value Computed by CMake
 CMAKE_PROJECT_SPDX_LICENSE:STATIC=
@@ -375,6 +375,15 @@ Qt6Widgets_DIR:PATH=/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6Widgets
 
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=/Users/user/Qt/6.10.1/macos/lib/cmake/Qt6
+
+//Value Computed by CMake
+radarScan_BINARY_DIR:STATIC=/Volumes/DATA/qt6pro/radarScan
+
+//Value Computed by CMake
+radarScan_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+radarScan_SOURCE_DIR:STATIC=/Volumes/DATA/qt6pro/radarScan
 
 
 ########################
@@ -1497,5 +1506,5 @@ QT_FEATURE_xrender:INTERNAL=OFF
 //Qt feature: zstd (from target Qt6::Core)
 QT_FEATURE_zstd:INTERNAL=OFF
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/tmp
 

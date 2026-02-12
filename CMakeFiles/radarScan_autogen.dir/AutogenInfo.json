@@ -463,9 +463,21 @@
 			null
 		],
 		[
+			"/Volumes/DATA/qt6pro/radarScan/brightness.h",
+			"MU",
+			"EWIEGA46WW/moc_brightness.cpp",
+			null
+		],
+		[
 			"/Volumes/DATA/qt6pro/radarScan/configmanager.h",
 			"MU",
 			"EWIEGA46WW/moc_configmanager.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/gpio.h",
+			"MU",
+			"EWIEGA46WW/moc_gpio.cpp",
 			null
 		],
 		[
@@ -502,6 +514,12 @@
 			"/Volumes/DATA/qt6pro/radarScan/socketioclient.h",
 			"MU",
 			"EWIEGA46WW/moc_socketioclient.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/volume.h",
+			"MU",
+			"EWIEGA46WW/moc_volume.cpp",
 			null
 		]
 	],
@@ -585,13 +603,16 @@
 	"SOURCES" : 
 	[
 		[ "/Volumes/DATA/qt6pro/radarScan/audioworker.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/brightness.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/configmanager.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/gpio.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/main.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/mainwindow.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/payloadprocessor.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/qcustomplot.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/socketeventworker.cpp", "MU", null ],
-		[ "/Volumes/DATA/qt6pro/radarScan/socketioclient.cpp", "MU", null ]
+		[ "/Volumes/DATA/qt6pro/radarScan/socketioclient.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/volume.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

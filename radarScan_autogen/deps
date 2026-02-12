@@ -925,6 +925,7 @@ radarScan_autogen/timestamp: \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QQueue \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRandomGenerator \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRect \
+	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRegularExpression \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QScopedPointer \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSharedDataPointer \
 	/Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSharedPointer \
@@ -1804,8 +1805,12 @@ radarScan_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarScan/CMakeLists.txt \
 	/Volumes/DATA/qt6pro/radarScan/audioworker.cpp \
 	/Volumes/DATA/qt6pro/radarScan/audioworker.h \
+	/Volumes/DATA/qt6pro/radarScan/brightness.cpp \
+	/Volumes/DATA/qt6pro/radarScan/brightness.h \
 	/Volumes/DATA/qt6pro/radarScan/configmanager.cpp \
 	/Volumes/DATA/qt6pro/radarScan/configmanager.h \
+	/Volumes/DATA/qt6pro/radarScan/gpio.cpp \
+	/Volumes/DATA/qt6pro/radarScan/gpio.h \
 	/Volumes/DATA/qt6pro/radarScan/main.cpp \
 	/Volumes/DATA/qt6pro/radarScan/mainwindow.cpp \
 	/Volumes/DATA/qt6pro/radarScan/mainwindow.h \
@@ -1819,6 +1824,8 @@ radarScan_autogen/timestamp: \
 	/Volumes/DATA/qt6pro/radarScan/socketeventworker.h \
 	/Volumes/DATA/qt6pro/radarScan/socketioclient.cpp \
 	/Volumes/DATA/qt6pro/radarScan/socketioclient.h \
+	/Volumes/DATA/qt6pro/radarScan/volume.cpp \
+	/Volumes/DATA/qt6pro/radarScan/volume.h \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCXXInformation.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCommonLanguageInclude.cmake \
