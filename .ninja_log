@@ -57,3 +57,9 @@
 1961	20904	1770887702072366151	CMakeFiles/radarScan.dir/mainwindow.cpp.o	d1a850dd73bb2e0c
 1960	25912	1770887702071748868	CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o	edf4c7e18baaf075
 25912	26403	1770887726023381453	radarScan.app/Contents/MacOS/radarScan	bfe9362926a59f28
+24	299	1770887884439668628	radarScan_autogen/timestamp	d15a0a789a7c2115
+24	299	1770887884439668628	radarScan_autogen/mocs_compilation.cpp	d15a0a789a7c2115
+24	299	1770887884439668628	/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/timestamp	d15a0a789a7c2115
+24	299	1770887884439668628	/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/mocs_compilation.cpp	d15a0a789a7c2115
+302	16167	1770887884716857630	CMakeFiles/radarScan.dir/mainwindow.cpp.o	d1a850dd73bb2e0c
+16168	16595	1770887900583163551	radarScan.app/Contents/MacOS/radarScan	bfe9362926a59f28

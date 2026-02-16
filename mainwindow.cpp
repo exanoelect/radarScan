@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initSound();
     initGraphics();
     initSocketIO();
+    initRadar();
 
     m_gpio = new gpio();
     m_gpio->setupGPIO();
@@ -26,27 +27,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_volume = new volume();
     m_brightness = new brightness();
-
-    initRadar();
-
-//#ifdef PLATFORM_LINUX
-    //setupGPIO();
-
-//#endif
 }
 
 //---------------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
-    // Pastikan timer dan serial ditutup dengan rapi
-    //if (m_processTimer) {
-    //    m_processTimer->stop();
-    //}
-    //if (m_serial) {
-    //    if (m_serial->isOpen()) m_serial->close();
-    //    m_serial->deleteLater();
-    //    m_serial = nullptr;
-    //}
+
+    if (m_serial) {
+        if (m_serial->isOpen()) m_serial->close();
+        m_serial->deleteLater();
+        m_serial = nullptr;
+    }
 
     delete ui;
 }
