@@ -339,11 +339,11 @@ void MainWindow::initRadar()
 #ifdef PLATFORM_LINUX
     QMetaObject::invokeMethod(m_procA, "initPort",
                               Qt::QueuedConnection,
-                              Q_ARG(QString, "/dev/ttyAMA0"));
+                              Q_ARG(QString, UART_PORT0));
 
     QMetaObject::invokeMethod(m_procB, "initPort",
                               Qt::QueuedConnection,
-                              Q_ARG(QString, "/dev/ttyAMA1"));
+                              Q_ARG(QString, UART_PORT1));
 #endif
 }
 //#endif
