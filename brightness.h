@@ -14,6 +14,7 @@ public:
 signals:
 public slots:
     int getBrightness();
+    int getBrightnessPercent();
     bool setBrightnessPercent(int percent);
     bool setBrightness(int value);
 };

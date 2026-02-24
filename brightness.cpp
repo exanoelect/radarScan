@@ -24,6 +24,24 @@ int brightness::getBrightness()
 }
 
 //------------------------------------------------------------------------
+int brightness::getBrightnessPercent()
+{
+    QProcess proc;
+    proc.start("brightnessctl", {"get"});
+    proc.waitForFinished();
+
+    QString output = proc.readAllStandardOutput().trimmed();
+    bool ok = false;
+    int value = output.toInt(&ok);
+
+    if (!ok) {
+        qDebug() << "Failed to parse brightness:" << output;
+        return -1;
+    }
+    return (value*100 + 127)/255;
+}
+
+//------------------------------------------------------------------------
 bool brightness::setBrightnessPercent(int percent)
 {
     if((percent < 0 ) || (percent > 100)) return false;

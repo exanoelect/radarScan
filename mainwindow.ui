@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -474,7 +474,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence">
        <property name="geometry">
@@ -510,7 +510,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection">
        <property name="geometry">
@@ -535,7 +535,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -559,7 +559,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill">
        <property name="geometry">
@@ -584,7 +584,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_2">
         <property name="geometry">
@@ -725,7 +725,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking">
        <property name="geometry">
@@ -820,7 +820,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking2">
        <property name="geometry">
@@ -975,7 +975,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence2">
        <property name="geometry">
@@ -1024,7 +1024,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection2">
        <property name="geometry">
@@ -1049,7 +1049,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -1063,7 +1063,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill2">
        <property name="geometry">
@@ -1088,7 +1088,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_6">
         <property name="geometry">
@@ -1224,7 +1224,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1455,7 +1455,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1661,33 +1661,17 @@
      <widget class="QLabel" name="lBrightness">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>306</x>
         <y>60</y>
-        <width>57</width>
+        <width>21</width>
         <height>31</height>
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
-      </property>
-     </widget>
-     <widget class="QSlider" name="hsBrightness">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>251</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>90</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="btnPlaySound">
@@ -1732,33 +1716,17 @@
        <string>get Volume</string>
       </property>
      </widget>
-     <widget class="QSlider" name="hsVol">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>210</y>
-        <width>251</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="value">
-       <number>90</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-     </widget>
      <widget class="QLabel" name="lVol">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>306</x>
         <y>210</y>
-        <width>57</width>
+        <width>21</width>
         <height>31</height>
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
@@ -1806,7 +1774,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>Vol</string>
@@ -1838,7 +1806,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::Box</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>Bright</string>
@@ -1890,6 +1858,32 @@
       </property>
       <property name="text">
        <string>Play IamOK</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="hsBrightness">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>281</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="hsVol">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>281</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
@@ -1981,7 +1975,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>30</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

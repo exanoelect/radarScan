@@ -1517,14 +1517,14 @@ void MainWindow::on_btnColor2_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
-    m_gpio->setColor(COLOR_RED);
+    m_gpio->setColor(COLOR_WHITE_BRIGHT);
 
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
-    m_gpio->setColor(COLOR_RED_BLINKY);
+    m_gpio->setColor(COLOR_RED);
 }
 
 //------------------------------------------------------------------------
@@ -1536,7 +1536,8 @@ void MainWindow::on_hsBrightness_valueChanged(int value)
 //------------------------------------------------------------------------
 void MainWindow::on_btnGetBrightness_clicked()
 {
-    ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
+    //ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
+    ui->leBrightness->setText(QString::number(m_brightness->getBrightnessPercent()));
 }
 
 //------------------------------------------------------------------------
@@ -1603,7 +1604,7 @@ void MainWindow::onListenStateChanged(const QString &state)
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
     qDebug() << "UI Process TALKING:" << state;
-    if (state == "ON") m_gpio->setColor(COLOR_RED_BLINKY);
+    if (state == "ON") m_gpio->setColor(COLOR_WHITE_BLINKY);
     else if (state == "OFF") m_gpio->setColor(COLOR_GREEN);
 }
 
@@ -1639,7 +1640,7 @@ void MainWindow::onPingDeviceUpRequested()
 void MainWindow::onSleepRequested()
 {
     qDebug() << "UI SleepReq";
-    int getBright = m_brightness->getBrightness();
+    int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(getBright));
 }
 
@@ -1649,7 +1650,7 @@ void MainWindow::onBrightnessSetRequested(int bst)
     qDebug() << "Brightness Set:" << bst;
     if (bst > 0 && m_brightness->setBrightness(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
-        bst = m_brightness->getBrightness();
+        bst = m_brightness->getBrightnessPercent();
         qDebug() << "prepare emit brightness set ack " << bst;
         //client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
@@ -1659,7 +1660,7 @@ void MainWindow::onBrightnessSetRequested(int bst)
 void MainWindow::onBrightnessGetRequested()
 {
     qDebug() << "UI Brightness get:";
-    int bst = m_brightness->getBrightness();
+    int bst = m_brightness->getBrightnessPercent();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
     client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
@@ -1701,7 +1702,7 @@ void MainWindow::onVolumeDecreaseReq()
 void MainWindow::onBrihtnessIncreaseReq()
 {
     qDebug() << "UI onBrihtnessIncreaseReq";
-    int currentBrightness = m_brightness->getBrightness();
+    int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness + 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
         if(m_brightness->setBrightness(currentBrightness)){
@@ -1718,7 +1719,7 @@ void MainWindow::onBrihtnessIncreaseReq()
 void MainWindow::onBrightnessDecreaseReq()
 {
     qDebug() << "UI onBrightnessDecreaseReq";
-    int currentBrightness = m_brightness->getBrightness();
+    int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness - 5;
     if((currentBrightness > 20) && (currentBrightness <= 255)){
         if(m_brightness->setBrightness(currentBrightness)){
