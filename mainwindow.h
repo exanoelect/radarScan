@@ -41,6 +41,7 @@
 #include <gpio.h>
 #include <volume.h>
 #include <brightness.h>
+#include <utilities.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -72,8 +73,8 @@ enum SOCKET_REQUEST{
 enum LED_STRIP_COLOR{
     COLOR_WHITE,
     COLOR_WHITE_BLINKY,
+    COLOR_WHITE_BRIGHT,
     COLOR_RED,
-    COLOR_RED_BLINKY,
     COLOR_GREEN,
     COLOR_GREEN_BLINKY,
     COLOR_BLUE,
@@ -203,6 +204,18 @@ private slots:
     void on_btnPlayHelp_clicked();
     void on_btnPlayIamOK_clicked();
 
+    void on_btnScanWifiList_clicked();
+
+    void on_btnGetSSID_clicked();
+
+    void on_btnWifiCon_clicked();
+
+    void on_btnWifiOff_clicked();
+
+    void on_btnWifiOn_clicked();
+
+    void on_btnForget_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -223,6 +236,7 @@ private:
     gpio *m_gpio;
     volume *m_volume;
     brightness *m_brightness;
+    utilities *m_utility;
 
     //QString demoName2;
 

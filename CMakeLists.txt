@@ -38,6 +38,10 @@ set(SOURCES
     configmanager.cpp
     audioworker.h
     audioworker.cpp
+    networksetting.h
+    networksetting.cpp
+    utilities.h
+    utilities.cpp
 )
 
 # Generate executable

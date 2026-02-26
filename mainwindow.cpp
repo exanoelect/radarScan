@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_volume = new volume();
     m_brightness = new brightness();
+    m_utility = new utilities();
 }
 
 //---------------------------------------------------------------------------------------
@@ -215,7 +216,7 @@ void MainWindow::initRadar()
                     //sound.play();
 
                     if (client->isConnected()) {
-                        soundPlay(SOUND_FALL_OCCUR);
+                        //soundPlay(SOUND_FALL_OCCUR);
                         client->emitEventStringMsg("INCIDENT_FALL_CANCEL", "");
                     } else {
                         qDebug() << "Socket DC";
@@ -1773,5 +1774,45 @@ void MainWindow::on_btnPlayHelp_clicked()
 void MainWindow::on_btnPlayIamOK_clicked()
 {
     soundPlay(SOUND_IAM_OK);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnScanWifiList_clicked()
+{
+   qDebug() << "SSID List " << m_utility->nmcliGetWifiList();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnGetSSID_clicked()
+{
+    qDebug() << "SSID " << m_utility->nmcliGetSSID();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnWifiCon_clicked()
+{
+    if(m_utility->nmcliConnectToWiFi("Parametrik 5G-01","tabassam")){
+        qDebug() << "Sukses";
+    }else{
+        qDebug() << "Gagal ";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnWifiOff_clicked()
+{
+    m_utility->nmcliWifiOff();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnWifiOn_clicked()
+{
+    m_utility->nmcliWifiOn();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnForget_clicked()
+{
+   m_utility->nmcliForgetConnection("Parametrik 5G-01");
 }
 

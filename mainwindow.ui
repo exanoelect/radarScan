@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1562,7 +1562,7 @@
     </widget>
     <widget class="QWidget" name="tab_7">
      <attribute name="title">
-      <string>Test</string>
+      <string>Led,Vol,Bright</string>
      </attribute>
      <widget class="QPushButton" name="btnColor1">
       <property name="geometry">
@@ -1884,6 +1884,89 @@
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>Utility</string>
+     </attribute>
+     <widget class="QPushButton" name="btnScanWifiList">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Scan Wifi</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnWifiOff">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Wifi Off</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnWifiOn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Wifi On</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnWifiCon">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnGetSSID">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Get SSID</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnForget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Forget</string>
       </property>
      </widget>
     </widget>
