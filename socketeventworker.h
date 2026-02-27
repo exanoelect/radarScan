@@ -40,6 +40,14 @@ signals:
     void incidentIamOK();
     void incidentIamnotOK();
 
+    //Wifi
+    void wifiOn();
+    void wifiOff();
+    void wifiGetStatus();
+    void wifiSsidList();
+    void wifiConnect(const QString &ssid,const QString &pwd);
+    void wifiForget(const QString &ssid);
+
 public slots:
     void process();
 

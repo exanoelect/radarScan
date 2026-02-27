@@ -288,7 +288,7 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
             m_lastEventData = dataValue;
             // =================================
 
-            handleIncomingEvent(eventName, dataValue.toObject(), ackId);
+            //handleIncomingEvent(eventName, dataValue.toObject(), ackId);
             emit eventReceived(eventName, dataValue);
         }
 
@@ -491,7 +491,7 @@ void SocketIOClient::emitEvent1(const QString &eventName,const QJsonValue &data,
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent2(const QString &eventName, const QString message)
+void SocketIOClient::emitEventQstringMsg(const QString &eventName, const QString message)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -506,7 +506,7 @@ void SocketIOClient::emitEvent2(const QString &eventName, const QString message)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEventStringMsg(const QString &eventName,
+void SocketIOClient::emitEventStringMsgJsoned(const QString &eventName,
                                const QJsonValue &data)
 {
     if (!m_isConnected || !m_webSocket) {
@@ -652,7 +652,7 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
 void SocketIOClient::sendScheduleEvent(const QString &scheduleType,
                                        const QJsonObject &dateParams)
 {
-    emitEventStringMsg(scheduleType, dateParams);
+    emitEventStringMsgJsoned(scheduleType, dateParams);
 }
 
 //------------------------------------------------------------------------

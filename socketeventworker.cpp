@@ -96,5 +96,39 @@ void SocketEventWorker::process()
         }else if (eventName == "i_am_ok"){
             emit incidentIamOK();
         }
+        //WIFI
+        else if (eventName == "WIFI_ON") {
+            qDebug() << "Wifi request:" << eventName;
+            emit wifiOn();
+        }
+        else if (eventName == "WIFI_OFF") {
+            qDebug() << "Wifi request:" << eventName;
+            emit wifiOff();
+        }
+        else if (eventName == "WIFI_GET_CURRENT_SSID") {
+            qDebug() << "Wifi request:" << eventName;
+            emit wifiGetStatus();
+        }
+        else if (eventName == "WIFI_SSID_LIST") {
+            qDebug() << "Wifi request:" << eventName;
+            emit wifiSsidList();
+        }
+        else if (eventName.startsWith("WIFI_SSID_CONNECT")) {
+          if (data.isObject()) {
+                QJsonObject obj = data.toObject();
+                QString ssid = obj["ssid"].toString();
+                QString pwd = obj["pwd"].toString();
+                qDebug() << "Wifi request:" << eventName << obj;
+                emit wifiConnect(ssid,pwd);
+            }
+        }
+        else if (eventName.startsWith("WIFI_SSID_FORGET")) {
+            if (data.isObject()) {
+                  QJsonObject obj = data.toObject();
+                  QString ssid = obj["ssid"].toString();
+                  qDebug() << "Wifi request:" << eventName << obj;
+                  emit wifiForget(ssid);
+            }
+        }
     }
 }

@@ -200,6 +200,14 @@ private slots:
     void onIncidentIamnotOK();
     void onIncidentIamOK();
 
+    //Wifi
+    void onWifiOn();
+    void onWifiOff();
+    void onWifiGetStatus();
+    void onWifiSsidList();
+    void onWifiConnect(const QString &ssid,const QString &pwd);
+    void onWifiForget(const QString &ssid);
+
     void on_btnPlayFall_clicked();
     void on_btnPlayHelp_clicked();
     void on_btnPlayIamOK_clicked();

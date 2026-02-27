@@ -116,6 +116,21 @@ void MainWindow::initSocketIO()
     connect(m_worker, &SocketEventWorker::incidentIamnotOK,
             this, &MainWindow::onIncidentIamnotOK);
 
+    //Wifi
+    connect(m_worker, &SocketEventWorker::wifiOn,
+            this, &MainWindow::onWifiOn);
+    connect(m_worker, &SocketEventWorker::wifiOff,
+            this, &MainWindow::onWifiOff);
+    connect(m_worker, &SocketEventWorker::wifiGetStatus,
+            this, &MainWindow::onWifiGetStatus);
+    connect(m_worker, &SocketEventWorker::wifiSsidList,
+            this, &MainWindow::onWifiSsidList);
+    connect(m_worker, &SocketEventWorker::wifiForget,
+            this, &MainWindow::onWifiForget);
+    connect(m_worker, &SocketEventWorker::wifiConnect,
+            this, &MainWindow::onWifiConnect);
+    connect(m_worker, &SocketEventWorker::wifiForget,
+            this, &MainWindow::onWifiForget);
 
     m_workerThread->start();
 
@@ -203,7 +218,7 @@ void MainWindow::initRadar()
 
                     if (client->isConnected()) {
                         soundPlay(SOUND_FALL_OCCUR);
-                        client->emitEventStringMsg("INCIDENT_FALL_DOWN_DETECTED", "");
+                        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED", "");
                     } else {
                         qDebug() << "Socket DC";
                     }
@@ -217,7 +232,7 @@ void MainWindow::initRadar()
 
                     if (client->isConnected()) {
                         //soundPlay(SOUND_FALL_OCCUR);
-                        client->emitEventStringMsg("INCIDENT_FALL_CANCEL", "");
+                        client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
                     } else {
                         qDebug() << "Socket DC";
                     }
@@ -1586,7 +1601,7 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     if(client->isConnected()){
-        client->emitEventStringMsg("INCIDENT_FALL_DOWN_DETECTED","");
+        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED","");
     }else{
         qDebug() << " Socket DC";
     }
@@ -1614,7 +1629,7 @@ void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
     int currentVol = m_volume->getVolumePercent();
-    client->emitEventStringMsg("VOLUME_GET_ACK", QString::number(currentVol));
+    client->emitEventStringMsgJsoned("VOLUME_GET_ACK", QString::number(currentVol));
 
 }
 
@@ -1634,7 +1649,7 @@ void MainWindow::onPingDeviceUpRequested()
 {
     qDebug() << "UI PingDeviceUpReq";
     int brightGet = m_brightness->setBrightnessPercent(80);
-    client->emitEventStringMsg("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+    client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
 }
 
 //------------------------------------------------------------------------
@@ -1642,14 +1657,14 @@ void MainWindow::onSleepRequested()
 {
     qDebug() << "UI SleepReq";
     int getBright = m_brightness->getBrightnessPercent();
-    client->emitEventStringMsg("SLEEP_FRONTEND", QString::number(getBright));
+    client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
-    if (bst > 0 && m_brightness->setBrightness(bst)) {
+    if (bst > 0 && m_brightness->setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
         bst = m_brightness->getBrightnessPercent();
         qDebug() << "prepare emit brightness set ack " << bst;
@@ -1664,7 +1679,7 @@ void MainWindow::onBrightnessGetRequested()
     int bst = m_brightness->getBrightnessPercent();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
-    client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
+    client->emitEventStringMsgJsoned("BRIGHTNESS_GET_ACK",QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
     //}
 }
@@ -1705,8 +1720,8 @@ void MainWindow::onBrihtnessIncreaseReq()
     qDebug() << "UI onBrihtnessIncreaseReq";
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness + 5;
-    if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(m_brightness->setBrightness(currentBrightness)){
+    if((currentBrightness > 20) && (currentBrightness <= 100)){
+        if(m_brightness->setBrightnessPercent(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc  " << currentBrightness;
@@ -1722,8 +1737,8 @@ void MainWindow::onBrightnessDecreaseReq()
     qDebug() << "UI onBrightnessDecreaseReq";
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness - 5;
-    if((currentBrightness > 20) && (currentBrightness <= 255)){
-        if(m_brightness->setBrightness(currentBrightness)){
+    if((currentBrightness > 20) && (currentBrightness <= 100)){
+        if(m_brightness->setBrightnessPercent(currentBrightness)){
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
         }else{
             qDebug() << "UI fail Inc v " << currentBrightness;
@@ -1755,6 +1770,78 @@ void MainWindow::onIncidentIamnotOK()
 void MainWindow::onIncidentIamOK()
 {
     soundPlay(SOUND_IAM_OK);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiOn()
+{
+    m_utility->nmcliWifiOn();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiOff()
+{
+    m_utility->nmcliWifiOff();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiGetStatus()
+{
+    if (client->isConnected()) {
+        QString wifiCurrent = m_utility->nmcliGetSSID();
+        qDebug() << "wifiCurrent " << wifiCurrent;
+        client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiSsidList()
+{
+    if (client->isConnected()) {
+        QStringList wifiList = m_utility->nmcliGetWifiList();
+        qDebug() << "Wifi List " << wifiList;
+        QJsonObject obj;
+        obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        client->emitEventStringMsgJsoned("SSID_LIST",obj);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiConnect(const QString &ssid, const QString &pwd)
+{
+    if (client->isConnected()) {
+        if(m_utility->nmcliConnectToWiFi(ssid,pwd)){
+           qDebug() << "Success connect to ssid " << ssid;
+           client->emitEventStringMsgJsoned("SSID_GET",ssid);
+        }else{
+           client->emitEventStringMsgJsoned("SSID_GET","N/A");
+           qDebug() << "Failed connect to ssid " << ssid;
+        }
+    } else {
+        qDebug() << "Socket DC";
+        client->emitEventStringMsgJsoned("SSID_GET","");
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiForget(const QString &ssid)
+{
+    if (client->isConnected()) {
+        if(m_utility->nmcliForgetConnection(ssid)){
+           qDebug() << "Success forget from ssid " << ssid;
+           client->emitEventStringMsgJsoned("SSID_FORGET",ssid);
+        }else{
+           client->emitEventStringMsgJsoned("SSID_FORGET","N/A");
+           qDebug() << "Failed connect to ssid " << ssid;
+        }
+    } else {
+        qDebug() << "Socket DC";
+        client->emitEventStringMsgJsoned("SSID_GET","");
+    }
 }
 
 //------------------------------------------------------------------------

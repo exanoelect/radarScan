@@ -47,8 +47,8 @@ public:
 
     //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
     void emitEvent1(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
-    void emitEvent2(const QString &eventName, const QString message);
-    void emitEventStringMsg(const QString &eventName, const QJsonValue &data);
+    void emitEventQstringMsg(const QString &eventName, const QString message);
+    void emitEventStringMsgJsoned(const QString &eventName, const QJsonValue &data);
 
     void emitEventWithAck(const QString &eventName,
                           const QJsonObject &data,
