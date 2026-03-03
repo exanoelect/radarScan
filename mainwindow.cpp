@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_volume = new volume();
     m_brightness = new brightness();
     m_utility = new utilities();
+
+    connect(m_utility, &utilities::wifiListReady,
+            this, &MainWindow::onWifiSSidListReady);
 }
 
 //---------------------------------------------------------------------------------------
@@ -131,6 +134,15 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onWifiConnect);
     connect(m_worker, &SocketEventWorker::wifiForget,
             this, &MainWindow::onWifiForget);
+    connect(m_worker, &SocketEventWorker::wifiForget,
+            this, &MainWindow::onWifiForget);
+
+
+    //Utility
+    connect(m_worker, &SocketEventWorker::rpiRestart,
+            this, &MainWindow::onRpiRestart);
+    connect(m_worker, &SocketEventWorker::rpiShutdown,
+            this, &MainWindow::onRpiShutdown);
 
     m_workerThread->start();
 
@@ -1800,10 +1812,27 @@ void MainWindow::onWifiGetStatus()
 void MainWindow::onWifiSsidList()
 {
     if (client->isConnected()) {
-        QStringList wifiList = m_utility->nmcliGetWifiList();
-        qDebug() << "Wifi List " << wifiList;
+        //QStringList wifiList = m_utility->nmcliGetWifiList();
+        m_utility->nmcliGetWifiList();
+
+        //qDebug() << "Wifi List " << wifiList;
+        //QJsonObject obj;
+        //obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        //client->emitEventStringMsgJsoned("SSID_LIST",obj);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiSSidListReady(QStringList ssidList)
+{
+    if (client->isConnected()) {
+        //QStringList wifiList = m_utility->nmcliGetWifiList();
+
+        qDebug() << "Wifi List " << ssidList;
         QJsonObject obj;
-        obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        obj["ssids"] = QJsonArray::fromStringList(ssidList);
         client->emitEventStringMsgJsoned("SSID_LIST",obj);
     } else {
         qDebug() << "Socket DC";
@@ -1845,6 +1874,18 @@ void MainWindow::onWifiForget(const QString &ssid)
 }
 
 //------------------------------------------------------------------------
+void MainWindow::onRpiRestart()
+{
+    m_utility->rpiRestart();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onRpiShutdown()
+{
+    m_utility->rpiShutdown();
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnPlayFall_clicked()
 {
     soundPlay(SOUND_FALL_OCCUR);
@@ -1866,7 +1907,8 @@ void MainWindow::on_btnPlayIamOK_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_btnScanWifiList_clicked()
 {
-   qDebug() << "SSID List " << m_utility->nmcliGetWifiList();
+   qDebug() << "SSID List ";
+   m_utility->nmcliGetWifiList();
 }
 
 //------------------------------------------------------------------------
@@ -1901,5 +1943,19 @@ void MainWindow::on_btnWifiOn_clicked()
 void MainWindow::on_btnForget_clicked()
 {
    m_utility->nmcliForgetConnection("Parametrik 5G-01");
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnRestart_clicked()
+{
+   m_utility->rpiRestart();
+}
+
+//------------------------------------------------------------------------
+
+void MainWindow::on_btnShutdown_clicked()
+{
+    m_utility->rpiShutdown();
+
 }
 

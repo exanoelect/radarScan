@@ -28,9 +28,10 @@ public:
     explicit utilities(QObject *parent = nullptr);
 
 signals:
+    void wifiListReady(QStringList ssidList);
 public slots:
     QString nmcliGetSSID();
-    QStringList nmcliGetWifiList();
+    void nmcliGetWifiList();
 
     void nmcliWifiOn();
     void nmcliWifiOff();

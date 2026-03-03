@@ -23,24 +23,34 @@ QString utilities::nmcliGetSSID()
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-QStringList utilities::nmcliGetWifiList()
+void utilities::nmcliGetWifiList()
 {
-    QProcess process;
+    QProcess *process = new QProcess(this);
 
-    process.start(QStringLiteral("nmcli"),
-                  QStringList() << "-t" << "-f" << "SSID"
-                                << "device" << "wifi" << "list");
+    connect(process, &QProcess::finished,
+            this, [this, process](int, QProcess::ExitStatus) {
 
-    process.waitForFinished();
+        QString output =
+            QString::fromUtf8(process->readAllStandardOutput()).trimmed();
 
-    QString output = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
+        QStringList ssidList =
+            output.split('\n', Qt::SkipEmptyParts);
 
-    QStringList ssidList = output.split('\n', Qt::SkipEmptyParts);
+        ssidList.removeAll("");
 
-    ssidList.removeAll("");   // buang SSID kosong
+        emit wifiListReady(ssidList);
 
-    return ssidList;
+        process->deleteLater();
+    });
+
+    //nmcli -t -f SSID device wifi list
+    process->start("nmcli",
+                   QStringList()
+                   << "-t" << "-f" << "SSID"
+                   << "device" << "wifi" << "list");
+    //               << "--rescan" << "no");
 }
+
 
 //------------------------------------------------------------------------------------------------------------------------
 void utilities::nmcliWifiOn()

@@ -1969,6 +1969,32 @@
        <string>Forget</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="btnRestart">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>10</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Restart</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnShutdown">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>50</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OFF</string>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QCustomPlot" name="plotRadar" native="true">

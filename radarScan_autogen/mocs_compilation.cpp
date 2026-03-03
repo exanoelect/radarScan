@@ -7,4 +7,5 @@
 #include "EWIEGA46WW/moc_qcustomplot.cpp"
 #include "EWIEGA46WW/moc_socketeventworker.cpp"
 #include "EWIEGA46WW/moc_socketioclient.cpp"
+#include "EWIEGA46WW/moc_utilities.cpp"
 #include "EWIEGA46WW/moc_volume.cpp"

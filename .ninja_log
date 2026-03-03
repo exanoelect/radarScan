@@ -34,3 +34,17 @@
 2064	7297	1770886849526891068	CMakeFiles/radarScan.dir/gpio.cpp.o	728a8d2d859163da
 2811	16713	1770879054061704690	CMakeFiles/radarScan.dir/configmanager.cpp.o	8af332423f56d7c8
 2065	12892	1770886849527380144	CMakeFiles/radarScan.dir/brightness.cpp.o	e292897d83b18d8f
+88	2552	1772445565896136000	radarScan_autogen/timestamp	d15a0a789a7c2115
+88	2552	1772445565896136000	radarScan_autogen/mocs_compilation.cpp	d15a0a789a7c2115
+88	2552	1772445565896136000	/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/timestamp	d15a0a789a7c2115
+88	2552	1772445565896136000	/Volumes/DATA/qt6pro/radarScan/radarScan_autogen/mocs_compilation.cpp	d15a0a789a7c2115
+2556	21127	1772445565977954205	CMakeFiles/radarScan.dir/brightness.cpp.o	e292897d83b18d8f
+2554	24063	1772445565976205110	CMakeFiles/radarScan.dir/main.cpp.o	2662416664c2da38
+2555	25853	1772445565976951871	CMakeFiles/radarScan.dir/socketeventworker.cpp.o	cb204959c1dd6f6
+2555	28096	1772445565976710381	CMakeFiles/radarScan.dir/socketioclient.cpp.o	78ff5357975ee5c6
+2556	28250	1772445565977705340	CMakeFiles/radarScan.dir/utilities.cpp.o	3116c59bf2e4ccd1
+2555	29073	1772445565977456725	CMakeFiles/radarScan.dir/networksetting.cpp.o	310f223d17d22502
+2555	30523	1772445565977202736	CMakeFiles/radarScan.dir/payloadprocessor.cpp.o	d8d4a7bab130e080
+2554	36369	1772445565976464599	CMakeFiles/radarScan.dir/mainwindow.cpp.o	d1a850dd73bb2e0c
+2554	40998	1772445565975771336	CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o	edf4c7e18baaf075
+40999	42585	1772445604419543926	radarScan.app/Contents/MacOS/radarScan	e66565099a850f09

@@ -41,6 +41,7 @@ template <> constexpr inline auto brightness::qt_create_metaobjectdata<qt_meta_t
         "brightness",
         "getBrightness",
         "",
+        "getBrightnessPercent",
         "setBrightnessPercent",
         "percent",
         "setBrightness",
@@ -50,13 +51,15 @@ template <> constexpr inline auto brightness::qt_create_metaobjectdata<qt_meta_t
     QtMocHelpers::UintData qt_methods {
         // Slot 'getBrightness'
         QtMocHelpers::SlotData<int()>(1, 2, QMC::AccessPublic, QMetaType::Int),
+        // Slot 'getBrightnessPercent'
+        QtMocHelpers::SlotData<int()>(3, 2, QMC::AccessPublic, QMetaType::Int),
         // Slot 'setBrightnessPercent'
-        QtMocHelpers::SlotData<bool(int)>(3, 2, QMC::AccessPublic, QMetaType::Bool, {{
-            { QMetaType::Int, 4 },
+        QtMocHelpers::SlotData<bool(int)>(4, 2, QMC::AccessPublic, QMetaType::Bool, {{
+            { QMetaType::Int, 5 },
         }}),
         // Slot 'setBrightness'
-        QtMocHelpers::SlotData<bool(int)>(5, 2, QMC::AccessPublic, QMetaType::Bool, {{
-            { QMetaType::Int, 6 },
+        QtMocHelpers::SlotData<bool(int)>(6, 2, QMC::AccessPublic, QMetaType::Bool, {{
+            { QMetaType::Int, 7 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -83,9 +86,11 @@ void brightness::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: { int _r = _t->getBrightness();
             if (_a[0]) *reinterpret_cast<int*>(_a[0]) = std::move(_r); }  break;
-        case 1: { bool _r = _t->setBrightnessPercent((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])));
+        case 1: { int _r = _t->getBrightnessPercent();
+            if (_a[0]) *reinterpret_cast<int*>(_a[0]) = std::move(_r); }  break;
+        case 2: { bool _r = _t->setBrightnessPercent((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
-        case 2: { bool _r = _t->setBrightness((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])));
+        case 3: { bool _r = _t->setBrightness((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -111,14 +116,14 @@ int brightness::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

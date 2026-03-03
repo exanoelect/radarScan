@@ -205,24 +205,25 @@ private slots:
     void onWifiOff();
     void onWifiGetStatus();
     void onWifiSsidList();
+    void onWifiSSidListReady(QStringList ssidList);
     void onWifiConnect(const QString &ssid,const QString &pwd);
     void onWifiForget(const QString &ssid);
+
+    void onRpiRestart();
+    void onRpiShutdown();
 
     void on_btnPlayFall_clicked();
     void on_btnPlayHelp_clicked();
     void on_btnPlayIamOK_clicked();
 
     void on_btnScanWifiList_clicked();
-
     void on_btnGetSSID_clicked();
-
     void on_btnWifiCon_clicked();
-
     void on_btnWifiOff_clicked();
-
     void on_btnWifiOn_clicked();
-
     void on_btnForget_clicked();
+    void on_btnRestart_clicked();
+    void on_btnShutdown_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -245,6 +246,7 @@ private:
     volume *m_volume;
     brightness *m_brightness;
     utilities *m_utility;
+    //QStringList ssidscanRet;
 
     //QString demoName2;
 

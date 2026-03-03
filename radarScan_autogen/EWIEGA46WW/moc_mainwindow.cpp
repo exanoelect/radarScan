@@ -119,9 +119,27 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onIncidentFallCancel",
         "onIncidentIamnotOK",
         "onIncidentIamOK",
+        "onWifiOn",
+        "onWifiOff",
+        "onWifiGetStatus",
+        "onWifiSsidList",
+        "onWifiConnect",
+        "ssid",
+        "pwd",
+        "onWifiForget",
+        "onRpiRestart",
+        "onRpiShutdown",
         "on_btnPlayFall_clicked",
         "on_btnPlayHelp_clicked",
-        "on_btnPlayIamOK_clicked"
+        "on_btnPlayIamOK_clicked",
+        "on_btnScanWifiList_clicked",
+        "on_btnGetSSID_clicked",
+        "on_btnWifiCon_clicked",
+        "on_btnWifiOff_clicked",
+        "on_btnWifiOn_clicked",
+        "on_btnForget_clicked",
+        "on_btnRestart_clicked",
+        "on_btnShutdown_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -303,12 +321,48 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(77, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onIncidentIamOK'
         QtMocHelpers::SlotData<void()>(78, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayFall_clicked'
+        // Slot 'onWifiOn'
         QtMocHelpers::SlotData<void()>(79, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayHelp_clicked'
+        // Slot 'onWifiOff'
         QtMocHelpers::SlotData<void()>(80, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayIamOK_clicked'
+        // Slot 'onWifiGetStatus'
         QtMocHelpers::SlotData<void()>(81, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onWifiSsidList'
+        QtMocHelpers::SlotData<void()>(82, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onWifiConnect'
+        QtMocHelpers::SlotData<void(const QString &, const QString &)>(83, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 84 }, { QMetaType::QString, 85 },
+        }}),
+        // Slot 'onWifiForget'
+        QtMocHelpers::SlotData<void(const QString &)>(86, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 84 },
+        }}),
+        // Slot 'onRpiRestart'
+        QtMocHelpers::SlotData<void()>(87, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onRpiShutdown'
+        QtMocHelpers::SlotData<void()>(88, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayFall_clicked'
+        QtMocHelpers::SlotData<void()>(89, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayHelp_clicked'
+        QtMocHelpers::SlotData<void()>(90, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayIamOK_clicked'
+        QtMocHelpers::SlotData<void()>(91, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnScanWifiList_clicked'
+        QtMocHelpers::SlotData<void()>(92, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetSSID_clicked'
+        QtMocHelpers::SlotData<void()>(93, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnWifiCon_clicked'
+        QtMocHelpers::SlotData<void()>(94, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnWifiOff_clicked'
+        QtMocHelpers::SlotData<void()>(95, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnWifiOn_clicked'
+        QtMocHelpers::SlotData<void()>(96, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnForget_clicked'
+        QtMocHelpers::SlotData<void()>(97, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnRestart_clicked'
+        QtMocHelpers::SlotData<void()>(98, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnShutdown_clicked'
+        QtMocHelpers::SlotData<void()>(99, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -401,9 +455,25 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 66: _t->onIncidentFallCancel(); break;
         case 67: _t->onIncidentIamnotOK(); break;
         case 68: _t->onIncidentIamOK(); break;
-        case 69: _t->on_btnPlayFall_clicked(); break;
-        case 70: _t->on_btnPlayHelp_clicked(); break;
-        case 71: _t->on_btnPlayIamOK_clicked(); break;
+        case 69: _t->onWifiOn(); break;
+        case 70: _t->onWifiOff(); break;
+        case 71: _t->onWifiGetStatus(); break;
+        case 72: _t->onWifiSsidList(); break;
+        case 73: _t->onWifiConnect((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 74: _t->onWifiForget((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 75: _t->onRpiRestart(); break;
+        case 76: _t->onRpiShutdown(); break;
+        case 77: _t->on_btnPlayFall_clicked(); break;
+        case 78: _t->on_btnPlayHelp_clicked(); break;
+        case 79: _t->on_btnPlayIamOK_clicked(); break;
+        case 80: _t->on_btnScanWifiList_clicked(); break;
+        case 81: _t->on_btnGetSSID_clicked(); break;
+        case 82: _t->on_btnWifiCon_clicked(); break;
+        case 83: _t->on_btnWifiOff_clicked(); break;
+        case 84: _t->on_btnWifiOn_clicked(); break;
+        case 85: _t->on_btnForget_clicked(); break;
+        case 86: _t->on_btnRestart_clicked(); break;
+        case 87: _t->on_btnShutdown_clicked(); break;
         default: ;
         }
     }
@@ -428,14 +498,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 72)
+        if (_id < 88)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 72;
+        _id -= 88;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 72)
+        if (_id < 88)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 72;
+        _id -= 88;
     }
     return _id;
 }

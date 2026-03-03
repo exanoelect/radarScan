@@ -130,5 +130,13 @@ void SocketEventWorker::process()
                   emit wifiForget(ssid);
             }
         }
+        else if (eventName == "DEVICE_RESTART") {
+            qDebug() << "Rpi restart" << eventName;
+            emit rpiRestart();
+        }
+        else if (eventName == "DEVICE_OFF") {
+            qDebug() << "Rpi OFF" << eventName;
+            emit rpiShutdown();
+        }
     }
 }

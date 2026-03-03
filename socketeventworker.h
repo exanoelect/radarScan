@@ -48,6 +48,10 @@ signals:
     void wifiConnect(const QString &ssid,const QString &pwd);
     void wifiForget(const QString &ssid);
 
+    //utility
+    void rpiRestart();
+    void rpiShutdown();
+
 public slots:
     void process();
 
