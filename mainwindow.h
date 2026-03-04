@@ -201,13 +201,29 @@ private slots:
     void onIncidentIamOK();
 
     //Wifi
-    void onWifiOn();
-    void onWifiOff();
-    void onWifiGetStatus();
-    void onWifiSsidList();
+    void onWifiOnRequest();
+    void onWifiOffRequest();
+    void onwifiScanSsidReqReceived();
+    void onWifiGetSsidRequest();
+    void onWifiSsidListRequest();
+    void onWifiSsidListRequestComplete();
     void onWifiSSidListReady(QStringList ssidList);
-    void onWifiConnect(const QString &ssid,const QString &pwd);
-    void onWifiForget(const QString &ssid);
+    void onWifiSSidListReadyComplete(QList<WifiAP> wifiList);
+    void onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList);
+
+    void onWifiConnectRequest(const QString &ssid,const QString &pwd);
+    void onWifiForgetRequest(const QString &ssid);
+    void onSsidReady(QString ssid);
+    void onCurrentWifiInfoReady(QJsonObject obj);
+    void onWifiConnected(bool success,
+                         const QString &ssid,
+                         const QString &ip);
+    void onWifiDisconnectRequest();
+    void onwifiDisconnectResult(bool success,
+                                QString ssid,
+                                QString message);
+    void onWifiEnabled(bool on);
+    void onWifiDeleted(bool success, QString ssid, QString message);
 
     void onRpiRestart();
     void onRpiShutdown();

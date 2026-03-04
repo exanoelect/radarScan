@@ -478,6 +478,7 @@ bool nmcliSleep(){
 QStringList nmcliGetWifiList(){
     QProcess process;
 
+    //nmcli -t -f SSID wifi list
     process.start(QStringLiteral("nmcli"),
                   QStringList() << "-t" << "-f" << "SSID"
                                 << "device" << "wifi" << "list");

@@ -29,8 +29,20 @@ MainWindow::MainWindow(QWidget *parent) :
     m_brightness = new brightness();
     m_utility = new utilities();
 
-    connect(m_utility, &utilities::wifiListReady,
-            this, &MainWindow::onWifiSSidListReady);
+    //connect(m_utility, &utilities::ssidReady,
+    //        this, &MainWindow::onSsidReady);
+    connect(m_utility, &utilities::wifiConnectResult,
+           this, &MainWindow::onWifiConnected);
+    connect(m_utility, &utilities::wifiRadioChanged,
+           this, &MainWindow::onWifiEnabled);
+    connect(m_utility, &utilities::wifiForgetResult,
+           this, &MainWindow::onWifiDeleted);
+    connect(m_utility, &utilities::wifiListReadyComplete,
+           this, &MainWindow::onWifiSSidListReadyComplete);
+    connect(m_utility, &utilities::wifiCurrentInfoReady,
+            this,&MainWindow::onCurrentWifiInfoReady);
+    connect(m_utility, &utilities::wifiDisconnectResult,
+            this, &MainWindow::onwifiDisconnectResult);
 }
 
 //---------------------------------------------------------------------------------------
@@ -121,22 +133,24 @@ void MainWindow::initSocketIO()
 
     //Wifi
     connect(m_worker, &SocketEventWorker::wifiOn,
-            this, &MainWindow::onWifiOn);
+            this, &MainWindow::onWifiOnRequest);    //Async
     connect(m_worker, &SocketEventWorker::wifiOff,
-            this, &MainWindow::onWifiOff);
-    connect(m_worker, &SocketEventWorker::wifiGetStatus,
-            this, &MainWindow::onWifiGetStatus);
-    connect(m_worker, &SocketEventWorker::wifiSsidList,
-            this, &MainWindow::onWifiSsidList);
-    connect(m_worker, &SocketEventWorker::wifiForget,
-            this, &MainWindow::onWifiForget);
-    connect(m_worker, &SocketEventWorker::wifiConnect,
-            this, &MainWindow::onWifiConnect);
-    connect(m_worker, &SocketEventWorker::wifiForget,
-            this, &MainWindow::onWifiForget);
-    connect(m_worker, &SocketEventWorker::wifiForget,
-            this, &MainWindow::onWifiForget);
+            this, &MainWindow::onWifiOffRequest);   //Async
+    connect(m_worker, &SocketEventWorker::wifiScanSsidReqReceived,
+            this, &MainWindow::onwifiScanSsidReqReceived);    //Async
 
+    //connect(m_worker, &SocketEventWorker::wifiGetSsid,
+    //        this, &MainWindow::onWifiGetSsidRequest);  //Async
+    connect(m_worker, &SocketEventWorker::wifiGetSsid,
+            this, &MainWindow::onWifiGetSsidRequest);  //Async
+    connect(m_worker, &SocketEventWorker::wifiSsidListComplete,
+            this, &MainWindow::onWifiSsidListRequestComplete);  //Async
+    connect(m_worker, &SocketEventWorker::wifiForget,
+            this, &MainWindow::onWifiForgetRequest);
+    connect(m_worker, &SocketEventWorker::wifiConnect,
+            this, &MainWindow::onWifiConnectRequest);  //Async
+    connect(m_worker, &SocketEventWorker::wifiDisconnectCurrentSsid,
+            this, &MainWindow::onWifiDisconnectRequest);  //Async
 
     //Utility
     connect(m_worker, &SocketEventWorker::rpiRestart,
@@ -1785,35 +1799,65 @@ void MainWindow::onIncidentIamOK()
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiOn()
+void MainWindow::onWifiOnRequest()
 {
     m_utility->nmcliWifiOn();
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiOff()
+void MainWindow::onWifiOffRequest()
 {
     m_utility->nmcliWifiOff();
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiGetStatus()
+void MainWindow::onwifiScanSsidReqReceived()
+{
+    if (!client || !client->isConnected()) return;
+
+    QString isoMs = QDateTime::currentDateTimeUtc()
+                        .toString(Qt::ISODateWithMs);
+    client->emitEventQstringMsg("wifi_scan_stared",isoMs);
+
+    m_utility->nmcliGetWifiListComplete();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiGetSsidRequest()
 {
     if (client->isConnected()) {
-        QString wifiCurrent = m_utility->nmcliGetSSID();
-        qDebug() << "wifiCurrent " << wifiCurrent;
-        client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
+        //m_utility->nmcliGetSSID();
+        qDebug() << "Get current wifi ssid status";
+        m_utility->nmcliGetCurrentWifiInfo();
+        //qDebug() << "wifiCurrent ";
+        //client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
     } else {
         qDebug() << "Socket DC";
     }
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiSsidList()
+void MainWindow::onWifiSsidListRequest()
 {
     if (client->isConnected()) {
         //QStringList wifiList = m_utility->nmcliGetWifiList();
-        m_utility->nmcliGetWifiList();
+        m_utility->nmcliGetWifiListSSid();
+
+        //qDebug() << "Wifi List " << wifiList;
+        //QJsonObject obj;
+        //obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        //client->emitEventStringMsgJsoned("SSID_LIST",obj);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiSsidListRequestComplete()
+{
+    if (client->isConnected()) {
+        //QStringList wifiList = m_utility->nmcliGetWifiList();
+        m_utility->nmcliGetWifiListComplete();
 
         //qDebug() << "Wifi List " << wifiList;
         //QJsonObject obj;
@@ -1840,38 +1884,170 @@ void MainWindow::onWifiSSidListReady(QStringList ssidList)
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiConnect(const QString &ssid, const QString &pwd)
+void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
+{
+    if (!client || !client->isConnected())
+        return;
+
+    //QJsonArray array;
+    int ssidCountFound = 0;
+
+    for (const WifiAP &ap : wifiList){
+        QJsonObject obj;
+        obj["ssid"]      = ap.ssid;
+        obj["signal"]    = ap.signalDbm;
+        obj["secured"]   = ap.security;
+        obj["channel"]   = ap.channel;
+        obj["frequency"] = ap.band;
+
+        client->emitEventStringMsgJsoned(
+                        "wifi_network_found",
+                       obj
+                        );
+
+        ssidCountFound++;
+        //array.append(obj);
+    }
+
+    QString isoMs = QDateTime::currentDateTimeUtc()
+                        .toString(Qt::ISODateWithMs);
+
+    QJsonObject obj;
+    obj["total"] = QString::number(ssidCountFound);
+    obj["timestamp"] = isoMs;
+
+    client->emitEventStringMsgJsoned(
+                    "wifi_scan_completed",
+                    obj
+                    );
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList)
+{
+    if (!client || !client->isConnected())
+        return;
+
+    m_utility->nmcliGetWifiListComplete();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
 {
     if (client->isConnected()) {
-        if(m_utility->nmcliConnectToWiFi(ssid,pwd)){
-           qDebug() << "Success connect to ssid " << ssid;
-           client->emitEventStringMsgJsoned("SSID_GET",ssid);
-        }else{
-           client->emitEventStringMsgJsoned("SSID_GET","N/A");
-           qDebug() << "Failed connect to ssid " << ssid;
-        }
+        QJsonObject obj;
+        obj["ssid"] = ssid;
+        obj["password"] = pwd;
+        client->emitEventStringMsgJsoned("wifi_connecting",obj);
+        m_utility->nmcliConnectToWiFi(ssid,pwd);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("SSID_GET","");
+        client->emitEventStringMsgJsoned("WIFI_ERROR","");
     }
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiForget(const QString &ssid)
+void MainWindow::onWifiForgetRequest(const QString &ssid)
 {
     if (client->isConnected()) {
-        if(m_utility->nmcliForgetConnection(ssid)){
-           qDebug() << "Success forget from ssid " << ssid;
-           client->emitEventStringMsgJsoned("SSID_FORGET",ssid);
-        }else{
-           client->emitEventStringMsgJsoned("SSID_FORGET","N/A");
-           qDebug() << "Failed connect to ssid " << ssid;
-        }
+        m_utility->nmcliForgetConnection(ssid);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("SSID_GET","");
+        client->emitEventStringMsgJsoned("SIO DC","");
     }
 }
+
+//------------------------------------------------------------------------
+void MainWindow::onSsidReady(QString ssid){
+    qDebug() << "SSID aktif:" << ssid;
+
+    // kirim ke socket di sini
+    if (client->isConnected()) {
+        client->emitEventStringMsgJsoned("wifi_status",ssid);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
+{
+    if (!client || !client->isConnected())
+         return;
+
+    client->emitEventStringMsgJsoned("wifi_status", obj);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiConnected(bool success,const QString &ssid,const QString &ip){
+    if (!success) {
+        client->emitEventStringMsgJsoned("Wifi Failed", ssid);
+        return;
+    }
+
+    QString msg = QString("%1 (%2)").arg(ssid, ip);
+
+    if (client->isConnected()) {
+        client->emitEventStringMsgJsoned("Wifi Connected to", msg);
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiDisconnectRequest()
+{
+    if (client->isConnected()) {
+        qDebug() << "DC current SSid Request";
+        m_utility->nmcliDisconnectCurrentWifi();
+    } else {
+        qDebug() << "Socket DC";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onwifiDisconnectResult(bool success, QString ssid, QString message)
+{
+    if (success) {
+        qDebug() << "WiFi disconnected:" << ssid;
+        if (client->isConnected()) {
+            QJsonObject obj;
+            obj["ssid"] = ssid;
+            obj["disconnectedBy"] = "user";
+            client->emitEventStringMsgJsoned("wifi_disconnected", obj);
+        }
+    } else {
+        qDebug() << "Disconnect failed:" << message;
+        if (client->isConnected()) {
+            client->emitEventStringMsgJsoned("wifi_disconnected", message);
+        }
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiEnabled(bool on)
+{
+    if (on) {
+        qDebug() << "Wifi Enable OK";
+        client->emitEventStringMsgJsoned("Wifi Enabled Success","");
+    }else{
+        qDebug() << "Wifi Enable Fail";
+        client->emitEventStringMsgJsoned("Wifi Enabled Fail","");
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiDeleted(bool success, QString ssid, QString message)
+{
+    if (success) {
+        qDebug() << "SSID deleted " << ssid;
+        client->emitEventStringMsgJsoned("SSid deleted ok",ssid);
+    }else{
+        qDebug() << "Wifi Enable Fail";
+        client->emitEventStringMsgJsoned("SSid deleted fail",ssid);
+    }
+}
+
 
 //------------------------------------------------------------------------
 void MainWindow::onRpiRestart()
@@ -1908,23 +2084,24 @@ void MainWindow::on_btnPlayIamOK_clicked()
 void MainWindow::on_btnScanWifiList_clicked()
 {
    qDebug() << "SSID List ";
-   m_utility->nmcliGetWifiList();
+   m_utility->nmcliGetWifiListSSid();
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnGetSSID_clicked()
 {
-    qDebug() << "SSID " << m_utility->nmcliGetSSID();
+    qDebug() << "SSID get ";
+    m_utility->nmcliGetSSID();
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnWifiCon_clicked()
 {
-    if(m_utility->nmcliConnectToWiFi("Parametrik 5G-01","tabassam")){
-        qDebug() << "Sukses";
-    }else{
-        qDebug() << "Gagal ";
-    }
+    m_utility->nmcliConnectToWiFi("Parametrik 5G-01","tabassam");
+    //    qDebug() << "Sukses";
+    //}else{
+    //    qDebug() << "Gagal ";
+    //}
 }
 
 //------------------------------------------------------------------------

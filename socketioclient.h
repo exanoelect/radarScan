@@ -12,6 +12,8 @@
 #include <functional>
 #include <map>
 #include <radar.h>
+#include <volume.h>
+#include <brightness.h>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -64,7 +66,7 @@ public:
 
     // Robot commands
     void sendFallDetected();
-    void sendDeviceReady(int brightness = 50, int volume = 10);
+    void sendDeviceReady();
     void sendNoResponseFall(const QString &originalTimestamp);
     void sendScheduleEvent(const QString &scheduleType,
                            const QJsonObject &dateParams);
@@ -106,6 +108,12 @@ private:
     int m_reconnectAttempts;
     bool namespaceConnected = false;
     int m_nextAckId;
+
+    volume sioVolume;
+    brightness sioBritness;
+
+    int vol;
+    int britnes;
 
     QString m_lastEventName;
     QJsonValue m_lastEventData;

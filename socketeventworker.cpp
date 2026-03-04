@@ -105,15 +105,23 @@ void SocketEventWorker::process()
             qDebug() << "Wifi request:" << eventName;
             emit wifiOff();
         }
-        else if (eventName == "WIFI_GET_CURRENT_SSID") {
-            qDebug() << "Wifi request:" << eventName;
-            emit wifiGetStatus();
+        else if (eventName == "disconnect_wifi") {
+            qDebug() << "Wifi disconnect from current ssid :" << eventName;
+            emit wifiDisconnectCurrentSsid();
         }
-        else if (eventName == "WIFI_SSID_LIST") {
+        else if (eventName == "get_wifi_status") {
             qDebug() << "Wifi request:" << eventName;
-            emit wifiSsidList();
+            emit wifiGetSsid();
         }
-        else if (eventName.startsWith("WIFI_SSID_CONNECT")) {
+        else if (eventName == "scan_wifi_stream") {
+            qDebug() << "Wifi scan re received:" << eventName;
+            emit wifiScanSsidReqReceived();
+        }
+        //else if (eventName == "WIFI_SSID_LIST") {
+        //    qDebug() << "Wifi request:" << eventName;
+        //    emit wifiSsidListComplete();//wifiSsidList();
+        //}
+        else if (eventName.startsWith("connect_wifi")) {
           if (data.isObject()) {
                 QJsonObject obj = data.toObject();
                 QString ssid = obj["ssid"].toString();

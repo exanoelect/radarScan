@@ -7,111 +7,254 @@ utilities::utilities(QObject *parent)
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-QString utilities::nmcliGetSSID()
+void utilities::nmcliGetSSID()
 {
-    QProcess process;
+    runNmcli(
+                //nmcli -t -f connection show --active
+        {"-t", "-f", "NAME", "connection", "show", "--active"},
+        [this](bool success, QString output) {
 
-    process.start("nmcli", {"-t", "-f", "NAME", "connection", "show", "--active"});
+            if (!success) {
+                emit ssidReady(QString());
+                return;
+            }
 
-    if (!process.waitForFinished(3000))
-        return {};
+            QString ssid = output.trimmed().section('\n', 0, 0);
+            emit ssidReady(ssid);
+        });
+}
 
-    const QString output = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
 
-    return output.section('\n', 0, 0);  // ambil baris pertama
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::nmcliGetWifiListSSid()
+{
+    runNmcli(
+        //nmcli -t -f SSID device wifi list
+        {"-t", "-f", "SSID", "device", "wifi", "list"},
+        [this](bool success, QString output) {
+            if (!success) {
+                emit wifiListReady(QStringList());
+                return;
+            }
 
+            QStringList list =
+                output.trimmed().split('\n', Qt::SkipEmptyParts);
+
+            list.removeAll("");
+
+            emit wifiListReady(list);
+        }
+    );
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-void utilities::nmcliGetWifiList()
+void utilities::nmcliGetWifiListComplete()
 {
-    QProcess *process = new QProcess(this);
+    QStringList args;
+    args << "-t"
+         << "-f"
+         << "SSID,CHAN,FREQ,RATE,SIGNAL,SECURITY"
+         << "device"
+         << "wifi"
+         << "list"
+         << "--rescan"
+         << "yes";
 
-    connect(process, &QProcess::finished,
-            this, [this, process](int, QProcess::ExitStatus) {
+    runNmcli(args, [this](bool success, QString output)
+    {
+        if (!success)
+        {
+            emit wifiListReady({});
+            return;
+        }
 
-        QString output =
-            QString::fromUtf8(process->readAllStandardOutput()).trimmed();
+        QList<WifiAP> wifiList = parseNmcliOutput(output);
 
-        QStringList ssidList =
-            output.split('\n', Qt::SkipEmptyParts);
-
-        ssidList.removeAll("");
-
-        emit wifiListReady(ssidList);
-
-        process->deleteLater();
+        emit wifiListReadyComplete(wifiList);
     });
+}
 
-    //nmcli -t -f SSID device wifi list
-    process->start("nmcli",
-                   QStringList()
-                   << "-t" << "-f" << "SSID"
-                   << "device" << "wifi" << "list");
-    //               << "--rescan" << "no");
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::nmcliGetCurrentWifiInfo()
+{
+    QString script = R"SCRIPT(
+    IF=wlan0
+    SSID=$(nmcli -t -f ACTIVE,SSID dev wifi 2>/dev/null | awk -F: '/^yes/ {print $2}')
+    SIGNAL=$(nmcli -t -f IN-USE,SIGNAL dev wifi 2>/dev/null | awk -F: '/^\*/ {print $2}')
+    IP=$(nmcli -t -f IP4.ADDRESS device show $IF 2>/dev/null | head -n1 | cut -d: -f2 | cut -d/ -f1)
+    CONN=$(nmcli -t -f GENERAL.CONNECTION device show $IF 2>/dev/null | cut -d: -f2)
+
+    TS=0
+    if [ -n "$CONN" ]; then
+        TS=$(nmcli -t -f connection.timestamp connection show "$CONN" 2>/dev/null)
+    fi
+
+    NOW=$(date +%s)
+
+    if [ -z "$SIGNAL" ]; then
+        SIGNAL=0
+    fi
+
+    if [ -n "$TS" ]; then
+        UPTIME=$((NOW-TS))
+    else
+        UPTIME=0
+    fi
+
+    printf '{"ssid":"%s","signal_dbm":%d,"ip":"%s","uptime_sec":%d}' \
+    "$SSID" "$((SIGNAL/2-100))" "$IP" "$UPTIME"
+    )SCRIPT";
+
+    QStringList args;
+    args << "-c" << script;
+
+    runNmcliBash({"-c", script}, [this](bool success, QString output)
+    {
+        if (!success)
+        {
+            qDebug() << "bash exe fail";
+            qDebug() << "STDOUT:" << output;
+           // qDebug() << "STDERR:" << error;
+           // qDebug() << "ExitCode:" << exitCode;
+
+            emit wifiCurrentInfoReady(QJsonObject());
+            return;
+        }
+
+        QJsonParseError err;
+        QJsonDocument doc = QJsonDocument::fromJson(output.trimmed().toUtf8(), &err);
+
+        if (err.error != QJsonParseError::NoError || !doc.isObject())
+        {
+            qDebug() << "JSON parse error";
+            emit wifiCurrentInfoReady(QJsonObject());
+            return;
+        }
+
+        qDebug() << "bash exe ok";
+        emit wifiCurrentInfoReady(doc.object());
+    });
 }
 
 
 //------------------------------------------------------------------------------------------------------------------------
 void utilities::nmcliWifiOn()
-{
-    QProcess process;
-    process.start("bash", QStringList() << "-c" << "nmcli radio wifi on");
-    process.waitForFinished();
-    qDebug() << "WiFi disabled: " << process.readAllStandardOutput();
+{    
+    runNmcli(
+        {"radio", "wifi", "on"},
+        [this](bool success, QString output) {
+            if (success) {
+                qDebug() << "WiFi Enabled";
+            }else{
+                qDebug() << "Failed enable WiFi:" << output;
+            }
+
+            emit wifiRadioChanged(success);
+        }
+    );
 }
 
 //------------------------------------------------------------------------------------------------------------------------
 void utilities::nmcliWifiOff()
 {
-    QProcess process;
-    process.start("bash", QStringList() << "-c" << "nmcli radio wifi off");
-    process.waitForFinished();
-    qDebug() << "WiFi disabled: " << process.readAllStandardOutput();
+    runNmcli(
+        {"radio", "wifi", "off"},
+        [this](bool success, QString output) {
+
+            if (success) {
+                qDebug() << "WiFi OFF";
+            }else{
+                qDebug() << "Failed Disable  WiFi:" << output;
+            }
+
+            // Optional: bisa emit signal kalau perlu
+            emit wifiRadioChanged(false);
+        });
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-bool utilities::nmcliConnectToWiFi(const QString &ssid, const QString &password)
+void utilities::nmcliConnectToWiFi(const QString &ssid,
+                                   const QString &password)
 {
-    QProcess process;
-    process.start("nmcli",
-                  {"device","wifi","connect", ssid, "password", password});
+    runNmcli(
+        {"device","wifi","connect", ssid, "password", password},
+        [this, ssid](bool success, QString output) {
 
-    if (!process.waitForStarted())
-        return false;
+            if (!success) {
+                emit wifiConnectResult(false, ssid, "");
+                return;
+            }
 
-    if (!process.waitForFinished(15000))
-        return false;
+            // Kalau connect sukses, ambil IP address
+            runNmcli(
+                {"-t", "-f", "IP4.ADDRESS", "device", "show", "wlan0"},
+                [this, ssid](bool ipSuccess, QString ipOutput) {
 
-    qDebug() << "STDOUT:" << process.readAllStandardOutput();
-    qDebug() << "STDERR:" << process.readAllStandardError();
+                    QString ipAddress;
 
-    return (process.exitStatus() == QProcess::NormalExit &&
-            process.exitCode() == 0);
+                    if (ipSuccess) {
+                        // Format biasanya: IP4.ADDRESS[1]:192.168.1.23/24
+                        QString line = ipOutput.trimmed().section('\n',0,0);
+                        ipAddress = line.section(':',1,1)
+                                         .section('/',0,0);
+                    }
+
+                    emit wifiConnectResult(true, ssid, ipAddress);
+                });
+    });
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-bool utilities::nmcliForgetConnection(const QString &ssid)
+void utilities::nmcliDisconnectCurrentWifi()
 {
-    QProcess process;
+    // STEP 1: Ambil SSID aktif
+    runNmcli(
+        {"-t", "-f", "GENERAL.CONNECTION", "device", "show", "wlan0"},
+        [this](bool ok, QString output) {
 
-    process.start("nmcli",
-                   QStringList()
-                       << "connection"
-                       << "delete"
-                       << ssid);
+            if (!ok) {
+                emit wifiDisconnectResult(false, "", output);
+                return;
+            }
 
-    if (!process.waitForStarted())
-         return false;
+            // Output contoh:
+            // GENERAL.CONNECTION:Parametrik 5G-01
 
-    if (!process.waitForFinished(5000))
-         return false;
+            QString line = output.trimmed();
+            QString ssid = line.section(':', 1).trimmed();
 
-    qDebug() << "STDOUT:" << process.readAllStandardOutput();
-    qDebug() << "STDERR:" << process.readAllStandardError();
+            if (ssid.isEmpty() || ssid == "--") {
+                emit wifiDisconnectResult(false, "", "No active WiFi");
+                return;
+            }
 
-    return (process.exitStatus() == QProcess::NormalExit &&
-            process.exitCode() == 0);
+            qDebug() << "Active SSID:" << ssid;
+
+            // STEP 2: Disconnect SSID tersebut
+            runNmcli(
+                {"connection", "down", ssid},
+                [this, ssid](bool ok2, QString output2) {
+
+                    emit wifiDisconnectResult(ok2, ssid, output2);
+                }
+            );
+        }
+    );
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::nmcliForgetConnection(const QString &ssid)
+{
+    runNmcli(
+        {"connection", "delete", ssid},
+        [this, ssid](bool success, QString output) {
+
+            qDebug() << "Forget WiFi result:" << output;
+
+            emit wifiForgetResult(success, ssid, output);
+        }
+    );
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -147,4 +290,118 @@ bool utilities::rpiShutdown()
     return (process.exitStatus() == QProcess::NormalExit &&
             process.exitCode() == 0);
 }
+
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::runNmcli(QStringList args,
+                         std::function<void(bool, QString)> callback)
+{
+    QProcess *process = new QProcess(this);
+
+    connect(process, &QProcess::finished,
+            this, [process, callback](int exitCode,
+                                      QProcess::ExitStatus status) {
+
+        bool success = (status == QProcess::NormalExit && exitCode == 0);
+        QString stdoutStr = QString::fromUtf8(process->readAllStandardOutput());
+        QString stderrStr = QString::fromUtf8(process->readAllStandardError());
+
+        QString message = success ? stdoutStr : stderrStr;
+        callback(success, message);
+        process->deleteLater();
+    });
+
+    connect(process, &QProcess::errorOccurred,
+            this, [process, callback](QProcess::ProcessError) {
+
+        callback(false, "Process error");
+        process->deleteLater();
+    });
+
+    process->start("nmcli", args);
+
+    QTimer::singleShot(15000, process, [process]() {
+        if (process->state() != QProcess::NotRunning)
+            process->kill();
+    });
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::runNmcliBash(QStringList args, std::function<void (bool, QString)> callback)
+{
+    QProcess *process = new QProcess(this);
+
+    connect(process, &QProcess::finished,
+            this, [process, callback](int exitCode,
+                                      QProcess::ExitStatus status) {
+
+        bool success = (status == QProcess::NormalExit && exitCode == 0);
+        QString stdoutStr = QString::fromUtf8(process->readAllStandardOutput());
+        QString stderrStr = QString::fromUtf8(process->readAllStandardError());
+
+        QString message = success ? stdoutStr : stderrStr;
+        callback(success, message);
+        process->deleteLater();
+    });
+
+    connect(process, &QProcess::errorOccurred,
+            this, [process, callback](QProcess::ProcessError) {
+
+        callback(false, "Process error");
+        process->deleteLater();
+    });
+
+    process->start("bash", args);
+
+    QTimer::singleShot(15000, process, [process]() {
+        if (process->state() != QProcess::NotRunning)
+            process->kill();
+    });
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+QList<WifiAP> utilities::parseNmcliOutput(const QString &output)
+{
+    QList<WifiAP> list;
+
+    QStringList lines = output.split('\n', Qt::SkipEmptyParts);
+
+    for (const QString &line : lines)
+    {
+        QStringList parts = line.split(':');
+
+        // Pastikan field lengkap
+        if (parts.size() < 6)
+            continue;
+
+        WifiAP ap;
+
+        ap.ssid = parts[0].trimmed();   // bisa kosong
+        ap.channel = parts[1].toInt();
+
+        // remove " MHz"
+        QString freqStr = parts[2];
+        freqStr.remove(" MHz");
+        ap.freqMHz = freqStr.toInt();
+
+        // tentukan band
+        ap.band = (ap.freqMHz < 3000) ? "2.4GHz" : "5GHz";
+
+        // remove " Mbit/s"
+        QString rateStr = parts[3];
+        rateStr.remove(" Mbit/s");
+        ap.rateMbps = rateStr.toInt();
+
+        ap.signalPercent = parts[4].toInt();
+
+        // konversi ke dBm (estimasi)
+        ap.signalDbm = (ap.signalPercent / 2) - 100;
+
+        ap.security = parts[5].trimmed();
+
+        list.append(ap);
+    }
+
+    return list;
+}
+
 

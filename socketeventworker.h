@@ -43,8 +43,11 @@ signals:
     //Wifi
     void wifiOn();
     void wifiOff();
-    void wifiGetStatus();
+    void wifiGetSsid();
+    void wifiScanSsidReqReceived();
+    void wifiDisconnectCurrentSsid();
     void wifiSsidList();
+    void wifiSsidListComplete();
     void wifiConnect(const QString &ssid,const QString &pwd);
     void wifiForget(const QString &ssid);
 

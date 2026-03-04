@@ -7,7 +7,7 @@
 //#include <iostream>
 #include <QRandomGenerator>  // <-- TAMBAHKAN INI
 
-
+//ST-2026-04-IND-PRD-V1-000001
 
 SocketIOClient::SocketIOClient(QObject *parent)
     : QObject(parent)
@@ -27,6 +27,9 @@ SocketIOClient::SocketIOClient(QObject *parent)
 
     m_reconnectTimer->setSingleShot(true);
     connect(m_reconnectTimer, &QTimer::timeout, this, &SocketIOClient::attemptReconnect);
+
+    vol = sioVolume.getVolumePercent();
+    britnes = sioBritness.getBrightnessPercent();
 }
 
 //------------------------------------------------------------------------
@@ -349,6 +352,7 @@ void SocketIOClient::handleIncomingAck(int ackId, const QJsonValue &data)
 
 
 //------------------------------------------------------------------------
+/*
 void SocketIOClient::handleIncomingEvent(const QString &eventName,
                                          const QJsonValue &payload,
                                          int ackId)
@@ -406,7 +410,7 @@ void SocketIOClient::handleIncomingEvent(const QString &eventName,
         // Event ini akan ditangani oleh eventReceived signal
     }
 }
-
+*/
 
 //------------------------------------------------------------------------
 void SocketIOClient::sendAcknowledgment(const QString &eventName,
@@ -629,7 +633,7 @@ void SocketIOClient::sendNoResponseFall(const QString &originalTimestamp)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::sendDeviceReady(int brightness, int volume)
+void SocketIOClient::sendDeviceReady()
 {
     // Gunakan QRandomGenerator untuk Qt 6
     // Generate device ID yang unik
@@ -638,9 +642,9 @@ void SocketIOClient::sendDeviceReady(int brightness, int volume)
 
     QJsonObject payload{
         //{"device_id", deviceId},
-        {"device_id", "raspberry"},
-        {"brightness", brightness},
-        {"volume", volume}
+        {"device_id", "ST-2026-04-IND-PRD-V1-000001"},
+        {"brightness", QString::number(britnes)},
+        {"volume", QString::number(vol)}
     };
     //emitEvent("DEVICE_READY", payload);
     emitEvent1("DEVICE_READY", payload, [](QJsonValue ackVal) {

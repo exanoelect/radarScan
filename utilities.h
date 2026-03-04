@@ -20,6 +20,23 @@
 #include <QSpacerItem>
 #include <QThread>
 #include <QRegularExpression>
+#include <QTimer>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QJsonParseError>
+
+struct WifiAP
+{
+    QString ssid;
+    int channel;
+    int freqMHz;
+    QString band;      // "2.4GHz" atau "5GHz"
+    int rateMbps;
+    int signalPercent;
+    int signalDbm;
+    QString security;
+};
+
 
 class utilities : public QObject
 {
@@ -29,17 +46,40 @@ public:
 
 signals:
     void wifiListReady(QStringList ssidList);
+    void wifiListReadyComplete(QList<WifiAP> wifiList);
+
+    void ssidReady(QString ssid);
+    void wifiConnectResult(bool success,
+                           QString ssid,
+                           QString ipAddress);
+    void wifiRadioChanged(bool success);
+    void wifiForgetResult(bool success, QString ssid, QString message);
+    void wifiCurrentInfoReady(QJsonObject info);
+    void wifiDisconnectResult(bool success,
+                               QString ssid,
+                               QString message);
+    //wifiDisconnectResult(bool ok, QString ssid, QString output);
+
 public slots:
-    QString nmcliGetSSID();
-    void nmcliGetWifiList();
+    void nmcliGetSSID();
+    void nmcliGetWifiListSSid();
+    void nmcliGetWifiListComplete();
+    void nmcliGetCurrentWifiInfo();
 
     void nmcliWifiOn();
     void nmcliWifiOff();
-    bool nmcliConnectToWiFi(const QString &ssid, const QString &password);
-    bool nmcliForgetConnection(const QString &ssid);
+    void nmcliConnectToWiFi(const QString &ssid, const QString &password);
+    void nmcliDisconnectCurrentWifi();
+    void nmcliForgetConnection(const QString &ssid);
 
     bool rpiRestart();
     bool rpiShutdown();
+
+private:
+    void runNmcli(QStringList args,std::function<void(bool, QString)> callback);
+    void runNmcliBash(QStringList args,std::function<void(bool, QString)> callback);
+
+    QList<WifiAP> parseNmcliOutput(const QString &output);
 };
 
 #endif // UTILITIES_H
