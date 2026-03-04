@@ -12,6 +12,7 @@ class SocketEventWorker : public QObject
     Q_OBJECT
 public:
     explicit SocketEventWorker(QObject *parent = nullptr);
+    ~SocketEventWorker();
 
     void enqueue(const QString &eventName, const QJsonValue &data);
     void stop();

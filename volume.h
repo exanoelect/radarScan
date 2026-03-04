@@ -11,6 +11,7 @@ class volume : public QObject
     Q_OBJECT
 public:
     explicit volume(QObject *parent = nullptr);
+    ~volume();
 
 signals:
 public slots:

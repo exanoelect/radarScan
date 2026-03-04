@@ -7,6 +7,10 @@ PayloadProcessor::PayloadProcessor(const QString &id, QObject *parent)
 {
 }
 
+PayloadProcessor::~PayloadProcessor(){
+
+}
+
 //---------------------------------------------------------------------------------------
 void PayloadProcessor::initPort(const QString &portName)
 {

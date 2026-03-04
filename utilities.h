@@ -24,6 +24,11 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonParseError>
+#include <QDBusInterface>
+#include <QDBusConnection>
+#include <QDBusObjectPath>
+#include <QDBusReply>
+#include <QDBusArgument>
 
 struct WifiAP
 {
@@ -43,6 +48,7 @@ class utilities : public QObject
     Q_OBJECT
 public:
     explicit utilities(QObject *parent = nullptr);
+    ~utilities();
 
 signals:
     void wifiListReady(QStringList ssidList);
@@ -51,14 +57,16 @@ signals:
     void ssidReady(QString ssid);
     void wifiConnectResult(bool success,
                            QString ssid,
-                           QString ipAddress);
+                           QString ipAddress,
+                           QString gateway);
     void wifiRadioChanged(bool success);
     void wifiForgetResult(bool success, QString ssid, QString message);
     void wifiCurrentInfoReady(QJsonObject info);
     void wifiDisconnectResult(bool success,
                                QString ssid,
                                QString message);
-    //wifiDisconnectResult(bool ok, QString ssid, QString output);
+    void wifiConnectProgress(int state,
+                             QString stateText);
 
 public slots:
     void nmcliGetSSID();
@@ -71,15 +79,24 @@ public slots:
     void nmcliConnectToWiFi(const QString &ssid, const QString &password);
     void nmcliDisconnectCurrentWifi();
     void nmcliForgetConnection(const QString &ssid);
+    QString deviceStateToString(uint state);
 
     bool rpiRestart();
     bool rpiShutdown();
+
+private slots:
+    void onDeviceStateChanged(uint newState,
+                              uint oldState,
+                              uint reason);
 
 private:
     void runNmcli(QStringList args,std::function<void(bool, QString)> callback);
     void runNmcliBash(QStringList args,std::function<void(bool, QString)> callback);
 
     QList<WifiAP> parseNmcliOutput(const QString &output);
+    QString wlanDevicePath;
+
+    void initWlanMonitor();
 };
 
 #endif // UTILITIES_H

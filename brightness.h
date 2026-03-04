@@ -10,6 +10,7 @@ class brightness : public QObject
     Q_OBJECT
 public:
     explicit brightness(QObject *parent = nullptr);
+    ~brightness();
 
 signals:
 public slots:

@@ -7,6 +7,10 @@ SocketEventWorker::SocketEventWorker(QObject *parent)
 {
 }
 
+SocketEventWorker::~SocketEventWorker(){
+
+}
+
 //------------------------------------------------------------------------
 void SocketEventWorker::stop()
 {

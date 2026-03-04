@@ -217,13 +217,21 @@ private slots:
     void onCurrentWifiInfoReady(QJsonObject obj);
     void onWifiConnected(bool success,
                          const QString &ssid,
-                         const QString &ip);
+                         const QString &ip,
+                         const QString gateway);
     void onWifiDisconnectRequest();
     void onwifiDisconnectResult(bool success,
                                 QString ssid,
                                 QString message);
     void onWifiEnabled(bool on);
     void onWifiDeleted(bool success, QString ssid, QString message);
+
+    void onWifiProgress(int state, QString stateText);
+    void onWifiConnectFinished(bool success,
+                                QString ssid,
+                                QString ip,
+                                QString gateway);
+
 
     void onRpiRestart();
     void onRpiShutdown();

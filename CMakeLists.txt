@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Multimedia
     WebSockets
     Core
+    DBus
     #gpiod
 )
 
@@ -80,6 +81,7 @@ target_link_libraries(radarScan PRIVATE
     Qt6::Multimedia
     Qt6::WebSockets
     Qt6::Core
+    Qt6::DBus
     #gpiod
 )
 

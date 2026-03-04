@@ -43,6 +43,11 @@ MainWindow::MainWindow(QWidget *parent) :
             this,&MainWindow::onCurrentWifiInfoReady);
     connect(m_utility, &utilities::wifiDisconnectResult,
             this, &MainWindow::onwifiDisconnectResult);
+
+    connect(m_utility,&utilities::wifiConnectProgress,
+            this,&MainWindow::onWifiProgress);
+    connect(m_utility,&utilities::wifiConnectResult,
+            this,&MainWindow::onWifiConnectFinished);
 }
 
 //---------------------------------------------------------------------------------------
@@ -1942,7 +1947,7 @@ void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
         m_utility->nmcliConnectToWiFi(ssid,pwd);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("WIFI_ERROR","");
+        client->emitEventStringMsgJsoned("wifi_connection_failed","socketio_closed");
     }
 }
 
@@ -1979,16 +1984,20 @@ void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onWifiConnected(bool success,const QString &ssid,const QString &ip){
+void MainWindow::onWifiConnected(bool success, const QString &ssid, const QString &ip, const QString gateway){
     if (!success) {
-        client->emitEventStringMsgJsoned("Wifi Failed", ssid);
+        client->emitEventStringMsgJsoned("wifi_connection_failed", ssid);
         return;
     }
 
     QString msg = QString("%1 (%2)").arg(ssid, ip);
 
     if (client->isConnected()) {
-        client->emitEventStringMsgJsoned("Wifi Connected to", msg);
+        QJsonObject obj;
+        obj["ssid"] = ssid;
+        obj["ip"] = ip;
+        obj["gateway"] = gateway;
+        client->emitEventStringMsgJsoned("wifi_connected", obj);
     } else {
         qDebug() << "Socket DC";
     }
@@ -2048,6 +2057,70 @@ void MainWindow::onWifiDeleted(bool success, QString ssid, QString message)
     }
 }
 
+//------------------------------------------------------------------------
+void MainWindow::onWifiProgress(int state, QString stateText)
+{
+    qDebug() << "WiFi State:" << state
+              << stateText;
+
+    if (client->isConnected()) {
+        int percent = 0;
+        QString progressText = m_utility->deviceStateToString(state);
+
+        switch (state) {
+        case 30: percent = 0; break;
+        case 40: percent = 10; break;
+        case 50: percent = 25; break;
+        case 60: percent = 40; break;
+        case 70: percent = 60; break;
+        case 80: percent = 75; break;
+        case 90: percent = 90; break;
+        case 100:
+            percent = 100;
+            progressText = "connected";
+            break;
+
+        case 120:   // Failed
+            percent = 0;
+            progressText = "failed";
+            break;
+
+        default:
+            percent = 0;
+            break;
+        }
+
+         // kirim ke frontend
+
+        QJsonObject obj;
+        obj["stage"] =  progressText;
+        obj["progress"] = percent;
+
+        client->emitEventStringMsgJsoned("wifi_connection_progress", obj);
+     }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, QString gateway)
+{
+    QJsonObject obj;
+
+    obj["success"] = success;
+    obj["ssid"] = ssid;
+    obj["ip"] = ip;
+    obj["gateway"] = gateway;
+
+    if (client->isConnected()) {
+        client->emitEventStringMsgJsoned("wifi_connect_result", obj);
+    }
+
+    if (success)
+        qDebug() << "Connected to" << ssid
+                 << "IP:" << ip
+                 << "GW:" << gateway;
+    else
+        qDebug() << "WiFi Connect Failed";
+}
 
 //------------------------------------------------------------------------
 void MainWindow::onRpiRestart()

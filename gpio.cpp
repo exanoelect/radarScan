@@ -1,8 +1,19 @@
 #include "gpio.h"
 
+#ifdef PLATFORM_LINUX
+
+extern "C" {
+#include <gpiod.h>
+}
+#endif
+
 gpio::gpio(QObject *parent)
     : QObject{parent}
 {}
+
+gpio::~gpio(){
+
+}
 
 //------------------------------------------------------------------------------------------------------------------------
 int gpio::setupGPIO()

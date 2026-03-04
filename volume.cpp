@@ -5,6 +5,10 @@ volume::volume(QObject *parent)
     : QObject{parent}
 {}
 
+volume::~volume(){
+
+}
+
 //---------------------------------------------------------------------------------------
 int volume::getVolumePercent()
 {

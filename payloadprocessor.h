@@ -10,6 +10,7 @@ class PayloadProcessor : public QObject {
     Q_OBJECT
 public:
     explicit PayloadProcessor(const QString &id, QObject *parent = nullptr);
+    ~PayloadProcessor();
 
 public slots:
     void initPort(const QString &portName);

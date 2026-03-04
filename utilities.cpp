@@ -1,8 +1,13 @@
 #include "utilities.h"
 
+
 utilities::utilities(QObject *parent)
     : QObject{parent}
 {
+    initWlanMonitor();
+}
+
+utilities::~utilities(){
 
 }
 
@@ -176,33 +181,54 @@ void utilities::nmcliWifiOff()
 void utilities::nmcliConnectToWiFi(const QString &ssid,
                                    const QString &password)
 {
+    emit wifiConnectProgress(0, "connecting");
+
     runNmcli(
         {"device","wifi","connect", ssid, "password", password},
         [this, ssid](bool success, QString output) {
 
             if (!success) {
-                emit wifiConnectResult(false, ssid, "");
+                emit wifiConnectResult(false, ssid, "", "");
                 return;
             }
 
-            // Kalau connect sukses, ambil IP address
+            // Kalau connect sukses, ambil IP + Gateway sekaligus
             runNmcli(
-                {"-t", "-f", "IP4.ADDRESS", "device", "show", "wlan0"},
-                [this, ssid](bool ipSuccess, QString ipOutput) {
+                {"-g", "IP4.ADDRESS,IP4.GATEWAY",
+                 "device", "show", "wlan0"},
+                [this, ssid](bool netSuccess, QString netOutput) {
 
                     QString ipAddress;
+                    QString gateway;
 
-                    if (ipSuccess) {
-                        // Format biasanya: IP4.ADDRESS[1]:192.168.1.23/24
-                        QString line = ipOutput.trimmed().section('\n',0,0);
-                        ipAddress = line.section(':',1,1)
-                                         .section('/',0,0);
+                    if (netSuccess) {
+
+                        QStringList lines =
+                            netOutput.trimmed()
+                                     .split('\n', Qt::SkipEmptyParts);
+
+                        // Biasanya:
+                        // 0 = 192.168.1.23/24
+                        // 1 = 192.168.1.1
+
+                        if (lines.size() > 0) {
+                            ipAddress =
+                                lines[0].section('/', 0, 0);
+                        }
+
+                        if (lines.size() > 1) {
+                            gateway = lines[1];
+                        }
                     }
 
-                    emit wifiConnectResult(true, ssid, ipAddress);
+                    emit wifiConnectResult(true,
+                                           ssid,
+                                           ipAddress,
+                                           gateway);
                 });
-    });
+        });
 }
+
 
 //------------------------------------------------------------------------------------------------------------------------
 void utilities::nmcliDisconnectCurrentWifi()
@@ -290,6 +316,28 @@ bool utilities::rpiShutdown()
     return (process.exitStatus() == QProcess::NormalExit &&
             process.exitCode() == 0);
 }
+
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::onDeviceStateChanged(uint newState,
+                                     uint oldState,
+                                     uint reason)
+{
+    Q_UNUSED(oldState)
+    Q_UNUSED(reason)
+
+    QString text = deviceStateToString(newState);
+
+    emit wifiConnectProgress(newState, text);
+
+    if (newState == 100) {
+        qDebug() << "WiFi Fully Activated";
+    }
+
+    if (newState == 120) {
+        qDebug() << "WiFi Failed";
+    }
+}
+
 
 //------------------------------------------------------------------------------------------------------------------------
 void utilities::runNmcli(QStringList args,
@@ -402,6 +450,70 @@ QList<WifiAP> utilities::parseNmcliOutput(const QString &output)
     }
 
     return list;
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+QString utilities::deviceStateToString(uint state)
+{
+    switch (state) {
+    case 20: return "Unavailable";
+    case 30: return "Disconnected";
+    case 40: return "Preparing";
+    case 50: return "Configuring";
+    case 60: return "Need Auth";
+    case 70: return "IP Config";
+    case 80: return "IP Check";
+    case 90: return "Secondaries";
+    case 100: return "Activated";
+    case 120: return "Failed";
+    default: return "Unknown";
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+void utilities::initWlanMonitor()
+{
+    QDBusInterface nm(
+        "org.freedesktop.NetworkManager",
+        "/org/freedesktop/NetworkManager",
+        "org.freedesktop.NetworkManager",
+        QDBusConnection::systemBus());
+
+    QDBusReply<QList<QDBusObjectPath>> reply =
+        nm.call("GetDevices");
+
+    if (!reply.isValid())
+        return;
+
+    for (const QDBusObjectPath &path : reply.value()) {
+
+        QDBusInterface dev(
+            "org.freedesktop.NetworkManager",
+            path.path(),
+            "org.freedesktop.NetworkManager.Device",
+            QDBusConnection::systemBus());
+
+        QString iface =
+            dev.property("Interface").toString();
+
+        if (iface == "wlan0") {
+
+            wlanDevicePath = path.path();
+
+            QDBusConnection::systemBus().connect(
+                "org.freedesktop.NetworkManager",
+                wlanDevicePath,
+                "org.freedesktop.NetworkManager.Device",
+                "StateChanged",
+                this,
+                SLOT(onDeviceStateChanged(uint,uint,uint)));
+
+            qDebug() << "Monitoring wlan0 at:"
+                     << wlanDevicePath;
+
+            break;
+        }
+    }
 }
 
 

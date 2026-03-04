@@ -5,6 +5,9 @@ brightness::brightness(QObject *parent)
     : QObject{parent}
 {}
 
+brightness::~brightness(){
+
+}
 //------------------------------------------------------------------------
 int brightness::getBrightness()
 {
