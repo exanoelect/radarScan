@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QProcess>
 #include <qdebug.h>
+#include <QFile>
+#include <QDir>
 
 class brightness : public QObject
 {
@@ -18,6 +20,9 @@ public slots:
     int getBrightnessPercent();
     bool setBrightnessPercent(int percent);
     bool setBrightness(int value);
+
+    QString getBacklightBasePath();
+
 };
 
 #endif // BRIGHTNESS_H
