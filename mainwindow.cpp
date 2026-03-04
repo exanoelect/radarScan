@@ -249,7 +249,10 @@ void MainWindow::initRadar()
 
                     if (client->isConnected()) {
                         soundPlay(SOUND_FALL_OCCUR);
-                        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED", "");
+                        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+                        QJsonObject obj;
+                        obj["datatime"] = timestamp;
+                        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
                     } else {
                         qDebug() << "Socket DC";
                     }
@@ -1632,7 +1635,10 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     if(client->isConnected()){
-        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED","");
+        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QJsonObject obj;
+        obj["datatime"] = timestamp;
+        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
     }else{
         qDebug() << " Socket DC";
     }
@@ -1822,7 +1828,11 @@ void MainWindow::onwifiScanSsidReqReceived()
 
     QString isoMs = QDateTime::currentDateTimeUtc()
                         .toString(Qt::ISODateWithMs);
-    client->emitEventQstringMsg("wifi_scan_stared",isoMs);
+
+    QJsonObject obj;
+    obj["timestamp"] = isoMs;
+
+    client->emitEventStringMsgJsoned("wifi_scan_started",obj);
 
     m_utility->nmcliGetWifiListComplete();
 }

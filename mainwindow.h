@@ -42,6 +42,9 @@
 #include <volume.h>
 #include <brightness.h>
 #include <utilities.h>
+#include <QDateTime>
+#include <QDebug>
+
 
 //#define AUTOSTART_ONRPI 1
 
