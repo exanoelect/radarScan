@@ -1,9 +1,19 @@
 #include "volume.h"
 #include <QtCore/qprocess.h>
+#include <QMetaObject>
+
+namespace {
+struct SetVolumeData {
+    volume *self;
+    int percent;
+};
+}
 
 volume::volume(QObject *parent)
     : QObject{parent}
-{}
+{
+    //initPulse();
+}
 
 volume::~volume(){
 
@@ -36,8 +46,6 @@ int volume::getVolumePercent()
 //---------------------------------------------------------------------------------------
 bool volume::setVolumePercent(int percent)
 {
-    if ((percent < 0) || (percent > 100)) return false; // PipeWire bisa >100%, batasi sesuai kebutuhan
-
     QProcess proc;
     proc.start("pactl", {"set-sink-volume", "@DEFAULT_SINK@", QString::number(percent) + "%"});
     proc.waitForFinished();
@@ -51,3 +59,5 @@ bool volume::mute(bool enable)
 {
     return false;
 }
+
+

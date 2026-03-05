@@ -5,6 +5,8 @@
 #include <qdebug.h>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QObject>
+#include <pulse/pulseaudio.h>
 
 class volume : public QObject
 {
@@ -14,11 +16,14 @@ public:
     ~volume();
 
 signals:
+
 public slots:
     //Volume control
     int getVolumePercent();                 // return 0–100, -1 jika gagal
     bool setVolumePercent(int percent);     // set 0–100%
     bool mute(bool enable);                 // true = mute, false = unmute
+
+private:
 };
 
 #endif // VOLUME_H

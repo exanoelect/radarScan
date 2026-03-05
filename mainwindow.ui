@@ -1637,7 +1637,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>51</width>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
@@ -1645,9 +1645,9 @@
      <widget class="QPushButton" name="btnGetBrightness">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>210</x>
         <y>30</y>
-        <width>241</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
@@ -1677,9 +1677,9 @@
      <widget class="QPushButton" name="btnPlaySound">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>90</x>
         <y>130</y>
-        <width>81</width>
+        <width>71</width>
         <height>32</height>
        </rect>
       </property>
@@ -1695,7 +1695,7 @@
        <rect>
         <x>10</x>
         <y>170</y>
-        <width>51</width>
+        <width>191</width>
         <height>31</height>
        </rect>
       </property>
@@ -1703,9 +1703,9 @@
      <widget class="QPushButton" name="btnGetVol">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>210</x>
         <y>170</y>
-        <width>241</width>
+        <width>121</width>
         <height>32</height>
        </rect>
       </property>
@@ -1884,6 +1884,22 @@
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnPlayFall">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>71</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Play Alarm</string>
       </property>
      </widget>
     </widget>

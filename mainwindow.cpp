@@ -48,6 +48,16 @@ MainWindow::MainWindow(QWidget *parent) :
             this,&MainWindow::onWifiProgress);
     connect(m_utility,&utilities::wifiConnectResult,
             this,&MainWindow::onWifiConnectFinished);
+
+    /*m_volumeMonitor = new VolumeMonitor(this);
+
+    connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
+          this,[=](int percent){
+              ui->hsVol->setValue(percent);
+              ui->leVol->setText(QString::number(percent));
+           }
+    );
+    */
 }
 
 //---------------------------------------------------------------------------------------
@@ -1603,7 +1613,10 @@ void MainWindow::on_btnsetBrightness_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_btnGetVol_clicked()
 {
-    ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
+    //ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
+    QString volStr = QString::number(m_volume->getVolumePercent());
+    ui->leVol->setText(volStr);
+    ui->hsVol->setValue(volStr.toInt());
 }
 
 //------------------------------------------------------------------------
@@ -1616,10 +1629,15 @@ void MainWindow::on_hsVol_valueChanged(int value)
 void MainWindow::on_btnsetVol_clicked()
 {
     if(m_volume->setVolumePercent(ui->hsVol->value())){
+    //if(m_volumeMonitor->setVolumePercent(ui->hsVol->value())){
         qDebug() << "Success Set Volume " << ui->hsVol->value();
+        ui->leVol->setText(QString::number(ui->hsVol->value()));
     }else{
         qDebug() << "Fail Set Volume " << ui->hsVol->value();
     }
+
+    //qDebug() << "Hs Set Volume " << ui->hsVol->value();
+    //m_volumeMonitor->setVolumePercent(ui->hsVol->value());
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -1750,6 +1768,14 @@ void MainWindow::onVolumeDecreaseReq()
         }
     }
 }
+
+//------------------------------------------------------------------------
+/*void MainWindow::onVolumeChanged(int percent)
+{
+    qDebug() << "Volume changed cuk:" << percent;
+    ui->leVol->setText(QString::number(percent) + "kod");
+}
+*/
 
 //------------------------------------------------------------------------
 void MainWindow::onBrihtnessIncreaseReq()

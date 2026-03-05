@@ -43,6 +43,8 @@ set(SOURCES
     networksetting.cpp
     utilities.h
     utilities.cpp
+    VolumeMonitor.h
+    VolumeMonitor.cpp
 )
 
 # Generate executable
@@ -82,6 +84,7 @@ target_link_libraries(radarScan PRIVATE
     Qt6::WebSockets
     Qt6::Core
     Qt6::DBus
+    pulse
     #gpiod
 )
 

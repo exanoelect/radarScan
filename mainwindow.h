@@ -44,7 +44,7 @@
 #include <utilities.h>
 #include <QDateTime>
 #include <QDebug>
-
+#include <VolumeMonitor.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -195,6 +195,9 @@ private slots:
 
     void onVolumeIncreaseReq();
     void onVolumeDecreaseReq();
+
+    //void onVolumeChanged(int percent);
+
     void onBrihtnessIncreaseReq();
     void onBrightnessDecreaseReq();
 
@@ -268,6 +271,7 @@ private:
 
     QThread *m_audioThread;
     AudioWorker *m_audioWorker;
+    VolumeMonitor *m_volumeMonitor;
 
     gpio *m_gpio;
     volume *m_volume;
