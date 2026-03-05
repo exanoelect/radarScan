@@ -26,17 +26,26 @@ void VolumeMonitor::initPulse()
 
     m_context = pa_context_new(api, "QtVolumeMonitor");
 
-    pa_context_set_state_callback(m_context,
-                                  contextStateCallback,
-                                  this);
+    pa_context_set_state_callback(
+        m_context,
+        contextStateCallback,
+        this
+    );
+
+    pa_threaded_mainloop_lock(m_mainloop);
 
     pa_threaded_mainloop_start(m_mainloop);
 
-    pa_context_connect(m_context,
-                       nullptr,
-                       PA_CONTEXT_NOFLAGS,
-                       nullptr);
+    pa_context_connect(
+        m_context,
+        nullptr,
+        PA_CONTEXT_NOFLAGS,
+        nullptr
+    );
+
+    pa_threaded_mainloop_unlock(m_mainloop);
 }
+
 
 //------------------------------------------------------------------------
 void VolumeMonitor::cleanup()

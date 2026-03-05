@@ -14,6 +14,7 @@
 #include <radar.h>
 #include <volume.h>
 #include <brightness.h>
+#include <VolumeMonitor.h>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -108,6 +109,8 @@ private:
     int m_reconnectAttempts;
     bool namespaceConnected = false;
     int m_nextAckId;
+
+   // VolumeMonitor *m_volumeMonitor;
 
     volume sioVolume;
     brightness sioBritness;

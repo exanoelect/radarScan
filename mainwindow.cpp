@@ -29,8 +29,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_brightness = new brightness();
     m_utility = new utilities();
 
-    //connect(m_utility, &utilities::ssidReady,
-    //        this, &MainWindow::onSsidReady);
     connect(m_utility, &utilities::wifiConnectResult,
            this, &MainWindow::onWifiConnected);
     connect(m_utility, &utilities::wifiRadioChanged,
@@ -49,15 +47,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_utility,&utilities::wifiConnectResult,
             this,&MainWindow::onWifiConnectFinished);
 
-    /*m_volumeMonitor = new VolumeMonitor(this);
+    m_volumeMonitor = new VolumeMonitor(this);
 
     connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
-          this,[=](int percent){
-              ui->hsVol->setValue(percent);
-              ui->leVol->setText(QString::number(percent));
-           }
-    );
-    */
+          this,&MainWindow::onVolumeChanged);
+
+     m_volCurrent = m_volume->getVolumePercent(); //init vol
 }
 
 //---------------------------------------------------------------------------------------
@@ -1618,9 +1613,9 @@ void MainWindow::on_btnsetBrightness_clicked()
 void MainWindow::on_btnGetVol_clicked()
 {
     //ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
-    QString volStr = QString::number(m_volume->getVolumePercent());
-    ui->leVol->setText(volStr);
-    ui->hsVol->setValue(volStr.toInt());
+    //QString volStr = QString::number(m_volume->getVolumePercent());
+    //ui->leVol->setText(volStr);
+    //ui->hsVol->setValue(volStr.toInt());
 }
 
 //------------------------------------------------------------------------
@@ -1632,16 +1627,17 @@ void MainWindow::on_hsVol_valueChanged(int value)
 //------------------------------------------------------------------------
 void MainWindow::on_btnsetVol_clicked()
 {
-    if(m_volume->setVolumePercent(ui->hsVol->value())){
-    //if(m_volumeMonitor->setVolumePercent(ui->hsVol->value())){
+    //if(m_volume->setVolumePercent(ui->hsVol->value())){
+    /*if(m_volumeMonitor->setVolumePercent(ui->hsVol->value())){
         qDebug() << "Success Set Volume " << ui->hsVol->value();
         ui->leVol->setText(QString::number(ui->hsVol->value()));
     }else{
         qDebug() << "Fail Set Volume " << ui->hsVol->value();
     }
+    */
 
-    //qDebug() << "Hs Set Volume " << ui->hsVol->value();
-    //m_volumeMonitor->setVolumePercent(ui->hsVol->value());
+    qDebug() << "Hs Set Volume " << ui->hsVol->value();
+    m_volumeMonitor->setVolumePercent(ui->hsVol->value());
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -1687,8 +1683,8 @@ void MainWindow::onTalkingStateChanged(const QString &state)
 void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
-    int currentVol = m_volume->getVolumePercent();
-    client->emitEventStringMsgJsoned("VOLUME_GET_ACK", QString::number(currentVol));
+    //int currentVol = m_volume->getVolumePercent();
+    client->emitEventStringMsgJsoned("VOLUME_GET_ACK",QString::number(m_volCurrent));// QString::number(currentVol));
 
 }
 
@@ -1696,7 +1692,9 @@ void MainWindow::onVolumeGetRequested()
 void MainWindow::onVolumeSetRequested(int vt)
 {
     qDebug() << "UI vol Set:" << vt;
-    if (vt > 0 && m_volume->setVolumePercent(vt)) {
+    //if (vt > 0 && m_volume->setVolumePercent(vt)) {
+    if (vt > 0){
+        m_volumeMonitor->setVolumePercent(vt);
         qDebug() << "UI vol successfully set to" << vt;
     } else {
         qDebug() << "fail setVol" << vt;
@@ -1747,14 +1745,12 @@ void MainWindow::onBrightnessGetRequested()
 void MainWindow::onVolumeIncreaseReq()
 {
     qDebug() << "UI onVolumeIncreaseReq";
-    int currentVol = m_volume->getVolumePercent();
+    int currentVol = m_volCurrent; //m_volume->getVolumePercent();
     currentVol = currentVol + 5;
     if((currentVol > 20) && (currentVol <= 99)){
-        if(m_volume->setVolumePercent(currentVol)){
+        //if(m_volumeMonitor->setVolumePercent(currentVol)){
+        m_volumeMonitor->setVolumePercent(currentVol);
             qDebug() << "UI succes Inc Vol " << currentVol;
-        }else{
-            qDebug() << "UI fail Inc Vol " << currentVol;
-        }
     }
 }
 
@@ -1762,15 +1758,21 @@ void MainWindow::onVolumeIncreaseReq()
 void MainWindow::onVolumeDecreaseReq()
 {
     qDebug() << "UI onVolumeDecreaseReq";
-    int currentVol = m_volume->getVolumePercent();
+    int currentVol = m_volCurrent;//m_volume->getVolumePercent();
     currentVol = currentVol - 5;
     if((currentVol > 20) && (currentVol <= 99)){
-        if(m_volume->setVolumePercent(currentVol)){
-            qDebug() << "UI succes Inc Vol " << currentVol;
-        }else{
-            qDebug() << "UI fail Inc Vol " << currentVol;
-        }
+        //if(m_volumeMonitor->setVolumePercent(currentVol)){
+        m_volumeMonitor->setVolumePercent(currentVol);
+        qDebug() << "UI succes Inc Vol " << currentVol;
     }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onVolumeChanged(int percent)
+{
+    m_volCurrent = percent;
+    ui->hsVol->setValue(percent);
+    ui->leVol->setText(QString::number(percent));
 }
 
 //------------------------------------------------------------------------

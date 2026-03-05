@@ -195,6 +195,7 @@ private slots:
 
     void onVolumeIncreaseReq();
     void onVolumeDecreaseReq();
+    void onVolumeChanged(int percent);
 
     //void onVolumeChanged(int percent);
 
@@ -285,7 +286,7 @@ private:
 
     //QString demoName2;
 
-    //int volCurrent;
+    int m_volCurrent;
     //int brightnessCurrent;
 
     float radarX = 0;
