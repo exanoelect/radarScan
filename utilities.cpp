@@ -516,4 +516,83 @@ void utilities::initWlanMonitor()
     }
 }
 
+//------------------------------------------------------------------------------------------------------------------------
+bool utilities::setTimezone(const QString &tz)
+{
+    QString zonePath = "/usr/share/zoneinfo/" + tz;
+
+     if(!QFile::exists(zonePath))
+         return false;
+
+     // set symlink timezone
+     QProcess::execute("sudo", {
+         "ln",
+         "-sf",
+         zonePath,
+         "/etc/localtime"
+     });
+
+     // update /etc/timezone
+     QFile file("/etc/timezone");
+     if(file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+     {
+         QTextStream out(&file);
+         out << tz << "\n";
+         file.close();
+     }
+
+     // cek dengan timedatectl
+     QProcess proc;
+     proc.start("timedatectl");
+     proc.waitForFinished();
+
+     QString output = proc.readAllStandardOutput();
+
+     // parse timezone
+     QString currentTZ;
+
+     QStringList lines = output.split("\n");
+     for(const QString &line : lines)
+     {
+         if(line.contains("Time zone"))
+         {
+             // contoh: Time zone: Europe/Stockholm (CET, +0100)
+             QString tmp = line.section(":",1,1).trimmed();
+             currentTZ = tmp.section(" ",0,0).trimmed();
+             break;
+         }
+     }
+
+     return (currentTZ == tz);
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------
+QString utilities::getTimeZone()
+{
+    // cek dengan timedatectl
+    QProcess proc;
+    proc.start("timedatectl");
+    proc.waitForFinished();
+
+    QString output = proc.readAllStandardOutput();
+
+    // parse timezone
+    QString currentTZ;
+
+    QStringList lines = output.split("\n");
+    for(const QString &line : lines)
+    {
+        if(line.contains("Time zone"))
+        {
+            // contoh: Time zone: Europe/Stockholm (CET, +0100)
+            QString tmp = line.section(":",1,1).trimmed();
+            currentTZ = tmp.section(" ",0,0).trimmed();
+            break;
+        }
+    }
+
+    return currentTZ;
+}
+
 

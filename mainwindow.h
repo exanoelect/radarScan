@@ -241,6 +241,8 @@ private slots:
 
     void onRpiRestart();
     void onRpiShutdown();
+    void onTzSetReq(QString tz);
+    void onTzGetReq();
 
     void on_btnPlayFall_clicked();
     void on_btnPlayHelp_clicked();
@@ -254,6 +256,8 @@ private slots:
     void on_btnForget_clicked();
     void on_btnRestart_clicked();
     void on_btnShutdown_clicked();
+
+    void on_btnSetTZ_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -172,6 +172,10 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onRpiRestart);
     connect(m_worker, &SocketEventWorker::rpiShutdown,
             this, &MainWindow::onRpiShutdown);
+    connect(m_worker, &SocketEventWorker::tzSetReq,
+            this, &MainWindow::onTzSetReq);
+    connect(m_worker, &SocketEventWorker::tzGetReq,
+            this, &MainWindow::onTzGetReq);
 
     m_workerThread->start();
 
@@ -2161,13 +2165,56 @@ void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, Q
 //------------------------------------------------------------------------
 void MainWindow::onRpiRestart()
 {
-    m_utility->rpiRestart();
+    if (client->isConnected()) {
+        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QJsonObject obj;
+        obj["datatime"] = timestamp;
+        client->emitEventStringMsgJsoned("device_restart",obj);
+        m_utility->rpiRestart();
+    }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onRpiShutdown()
 {
-    m_utility->rpiShutdown();
+    if (client->isConnected()) {
+        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QJsonObject obj;
+        obj["datatime"] = timestamp;
+        client->emitEventStringMsgJsoned("device_off",obj);
+        m_utility->rpiShutdown();
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onTzSetReq(QString tz)
+{
+    if(m_utility->setTimezone(tz)){
+    //if(m_utility->setTimezone("Europe/Stockholm")){
+        qDebug() << "Set TZ to SW OK";
+        if (client->isConnected()) {
+            client->emitEventStringMsgJsoned("timezone",tz);
+            m_utility->rpiShutdown();
+        }
+    }else{
+        qDebug() << "Set TZ to SW Fail";
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onTzGetReq()
+{
+    QString tz = m_utility->getTimeZone();
+    //if(m_utility->setTimezone("Europe/Stockholm")){
+    if(tz != ""){
+        qDebug() << "Set TZ to SW OK";
+        if (client->isConnected()) {
+            client->emitEventStringMsgJsoned("timezone",tz);
+            m_utility->getTimeZone();
+        }
+    }else{
+        qDebug() << "TZ N/A";
+    }
 }
 
 //------------------------------------------------------------------------
@@ -2238,10 +2285,19 @@ void MainWindow::on_btnRestart_clicked()
 }
 
 //------------------------------------------------------------------------
-
 void MainWindow::on_btnShutdown_clicked()
 {
     m_utility->rpiShutdown();
+}
 
+//------------------------------------------------------------------------
+void MainWindow::on_btnSetTZ_clicked()
+{
+    if(m_utility->setTimezone("Asia/Jakarta")){
+    //if(m_utility->setTimezone("Europe/Stockholm")){
+        qDebug() << "Set TZ to SW OK";
+    }else{
+        qDebug() << "Set TZ to SW Fail";
+    }
 }
 

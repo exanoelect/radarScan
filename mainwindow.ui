@@ -1620,7 +1620,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>100</y>
+        <y>90</y>
         <width>321</width>
         <height>32</height>
        </rect>
@@ -1735,9 +1735,9 @@
      <widget class="QPushButton" name="btnsetVol">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>140</x>
         <y>250</y>
-        <width>321</width>
+        <width>191</width>
         <height>32</height>
        </rect>
       </property>
@@ -1900,6 +1900,22 @@
       </property>
       <property name="text">
        <string>Play Alarm</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnSetTZ">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>121</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>set TZ</string>
       </property>
      </widget>
     </widget>

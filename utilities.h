@@ -29,6 +29,10 @@
 #include <QDBusObjectPath>
 #include <QDBusReply>
 #include <QDBusArgument>
+#include <QProcess>
+#include <QFile>
+#include <QTextStream>
+#include <QString>
 
 struct WifiAP
 {
@@ -83,6 +87,8 @@ public slots:
 
     bool rpiRestart();
     bool rpiShutdown();
+    bool setTimezone(const QString &tz);
+    QString getTimeZone();
 
 private slots:
     void onDeviceStateChanged(uint newState,

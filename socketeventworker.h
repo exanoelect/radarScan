@@ -55,6 +55,8 @@ signals:
     //utility
     void rpiRestart();
     void rpiShutdown();
+    void tzSetReq(QString tz);
+    void tzGetReq();
 
 public slots:
     void process();

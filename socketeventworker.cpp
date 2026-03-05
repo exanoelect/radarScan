@@ -142,6 +142,21 @@ void SocketEventWorker::process()
                   emit wifiForget(ssid);
             }
         }
+
+        else if (eventName.startsWith("TIMEZONE_SET")) {
+            if (data.isObject()) {
+                  QJsonObject obj = data.toObject();
+                  QString tz = obj["timezone"].toString();
+                  qDebug() << "timezone set request:" << eventName << obj;
+                  emit tzSetReq(tz);
+            }
+        }
+        else if (eventName.startsWith("TIMEZONE_GET")) {
+            if (data.isObject()) {
+                  qDebug() << "timezone get request:" << eventName;
+                  emit tzGetReq();
+            }
+        }
         else if (eventName == "DEVICE_RESTART") {
             qDebug() << "Rpi restart" << eventName;
             emit rpiRestart();
