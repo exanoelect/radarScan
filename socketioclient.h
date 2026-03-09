@@ -15,6 +15,9 @@
 #include <volume.h>
 #include <brightness.h>
 #include <VolumeMonitor.h>
+#include <QMutexLocker>
+#include <QMutex>
+#include <mutex>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -55,13 +58,13 @@ public:
 
     void emitEventWithAck(const QString &eventName,
                           const QJsonObject &data,
-                          std::function<void(const QJsonObject&)> callback);
+                          std::function<void(QJsonValue)> callback);
 
-    void emitEventWithAck(const QString &eventName,
+    void emitEventWithAckqString(const QString &eventName,
                           const QString &data,
                           std::function<void(const QString&)> callback);
 
-    void emitEventWithAck(const QString &eventName,
+    void emitEventWithAckQJsonValue(const QString &eventName,
                           const QJsonObject &data,
                           std::function<void(QJsonValue)> callback);
 
@@ -109,6 +112,7 @@ private:
     int m_reconnectAttempts;
     bool namespaceConnected = false;
     int m_nextAckId;
+    QMutex m_mutex;
 
    // VolumeMonitor *m_volumeMonitor;
 
@@ -125,8 +129,10 @@ private:
     quint16 m_port;
     SocketIOVersion m_version;
 
-    std::map<int, std::function<void(const QString&)>> m_ackCallbacksQString;
-    std::map<int, std::function<void(QJsonValue)>> m_ackCallbacks;
+    //std::map<int, std::function<void(const QString&)>> m_ackCallbacksQString;
+    //std::map<int, std::function<void(QJsonValue)>> m_ackCallbacks;
+    std::map<quint64, std::function<void(QJsonValue)>> m_ackCallbacks;
+
 
     void setupWebSocket();
     void constructWebSocketUrl();

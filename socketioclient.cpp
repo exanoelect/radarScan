@@ -531,33 +531,39 @@ void SocketIOClient::emitEventStringMsgJsoned(const QString &eventName,
 
 
 //------------------------------------------------------------------------
-/*void SocketIOClient::emitEventWithAck(const QString &eventName,
-                                      const QJsonObject &data,
-                                      std::function<void(const QJsonObject&)> callback)
+void SocketIOClient::emitEventWithAck(const QString &eventName,
+                                       const QJsonObject &data,
+                                       std::function<void(QJsonValue)> callback)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
         return;
     }
 
-    int ackId = m_nextAckId++;
-    m_ackCallbacks[ackId] = callback;
+    quint64 ackId;
 
-    QJsonArray packetArray;
-    packetArray.append(eventName);
-    packetArray.append(data);
-    packetArray.append(ackId);
+    do {
+        ackId = m_nextAckId++;
+        if (m_nextAckId == 0)
+            m_nextAckId = 1;
+    } while (m_ackCallbacks.count(ackId));
 
-    QJsonDocument doc(packetArray);
-    QString message = "42" + doc.toJson(QJsonDocument::Compact);
+    m_ackCallbacks.emplace(ackId, callback);
+
+    QJsonArray arr;
+    arr.append(eventName);
+    arr.append(data);
+
+    QString message = "42" + QString::number(ackId) +
+                      QString::fromUtf8(QJsonDocument(arr).toJson(QJsonDocument::Compact));
 
     m_webSocket->sendTextMessage(message);
-    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
 }
-*/
+
+
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEventWithAck(const QString &eventName,
+void SocketIOClient::emitEventWithAckqString(const QString &eventName,
                                       const QString &data,
                                       std::function<void(const QString&)> callback)
 {
@@ -566,46 +572,36 @@ void SocketIOClient::emitEventWithAck(const QString &eventName,
         return;
     }
 
-    int ackId = m_nextAckId++;
-    m_ackCallbacksQString[ackId] = callback;
-
-    QJsonArray packetArray;
-    packetArray.append(eventName);
-    packetArray.append(data);
-    packetArray.append(ackId);
-
-    QJsonDocument doc(packetArray);
-    QString message = "42" + doc.toJson(QJsonDocument::Compact);
-
-    m_webSocket->sendTextMessage(message);
-    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
+    emitEventWithAck(
+        eventName,
+        QJsonObject{{"data", data}},
+        [callback](QJsonValue value)
+        {
+            if (value.isString())
+                callback(value.toString());
+            else
+                callback(value.toVariant().toString());
+        }
+    );
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEventWithAck(const QString &eventName,
+void SocketIOClient::emitEventWithAckQJsonValue(const QString &eventName,
                                       const QJsonObject &data,
                                       std::function<void(QJsonValue)> callback)
 {
-    if (!m_isConnected || !m_webSocket) {
-        qWarning() << "Not connected, cannot emit:" << eventName;
-        return;
-    }
-
-    int ackId = m_nextAckId++;
-    m_ackCallbacks[ackId] = callback;
-
-    QJsonArray packetArray;
-    packetArray.append(eventName);
-    packetArray.append(data);
-    packetArray.append(ackId);
-
-    QJsonDocument doc(packetArray);
-    QString message = "42" + QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
-
-    m_webSocket->sendTextMessage(message);
-    qDebug() << "Emitted event with ack:" << eventName << "ackId:" << ackId;
+    emitEventWithAck(
+         eventName,
+         data,
+         [callback](QJsonValue value)
+         {
+             if (value.isObject())
+                 callback(value.toObject());
+             else
+                 callback(QJsonObject());
+         }
+     );
 }
-
 
 //------------------------------------------------------------------------
 void SocketIOClient::sendFallDetected()
@@ -693,7 +689,7 @@ void SocketIOClient::scheduleReconnect()
 //------------------------------------------------------------------------
 void SocketIOClient::attemptReconnect()
 {
-    if (!m_webSocket || m_webSocket->state() == QAbstractSocket::UnconnectedState) {
+    if ((!m_webSocket) || (m_webSocket->state() == QAbstractSocket::UnconnectedState)) {
         qDebug() << "Attempting reconnect to" << m_host << ":" << m_port;
         constructWebSocketUrl();
     }
