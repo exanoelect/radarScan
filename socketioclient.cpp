@@ -298,23 +298,30 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
         }
 
         else if (subType == 3) { // ACK
-            // Format: 3[ackId,"RESPONSE"]
-            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8());
+
+            int pos = 0;
+
+            // cari posisi '[' pertama
+            while (pos < subData.size() && subData[pos].isDigit())
+                pos++;
+
+            int ackId = subData.left(pos).toInt();
+            QString jsonPart = subData.mid(pos);
+
+            QJsonDocument doc = QJsonDocument::fromJson(jsonPart.toUtf8());
+
             if (!doc.isArray()) {
-                qWarning() << "Invalid ACK JSON:" << subData;
+                qWarning() << "Invalid ACK JSON:" << jsonPart;
                 return;
             }
 
             QJsonArray arr = doc.array();
-            if (arr.size() >= 1) {
-                int ackId = arr[0].toInt();
-                QJsonValue ackData = (arr.size() >= 2) ? arr[1] : QJsonValue();
-                qDebug() << "ACK received:" << ackId << ackData;
-                handleIncomingAck(ackId, ackData);
-            }
-        }
+            QJsonValue ackData = arr.isEmpty() ? QJsonValue() : arr[0];
 
-        else {
+            qDebug() << "ACK received:" << ackId << ackData;
+
+            handleIncomingAck(ackId, ackData);
+        }else {
             qDebug() << "Unhandled Socket.IO subtype:" << subType << "Data:" << subData;
         }
 
@@ -575,6 +582,7 @@ void SocketIOClient::emitEventWithAck(const QString &eventName,
 
         if (cb) {
             qWarning() << "SocketIO ACK timeout:" << ackId;
+            qDebug() << "SocketIO ACK timeout debug:" << ackId;
             cb(false, QJsonValue("ack timeout"));
         }
     });

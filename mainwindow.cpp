@@ -2303,3 +2303,32 @@ void MainWindow::on_btnSetTZ_clicked()
     }
 }
 
+//------------------------------------------------------------------------
+void MainWindow::on_btnEmitEvenwAck_clicked()
+{
+    QJsonObject data;
+    data["username"] = "wahyu";
+    data["password"] = "123456";
+
+    client->emitEventWithAck(
+        "login",
+        data,
+        [](bool ok, QJsonValue response)
+        {
+            if (!ok) {
+                qDebug() << "ACK timeout or error:" << response;
+                return;
+            }
+
+            qDebug() << "ACK received:" << response;
+
+            if (response.isObject()) {
+                QJsonObject obj = response.toObject();
+                qDebug() << "Server message:" << obj;
+            }
+        },
+        5000 // timeout 5 detik
+    );
+
+}
+

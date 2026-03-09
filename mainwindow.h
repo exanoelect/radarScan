@@ -260,6 +260,8 @@ private slots:
 
     void on_btnSetTZ_clicked();
 
+    void on_btnEmitEvenwAck_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
