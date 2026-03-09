@@ -52,17 +52,18 @@ public:
     bool isConnected() const { return m_isConnected; }
 
     //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
-    void emitEvent1(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
+    void emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
     void emitEventQstringMsg(const QString &eventName, const QString message);
     void emitEventStringMsgJsoned(const QString &eventName, const QJsonValue &data);
 
     void emitEventWithAck(const QString &eventName,
                           const QJsonObject &data,
-                          std::function<void(QJsonValue)> callback);
+                          std::function<void (bool, QJsonValue)> callback, int timeoutMs);
 
     void emitEventWithAckqString(const QString &eventName,
                           const QString &data,
-                          std::function<void(const QString&)> callback);
+                          std::function<void(const QString&)> callback,
+                                 int timeoutMs);
 
     void emitEventWithAckQJsonValue(const QString &eventName,
                           const QJsonObject &data,
@@ -131,8 +132,7 @@ private:
 
     //std::map<int, std::function<void(const QString&)>> m_ackCallbacksQString;
     //std::map<int, std::function<void(QJsonValue)>> m_ackCallbacks;
-    std::map<quint64, std::function<void(QJsonValue)>> m_ackCallbacks;
-
+    std::map<quint64, std::function<void(bool, QJsonValue)>> m_ackCallbacks;
 
     void setupWebSocket();
     void constructWebSocketUrl();

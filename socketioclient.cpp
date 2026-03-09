@@ -148,6 +148,8 @@ void SocketIOClient::onWebSocketDisconnected()
     //m_pingTimer->stop();
     qDebug() << "WebSocket disconnected";
 
+    m_ackCallbacks.clear();
+
     scheduleReconnect();
 
     emit disconnected();
@@ -344,7 +346,9 @@ void SocketIOClient::handleIncomingAck(int ackId, const QJsonValue &data)
     if (it != m_ackCallbacks.end()) {
         auto callback = it->second;
         m_ackCallbacks.erase(it);
-        callback(data);
+        if(callback){
+          callback(true, data); //success = true
+        }
     } else {
         qWarning() << "No callback found for ACK id:" << ackId;
     }
@@ -475,7 +479,7 @@ void SocketIOClient::sendSocketIOPacket(int type, const QString &data)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent1(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
+void SocketIOClient::emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -533,7 +537,7 @@ void SocketIOClient::emitEventStringMsgJsoned(const QString &eventName,
 //------------------------------------------------------------------------
 void SocketIOClient::emitEventWithAck(const QString &eventName,
                                        const QJsonObject &data,
-                                       std::function<void(QJsonValue)> callback)
+                                       std::function<void(bool, QJsonValue)> callback, int timeoutMs)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -548,7 +552,7 @@ void SocketIOClient::emitEventWithAck(const QString &eventName,
             m_nextAckId = 1;
     } while (m_ackCallbacks.count(ackId));
 
-    m_ackCallbacks.emplace(ackId, callback);
+    m_ackCallbacks.emplace(ackId, std::move(callback));
 
     QJsonArray arr;
     arr.append(eventName);
@@ -558,14 +562,28 @@ void SocketIOClient::emitEventWithAck(const QString &eventName,
                       QString::fromUtf8(QJsonDocument(arr).toJson(QJsonDocument::Compact));
 
     m_webSocket->sendTextMessage(message);
+
+    // timeout handler
+    QTimer::singleShot(timeoutMs, this, [this, ackId]() {
+
+        auto it = m_ackCallbacks.find(ackId);
+        if (it == m_ackCallbacks.end())
+            return; // ACK sudah datang
+
+        auto cb = it->second;
+        m_ackCallbacks.erase(it);
+
+        if (cb) {
+            qWarning() << "SocketIO ACK timeout:" << ackId;
+            cb(false, QJsonValue("ack timeout"));
+        }
+    });
 }
-
-
 
 //------------------------------------------------------------------------
 void SocketIOClient::emitEventWithAckqString(const QString &eventName,
                                       const QString &data,
-                                      std::function<void(const QString&)> callback)
+                                      std::function<void(const QString&)> callback, int timeoutMs)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
@@ -575,13 +593,17 @@ void SocketIOClient::emitEventWithAckqString(const QString &eventName,
     emitEventWithAck(
         eventName,
         QJsonObject{{"data", data}},
-        [callback](QJsonValue value)
-        {
+        [callback](bool ok, QJsonValue value){
+            if (!ok) {
+                callback(QString());   // timeout / error
+                return;
+            }
             if (value.isString())
                 callback(value.toString());
             else
                 callback(value.toVariant().toString());
-        }
+        },
+        timeoutMs
     );
 }
 
@@ -591,16 +613,22 @@ void SocketIOClient::emitEventWithAckQJsonValue(const QString &eventName,
                                       std::function<void(QJsonValue)> callback)
 {
     emitEventWithAck(
-         eventName,
-         data,
-         [callback](QJsonValue value)
-         {
-             if (value.isObject())
-                 callback(value.toObject());
-             else
-                 callback(QJsonObject());
-         }
-     );
+        eventName,
+        data,
+        [callback](bool ok, QJsonValue value)
+        {
+            if (!ok) {
+                callback(QJsonObject());
+                return;
+            }
+
+            if (value.isObject())
+                callback(value);
+            else
+                callback(QJsonObject());
+        },
+        5000
+    );
 }
 
 //------------------------------------------------------------------------
@@ -610,7 +638,7 @@ void SocketIOClient::sendFallDetected()
         {"timestamp", QDateTime::currentDateTime().toString(Qt::ISODate)}
     };
     //emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload);
-    emitEvent1("INCIDENT_FALL_DOWN_DETECTED", payload, [](QJsonValue ackVal) {
+    emitEvent("INCIDENT_FALL_DOWN_DETECTED", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 
@@ -623,7 +651,7 @@ void SocketIOClient::sendNoResponseFall(const QString &originalTimestamp)
         {"timestamp", originalTimestamp}
     };
     //emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload);
-    emitEvent1("INCIDENT_FALL_DOWN_NO_RESPONSE", payload, [](QJsonValue ackVal) {
+    emitEvent("INCIDENT_FALL_DOWN_NO_RESPONSE", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 }
@@ -643,7 +671,7 @@ void SocketIOClient::sendDeviceReady()
         {"volume", QString::number(vol)}
     };
     //emitEvent("DEVICE_READY", payload);
-    emitEvent1("DEVICE_READY", payload, [](QJsonValue ackVal) {
+    emitEvent("DEVICE_READY", payload, [](QJsonValue ackVal) {
         qDebug() << ackVal;
     });
 }
