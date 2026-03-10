@@ -44,7 +44,9 @@
 #include <utilities.h>
 #include <QDateTime>
 #include <QDebug>
+#include <QNetworkInformation>
 #include <VolumeMonitor.h>
+#include <NetworkMonitorQt.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -239,6 +241,11 @@ private slots:
                                 QString ip,
                                 QString gateway);
 
+    void onMonitorWlan0Connected();
+    void onMonitorWlan0Disconnected();
+    void onMonitorWlan0WifiSignalLost();
+    void onMonitorWlan0networkInterfaceDown();
+    void onMonitorWlan0ipAddressChanged(QString ip);
 
     void onRpiRestart();
     void onRpiShutdown();
@@ -284,6 +291,8 @@ private:
     volume *m_volume;
     brightness *m_brightness;
     utilities *m_utility;
+
+    NetworkMonitorQt *monitor;
     //QStringList ssidscanRet;
 
     //QString demoName2;

@@ -188,7 +188,7 @@ void utilities::nmcliConnectToWiFi(const QString &ssid,
         [this, ssid](bool success, QString output) {
 
             if (!success) {
-                emit wifiConnectResult(false, ssid, "", "");
+                emit wifiConnectResult(false, output, "", "");
                 return;
             }
 

@@ -44,8 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_utility,&utilities::wifiConnectProgress,
             this,&MainWindow::onWifiProgress);
-    connect(m_utility,&utilities::wifiConnectResult,
-            this,&MainWindow::onWifiConnectFinished);
+    //connect(m_utility,&utilities::wifiConnectResult,
+    //        this,&MainWindow::onWifiConnectFinished);
 
     m_volumeMonitor = new VolumeMonitor(this);
 
@@ -53,6 +53,19 @@ MainWindow::MainWindow(QWidget *parent) :
           this,&MainWindow::onVolumeChanged);
 
      m_volCurrent = m_volume->getVolumePercent(); //init vol
+
+    //Network monitoring
+    monitor = new NetworkMonitorQt("wlan0");
+    connect(monitor, &NetworkMonitorQt::wifiConnected,
+            this, &MainWindow::onMonitorWlan0Connected);
+    connect(monitor, &NetworkMonitorQt::wifiDisconnected,
+            this, &MainWindow::onMonitorWlan0Disconnected);
+    connect(monitor, &NetworkMonitorQt::wifiSignalLost,
+           this, &MainWindow::onMonitorWlan0WifiSignalLost);
+    connect(monitor, &NetworkMonitorQt::networkInterfaceDown,
+            this, &MainWindow::onMonitorWlan0networkInterfaceDown);
+    connect(monitor, &NetworkMonitorQt::ipAddressChanged,
+            this, &MainWindow::onMonitorWlan0ipAddressChanged);
 }
 
 //---------------------------------------------------------------------------------------
@@ -2028,11 +2041,13 @@ void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
 //------------------------------------------------------------------------
 void MainWindow::onWifiConnected(bool success, const QString &ssid, const QString &ip, const QString gateway){
     if (!success) {
-        client->emitEventStringMsgJsoned("wifi_connection_failed", ssid);
+        QJsonObject obj;
+        obj["error"] = ssid;
+        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
         return;
     }
 
-    QString msg = QString("%1 (%2)").arg(ssid, ip);
+    //QString msg = QString("%1 (%2)").arg(ssid, ip);
 
     if (client->isConnected()) {
         QJsonObject obj;
@@ -2043,6 +2058,8 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
     } else {
         qDebug() << "Socket DC";
     }
+
+
 }
 
 //------------------------------------------------------------------------
@@ -2162,6 +2179,52 @@ void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, Q
                  << "GW:" << gateway;
     else
         qDebug() << "WiFi Connect Failed";
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0Connected()
+{
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0Disconnected()
+{
+    if (client->isConnected()) {
+        QJsonObject obj;
+        obj["error"] = "Wlan0 Disconnected";
+        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0WifiSignalLost()
+{
+    if (client->isConnected()) {
+        QJsonObject obj;
+        obj["error"] = "signal lost";
+        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0networkInterfaceDown()
+{
+    if (client->isConnected()) {
+        QJsonObject obj;
+        obj["error"] = "NetworkInterfaceDown";
+        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
+{
+    if (client->isConnected()) {
+        QJsonObject obj;
+        obj["error"] = ip;
+        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+    }
 }
 
 //------------------------------------------------------------------------

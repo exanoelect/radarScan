@@ -45,6 +45,8 @@ set(SOURCES
     utilities.cpp
     VolumeMonitor.h
     VolumeMonitor.cpp
+    NetworkMonitorQt.h
+    NetworkMonitorQt.cpp
 )
 
 # Generate executable
