@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.10.1
+** Created by: Qt User Interface Compiler version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -186,6 +186,8 @@ public:
     QPushButton *btnPlayIamOK;
     QSlider *hsBrightness;
     QSlider *hsVol;
+    QPushButton *btnPlayFall;
+    QPushButton *btnSetTZ;
     QWidget *tab_8;
     QPushButton *btnScanWifiList;
     QPushButton *btnWifiOff;
@@ -195,6 +197,8 @@ public:
     QPushButton *btnForget;
     QPushButton *btnRestart;
     QPushButton *btnShutdown;
+    QPushButton *btnEmitEvenwAck;
+    QPushButton *btnEmitListeningOn;
     QCustomPlot *plotRadar;
     QCustomPlot *plottsVelocity;
     QCustomPlot *plottsgram2;
@@ -214,7 +218,7 @@ public:
         plottsgram = new QCustomPlot(centralWidget);
         plottsgram->setObjectName("plottsgram");
         plottsgram->setGeometry(QRect(370, 10, 250, 150));
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::MinimumExpanding);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::MinimumExpanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(plottsgram->sizePolicy().hasHeightForWidth());
@@ -646,14 +650,14 @@ public:
         btnColor4->setGeometry(QRect(250, 0, 80, 22));
         btnsetBrightness = new QPushButton(tab_7);
         btnsetBrightness->setObjectName("btnsetBrightness");
-        btnsetBrightness->setGeometry(QRect(10, 100, 321, 32));
+        btnsetBrightness->setGeometry(QRect(10, 90, 321, 32));
         btnsetBrightness->setStyleSheet(QString::fromUtf8(""));
         leBrightness = new QLineEdit(tab_7);
         leBrightness->setObjectName("leBrightness");
-        leBrightness->setGeometry(QRect(10, 30, 51, 31));
+        leBrightness->setGeometry(QRect(10, 30, 191, 31));
         btnGetBrightness = new QPushButton(tab_7);
         btnGetBrightness->setObjectName("btnGetBrightness");
-        btnGetBrightness->setGeometry(QRect(90, 30, 241, 32));
+        btnGetBrightness->setGeometry(QRect(210, 30, 121, 32));
         btnGetBrightness->setStyleSheet(QString::fromUtf8(""));
         lBrightness = new QLabel(tab_7);
         lBrightness->setObjectName("lBrightness");
@@ -661,14 +665,14 @@ public:
         lBrightness->setFrameShape(QFrame::NoFrame);
         btnPlaySound = new QPushButton(tab_7);
         btnPlaySound->setObjectName("btnPlaySound");
-        btnPlaySound->setGeometry(QRect(80, 130, 81, 32));
+        btnPlaySound->setGeometry(QRect(90, 130, 71, 32));
         btnPlaySound->setStyleSheet(QString::fromUtf8(""));
         leVol = new QLineEdit(tab_7);
         leVol->setObjectName("leVol");
-        leVol->setGeometry(QRect(10, 170, 51, 31));
+        leVol->setGeometry(QRect(10, 170, 191, 31));
         btnGetVol = new QPushButton(tab_7);
         btnGetVol->setObjectName("btnGetVol");
-        btnGetVol->setGeometry(QRect(90, 170, 241, 32));
+        btnGetVol->setGeometry(QRect(210, 170, 121, 32));
         btnGetVol->setStyleSheet(QString::fromUtf8(""));
         lVol = new QLabel(tab_7);
         lVol->setObjectName("lVol");
@@ -676,7 +680,7 @@ public:
         lVol->setFrameShape(QFrame::NoFrame);
         btnsetVol = new QPushButton(tab_7);
         btnsetVol->setObjectName("btnsetVol");
-        btnsetVol->setGeometry(QRect(10, 250, 321, 32));
+        btnsetVol->setGeometry(QRect(140, 250, 191, 32));
         btnsetVol->setStyleSheet(QString::fromUtf8(""));
         btnConnect = new QPushButton(tab_7);
         btnConnect->setObjectName("btnConnect");
@@ -714,6 +718,14 @@ public:
         hsVol->setObjectName("hsVol");
         hsVol->setGeometry(QRect(10, 220, 281, 16));
         hsVol->setOrientation(Qt::Horizontal);
+        btnPlayFall = new QPushButton(tab_7);
+        btnPlayFall->setObjectName("btnPlayFall");
+        btnPlayFall->setGeometry(QRect(10, 130, 71, 32));
+        btnPlayFall->setStyleSheet(QString::fromUtf8(""));
+        btnSetTZ = new QPushButton(tab_7);
+        btnSetTZ->setObjectName("btnSetTZ");
+        btnSetTZ->setGeometry(QRect(10, 250, 121, 32));
+        btnSetTZ->setStyleSheet(QString::fromUtf8(""));
         tw->addTab(tab_7, QString());
         tab_8 = new QWidget();
         tab_8->setObjectName("tab_8");
@@ -741,6 +753,12 @@ public:
         btnShutdown = new QPushButton(tab_8);
         btnShutdown->setObjectName("btnShutdown");
         btnShutdown->setGeometry(QRect(100, 50, 80, 41));
+        btnEmitEvenwAck = new QPushButton(tab_8);
+        btnEmitEvenwAck->setObjectName("btnEmitEvenwAck");
+        btnEmitEvenwAck->setGeometry(QRect(100, 90, 80, 41));
+        btnEmitListeningOn = new QPushButton(tab_8);
+        btnEmitListeningOn->setObjectName("btnEmitListeningOn");
+        btnEmitListeningOn->setGeometry(QRect(200, 10, 111, 41));
         tw->addTab(tab_8, QString());
         plotRadar = new QCustomPlot(centralWidget);
         plotRadar->setObjectName("plotRadar");
@@ -774,14 +792,14 @@ public:
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName("mainToolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, mainToolBar);
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName("statusBar");
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
-        tw->setCurrentIndex(7);
+        tw->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -880,6 +898,8 @@ public:
         btnFallSimulation->setText(QCoreApplication::translate("MainWindow", "Fall", nullptr));
         btnPlayHelp->setText(QCoreApplication::translate("MainWindow", "Play Help", nullptr));
         btnPlayIamOK->setText(QCoreApplication::translate("MainWindow", "Play IamOK", nullptr));
+        btnPlayFall->setText(QCoreApplication::translate("MainWindow", "Play Alarm", nullptr));
+        btnSetTZ->setText(QCoreApplication::translate("MainWindow", "set TZ", nullptr));
         tw->setTabText(tw->indexOf(tab_7), QCoreApplication::translate("MainWindow", "Led,Vol,Bright", nullptr));
         btnScanWifiList->setText(QCoreApplication::translate("MainWindow", "Scan Wifi", nullptr));
         btnWifiOff->setText(QCoreApplication::translate("MainWindow", "Wifi Off", nullptr));
@@ -889,6 +909,8 @@ public:
         btnForget->setText(QCoreApplication::translate("MainWindow", "Forget", nullptr));
         btnRestart->setText(QCoreApplication::translate("MainWindow", "Restart", nullptr));
         btnShutdown->setText(QCoreApplication::translate("MainWindow", "OFF", nullptr));
+        btnEmitEvenwAck->setText(QCoreApplication::translate("MainWindow", "ACK", nullptr));
+        btnEmitListeningOn->setText(QCoreApplication::translate("MainWindow", "LISTENING ON", nullptr));
         tw->setTabText(tw->indexOf(tab_8), QCoreApplication::translate("MainWindow", "Utility", nullptr));
     } // retranslateUi
 

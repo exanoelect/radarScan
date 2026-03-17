@@ -71,7 +71,6 @@ MainWindow::MainWindow(QWidget *parent) :
 //---------------------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
-
     if (m_serial) {
         if (m_serial->isOpen()) m_serial->close();
         m_serial->deleteLater();
@@ -268,6 +267,7 @@ void MainWindow::initRadar()
                     Q_UNUSED(src);
                     //sound.stop();
                     //sound.play();
+                    m_gpio->setColor(COLOR_RED);
 
                     if (client->isConnected()) {
                         soundPlay(SOUND_FALL_OCCUR);
@@ -1590,7 +1590,6 @@ void MainWindow::on_btnColor2_clicked()
 void MainWindow::on_btnColor3_clicked()
 {
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
-
 }
 
 //------------------------------------------------------------------------
@@ -1680,7 +1679,7 @@ void MainWindow::onListenStateChanged(const QString &state)
 {
     qDebug() << "UI Process LISTEN:" << state;
 
-    if (state == "ON") m_gpio->setColor(COLOR_GREEN);
+    if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
     else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
 }
 
@@ -1688,8 +1687,14 @@ void MainWindow::onListenStateChanged(const QString &state)
 void MainWindow::onTalkingStateChanged(const QString &state)
 {
     qDebug() << "UI Process TALKING:" << state;
-    if (state == "ON") m_gpio->setColor(COLOR_WHITE_BLINKY);
-    else if (state == "OFF") m_gpio->setColor(COLOR_GREEN);
+    if (state == "ON") {
+        qDebug() << "Talking on:" << state;
+        m_gpio->setColor(COLOR_WHITE_BLINKY);
+    }
+    else if (state == "OFF") {
+        qDebug() << "Talking off:" << state;
+        m_gpio->setColor(COLOR_WHITE);
+    }
 }
 
 //------------------------------------------------------------------------
@@ -1697,7 +1702,7 @@ void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
     //int currentVol = m_volume->getVolumePercent();
-    client->emitEventStringMsgJsoned("VOLUME_GET_ACK",QString::number(m_volCurrent));// QString::number(currentVol));
+    client->emitEventStringMsgJsoned("VOLUME_SET_REQUEST",QString::number(m_volCurrent));// QString::number(currentVol));
 
 }
 
@@ -1745,11 +1750,11 @@ void MainWindow::onBrightnessSetRequested(int bst)
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessGetRequested()
 {
-    qDebug() << "UI Brightness get:";
+    qDebug() << "UI Brightness get";
     int bst = m_brightness->getBrightnessPercent();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
-    client->emitEventStringMsgJsoned("BRIGHTNESS_GET_ACK",QString::number(bst));
+    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST",QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
     //}
 }
@@ -1834,6 +1839,7 @@ void MainWindow::onBrightnessDecreaseReq()
 void MainWindow::onIncidentFallOccur()
 {
     soundPlay(SOUND_FALL_OCCUR);
+    m_gpio->setColor(COLOR_RED);
 }
 
 //------------------------------------------------------------------------
@@ -2017,6 +2023,7 @@ void MainWindow::onWifiForgetRequest(const QString &ssid)
     }
 }
 
+/*
 //------------------------------------------------------------------------
 void MainWindow::onSsidReady(QString ssid){
     qDebug() << "SSID aktif:" << ssid;
@@ -2027,7 +2034,7 @@ void MainWindow::onSsidReady(QString ssid){
     } else {
         qDebug() << "Socket DC";
     }
-}
+}*/
 
 //------------------------------------------------------------------------
 void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
@@ -2393,5 +2400,19 @@ void MainWindow::on_btnEmitEvenwAck_clicked()
         5000 // timeout 5 detik
     );
 
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnEmitListeningOn_clicked()
+{
+    if(client->isConnected()){
+        //QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        //QJsonObject obj;
+        //obj["datatime"] = timestamp;
+        QString msg= "ON";
+        client->emitEventStringMsgJsoned("LISTENING",msg);
+    }else{
+        qDebug() << " Socket DC";
+    }
 }
 

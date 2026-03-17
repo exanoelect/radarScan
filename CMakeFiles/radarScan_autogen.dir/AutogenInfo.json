@@ -483,6 +483,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Volumes/DATA/qt6pro/radarScan/NetworkMonitorQt.h",
+			"MU",
+			"EWIEGA46WW/moc_NetworkMonitorQt.cpp",
+			null
+		],
+		[
 			"/Volumes/DATA/qt6pro/radarScan/VolumeMonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_VolumeMonitor.cpp",
@@ -649,6 +655,7 @@
 	"SETTINGS_FILE" : "/Volumes/DATA/qt6pro/radarScan/CMakeFiles/radarScan_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/Volumes/DATA/qt6pro/radarScan/NetworkMonitorQt.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/VolumeMonitor.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/audioworker.cpp", "MU", null ],
 		[ "/Volumes/DATA/qt6pro/radarScan/brightness.cpp", "MU", null ],

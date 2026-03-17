@@ -602,6 +602,7 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/set \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept \
@@ -617,6 +618,7 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/utility \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/variant \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector \
@@ -729,6 +731,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23type_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalloc.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qanystringview.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qarraydata.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qarraydataops.h \
@@ -752,8 +755,10 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontainerfwd.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontainerinfo.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontainertools_impl.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontiguouscache.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h \
@@ -763,6 +768,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qgenericatomic.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobal.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhash.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qhashfunctions.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevicebase.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterable.h \
@@ -771,6 +777,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlist.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlogging.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmalloc.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmap.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmath.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetatype.h \
@@ -787,6 +794,11 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrefcount.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qscopeguard.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qset.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qshareddata.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qshareddata_impl.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qsharedpointer.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qsharedpointer_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qstdlibdetection.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qstring.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qstringalgorithms.h \
@@ -811,6 +823,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtdeprecationdefinitions.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtdeprecationmarkers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
@@ -823,6 +836,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypeinfo.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypes.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qutf8stringview.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h

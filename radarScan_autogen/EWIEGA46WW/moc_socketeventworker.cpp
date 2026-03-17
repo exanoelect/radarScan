@@ -61,14 +61,20 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         "incidentIamnotOK",
         "wifiOn",
         "wifiOff",
-        "wifiGetStatus",
+        "wifiGetSsid",
+        "wifiScanSsidReqReceived",
+        "wifiDisconnectCurrentSsid",
         "wifiSsidList",
+        "wifiSsidListComplete",
         "wifiConnect",
         "ssid",
         "pwd",
         "wifiForget",
         "rpiRestart",
         "rpiShutdown",
+        "tzSetReq",
+        "tz",
+        "tzGetReq",
         "process"
     };
 
@@ -119,24 +125,36 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         QtMocHelpers::SignalData<void()>(21, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'wifiOff'
         QtMocHelpers::SignalData<void()>(22, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'wifiGetStatus'
+        // Signal 'wifiGetSsid'
         QtMocHelpers::SignalData<void()>(23, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'wifiSsidList'
+        // Signal 'wifiScanSsidReqReceived'
         QtMocHelpers::SignalData<void()>(24, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'wifiDisconnectCurrentSsid'
+        QtMocHelpers::SignalData<void()>(25, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'wifiSsidList'
+        QtMocHelpers::SignalData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'wifiSsidListComplete'
+        QtMocHelpers::SignalData<void()>(27, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'wifiConnect'
-        QtMocHelpers::SignalData<void(const QString &, const QString &)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 26 }, { QMetaType::QString, 27 },
+        QtMocHelpers::SignalData<void(const QString &, const QString &)>(28, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 29 }, { QMetaType::QString, 30 },
         }}),
         // Signal 'wifiForget'
-        QtMocHelpers::SignalData<void(const QString &)>(28, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 26 },
+        QtMocHelpers::SignalData<void(const QString &)>(31, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 29 },
         }}),
         // Signal 'rpiRestart'
-        QtMocHelpers::SignalData<void()>(29, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(32, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'rpiShutdown'
-        QtMocHelpers::SignalData<void()>(30, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void()>(33, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'tzSetReq'
+        QtMocHelpers::SignalData<void(QString)>(34, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 35 },
+        }}),
+        // Signal 'tzGetReq'
+        QtMocHelpers::SignalData<void()>(36, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'process'
-        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -179,13 +197,18 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 16: _t->incidentIamnotOK(); break;
         case 17: _t->wifiOn(); break;
         case 18: _t->wifiOff(); break;
-        case 19: _t->wifiGetStatus(); break;
-        case 20: _t->wifiSsidList(); break;
-        case 21: _t->wifiConnect((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 22: _t->wifiForget((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 23: _t->rpiRestart(); break;
-        case 24: _t->rpiShutdown(); break;
-        case 25: _t->process(); break;
+        case 19: _t->wifiGetSsid(); break;
+        case 20: _t->wifiScanSsidReqReceived(); break;
+        case 21: _t->wifiDisconnectCurrentSsid(); break;
+        case 22: _t->wifiSsidList(); break;
+        case 23: _t->wifiSsidListComplete(); break;
+        case 24: _t->wifiConnect((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 25: _t->wifiForget((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 26: _t->rpiRestart(); break;
+        case 27: _t->rpiShutdown(); break;
+        case 28: _t->tzSetReq((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 29: _t->tzGetReq(); break;
+        case 30: _t->process(); break;
         default: ;
         }
     }
@@ -228,17 +251,27 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
             return;
         if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiOff, 18))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiGetStatus, 19))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiGetSsid, 19))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiSsidList, 20))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiScanSsidReqReceived, 20))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & , const QString & )>(_a, &SocketEventWorker::wifiConnect, 21))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiDisconnectCurrentSsid, 21))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::wifiForget, 22))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiSsidList, 22))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::rpiRestart, 23))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::wifiSsidListComplete, 23))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::rpiShutdown, 24))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & , const QString & )>(_a, &SocketEventWorker::wifiConnect, 24))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(const QString & )>(_a, &SocketEventWorker::wifiForget, 25))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::rpiRestart, 26))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::rpiShutdown, 27))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)(QString )>(_a, &SocketEventWorker::tzSetReq, 28))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::tzGetReq, 29))
             return;
     }
 }
@@ -262,14 +295,14 @@ int SocketEventWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 31;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 31)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 26;
+        _id -= 31;
     }
     return _id;
 }
@@ -389,38 +422,68 @@ void SocketEventWorker::wifiOff()
 }
 
 // SIGNAL 19
-void SocketEventWorker::wifiGetStatus()
+void SocketEventWorker::wifiGetSsid()
 {
     QMetaObject::activate(this, &staticMetaObject, 19, nullptr);
 }
 
 // SIGNAL 20
-void SocketEventWorker::wifiSsidList()
+void SocketEventWorker::wifiScanSsidReqReceived()
 {
     QMetaObject::activate(this, &staticMetaObject, 20, nullptr);
 }
 
 // SIGNAL 21
-void SocketEventWorker::wifiConnect(const QString & _t1, const QString & _t2)
+void SocketEventWorker::wifiDisconnectCurrentSsid()
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 21, nullptr, _t1, _t2);
+    QMetaObject::activate(this, &staticMetaObject, 21, nullptr);
 }
 
 // SIGNAL 22
-void SocketEventWorker::wifiForget(const QString & _t1)
+void SocketEventWorker::wifiSsidList()
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 22, nullptr, _t1);
+    QMetaObject::activate(this, &staticMetaObject, 22, nullptr);
 }
 
 // SIGNAL 23
-void SocketEventWorker::rpiRestart()
+void SocketEventWorker::wifiSsidListComplete()
 {
     QMetaObject::activate(this, &staticMetaObject, 23, nullptr);
 }
 
 // SIGNAL 24
+void SocketEventWorker::wifiConnect(const QString & _t1, const QString & _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 24, nullptr, _t1, _t2);
+}
+
+// SIGNAL 25
+void SocketEventWorker::wifiForget(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 25, nullptr, _t1);
+}
+
+// SIGNAL 26
+void SocketEventWorker::rpiRestart()
+{
+    QMetaObject::activate(this, &staticMetaObject, 26, nullptr);
+}
+
+// SIGNAL 27
 void SocketEventWorker::rpiShutdown()
 {
-    QMetaObject::activate(this, &staticMetaObject, 24, nullptr);
+    QMetaObject::activate(this, &staticMetaObject, 27, nullptr);
+}
+
+// SIGNAL 28
+void SocketEventWorker::tzSetReq(QString _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 28, nullptr, _t1);
+}
+
+// SIGNAL 29
+void SocketEventWorker::tzGetReq()
+{
+    QMetaObject::activate(this, &staticMetaObject, 29, nullptr);
 }
 QT_WARNING_POP

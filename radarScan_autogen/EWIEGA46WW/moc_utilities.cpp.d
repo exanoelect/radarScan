@@ -776,12 +776,16 @@
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QDebug \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QFile \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QJsonDocument \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QJsonObject \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QJsonParseError \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QProcess \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRegularExpression \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QString \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTextStream \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QThread \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h \
@@ -790,6 +794,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20utility.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23type_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q23utility.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qalloc.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qanystringview.h \
@@ -800,11 +805,15 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearraylist.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayview.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcalendar.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcborcommon.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcborvalue.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qchar.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcheckedint_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcompare.h \
@@ -819,9 +828,11 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qcontiguouscache.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatastream.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdatetime.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qendian.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeventloop.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfile.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfiledevice.h \
@@ -839,9 +850,14 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiodevicebase.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterable.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterator.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qjsondocument.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qjsonobject.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qjsonparseerror.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qjsonvalue.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlatin1stringview.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qline.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlist.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlocale.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qlogging.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmalloc.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmap.h \
@@ -900,6 +916,7 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qthread.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h \
@@ -910,12 +927,31 @@
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtversionchecks.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypeinfo.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypes.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qurl.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qutf8stringview.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/quuid.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qvariant.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
   /Users/user/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/QDBusArgument \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/QDBusConnection \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/QDBusInterface \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/QDBusObjectPath \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/QDBusReply \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusabstractinterface.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusargument.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusconnection.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbuserror.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusextratypes.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusinterface.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusmessage.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbuspendingcall.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbuspendingreply.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qdbusreply.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qtdbusexports.h \
+  /Users/user/Qt/6.10.1/macos/lib/QtDBus.framework/Versions/A/Headers/qtdbusglobal.h \
   /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/QCursor \
   /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qaction.h \
   /Users/user/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qbitmap.h \

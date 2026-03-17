@@ -117,7 +117,9 @@ void SocketIOClient::constructWebSocketUrl()
 
     // Tambahkan timestamp untuk avoid cache
     query.addQueryItem("t", QString::number(QDateTime::currentMSecsSinceEpoch()));
-    query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
+    //query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
+    query.addQueryItem("userId","raspberry");
+
 
     // Tambahkan namespace ke query jika bukan root namespace
     if (m_namespace != "/") {
@@ -137,8 +139,14 @@ void SocketIOClient::constructWebSocketUrl()
 void SocketIOClient::onWebSocketConnected()
 {
     qDebug() << "WebSocket connected, waiting for Socket.IO handshake...";
-    m_webSocket->sendTextMessage("40");
-    qDebug() << "Sent namespaces";
+    //m_webSocket->sendTextMessage("40");
+    //qDebug() << "Sent namespaces";
+
+    qDebug() << "WebSocket connected, sending CONNECT with auth";
+
+    QString payload = "40{\"userId\":\"raspberry\"}";
+    m_webSocket->sendTextMessage(payload);
+
 }
 
 //------------------------------------------------------------------------
@@ -674,7 +682,7 @@ void SocketIOClient::sendDeviceReady()
 
     QJsonObject payload{
         //{"device_id", deviceId},
-        {"device_id", "ST-2026-04-IND-PRD-V1-000001"},
+        {"device_id", "ST-2026-04-IND-PRD-V1-000001"}, //"raspberry"},
         {"brightness", QString::number(britnes)},
         {"volume", QString::number(vol)}
     };

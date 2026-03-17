@@ -45,7 +45,8 @@ template <> constexpr inline auto brightness::qt_create_metaobjectdata<qt_meta_t
         "setBrightnessPercent",
         "percent",
         "setBrightness",
-        "value"
+        "value",
+        "getBacklightBasePath"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -61,6 +62,8 @@ template <> constexpr inline auto brightness::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<bool(int)>(6, 2, QMC::AccessPublic, QMetaType::Bool, {{
             { QMetaType::Int, 7 },
         }}),
+        // Slot 'getBacklightBasePath'
+        QtMocHelpers::SlotData<QString()>(8, 2, QMC::AccessPublic, QMetaType::QString),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -92,6 +95,8 @@ void brightness::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
         case 3: { bool _r = _t->setBrightness((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])));
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
+        case 4: { QString _r = _t->getBacklightBasePath();
+            if (_a[0]) *reinterpret_cast<QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -116,14 +121,14 @@ int brightness::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

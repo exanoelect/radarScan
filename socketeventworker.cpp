@@ -49,16 +49,16 @@ void SocketEventWorker::process()
 
         qDebug() << "Worker processing event:" << eventName << "data:" << data;
 
-        if (eventName == "LISTEN" && data.isString()) {
+        if (eventName == "LISTENING" && data.isString()) {
             emit listenStateChanged(data.toString());
         }
         else if (eventName == "TALKING" && data.isString()) {
             emit talkingStateChanged(data.toString());
         }
-        else if (eventName == "SOUND_VOLUME_GET") {
+        else if (eventName == "VOLUME_SET_REQUEST") {
             emit volumeGetRequested();
         }
-        else if (eventName == "SOUND_VOLUME_SET") {
+        else if (eventName == "VOLUME_SET") {
             int vt = 0;
             if (data.isDouble()) vt = data.toInt();
             else if (data.isString()) vt = data.toString().toInt();
@@ -85,7 +85,7 @@ void SocketEventWorker::process()
             emit brightnessIncreaseReq();
         }else if(eventName == "DECREASE_BRIGHTNESS"){
             emit brightnessDecreaseReq();
-        }else if(eventName == "SCREEN_BRIGHTNESS_GET"){
+        }else if(eventName == "SCREEN_BRIGHTNESS_REQUEST"){
             emit brightnessGetRequested();
         }
         else if (eventName == "PING_DEVICE_UP") {
@@ -93,9 +93,12 @@ void SocketEventWorker::process()
         }
         else if (eventName == "SLEEP") {
             emit sleepRequested();
+        }else if(eventName == "INCIDENT_FALL_DOWN_DETECTED"){
+            emit incidentFall();
         }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){
             emit incidentFall();
-        }else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
+        }
+        else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
             emit incidentIamnotOK();
         }else if (eventName == "i_am_ok"){
             emit incidentIamOK();

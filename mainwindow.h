@@ -77,13 +77,13 @@ enum SOCKET_REQUEST{
 
 enum LED_STRIP_COLOR{
     COLOR_WHITE,
-    COLOR_WHITE_BLINKY,
     COLOR_WHITE_BRIGHT,
-    COLOR_RED,
-    COLOR_GREEN,
-    COLOR_GREEN_BLINKY,
-    COLOR_BLUE,
-    COLOR_BLUE_BLINKY
+    COLOR_WHITE_BLINKY,
+    COLOR_RED
+    //COLOR_GREEN,
+    //COLOR_GREEN_BLINKY,
+    //COLOR_BLUE,
+    //COLOR_BLUE_BLINKY
 };
 
 namespace Ui {
@@ -222,7 +222,7 @@ private slots:
 
     void onWifiConnectRequest(const QString &ssid,const QString &pwd);
     void onWifiForgetRequest(const QString &ssid);
-    void onSsidReady(QString ssid);
+    //void onSsidReady(QString ssid);
     void onCurrentWifiInfoReady(QJsonObject obj);
     void onWifiConnected(bool success,
                          const QString &ssid,
@@ -268,6 +268,8 @@ private slots:
     void on_btnSetTZ_clicked();
 
     void on_btnEmitEvenwAck_clicked();
+
+    void on_btnEmitListeningOn_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -2038,6 +2038,19 @@
       </property>
       <property name="text">
        <string>ACK</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnEmitListeningOn">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>10</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LISTENING ON</string>
       </property>
      </widget>
     </widget>
