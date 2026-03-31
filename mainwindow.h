@@ -48,6 +48,18 @@
 #include <VolumeMonitor.h>
 #include <NetworkMonitorQt.h>
 
+#include <QAudioSource>
+#include <QIODevice>
+#include <QAudioFormat>
+#include <QAudioDevice>
+#include <QMediaDevices>
+#include <QVBoxLayout>
+#include <QWidget>
+#include <QtMath>
+#include <QDebug>
+#include <qdebug.h>
+
+
 //#define AUTOSTART_ONRPI 1
 
 #ifdef PLATFORM_LINUX
@@ -271,6 +283,8 @@ private slots:
 
     void on_btnEmitListeningOn_clicked();
 
+    void readMore();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -321,6 +335,9 @@ private:
 
     QSerialPort *m_serial2 = nullptr;
     QByteArray m_buffer2;
+
+    QAudioSource *audio;
+    QIODevice *device;
 
     //QQueue<QByteArray> m_payloadQueue;
     //QQueue<QPair<QString, QJsonValue>> m_eventQueue;

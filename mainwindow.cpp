@@ -66,6 +66,37 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::onMonitorWlan0networkInterfaceDown);
     connect(monitor, &NetworkMonitorQt::ipAddressChanged,
             this, &MainWindow::onMonitorWlan0ipAddressChanged);
+
+    //Microphone
+    // Audio format
+   // QAudioFormat format;
+   // format.setSampleRate(44100);
+   // format.setChannelCount(1);
+   // format.setSampleFormat(QAudioFormat::Int16);
+
+
+    qDebug() << "Start test mic";
+
+    // Default microphone
+    QAudioDevice inputDevice = QMediaDevices::defaultAudioInput();
+
+    for (auto dev : QMediaDevices::audioInputs()) {
+        qDebug() << dev.description();
+    }
+
+    QAudioFormat format = inputDevice.preferredFormat();
+
+    audio = new QAudioSource(inputDevice, format, this);
+
+    qDebug() << "Sample format:" << audio->format().sampleFormat();
+
+    device = audio->start();
+
+    connect(device, &QIODevice::readyRead, this, &MainWindow::readMore);
+    connect(audio, &QAudioSource::stateChanged, [](QAudio::State state){
+        qDebug() << "Audio state:" << state;
+    });
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -77,6 +108,7 @@ MainWindow::~MainWindow()
         m_serial = nullptr;
     }
 
+    audio->stop();
     delete ui;
 }
 
@@ -2414,5 +2446,50 @@ void MainWindow::on_btnEmitListeningOn_clicked()
     }else{
         qDebug() << " Socket DC";
     }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::readMore()
+{
+    QByteArray data = device->readAll();
+
+    //qDebug() << "Raw first bytes:" << data.left(8).toHex();
+
+    if (data.isEmpty()) return;
+
+    QAudioFormat format = audio->format();
+
+    double level = 0;
+
+    if (format.sampleFormat() == QAudioFormat::Int16) {
+        const int16_t *samples = reinterpret_cast<const int16_t*>(data.constData());
+        int count = data.size() / sizeof(int16_t);
+
+        int16_t maxVal = 0;
+        for (int i = 0; i < count; ++i)
+            maxVal = qMax(maxVal, qAbs(samples[i]));
+
+        level = maxVal / 32768.0;
+    }
+    else if (format.sampleFormat() == QAudioFormat::Float) {
+        const float *samples = reinterpret_cast<const float*>(data.constData());
+        int count = data.size() / sizeof(float);
+
+        float maxVal = 0;
+        for (int i = 0; i < count; ++i)
+            maxVal = qMax(maxVal, fabs(samples[i]));
+
+        level = maxVal; // sudah 0.0 – 1.0
+    }
+    else {
+        qDebug() << "Unsupported format!";
+        return;
+    }
+
+    int barLevel = qBound(0, int(level * 100), 100);
+
+    qDebug() << barLevel;
+
+    ui->micBar->setValue(barLevel);
 }
 
