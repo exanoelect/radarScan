@@ -205,6 +205,7 @@ private slots:
     void onPingDeviceUpRequested();
     void onSleepRequested();
     void onWakeUpRequested();
+    void onSpeechModuleReady();
     void onBrightnessSetRequested(int value);
     void onBrightnessGetRequested();
 

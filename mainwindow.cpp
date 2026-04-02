@@ -160,6 +160,8 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onSleepRequested);
     connect(m_worker, &SocketEventWorker::wakeupRequested,
             this, &MainWindow::onWakeUpRequested);
+    connect(m_worker, &SocketEventWorker::speechModuleReady,
+            this, &MainWindow::onSpeechModuleReady);
     connect(m_worker, &SocketEventWorker::brightnessSetRequested,
             this, &MainWindow::onBrightnessSetRequested);
 
@@ -1784,15 +1786,15 @@ void MainWindow::onSleepRequested()
     client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
 
     //Reduce brightness
-    if(m_brightness->setBrightnessPercent(20)){
-        qDebug() << "Success Set brightness " << 20;
+    if(m_brightness->setBrightnessPercent(1)){
+        qDebug() << "Success Set brightness " << 1;
     }else{
-        qDebug() << "Fail Set brightness " << 20;
+        qDebug() << "Fail Set brightness " << 1;
     }
 
     //Reduce Volume
-    m_volumeMonitor->setVolumePercent(30);
-    qDebug() << "Vol set to " << 30;
+   // m_volumeMonitor->setVolumePercent(30);
+   // qDebug() << "Vol set to " << 30;
 }
 
 //------------------------------------------------------------------------
@@ -1810,8 +1812,15 @@ void MainWindow::onWakeUpRequested()
     }
 
     //increase Volume
-    m_volumeMonitor->setVolumePercent(70);
-    qDebug() << "Vol set to " << 70;
+    //m_volumeMonitor->setVolumePercent(98);
+   // qDebug() << "Vol set to " << 98;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onSpeechModuleReady()
+{
+    qDebug() << "Speech Module Ready notify";
+    m_gpio->setColor(COLOR_WHITE_BRIGHT);
 }
 
 //------------------------------------------------------------------------

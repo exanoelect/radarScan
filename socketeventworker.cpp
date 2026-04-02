@@ -95,6 +95,8 @@ void SocketEventWorker::process()
             emit sleepRequested();
         }else if(eventName == "WAKE_UP"){
             emit wakeupRequested();
+        }else if(eventName == "SPEECH_MODULE_READY"){
+            emit speechModuleReady();
         }else if(eventName == "INCIDENT_FALL_DOWN_DETECTED"){
             emit incidentFall();
         }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){

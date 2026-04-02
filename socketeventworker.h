@@ -35,6 +35,7 @@ signals:
     void pingDeviceUpRequested();
     void listenStateChanged(const QString &state);
     void talkingStateChanged(const QString &state);
+    void speechModuleReady();
 
     void incidentFall();
     void incidentHelp();
