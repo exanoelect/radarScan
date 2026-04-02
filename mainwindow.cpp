@@ -74,7 +74,6 @@ MainWindow::MainWindow(QWidget *parent) :
    // format.setChannelCount(1);
    // format.setSampleFormat(QAudioFormat::Int16);
 
-
     qDebug() << "Start test mic";
 
     // Default microphone
@@ -96,7 +95,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(audio, &QAudioSource::stateChanged, [](QAudio::State state){
         qDebug() << "Audio state:" << state;
     });
-
 }
 
 //---------------------------------------------------------------------------------------
@@ -160,6 +158,8 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onPingDeviceUpRequested);
     connect(m_worker, &SocketEventWorker::sleepRequested,
             this, &MainWindow::onSleepRequested);
+    connect(m_worker, &SocketEventWorker::wakeupRequested,
+            this, &MainWindow::onWakeUpRequested);
     connect(m_worker, &SocketEventWorker::brightnessSetRequested,
             this, &MainWindow::onBrightnessSetRequested);
 
@@ -1275,6 +1275,23 @@ void MainWindow::soundPlay(int request)
 }
 
 //---------------------------------------------------------------------------------------
+QString MainWindow::runCommand(const QString &cmd)
+{
+    QProcess process;
+    process.start("bash", QStringList() << "-c" << cmd);
+    process.waitForFinished();
+
+    QString output = process.readAllStandardOutput();
+    QString error  = process.readAllStandardError();
+
+    if (!error.isEmpty()) {
+        qDebug() << "Error:" << error;
+    }
+
+    return output.trimmed();
+}
+
+//---------------------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
 {
     demoName = "Real Time Data Demo";
@@ -1765,6 +1782,36 @@ void MainWindow::onSleepRequested()
     qDebug() << "UI SleepReq";
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
+
+    //Reduce brightness
+    if(m_brightness->setBrightnessPercent(20)){
+        qDebug() << "Success Set brightness " << 20;
+    }else{
+        qDebug() << "Fail Set brightness " << 20;
+    }
+
+    //Reduce Volume
+    m_volumeMonitor->setVolumePercent(30);
+    qDebug() << "Vol set to " << 30;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onWakeUpRequested()
+{
+    qDebug() << "UI Wakeup";
+    int getBright = m_brightness->getBrightnessPercent();
+    client->emitEventStringMsgJsoned("WAKE_UP", QString::number(getBright));
+
+    //increase brightness
+    if(m_brightness->setBrightnessPercent(70)){
+        qDebug() << "Success Set brightness " << 70;
+    }else{
+        qDebug() << "Fail Set brightness " << 70;
+    }
+
+    //increase Volume
+    m_volumeMonitor->setVolumePercent(70);
+    qDebug() << "Vol set to " << 70;
 }
 
 //------------------------------------------------------------------------
@@ -1916,6 +1963,8 @@ void MainWindow::onwifiScanSsidReqReceived()
     obj["timestamp"] = isoMs;
 
     client->emitEventStringMsgJsoned("wifi_scan_started",obj);
+
+    qDebug() << "masuk cuk";
 
     m_utility->nmcliGetWifiListComplete();
 }
@@ -2488,7 +2537,7 @@ void MainWindow::readMore()
 
     int barLevel = qBound(0, int(level * 100), 100);
 
-    qDebug() << barLevel;
+    //qDebug() << barLevel;
 
     ui->micBar->setValue(barLevel);
 }

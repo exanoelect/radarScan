@@ -204,6 +204,7 @@ private slots:
     void onVolumeSetRequested(int value);
     void onPingDeviceUpRequested();
     void onSleepRequested();
+    void onWakeUpRequested();
     void onBrightnessSetRequested(int value);
     void onBrightnessGetRequested();
 
@@ -396,6 +397,9 @@ private:
     void drawRealTimeVelocity2(QString velocity);
 
     void soundPlay(int request);
+
+    //Wifi healthy
+    QString runCommand(const QString &cmd);
 
 //#ifdef PLATFORM_LINUX
     //GPIO LEd strip

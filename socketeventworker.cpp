@@ -93,6 +93,8 @@ void SocketEventWorker::process()
         }
         else if (eventName == "SLEEP") {
             emit sleepRequested();
+        }else if(eventName == "WAKE_UP"){
+            emit wakeupRequested();
         }else if(eventName == "INCIDENT_FALL_DOWN_DETECTED"){
             emit incidentFall();
         }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){
@@ -121,6 +123,7 @@ void SocketEventWorker::process()
             emit wifiGetSsid();
         }
         else if (eventName == "scan_wifi_stream") {
+        //else if (eventName == "wifi_scan_started") {
             qDebug() << "Wifi scan re received:" << eventName;
             emit wifiScanSsidReqReceived();
         }
