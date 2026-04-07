@@ -59,6 +59,20 @@
 #include <QDebug>
 #include <qdebug.h>
 
+#include <QAudioSource>
+#include <QFile>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+//#include <QAudioProbe>
+#include <QAudioDecoder>
+#include <QAudioSource>
+#include <QAudioSink>
+#include <QAudioFormat>
+#include <QAudioDevice>
+#include <QBuffer>
+#include <QTimer>
+#include <QFile>
+
 
 //#define AUTOSTART_ONRPI 1
 
@@ -68,6 +82,29 @@ extern "C" {
 #include <gpiod.h>
 }
 #endif
+
+#pragma pack(push, 1)
+struct WavHeader {
+    char riff[4] = {'R','I','F','F'};
+    uint32_t fileSize;
+
+    char wave[4] = {'W','A','V','E'};
+
+    char fmt[4] = {'f','m','t',' '};
+    uint32_t fmtSize = 16;
+    uint16_t audioFormat = 1; // PCM
+    uint16_t numChannels;
+    uint32_t sampleRate;
+    uint32_t byteRate;
+    uint16_t blockAlign;
+    uint16_t bitsPerSample;
+
+    char data[4] = {'d','a','t','a'};
+    uint32_t dataSize;
+};
+#pragma pack(pop)
+
+
 
 enum SOCKET_STATE{
     SOCKET_IDDLE,
@@ -287,6 +324,20 @@ private slots:
 
     void readMore();
 
+    void on_btnRec_pressed();
+
+    void on_btnRec_released();
+
+    void handleAudioData();
+    void handleStateChanged(QAudio::State state);
+
+    void on_btnPlayRec_clicked();
+    void handleFinished();
+
+    //void handleError(QAudioDecoder::Error error);
+
+    void on_btnRec_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -401,6 +452,38 @@ private:
 
     //Wifi healthy
     QString runCommand(const QString &cmd);
+
+    QAudioSource *audi;
+    QFile file;
+    QIODevice *ioDevice;
+
+    WavHeader header;
+    QAudioDecoder *decoder;
+    //QAudioProbe
+
+    void startRecording();
+    void stopRecording();
+
+    void loadWav(const QString &path);
+    void processBuffer();
+
+    // Audio
+    QAudioSink *audioSink = nullptr;
+    QFile audioFile;
+    QBuffer *audioBuffer = nullptr;
+
+    // Timer untuk level meter
+    QTimer *levelTimer = nullptr;
+    qint64 recordedDataSize = 0;
+
+
+    // Function hitung dB
+    double calculateDb(const QByteArray &data);
+
+    //WavHeader header;
+
+
+    void initAudioSystem();
 
 //#ifdef PLATFORM_LINUX
     //GPIO LEd strip

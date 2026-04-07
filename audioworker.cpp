@@ -57,6 +57,12 @@ QString AudioWorker::requestToFile(int requestId)
 #else
         return "/Volumes/DATA/wav/i-am-ok.wav";
 #endif
+    case SOUND_RECORD:
+#ifdef PLATFORM_LINUX
+        return "/home/pi/qtpro/test12/radarscan/record.wav";
+#else
+        return "/Volumes/DATA/wav/i-am-ok.wav";
+#endif
     default:
         return QString();
     }

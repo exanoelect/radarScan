@@ -10,6 +10,7 @@
 #define SOUND_FALL_OCCUR 1
 #define SOUND_HELP       2
 #define SOUND_IAM_OK     3
+#define SOUND_RECORD     4
 
 class AudioWorker : public QObject
 {

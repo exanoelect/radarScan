@@ -95,6 +95,21 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(audio, &QAudioSource::stateChanged, [](QAudio::State state){
         qDebug() << "Audio state:" << state;
     });
+
+    //Audio decoder
+    decoder = new QAudioDecoder(this);
+
+    connect(decoder, &QAudioDecoder::bufferReady,
+            this, &MainWindow::processBuffer);
+
+    connect(decoder, &QAudioDecoder::finished,
+        this, &MainWindow::handleFinished);
+
+
+    //connect(decoder, &QAudioDecoder::errorOccurred,
+    //        this, &MainWindow::handleError);
+
+    initAudioSystem();
 }
 
 //---------------------------------------------------------------------------------------
@@ -1271,6 +1286,12 @@ void MainWindow::soundPlay(int request)
                                   Qt::QueuedConnection,
                                   Q_ARG(int, SOUND_IAM_OK));
         break;
+    case SOUND_RECORD:
+        qDebug() << "Request 3 received";
+        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
+                                  Qt::QueuedConnection,
+                                  Q_ARG(int, SOUND_RECORD));
+        break;
     default:
         break;
     }
@@ -1292,6 +1313,111 @@ QString MainWindow::runCommand(const QString &cmd)
 
     return output.trimmed();
 }
+
+//---------------------------------------------------------------------------------------
+void MainWindow::startRecording()
+{
+    qDebug() << "Recording WAV started";
+    recordedDataSize = 0;
+
+    QAudioDevice inputDevice = QMediaDevices::defaultAudioInput();
+
+    QAudioFormat format;
+    format.setSampleRate(44100);
+    format.setChannelCount(1);
+    format.setSampleFormat(QAudioFormat::Int16);
+
+    if (!inputDevice.isFormatSupported(format)) {
+        qDebug() << "⚠️ Using preferred format";
+        format = inputDevice.preferredFormat();
+    }
+
+    audi = new QAudioSource(inputDevice, format, this);
+    audi->setBufferSize(8192);
+
+    file.setFileName("record.wav");
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        qDebug() << "❌ File open failed";
+        return;
+    }
+
+    // ✅ Header WAV valid
+    WavHeader header;
+
+    header.numChannels = format.channelCount();
+    header.sampleRate = format.sampleRate();
+    header.bitsPerSample = 16;
+
+    header.byteRate = header.sampleRate * header.numChannels * header.bitsPerSample / 8;
+    header.blockAlign = header.numChannels * header.bitsPerSample / 8;
+
+    header.dataSize = 0;
+    header.fileSize = 36 + header.dataSize;
+
+    // ✅ Tulis header awal
+    file.write(reinterpret_cast<const char*>(&header), sizeof(WavHeader));
+
+    ioDevice = audi->start();
+
+    connect(ioDevice, &QIODevice::readyRead,
+            this, &MainWindow::handleAudioData);
+}
+
+
+//---------------------------------------------------------------------------------------
+
+void MainWindow::handleAudioData()
+{
+    QByteArray data = ioDevice->readAll();
+
+    file.write(data);
+
+    header.dataSize += data.size();
+}
+
+
+//---------------------------------------------------------------------------------------
+void MainWindow::handleStateChanged(QAudio::State state)
+{
+    if (state == QAudio::StoppedState) {
+        if (audi->error() != QAudio::NoError) {
+            qDebug() << "❌ Audio error:" << audi->error();
+        } else {
+            qDebug() << "✅ Recording stopped normally";
+        }
+    }
+}
+
+
+//---------------------------------------------------------------------------------------
+void MainWindow::stopRecording()
+{
+    audi->stop();
+
+    // Update header
+    file.seek(0);
+
+    WavHeader header;
+
+    header.numChannels = 1;
+    header.sampleRate = 44100;
+    header.bitsPerSample = 16;
+
+    header.byteRate = header.sampleRate * header.numChannels * header.bitsPerSample / 8;
+    header.blockAlign = header.numChannels * header.bitsPerSample / 8;
+
+    header.dataSize = recordedDataSize;
+    header.fileSize = 36 + header.dataSize;
+
+    file.write(reinterpret_cast<const char*>(&header), sizeof(WavHeader));
+
+    file.close();
+
+    qDebug() << "Recording stopped, file size:" << recordedDataSize;
+}
+
+
 
 //---------------------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
@@ -2549,5 +2675,258 @@ void MainWindow::readMore()
     //qDebug() << barLevel;
 
     ui->micBar->setValue(barLevel);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnRec_pressed()
+{
+    startRecording();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnRec_released()
+{
+   stopRecording();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnPlayRec_clicked()
+{
+    //soundPlay(SOUND_RECORD);
+    //loadWav("/home/pi/qtpro/test12/radarscan/record.wav");
+    if (!audioSink || !audioBuffer)
+        return;
+
+    // =========================
+    // STOP
+    // =========================
+    if (audioSink->state() == QAudio::ActiveState) {
+
+        audioSink->stop();
+        audioBuffer->seek(0);
+        levelTimer->stop();
+
+        ui->btnPlayRec->setText("Play");
+        return;
+    }
+
+    // =========================
+    // PLAY
+    // =========================
+    audioBuffer->seek(0);
+
+    audioSink->start(audioBuffer);
+
+    levelTimer->start(50);
+
+    ui->btnPlayRec->setText("Stop");
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::handleFinished()
+{
+    if (decoder->error() != QAudioDecoder::NoError) {
+        qDebug() << "❌ Decoder error:" << decoder->error();
+    } else {
+        qDebug() << "✅ Decode finished OK";
+    }
+}
+
+//------------------------------------------------------------------------
+//void MainWindow::handleError(QAudioDecoder::Error error)
+//{
+//    qDebug() << "Decoder error:" << error;
+//}
+
+//------------------------------------------------------------------------
+void MainWindow::loadWav(const QString &path)
+{
+    decoder->setSource(QUrl::fromLocalFile(path));
+    decoder->start();
+    qDebug() << "Start decoding... ";
+}
+
+//------------------------------------------------------------------------
+void MainWindow::processBuffer()
+{
+    QAudioBuffer buffer = decoder->read();
+
+    if (!buffer.isValid()) return;
+
+    // ✅ Ensure format is Int16
+    if (buffer.format().sampleFormat() != QAudioFormat::Int16)
+        return;
+
+    const qint16 *data = buffer.constData<qint16>();
+    int samples = buffer.sampleCount();
+
+    if (samples <= 0) return;
+
+    float sum = 0;
+
+    for (int i = 0; i < samples; i++) {
+        float v = data[i] / 32768.0f;
+        sum += v * v;
+    }
+
+    float rms = sqrt(sum / samples);  // 0.0 → ~1.0
+
+    // ✅ Convert to progress bar scale (0–100)
+    int value = static_cast<int>(rms * 100.0f);
+
+    // clamp (just in case)
+    value = qBound(0, value, 100);
+
+    ui->speakerBar->setValue(value);
+    qDebug() << "Buffering...." << value;
+}
+
+//------------------------------------------------------------------------
+double MainWindow::calculateDb(const QByteArray &data)
+{
+    const int16_t *samples = reinterpret_cast<const int16_t*>(data.constData());
+    int sampleCount = data.size() / 2;
+
+    if (sampleCount == 0) return -60.0;
+
+    double sum = 0.0;
+
+    for (int i = 0; i < sampleCount; i++) {
+        double sample = samples[i] / 32768.0;
+        sum += sample * sample;
+    }
+
+    double rms = sqrt(sum / sampleCount);
+
+    if (rms < 1e-6) return -60.0;
+
+    return 20.0 * log10(rms);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::initAudioSystem()
+{
+    qDebug() << "Init audio system...";
+
+    // =========================
+    // Load file
+    // =========================
+    //audioFile.setFileName("/home/pi/wav/i-am-ok.wav");
+
+    audioFile.setFileName("/home/pi/qtpro/test12/radarscan/record.wav");
+    //audioFile.setFileName("/home/pi/wav/stasiun.wav");
+    //audioFile.setFileName("/Volumes/DATA/wav/stasiun.wav");
+
+    if (!audioFile.open(QIODevice::ReadOnly)) {
+        qDebug() << "Failed to open file:" << audioFile.errorString();
+        return;
+    }
+
+    // =========================
+    // BACA HEADER WAV
+    // =========================
+    WavHeader header;
+
+    if (audioFile.read(reinterpret_cast<char*>(&header), sizeof(WavHeader)) != sizeof(WavHeader)) {
+        qDebug() << "Invalid WAV header!";
+        return;
+    }
+
+    // Debug info (PENTING)
+    qDebug() << "SampleRate:" << header.sampleRate;
+    qDebug() << "Channels:" << header.numChannels;
+    qDebug() << "Bits:" << header.bitsPerSample;
+
+    // =========================
+    // SET FORMAT SESUAI FILE
+    // =========================
+    QAudioFormat format;
+
+    format.setSampleRate(header.sampleRate);
+    format.setChannelCount(header.numChannels);
+
+    if (header.bitsPerSample == 16)
+        format.setSampleFormat(QAudioFormat::Int16);
+    else if (header.bitsPerSample == 8)
+        format.setSampleFormat(QAudioFormat::UInt8);
+    else {
+        qDebug() << "Unsupported bit depth!";
+        return;
+    }
+
+    QAudioDevice device = QMediaDevices::defaultAudioOutput();
+
+    if (!device.isFormatSupported(format)) {
+        qDebug() << "Format not supported!";
+        return; // ⚠️ jangan fallback sembarangan
+    }
+
+    // =========================
+    // BACA AUDIO DATA (SETELAH HEADER)
+    // =========================
+    QByteArray audioData = audioFile.readAll();
+
+    // =========================
+    // BUFFER
+    // =========================
+    audioBuffer = new QBuffer(this);
+    audioBuffer->setData(audioData);
+    audioBuffer->open(QIODevice::ReadOnly);
+
+    // =========================
+    // AUDIO SINK
+    // =========================
+    audioSink = new QAudioSink(device, format, this);
+
+    // =========================
+    // TIMER LEVEL
+    // =========================
+    levelTimer = new QTimer(this);
+
+    connect(levelTimer, &QTimer::timeout, this, [=]() {
+
+        if (!audioSink) return;
+
+        // posisi kira-kira (byte estimate)
+        qint64 bytePerSec = format.sampleRate() *
+                            format.channelCount() *
+                            (header.bitsPerSample / 8);
+
+        qint64 pos = (audioSink->processedUSecs() * bytePerSec) / 1000000;
+
+        QByteArray chunk = audioBuffer->data().mid(pos, 4096);
+
+        double db = calculateDb(chunk);
+
+        int level = qBound(0, int((db + 60) * 100 / 60), 100);
+
+        ui->speakerBar->setValue(level);
+        //ui->labelLevel->setText(QString::number(level));
+    });
+
+    // =========================
+    // HANDLE FINISH
+    // =========================
+    connect(audioSink, &QAudioSink::stateChanged, this, [=](QAudio::State state){
+        if (state == QAudio::IdleState) {
+            audioSink->stop();
+            audioBuffer->seek(0);
+            levelTimer->stop();
+            ui->btnPlayRec->setText("Play");
+        }
+    });
+
+    // =========================
+    // UI INIT
+    // =========================
+    ui->speakerBar->setRange(0, 200);
+    ui->btnPlayRec->setText("Play");
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_btnRec_clicked()
+{
+
 }
 
