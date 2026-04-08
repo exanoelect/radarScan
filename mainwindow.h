@@ -72,7 +72,7 @@
 #include <QBuffer>
 #include <QTimer>
 #include <QFile>
-
+#include <systemdmonitorqt.h>
 
 //#define AUTOSTART_ONRPI 1
 
@@ -484,6 +484,9 @@ private:
 
 
     void initAudioSystem();
+
+    //Monitoring system
+    systemdmonitorqt *systemdymon;
 
 //#ifdef PLATFORM_LINUX
     //GPIO LEd strip

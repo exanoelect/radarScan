@@ -4,7 +4,9 @@
 #include <QObject>
 #include <QSocketNotifier>
 #include <QString>
-
+#include <QTimer>
+#include <QProcess>
+#include <QRegularExpression>
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
 
@@ -25,8 +27,12 @@ signals:
     void networkInterfaceDown();
     void ipAddressChanged(QString newIp);
 
+    void wifiHealthUpdated(int rssi, double latency, double packetLoss);
+
 private slots:
-    void handleNetlinkEvent();
+    void handleLinkEvent();//struct nlmsghdr *nh);
+    void handleLinkMessages(struct nlmsghdr *nh);
+
 
 private:
     int netlinkFd = -1;
@@ -36,8 +42,17 @@ private:
     bool lastLinkState = false;
 
     void parseMessages(char *buffer, int len);
-    void handleLinkEvent(struct nlmsghdr *nh);
     void handleAddrEvent(struct nlmsghdr *nh);
+
+    //Add on
+    int getRSSI(const QString &iface);
+    void runPingTest(const QString &ip,
+                     double &loss,
+                     double &latency);
+    bool checkFirmwareHealth();
+
+    QTimer *healthTimer;
+
 };
 
 #endif
