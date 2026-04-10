@@ -17,6 +17,7 @@ public slots:
     void readData();
     void closePort();
     void enqueuePayload(const QByteArray &payload);
+    void prepareRadar(const QString portName);
 
 signals:
     void uiUpdate(const QString &source, const QString &key, const QString &value);
@@ -32,6 +33,7 @@ signals:
 private:
     void processQueue();
     quint8 calcChecksum(const QByteArray &data);
+    void sendCmdRadar(QByteArray cmd);
 
     QString m_id;
     QSerialPort *m_serial = nullptr;

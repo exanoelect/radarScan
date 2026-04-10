@@ -114,6 +114,12 @@ void PayloadProcessor::enqueuePayload(const QByteArray &payload)
 }
 
 //---------------------------------------------------------------------------------------
+void PayloadProcessor::prepareRadar(const QString portName)
+{
+
+}
+
+//---------------------------------------------------------------------------------------
 void PayloadProcessor::processQueue()
 {
     while (!m_queue.isEmpty()) {

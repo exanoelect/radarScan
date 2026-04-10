@@ -137,7 +137,7 @@ void SocketEventWorker::process()
           if (data.isObject()) {
                 QJsonObject obj = data.toObject();
                 QString ssid = obj["ssid"].toString();
-                QString pwd = obj["pwd"].toString();
+                QString pwd = obj["password"].toString();
                 qDebug() << "Wifi request:" << eventName << obj;
                 emit wifiConnect(ssid,pwd);
             }

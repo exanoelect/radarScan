@@ -110,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //        this, &MainWindow::handleError);
 
     initAudioSystem();
-
+    /*
     qDebug() << "Start monitoring";
     systemdymon = new systemdmonitorqt("ssh.service", this);
     connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
@@ -126,6 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     qDebug() << "Monitring prepaper exit";
+    */
 }
 
 //---------------------------------------------------------------------------------------
@@ -2237,6 +2238,7 @@ void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
         obj["ssid"] = ssid;
         obj["password"] = pwd;
         client->emitEventStringMsgJsoned("wifi_connecting",obj);
+        qDebug() << "NMCLI connect wifi ssid " << ssid << " pwd " << pwd;
         m_utility->nmcliConnectToWiFi(ssid,pwd);
     } else {
         qDebug() << "Socket DC";
