@@ -110,7 +110,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //        this, &MainWindow::handleError);
 
     initAudioSystem();
-    /*
+
     qDebug() << "Start monitoring";
     systemdymon = new systemdmonitorqt("ssh.service", this);
     connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
@@ -125,8 +125,8 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "SSH FAILED";
     });
 
-    qDebug() << "Monitring prepaper exit";
-    */
+    qDebug() << "LEave Monitring prepapere ";
+
 }
 
 //---------------------------------------------------------------------------------------
