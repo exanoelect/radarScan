@@ -289,6 +289,7 @@ bool utilities::rpiRestart()
     QProcess process;
 
     process.start("systemctl", QStringList() << "reboot");
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     if (!process.waitForStarted())
         return false;
@@ -345,66 +346,166 @@ void utilities::runNmcli(QStringList args,
 {
     QProcess *process = new QProcess(this);
 
+    // 🔍 DEBUG (taruh di sini)
+    connect(process, &QProcess::started, []() {
+        qDebug() << "Process started";
+    });
+
+    connect(process, &QProcess::finished, []() {
+        qDebug() << "Process finished";
+    });
+
+    connect(process, &QObject::destroyed, []() {
+        qDebug() << "Process destroyed";
+    });
+
+
+    auto called = std::make_shared<bool>(false);
+
+    QTimer *timer = new QTimer(process);
+    timer->setSingleShot(true);
+
+    connect(timer, &QTimer::timeout, process, [process]() {
+        if (process->state() != QProcess::NotRunning) {
+            process->terminate();
+
+            if (!process->waitForFinished(3000)) {
+                process->kill();
+                process->waitForFinished(3000);
+            }
+        }
+    });
+
     connect(process, &QProcess::finished,
-            this, [process, callback](int exitCode,
-                                      QProcess::ExitStatus status) {
+            this,
+            [process, callback, called, timer](int exitCode,
+                                               QProcess::ExitStatus status)
+    {
+        if (*called) return;
+        *called = true;
+
+        timer->stop();
 
         bool success = (status == QProcess::NormalExit && exitCode == 0);
-        QString stdoutStr = QString::fromUtf8(process->readAllStandardOutput());
-        QString stderrStr = QString::fromUtf8(process->readAllStandardError());
 
-        QString message = success ? stdoutStr : stderrStr;
+        QString message =
+            QString::fromUtf8(process->readAllStandardOutput()) +
+            QString::fromUtf8(process->readAllStandardError());
+
         callback(success, message);
+
         process->deleteLater();
     });
 
     connect(process, &QProcess::errorOccurred,
-            this, [process, callback](QProcess::ProcessError) {
+            this,
+            [process, callback, called, timer](QProcess::ProcessError)
+    {
+        if (*called) return;
+        *called = true;
 
-        callback(false, "Process error");
+        timer->stop();
+
+        QString message =
+            QString::fromUtf8(process->readAllStandardOutput()) +
+            QString::fromUtf8(process->readAllStandardError());
+
+        if (message.isEmpty())
+            message = "Process error";
+
+        callback(false, message);
+
         process->deleteLater();
     });
 
     process->start("nmcli", args);
-
-    QTimer::singleShot(15000, process, [process]() {
-        if (process->state() != QProcess::NotRunning)
-            process->kill();
-    });
+    timer->start(15000);
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-void utilities::runNmcliBash(QStringList args, std::function<void (bool, QString)> callback)
+void utilities::runNmcliBash(QStringList args,
+                             std::function<void(bool, QString)> callback)
 {
     QProcess *process = new QProcess(this);
 
+    // 🔍 DEBUG (taruh di sini)
+    connect(process, &QProcess::started, []() {
+        qDebug() << "Process started";
+    });
+
+    connect(process, &QProcess::finished, []() {
+        qDebug() << "Process finished";
+    });
+
+    connect(process, &QObject::destroyed, []() {
+        qDebug() << "Process destroyed";
+    });
+
+
+    // Pakai shared_ptr → auto cleanup
+    auto called = std::make_shared<bool>(false);
+
+    QTimer *timer = new QTimer(process);
+    timer->setSingleShot(true);
+
+    connect(timer, &QTimer::timeout, process, [process]() {
+        if (process->state() != QProcess::NotRunning) {
+            process->terminate();
+
+            QTimer::singleShot(3000, process, [process]() {
+                if (process->state() != QProcess::NotRunning)
+                    process->kill();
+            });
+        }
+    });
+
     connect(process, &QProcess::finished,
-            this, [process, callback](int exitCode,
-                                      QProcess::ExitStatus status) {
+            this,
+            [process, callback, called, timer](int exitCode,
+                                               QProcess::ExitStatus status)
+    {
+        if (*called) return;
+        *called = true;
+
+        timer->stop();
 
         bool success = (status == QProcess::NormalExit && exitCode == 0);
-        QString stdoutStr = QString::fromUtf8(process->readAllStandardOutput());
-        QString stderrStr = QString::fromUtf8(process->readAllStandardError());
 
-        QString message = success ? stdoutStr : stderrStr;
+        QString message =
+            QString::fromUtf8(process->readAllStandardOutput()) +
+            QString::fromUtf8(process->readAllStandardError());
+
         callback(success, message);
+
         process->deleteLater();
     });
 
     connect(process, &QProcess::errorOccurred,
-            this, [process, callback](QProcess::ProcessError) {
+            this,
+            [process, callback, called, timer](QProcess::ProcessError)
+    {
+        if (*called) return;
+        *called = true;
 
-        callback(false, "Process error");
+        timer->stop();
+
+        QString message =
+            QString::fromUtf8(process->readAllStandardOutput()) +
+            QString::fromUtf8(process->readAllStandardError());
+
+        if (message.isEmpty())
+            message = "Process error";
+
+        callback(false, message);
+
         process->deleteLater();
     });
 
     process->start("bash", args);
 
-    QTimer::singleShot(15000, process, [process]() {
-        if (process->state() != QProcess::NotRunning)
-            process->kill();
-    });
+    timer->start(15000);
 }
+
 
 //------------------------------------------------------------------------------------------------------------------------
 QList<WifiAP> utilities::parseNmcliOutput(const QString &output)
@@ -521,50 +622,46 @@ bool utilities::setTimezone(const QString &tz)
 {
     QString zonePath = "/usr/share/zoneinfo/" + tz;
 
-     if(!QFile::exists(zonePath))
-         return false;
+    if(!QFile::exists(zonePath))
+        return false;
 
      // set symlink timezone
-     QProcess::execute("sudo", {
+    QProcess::execute("sudo", {
          "ln",
          "-sf",
          zonePath,
          "/etc/localtime"
-     });
+    });
 
-     // update /etc/timezone
-     QFile file("/etc/timezone");
-     if(file.open(QIODevice::WriteOnly | QIODevice::Truncate))
-     {
-         QTextStream out(&file);
-         out << tz << "\n";
-         file.close();
-     }
+    // update /etc/timezone
+    QFile file("/etc/timezone");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)){
+        QTextStream out(&file);
+        out << tz << "\n";
+        file.close();
+    }
 
-     // cek dengan timedatectl
-     QProcess proc;
-     proc.start("timedatectl");
-     proc.waitForFinished();
+    // cek dengan timedatectl
+    QProcess proc;
+    proc.start("timedatectl");
+    proc.waitForFinished();
 
-     QString output = proc.readAllStandardOutput();
+    QString output = proc.readAllStandardOutput();
 
      // parse timezone
-     QString currentTZ;
+    QString currentTZ;
 
-     QStringList lines = output.split("\n");
-     for(const QString &line : lines)
-     {
-         if(line.contains("Time zone"))
-         {
-             // contoh: Time zone: Europe/Stockholm (CET, +0100)
-             QString tmp = line.section(":",1,1).trimmed();
-             currentTZ = tmp.section(" ",0,0).trimmed();
-             break;
-         }
-     }
+    QStringList lines = output.split("\n");
+    for(const QString &line : lines){
+        if(line.contains("Time zone")){
+            // contoh: Time zone: Europe/Stockholm (CET, +0100)
+            QString tmp = line.section(":",1,1).trimmed();
+            currentTZ = tmp.section(" ",0,0).trimmed();
+            break;
+        }
+    }
 
-     return (currentTZ == tz);
-
+    return (currentTZ == tz);
 }
 
 //------------------------------------------------------------------------------------------------------------------------

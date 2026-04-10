@@ -49,6 +49,7 @@ bool volume::setVolumePercent(int percent)
     QProcess proc;
     proc.start("pactl", {"set-sink-volume", "@DEFAULT_SINK@", QString::number(percent) + "%"});
     proc.waitForFinished();
+    //connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 
     return proc.exitStatus() == QProcess::NormalExit &&
            proc.exitCode() == 0;

@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_volume = new volume();
     m_brightness = new brightness();
+
     m_utility = new utilities();
 
     connect(m_utility, &utilities::wifiConnectResult,
@@ -47,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(m_utility,&utilities::wifiConnectResult,
     //        this,&MainWindow::onWifiConnectFinished);
 
+
     m_volumeMonitor = new VolumeMonitor(this);
 
     connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
@@ -55,7 +57,10 @@ MainWindow::MainWindow(QWidget *parent) :
      m_volCurrent = m_volume->getVolumePercent(); //init vol
 
     //Network monitoring
+
+     /*
     monitor = new NetworkMonitorQt("wlan0");
+
     connect(monitor, &NetworkMonitorQt::wifiConnected,
             this, &MainWindow::onMonitorWlan0Connected);
     connect(monitor, &NetworkMonitorQt::wifiDisconnected,
@@ -66,6 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::onMonitorWlan0networkInterfaceDown);
     connect(monitor, &NetworkMonitorQt::ipAddressChanged,
             this, &MainWindow::onMonitorWlan0ipAddressChanged);
+*/
 
     //Microphone
     // Audio format
@@ -97,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     //Audio decoder
+
     decoder = new QAudioDecoder(this);
 
     connect(decoder, &QAudioDecoder::bufferReady,
@@ -1320,6 +1327,7 @@ QString MainWindow::runCommand(const QString &cmd)
     QProcess process;
     process.start("bash", QStringList() << "-c" << cmd);
     process.waitForFinished();
+  //  connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 
     QString output = process.readAllStandardOutput();
     QString error  = process.readAllStandardError();

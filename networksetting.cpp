@@ -106,6 +106,7 @@ bool update_wpa_supplicant(const QString &ssid, const QString &password) {
      //process.start("sudo systemctl restart wpa_supplicant");
      process.start("sudo systemctl restart dhcpcd");
      process.waitForFinished();
+   //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
      qDebug() << "Wi-Fi configuration updated for SSID:" << ssid;
      return true;
@@ -120,6 +121,7 @@ QString getCurrentSSID()
     QProcess process;
      process.start("iwgetid -r");
      process.waitForFinished(); // Wait for the process to finish
+   //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
      // Get the output
      QString output = process.readAllStandardOutput().trimmed();
@@ -145,6 +147,7 @@ bool wifiDown()
     QProcess process;
     process.start("sudo ifconfig wlan0 down");
     process.waitForFinished(); // Wait for the process to finish
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     // Check the process status
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -267,6 +270,7 @@ bool wifiUp()
     QProcess process;
     process.start("sudo ifconfig wlan0 up");
     process.waitForFinished(); // Wait for the process to finish
+    //connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     // Check the process status
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -289,6 +293,7 @@ bool wpa_supplicantStop()
     QProcess process;
     process.start("sudo systemctl stop wpa_supplicant");
     process.waitForFinished(); // Wait for the process to finish
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     // Check the process status
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -311,6 +316,7 @@ bool wpa_supplicantStart()
     QProcess process;
     process.start("sudo systemctl start wpa_supplicant");
     process.waitForFinished(); // Wait for the process to finish
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     // Check the process status
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -333,6 +339,7 @@ bool dhcpcd_stop()
     process.start("sudo systemctl stop dhcpcd");
     process.waitForFinished();
     QString output = process.readAllStandardOutput();
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
     qDebug() << "sudo systemctl stop dhcpcd >> " << output;
 
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -355,6 +362,7 @@ bool dhcpcd_disable()
     process.start("sudo systemctl disable dhcpcd");
     process.waitForFinished();
     QString output = process.readAllStandardOutput();
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
     qDebug() << "sudo systemctl disable dhcpcd >> " << output;
 
 
@@ -377,6 +385,7 @@ bool NetworkManagerEnable(){
     process.start("sudo systemctl enable NetworkManager");
     process.waitForFinished();
     QString output = process.readAllStandardOutput();
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
     qDebug() << "sudo systemctl enable NetworkManager >> " << output;
 
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -397,6 +406,7 @@ bool NetworkManagerRestart(){
     QProcess process;
     process.start("sudo systemctl restart NetworkManager");
     process.waitForFinished();
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
     //QString output = process.readAllStandardOutput();
     //qDebug() << "sudo systemctl enable NetworkManager >> " << output;
 
@@ -418,6 +428,7 @@ bool nmcliRescanWifi(){
     QProcess process;
     process.start("nmcli device wifi rescan");
     process.waitForFinished();
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
     //QString output = process.readAllStandardOutput();
     //qDebug() << "sudo systemctl enable NetworkManager >> " << output;
 
@@ -439,6 +450,7 @@ bool NetworkManagerStart(){
     QProcess process;
     process.start("sudo systemctl start NetworkManager"); //tanpa respon
     process.waitForFinished();
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
     //QString output = process.readAllStandardOutput();
 
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -459,6 +471,7 @@ bool nmcliSleep(){
     QProcess process;
     process.start("sleep 5"); //tanpa respon
     process.waitForFinished();
+ //   connect(process, &QProcess::finished, process, &QObject::deleteLater);
     //QString output = process.readAllStandardOutput();
 
     if (process.exitStatus() == QProcess::NormalExit) {
@@ -477,6 +490,7 @@ bool nmcliSleep(){
 //-----------------------------------------------------------------------------
 QStringList nmcliGetWifiList(){
     QProcess process;
+  //  connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     //nmcli -t -f SSID wifi list
     process.start(QStringLiteral("nmcli"),
@@ -511,6 +525,7 @@ bool nmcliConnectToWiFi(const QString &ssid, const QString &password) {
    // process.start("bash", QStringList() << "-c" << command);
     process.start(command); //("nmcli device wifi connect " + ssid + " password " + password);
     process.waitForFinished();
+   // connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     QString output = process.readAllStandardOutput();
     qDebug() << "Command Output:" << output;
@@ -536,6 +551,7 @@ QString nmcliGetSSID()
                                 << "connection" << "show" << "--active");
 
     process.waitForFinished();
+    //connect(process, &QProcess::finished, process, &QObject::deleteLater);
 
     QString output = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
     QStringList lines = output.split('\n', Qt::SkipEmptyParts);
@@ -591,6 +607,8 @@ bool pingGoogle()
     // Start ping command and wait for completion
     process.start("bash", QStringList() << "-c" << command);
     process.waitForFinished();
+    //connect(process, &QProcess::finished, process, &QObject::deleteLater);
+
 
     // Get the output
     QString output = process.readAllStandardOutput();
@@ -611,6 +629,7 @@ void nmcliWifiOff()
     QProcess process;
     process.start("bash", QStringList() << "-c" << "nmcli radio wifi off");
     process.waitForFinished();
+    //connect(process, &QProcess::finished, process, &QObject::deleteLater);
     qDebug() << "WiFi disabled: " << process.readAllStandardOutput();
 }
 
@@ -622,5 +641,6 @@ void nmcliWifiOn()
     QProcess process;
     process.start("bash", QStringList() << "-c" << "nmcli radio wifi on");
     process.waitForFinished();
+    //connect(process, &QProcess::finished, process, &QObject::deleteLater);
     qDebug() << "WiFi disabled: " << process.readAllStandardOutput();
 }

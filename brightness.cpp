@@ -14,6 +14,7 @@ int brightness::getBrightness()
     QProcess proc;
     proc.start("brightnessctl", {"get"});
     proc.waitForFinished();
+   // connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 
     QString output = proc.readAllStandardOutput().trimmed();
     bool ok = false;
@@ -95,6 +96,7 @@ bool brightness::setBrightness(int value)
     QProcess proc;
     proc.start("brightnessctl", {"set", QString::number(value)});
     proc.waitForFinished();
+   // connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 
     return proc.exitStatus() == QProcess::NormalExit &&
             proc.exitCode() == 0;

@@ -15,8 +15,11 @@ find_package(Qt6 REQUIRED COMPONENTS
     WebSockets
     Core
     DBus
-    #gpiod
 )
+
+# libnl (netlink)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBNL REQUIRED libnl-3.0 libnl-genl-3.0)
 
 # Jika pakai .ui file
 qt_standard_project_setup()
@@ -58,24 +61,31 @@ qt_add_executable(radarScan
     gpio.h gpio.cpp
     volume.h volume.cpp
     brightness.h brightness.cpp
-
-
 )
 
-# Tambahkan folder tempat qcustomplot berada
+# Include path
 target_include_directories(radarScan
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${LIBNL_INCLUDE_DIRS}
 )
 
 # ===== Platform detection =====
 if(UNIX AND NOT APPLE)
-    message(STATUS "Linux build detected (RPi 5) — linking gpiod")
+    message(STATUS "Linux build detected (RPi 5) — linking gpiod + libnl")
+
     find_library(GPIOD_LIBRARY gpiod REQUIRED)
-    target_link_libraries(radarScan PRIVATE ${GPIOD_LIBRARY})
+
+    target_link_libraries(radarScan PRIVATE
+        ${GPIOD_LIBRARY}
+        ${LIBNL_LIBRARIES}
+    )
+
     target_compile_definitions(radarScan PRIVATE PLATFORM_LINUX)
+
 elseif(APPLE)
     message(STATUS "macOS build detected — gpiod stub mode")
+
     target_compile_definitions(radarScan PRIVATE PLATFORM_MACOS)
 endif()
 
@@ -89,7 +99,11 @@ target_link_libraries(radarScan PRIVATE
     Qt6::Core
     Qt6::DBus
     pulse
-    #gpiod
+)
+
+# Tambahan compile flags dari pkg-config
+target_compile_options(radarScan PRIVATE
+    ${LIBNL_CFLAGS_OTHER}
 )
 
 # macOS bundle settings

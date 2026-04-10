@@ -200,8 +200,19 @@ void NetworkMonitorQt::handleAddrEvent(struct nlmsghdr *nh)
 int NetworkMonitorQt::getRSSI(const QString &iface)
 {
     QProcess p;
-    p.start("iw dev " + iface + " link");
-    p.waitForFinished();
+    p.start("iw", QStringList() << "dev" << iface << "link");
+
+    if (!p.waitForStarted()) {
+        qDebug() << "FAILED start iw";
+        return -1000;
+    }
+
+    if (!p.waitForFinished(3000)) {
+        qDebug() << "TIMEOUT iw";
+        p.kill();
+        p.waitForFinished();
+        return -1000;
+    }
 
     QString out = p.readAllStandardOutput();
 
@@ -219,8 +230,16 @@ int NetworkMonitorQt::getRSSI(const QString &iface)
 void NetworkMonitorQt::runPingTest(const QString &ip, double &loss, double &latency)
 {
     QProcess p;
-    p.start("ping -c 3 " + ip);
+    //p.start("ping -c 3 " + ip);
+    p.start("ping", QStringList() << "-c" << "3" << ip);
     p.waitForFinished();
+    p.close();
+
+    if(!p.waitForFinished(3000)){
+        p.kill();
+        p.waitForFinished();
+    }
+   // connect(p, &QProcess::finished, p, &QObject::deleteLater);
 
     QString out = p.readAllStandardOutput();
 
@@ -240,8 +259,17 @@ void NetworkMonitorQt::runPingTest(const QString &ip, double &loss, double &late
 bool NetworkMonitorQt::checkFirmwareHealth()
 {
     QProcess p;
-    p.start("dmesg | grep brcmfmac");
+    //p.start("dmesg | grep brcmfmac");
+    //p.start("dmesg", QStringList());
+    p.start("bash", QStringList() << "-c" << "dmesg | grep brcmfmac");
     p.waitForFinished();
+    p.close();
+
+    if(!p.waitForFinished(3000)){
+        p.kill();
+        p.waitForFinished();
+    }
+   // connect(p, &QProcess::finished, p, &QObject::deleteLater);
 
     QString out = p.readAllStandardOutput();
 
