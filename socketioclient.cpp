@@ -50,6 +50,7 @@ void SocketIOClient::connectToServer(const QString &host,
     m_version = version;
 
     if (m_webSocket) {
+        m_webSocket->disconnect(this);
         m_webSocket->deleteLater();
         m_webSocket = nullptr;
     }
@@ -494,24 +495,62 @@ void SocketIOClient::sendSocketIOPacket(int type, const QString &data)
 }
 
 //------------------------------------------------------------------------
-void SocketIOClient::emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback)
+void SocketIOClient::emitEvent(const QString &eventName,
+                               const QJsonValue &data,
+                               std::function<void(QJsonValue)> ackCallback)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
         return;
     }
 
-    // Format Socket.IO message: 42["eventName", {data}]
+    QJsonValue fixedData = data;
+
+    // 🔥 Normalize data agar sesuai Zod
+    if (data.isObject()) {
+        QJsonObject obj = data.toObject();
+
+        if (obj.contains("timestamp")) {
+            QJsonValue ts = obj.value("timestamp");
+
+            // Jika string ISO → convert ke number (ms)
+            if (ts.isString()) {
+                QDateTime dt = QDateTime::fromString(ts.toString(), Qt::ISODate);
+                if (dt.isValid()) {
+                    obj["timestamp"] = dt.toMSecsSinceEpoch(); // jadi number
+                } else {
+                    qWarning() << "Invalid timestamp string format";
+                    return; // stop kirim, biar ga kena validation failed
+                }
+            }
+
+            // Kalau bukan number juga → reject
+            else if (!ts.isDouble()) {
+                qWarning() << "Invalid timestamp type (must be number)";
+                return;
+            }
+        }
+
+        fixedData = obj;
+    } else {
+        qWarning() << "Data must be JSON object for event:" << eventName;
+        return;
+    }
+
+    // Format Socket.IO: 42["event", {...}]
     QJsonArray eventArray;
     eventArray.append(eventName);
-    eventArray.append(data);
+    eventArray.append(fixedData);
 
     QJsonDocument doc(eventArray);
-    QString message = "42" + doc.toJson(QJsonDocument::Compact);
+    QString message = "42" + QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
 
     m_webSocket->sendTextMessage(message);
-    qDebug() << "Emitted event:" << eventName << "data:" << data;
+
+    qDebug() << "Emitted event:" << eventName
+             << "Payload:" << message;
 }
+
 
 //------------------------------------------------------------------------
 void SocketIOClient::emitEventQstringMsg(const QString &eventName, const QString message)
@@ -524,29 +563,55 @@ void SocketIOClient::emitEventQstringMsg(const QString &eventName, const QString
     // Format Socket.IO message: 42["eventName"]
     QString data = "42[\"" + message + "\"" + "]";
 
-    m_webSocket->sendTextMessage(message);
+    m_webSocket->sendTextMessage(data);
     qDebug() << "Emitted event:" << eventName << "message:" << data;
 }
 
 //------------------------------------------------------------------------
 void SocketIOClient::emitEventStringMsgJsoned(const QString &eventName,
-                               const QJsonValue &data)
+                                              const QJsonValue &data)
 {
     if (!m_isConnected || !m_webSocket) {
         qWarning() << "Not connected, cannot emit:" << eventName;
         return;
     }
 
+    QJsonValue fixedData = data;
+
+    // 🔥 Jika object, cek field timestamp
+    if (data.isObject()) {
+        QJsonObject obj = data.toObject();
+
+        if (obj.contains("timestamp")) {
+            QJsonValue ts = obj.value("timestamp");
+
+            // ❌ kalau string → convert ke number (ms)
+            if (ts.isString()) {
+                QDateTime dt = QDateTime::fromString(ts.toString(), Qt::ISODate);
+                if (dt.isValid()) {
+                    obj["timestamp"] = dt.toMSecsSinceEpoch(); // jadi number
+                } else {
+                    qWarning() << "Invalid timestamp string format";
+                }
+            }
+        }
+
+        fixedData = obj;
+    }
+
     QJsonArray packetArray;
     packetArray.append(eventName);
-    packetArray.append(data);
+    packetArray.append(fixedData);
 
     QJsonDocument doc(packetArray);
     QString message = "42" + QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
 
     m_webSocket->sendTextMessage(message);
-    qDebug() << "Emitted event:" << eventName;
+
+    qDebug() << "Emitted event:" << eventName
+             << "Payload:" << message;
 }
+
 
 
 //------------------------------------------------------------------------
@@ -568,6 +633,12 @@ void SocketIOClient::emitEventWithAck(const QString &eventName,
     } while (m_ackCallbacks.count(ackId));
 
     m_ackCallbacks.emplace(ackId, std::move(callback));
+
+    if(m_ackCallbacks.size() > 1000) {
+        qWarning() << "ACK map too large! Possible leak:" << m_ackCallbacks.size();
+        qWarning() << "FORCE CLEAR ACK MAP!";
+        m_ackCallbacks.clear();
+    }
 
     QJsonArray arr;
     arr.append(eventName);
