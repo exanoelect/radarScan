@@ -16,10 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    initSound();
-    initGraphics();
+    qDebug() << "Begin Setup";
+
+    //initSound();
+    //initGraphics();
     initSocketIO();
-    initRadar();
+    //initRadar();
+
 
     m_gpio = new gpio();
     m_gpio->setupGPIO();
@@ -45,8 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_utility,&utilities::wifiConnectProgress,
             this,&MainWindow::onWifiProgress);
-    //connect(m_utility,&utilities::wifiConnectResult,
-    //        this,&MainWindow::onWifiConnectFinished);
+    connect(m_utility,&utilities::wifiConnectResult,
+           this,&MainWindow::onWifiConnectFinished);
 
 
     m_volumeMonitor = new VolumeMonitor(this);
@@ -54,11 +57,30 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
           this,&MainWindow::onVolumeChanged);
 
-     m_volCurrent = m_volume->getVolumePercent(); //init vol
+    m_volCurrent = m_volume->getVolumePercent(); //init vol
+
+    qDebug() << "Start test mic";
+
+    /*
+    qDebug() << "Start Mon NL";
+
+    monitor = new NetworkMonitor("wlan0", this);
+
+    connect(monitor, &NetworkMonitor::connectionChanged, [](bool c){
+        qDebug() << "NL Connected:" << c;
+    });
+
+    connect(monitor, &NetworkMonitor::rssiChanged, [](int r){
+        qDebug() << "NL RSSI:" << r;
+    });
+
+    monitor->start();
+
+
+    qDebug() << "END PREpare MON NL";
 
     //Network monitoring
 
-     /*
     monitor = new NetworkMonitorQt("wlan0");
 
     connect(monitor, &NetworkMonitorQt::wifiConnected,

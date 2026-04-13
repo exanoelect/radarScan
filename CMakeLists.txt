@@ -52,6 +52,8 @@ set(SOURCES
     NetworkMonitorQt.cpp
     systemdmonitorqt.h
     systemdmonitorqt.cpp
+    networkmonitor.h
+    networkmonitor.cpp
 )
 
 # Generate executable

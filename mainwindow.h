@@ -46,7 +46,8 @@
 #include <QDebug>
 #include <QNetworkInformation>
 #include <VolumeMonitor.h>
-#include <NetworkMonitorQt.h>
+//#include <NetworkMonitorQt.h>
+#include <networkmonitor.h>
 
 #include <QAudioSource>
 #include <QIODevice>
@@ -361,8 +362,9 @@ private:
     brightness *m_brightness;
     utilities *m_utility;
 
-    NetworkMonitorQt *monitor;
+    //NetworkMonitorQt *monitor;
     //QStringList ssidscanRet;
+    //NetworkMonitor *monitor;
 
     //QString demoName2;
 
