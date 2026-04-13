@@ -5,6 +5,7 @@
 #include <QSerialPort>
 #include <QVariant>
 #include <radar.h>
+#include <QTimer>
 
 class PayloadProcessor : public QObject {
     Q_OBJECT
@@ -34,6 +35,18 @@ private:
     void processQueue();
     quint8 calcChecksum(const QByteArray &data);
     void sendCmdRadar(QByteArray cmd);
+
+    QByteArray makeFrame(const QByteArray &body);
+    QString toHexSpace(const QByteArray &data);
+
+    void setHeight(int height);
+    void setFallDuraion(int duration);
+    void setAngle(int angle);
+
+    void setPresence(bool checked);
+    void setStandStill(bool checked);
+    void setFallDetector(bool checked);
+    void setTraceTracking(bool checked);
 
     QString m_id;
     QSerialPort *m_serial = nullptr;

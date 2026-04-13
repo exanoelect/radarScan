@@ -53,6 +53,26 @@ void PayloadProcessor::initPort(const QString &portName)
     });
 
     emit serialOpened(true);
+
+    /*
+    void setHeight(int height);
+    void setFallDuraion(int duration);
+    void setAngle(int angle);
+
+    void setPresence(bool checked);
+    void setStandStill(bool checked);
+    void setFallDetector(bool checked);
+    void setTraceTracking(bool checked);
+*/
+
+    //Prepare radar
+    QTimer::singleShot(1000, this, [this](){ qDebug() << "Set height";           setHeight(96);         });
+    QTimer::singleShot(2000, this, [this](){ qDebug() << "Set FallDuraion";      setFallDuraion(3);     });
+    QTimer::singleShot(3000, this, [this](){ qDebug() << "Set Angle";            setAngle(30);          });
+    QTimer::singleShot(4000, this, [this](){ qDebug() << "Set Presence";         setPresence(true);     });
+    QTimer::singleShot(5000, this, [this](){ qDebug() << "Set StandStill";       setStandStill(true);   });
+    QTimer::singleShot(6000, this, [this](){ qDebug() << "Set FallDetector";     setFallDetector(true); });
+    QTimer::singleShot(7000, this, [this](){ qDebug() << "Set TraceTracking";    setTraceTracking(true);});
 }
 
 //---------------------------------------------------------------------------------------
@@ -615,4 +635,158 @@ quint8 PayloadProcessor::calcChecksum(const QByteArray &data)
     for (auto b : data)
         cs += static_cast<quint8>(b);
     return cs;
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::sendCmdRadar(QByteArray cmd)
+{
+
+}
+
+//---------------------------------------------------------------------------------------
+QByteArray PayloadProcessor::makeFrame(const QByteArray &body)
+{
+    int s = 0;
+    for (unsigned char c : body) s += c;
+    unsigned char sum = s & 0xFF;
+    QByteArray frame = body;
+    frame.append(static_cast<char>(sum));
+    frame.append(static_cast<char>(0x54));
+    frame.append(static_cast<char>(0x43));
+    return frame;
+}
+
+//---------------------------------------------------------------------------------------
+QString PayloadProcessor::toHexSpace(const QByteArray &data)
+{
+    QStringList parts;
+    for (auto b : data) parts << QString("%1").arg((unsigned char)b, 2, 16, QChar('0')).toUpper();
+    return parts.join(' ');
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setHeight(int height)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+
+    //int height = ui->leSetHeight2->text().toInt();
+    QByteArray cmd = CMD_SET_HEIGHT;
+
+    quint8 hb = static_cast<quint8>((height >> 8) & 0xFF);
+    quint8 lb = static_cast<quint8>(height & 0xFF);
+
+    cmd.append(static_cast<char>(hb));
+    cmd.append(static_cast<char>(lb));
+
+    QByteArray frame = makeFrame(cmd);
+    qDebug() << "Sending frame cmd Height:" << toHexSpace(frame);
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setFallDuraion(int duration)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+
+    //uint32_t duration = ui->leSetFallDuration->text().toUInt();
+
+    QByteArray cmd = CMD_SET_FALL_DURATION;
+
+    // 4 byte (big-endian)
+    quint8 b1 = static_cast<quint8>((duration >> 24) & 0xFF);
+    quint8 b2 = static_cast<quint8>((duration >> 16) & 0xFF);
+    quint8 b3 = static_cast<quint8>((duration >> 8) & 0xFF);
+    quint8 b4 = static_cast<quint8>(duration & 0xFF);
+
+    cmd.append(static_cast<char>(b1));
+    cmd.append(static_cast<char>(b2));
+    cmd.append(static_cast<char>(b3));
+    cmd.append(static_cast<char>(b4));
+
+    QByteArray frame = makeFrame(cmd);
+
+    qDebug() << "Sending frame cmd Set Fall Duration:" << toHexSpace(frame);
+
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setAngle(int angle)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+
+    uint16_t angleX = 0; //ui->leAngleX2->text().toUInt();
+    uint16_t angleY = 0; //ui->leAngleY2->text().toUInt();
+    uint16_t angleZ = angle; //ui->leAngleZ2->text().toUInt();
+
+    QByteArray cmd = CMD_SET_ANGLE_INST;   // ini harus berisi 06 01 sesuai protokol kamu
+
+    // X axis (2 byte big-endian)
+    cmd.append(static_cast<char>((angleX >> 8) & 0xFF));   // HB
+    cmd.append(static_cast<char>(angleX & 0xFF));          // LB
+
+    // Y axis
+    cmd.append(static_cast<char>((angleY >> 8) & 0xFF));
+    cmd.append(static_cast<char>(angleY & 0xFF));
+
+    // Z axis
+    cmd.append(static_cast<char>((angleZ >> 8) & 0xFF));
+    cmd.append(static_cast<char>(angleZ & 0xFF));
+
+    // Generate full frame (prefix, length, checksum, suffix)
+    QByteArray frame = makeFrame(cmd);
+
+    qDebug() << "Sending frame SetAngle:" << toHexSpace(frame);
+
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setPresence(bool checked)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+    QByteArray frame = checked ? makeFrame(CMD_SET_PRESENCE_ON) : makeFrame(CMD_SET_PRESENCE_OFF);
+    qDebug() << "Sending frame set Presence:" << toHexSpace(frame);
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setStandStill(bool checked)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+    QByteArray frame = checked ? makeFrame(CMD_SET_STAND_STILLON) : makeFrame(CMD_SET_STAND_STILLOFF);
+    qDebug() << "Sending frame StandStill:" << toHexSpace(frame);
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setFallDetector(bool checked)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+    QByteArray frame = checked ? makeFrame(CMD_SET_FALL_DETECTION_ON) : makeFrame(CMD_SET_FALL_DETECTION_OFF);
+    qDebug() << "Sending frame Set Fall Duration:" << toHexSpace(frame);
+    m_serial->write(frame);
+    m_serial->flush();
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::setTraceTracking(bool checked)
+{
+    if (!m_serial) return;
+    m_serial->clear(QSerialPort::Input);
+    QByteArray frame = checked ? makeFrame(CMD_SET_TRACE_TRACKING_ON) : makeFrame(CMD_SET_TRACE_TRACKING_OFF);
+    qDebug() << "Sending frame Trace Tracking:" << toHexSpace(frame);
+    m_serial->write(frame);
+    m_serial->flush();
 }

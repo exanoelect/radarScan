@@ -18,11 +18,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << "Begin Setup";
 
-    //initSound();
-    //initGraphics();
+    initSound();
+    initGraphics();
     initSocketIO();
-    //initRadar();
-
+    initRadar();
 
     m_gpio = new gpio();
     m_gpio->setupGPIO();
@@ -93,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this, &MainWindow::onMonitorWlan0networkInterfaceDown);
     connect(monitor, &NetworkMonitorQt::ipAddressChanged,
             this, &MainWindow::onMonitorWlan0ipAddressChanged);
-*/
+
 
     //Microphone
     // Audio format
@@ -101,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent) :
    // format.setSampleRate(44100);
    // format.setChannelCount(1);
    // format.setSampleFormat(QAudioFormat::Int16);
-
+*/
     qDebug() << "Start test mic";
 
     // Default microphone
@@ -155,7 +154,6 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     qDebug() << "LEave Monitring prepapere ";
-
 }
 
 //---------------------------------------------------------------------------------------
