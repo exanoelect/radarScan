@@ -1897,18 +1897,21 @@ void MainWindow::on_btnFallSimulation_clicked()
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onListenStateChanged(const QString &state)
+void MainWindow::onListenStateChanged()
 {
-    qDebug() << "UI Process LISTEN:" << state;
+    qDebug() << "UI Process LISTENING";// << state;
+    m_gpio->setColor(COLOR_WHITE_BRIGHT);
 
-    if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
-    else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
+    //if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    //else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onTalkingStateChanged(const QString &state)
+void MainWindow::onTalkingStateChanged()
 {
-    qDebug() << "UI Process TALKING:" << state;
+    qDebug() << "UI Process TALKING";// << state;
+    m_gpio->setColor(COLOR_WHITE_BLINKY);
+    /*
     if (state == "ON") {
         qDebug() << "Talking on:" << state;
         m_gpio->setColor(COLOR_WHITE_BLINKY);
@@ -1917,6 +1920,7 @@ void MainWindow::onTalkingStateChanged(const QString &state)
         qDebug() << "Talking off:" << state;
         m_gpio->setColor(COLOR_WHITE);
     }
+    */
 }
 
 //------------------------------------------------------------------------
@@ -1991,7 +1995,7 @@ void MainWindow::onWakeUpRequested()
 void MainWindow::onSpeechModuleReady()
 {
     qDebug() << "Speech Module Ready notify";
-    m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------

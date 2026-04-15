@@ -49,11 +49,11 @@ void SocketEventWorker::process()
 
         qDebug() << "Worker processing event:" << eventName << "data:" << data;
 
-        if (eventName == "LISTENING" && data.isString()) {
-            emit listenStateChanged(data.toString());
+        if (eventName == "LISTENING") {
+            emit listenStateChanged();
         }
-        else if (eventName == "TALKING" && data.isString()) {
-            emit talkingStateChanged(data.toString());
+        else if (eventName == "TALKING") {
+            emit talkingStateChanged();
         }
         else if (eventName == "VOLUME_SET_REQUEST") {
             emit volumeGetRequested();

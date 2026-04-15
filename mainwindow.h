@@ -74,6 +74,7 @@
 #include <QTimer>
 #include <QFile>
 #include <systemdmonitorqt.h>
+//#include <systemd
 
 //#define AUTOSTART_ONRPI 1
 
@@ -236,8 +237,8 @@ private slots:
     void on_btnConnect_clicked();
     void on_btnFallSimulation_clicked();
 
-    void onListenStateChanged(const QString &state);
-    void onTalkingStateChanged(const QString &state);
+    void onListenStateChanged();
+    void onTalkingStateChanged();
     void onVolumeGetRequested();
     void onVolumeSetRequested(int value);
     void onPingDeviceUpRequested();

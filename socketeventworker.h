@@ -33,8 +33,8 @@ signals:
     void sleepRequested();
     void wakeupRequested();
     void pingDeviceUpRequested();
-    void listenStateChanged(const QString &state);
-    void talkingStateChanged(const QString &state);
+    void listenStateChanged();
+    void talkingStateChanged();
     void speechModuleReady();
 
     void incidentFall();
