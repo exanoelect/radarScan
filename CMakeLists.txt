@@ -15,6 +15,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     WebSockets
     Core
     DBus
+    Mqtt
 )
 
 # libnl (netlink)
@@ -100,6 +101,7 @@ target_link_libraries(radarScan PRIVATE
     Qt6::WebSockets
     Qt6::Core
     Qt6::DBus
+    Qt6::Mqtt
     pulse
 )
 

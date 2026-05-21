@@ -6,8 +6,8 @@
 #endif
 
 #ifdef PLATFORM_LINUX
-#define UART_PORT0 "/dev/ttyAMA0"
-#define UART_PORT1 "/dev/ttyAMA4"
+#define UART_PORT0 "ttyUSB0" ///dev/ttyAMA0"
+#define UART_PORT1 "ttyUSB1" ///dev/ttyAMA4"
 #else
 #define UART_PORT0 "cu-usbserial-120"
 #define UART_PORT1 "cu-usbserial-130"

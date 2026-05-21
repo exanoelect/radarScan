@@ -40,7 +40,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1979,9 +1979,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>40</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -1992,9 +1992,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>90</y>
+        <y>70</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2004,10 +2004,10 @@
      <widget class="QPushButton" name="btnWifiOn">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>130</y>
+        <x>90</x>
+        <y>10</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2017,10 +2017,10 @@
      <widget class="QPushButton" name="btnWifiCon">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>170</y>
+        <x>90</x>
+        <y>40</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2033,7 +2033,7 @@
         <x>10</x>
         <y>10</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2043,10 +2043,10 @@
      <widget class="QPushButton" name="btnForget">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>210</y>
+        <x>90</x>
+        <y>70</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2056,10 +2056,10 @@
      <widget class="QPushButton" name="btnRestart">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>10</y>
+        <x>230</x>
+        <y>40</y>
         <width>80</width>
-        <height>41</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2069,10 +2069,10 @@
      <widget class="QPushButton" name="btnShutdown">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>50</y>
-        <width>80</width>
-        <height>41</height>
+        <x>230</x>
+        <y>70</y>
+        <width>61</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2082,10 +2082,10 @@
      <widget class="QPushButton" name="btnEmitEvenwAck">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>90</y>
-        <width>80</width>
-        <height>41</height>
+        <x>290</x>
+        <y>70</y>
+        <width>61</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -2095,14 +2095,183 @@
      <widget class="QPushButton" name="btnEmitListeningOn">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>230</x>
         <y>10</y>
-        <width>111</width>
-        <height>41</height>
+        <width>121</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
        <string>LISTENING ON</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="editLog">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>217</y>
+        <width>341</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>32</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Host:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditHost">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>120</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>localhost</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>28</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Port:</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBoxPort">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>140</y>
+        <width>181</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="maximum">
+       <number>99999</number>
+      </property>
+      <property name="value">
+       <number>1883</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonConnect">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>120</y>
+        <width>80</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>41</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Topic:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditTopic">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>160</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>qtmqtt/topic1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>31</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Msg</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEditMessage">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>180</y>
+        <width>181</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>This is a test message</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonSubscribe">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>160</y>
+        <width>80</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Subscribe</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonPublish">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>180</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Publish</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pubTest">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>181</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>test</string>
       </property>
      </widget>
     </widget>

@@ -7,6 +7,8 @@
 #include <QElapsedTimer>
 #include <QSharedPointer>
 #include "configmanager.h"
+#include <QtCore/QDateTime>
+#include <QtMqtt/QMqttClient>
 
 // Jika qcustomplot butuh include spesifik, sudah di header
 
@@ -60,49 +62,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qDebug() << "Start test mic";
 
-    /*
-    qDebug() << "Start Mon NL";
-
-    monitor = new NetworkMonitor("wlan0", this);
-
-    connect(monitor, &NetworkMonitor::connectionChanged, [](bool c){
-        qDebug() << "NL Connected:" << c;
-    });
-
-    connect(monitor, &NetworkMonitor::rssiChanged, [](int r){
-        qDebug() << "NL RSSI:" << r;
-    });
-
-    monitor->start();
-
-
-    qDebug() << "END PREpare MON NL";
-
-    //Network monitoring
-
-    monitor = new NetworkMonitorQt("wlan0");
-
-    connect(monitor, &NetworkMonitorQt::wifiConnected,
-            this, &MainWindow::onMonitorWlan0Connected);
-    connect(monitor, &NetworkMonitorQt::wifiDisconnected,
-            this, &MainWindow::onMonitorWlan0Disconnected);
-    connect(monitor, &NetworkMonitorQt::wifiSignalLost,
-           this, &MainWindow::onMonitorWlan0WifiSignalLost);
-    connect(monitor, &NetworkMonitorQt::networkInterfaceDown,
-            this, &MainWindow::onMonitorWlan0networkInterfaceDown);
-    connect(monitor, &NetworkMonitorQt::ipAddressChanged,
-            this, &MainWindow::onMonitorWlan0ipAddressChanged);
-
-
-    //Microphone
-    // Audio format
-   // QAudioFormat format;
-   // format.setSampleRate(44100);
-   // format.setChannelCount(1);
-   // format.setSampleFormat(QAudioFormat::Int16);
-*/
-    qDebug() << "Start test mic";
-
     // Default microphone
     QAudioDevice inputDevice = QMediaDevices::defaultAudioInput();
 
@@ -110,11 +69,20 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << dev.description();
     }
 
-    QAudioFormat format = inputDevice.preferredFormat();
+    //begin comment
+
+    QAudioFormat format;
+
+    format.setSampleRate(16000);
+    format.setChannelCount(1);
+    format.setSampleFormat(QAudioFormat::Int16);
+
+    if (!inputDevice.isFormatSupported(format)) {
+       qDebug() << "Format not supported!";
+       format = inputDevice.preferredFormat();
+    }
 
     audio = new QAudioSource(inputDevice, format, this);
-
-    qDebug() << "Sample format:" << audio->format().sampleFormat();
 
     device = audio->start();
 
@@ -122,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(audio, &QAudioSource::stateChanged, [](QAudio::State state){
         qDebug() << "Audio state:" << state;
     });
+
 
     //Audio decoder
 
@@ -132,6 +101,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(decoder, &QAudioDecoder::finished,
         this, &MainWindow::handleFinished);
+
 
 
     //connect(decoder, &QAudioDecoder::errorOccurred,
@@ -154,6 +124,41 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     qDebug() << "LEave Monitring prepapere ";
+
+    //MQTT Client setup
+    m_client = new QMqttClient(this);
+    m_client->setHostname(ui->lineEditHost->text());
+    m_client->setPort(ui->spinBoxPort->value());
+
+    connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
+    connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
+
+    connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
+        const QString content = QDateTime::currentDateTime().toString()
+                    + QLatin1String(" Received Topic: ")
+                    + topic.name()
+                    + QLatin1String(" Message: ")
+                    + message
+                    + QLatin1Char('\n');
+        ui->editLog->insertPlainText(content);
+    });
+
+    connect(m_client, &QMqttClient::pingResponseReceived, this, [this]() {
+        const QString content = QDateTime::currentDateTime().toString()
+                    + QLatin1String(" PingResponse")
+                    + QLatin1Char('\n');
+        ui->editLog->insertPlainText(content);
+    });
+
+    connect(ui->lineEditHost, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
+    connect(ui->spinBoxPort, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::setClientPort);
+    updateLogStateChange();
+
+    if(publishMessage("ledcolor","white")){
+        qDebug() << "white ok";
+    }else{
+        qDebug() << "white fail";
+    }
 }
 
 //---------------------------------------------------------------------------------------
@@ -361,9 +366,15 @@ void MainWindow::initRadar()
                     //sound.stop();
                     //sound.play();
                     m_gpio->setColor(COLOR_RED);
+                    if(publishMessage("ledcolor","red")){
+                        qDebug() << "red ok";
+                    }else{
+                        qDebug() << "red fail";
+                    }
+                    soundPlay(SOUND_FALL_OCCUR);
 
                     if (client->isConnected()) {
-                        soundPlay(SOUND_FALL_OCCUR);
+                       // soundPlay(SOUND_FALL_OCCUR);
                         QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
                         QJsonObject obj;
                         obj["datatime"] = timestamp;
@@ -379,6 +390,7 @@ void MainWindow::initRadar()
                     //sound.stop();
                     //sound.play();
 
+                    soundPlay(SOUND_FALL_OCCUR);
                     if (client->isConnected()) {
                         //soundPlay(SOUND_FALL_OCCUR);
                         client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
@@ -1800,24 +1812,44 @@ void MainWindow::onDeviceReadyConnected(int vol, int bright)
 void MainWindow::on_btnColor1_clicked()
 {
     m_gpio->setColor(COLOR_WHITE);
+    if(publishMessage("ledcolor","white")){
+        qDebug() << "white ok";
+    }else{
+        qDebug() << "white fail";
+    }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor2_clicked()
 {
     m_gpio->setColor(COLOR_WHITE_BLINKY);
+    if(publishMessage("ledcolor","blinky")){
+        qDebug() << "blinky ok";
+    }else{
+        qDebug() << "blinky fail";
+    }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    if(publishMessage("ledcolor","bright")){
+        qDebug() << "bright ok";
+    }else{
+        qDebug() << "bright fail";
+    }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
     m_gpio->setColor(COLOR_RED);
+    if(publishMessage("ledcolor","red")){
+        qDebug() << "red ok";
+    }else{
+        qDebug() << "red fail";
+    }
 }
 
 //------------------------------------------------------------------------
@@ -1901,6 +1933,12 @@ void MainWindow::onListenStateChanged()
 {
     qDebug() << "UI Process LISTENING";// << state;
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    if(publishMessage("ledcolor","bright")){
+        qDebug() << "bright ok";
+    }else{
+        qDebug() << "bright fail";
+    }
+
 
     //if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
     //else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
@@ -1911,6 +1949,11 @@ void MainWindow::onTalkingStateChanged()
 {
     qDebug() << "UI Process TALKING";// << state;
     m_gpio->setColor(COLOR_WHITE_BLINKY);
+    if(publishMessage("ledcolor","blinky")){
+        qDebug() << "blinky ok";
+    }else{
+        qDebug() << "blinky fail";
+    }
     /*
     if (state == "ON") {
         qDebug() << "Talking on:" << state;
@@ -1996,6 +2039,11 @@ void MainWindow::onSpeechModuleReady()
 {
     qDebug() << "Speech Module Ready notify";
     m_gpio->setColor(COLOR_WHITE);
+    if(publishMessage("ledcolor","white")){
+        qDebug() << "white ok";
+    }else{
+        qDebug() << "white fail";
+    }
 }
 
 //------------------------------------------------------------------------
@@ -2103,6 +2151,11 @@ void MainWindow::onIncidentFallOccur()
 {
     soundPlay(SOUND_FALL_OCCUR);
     m_gpio->setColor(COLOR_RED);
+    if(publishMessage("ledcolor","red")){
+        qDebug() << "red ok";
+    }else{
+        qDebug() << "red fail";
+    }
 }
 
 //------------------------------------------------------------------------
@@ -2975,8 +3028,93 @@ void MainWindow::initAudioSystem()
 }
 
 //------------------------------------------------------------------------
+bool MainWindow::publishMessage(QString topic, QString message)
+{
+    if (!m_client)
+         return false;
+
+     if (m_client->state() != QMqttClient::Connected)
+         return false;
+
+     qint32 id = m_client->publish(topic, message.toUtf8());
+
+     if (id == -1)
+         return false;
+
+     return true;
+
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnRec_clicked()
 {
 
+}
+
+//------------------------------------------------------------------------
+void MainWindow::setClientPort(int p)
+{
+    m_client->setPort(p);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::updateLogStateChange()
+{
+    const QString content = QDateTime::currentDateTime().toString()
+                    + QLatin1String(": State Change")
+                    + QString::number(m_client->state())
+                    + QLatin1Char('\n');
+    ui->editLog->insertPlainText(content);
+}
+
+//------------------------------------------------------------------------
+void MainWindow::brokerDisconnected()
+{
+    ui->lineEditHost->setEnabled(true);
+    ui->spinBoxPort->setEnabled(true);
+    ui->buttonConnect->setText(tr("Connect"));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_buttonConnect_clicked()
+{
+    if (m_client->state() == QMqttClient::Disconnected) {
+        ui->lineEditHost->setEnabled(false);
+        ui->spinBoxPort->setEnabled(false);
+        ui->buttonConnect->setText(tr("Disconnect"));
+        m_client->connectToHost();
+    } else {
+        ui->lineEditHost->setEnabled(true);
+        ui->spinBoxPort->setEnabled(true);
+        ui->buttonConnect->setText(tr("Connect"));
+        m_client->disconnectFromHost();
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_buttonSubscribe_clicked()
+{
+    auto subscription = m_client->subscribe(ui->lineEditTopic->text());
+    if (!subscription) {
+        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
+        return;
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_buttonPublish_clicked()
+{
+    if (m_client->publish(ui->lineEditTopic->text(), ui->lineEditMessage->text().toUtf8()) == -1)
+        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
+}
+
+//------------------------------------------------------------------------
+void MainWindow::on_pubTest_clicked()
+{
+    if(publishMessage("ledcolor","red")){
+       qDebug() << "sukses pub";
+    }else{
+        qDebug() << "fail pub";
+    }
 }
 

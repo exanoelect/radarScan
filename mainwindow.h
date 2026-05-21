@@ -74,6 +74,8 @@
 #include <QTimer>
 #include <QFile>
 #include <systemdmonitorqt.h>
+
+#include <QMqttClient>
 //#include <systemd
 
 //#define AUTOSTART_ONRPI 1
@@ -159,6 +161,7 @@ public:
 
 public slots:
     //void updatePlot(const QVector<double> &values);   //
+    void setClientPort(int p);
 
 private slots:
     void on_btnLoad_clicked();
@@ -340,6 +343,17 @@ private slots:
 
     void on_btnRec_clicked();
 
+    void updateLogStateChange();
+    void brokerDisconnected();
+
+    void on_buttonConnect_clicked();
+
+    void on_buttonSubscribe_clicked();
+
+    void on_buttonPublish_clicked();
+
+    void on_pubTest_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -490,6 +504,9 @@ private:
 
     //Monitoring system
     systemdmonitorqt *systemdymon;
+    QMqttClient *m_client;
+
+    bool publishMessage(QString topic, QString message);
 
 //#ifdef PLATFORM_LINUX
     //GPIO LEd strip

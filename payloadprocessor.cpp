@@ -66,13 +66,14 @@ void PayloadProcessor::initPort(const QString &portName)
 */
 
     //Prepare radar
-    QTimer::singleShot(1000, this, [this](){ qDebug() << "Set height";           setHeight(96);         });
-    QTimer::singleShot(2000, this, [this](){ qDebug() << "Set FallDuraion";      setFallDuraion(3);     });
-    QTimer::singleShot(3000, this, [this](){ qDebug() << "Set Angle";            setAngle(30);          });
-    QTimer::singleShot(4000, this, [this](){ qDebug() << "Set Presence";         setPresence(true);     });
-    QTimer::singleShot(5000, this, [this](){ qDebug() << "Set StandStill";       setStandStill(true);   });
-    QTimer::singleShot(6000, this, [this](){ qDebug() << "Set FallDetector";     setFallDetector(true); });
-    QTimer::singleShot(7000, this, [this](){ qDebug() << "Set TraceTracking";    setTraceTracking(true);});
+    //QTimer::singleShot(2000, this, [this](){ qDebug() << "Set FallDuraion";      setFallDuraion(3);     });
+    //QTimer::singleShot(3000, this, [this](){ qDebug() << "Set Angle";            setAngle(30);          });
+    //QTimer::singleShot(4000, this, [this](){ qDebug() << "Set Presence";         setPresence(true);     });
+    //QTimer::singleShot(5000, this, [this](){ qDebug() << "Set StandStill";       setStandStill(true);   });
+    //QTimer::singleShot(6000, this, [this](){ qDebug() << "Set FallDetector";     setFallDetector(true); });
+    //QTimer::singleShot(7000, this, [this](){ qDebug() << "Set TraceTracking";    setTraceTracking(true);});
+    //QTimer::singleShot(1000, this, [this](){ qDebug() << "Set height";           setHeight(96);         });
+
 }
 
 //---------------------------------------------------------------------------------------
