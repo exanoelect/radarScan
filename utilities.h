@@ -97,7 +97,11 @@ private slots:
 
 private:
     void runNmcli(QStringList args,std::function<void(bool, QString)> callback);
-    void runNmcliBash(QStringList args,std::function<void(bool, QString)> callback);
+    void runNmcliBash(
+            QStringList args,
+            std::function<void(bool,
+                               const QString &stdoutData,
+                               const QString &stderrData)> callback);
 
     QList<WifiAP> parseNmcliOutput(const QString &output);
     QString wlanDevicePath;

@@ -83,63 +83,69 @@ void utilities::nmcliGetWifiListComplete()
 void utilities::nmcliGetCurrentWifiInfo()
 {
     QString script = R"SCRIPT(
-    IF=wlan0
-    SSID=$(nmcli -t -f ACTIVE,SSID dev wifi 2>/dev/null | awk -F: '/^yes/ {print $2}')
-    SIGNAL=$(nmcli -t -f IN-USE,SIGNAL dev wifi 2>/dev/null | awk -F: '/^\*/ {print $2}')
-    IP=$(nmcli -t -f IP4.ADDRESS device show $IF 2>/dev/null | head -n1 | cut -d: -f2 | cut -d/ -f1)
-    CONN=$(nmcli -t -f GENERAL.CONNECTION device show $IF 2>/dev/null | cut -d: -f2)
+IF=wlan0
 
-    TS=0
-    if [ -n "$CONN" ]; then
-        TS=$(nmcli -t -f connection.timestamp connection show "$CONN" 2>/dev/null)
-    fi
+SSID=$(nmcli -t -f ACTIVE,SSID dev wifi 2>/dev/null | awk -F: '/^yes/ {print substr($0,index($0,$2))}')
+SIGNAL=$(nmcli -t -f IN-USE,SIGNAL dev wifi 2>/dev/null | awk -F: '/^\*/ {print $2}')
+IP=$(nmcli -t -f IP4.ADDRESS device show "$IF" 2>/dev/null | head -n1 | cut -d: -f2 | cut -d/ -f1)
 
-    NOW=$(date +%s)
+if [ -z "$SIGNAL" ]; then
+    SIGNAL=0
+fi
 
-    if [ -z "$SIGNAL" ]; then
-        SIGNAL=0
-    fi
+DBM=$((SIGNAL/2-100))
 
-    if [ -n "$TS" ]; then
-        UPTIME=$((NOW-TS))
-    else
-        UPTIME=0
-    fi
+printf '%s|%s|%s\n' "$SSID" "$DBM" "$IP"
+)SCRIPT";
 
-    printf '{"ssid":"%s","signal_dbm":%d,"ip":"%s","uptime_sec":%d}' \
-    "$SSID" "$((SIGNAL/2-100))" "$IP" "$UPTIME"
-    )SCRIPT";
-
-    QStringList args;
-    args << "-c" << script;
-
-    runNmcliBash({"-c", script}, [this](bool success, QString output)
+    runNmcliBash(
+                {"-c", script},
+                [this](bool success,
+                       const QString &stdoutData,
+                       const QString &stderrData)
     {
+        qDebug().noquote() << "STDOUT:" << stdoutData;
+        qDebug().noquote() << "STDERR:" << stderrData;
+
         if (!success)
         {
-            qDebug() << "bash exe fail";
-            qDebug() << "STDOUT:" << output;
-           // qDebug() << "STDERR:" << error;
-           // qDebug() << "ExitCode:" << exitCode;
+            qWarning() << "bash execution failed";
 
             emit wifiCurrentInfoReady(QJsonObject());
+
             return;
         }
 
-        QJsonParseError err;
-        QJsonDocument doc = QJsonDocument::fromJson(output.trimmed().toUtf8(), &err);
+        QString output = stdoutData.trimmed();
 
-        if (err.error != QJsonParseError::NoError || !doc.isObject())
+        QStringList parts = output.split('|');
+
+        if (parts.size() != 3)
         {
-            qDebug() << "JSON parse error";
+            qWarning() << "Unexpected output format:" << output;
+
             emit wifiCurrentInfoReady(QJsonObject());
+
             return;
         }
 
-        qDebug() << "bash exe ok";
-        emit wifiCurrentInfoReady(doc.object());
+        QJsonObject obj;
+
+        obj["ssid"] = parts[0];
+
+        obj["signal_dbm"] = parts[1].toInt();
+
+        obj["ip"] = parts[2];
+
+        obj["uptime_sec"] = 0;
+
+        qDebug() << "WiFi info =" << obj;
+
+        emit wifiCurrentInfoReady(obj);
     });
 }
+
+
 
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -423,80 +429,80 @@ void utilities::runNmcli(QStringList args,
 }
 
 //------------------------------------------------------------------------------------------------------------------------
-void utilities::runNmcliBash(QStringList args,
-                             std::function<void(bool, QString)> callback)
+void utilities::runNmcliBash(
+        QStringList args,
+        std::function<void(bool,
+                           const QString &stdoutData,
+                           const QString &stderrData)> callback)
 {
     QProcess *process = new QProcess(this);
 
-    // 🔍 DEBUG (taruh di sini)
-    connect(process, &QProcess::started, []() {
-        qDebug() << "Process started";
-    });
-
-    connect(process, &QProcess::finished, []() {
-        qDebug() << "Process finished";
-    });
-
-    connect(process, &QObject::destroyed, []() {
-        qDebug() << "Process destroyed";
-    });
-
-
-    // Pakai shared_ptr → auto cleanup
     auto called = std::make_shared<bool>(false);
 
     QTimer *timer = new QTimer(process);
     timer->setSingleShot(true);
 
-    connect(timer, &QTimer::timeout, process, [process]() {
-        if (process->state() != QProcess::NotRunning) {
+    connect(timer, &QTimer::timeout, process, [process]()
+    {
+        if (process->state() != QProcess::NotRunning)
+        {
             process->terminate();
 
-            QTimer::singleShot(3000, process, [process]() {
+            QTimer::singleShot(3000, process, [process]()
+            {
                 if (process->state() != QProcess::NotRunning)
                     process->kill();
             });
         }
     });
 
-    connect(process, &QProcess::finished,
+    connect(process,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             this,
-            [process, callback, called, timer](int exitCode,
-                                               QProcess::ExitStatus status)
+            [process, callback, called, timer]
+            (int exitCode, QProcess::ExitStatus status)
     {
-        if (*called) return;
+        if (*called)
+            return;
+
         *called = true;
 
         timer->stop();
 
-        bool success = (status == QProcess::NormalExit && exitCode == 0);
+        QString stdoutData =
+                QString::fromUtf8(process->readAllStandardOutput());
 
-        QString message =
-            QString::fromUtf8(process->readAllStandardOutput()) +
-            QString::fromUtf8(process->readAllStandardError());
+        QString stderrData =
+                QString::fromUtf8(process->readAllStandardError());
 
-        callback(success, message);
+        bool success =
+                (status == QProcess::NormalExit && exitCode == 0);
+
+        callback(success, stdoutData, stderrData);
 
         process->deleteLater();
     });
 
-    connect(process, &QProcess::errorOccurred,
+    connect(process,
+            &QProcess::errorOccurred,
             this,
-            [process, callback, called, timer](QProcess::ProcessError)
+            [process, callback, called, timer]
+            (QProcess::ProcessError)
     {
-        if (*called) return;
+        if (*called)
+            return;
+
         *called = true;
 
         timer->stop();
 
-        QString message =
-            QString::fromUtf8(process->readAllStandardOutput()) +
-            QString::fromUtf8(process->readAllStandardError());
+        QString stdoutData =
+                QString::fromUtf8(process->readAllStandardOutput());
 
-        if (message.isEmpty())
-            message = "Process error";
+        QString stderrData =
+                QString::fromUtf8(process->readAllStandardError());
 
-        callback(false, message);
+        callback(false, stdoutData, stderrData);
 
         process->deleteLater();
     });
@@ -505,6 +511,8 @@ void utilities::runNmcliBash(QStringList args,
 
     timer->start(15000);
 }
+
+
 
 
 //------------------------------------------------------------------------------------------------------------------------
