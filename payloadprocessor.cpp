@@ -410,73 +410,266 @@ void PayloadProcessor::processQueue()
                 break;
             }
 
-            case 0x02: {  // trace tracking info
-                emit debugMessage(m_id + " 82 02 Trace Tracking Info = " + payload.toHex(' '));
+            case 0x02:{
+                 if(!fpsTimer.isValid())
+                     fpsTimer.start();
 
-                auto read16s = [&](int offset) -> qint16 {
-                    quint16 raw = (quint16(payload[offset]) << 8) |
-                                  quint8(payload[offset + 1]);
-                    return qint16(raw);
-                };
+                 frameCount++;
 
-                uint8_t  type_code = payload[0];
-                uint8_t  subtype   = payload[1];
-                uint16_t len       = read16s(2);
+                 if(fpsTimer.elapsed() >= 1000){
+                     qDebug() << "Tracking FPS =" << frameCount;
+                     frameCount = 0;
+                     fpsTimer.restart();
+                 }
 
-                int offset = 4;   // first target starts at 4
-                const int targetSize = 11;
-                int targetCount = len / targetSize;
+                 qDebug() << "82 02 Trace Tracking Info =" << payload.toHex(' ');
 
-                for (int i = 0; i < targetCount; i++) {
+                 auto read16u = [&](int offset) -> qint16 {
+                     quint16 raw = (quint16(payload[offset]) << 8) |
+                                   quint8(payload[offset + 1]);
+                     return qint16(raw);
+                 };
 
-                    uint8_t index        = payload[offset + 0];
-                    uint8_t target_size  = payload[offset + 1];
-                    uint8_t target_feat  = payload[offset + 2];
+                 auto decodeCoord = [&](int offset) -> qint16 {
+                     quint16 raw = read16u(offset);
 
-                    qint16 x_pos    = read16s(offset + 3);
-                    qint16 y_pos    = read16s(offset + 5);
-                    qint16 height   = read16s(offset + 7);
-                    qint16 velocity = read16s(offset + 9);
+                     bool negative = (raw & 0x8000);
+                     qint16 value  = raw & 0x7FFF;
 
-                    // Filter invalid velocity
-                    if (velocity <= -32000 || velocity >= 32000) {
-                        velocity = 0;
-                    }
+                     return negative ? -value : value;
+                 };
 
-                    // Filter invalid coordinates
-                    if (x_pos <= -32000 || x_pos >= 32000 ||
-                        y_pos <= -32000 || y_pos >= 32000)
-                    {
-                        emit debugMessage(m_id + " Invalid coordinate received, skipping "
-                                          + QString::number(x_pos) + "-" + QString::number(y_pos));
-                        offset += targetSize;
-                        continue;
-                    }
+                 //uint8_t  type_code = payload[0];
+                 //uint8_t  subtype   = payload[1];
+                 uint16_t len       = read16u(2);
 
-                    // Kirim ke UI (per port)
-                    emit radarPoint(m_id,
-                                    static_cast<double>(x_pos),
-                                    static_cast<double>(y_pos));
+                 int offset = 4;
+                 const int targetSize = 11;
 
-                    emit velocityUpdate(m_id, QString::number(velocity));
-                    emit uiUpdate(m_id, "velocity", QString::number(velocity));
-                    emit uiUpdate(m_id, "fallPosX", QString::number(x_pos));
-                    emit uiUpdate(m_id, "fallPosY", QString::number(y_pos));
+                 int targetCount = len / targetSize;
 
-                    emit debugMessage(m_id + " Target " + QString::number(i) +
-                                      " tc:" + QString::number(targetCount) +
-                                      " Index:" + QString::number(index) +
-                                      " Size:" + QString::number(target_size) +
-                                      " Feat:" + QString::number(target_feat) +
-                                      " X:" + QString::number(x_pos) +
-                                      " Y:" + QString::number(y_pos) +
-                                      " Z:" + QString::number(height) +
-                                      " Vel:" + QString::number(velocity));
+                 qDebug() << "Len =" << len
+                          << "Target Count =" << targetCount;
 
-                    offset += targetSize;
-                }
-                break;
-            }
+                 //---------------------------------
+                 // Parse semua target dalam frame
+                 //---------------------------------
+
+                 for (int i = 0; i < targetCount; i++){
+                     if ((offset + targetSize) > payload.size()){
+                         qDebug() << "Payload too short";
+                         break;
+                     }
+
+                     uint8_t trackId = payload[offset + 0];
+
+                     qint16 x = decodeCoord(offset + 3);
+                     qint16 y = decodeCoord(offset + 5);
+
+                     qint16 h = read16u(offset + 7);
+
+                     qint16 vel = decodeCoord(offset + 9);
+
+                     //---------------------------------
+                     // Sanity check
+                     //---------------------------------
+
+                     if ((qAbs(x) > 5000) || (qAbs(y) > 5000)){
+                         qDebug() << "Invalid coordinate received"
+                                  << x << y;
+
+                         offset += targetSize;
+                         continue;
+                     }
+
+                     //---------------------------------
+                     // Cari target berdasarkan Track ID
+                     //---------------------------------
+
+                     TargetInfo *t = nullptr;
+
+                     for(int k=0; k<TARGET_COUNT_SIZE; k++){
+                         if(targets[k].valid &&
+                            targets[k].trackId == trackId){
+                             t = &targets[k];
+                             break;
+                         }
+                     }
+
+                     //---------------------------------
+                     // Target baru
+                     //---------------------------------
+
+                     if(t == nullptr){
+                         for(int k=0; k<TARGET_COUNT_SIZE; k++){
+                             if(!targets[k].valid){
+                                 t = &targets[k];
+
+                                 t->valid = true;
+                                 t->trackId = trackId;
+
+                                 t->fallScore = 0;
+                                 t->state = StateUnknown;
+
+                                 t->historyCount = 0;
+
+                                 t->lowHeightActive = false;
+                                 t->fallCandidateActive = false;
+
+                                 t->lowHeightTimer.invalidate();
+                                 t->fallTimer.invalidate();
+
+                                 t->hiddenStableActive = false;
+                                 t->hiddenCandidateActive = false;
+                                 t->hiddenCandidateTimer.invalidate();
+                                 t->hiddenStableTimer.invalidate();
+
+                                 memset(t->x,        0, sizeof(t->x));
+                                 memset(t->y,        0, sizeof(t->y));
+                                 memset(t->height,   0, sizeof(t->height));
+                                 memset(t->velocity, 0, sizeof(t->velocity));
+                                 memset(t->motion,   0, sizeof(t->motion));
+
+                                 t->lastSeenMs = QDateTime::currentMSecsSinceEpoch();
+
+                                 qDebug() << "New Target:" << trackId;
+
+                                 break;
+                             }
+                         }
+                     }
+
+                     //---------------------------------
+                     // Tidak ada slot kosong
+                     //---------------------------------
+
+                     if(t == nullptr){
+                         qDebug() << "No free target slot";
+
+                         offset += targetSize;
+                         continue;
+                     }
+
+                     //---------------------------------
+                     // Hitung movement
+                     //---------------------------------
+
+                     qint32 movement = 0;
+
+                     if(t->historyCount > 0){
+                         qint16 prevX = t->x[HISTORY_SIZE - 1];
+                         qint16 prevY = t->y[HISTORY_SIZE - 1];
+
+                         double dx = double(x) - double(prevX);
+                         double dy = double(y) - double(prevY);
+
+                         movement = qRound(std::sqrt(dx*dx + dy*dy));
+                     }
+
+                     //---------------------------------
+                     // Update history
+                     //---------------------------------
+                     shiftHistory(t->x, x);
+                     shiftHistory(t->y, y);
+                     shiftHistory(t->height, h);
+                     shiftHistory(t->velocity, vel);
+                     shiftHistory(t->motion, movement);
+
+                     if(t->historyCount < HISTORY_SIZE)
+                         t->historyCount++;
+
+                     t->lastSeenMs = QDateTime::currentMSecsSinceEpoch();
+
+                     if(t->historyCount >= 5){
+                         //---------------------------------
+                         // Fall Detection
+                         //---------------------------------
+
+                         decisionFall(*t);
+                     }
+
+                     //---------------------------------
+                     // Debug
+                     //---------------------------------
+                     qDebug()
+                         << "ID:"    << t->trackId
+                         << "X:"     << x
+                         << "Y:"     << y
+                         << "M:"     << movement
+                         << " H:"    << h
+                         << "Vel:"   << vel
+                         << "Move:"  << movement
+                         << "Score:" << t->fallScore
+                         << "State:" << t->state;
+
+                     //---------------------------------
+                     // UI
+                     //---------------------------------
+
+                     //updateRadarPoint();
+                     offset += targetSize;
+                 }
+
+                 //---------------------------------
+                 // Bersihkan target timeout
+                 //---------------------------------
+
+                 qint64 now = QDateTime::currentMSecsSinceEpoch();
+                 TargetInfo *activeTarget = nullptr;
+                 int maxActivity = -1;
+                 const qint64 TARGET_TIMEOUT_MS = 6000;
+
+                 for(int i=0; i<TARGET_COUNT_SIZE; i++) {
+                     if(!targets[i].valid)
+                         continue;
+
+                     if(now - targets[i].lastSeenMs > TARGET_TIMEOUT_MS){
+                         //---------------------------------
+                         // Hapus target
+                         //---------------------------------
+
+                         qDebug()
+                         << "Target timeout:"
+                         << targets[i].trackId;
+
+                         resetFallState(targets[i]);
+                         targets[i].valid = false;
+
+                         continue;
+                     }
+
+                     int activity = 0;
+                     //qDebug()
+                     //    << "ID:" << targets[i].trackId
+                     //    << "Activity:" << activity;
+
+                     for(int j=0; j<HISTORY_SIZE; j++){
+                         activity += targets[i].motion[j];
+                         activity += qAbs(targets[i].velocity[j]) * 5;
+                     }
+
+                     if(activity > maxActivity){
+                         maxActivity = activity;
+                         activeTarget = &targets[i];
+                     }
+                 }
+
+                 bool anyFallen = false;
+                 bool anyFalling = false;
+
+                 for(int i = 0; i < TARGET_COUNT_SIZE; i++){
+                     if(!targets[i].valid)
+                         continue;
+
+                     if(targets[i].state == StateLying)
+                         anyFallen = true;
+
+                     if(targets[i].state == StateFalling)
+                         anyFalling = true;
+                 }
+
+                 break;
+             }
 
             case 0x80: {
                 emit debugMessage(m_id + " 82 80 Trace Tracking Info = " + payload.toHex(' '));
@@ -790,4 +983,468 @@ void PayloadProcessor::setTraceTracking(bool checked)
     qDebug() << "Sending frame Trace Tracking:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
+}
+//---------------------------------------------------------------------------------------
+bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
+{
+    if(t.historyCount < HISTORY_SIZE){
+        qDebug()
+             << "ID"
+             << t.trackId
+             << "History not full:"
+             << t.historyCount
+             << "/"
+             << HISTORY_SIZE;
+
+        return false;
+    }
+
+    /*
+    qDebug()
+        << "isFC ID:"     << t.trackId
+        << "X:"      << historyToString(t.x)
+        << "Y:"      << historyToString(t.y)
+        << "H:"      << historyToString(t.height)
+        << "Vel:"    << historyToString(t.velocity)
+        << "Move:"   << historyToString(t.motion)
+        << "Hist:"   << t.historyCount
+        << "Score:"  << t.fallScore
+        << "State:"  << t.state;
+    */
+
+    qint16 hMax = 0;
+
+    for(int i=0; i<HISTORY_SIZE; i++){
+        if(t.height[i] > hMax)
+            hMax = t.height[i];
+    }
+
+    qint16 hNew = t.height[HISTORY_SIZE - 1];
+
+
+    qDebug() << "hMax " << hMax << "hNew " << hNew;
+
+    if((hMax <= 0) || (hNew <= 0)){
+        qDebug() << "hOld hnew negative";
+        return false;
+    }
+
+    int heightDrop = hMax - hNew;
+
+    quint16 avgTotal = 0;
+    quint16 totalMovement = 0;
+
+    for(int i=0; i<HISTORY_SIZE; i++){
+        avgTotal += qAbs(t.velocity[i]);
+        totalMovement += t.motion[i];
+    }
+
+    //avgVel /= HISTORY_SIZE;
+
+    bool rapidHeightDrop = (heightDrop > 50); //60
+    bool fastMotion = (avgTotal > 5);
+    bool movedEnough = (totalMovement > 2);
+
+   // qDebug() << "drop" << heightDrop <<
+   //             "vel" << avgVel <<
+   //             "move" << totalMovement;
+
+    qDebug()
+        << "EIC ID:" << t.trackId
+        << "hMax:" << hMax
+        << "hNew:" << hNew
+        << "drop:" << heightDrop
+        << "avgVel:" << avgTotal
+        << "totalMove:" << totalMovement
+        << "score:" << t.fallScore;
+
+
+    return rapidHeightDrop &&
+            (fastMotion || movedEnough);
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::decisionFall(TargetInfo &t)
+{
+    if(!t.valid)
+        return;
+
+    //---------------------------------
+    // Ambil data terbaru
+    //---------------------------------
+
+    const int idx = HISTORY_SIZE - 1;
+
+    qint16 hNew = t.height[idx];
+    qint16 velLast = qAbs(t.velocity[idx]);
+    qint32 moveLast = qAbs(t.motion[idx]);
+
+    bool normalCandidate = isFallCandidate(t);
+    bool lowHeight = (hNew < 30);
+
+    //---------------------------------
+    // kandidat jatuh
+    //---------------------------------
+
+    if(normalCandidate){
+        qDebug() << "Nearly down....";
+        if(!t.fallCandidateActive){
+            t.fallCandidateActive = true;
+            t.fallTimer.restart();
+            qDebug() << "!t.fallCandidateActive";
+        }
+        t.fallScore += 20;
+        if(t.fallScore > 100){
+            t.fallScore = 100;
+            qDebug() << "fallScore 100";
+        }
+        t.state = StateFalling;
+    }else{
+        if(t.fallScore > 0){
+            qDebug() << "fallScore -- " << t.fallScore;
+            t.fallScore -= 2;
+            if(t.fallScore < 0)
+               t.fallScore = 0;
+        }
+        qDebug() << "No Candidate...";
+    }
+
+    //---------------------------------
+    // posisi rendah
+    //---------------------------------
+
+    if(lowHeight){
+        qDebug() << "lowHeight detected";
+        if(!t.lowHeightActive){
+            t.lowHeightActive = true;
+            t.lowHeightTimer.restart();
+            qDebug() << "lowHeight true";
+        }
+    }else{
+        t.lowHeightActive = false;
+        t.lowHeightTimer.invalidate();
+        qDebug() << "lowHeight false";
+    }
+
+    //---------------------------------
+    // reset kandidat jika score habis
+    //---------------------------------
+
+    if(!normalCandidate &&
+       !lowHeight &&
+       t.fallScore == 0){
+       t.fallCandidateActive = false;
+       t.fallTimer.invalidate();
+
+        qDebug() << "reset candidate";
+    }
+
+    //---------------------------------
+    // konfirmasi jatuh normal
+    //---------------------------------
+
+    if(t.fallCandidateActive &&
+       t.lowHeightActive &&
+       t.fallTimer.isValid() &&
+       t.lowHeightTimer.isValid() &&
+       t.fallScore >= 40){
+
+        qint64 fallMs = t.fallTimer.elapsed();
+        qint64 lowMs = t.lowHeightTimer.elapsed();
+
+        qDebug() << "konfirmasi hampir jatuh "
+                 << fallMs
+                 << "-"
+                 << lowMs;
+
+        if(fallMs > 300 &&
+           lowMs > 5000){
+            //emit fallAlarm(t.trackId);
+            emit fallDetected(QString(t.trackId));  // UI thread will handle sound & socket
+            qDebug() << "FALL CONFIRMED "
+                     << t.trackId;
+            resetFallState(t);
+            t.state = StateLying;
+            return;
+        }
+    }
+
+    //---------------------------------
+    // Hidden Fall Detection
+    //---------------------------------
+
+    bool hiddenTrigger = isLostAfterHeightDrop(t);
+    bool stableHidden = (hNew < 50 &&
+                         velLast == 0 &&
+                         moveLast == 0);
+
+    if(hiddenTrigger &&
+        !t.hiddenCandidateActive){
+        t.hiddenCandidateActive = true;
+        t.hiddenCandidateTimer.restart();
+        t.hiddenStableTimer.invalidate();
+
+        qDebug() << "Hidden candidate started"
+                 << t.trackId
+                 << "hNew" << hNew
+                 << "vel" << velLast
+                 << "motion" << moveLast;
+    }
+
+    if(t.hiddenCandidateActive){
+        const qint64 HIDDEN_CONFIRM_MS = 3000;
+        const qint64 HIDDEN_TIMEOUT_MS = 6000;
+
+        //---------------------------------
+        // Jika objek tetap hidden stable
+        //---------------------------------
+
+        if(stableHidden){
+            if(!t.hiddenStableTimer.isValid()){
+                t.hiddenStableTimer.restart();
+
+                qDebug() << "Hidden stable timer started"
+                         << t.trackId;
+            }
+
+            qint64 hiddenStableMs = t.hiddenStableTimer.elapsed();
+
+            qDebug() << "Hidden stable duration"
+                     << hiddenStableMs
+                     << "ms";
+
+            if(hiddenStableMs > HIDDEN_CONFIRM_MS){
+                //emit fallAlarm(t.trackId);
+                emit fallDetected(QString(t.trackId));  // UI thread will handle sound & socket
+
+                qDebug() << "FALL CONFIRMED HIDDEN"
+                         << t.trackId
+                         << "hNew" << hNew
+                         << "vel" << velLast
+                         << "motion" << moveLast;
+
+                resetFallState(t);
+                t.state = StateLying;
+                return;
+            }
+
+            //---------------------------------
+            // Jika objek bergerak lagi / tidak stabil
+            //---------------------------------
+
+        }else{
+            t.hiddenStableTimer.invalidate();
+
+            qint64 hiddenCandidateMs = t.hiddenCandidateTimer.elapsed();
+
+            if(hiddenCandidateMs > HIDDEN_TIMEOUT_MS){
+                qDebug() << "Hidden fall cancelled by timeout"
+                        << t.trackId;
+
+                resetFallState(t);
+                return;
+            }
+        }
+    }
+    //---------------------------------
+    // UI for debug
+    //---------------------------------
+
+    /*
+    if(t.state == StateLying){
+        ui->leFallStateAlgorithm->setStyleSheet(
+            "background-color: red; color: yellow;");
+
+        ui->leFallStateAlgorithm->setText(
+            "FALLEN");
+
+    }else if(isStanding(t)){
+        ui->leFallStateAlgorithm->setStyleSheet(
+            "background-color: green; color: black;");
+
+        ui->leFallStateAlgorithm->setText(
+            "NOTFALL");
+
+    }else if(t.state < StateLying){
+        ui->leFallStateAlgorithm->setStyleSheet(
+            "background-color: green; color: black;");
+
+        ui->leFallStateAlgorithm->setText(
+            "NOTFALLEN");
+    }
+    */
+}
+
+
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::shiftHistory(qint16 data[], qint16 value)
+{
+    for(int i=1; i<HISTORY_SIZE; i++)
+        data[i-1] = data[i];
+
+    data[HISTORY_SIZE-1] = value;
+}
+
+//---------------------------------------------------------------------------------------
+void PayloadProcessor::resetFallState(TargetInfo &t)
+{
+    t.fallScore = 0;
+
+    t.fallCandidateActive = false;
+    t.lowHeightActive = false;
+
+    t.fallTimer.invalidate();
+    t.lowHeightTimer.invalidate();
+
+    t.hiddenStableActive = false;
+    t.hiddenStableTimer.invalidate();
+
+    t.hiddenCandidateActive = false;
+    t.hiddenCandidateTimer.invalidate();
+    t.hiddenStableTimer.invalidate();
+
+    t.fallScore = 0;
+
+   // t.lostAfterDropActive = false;
+   // t.lostAfterDropTimer.invalidate();
+
+    //if(t.state == StateFalling)
+    //    t.state = StateUnknown;
+
+   // ui->leFallStateAlgorithm->setStyleSheet("background-color: green; color: black;");
+   // ui->leFallStateAlgorithm->setText("NOTFALL");
+
+}
+
+//---------------------------------------------------------------------------------------
+QString PayloadProcessor::historyToString(const qint16 data[])
+{
+    QString s;
+
+    for(int i=0; i<HISTORY_SIZE; i++)
+    {
+        s += QString::number(data[i]);
+
+        if(i < HISTORY_SIZE - 1)
+            s += ",";
+    }
+
+    return s;
+
+}
+
+//---------------------------------------------------------------------------------------
+bool PayloadProcessor::isStanding(const TargetInfo &t)
+{
+    int h = t.height[HISTORY_SIZE - 1];
+
+    return (h > 70);
+}
+
+//---------------------------------------------------------------------------------------
+bool PayloadProcessor::isLostAfterHeightDrop(const TargetInfo &t)
+{
+    if(!t.valid)
+        return false;
+
+    //---------------------------------
+    // Threshold hidden fall
+    //---------------------------------
+
+    const int idx =
+        HISTORY_SIZE - 1;
+
+    const int HIDDEN_HEIGHT_MAX =
+        50;     // area rendah / tertutup sofa
+
+    const int STANDING_HEIGHT_MIN =
+        70;     // indikasi sebelumnya masih berdiri / cukup tinggi
+
+    const int MIN_HEIGHT_DROP =
+        25;     // minimal penurunan tinggi yang dianggap signifikan
+
+    const int MIN_STANDING_COUNT =
+        2;      // minimal jumlah data sebelumnya yang menunjukkan objek tinggi
+
+    //---------------------------------
+    // Data terbaru
+    //---------------------------------
+
+    int hNew =
+        t.height[idx];
+
+    int velLast =
+        qAbs(t.velocity[idx]);
+
+    int motionLast =
+        qAbs(t.motion[idx]);
+
+    //---------------------------------
+    // Kondisi akhir: objek rendah dan benar-benar tidak terbaca gerak
+    //---------------------------------
+    // Untuk kasus jatuh di belakang sofa, berdasarkan eksperimen:
+    // velocity == 0 dan motion == 0 justru menjadi ciri penting.
+    //---------------------------------
+
+    bool nowHiddenStable =
+        (hNew < HIDDEN_HEIGHT_MAX &&
+         velLast == 0 &&
+         motionLast == 0);
+
+    if(!nowHiddenStable)
+        return false;
+
+    //---------------------------------
+    // Cek riwayat sebelumnya:
+    // apakah objek sebelumnya pernah cukup tinggi?
+    //---------------------------------
+
+    int previousMaxHeight =
+        0;
+
+    int standingCount =
+        0;
+
+    for(int i = 0; i < idx; i++){
+        int h =
+            t.height[i];
+
+        if(h > previousMaxHeight)
+            previousMaxHeight = h;
+
+        if(h >= STANDING_HEIGHT_MIN)
+            standingCount++;
+    }
+
+    bool wasStandingBefore =
+        (standingCount >= MIN_STANDING_COUNT);
+
+    //---------------------------------
+    // Cek apakah terjadi penurunan tinggi yang signifikan
+    //---------------------------------
+
+    bool heightDropped =
+        ((previousMaxHeight - hNew) >= MIN_HEIGHT_DROP);
+
+    //---------------------------------
+    // Hidden fall candidate
+    //---------------------------------
+
+    if(wasStandingBefore &&
+        heightDropped)
+    {
+        qDebug()
+        << "Hidden fall candidate detected"
+        << "trackId" << t.trackId
+        << "prevMaxHeight" << previousMaxHeight
+        << "hNew" << hNew
+        << "drop" << (previousMaxHeight - hNew)
+        << "vel" << velLast
+        << "motion" << motionLast;
+
+        return true;
+    }
+
+    return false;
 }

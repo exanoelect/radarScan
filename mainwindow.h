@@ -275,6 +275,7 @@ private slots:
     void onWifiSSidListReady(QStringList ssidList);
     void onWifiSSidListReadyComplete(QList<WifiAP> wifiList);
     void onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList);
+    void onCurrentSSidRequest();
 
     void onWifiConnectRequest(const QString &ssid,const QString &pwd);
     void onWifiForgetRequest(const QString &ssid);
@@ -507,6 +508,9 @@ private:
     QMqttClient *m_client;
 
     bool publishMessage(QString topic, QString message);
+    void stopAllThreads();
+    void stopAllProcesses();
+    void restartApp();
 
 //#ifdef PLATFORM_LINUX
     //GPIO LEd strip

@@ -159,6 +159,19 @@ MainWindow::MainWindow(QWidget *parent) :
     }else{
         qDebug() << "white fail";
     }
+
+    //connect mqtt broker
+    if (m_client->state() == QMqttClient::Disconnected) {
+        ui->lineEditHost->setEnabled(false);
+        ui->spinBoxPort->setEnabled(false);
+        ui->buttonConnect->setText(tr("Disconnect"));
+        m_client->connectToHost();
+    } else {
+        ui->lineEditHost->setEnabled(true);
+        ui->spinBoxPort->setEnabled(true);
+        ui->buttonConnect->setText(tr("Connect"));
+        m_client->disconnectFromHost();
+    }
 }
 
 //---------------------------------------------------------------------------------------
@@ -284,14 +297,18 @@ void MainWindow::initSocketIO()
 
     m_workerThread->start();
 
-    QString serverIp = ConfigManager::getServerIp();
+    QString serverIp = ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
     int serverPort = ConfigManager::getServerPort();
 
     qDebug() << "Server IP:" << serverIp;
     qDebug() << "Server Port:" << serverPort;
 
     //client->connectToServer("192.168.1.27", 3000);
-    client->connectToServer(serverIp, serverPort);
+    client->connectToServer(serverIp);//, serverPort);
+
+    connect(client, &SocketIOClient::connected,
+            this, &MainWindow::onCurrentSSidRequest);
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -2316,6 +2333,13 @@ void MainWindow::onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList)
 }
 
 //------------------------------------------------------------------------
+void MainWindow::onCurrentSSidRequest()
+{
+    qDebug() << "reconnect, get current ssid.... ";
+    m_worker->wifiGetSsid();
+}
+
+//------------------------------------------------------------------------
 void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
 {
     if (client->isConnected()) {
@@ -2384,8 +2408,6 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
     } else {
         qDebug() << "Socket DC";
     }
-
-
 }
 
 //------------------------------------------------------------------------
@@ -2482,6 +2504,11 @@ void MainWindow::onWifiProgress(int state, QString stateText)
         obj["progress"] = percent;
 
         client->emitEventStringMsgJsoned("wifi_connection_progress", obj);
+        if(state == 100){
+            qDebug() << "new wifi ssid, recon app....";
+            client->connectToServer("");//, serverPort);
+            //restartApp();
+        }
      }
 }
 
@@ -3046,6 +3073,58 @@ bool MainWindow::publishMessage(QString topic, QString message)
 }
 
 //------------------------------------------------------------------------
+void MainWindow::stopAllThreads()
+{
+    QList<QThread*> threads =
+        qApp->findChildren<QThread*>();
+
+    for(QThread *thread : threads)
+    {
+        if(thread == QThread::currentThread())
+            continue;
+
+        qDebug() << "Stopping thread:" << thread;
+
+        thread->requestInterruption();
+        thread->quit();
+
+        if(!thread->wait(3000))
+        {
+            qWarning() << "Thread not stopped:" << thread;
+        }
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::stopAllProcesses()
+{
+    QList<QProcess*> processes =
+         qApp->findChildren<QProcess*>();
+
+     for(QProcess *p : processes)
+     {
+         p->terminate();
+
+         if(!p->waitForFinished(3000))
+             p->kill();
+     }
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::restartApp()
+{
+    stopAllProcesses();
+     stopAllThreads();
+
+     QString app = QCoreApplication::applicationFilePath();
+
+     QProcess::startDetached(app);
+
+     qApp->quit();
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnRec_clicked()
 {
 
@@ -3111,10 +3190,11 @@ void MainWindow::on_buttonPublish_clicked()
 //------------------------------------------------------------------------
 void MainWindow::on_pubTest_clicked()
 {
-    if(publishMessage("ledcolor","red")){
+    /*if(publishMessage("ledcolor","red")){
        qDebug() << "sukses pub";
     }else{
         qDebug() << "fail pub";
-    }
+    }*/
+    restartApp();
 }
 

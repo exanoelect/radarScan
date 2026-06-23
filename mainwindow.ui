@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Radar Scan V0.1</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(235, 119, 255);</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCustomPlot" name="plottsgram" native="true">
     <property name="geometry">
@@ -2206,7 +2209,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>qtmqtt/topic1</string>
+       <string>ledcolor</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_11">

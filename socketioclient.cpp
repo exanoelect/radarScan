@@ -118,7 +118,7 @@ void SocketIOClient::constructWebSocketUrl()
 
     // Tambahkan timestamp untuk avoid cache
     query.addQueryItem("t", QString::number(QDateTime::currentMSecsSinceEpoch()));
-    //query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
+    query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
     query.addQueryItem("userId","raspberry");
 
 
@@ -134,6 +134,7 @@ void SocketIOClient::constructWebSocketUrl()
     qDebug() << "Namespace:" << m_namespace;
 
     m_webSocket->open(url);
+    //m_webSocket->open(QUrl("wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket"));
 }
 
 //------------------------------------------------------------------------
@@ -147,7 +148,6 @@ void SocketIOClient::onWebSocketConnected()
 
     QString payload = "40{\"userId\":\"raspberry\"}";
     m_webSocket->sendTextMessage(payload);
-
 }
 
 //------------------------------------------------------------------------

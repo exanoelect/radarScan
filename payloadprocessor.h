@@ -6,6 +6,53 @@
 #include <QVariant>
 #include <radar.h>
 #include <QTimer>
+#include <QElapsedTimer>
+#include <QDateTime>
+
+constexpr int HISTORY_SIZE = 40;
+constexpr int TARGET_COUNT_SIZE = 20;
+
+enum TargetState
+{
+    StateUnknown = 0,
+    StateStanding,
+    StateSitting,
+    StateLying,
+    StateFalling
+};
+
+struct TargetInfo
+{
+    bool valid;
+
+    uint16_t trackId;
+
+    qint16 x[HISTORY_SIZE];
+    qint16 y[HISTORY_SIZE];
+    qint16 height[HISTORY_SIZE];
+    qint16 velocity[HISTORY_SIZE];
+    qint16 motion[HISTORY_SIZE];
+    //qint16 movement[HISTORY_SIZE];
+
+    uint8_t historyCount;
+
+    qint16 fallScore;
+    quint8 state;
+
+    qint64 lastSeenMs;
+
+    bool lowHeightActive;
+    QElapsedTimer lowHeightTimer;
+
+    bool fallCandidateActive;
+    QElapsedTimer fallTimer;
+
+    bool hiddenStableActive = false;
+    bool hiddenCandidateActive = false;
+    QElapsedTimer hiddenCandidateTimer;
+    QElapsedTimer hiddenStableTimer;
+};
+
 
 class PayloadProcessor : public QObject {
     Q_OBJECT
@@ -52,4 +99,19 @@ private:
     QSerialPort *m_serial = nullptr;
     QByteArray m_buffer;
     QQueue<QByteArray> m_queue;
+
+    TargetInfo targets[TARGET_COUNT_SIZE];
+
+    //Fall algorithm
+    bool isFallCandidate(const TargetInfo &t);
+    void decisionFall(TargetInfo &t);
+    void shiftHistory(qint16 data[HISTORY_SIZE], qint16 value);
+    void resetFallState(TargetInfo &t);
+    QString historyToString(const qint16 data[]);
+    bool isStanding(const TargetInfo &t);
+    bool isLostAfterHeightDrop(const TargetInfo &t);
+    bool fallReported;
+
+    QElapsedTimer fpsTimer;
+    int frameCount = 0;
 };
