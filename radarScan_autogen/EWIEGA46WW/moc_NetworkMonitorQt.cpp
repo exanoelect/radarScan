@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'NetworkMonitorQt.h'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.1)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.11.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,7 +18,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'NetworkMonitorQt.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.10.1. It"
+#error "This file was generated using the moc from 6.11.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -46,7 +46,14 @@ template <> constexpr inline auto NetworkMonitorQt::qt_create_metaobjectdata<qt_
         "networkInterfaceDown",
         "ipAddressChanged",
         "newIp",
-        "handleNetlinkEvent"
+        "wifiHealthUpdated",
+        "rssi",
+        "latency",
+        "packetLoss",
+        "handleLinkEvent",
+        "handleLinkMessages",
+        "nlmsghdr*",
+        "nh"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -62,8 +69,16 @@ template <> constexpr inline auto NetworkMonitorQt::qt_create_metaobjectdata<qt_
         QtMocHelpers::SignalData<void(QString)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 7 },
         }}),
-        // Slot 'handleNetlinkEvent'
-        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Signal 'wifiHealthUpdated'
+        QtMocHelpers::SignalData<void(int, double, double)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 9 }, { QMetaType::Double, 10 }, { QMetaType::Double, 11 },
+        }}),
+        // Slot 'handleLinkEvent'
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleLinkMessages'
+        QtMocHelpers::SlotData<void(nlmsghdr *)>(13, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 14, 15 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -92,7 +107,9 @@ void NetworkMonitorQt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 2: _t->wifiSignalLost(); break;
         case 3: _t->networkInterfaceDown(); break;
         case 4: _t->ipAddressChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 5: _t->handleNetlinkEvent(); break;
+        case 5: _t->wifiHealthUpdated((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<double>>(_a[3]))); break;
+        case 6: _t->handleLinkEvent(); break;
+        case 7: _t->handleLinkMessages((*reinterpret_cast<std::add_pointer_t<nlmsghdr*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -106,6 +123,8 @@ void NetworkMonitorQt::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         if (QtMocHelpers::indexOfMethod<void (NetworkMonitorQt::*)()>(_a, &NetworkMonitorQt::networkInterfaceDown, 3))
             return;
         if (QtMocHelpers::indexOfMethod<void (NetworkMonitorQt::*)(QString )>(_a, &NetworkMonitorQt::ipAddressChanged, 4))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (NetworkMonitorQt::*)(int , double , double )>(_a, &NetworkMonitorQt::wifiHealthUpdated, 5))
             return;
     }
 }
@@ -129,14 +148,14 @@ int NetworkMonitorQt::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
 }
@@ -169,5 +188,11 @@ void NetworkMonitorQt::networkInterfaceDown()
 void NetworkMonitorQt::ipAddressChanged(QString _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+}
+
+// SIGNAL 5
+void NetworkMonitorQt::wifiHealthUpdated(int _t1, double _t2, double _t3)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 5, nullptr, _t1, _t2, _t3);
 }
 QT_WARNING_POP

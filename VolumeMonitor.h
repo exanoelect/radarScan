@@ -5,7 +5,10 @@
 #pragma once
 
 #include <QObject>
-#include <pulse/pulseaudio.h>
+#ifdef PLATFORM_LINUX
+    #include <pulse/pulseaudio.h>
+#endif
+
 #include <qdebug.h>
 
 
@@ -31,7 +34,7 @@ private:
 
     // internal (NO LOCK) – hanya dipanggil dari worker thread
     void requestSinkInfoInternal();
-
+#ifdef PLATFORM_LINUX
     // libpulse callbacks
     static void contextStateCallback(pa_context *c, void *userdata);
     static void subscribeCallback(pa_context *c,
@@ -43,9 +46,9 @@ private:
                                  int eol,
                                  void *userdata);
 
-private:
     pa_threaded_mainloop *m_mainloop = nullptr;
     pa_context *m_context = nullptr;
+#endif
 };
 
 #endif // VOLUMEMONITOR_H

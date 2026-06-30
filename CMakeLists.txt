@@ -20,7 +20,10 @@ find_package(Qt6 REQUIRED COMPONENTS
 
 # libnl (netlink)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBNL REQUIRED libnl-3.0 libnl-genl-3.0)
+
+if(UNIX AND NOT APPLE)
+    pkg_check_modules(LIBNL REQUIRED libnl-3.0 libnl-genl-3.0)
+endif()
 
 # Jika pakai .ui file
 qt_standard_project_setup()
@@ -47,15 +50,20 @@ set(SOURCES
     networksetting.cpp
     utilities.h
     utilities.cpp
-    VolumeMonitor.h
-    VolumeMonitor.cpp
-    NetworkMonitorQt.h
-    NetworkMonitorQt.cpp
     systemdmonitorqt.h
     systemdmonitorqt.cpp
-    networkmonitor.h
-    networkmonitor.cpp
 )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    list(APPEND SOURCES
+        VolumeMonitor.h
+        VolumeMonitor.cpp
+        NetworkMonitorQt.h
+        NetworkMonitorQt.cpp
+        networkmonitor.h
+        networkmonitor.cpp
+    )
+endif()
 
 # Generate executable
 qt_add_executable(radarScan
@@ -102,8 +110,11 @@ target_link_libraries(radarScan PRIVATE
     Qt6::Core
     Qt6::DBus
     Qt6::Mqtt
-    pulse
 )
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    target_link_libraries(radarScan PRIVATE pulse)
+endif()
 
 # Tambahan compile flags dari pkg-config
 target_compile_options(radarScan PRIVATE

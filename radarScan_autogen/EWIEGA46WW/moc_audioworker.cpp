@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'audioworker.h'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.1)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.11.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,7 +18,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'audioworker.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.10.1. It"
+#error "This file was generated using the moc from 6.11.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -41,7 +41,8 @@ template <> constexpr inline auto AudioWorker::qt_create_metaobjectdata<qt_meta_
         "AudioWorker",
         "finishedPlaying",
         "",
-        "requestId",
+        "sentenceIndex",
+        "langIndex",
         "init",
         "enqueueSound",
         "playNext",
@@ -50,19 +51,19 @@ template <> constexpr inline auto AudioWorker::qt_create_metaobjectdata<qt_meta_
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'finishedPlaying'
-        QtMocHelpers::SignalData<void(int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 3 },
+        QtMocHelpers::SignalData<void(int, int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::Int, 4 },
         }}),
         // Slot 'init'
-        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'enqueueSound'
-        QtMocHelpers::SlotData<void(int)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 3 },
+        QtMocHelpers::SlotData<void(int, int)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::Int, 4 },
         }}),
         // Slot 'playNext'
-        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onPlaybackTimeout'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPlaybackTimeout'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -86,16 +87,16 @@ void AudioWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     auto *_t = static_cast<AudioWorker *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->finishedPlaying((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 0: _t->finishedPlaying((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
         case 1: _t->init(); break;
-        case 2: _t->enqueueSound((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->enqueueSound((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
         case 3: _t->playNext(); break;
         case 4: _t->onPlaybackTimeout(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (AudioWorker::*)(int )>(_a, &AudioWorker::finishedPlaying, 0))
+        if (QtMocHelpers::indexOfMethod<void (AudioWorker::*)(int , int )>(_a, &AudioWorker::finishedPlaying, 0))
             return;
     }
 }
@@ -132,8 +133,8 @@ int AudioWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AudioWorker::finishedPlaying(int _t1)
+void AudioWorker::finishedPlaying(int _t1, int _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
 }
 QT_WARNING_POP

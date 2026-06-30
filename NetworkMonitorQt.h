@@ -7,8 +7,11 @@
 #include <QTimer>
 #include <QProcess>
 #include <QRegularExpression>
+
+#ifdef Q_OS_LINUX
 #include <linux/netlink.h>
 #include <linux/rtnetlink.h>
+#endif
 
 class NetworkMonitorQt : public QObject
 {

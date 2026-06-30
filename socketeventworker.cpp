@@ -54,7 +54,11 @@ void SocketEventWorker::process()
             emit modeListen();
         }else if (eventName == "TALKING") {
             emit modeTalking();
-        }else if (eventName == "VOLUME_SET_REQUEST") {
+        }
+
+
+        //Brightness, Volume
+        else if (eventName == "VOLUME_SET_REQUEST") {
             emit volumeGetRequested();
         }else if (eventName == "VOLUME_SET") {
             int vt = 0;
@@ -116,32 +120,42 @@ void SocketEventWorker::process()
             emit  alarmSnoozeButton();
         }
 
-
         //LAnguage
         else if (eventName == "LANGUAGE_CURRENT") {
-            emit langCurrent();
+            if (data.isObject()) {
+                QJsonObject obj = data.toObject();
+                QString lang = obj["lang"].toString();
+                qDebug() << "lang current:" << eventName << obj;
+                emit langCurrent(lang);
+            }
         }else if(eventName == "LANGUAGE_GET"){
             emit langGet();
         }else if(eventName == "LANGUAGE_SET"){
-            emit langSet();
+            if (data.isObject()) {
+                QJsonObject obj = data.toObject();
+                QString ret = obj["success"].toString();
+                QString lang = obj["lang"].toString();
+                qDebug() << "lang current:" << eventName << obj;
+                emit langSet(lang);
+            }
         }else if(eventName == "ACK_LANGUAGE_SET"){
             emit langAckSet();
         }
 
         //FALL EVENT DETECTED
-        else if(eventName == "INCIDENT_FALL_EVENT_DETECTED"){ //1
+        else if(eventName == "INCIDENT_FALL_EVENT_DETECTED"){    //1
             emit incidentFallEventDetected();
-        }else if(eventName == "WAKE_UP_BY_FALL_DETECTION"){ //2
+        }else if(eventName == "WAKE_UP_BY_FALL_DETECTION"){      //2
             emit incidentFallWakeUpByFallDetection();
-        }else if(eventName == "ACK_FALL_EVENT_DETECTED"){ //3
+        }else if(eventName == "ACK_FALL_EVENT_DETECTED"){        //3
             emit incidentFallAckFallEventDetected();
-        }else if(eventName == "INCIDENT_FALL_DOWN_NO_REPONSE"){ //4
+        }else if(eventName == "INCIDENT_FALL_DOWN_NO_REPONSE"){  //4
             emit incidentFallNoResponse();
-        }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){ //5
+        }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){   //5
             emit incidentFallHelpEventDetected();
-        }else if(eventName == "INCIDENT_OK_EVENT_DETECTED"){ //6
+        }else if(eventName == "INCIDENT_OK_EVENT_DETECTED"){     //6
             emit incidentFallOKEventDetected();
-        }else if(eventName == "INCIDENT_COMPLETED"){ //7
+        }else if(eventName == "INCIDENT_COMPLETED"){             //7
             emit incidentFallCompleted();
         }else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
             emit incidentFallIamnotOK();

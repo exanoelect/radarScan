@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'payloadprocessor.h'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.10.1)
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.11.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -18,7 +18,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'payloadprocessor.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.10.1. It"
+#error "This file was generated using the moc from 6.11.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -64,7 +64,8 @@ template <> constexpr inline auto PayloadProcessor::qt_create_metaobjectdata<qt_
         "readData",
         "closePort",
         "enqueuePayload",
-        "payload"
+        "payload",
+        "prepareRadar"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -116,6 +117,10 @@ template <> constexpr inline auto PayloadProcessor::qt_create_metaobjectdata<qt_
         QtMocHelpers::SlotData<void(const QByteArray &)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QByteArray, 26 },
         }}),
+        // Slot 'prepareRadar'
+        QtMocHelpers::SlotData<void(const QString)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 22 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -152,6 +157,7 @@ void PayloadProcessor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 10: _t->readData(); break;
         case 11: _t->closePort(); break;
         case 12: _t->enqueuePayload((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 13: _t->prepareRadar((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -196,14 +202,14 @@ int PayloadProcessor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

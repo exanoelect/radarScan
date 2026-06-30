@@ -86,7 +86,9 @@ QString systemdmonitorqt::getUnitPath(const QString &service)
 //--------------------------------------------------------------
 QString systemdmonitorqt::encodeService(const QString &service)
 {
+
     QString encoded;
+#ifdef Q_OS_LINUX
     for (QChar c : service)
     {
         if (c.isLetterOrNumber())
@@ -94,5 +96,6 @@ QString systemdmonitorqt::encodeService(const QString &service)
         else
             encoded += QString("_%1").arg(c.unicode(), 2, 16, QChar('0'));
     }
+#endif
     return encoded;
 }

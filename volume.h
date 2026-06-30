@@ -6,7 +6,10 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QObject>
-#include <pulse/pulseaudio.h>
+
+#ifdef Q_OS_LINUX
+    #include <pulse/pulseaudio.h>
+#endif
 
 class volume : public QObject
 {

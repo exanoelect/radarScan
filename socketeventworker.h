@@ -41,25 +41,22 @@ signals:
     void speechModuleReady();
 
     //Language
-    void langCurrent(); //LANGUAGE_CURRENT
-    void langGet(); //LANGUAGE_GET
-    void langSet(); //LANGUAGE_SET
-    void langAckSet(); //ACK_LANGUAGE_SET
+    void langCurrent(QString lang); //LANGUAGE_CURRENT
+    void langGet();                 //LANGUAGE_GET
+    void langSet(QString lang);     //LANGUAGE_SET
+    void langAckSet();              //ACK_LANGUAGE_SET
 
     //Fall
-    void incidentFall();
-    void incidentHelp();
-    void incidentIamOK();
-    void incidentIamnotOK();
     void incidentFallEventDetected();
     void incidentFallWakeUpByFallDetection();
     void incidentFallAckFallEventDetected();
     void incidentFallNoResponse();
+    void incidentHelp();
+    void incidentFallIamOK();
     void incidentFallHelpEventDetected();
     void incidentFallOKEventDetected();
     void incidentFallCompleted();
     void incidentFallIamnotOK();
-    void incidentFallIamOK();
 
     //Alarm
     void alarmRing();         //ALARM_RING

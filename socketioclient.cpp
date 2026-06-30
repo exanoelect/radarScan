@@ -121,7 +121,6 @@ void SocketIOClient::constructWebSocketUrl()
     query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
     query.addQueryItem("userId","raspberry");
 
-
     // Tambahkan namespace ke query jika bukan root namespace
     if (m_namespace != "/") {
         query.addQueryItem("namespace", m_namespace);
@@ -130,11 +129,11 @@ void SocketIOClient::constructWebSocketUrl()
     url.setQuery(query);
 
     QString urlString = url.toString();
-    qDebug() << "Connecting to:" << urlString;
+    qDebug() << "Connecting to:" << "wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket";//urlString;
     qDebug() << "Namespace:" << m_namespace;
 
-    m_webSocket->open(url);
-    //m_webSocket->open(QUrl("wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket"));
+    //m_webSocket->open(url);
+    m_webSocket->open(QUrl("wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket"));
 }
 
 //------------------------------------------------------------------------

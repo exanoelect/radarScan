@@ -14,7 +14,7 @@
    <string>Radar Scan V0.1</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(235, 119, 255);</string>
+   <string notr="true">background-color: rgb(112, 114, 114);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCustomPlot" name="plottsgram" native="true">
@@ -43,7 +43,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -477,7 +477,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence">
        <property name="geometry">
@@ -513,7 +513,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection">
        <property name="geometry">
@@ -538,7 +538,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -562,7 +562,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill">
        <property name="geometry">
@@ -587,7 +587,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_2">
         <property name="geometry">
@@ -728,7 +728,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking">
        <property name="geometry">
@@ -823,7 +823,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking2">
        <property name="geometry">
@@ -978,7 +978,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence2">
        <property name="geometry">
@@ -1027,7 +1027,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection2">
        <property name="geometry">
@@ -1052,7 +1052,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -1066,7 +1066,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill2">
        <property name="geometry">
@@ -1091,7 +1091,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::Shape::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_6">
         <property name="geometry">
@@ -1227,7 +1227,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1458,7 +1458,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1671,7 +1671,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
@@ -1729,7 +1729,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
@@ -1777,7 +1777,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>Vol</string>
@@ -1809,7 +1809,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="text">
        <string>Bright</string>
@@ -1873,7 +1873,7 @@
        </rect>
       </property>
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
       </property>
      </widget>
      <widget class="QSlider" name="hsVol">
@@ -1886,7 +1886,7 @@
        </rect>
       </property>
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="btnPlayFall">
@@ -2118,165 +2118,6 @@
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>120</y>
-        <width>32</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Host:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditHost">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>120</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>localhost</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>140</y>
-        <width>28</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Port:</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBoxPort">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>140</y>
-        <width>181</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="maximum">
-       <number>99999</number>
-      </property>
-      <property name="value">
-       <number>1883</number>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="buttonConnect">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>120</y>
-        <width>80</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Connect</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>41</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Topic:</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditTopic">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>160</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ledcolor</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>31</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Msg</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEditMessage">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>180</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>This is a test message</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="buttonSubscribe">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>160</y>
-        <width>80</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Subscribe</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="buttonPublish">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>180</y>
-        <width>61</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Publish</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pubTest">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>181</y>
-        <width>51</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>test</string>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QCustomPlot" name="plotRadar" native="true">
@@ -2366,7 +2207,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>19</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

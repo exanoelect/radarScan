@@ -79,9 +79,9 @@
 //#include <systemd
 
 //#define AUTOSTART_ONRPI 1
+//#define MQTT_FITUR 1
 
-#ifdef PLATFORM_LINUX
-
+#ifdef Q_OS_LINUX
 extern "C" {
 #include <gpiod.h>
 }
@@ -161,7 +161,9 @@ public:
 
 public slots:
     //void updatePlot(const QVector<double> &values);   //
+#ifdef MQTT_FITUR
     void setClientPort(int p);
+#endif
 
 private slots:
     void on_btnLoad_clicked();
@@ -260,12 +262,24 @@ private slots:
     void onBrihtnessIncreaseReq();
     void onBrightnessDecreaseReq();
 
-    void onIncidentFallOccur();
+    void onIncidentFallEventDetected();
     void onIncidentFallCancel();
+    void onIncidentFallWakeUpByFallDetection();
+    void onIncidentFallAckFallEventDetected();
+    void onIncidentFallNoResponse();
     void onIncidentIamnotOK();
     void onIncidentIamOK();
+    void onIncidentFallHelpEventDetected();
+    void onIncidentFallOKEventDetected();
+    void onIncidentFallCompleted();
+
+    void slotTimerSendFallEvent();
+
+    //Language
+    void onlangCurrent(QString langstr);
 
     //Wifi
+#ifdef Q_OS_LINUX
     void onWifiOnRequest();
     void onWifiOffRequest();
     void onwifiScanSsidReqReceived();
@@ -298,6 +312,16 @@ private slots:
                                 QString ip,
                                 QString gateway);
 
+    void on_btnScanWifiList_clicked();
+    void on_btnGetSSID_clicked();
+    void on_btnWifiCon_clicked();
+    void on_btnWifiOff_clicked();
+    void on_btnWifiOn_clicked();
+    void on_btnForget_clicked();
+    void on_btnRestart_clicked();
+    void on_btnShutdown_clicked();
+    void on_btnSetTZ_clicked();
+
     void onMonitorWlan0Connected();
     void onMonitorWlan0Disconnected();
     void onMonitorWlan0WifiSignalLost();
@@ -308,32 +332,17 @@ private slots:
     void onRpiShutdown();
     void onTzSetReq(QString tz);
     void onTzGetReq();
+#endif
 
     void on_btnPlayFall_clicked();
     void on_btnPlayHelp_clicked();
     void on_btnPlayIamOK_clicked();
 
-    void on_btnScanWifiList_clicked();
-    void on_btnGetSSID_clicked();
-    void on_btnWifiCon_clicked();
-    void on_btnWifiOff_clicked();
-    void on_btnWifiOn_clicked();
-    void on_btnForget_clicked();
-    void on_btnRestart_clicked();
-    void on_btnShutdown_clicked();
-
-    void on_btnSetTZ_clicked();
-
     void on_btnEmitEvenwAck_clicked();
-
     void on_btnEmitListeningOn_clicked();
-
     void readMore();
-
     void on_btnRec_pressed();
-
     void on_btnRec_released();
-
     void handleAudioData();
     void handleStateChanged(QAudio::State state);
 
@@ -344,6 +353,7 @@ private slots:
 
     void on_btnRec_clicked();
 
+#ifdef MQTT_FITUR
     void updateLogStateChange();
     void brokerDisconnected();
 
@@ -354,6 +364,7 @@ private slots:
     void on_buttonPublish_clicked();
 
     void on_pubTest_clicked();
+#endif
 
 private:
     Ui::MainWindow *ui;
@@ -371,12 +382,15 @@ private:
 
     QThread *m_audioThread;
     AudioWorker *m_audioWorker;
+
+#ifdef Q_OS_LINUX
     VolumeMonitor *m_volumeMonitor;
 
     gpio *m_gpio;
     volume *m_volume;
     brightness *m_brightness;
     utilities *m_utility;
+#endif
 
     //NetworkMonitorQt *monitor;
     //QStringList ssidscanRet;
@@ -410,6 +424,9 @@ private:
     QAudioSource *audio;
     QIODevice *device;
 
+    QTimer *timerSendFallevent = nullptr;
+    bool fallEventAckReceived = false;
+
     //QQueue<QByteArray> m_payloadQueue;
     //QQueue<QPair<QString, QJsonValue>> m_eventQueue;
 
@@ -425,8 +442,7 @@ private:
     //QTimer *m_socketTimer2;
     //QTimer *m_initRadarTimer2;
 
-#ifdef PLATFORM_LINUX
-
+#ifdef Q_OS_LINUX
     gpiod_line *line17;
     gpiod_line *line27;
     gpiod_line *line22;
@@ -466,7 +482,7 @@ private:
     void drawRealTimeetsgram2(QString motion);
     void drawRealTimeVelocity2(QString velocity);
 
-    void soundPlay(int request);
+    void soundPlay(int request, const QString &lang = "sw");
 
     //Wifi healthy
     QString runCommand(const QString &cmd);
@@ -486,6 +502,7 @@ private:
     void processBuffer();
 
     // Audio
+    QString lang;
     QAudioSink *audioSink = nullptr;
     QFile audioFile;
     QBuffer *audioBuffer = nullptr;
@@ -494,40 +511,27 @@ private:
     QTimer *levelTimer = nullptr;
     qint64 recordedDataSize = 0;
 
-
     // Function hitung dB
     double calculateDb(const QByteArray &data);
-
-    //WavHeader header;
-
-
     void initAudioSystem();
 
     //Monitoring system
+#ifdef Q_OS_LINUX
     systemdmonitorqt *systemdymon;
+#endif
+
+#ifdef MQTT_FITUR
     QMqttClient *m_client;
 
     bool publishMessage(QString topic, QString message);
+#endif
+
     void stopAllThreads();
     void stopAllProcesses();
     void restartApp();
 
-//#ifdef PLATFORM_LINUX
-    //GPIO LEd strip
-    //int setupGPIO();
-    //void setColor(qint8 color);
-//#endif
-
-    //Brightness Controller
-    //int getBrightness();
-    //bool setBrightnessPercent(int percent);
-    //bool setBrightness(int value);
-
-    //Volume control
-    //int getVolumePercent();                 // return 0–100, -1 jika gagal
-    //bool setVolumePercent(int percent);     // set 0–100%
-    //bool mute(bool enable);                 // true = mute, false = unmute
-
+    //Language Info request
+    void getLangCommand();
 };
 
 #endif // MAINWINDOW_H

@@ -25,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initSocketIO();
     initRadar();
 
+#ifdef Q_OS_LINUX
     m_gpio = new gpio();
     m_gpio->setupGPIO();
     m_gpio->setColor(COLOR_WHITE);
@@ -124,8 +125,10 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     qDebug() << "LEave Monitring prepapere ";
+#endif
 
     //MQTT Client setup
+#ifdef MQTT_FITUR
     m_client = new QMqttClient(this);
     m_client->setHostname(ui->lineEditHost->text());
     m_client->setPort(ui->spinBoxPort->value());
@@ -172,6 +175,10 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->buttonConnect->setText(tr("Connect"));
         m_client->disconnectFromHost();
     }
+#endif
+
+    fallEventAckReceived = false;
+    //fallReported = false;
 }
 
 //---------------------------------------------------------------------------------------
@@ -223,19 +230,19 @@ void MainWindow::initSocketIO()
             m_worker, &SocketEventWorker::process);
 
     // Hubungkan signal worker ke aksi UI / device
-    connect(m_worker, &SocketEventWorker::listenStateChanged,
+    connect(m_worker, &SocketEventWorker::modeListen,
             this, &MainWindow::onListenStateChanged);
-    connect(m_worker, &SocketEventWorker::talkingStateChanged,
+    connect(m_worker, &SocketEventWorker::modeTalking,
             this, &MainWindow::onTalkingStateChanged);
     connect(m_worker, &SocketEventWorker::volumeGetRequested,
             this, &MainWindow::onVolumeGetRequested);
     connect(m_worker, &SocketEventWorker::volumeSetRequested,
             this, &MainWindow::onVolumeSetRequested);
-    connect(m_worker, &SocketEventWorker::pingDeviceUpRequested,
+    connect(m_worker, &SocketEventWorker::pingDeviceUp,
             this, &MainWindow::onPingDeviceUpRequested);
-    connect(m_worker, &SocketEventWorker::sleepRequested,
+    connect(m_worker, &SocketEventWorker::modeSleep,
             this, &MainWindow::onSleepRequested);
-    connect(m_worker, &SocketEventWorker::wakeupRequested,
+    connect(m_worker, &SocketEventWorker::modeWakeUp,
             this, &MainWindow::onWakeUpRequested);
     connect(m_worker, &SocketEventWorker::speechModuleReady,
             this, &MainWindow::onSpeechModuleReady);
@@ -254,17 +261,32 @@ void MainWindow::initSocketIO()
     connect(m_worker, &SocketEventWorker::brightnessGetRequested,
             this, &MainWindow::onBrightnessGetRequested);
 
-    //Sound
-    connect(m_worker, &SocketEventWorker::incidentFall,
-            this, &MainWindow::onIncidentFallOccur);
+    //Fall
     connect(m_worker, &SocketEventWorker::incidentHelp,
-            this, &MainWindow::onIncidentIamnotOK);
-    connect(m_worker, &SocketEventWorker::incidentIamOK,
-            this, &MainWindow::onIncidentIamOK);
-    connect(m_worker, &SocketEventWorker::incidentIamnotOK,
-            this, &MainWindow::onIncidentIamnotOK);
+                        this,&MainWindow::onIncidentIamnotOK);
+    connect(m_worker, &SocketEventWorker::incidentFallIamOK,
+                        this,&MainWindow::onIncidentIamOK);
+    connect(m_worker, &SocketEventWorker::incidentFallEventDetected,
+                      this,&::MainWindow::onIncidentFallEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentFallAckFallEventDetected,
+                        this,&MainWindow::onIncidentFallAckFallEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentFallWakeUpByFallDetection,
+                        this,&MainWindow::onIncidentFallWakeUpByFallDetection);
+    connect(m_worker, &SocketEventWorker::incidentFallNoResponse,
+                        this,&MainWindow::onIncidentFallNoResponse);
+    connect(m_worker, &SocketEventWorker::incidentFallHelpEventDetected,
+                        this,&MainWindow::onIncidentFallHelpEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentFallOKEventDetected,
+                        this,&MainWindow::onIncidentFallOKEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentFallCompleted,
+                        this,&MainWindow::onIncidentFallCompleted);
+
+    //Get Language current
+    connect(m_worker, &SocketEventWorker::langCurrent,
+            this,&MainWindow::onlangCurrent);
 
     //Wifi
+#ifdef Q_OS_LINUX
     connect(m_worker, &SocketEventWorker::wifiOn,
             this, &MainWindow::onWifiOnRequest);    //Async
     connect(m_worker, &SocketEventWorker::wifiOff,
@@ -294,6 +316,7 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onTzSetReq);
     connect(m_worker, &SocketEventWorker::tzGetReq,
             this, &MainWindow::onTzGetReq);
+#endif
 
     m_workerThread->start();
 
@@ -306,9 +329,10 @@ void MainWindow::initSocketIO()
     //client->connectToServer("192.168.1.27", 3000);
     client->connectToServer(serverIp);//, serverPort);
 
+#ifdef Q_OS_LINUX
     connect(client, &SocketIOClient::connected,
             this, &MainWindow::onCurrentSSidRequest);
-
+#endif
 }
 
 //---------------------------------------------------------------------------------------
@@ -325,7 +349,7 @@ void MainWindow::initGraphics()
 
 
 //---------------------------------------------------------------------------------------
-//#ifdef PLATFORM_LINUX
+//#ifdef Q_OS_LINUX
 void MainWindow::initRadar()
 {    
     // === Worker A ===
@@ -337,6 +361,10 @@ void MainWindow::initRadar()
     m_threadB = new QThread(this);
     m_procB = new PayloadProcessor(UART_PORT1);
     m_procB->moveToThread(m_threadB);
+
+    // Retry send fall event
+    timerSendFallevent = new QTimer(this);
+    connect(timerSendFallevent, &QTimer::timeout, this, &MainWindow::slotTimerSendFallEvent);
 
     // Connect UI update (dipakai bersama)
     auto connectProcessor = [this](PayloadProcessor *p){
@@ -382,23 +410,30 @@ void MainWindow::initRadar()
                     Q_UNUSED(src);
                     //sound.stop();
                     //sound.play();
+#ifdef Q_OS_LINUX
                     m_gpio->setColor(COLOR_RED);
+#endif
+
+                    if (client->isConnected()){
+                        // soundPlay(SOUND_FALL_OCCUR);
+                        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+                        QJsonObject obj;
+                        obj["datatime"] = timestamp;
+                        fallEventAckReceived = false;
+                        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
+                    } else {
+                        qDebug() << "Socket DC";
+                    }
+                    timerSendFallevent->start(1000); //Aktifkan send fall event repeat
+                    soundPlay(SOUND_FALL_OCCUR, lang);
+
+#ifdef MQTT_FITUR
                     if(publishMessage("ledcolor","red")){
                         qDebug() << "red ok";
                     }else{
                         qDebug() << "red fail";
                     }
-                    soundPlay(SOUND_FALL_OCCUR);
-
-                    if (client->isConnected()) {
-                       // soundPlay(SOUND_FALL_OCCUR);
-                        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
-                        QJsonObject obj;
-                        obj["datatime"] = timestamp;
-                        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
-                    } else {
-                        qDebug() << "Socket DC";
-                    }
+#endif
                 });
 
         connect(p, &PayloadProcessor::fallCancel, this,
@@ -407,7 +442,7 @@ void MainWindow::initRadar()
                     //sound.stop();
                     //sound.play();
 
-                    soundPlay(SOUND_FALL_OCCUR);
+                    soundPlay(SOUND_FALL_OCCUR, lang);
                     if (client->isConnected()) {
                         //soundPlay(SOUND_FALL_OCCUR);
                         client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
@@ -530,7 +565,7 @@ void MainWindow::initRadar()
     m_threadA->start();
     m_threadB->start();
 
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     QMetaObject::invokeMethod(m_procA, "initPort",
                               Qt::QueuedConnection,
                               Q_ARG(QString, UART_PORT0));
@@ -1338,38 +1373,48 @@ void MainWindow::drawRealTimeVelocity2(QString velocity)
 }
 
 //---------------------------------------------------------------------------------------
-void MainWindow::soundPlay(int request)
+void MainWindow::soundPlay(int request, const QString &lang)
 {
-    switch (request){
+    QString requestName;
+
+    switch (request) {
     case SOUND_FALL_OCCUR:
-        qDebug() << "Request 1 received";
-        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, SOUND_FALL_OCCUR));
+        requestName = "SOUND_FALL_OCCUR";
         break;
+
     case SOUND_HELP:
-        qDebug() << "Request 2 received";
-        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, SOUND_HELP));
+        requestName = "SOUND_HELP";
         break;
+
     case SOUND_IAM_OK:
-        qDebug() << "Request 3 received";
-        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, SOUND_IAM_OK));
+        requestName = "SOUND_IAM_OK";
         break;
+
     case SOUND_RECORD:
-        qDebug() << "Request 3 received";
-        QMetaObject::invokeMethod(m_audioWorker, "enqueueSound",
-                                  Qt::QueuedConnection,
-                                  Q_ARG(int, SOUND_RECORD));
+        requestName = "SOUND_RECORD";
         break;
+
     default:
-        break;
+        qDebug() << "Unknown sound request:" << request;
+        return;
+    }
+
+    qDebug() << "Sound request received:" << requestName
+             << "id:" << request
+             << "lang:" << lang;
+
+    bool invoked = QMetaObject::invokeMethod(
+        m_audioWorker,
+        "enqueueSound",
+        Qt::QueuedConnection,
+        Q_ARG(int, request),
+        Q_ARG(QString, lang)
+        );
+
+    if (!invoked) {
+        qDebug() << "Failed to invoke AudioWorker::enqueueSound(int, QString)";
     }
 }
-
 //---------------------------------------------------------------------------------------
 QString MainWindow::runCommand(const QString &cmd)
 {
@@ -1806,7 +1851,7 @@ void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlaySound_clicked()
 {
-    soundPlay(SOUND_FALL_OCCUR);
+    soundPlay(SOUND_FALL_OCCUR, lang);
 }
 
 //------------------------------------------------------------------------
@@ -1828,45 +1873,61 @@ void MainWindow::onDeviceReadyConnected(int vol, int bright)
 //------------------------------------------------------------------------------------------------------------------------
 void MainWindow::on_btnColor1_clicked()
 {
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","white")){
         qDebug() << "white ok";
     }else{
         qDebug() << "white fail";
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor2_clicked()
 {
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","blinky")){
         qDebug() << "blinky ok";
     }else{
         qDebug() << "blinky fail";
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","bright")){
         qDebug() << "bright ok";
     }else{
         qDebug() << "bright fail";
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_RED);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","red")){
         qDebug() << "red ok";
     }else{
         qDebug() << "red fail";
     }
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -1879,17 +1940,21 @@ void MainWindow::on_hsBrightness_valueChanged(int value)
 void MainWindow::on_btnGetBrightness_clicked()
 {
     //ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
+    #ifdef Q_OS_LINUX
     ui->leBrightness->setText(QString::number(m_brightness->getBrightnessPercent()));
+    #endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnsetBrightness_clicked()
 {
+#ifdef Q_OS_LINUX
    if(m_brightness->setBrightnessPercent(ui->hsBrightness->value())){
        qDebug() << "Success Set brightness " << ui->hsBrightness->value();
    }else{
        qDebug() << "Fail Set brightness " << ui->hsBrightness->value();
    }
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -1920,7 +1985,9 @@ void MainWindow::on_btnsetVol_clicked()
     */
 
     qDebug() << "Hs Set Volume " << ui->hsVol->value();
+#ifdef Q_OS_LINUX
     m_volumeMonitor->setVolumePercent(ui->hsVol->value());
+#endif
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -1949,13 +2016,16 @@ void MainWindow::on_btnFallSimulation_clicked()
 void MainWindow::onListenStateChanged()
 {
     qDebug() << "UI Process LISTENING";// << state;
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","bright")){
         qDebug() << "bright ok";
     }else{
         qDebug() << "bright fail";
     }
-
+#endif
 
     //if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
     //else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
@@ -1965,12 +2035,16 @@ void MainWindow::onListenStateChanged()
 void MainWindow::onTalkingStateChanged()
 {
     qDebug() << "UI Process TALKING";// << state;
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","blinky")){
         qDebug() << "blinky ok";
     }else{
         qDebug() << "blinky fail";
     }
+#endif
     /*
     if (state == "ON") {
         qDebug() << "Talking on:" << state;
@@ -1997,26 +2071,33 @@ void MainWindow::onVolumeSetRequested(int vt)
 {
     qDebug() << "UI vol Set:" << vt;
     //if (vt > 0 && m_volume->setVolumePercent(vt)) {
+#ifdef Q_OS_LINUX
     if (vt > 0){
         m_volumeMonitor->setVolumePercent(vt);
         qDebug() << "UI vol successfully set to" << vt;
     } else {
         qDebug() << "fail setVol" << vt;
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onPingDeviceUpRequested()
 {
     qDebug() << "UI PingDeviceUpReq";
+    #ifdef Q_OS_LINUX
     int brightGet = m_brightness->setBrightnessPercent(80);
     client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+    #else
+    client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", "70");
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onSleepRequested()
 {
     qDebug() << "UI SleepReq";
+    #ifdef Q_OS_LINUX
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
 
@@ -2030,12 +2111,15 @@ void MainWindow::onSleepRequested()
     //Reduce Volume
    // m_volumeMonitor->setVolumePercent(30);
    // qDebug() << "Vol set to " << 30;
+#endif
 }
+
 
 //------------------------------------------------------------------------
 void MainWindow::onWakeUpRequested()
 {
     qDebug() << "UI Wakeup";
+    #ifdef Q_OS_LINUX
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("WAKE_UP", QString::number(getBright));
 
@@ -2045,6 +2129,7 @@ void MainWindow::onWakeUpRequested()
     }else{
         qDebug() << "Fail Set brightness " << 70;
     }
+#endif
 
     //increase Volume
     //m_volumeMonitor->setVolumePercent(98);
@@ -2055,35 +2140,44 @@ void MainWindow::onWakeUpRequested()
 void MainWindow::onSpeechModuleReady()
 {
     qDebug() << "Speech Module Ready notify";
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
+#endif
+#ifdef MQTT_FITUR
     if(publishMessage("ledcolor","white")){
         qDebug() << "white ok";
     }else{
         qDebug() << "white fail";
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
+    #ifdef Q_OS_LINUX
     if (bst > 0 && m_brightness->setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
         bst = m_brightness->getBrightnessPercent();
         qDebug() << "prepare emit brightness set ack " << bst;
         //client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessGetRequested()
 {
     qDebug() << "UI Brightness get";
+#ifdef Q_OS_LINUX
     int bst = m_brightness->getBrightnessPercent();
     //if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
     client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST",QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
+#endif
+    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST","70");
     //}
 }
 
@@ -2095,8 +2189,10 @@ void MainWindow::onVolumeIncreaseReq()
     currentVol = currentVol + 5;
     if((currentVol > 20) && (currentVol <= 99)){
         //if(m_volumeMonitor->setVolumePercent(currentVol)){
+#ifdef Q_OS_LINUX
         m_volumeMonitor->setVolumePercent(currentVol);
             qDebug() << "UI succes Inc Vol " << currentVol;
+#endif
     }
 }
 
@@ -2108,7 +2204,9 @@ void MainWindow::onVolumeDecreaseReq()
     currentVol = currentVol - 5;
     if((currentVol > 20) && (currentVol <= 99)){
         //if(m_volumeMonitor->setVolumePercent(currentVol)){
+#ifdef Q_OS_LINUX
         m_volumeMonitor->setVolumePercent(currentVol);
+#endif
         qDebug() << "UI succes Inc Vol " << currentVol;
     }
 }
@@ -2133,6 +2231,7 @@ void MainWindow::onVolumeChanged(int percent)
 void MainWindow::onBrihtnessIncreaseReq()
 {
     qDebug() << "UI onBrihtnessIncreaseReq";
+#ifdef Q_OS_LINUX
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness + 5;
     if((currentBrightness > 20) && (currentBrightness <= 100)){
@@ -2144,12 +2243,14 @@ void MainWindow::onBrihtnessIncreaseReq()
     }else{
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
+#endif
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onBrightnessDecreaseReq()
 {
     qDebug() << "UI onBrightnessDecreaseReq";
+#ifdef Q_OS_LINUX
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness - 5;
     if((currentBrightness > 20) && (currentBrightness <= 100)){
@@ -2161,18 +2262,7 @@ void MainWindow::onBrightnessDecreaseReq()
     }else{
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
-}
-
-//------------------------------------------------------------------------
-void MainWindow::onIncidentFallOccur()
-{
-    soundPlay(SOUND_FALL_OCCUR);
-    m_gpio->setColor(COLOR_RED);
-    if(publishMessage("ledcolor","red")){
-        qDebug() << "red ok";
-    }else{
-        qDebug() << "red fail";
-    }
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -2184,15 +2274,84 @@ void MainWindow::onIncidentFallCancel()
 //------------------------------------------------------------------------
 void MainWindow::onIncidentIamnotOK()
 {
-    soundPlay(SOUND_HELP);
+    soundPlay(SOUND_HELP, lang);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onIncidentIamOK()
 {
-    soundPlay(SOUND_IAM_OK);
+    soundPlay(SOUND_IAM_OK, lang);
 }
 
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallEventDetected()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallWakeUpByFallDetection()
+{
+
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallAckFallEventDetected()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallNoResponse()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallHelpEventDetected()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallOKEventDetected()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onIncidentFallCompleted()
+{
+    fallEventAckReceived = true;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::slotTimerSendFallEvent()
+{
+    if(!fallEventAckReceived){ //Ack belum diterima, ulangi kirim event fall
+        if (client->isConnected()) {
+            // soundPlay(SOUND_FALL_OCCUR);
+            QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+            QJsonObject obj;
+            obj["datatime"] = timestamp;
+            client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
+        } else {
+            qDebug() << "Socket DC";
+        }
+    }else{
+        timerSendFallevent->stop();  //Ack sudah diterima, stop
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onlangCurrent(QString langstr)
+{
+    lang = langstr;
+    qDebug() << "Lang current info " << lang;
+}
+
+
+#ifdef Q_OS_LINUX
 //------------------------------------------------------------------------
 void MainWindow::onWifiOnRequest()
 {
@@ -2634,26 +2793,27 @@ void MainWindow::onTzGetReq()
         qDebug() << "TZ N/A";
     }
 }
-
+#endif
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlayFall_clicked()
 {
-    soundPlay(SOUND_FALL_OCCUR);
+    soundPlay(SOUND_FALL_OCCUR, lang);
 }
 
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlayHelp_clicked()
 {
-    soundPlay(SOUND_HELP);
+    soundPlay(SOUND_HELP, lang);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlayIamOK_clicked()
 {
-    soundPlay(SOUND_IAM_OK);
+    soundPlay(SOUND_IAM_OK, lang);
 }
 
+#ifdef Q_OS_LINUX
 //------------------------------------------------------------------------
 void MainWindow::on_btnScanWifiList_clicked()
 {
@@ -2718,6 +2878,7 @@ void MainWindow::on_btnSetTZ_clicked()
         qDebug() << "Set TZ to SW Fail";
     }
 }
+#endif
 
 //------------------------------------------------------------------------
 void MainWindow::on_btnEmitEvenwAck_clicked()
@@ -3054,6 +3215,7 @@ void MainWindow::initAudioSystem()
     ui->btnPlayRec->setText("Play");
 }
 
+#ifdef MQTT_FITUR
 //------------------------------------------------------------------------
 bool MainWindow::publishMessage(QString topic, QString message)
 {
@@ -3071,6 +3233,7 @@ bool MainWindow::publishMessage(QString topic, QString message)
      return true;
 
 }
+#endif
 
 //------------------------------------------------------------------------
 void MainWindow::stopAllThreads()
@@ -3125,11 +3288,23 @@ void MainWindow::restartApp()
 }
 
 //------------------------------------------------------------------------
+void MainWindow::getLangCommand()
+{
+    if(client->isConnected()){
+        qDebug() << "Req lang info";
+        client->emitEventStringMsgJsoned("LANGUAGE_GET","");
+    }else{
+        qDebug() << "Server IO Dc";
+    }
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnRec_clicked()
 {
 
 }
 
+#ifdef MQTT_FITUR
 //------------------------------------------------------------------------
 void MainWindow::setClientPort(int p)
 {
@@ -3197,4 +3372,4 @@ void MainWindow::on_pubTest_clicked()
     }*/
     restartApp();
 }
-
+#endif
