@@ -49,16 +49,14 @@ void SocketEventWorker::process()
 
         qDebug() << "Worker processing event:" << eventName << "data:" << data;
 
+        //Robot mode
         if (eventName == "LISTENING") {
-            emit listenStateChanged();
-        }
-        else if (eventName == "TALKING") {
-            emit talkingStateChanged();
-        }
-        else if (eventName == "VOLUME_SET_REQUEST") {
+            emit modeListen();
+        }else if (eventName == "TALKING") {
+            emit modeTalking();
+        }else if (eventName == "VOLUME_SET_REQUEST") {
             emit volumeGetRequested();
-        }
-        else if (eventName == "VOLUME_SET") {
+        }else if (eventName == "VOLUME_SET") {
             int vt = 0;
             if (data.isDouble()) vt = data.toInt();
             else if (data.isString()) vt = data.toString().toInt();
@@ -67,8 +65,7 @@ void SocketEventWorker::process()
                 vt = obj.value("level").toInt(0);
             }
             emit volumeSetRequested(vt);
-        }
-        else if (eventName == "SCREEN_BRIGHTNESS_SET") {
+        }else if (eventName == "SCREEN_BRIGHTNESS_SET") {
             int bst = 0;
             if (data.isDouble()) bst = data.toInt();
             else if (data.isString()) bst = data.toString().toInt();
@@ -88,52 +85,87 @@ void SocketEventWorker::process()
         }else if(eventName == "SCREEN_BRIGHTNESS_REQUEST"){
             emit brightnessGetRequested();
         }
+
+        //Robot mode
         else if (eventName == "PING_DEVICE_UP") {
-            emit pingDeviceUpRequested();
-        }
-        else if (eventName == "SLEEP") {
-            emit sleepRequested();
+            emit pingDeviceUp();
+        }else if (eventName == "SLEEP") {
+            emit modeSleep();
         }else if(eventName == "WAKE_UP"){
-            emit wakeupRequested();
+            emit modeWakeUp();
+        }else if (eventName == "WAITING") {
+            emit modeWaiting();
+        }else if (eventName == "RECORDING") {
+            emit modeRecording();
         }else if(eventName == "SPEECH_MODULE_READY"){
             emit speechModuleReady();
-        }else if(eventName == "INCIDENT_FALL_DOWN_DETECTED"){
-            emit incidentFall();
-        }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){
-            emit incidentFall();
         }
-        else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
-            emit incidentIamnotOK();
+
+        //ALARM
+        else if (eventName == "ALARM_RING") {
+            emit alarmRing();
+        }else if (eventName == "ALARM_STOP") {
+            emit alarmStop();
+        }else if (eventName == "ALARM_SNOOZE") {
+            emit  alarmSnooze();
+        }else if (eventName == "WAKE_UP_BY_ALARM") {
+            emit  alarmWakeUp();
+        }else if (eventName == "ALARM_STOP_BUTTON") {
+            emit  alarmStopButton();
+        }else if (eventName == "ALARM_SNOOSE_BUTTON") {
+            emit  alarmSnoozeButton();
+        }
+
+
+        //LAnguage
+        else if (eventName == "LANGUAGE_CURRENT") {
+            emit langCurrent();
+        }else if(eventName == "LANGUAGE_GET"){
+            emit langGet();
+        }else if(eventName == "LANGUAGE_SET"){
+            emit langSet();
+        }else if(eventName == "ACK_LANGUAGE_SET"){
+            emit langAckSet();
+        }
+
+        //FALL EVENT DETECTED
+        else if(eventName == "INCIDENT_FALL_EVENT_DETECTED"){ //1
+            emit incidentFallEventDetected();
+        }else if(eventName == "WAKE_UP_BY_FALL_DETECTION"){ //2
+            emit incidentFallWakeUpByFallDetection();
+        }else if(eventName == "ACK_FALL_EVENT_DETECTED"){ //3
+            emit incidentFallAckFallEventDetected();
+        }else if(eventName == "INCIDENT_FALL_DOWN_NO_REPONSE"){ //4
+            emit incidentFallNoResponse();
+        }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){ //5
+            emit incidentFallHelpEventDetected();
+        }else if(eventName == "INCIDENT_OK_EVENT_DETECTED"){ //6
+            emit incidentFallOKEventDetected();
+        }else if(eventName == "INCIDENT_COMPLETED"){ //7
+            emit incidentFallCompleted();
+        }else if(eventName == "INCIDENT_NOT_OK_EVENT_DETECTED"){
+            emit incidentFallIamnotOK();
         }else if (eventName == "i_am_ok"){
-            emit incidentIamOK();
+            emit incidentFallIamOK();
         }
+
         //WIFI
         else if (eventName == "WIFI_ON") {
             qDebug() << "Wifi request:" << eventName;
             emit wifiOn();
-        }
-        else if (eventName == "WIFI_OFF") {
+        }else if (eventName == "WIFI_OFF") {
             qDebug() << "Wifi request:" << eventName;
             emit wifiOff();
-        }
-        else if (eventName == "disconnect_wifi") {
+        }else if (eventName == "disconnect_wifi") {
             qDebug() << "Wifi disconnect from current ssid :" << eventName;
             emit wifiDisconnectCurrentSsid();
-        }
-        else if (eventName == "get_wifi_status") {
+        }else if (eventName == "get_wifi_status") {
             qDebug() << "Wifi request:" << eventName;
             emit wifiGetSsid();
-        }
-        else if (eventName == "scan_wifi_stream") {
-        //else if (eventName == "wifi_scan_started") {
+        }else if (eventName == "scan_wifi_stream") {
             qDebug() << "Wifi scan re received:" << eventName;
             emit wifiScanSsidReqReceived();
-        }
-        //else if (eventName == "WIFI_SSID_LIST") {
-        //    qDebug() << "Wifi request:" << eventName;
-        //    emit wifiSsidListComplete();//wifiSsidList();
-        //}
-        else if (eventName.startsWith("connect_wifi")) {
+        }else if (eventName.startsWith("connect_wifi")) {
           if (data.isObject()) {
                 QJsonObject obj = data.toObject();
                 QString ssid = obj["ssid"].toString();
@@ -141,8 +173,7 @@ void SocketEventWorker::process()
                 qDebug() << "Wifi request:" << eventName << obj;
                 emit wifiConnect(ssid,pwd);
             }
-        }
-        else if (eventName.startsWith("WIFI_SSID_FORGET")) {
+        }else if (eventName.startsWith("WIFI_SSID_FORGET")) {
             if (data.isObject()) {
                   QJsonObject obj = data.toObject();
                   QString ssid = obj["ssid"].toString();
@@ -151,6 +182,7 @@ void SocketEventWorker::process()
             }
         }
 
+        //TimeZone
         else if (eventName.startsWith("TIMEZONE_SET")) {
             if (data.isObject()) {
                   QJsonObject obj = data.toObject();
@@ -158,13 +190,14 @@ void SocketEventWorker::process()
                   qDebug() << "timezone set request:" << eventName << obj;
                   emit tzSetReq(tz);
             }
-        }
-        else if (eventName.startsWith("TIMEZONE_GET")) {
+        }else if (eventName.startsWith("TIMEZONE_GET")) {
             if (data.isObject()) {
                   qDebug() << "timezone get request:" << eventName;
                   emit tzGetReq();
             }
         }
+
+        //Utility
         else if (eventName == "DEVICE_RESTART") {
             qDebug() << "Rpi restart" << eventName;
             emit rpiRestart();

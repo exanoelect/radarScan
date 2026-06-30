@@ -30,17 +30,44 @@ signals:
     void brightnessIncreaseReq();
     void brightnessDecreaseReq();
 
-    void sleepRequested();
-    void wakeupRequested();
-    void pingDeviceUpRequested();
-    void listenStateChanged();
-    void talkingStateChanged();
+    //Robot mode
+    void modeSleep();
+    void modeWakeUp();
+    void pingDeviceUp();
+    void modeListen();
+    void modeRecording();
+    void modeWaiting();
+    void modeTalking();
     void speechModuleReady();
 
+    //Language
+    void langCurrent(); //LANGUAGE_CURRENT
+    void langGet(); //LANGUAGE_GET
+    void langSet(); //LANGUAGE_SET
+    void langAckSet(); //ACK_LANGUAGE_SET
+
+    //Fall
     void incidentFall();
     void incidentHelp();
     void incidentIamOK();
     void incidentIamnotOK();
+    void incidentFallEventDetected();
+    void incidentFallWakeUpByFallDetection();
+    void incidentFallAckFallEventDetected();
+    void incidentFallNoResponse();
+    void incidentFallHelpEventDetected();
+    void incidentFallOKEventDetected();
+    void incidentFallCompleted();
+    void incidentFallIamnotOK();
+    void incidentFallIamOK();
+
+    //Alarm
+    void alarmRing();         //ALARM_RING
+    void alarmStop();         //ALARM_STOP
+    void alarmSnooze();       //ALARM_SNOOZE
+    void alarmWakeUp();       //WAKE_UP_BY_ALARM
+    void alarmStopButton();   //ALARM_STOP_BUTTON
+    void alarmSnoozeButton(); //ALARM_SNOOZE_BUTTON
 
     //Wifi
     void wifiOn();
