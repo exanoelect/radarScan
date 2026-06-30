@@ -51,14 +51,14 @@ template <> constexpr inline auto AudioWorker::qt_create_metaobjectdata<qt_meta_
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'finishedPlaying'
-        QtMocHelpers::SignalData<void(int, int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 3 }, { QMetaType::Int, 4 },
+        QtMocHelpers::SignalData<void(int, QString)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
         }}),
         // Slot 'init'
         QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'enqueueSound'
-        QtMocHelpers::SlotData<void(int, int)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 3 }, { QMetaType::Int, 4 },
+        QtMocHelpers::SlotData<void(int, QString)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
         }}),
         // Slot 'playNext'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
@@ -87,16 +87,16 @@ void AudioWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     auto *_t = static_cast<AudioWorker *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->finishedPlaying((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 0: _t->finishedPlaying((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->init(); break;
-        case 2: _t->enqueueSound((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 2: _t->enqueueSound((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
         case 3: _t->playNext(); break;
         case 4: _t->onPlaybackTimeout(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (AudioWorker::*)(int , int )>(_a, &AudioWorker::finishedPlaying, 0))
+        if (QtMocHelpers::indexOfMethod<void (AudioWorker::*)(int , QString )>(_a, &AudioWorker::finishedPlaying, 0))
             return;
     }
 }
@@ -133,7 +133,7 @@ int AudioWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AudioWorker::finishedPlaying(int _t1, int _t2)
+void AudioWorker::finishedPlaying(int _t1, QString _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
 }

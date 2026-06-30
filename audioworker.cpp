@@ -34,7 +34,7 @@ void AudioWorker::init()
 }
 
 //---------------------------------------------------------------------------------------
-void AudioWorker::enqueueSound(int sentenceIndex, int langIndex)
+void AudioWorker::enqueueSound(int sentenceIndex, QString langIndex)
 {
     qDebug() << "enqueueSound received:"
              << "sentenceIndex:" << sentenceIndex
@@ -52,70 +52,41 @@ void AudioWorker::enqueueSound(int sentenceIndex, int langIndex)
 }
 
 //---------------------------------------------------------------------------------------
-QString AudioWorker::requestToFile(int sentenceIndex, int langIndex)
+QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
 {
     QString langFolder;
 
-    switch (langIndex) {
-    case 0:
-        langFolder = "id";
-        break;
-
-    case 1:
-        langFolder = "en";
-        break;
-
-    default:
-        langFolder = "id";
-        break;
-    }
+    if(langIndex == "sw") langFolder = "sw";
+    if(langIndex == "id") langFolder = "id";
+    if(langIndex == "en") langFolder = "en";
 
     switch (sentenceIndex) {
     case SOUND_FALL_OCCUR:
+#ifdef Q_OS_LINUX
         return QString("/home/pi/wav/%1/fall_occur.wav").arg(langFolder);
-
+#else
+#endif
     case SOUND_HELP:
+#ifdef Q_OS_LINUX
         return QString("/home/pi/wav/%1/help.wav").arg(langFolder);
-
+#else
+#endif
     case SOUND_IAM_OK:
+#ifdef Q_OS_LINUX
+
         return QString("/home/pi/wav/%1/iam_ok.wav").arg(langFolder);
+#else
+#endif
 
     case SOUND_RECORD:
+#ifdef Q_OS_LINUX
         return QString("/home/pi/wav/%1/record.wav").arg(langFolder);
+#else
+#endif
+    default:
+        return QString();
+    }
 
-    default:
-        return QString();
-    }
-/*
-    switch (requestId) {
-    case SOUND_FALL_OCCUR:
-#ifdef Q_OS_LINUX
-        return "/home/pi/wav/alarm.wav";
-#else
-        return "/Volumes/DATA/wav/alarm.wav";
-#endif
-    case SOUND_HELP:
-#ifdef Q_OS_LINUX
-        return "/home/pi/wav/help.wav";
-#else
-        return "/Volumes/DATA/wav/help.wav";
-#endif
-    case SOUND_IAM_OK:
-#ifdef Q_OS_LINUX
-        return "/home/pi/wav/i-am-ok.wav";
-#else
-        return "/Volumes/DATA/wav/i-am-ok.wav";
-#endif
-    case SOUND_RECORD:
-#ifdef Q_OS_LINUX
-        return "/home/pi/qtpro/test12/radarscan/record.wav";
-#else
-        return "/Volumes/DATA/wav/i-am-ok.wav";
-#endif
-    default:
-        return QString();
-    }
-*/
 }
 
 //---------------------------------------------------------------------------------------

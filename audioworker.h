@@ -17,7 +17,7 @@
 struct SoundQueueItem
 {
     int sentenceIndex = -1;
-    int langIndex = 0;
+    QString langIndex = "sw";
 };
 
 class AudioWorker : public QObject
@@ -29,17 +29,17 @@ public:
 
 public slots:
     void init();
-    void enqueueSound(int sentenceIndex, int langIndex);
+    void enqueueSound(int sentenceIndex, QString langIndex);
 
 signals:
-    void finishedPlaying(int sentenceIndex, int langIndex);
+    void finishedPlaying(int sentenceIndex, QString langIndex);
 
 private slots:
     void playNext();
     void onPlaybackTimeout();
 
 private:
-    QString requestToFile(int sentenceIndex, int langIndex);
+    QString requestToFile(int sentenceIndex, QString langIndex);
     QString getKtUsbAudioDevice();
     void playWavFile(const QString &wavPath);
 
