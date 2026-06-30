@@ -14,17 +14,10 @@ AudioWorker::~AudioWorker()
 //---------------------------------------------------------------------------------------
 void AudioWorker::init()
 {
-    //m_player = new QMediaPlayer(this);
-    //m_audioOutput = new QAudioOutput(this);
-    //m_player->setAudioOutput(m_audioOutput);
-
     m_timer = new QTimer(this);
     m_timer->setSingleShot(true);
 
     soundCardIdx = getKtUsbAudioDevice();
-    //connect(m_timer, &QTimer::timeout,
-    //        this, &AudioWorker::onPlaybackTimeout);
-
     connect(m_timer, &QTimer::timeout, this, [this]() {
         qDebug() << "Sound playback timer finished";
 
@@ -77,7 +70,6 @@ QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
         return QString("/home/pi/wav/%1/iam_ok.wav").arg(langFolder);
 #else
 #endif
-
     case SOUND_RECORD:
 #ifdef Q_OS_LINUX
         return QString("/home/pi/wav/%1/record.wav").arg(langFolder);
@@ -86,7 +78,6 @@ QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
     default:
         return QString();
     }
-
 }
 
 //---------------------------------------------------------------------------------------
