@@ -4,7 +4,7 @@
 #include <QObject>
 #include <qdebug.h>
 
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
 
 extern "C" {
 #include <gpiod.h>
@@ -25,7 +25,7 @@ public slots:
     void setColor(qint8 color);
 
 private:
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     gpiod_line *line17;
     gpiod_line *line27;
     gpiod_line *line22;

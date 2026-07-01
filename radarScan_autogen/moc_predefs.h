@@ -4,7 +4,6 @@
 #define QT_DBUS_LIB 1
 #define QT_GUI_LIB 1
 #define QT_MQTT_LIB 1
-#define QT_MULTIMEDIA_LIB 1
 #define QT_NETWORK_LIB 1
 #define QT_NO_DEBUG 1
 #define QT_SERIALPORT_LIB 1

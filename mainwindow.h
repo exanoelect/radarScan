@@ -20,7 +20,7 @@
 #include <QListWidget>
 #include <QQueue>
 #include <QtEndian>
-#include <QtMultimedia/QSoundEffect>
+//#include <QtMultimedia/QSoundEffect>
 //QSoundEffect sound;
 #include <QScreen>   // Qt6 pengganti QDesktopWidget
 #include "qcustomplot.h"
@@ -31,6 +31,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QWebSocket>
+#include <QtMultimedia/qaudio.h>
 #include <socketeventworker.h>
 #include <QThread>
 #include <radar.h>
@@ -49,27 +50,27 @@
 //#include <NetworkMonitorQt.h>
 #include <networkmonitor.h>
 
-#include <QAudioSource>
+//#include <QAudioSource>
 #include <QIODevice>
-#include <QAudioFormat>
-#include <QAudioDevice>
-#include <QMediaDevices>
+//#include <QAudioFormat>
+//#include <QAudioDevice>
+//#include <QMediaDevices>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QtMath>
 #include <QDebug>
 #include <qdebug.h>
 
-#include <QAudioSource>
+//#include <QAudioSource>
 #include <QFile>
-#include <QMediaPlayer>
-#include <QAudioOutput>
+//#include <QMediaPlayer>
+//#include <QAudioOutput>
 //#include <QAudioProbe>
-#include <QAudioDecoder>
-#include <QAudioSource>
-#include <QAudioSink>
-#include <QAudioFormat>
-#include <QAudioDevice>
+//#include <QAudioDecoder>
+//#include <QAudioSource>
+//#include <QAudioSink>
+//#include <QAudioFormat>
+//#include <QAudioDevice>
 #include <QBuffer>
 #include <QTimer>
 #include <QFile>
@@ -344,7 +345,7 @@ private slots:
     void on_btnRec_pressed();
     void on_btnRec_released();
     void handleAudioData();
-    void handleStateChanged(QAudio::State state);
+    //void handleStateChanged(QAudio::State state);
 
     void on_btnPlayRec_clicked();
     void handleFinished();
@@ -421,7 +422,7 @@ private:
     QSerialPort *m_serial2 = nullptr;
     QByteArray m_buffer2;
 
-    QAudioSource *audio;
+    //QAudioSource *audio;
     QIODevice *device;
 
     QTimer *timerSendFallevent = nullptr;
@@ -461,8 +462,8 @@ private:
     QByteArray makeFrame(const QByteArray &body);
     QString toHexSpace(const QByteArray &data);
 
-    QSoundEffect sound;
-    QSoundEffect sound2;
+    //QSoundEffect sound;
+    //QSoundEffect sound2;
 
     void initSound();
     void initGraphics();
@@ -487,12 +488,12 @@ private:
     //Wifi healthy
     QString runCommand(const QString &cmd);
 
-    QAudioSource *audi;
+    //QAudioSource *audi;
     QFile file;
     QIODevice *ioDevice;
 
     WavHeader header;
-    QAudioDecoder *decoder;
+    //QAudioDecoder *decoder;
     //QAudioProbe
 
     void startRecording();
@@ -503,7 +504,7 @@ private:
 
     // Audio
     QString lang;
-    QAudioSink *audioSink = nullptr;
+    //QAudioSink *audioSink = nullptr;
     QFile audioFile;
     QBuffer *audioBuffer = nullptr;
 

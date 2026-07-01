@@ -1415,27 +1415,7 @@
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QSoundEffect \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosink.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediadevices.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h \

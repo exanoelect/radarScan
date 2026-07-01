@@ -1417,27 +1417,7 @@
  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h
  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h
  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDecoder
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDevice
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioFormat
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSink
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSource
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaDevices
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QSoundEffect
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiobuffer.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodecoder.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodevice.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudioformat.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosink.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosource.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediadevices.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h
- /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h
@@ -1675,15 +1655,6 @@
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfig.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake
@@ -1868,27 +1839,6 @@
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargets.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargetsPrecheck.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttVersionlessAliasTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaAdditionalTargetInfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaPlugins.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaVersionlessAliasTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginAdditionalTargetInfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginConfig.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets-relwithdebinfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargetsPrecheck.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginAdditionalTargetInfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets.cmake
- /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargetsPrecheck.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake
  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake

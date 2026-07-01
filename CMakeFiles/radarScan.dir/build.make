@@ -328,7 +328,6 @@ radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/brightness.cpp.
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/build.make
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort
-radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/QtMqtt
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/QtGui
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtDBus.framework/Versions/A/QtDBus

@@ -1,11 +1,11 @@
 #ifndef RADAR_H
 #define RADAR_H
 
-#ifndef PLATFORM_LINUX
+#ifndef Q_OS_LINUX
 #include <QtCore/qtypes.h>
 #endif
 
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
 #define UART_PORT0 "ttyUSB0" ///dev/ttyAMA0"
 #define UART_PORT1 "ttyUSB1" ///dev/ttyAMA4"
 #else

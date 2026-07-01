@@ -854,22 +854,9 @@
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qtversionchecks.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypeinfo.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qtypes.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qurl.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qutf8stringview.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qvariant.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qxptype_traits.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qyieldcpu.h

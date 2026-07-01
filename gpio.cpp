@@ -1,6 +1,6 @@
 #include "gpio.h"
 
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
 
 extern "C" {
 #include <gpiod.h>
@@ -18,7 +18,7 @@ gpio::~gpio(){
 //------------------------------------------------------------------------------------------------------------------------
 int gpio::setupGPIO()
 {
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     const char *chipname = "gpiochip4";   // RPi 5
     const unsigned int GPIO17 = 17;
     const unsigned int GPIO27 = 27;
@@ -58,7 +58,7 @@ int gpio::setupGPIO()
 //------------------------------------------------------------------------------------------------------------------------
 void gpio::setColor(qint8 color)
 {
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     int val17 = 0;
     int val27 = 0;
     int val22 = 0;

@@ -911,22 +911,6 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QQueue \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qqueue.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qurl.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtgui-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QTimer \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtimer.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
@@ -936,6 +920,9 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QProcess \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qprocess.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qshareddata.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QRegularExpression \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
@@ -1011,6 +998,9 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QMainWindow \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qmainwindow.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiglobal.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtgui-config.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgets-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgetsexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -1098,6 +1088,7 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QDebug \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QFileDialog \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qfiledialog.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qurl.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QPushButton \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qpushbutton.h \
@@ -1129,8 +1120,6 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtabbar.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qrubberband.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtEndian \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QScreen \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qscreen.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QList \
@@ -1650,6 +1639,10 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers/qwebsockets_global.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers/qtwebsocketsexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketprotocol.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/socketeventworker.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QPair \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QWaitCondition \
@@ -1700,21 +1693,8 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Headers/qnetworkinformation.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/networkmonitor.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QSocketNotifier \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QIODevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtMath \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QBuffer \
   /Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/QMqttClient \

@@ -1106,12 +1106,6 @@ CMakeFiles/radarScan.dir/main.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QQueue \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qqueue.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtEndian \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QScreen \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qscreen.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QList \
@@ -1636,6 +1630,10 @@ CMakeFiles/radarScan.dir/main.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers/qtwebsocketsexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers/qwebsocketprotocol.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QProcess \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/socketeventworker.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QPair \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QWaitCondition \
@@ -1655,11 +1653,6 @@ CMakeFiles/radarScan.dir/main.cpp.o: \
   /Volumes/DATA/qt6pro/radarScan/radarScan/payloadprocessor.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QByteArray \
   /Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/gpio.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/utilities.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/unistd.h \
@@ -1692,21 +1685,8 @@ CMakeFiles/radarScan.dir/main.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Headers/qnetworkinformation.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/networkmonitor.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QSocketNotifier \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QIODevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtMath \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QBuffer \
   /Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/QMqttClient \

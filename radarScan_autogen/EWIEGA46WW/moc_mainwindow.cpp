@@ -140,9 +140,6 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_btnRec_pressed",
         "on_btnRec_released",
         "handleAudioData",
-        "handleStateChanged",
-        "QAudio::State",
-        "state",
         "on_btnPlayRec_clicked",
         "handleFinished",
         "on_btnRec_clicked"
@@ -367,16 +364,12 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(98, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'handleAudioData'
         QtMocHelpers::SlotData<void()>(99, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'handleStateChanged'
-        QtMocHelpers::SlotData<void(QAudio::State)>(100, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 101, 102 },
-        }}),
         // Slot 'on_btnPlayRec_clicked'
-        QtMocHelpers::SlotData<void()>(103, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(100, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'handleFinished'
-        QtMocHelpers::SlotData<void()>(104, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(101, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnRec_clicked'
-        QtMocHelpers::SlotData<void()>(105, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(102, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -489,10 +482,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 86: _t->on_btnRec_pressed(); break;
         case 87: _t->on_btnRec_released(); break;
         case 88: _t->handleAudioData(); break;
-        case 89: _t->handleStateChanged((*reinterpret_cast<std::add_pointer_t<QAudio::State>>(_a[1]))); break;
-        case 90: _t->on_btnPlayRec_clicked(); break;
-        case 91: _t->handleFinished(); break;
-        case 92: _t->on_btnRec_clicked(); break;
+        case 89: _t->on_btnPlayRec_clicked(); break;
+        case 90: _t->handleFinished(); break;
+        case 91: _t->on_btnRec_clicked(); break;
         default: ;
         }
     }
@@ -517,14 +509,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 93)
+        if (_id < 92)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 93;
+        _id -= 92;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 93)
+        if (_id < 92)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 93;
+        _id -= 92;
     }
     return _id;
 }

@@ -11,7 +11,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     SerialPort
     Network
-    Multimedia
+    #Multimedia
     WebSockets
     Core
     DBus
@@ -105,7 +105,7 @@ target_link_libraries(radarScan PRIVATE
     Qt6::Widgets
     Qt6::SerialPort
     Qt6::Network
-    Qt6::Multimedia
+    #Qt6::Multimedia
     Qt6::WebSockets
     Qt6::Core
     Qt6::DBus

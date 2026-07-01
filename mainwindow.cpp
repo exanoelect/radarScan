@@ -190,7 +190,7 @@ MainWindow::~MainWindow()
         m_serial = nullptr;
     }
 
-    audio->stop();
+    //audio->stop();
     delete ui;
 }
 
@@ -1436,6 +1436,7 @@ QString MainWindow::runCommand(const QString &cmd)
 //---------------------------------------------------------------------------------------
 void MainWindow::startRecording()
 {
+    /*
     qDebug() << "Recording WAV started";
     recordedDataSize = 0;
 
@@ -1481,6 +1482,7 @@ void MainWindow::startRecording()
 
     connect(ioDevice, &QIODevice::readyRead,
             this, &MainWindow::handleAudioData);
+*/
 }
 
 
@@ -1488,15 +1490,18 @@ void MainWindow::startRecording()
 
 void MainWindow::handleAudioData()
 {
+    /*
     QByteArray data = ioDevice->readAll();
 
     file.write(data);
 
     header.dataSize += data.size();
+*/
 }
 
 
 //---------------------------------------------------------------------------------------
+/*
 void MainWindow::handleStateChanged(QAudio::State state)
 {
     if (state == QAudio::StoppedState) {
@@ -1507,11 +1512,12 @@ void MainWindow::handleStateChanged(QAudio::State state)
         }
     }
 }
-
+*/
 
 //---------------------------------------------------------------------------------------
 void MainWindow::stopRecording()
 {
+    /*
     audi->stop();
 
     // Update header
@@ -1534,6 +1540,7 @@ void MainWindow::stopRecording()
     file.close();
 
     qDebug() << "Recording stopped, file size:" << recordedDataSize;
+*/
 }
 
 
@@ -2926,6 +2933,7 @@ void MainWindow::on_btnEmitListeningOn_clicked()
 //------------------------------------------------------------------------
 void MainWindow::readMore()
 {
+    /*
     QByteArray data = device->readAll();
 
     //qDebug() << "Raw first bytes:" << data.left(8).toHex();
@@ -2966,6 +2974,7 @@ void MainWindow::readMore()
     //qDebug() << barLevel;
 
     ui->micBar->setValue(barLevel);
+*/
 }
 
 //------------------------------------------------------------------------
@@ -2983,6 +2992,7 @@ void MainWindow::on_btnRec_released()
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlayRec_clicked()
 {
+    /*
     //soundPlay(SOUND_RECORD);
     //loadWav("/home/pi/qtpro/test12/radarscan/record.wav");
     if (!audioSink || !audioBuffer)
@@ -3011,17 +3021,20 @@ void MainWindow::on_btnPlayRec_clicked()
     levelTimer->start(50);
 
     ui->btnPlayRec->setText("Stop");
+*/
 
 }
 
 //------------------------------------------------------------------------
 void MainWindow::handleFinished()
 {
+    /*
     if (decoder->error() != QAudioDecoder::NoError) {
         qDebug() << "❌ Decoder error:" << decoder->error();
     } else {
         qDebug() << "✅ Decode finished OK";
     }
+*/
 }
 
 //------------------------------------------------------------------------
@@ -3033,14 +3046,17 @@ void MainWindow::handleFinished()
 //------------------------------------------------------------------------
 void MainWindow::loadWav(const QString &path)
 {
+    /*
     decoder->setSource(QUrl::fromLocalFile(path));
     decoder->start();
     qDebug() << "Start decoding... ";
+*/
 }
 
 //------------------------------------------------------------------------
 void MainWindow::processBuffer()
 {
+    /*
     QAudioBuffer buffer = decoder->read();
 
     if (!buffer.isValid()) return;
@@ -3071,6 +3087,7 @@ void MainWindow::processBuffer()
 
     ui->speakerBar->setValue(value);
     qDebug() << "Buffering...." << value;
+*/
 }
 
 //------------------------------------------------------------------------
@@ -3098,6 +3115,7 @@ double MainWindow::calculateDb(const QByteArray &data)
 //------------------------------------------------------------------------
 void MainWindow::initAudioSystem()
 {
+    /*
     qDebug() << "Init audio system...";
 
     // =========================
@@ -3213,6 +3231,7 @@ void MainWindow::initAudioSystem()
     // =========================
     ui->speakerBar->setRange(0, 200);
     ui->btnPlayRec->setText("Play");
+*/
 }
 
 #ifdef MQTT_FITUR

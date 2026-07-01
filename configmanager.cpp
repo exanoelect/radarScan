@@ -5,7 +5,7 @@
 QString ConfigManager::getServerIp()
 {
     //QString configPath = QCoreApplication::applicationDirPath() + "/config.ini";
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     QString configPath = "/home/pi/app/config.ini";
 #else
     QString configPath = "/Volumes/DATA/app/config.ini";
@@ -18,7 +18,7 @@ QString ConfigManager::getServerIp()
 int ConfigManager::getServerPort()
 {
     //QString configPath = QCoreApplication::applicationDirPath() + "/config.ini";
-#ifdef PLATFORM_LINUX
+#ifdef Q_OS_LINUX
     QString configPath = "/home/pi/app/config.ini";
 #else
     QString configPath = "/Volumes/DATA/app/config.ini";

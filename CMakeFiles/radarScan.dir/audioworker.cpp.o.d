@@ -910,22 +910,6 @@ CMakeFiles/radarScan.dir/audioworker.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QQueue \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qqueue.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qurl.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtgui-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QTimer \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtimer.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
@@ -935,6 +919,9 @@ CMakeFiles/radarScan.dir/audioworker.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QProcess \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qprocess.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qshareddata.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QRegularExpression \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
@@ -955,4 +942,5 @@ CMakeFiles/radarScan.dir/audioworker.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q23utility.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20utility.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QUrl \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qurl.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QDebug

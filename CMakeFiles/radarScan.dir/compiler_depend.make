@@ -1416,27 +1416,7 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QSoundEffect \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosink.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediadevices.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h \
@@ -1674,15 +1654,6 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfig.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \
@@ -1867,27 +1838,6 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargets.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargetsPrecheck.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttVersionlessAliasTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaAdditionalTargetInfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaPlugins.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaVersionlessAliasTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginAdditionalTargetInfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginConfig.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets-relwithdebinfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargetsPrecheck.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginAdditionalTargetInfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets.cmake \
-  /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargetsPrecheck.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
   /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
@@ -2984,18 +2934,6 @@ CMakeFiles/radarScan.dir/audioworker.cpp.o: audioworker.cpp \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qversiontagging.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qxptype_traits.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qyieldcpu.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtgui-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
   audioworker.h
 
 CMakeFiles/radarScan.dir/brightness.cpp.o: brightness.cpp \
@@ -7340,27 +7278,7 @@ CMakeFiles/radarScan.dir/main.cpp.o: main.cpp \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicname.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttype.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
@@ -9068,27 +8986,9 @@ CMakeFiles/radarScan.dir/mainwindow.cpp.o: mainwindow.cpp \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicname.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttype.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
@@ -14384,27 +14284,7 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: radarScan_aut
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicname.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttype.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
@@ -19645,6 +19525,10 @@ radarScan_autogen/include/ui_mainwindow.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QComboBox:
 
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qwidgetaction.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qundoview.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h:
@@ -19809,13 +19693,13 @@ radarScan_autogen/include/ui_mainwindow.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Headers/QAbstractSocket:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QSoundEffect:
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSource:
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDevice:
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioDecoder:
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h:
 
@@ -19831,9 +19715,13 @@ radarScan_autogen/include/ui_mainwindow.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qvectornd.h:
 
+/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qvector3d.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qundostack.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiversion.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtextformat.h:
 
@@ -19922,8 +19810,6 @@ radarScan_autogen/include/ui_mainwindow.h:
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qactiongroup.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qaccessible_base.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosource.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qabstracttextdocumentlayout.h:
 
@@ -20197,20 +20083,6 @@ radarScan_autogen/include/ui_mainwindow.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QDir:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qtaudio.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediaplayer.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudio.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qtguiexports.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qyieldcpu.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qversiontagging.h:
@@ -20258,6 +20130,10 @@ radarScan_autogen/include/ui_mainwindow.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qsystemdetection.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringview.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringlist.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringconverter.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringalgorithms.h:
 
@@ -20308,8 +20184,6 @@ radarScan_autogen/include/ui_mainwindow.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qglobalstatic.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qglobal.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qgenericatomic.h:
 
@@ -20509,8 +20383,6 @@ radarScan_autogen/include/ui_mainwindow.h:
 
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/Clang.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioOutput:
-
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake:
 
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Compiler/AppleClang-CXX.cmake:
@@ -20589,6 +20461,8 @@ CMakeFiles/4.2.1/CMakeSystem.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsTargetsPrecheck.cmake:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsTargets-relwithdebinfo.cmake:
+
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qgesture.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsMacros.cmake:
@@ -20632,6 +20506,8 @@ CMakeFiles/4.2.1/CMakeSystem.cmake:
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6SerialPort/Qt6SerialPortConfigVersion.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6SerialPort/Qt6SerialPortConfig.cmake:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6SerialPort/Qt6SerialPortAdditionalTargetInfo.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtipccommon.h:
 
@@ -20685,35 +20561,13 @@ radarScan_autogen/EWIEGA46WW/moc_socketioclient.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargetsPrecheck.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginTargets-relwithdebinfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginAdditionalTargetInfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringlist.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets-relwithdebinfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaVersionlessAliasTargets.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaPlugins.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6SerialPort/Qt6SerialPortAdditionalTargetInfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaAdditionalTargetInfo.cmake:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttVersionlessAliasTargets.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargetsPrecheck.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgetsversion.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qsoundeffect.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtwidgetsversion.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttConfigVersionImpl.cmake:
 
@@ -20861,6 +20715,8 @@ radarScan_autogen/EWIEGA46WW/moc_socketioclient.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6GuiTargets-relwithdebinfo.cmake:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6GuiPlugins.cmake:
+
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qstyleplugin.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6GuiConfigVersionImpl.cmake:
@@ -20927,6 +20783,8 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginTargets-relwithdebinfo.cmake:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginDependencies.cmake:
+
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginConfig.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginTargetsPrecheck.cmake:
@@ -20957,6 +20815,8 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginTargets.cmake:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginDependencies.cmake:
+
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginConfig.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qsizepolicy.h:
@@ -20979,22 +20839,6 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qvector3d.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginDependencies.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake:
@@ -21008,8 +20852,6 @@ payloadprocessor.cpp:
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiobuffer.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qaccessible.h:
 
@@ -21055,11 +20897,7 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QMediaDevices:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake:
 
@@ -21085,43 +20923,41 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidgetaction.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/advance.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtreewidgetitemiterator.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtreewidget.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QFFmpegMediaPluginConfig.cmake:
+/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qvector2d.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtreeview.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QVBoxLayout:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtoolbutton.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qwhatsthis.h:
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtoolbox.h:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtoolbar.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtextedit.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qvalidator.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtextbrowser.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtablewidget.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabbar.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qsystemtrayicon.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qstackedlayout.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qitemdelegate.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyleplugin.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyleoption.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyle.h:
 
@@ -21401,25 +21237,9 @@ configmanager.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6GuiPlugins.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosink.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qwidgetaction.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodecoder.h:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QWebpPluginTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSource:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/raw_storage_iterator.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioOutput:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDecoder:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttmessage.h:
 
@@ -21428,6 +21248,8 @@ configmanager.h:
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyleoption.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QSlider:
 
@@ -21440,10 +21262,6 @@ configmanager.h:
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qundogroup.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtexttable.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioDevice:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
 
@@ -21569,8 +21387,6 @@ qcustomplot.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qimage.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioFormat:
-
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qiconengine.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qicon.h:
@@ -21620,10 +21436,6 @@ radarScan_autogen/EWIEGA46WW/moc_socketeventworker.cpp:
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeFindDependencyMacro.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qaction.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QVector:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qgraphicseffect.h:
 
@@ -21686,8 +21498,6 @@ payloadprocessor.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qdarwinhelpers.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/QCursor:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudioformat.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimezone.h:
 
@@ -21844,6 +21654,8 @@ networksetting.h:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__wmmintrin_pclmul.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qsysinfo.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/mersenne_twister_engine.h:
 
@@ -22093,8 +21905,6 @@ main.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiobuffer.h:
-
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/FindOpenGL.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qfilesystemwatcher.h:
@@ -22110,6 +21920,10 @@ main.cpp:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qfiledevice.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qwhatsthis.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtoolbox.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qresource.h:
 
@@ -22249,6 +22063,10 @@ configmanager.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstractproxymodel.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/count_if.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstylepainter.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qminmax.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake:
@@ -22285,8 +22103,6 @@ configmanager.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCoreDepends:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediadevices.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore:
@@ -22316,8 +22132,6 @@ configmanager.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/locale.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrl:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QList:
 
@@ -22577,15 +22391,9 @@ radarScan_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/cetintrin.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersion.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioFormat:
-
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcalendarwidget.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avxvnniintrin.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaDevices:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avxvnniint8intrin.h:
 
@@ -22927,8 +22735,6 @@ radarScan_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/uniform_real_distribution.h:
@@ -23107,6 +22913,8 @@ radarScan_autogen/EWIEGA46WW/moc_volume.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/bit:
 
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qhashfunctions.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/streambuf:
@@ -23208,14 +23016,6 @@ radarScan_autogen/EWIEGA46WW/moc_volume.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/declval.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/convert_to_integral.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtreeview.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream:
-
-/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qvector2d.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake:
 
@@ -23375,12 +23175,6 @@ radarScan_autogen/EWIEGA46WW/moc_volume.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtoolbar.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/QVector3D:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qgraphicslayout.h:
@@ -23509,8 +23303,6 @@ radarScan_autogen/EWIEGA46WW/moc_gpio.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qsoundeffect.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/wchar.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_function.h:
@@ -23571,8 +23363,6 @@ radarScan_autogen/EWIEGA46WW/moc_gpio.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/QAudioSink:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_relocatable.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinMicrophonePermissionPluginConfig.cmake:
@@ -23586,8 +23376,6 @@ radarScan_autogen/EWIEGA46WW/moc_gpio.cpp:
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QWbmpPluginTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qiterable.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudioformat.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearraymatcher.h:
 
@@ -23635,6 +23423,8 @@ radar.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/back_insert_iterator.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/raw_storage_iterator.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/conjunction.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtooltip.h:
@@ -23654,8 +23444,6 @@ radar.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qhash.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/blsr.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginAdditionalTargetInfo.cmake:
 
@@ -23767,8 +23555,6 @@ CMakeFiles/4.2.1/CMakeCXXCompiler.cmake:
 
 socketioclient.cpp:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/min.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/memory_resource.h:
@@ -23784,8 +23570,6 @@ socketioclient.cpp:
 /Users/user/Qt/6.11.1/macos/lib/QtPrintSupport.framework/Versions/A/Headers/qpagesetupdialog.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QMessageBox:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h:
 
@@ -23927,17 +23711,11 @@ qcustomplot.cpp:
 
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/CMakeCommonLanguageInclude.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfigVersionImpl.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/aligned_union.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/QAction:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/q20bit.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsTargets-relwithdebinfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QAudioSink:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qpropertyprivate.h:
 
@@ -23979,8 +23757,6 @@ qcustomplot.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qopenglcontext_platform.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiodevice.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/partition_copy.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QExplicitlySharedDataPointer:
@@ -23998,10 +23774,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/student_t_distribution.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/perfect_forward.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qstylepainter.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/count_if.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/inner_product.h:
 
@@ -24063,6 +23835,8 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h:
 
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qsystemtrayicon.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qmovie.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binder2nd.h:
@@ -24113,6 +23887,8 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/integer_sequence.h:
 
+/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qvarianthash.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/variant.h:
@@ -24131,11 +23907,7 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/destructible.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginAdditionalTargetInfo.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/enable_view.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/transform_reduce.h:
 
@@ -24154,12 +23926,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/exclusive_scan.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QSoundEffect:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/QMqttClient:
 
@@ -24271,8 +24037,6 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodecoder.h:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/iter_move.h:
@@ -24282,6 +24046,10 @@ qcustomplot.cpp:
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgridlayout.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QFileSystemModel:
 
@@ -24336,10 +24104,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_ct_rune_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/xsavecintrin.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtreewidgetitemiterator.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/advance.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo:
 
@@ -24413,19 +24177,13 @@ qcustomplot.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qdial.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qmediadevices.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/signal.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perms.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/disjunction.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiooutput.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pstl.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiodevice.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginTargetsPrecheck.cmake:
 
@@ -24458,8 +24216,6 @@ qcustomplot.cpp:
 brightness.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/boyer_moore_searcher.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers/qaudiosink.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/forward.h:
 
@@ -24523,8 +24279,6 @@ brightness.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qfuturewatcher.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/invoke.h:
@@ -24564,8 +24318,6 @@ brightness.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_sorted.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/roots.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiooutput.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/string_view.h:
 
@@ -24775,8 +24527,6 @@ radarScan_autogen/EWIEGA46WW/moc_utilities.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qfuturesynchronizer.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets-relwithdebinfo.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/uses_allocator.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h:
@@ -24790,10 +24540,6 @@ radarScan_autogen/EWIEGA46WW/moc_utilities.cpp:
 socketioclient.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_base_of.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qstringconverter.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer:
 
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/FindPackageMessage.cmake:
 
@@ -24845,12 +24591,6 @@ socketioclient.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginDependencies.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudiosource.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qloggingcategory.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/unwrap_ref.h:
@@ -24864,6 +24604,10 @@ socketioclient.h:
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/invocable.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qvalidator.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtextbrowser.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgroupbox.h:
 
@@ -24894,6 +24638,8 @@ socketioclient.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtcoreversion.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qarraydataops.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QVector:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qlabel.h:
 
@@ -25140,8 +24886,6 @@ audioworker.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/move.h:
 
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/UnixPaths.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list:
 

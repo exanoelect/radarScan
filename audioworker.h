@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QQueue>
-#include <QMediaPlayer>
-#include <QAudioOutput>
+//#include <QMediaPlayer>
+//#include <QAudioOutput>
 #include <QTimer>
 #include <QProcess>
 #include <QRegularExpression>
@@ -44,8 +44,8 @@ private:
     void playWavFile(const QString &wavPath);
 
     //QQueue<int> m_queue;
-    QMediaPlayer *m_player = nullptr;
-    QAudioOutput *m_audioOutput = nullptr;
+    //QMediaPlayer *m_player = nullptr;
+    //QAudioOutput *m_audioOutput = nullptr;
     QTimer *m_timer = nullptr;
 
     //int m_currentRequestId = -1;   // <-- TARUH DI SINI

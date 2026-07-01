@@ -47,7 +47,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 70,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
@@ -71,7 +71,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 105,
+				"line" : 104,
 				"parent" : 0
 			},
 			{
@@ -219,13 +219,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 101,
+				"line" : 100,
 				"parent" : 0
 			},
 			{
 				"command" : 12,
 				"file" : 1,
-				"line" : 79,
+				"line" : 78,
 				"parent" : 0
 			}
 		]
@@ -252,10 +252,6 @@
 		{
 			"backtrace" : 5,
 			"id" : "Qt6::Network::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 5,
-			"id" : "Qt6::Multimedia::@6890427a1f51a3e7e1df"
 		},
 		{
 			"backtrace" : 5,
@@ -307,10 +303,6 @@
 				},
 				{
 					"backtrace" : 5,
-					"define" : "QT_MULTIMEDIA_LIB"
-				},
-				{
-					"backtrace" : 5,
 					"define" : "QT_NETWORK_LIB"
 				},
 				{
@@ -356,11 +348,6 @@
 					"backtrace" : 5,
 					"isSystem" : true,
 					"path" : "/Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework"
-				},
-				{
-					"backtrace" : 5,
-					"isSystem" : true,
-					"path" : "/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework"
 				},
 				{
 					"backtrace" : 5,
@@ -426,11 +413,6 @@
 				{
 					"backtrace" : 5,
 					"isSystem" : true,
-					"path" : "/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Headers"
-				},
-				{
-					"backtrace" : 5,
-					"isSystem" : true,
 					"path" : "/Users/user/Qt/6.11.1/macos/lib/QtWebSockets.framework/Headers"
 				},
 				{
@@ -477,11 +459,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "radarScan::@6890427a1f51a3e7e1df",
@@ -513,11 +495,6 @@
 			{
 				"backtrace" : 5,
 				"fragment" : "/Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Versions/A/QtSerialPort",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 5,
-				"fragment" : "/Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/QtMultimedia",
 				"role" : "libraries"
 			},
 			{
@@ -608,10 +585,6 @@
 		},
 		{
 			"backtrace" : 5,
-			"id" : "Qt6::Multimedia::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 5,
 			"id" : "Qt6::WebSockets::@6890427a1f51a3e7e1df"
 		},
 		{
@@ -632,10 +605,6 @@
 	"orderDependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
@@ -643,6 +612,10 @@
 		},
 		{
 			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
