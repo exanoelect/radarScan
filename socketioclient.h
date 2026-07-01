@@ -49,6 +49,7 @@ public:
 
     void disconnectFromServer();
     bool isConnected() const { return m_isConnected; }
+    void sendSocketIoConnectWithAuth();
 
     //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
     void emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);

@@ -71,6 +71,33 @@ void SocketIOClient::disconnectFromServer()
 }
 
 //------------------------------------------------------------------------
+void SocketIOClient::sendSocketIoConnectWithAuth()
+{
+    QJsonObject auth;
+    auth["robotId"] = "TESTING-1";
+
+    QString authJson = QString::fromUtf8(
+        QJsonDocument(auth).toJson(QJsonDocument::Compact)
+        );
+
+    QString packet;
+
+    if (m_namespace.isEmpty() || m_namespace == "/") {
+        // Root namespace
+        packet = "40" + authJson;
+    } else {
+        // Custom namespace, contoh: /robot
+        packet = "40" + m_namespace + "," + authJson;
+    }
+
+    qDebug() << "Sending Socket.IO CONNECT with auth:" << packet;
+
+    if (m_webSocket) {
+        m_webSocket->sendTextMessage(packet);
+    }
+}
+
+//------------------------------------------------------------------------
 void SocketIOClient::setupWebSocket()
 {
     //m_webSocket = new QWebSocket();
@@ -118,22 +145,22 @@ void SocketIOClient::constructWebSocketUrl()
 
     // Tambahkan timestamp untuk avoid cache
     query.addQueryItem("t", QString::number(QDateTime::currentMSecsSinceEpoch()));
-    query.addQueryItem("auth", "{\"userId\":\"raspberry\"}");
-    query.addQueryItem("userId","raspberry");
+    //query.addQueryItem("auth", "{\"robotId\":\"TESTING-1\"}");
+    //query.addQueryItem("robotId","TESTING-1");
 
     // Tambahkan namespace ke query jika bukan root namespace
-    if (m_namespace != "/") {
-        query.addQueryItem("namespace", m_namespace);
-    }
+    //if (m_namespace != "/") {
+    //    query.addQueryItem("namespace", m_namespace);
+    //}
 
     url.setQuery(query);
 
     QString urlString = url.toString();
-    qDebug() << "Connecting to:" << "wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket";//urlString;
+    qDebug() << "Connecting to:" << urlString; //"wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket";/
     qDebug() << "Namespace:" << m_namespace;
 
-    //m_webSocket->open(url);
-    m_webSocket->open(QUrl("wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket"));
+    m_webSocket->open(url);
+    //m_webSocket->open(QUrl("wss://elderly-care-socket-io-server.online/socket.io/?EIO=4&transport=websocket"));
 }
 
 //------------------------------------------------------------------------
@@ -194,30 +221,29 @@ void SocketIOClient::parseSocketIOMessage(const QString &message)
 void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
 {
     switch (type) {
-    case 0: { // CONNECT
+    case 0: { // Engine.IO OPEN
         if (!data.isEmpty()) {
             QJsonDocument doc = QJsonDocument::fromJson(data.toUtf8());
+
             if (doc.isObject()) {
                 QJsonObject obj = doc.object();
-                m_socketId = obj["sid"].toString();
-                m_isConnected = true;
+
+                QString engineSid = obj["sid"].toString();
+                int pingInterval = obj["pingInterval"].toInt(25000);
+                int pingTimeout = obj["pingTimeout"].toInt(20000);
+
+                qDebug() << "Engine.IO opened. SID:" << engineSid;
+                qDebug() << "Ping interval:" << pingInterval
+                         << "Ping timeout:" << pingTimeout;
+
                 m_reconnectAttempts = 0;
 
-                qDebug() << "Socket.IO connected! SID:" << m_socketId;
-                qDebug() << "Ping interval:" << obj["pingInterval"].toInt()
-                         << "Ping timeout:" << obj["pingTimeout"].toInt();
+                // BELUM Socket.IO connected.
+                // Jangan set m_isConnected = true di sini.
+                m_isConnected = false;
 
-                // Start ping timer
-                int pingInterval = obj["pingInterval"].toInt(25000);
-                //m_pingTimer->start(pingInterval);
-
-                emit connected(m_socketId);
-
-                // Kirim device ready event setelah connect
-                QTimer::singleShot(1000, this, [this]() {
-                    sendDeviceReady();
-                    emit deviceready();
-                });
+                // Setelah Engine.IO OPEN, kirim Socket.IO CONNECT + auth robotId
+                sendSocketIoConnectWithAuth();
             }
         }
         break;
@@ -252,17 +278,38 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
 
         int subType = subTypeChar.digitValue();
 
-        if (subType == 0) { // CONNECT
-            QJsonParseError err;
-            QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8(), &err);
-            if (err.error == QJsonParseError::NoError && doc.isObject()) {
-                QJsonObject obj = doc.object();
-                QString sid = obj["sid"].toString();
-                qDebug() << "Socket.IO connected, SID:" << sid;
-                emit connected(sid);
-            } else {
-                qWarning() << "Invalid CONNECT payload:" << subData;
+        if (subType == 0) { // Socket.IO CONNECT accepted
+            QString sid;
+
+            if (!subData.isEmpty()) {
+                QJsonParseError err;
+                QJsonDocument doc = QJsonDocument::fromJson(subData.toUtf8(), &err);
+
+                if (err.error == QJsonParseError::NoError && doc.isObject()) {
+                    QJsonObject obj = doc.object();
+                    sid = obj["sid"].toString();
+                } else {
+                    qWarning() << "Socket.IO CONNECT payload is not JSON object:" << subData;
+                }
             }
+
+            m_socketId = sid;
+            m_isConnected = true;
+
+            qDebug() << "Socket.IO connected. SID:" << sid;
+
+            emit connected(sid);
+
+            // Baru aman kirim DEVICE_READY di sini
+            QTimer::singleShot(300, this, [this]() {
+                if (!m_isConnected) {
+                    qWarning() << "Skip DEVICE_READY, Socket.IO not connected";
+                    return;
+                }
+
+                sendDeviceReady();
+                emit deviceready();
+            });
         }
 
         else if (subType == 2) { // EVENT
@@ -329,6 +376,15 @@ void SocketIOClient::handleSocketIOJsonPacket(int type, const QString &data)
             qDebug() << "ACK received:" << ackId << ackData;
 
             handleIncomingAck(ackId, ackData);
+        }
+        else if (subType == 1) { // DISCONNECT
+            qWarning() << "Socket.IO namespace disconnected by server. Data:" << subData;
+
+            m_isConnected = false;
+
+            emit disconnected(); // atau socketIoDisconnected(), sesuai signal kamu
+
+            return; // penting: jangan lanjut emit apa pun
         }else {
             qDebug() << "Unhandled Socket.IO subtype:" << subType << "Data:" << subData;
         }
@@ -750,9 +806,15 @@ void SocketIOClient::sendDeviceReady()
     //QString deviceId = "sentikoo_" +
     //                   QString::number(QRandomGenerator::global()->generate() % 1000);
 
+    if (!m_isConnected || !m_webSocket || m_webSocket->state() != QAbstractSocket::ConnectedState) {
+        qWarning() << "Cannot send DEVICE_READY, Socket.IO is not connected";
+        return;
+    }
+
     QJsonObject payload{
         //{"device_id", deviceId},
-        {"device_id", "ST-2026-04-IND-PRD-V1-000001"}, //"raspberry"},
+        //{"device_id", "ST-2026-04-IND-PRD-V1-000001"}, //"raspberry"},
+        {"robotId", "TESTING-1"}, //"raspberry"},
         {"brightness", QString::number(britnes)},
         {"volume", QString::number(vol)}
     };

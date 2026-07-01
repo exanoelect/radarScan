@@ -320,14 +320,15 @@ void MainWindow::initSocketIO()
 
     m_workerThread->start();
 
-    QString serverIp = ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
-    int serverPort = ConfigManager::getServerPort();
+    QString serverIp = "203.194.114.21"; //ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
+    int serverPort = 4000;//ConfigManager::getServerPort();
 
     qDebug() << "Server IP:" << serverIp;
     qDebug() << "Server Port:" << serverPort;
 
     //client->connectToServer("192.168.1.27", 3000);
-    client->connectToServer(serverIp);//, serverPort);
+    //client->connectToServer(serverIp);//, serverPort);
+    client->connectToServer(serverIp, serverPort);
 
 #ifdef Q_OS_LINUX
     connect(client, &SocketIOClient::connected,
@@ -2012,8 +2013,8 @@ void MainWindow::on_btnFallSimulation_clicked()
     if(client->isConnected()){
         QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
         QJsonObject obj;
-        obj["datatime"] = timestamp;
-        client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
+        obj["datetime"] = timestamp;
+        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
     }else{
         qDebug() << " Socket DC";
     }
@@ -2672,7 +2673,16 @@ void MainWindow::onWifiProgress(int state, QString stateText)
         client->emitEventStringMsgJsoned("wifi_connection_progress", obj);
         if(state == 100){
             qDebug() << "new wifi ssid, recon app....";
-            client->connectToServer("");//, serverPort);
+            QString serverIp = "203.194.114.21"; //ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
+            int serverPort = 4000;//ConfigManager::getServerPort();
+
+            qDebug() << "Server IP:" << serverIp;
+            qDebug() << "Server Port:" << serverPort;
+
+            //client->connectToServer("192.168.1.27", 3000);
+            //client->connectToServer(serverIp);//, serverPort);
+            client->connectToServer(serverIp, serverPort);
+            //client->connectToServer("");//, serverPort);
             //restartApp();
         }
      }
