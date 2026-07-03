@@ -148,8 +148,8 @@ void SocketEventWorker::process()
         }else if(eventName == "WAKE_UP_BY_FALL_DETECTION"){      //2
             emit incidentFallWakeUpByFallDetection();
         }else if(eventName == "ACK_FALL_EVENT_DETECTED"){        //3
-            emit incidentFallAckFallEventDetected();
-        }else if(eventName == "INCIDENT_FALL_DOWN_NO_REPONSE"){  //4
+            emit incidentAckFallEventDetected();
+        }else if(eventName == "INCIDENT_FALL_DOWN_NO_RESPONSE"){  //4
             emit incidentFallNoResponse();
         }else if(eventName == "INCIDENT_HELP_EVENT_DETECTED"){   //5
             emit incidentFallHelpEventDetected();

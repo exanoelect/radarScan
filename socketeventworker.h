@@ -49,7 +49,7 @@ signals:
     //Fall
     void incidentFallEventDetected();
     void incidentFallWakeUpByFallDetection();
-    void incidentFallAckFallEventDetected();
+    void incidentAckFallEventDetected();
     void incidentFallNoResponse();
     void incidentHelp();
     void incidentFallIamOK();

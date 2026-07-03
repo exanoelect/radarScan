@@ -6,11 +6,11 @@
 #endif
 
 #ifdef Q_OS_LINUX
-#define UART_PORT0 "ttyUSB0" ///dev/ttyAMA0"
-#define UART_PORT1 "ttyUSB1" ///dev/ttyAMA4"
+#define UART_PORT0 "/dev/ttyAMA0" //ttyUSB0" ///dev/ttyAMA0"
+#define UART_PORT1 "/dev/ttyAMA4" //ttyUSB1" ///dev/ttyAMA4"
 #else
-#define UART_PORT0 "cu-usbserial-120"
-#define UART_PORT1 "cu-usbserial-130"
+#define UART_PORT0 "/dev/ttyAMA0"
+#define UART_PORT1 "/dev/ttyAMA4"
 #endif
 
 #define CMD_GET_PRODUCT_MODEL    QByteArray::fromHex("535902A100010F") //53	59	02	A1	00	01	0F

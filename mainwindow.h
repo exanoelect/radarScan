@@ -266,7 +266,7 @@ private slots:
     void onIncidentFallEventDetected();
     void onIncidentFallCancel();
     void onIncidentFallWakeUpByFallDetection();
-    void onIncidentFallAckFallEventDetected();
+    void onIncidentAckFallEventDetected();
     void onIncidentFallNoResponse();
     void onIncidentIamnotOK();
     void onIncidentIamOK();

@@ -49,14 +49,14 @@ QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
 {
     QString langFolder;
 
-    if(langIndex == "sw") langFolder = "sw";
+    if(langIndex == "sv") langFolder = "sv";
     if(langIndex == "id") langFolder = "id";
     if(langIndex == "en") langFolder = "en";
 
     switch (sentenceIndex) {
     case SOUND_FALL_OCCUR:
 #ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/fall_occur.wav").arg(langFolder);
+        return QString("/home/pi/wav/%1/fall.wav").arg(langFolder);
 #else
 #endif
     case SOUND_HELP:
@@ -141,23 +141,23 @@ void AudioWorker::playWavFile(const QString &wavPath)
             return;
         }
 
-        if (soundCardIdx.isEmpty()) {
+        /*if (soundCardIdx.isEmpty()) {
             qDebug() << "KT USB Audio not found, using default audio";
 
             QProcess::startDetached(
-                "aplay",
+                "paplay" //"aplay",
                 QStringList()
                     << wavPath
                 );
 
             return;
-        }
+        }*/
 
         QProcess::startDetached(
-            "aplay",
+            "paplay",
             QStringList()
-                << "-D"
-                << soundCardIdx
+                //<< "-D"
+                //<< soundCardIdx
                 << wavPath
             );
     });

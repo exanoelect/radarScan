@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Radar Scan V0.1</string>
+   <string>Radar Scan V1.4</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(112, 114, 114);</string>
+   <string notr="true">background-color: rgb(143, 240, 164);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCustomPlot" name="plottsgram" native="true">
@@ -477,7 +477,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence">
        <property name="geometry">
@@ -513,7 +513,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection">
        <property name="geometry">
@@ -538,7 +538,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -562,7 +562,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill">
        <property name="geometry">
@@ -587,7 +587,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_2">
         <property name="geometry">
@@ -728,7 +728,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking">
        <property name="geometry">
@@ -823,7 +823,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbTraceTracking2">
        <property name="geometry">
@@ -978,7 +978,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbPresence2">
        <property name="geometry">
@@ -1027,7 +1027,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbFallDetection2">
        <property name="geometry">
@@ -1052,7 +1052,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
       </widget>
      </widget>
@@ -1066,7 +1066,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <widget class="QCheckBox" name="cbStandStill2">
        <property name="geometry">
@@ -1091,7 +1091,7 @@
         </rect>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Shape::NoFrame</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <widget class="QCheckBox" name="cbStandStill_6">
         <property name="geometry">
@@ -1227,7 +1227,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1458,7 +1458,7 @@
        <string notr="true">background-color: rgb(0, 255, 208);</string>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>NOT FALL</string>
@@ -1671,7 +1671,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
@@ -1729,7 +1729,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>%</string>
@@ -1777,7 +1777,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>Vol</string>
@@ -1809,7 +1809,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::Shape::NoFrame</enum>
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="text">
        <string>Bright</string>
@@ -1872,9 +1872,6 @@
         <height>16</height>
        </rect>
       </property>
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
      </widget>
      <widget class="QSlider" name="hsVol">
       <property name="geometry">
@@ -1884,9 +1881,6 @@
         <width>281</width>
         <height>16</height>
        </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="btnPlayFall">
@@ -2207,7 +2201,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>30</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

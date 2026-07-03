@@ -1,6 +1,6 @@
 #include "payloadprocessor.h"
 #include <QtEndian>
-#include <QDebug>
+//#include <qDebug>
 
 PayloadProcessor::PayloadProcessor(const QString &id, QObject *parent)
     : QObject(parent), m_id(id)
@@ -15,7 +15,7 @@ PayloadProcessor::~PayloadProcessor(){
 void PayloadProcessor::initPort(const QString &portName)
 {
     if (m_serial && m_serial->isOpen()) {
-        emit debugMessage("Port already open.");
+        //emit debugMessage("Port already open.");
         return;
     }
 
@@ -40,7 +40,7 @@ void PayloadProcessor::initPort(const QString &portName)
         return;
     }
 
-    emit debugMessage("Open Port OK");
+    //emit debugMessage("Open Port OK");
 
     connect(m_serial, &QSerialPort::readyRead,
             this, &PayloadProcessor::readData, Qt::DirectConnection);
@@ -66,13 +66,13 @@ void PayloadProcessor::initPort(const QString &portName)
 */
 
     //Prepare radar
-    //QTimer::singleShot(2000, this, [this](){ qDebug() << "Set FallDuraion";      setFallDuraion(3);     });
-    //QTimer::singleShot(3000, this, [this](){ qDebug() << "Set Angle";            setAngle(30);          });
-    //QTimer::singleShot(4000, this, [this](){ qDebug() << "Set Presence";         setPresence(true);     });
-    //QTimer::singleShot(5000, this, [this](){ qDebug() << "Set StandStill";       setStandStill(true);   });
-    //QTimer::singleShot(6000, this, [this](){ qDebug() << "Set FallDetector";     setFallDetector(true); });
-    //QTimer::singleShot(7000, this, [this](){ qDebug() << "Set TraceTracking";    setTraceTracking(true);});
-    //QTimer::singleShot(1000, this, [this](){ qDebug() << "Set height";           setHeight(96);         });
+    //QTimer::singleShot(2000, this, [this](){ //qDebug() << "Set FallDuraion";      setFallDuraion(3);     });
+    //QTimer::singleShot(3000, this, [this](){ //qDebug() << "Set Angle";            setAngle(30);          });
+    //QTimer::singleShot(4000, this, [this](){ //qDebug() << "Set Presence";         setPresence(true);     });
+    //QTimer::singleShot(5000, this, [this](){ //qDebug() << "Set StandStill";       setStandStill(true);   });
+    //QTimer::singleShot(6000, this, [this](){ //qDebug() << "Set FallDetector";     setFallDetector(true); });
+    //QTimer::singleShot(7000, this, [this](){ //qDebug() << "Set TraceTracking";    setTraceTracking(true);});
+    //QTimer::singleShot(1000, this, [this](){ //qDebug() << "Set height";           setHeight(96);         });
 
 }
 
@@ -118,7 +118,7 @@ void PayloadProcessor::readData()
         quint8 recvCs = static_cast<quint8>(frame.at(frame.size() - 3));
 
         if (cs != recvCs) {
-            emit debugMessage("[ERR] checksum mismatch");
+            //emit debugMessage("[ERR] checksum mismatch");
             continue;
         }
 
@@ -159,13 +159,13 @@ void PayloadProcessor::processQueue()
         case 0x01:
             switch (sub) {
             case 0x01:
-                emit debugMessage("System: Heartbeat (reporting)");
+                //emit debugMessage("System: Heartbeat (reporting)");
                 break;
             case 0x02:
-                emit debugMessage("System: Module Reset (distribution/reporting)");
+                //emit debugMessage("System: Module Reset (distribution/reporting)");
                 break;
             default:
-                emit debugMessage("System: Unknown subcmd " + QString::number(sub,16));
+                //emit debugMessage("System: Unknown subcmd " + QString::number(sub,16));
                 break;
             }
             break;
@@ -202,7 +202,7 @@ void PayloadProcessor::processQueue()
                 }
                 break;
             default:
-                emit debugMessage("Product Info: Unknown subcmd " + QString::number(sub,16));
+                //emit debugMessage("Product Info: Unknown subcmd " + QString::number(sub,16));
                 break;
             }
             break;
@@ -213,14 +213,13 @@ void PayloadProcessor::processQueue()
         case 0x05:
             switch (sub) {
             case 0x01:
-                emit debugMessage(m_id + " Working Status: Init complete");
+                //emit debugMessage(m_id + " Working Status: Init complete");
                 break;
 
             case 0x02:
-                emit debugMessage(m_id + " Working Status: Radar fault");
+                //emit debugMessage(m_id + " Working Status: Radar fault");
                 if (payload.size() > 6){
-                    emit debugMessage(m_id + " Fault code: " +
-                                      QString::number(static_cast<quint8>(payload[6])));
+                    //emit debugMessage(m_id + " Fault code: " +  QString::number(static_cast<quint8>(payload[6])));
                 }
                 break;
 
@@ -232,8 +231,7 @@ void PayloadProcessor::processQueue()
                 break;
 
             default:
-                emit debugMessage(m_id + " Working Status/Param: Unknown subcmd " +
-                                  QString::number(sub, 16));
+                //emit debugMessage(m_id + " Working Status/Param: Unknown subcmd " +QString::number(sub, 16));
                 break;
             }
             break;
@@ -259,10 +257,10 @@ void PayloadProcessor::processQueue()
                     emit uiUpdate(m_id, "angleY", QString::number(y_deg));
                     emit uiUpdate(m_id, "angleZ", QString::number(z_deg));
 
-                    emit debugMessage(m_id + " 06 81 get angle = " + payload.toHex(' ') +
-                                      " xyz " + QString::number(x_deg) + "-" +
-                                      QString::number(y_deg) + "-" +
-                                      QString::number(z_deg));
+                    //emit debugMessage(m_id + " 06 81 get angle = " + payload.toHex(' ') +
+                                    //  " xyz " + QString::number(x_deg) + "-" +
+                                    //  QString::number(y_deg) + "-" +
+                                    //  QString::number(z_deg));
                 }
                 break;
             }
@@ -274,8 +272,8 @@ void PayloadProcessor::processQueue()
                     qint16 height = (low << 8) | high;
 
                     emit uiUpdate(m_id, "height", QString::number(height));
-                    emit debugMessage(m_id + " 06 82 get height = " + payload.toHex(' ') +
-                                      " height " + QString::number(height));
+                    //emit debugMessage(m_id + " 06 82 get height = " + payload.toHex(' ') +
+                               //       " height " + QString::number(height));
                 }
                 break;
             }
@@ -294,17 +292,17 @@ void PayloadProcessor::processQueue()
                     emit uiUpdate(m_id, "angleY", QString::number(y_deg));
                     emit uiUpdate(m_id, "angleZ", QString::number(z_deg));
 
-                    emit debugMessage(m_id + " 06 01 set angle = " + payload.toHex(' ') +
-                                      " xyz " + QString::number(x_deg) + "-" +
-                                      QString::number(y_deg) + "-" +
-                                      QString::number(z_deg));
+                    //emit debugMessage(m_id + " 06 01 set angle = " + payload.toHex(' ') +
+                     //                 " xyz " + QString::number(x_deg) + "-" +
+                     //                 QString::number(y_deg) + "-" +
+                     //                 QString::number(z_deg));
                 }
                 break;
             }
 
             case 0x04: {   // heartbeat
                 if (payload.size() >= 8) {
-                    emit debugMessage(m_id + " 06 04 Heart Beat " + payload.toHex(' '));
+                    //emit debugMessage(m_id + " 06 04 Heart Beat " + payload.toHex(' '));
                 }
                 break;
             }
@@ -316,16 +314,16 @@ void PayloadProcessor::processQueue()
                     qint16 height = (low << 8) | high;
 
                     emit uiUpdate(m_id, "height", QString::number(height));
-                    emit debugMessage(m_id + " 06 02 set height reply = " +
-                                      payload.toHex(' ') +
-                                      " height " + QString::number(height));
+                    //emit debugMessage(m_id + " 06 02 set height reply = " +
+                    //                  payload.toHex(' ') +
+                    //                  " height " + QString::number(height));
                 }
                 break;
             }
 
             default:
-                emit debugMessage(m_id + " Installation: Unknown subcmd payload " +
-                                  payload.toHex(' '));
+                //emit debugMessage(m_id + " Installation: Unknown subcmd payload " +
+                //                  payload.toHex(' '));
                 break;
             }
             break;
@@ -339,10 +337,9 @@ void PayloadProcessor::processQueue()
                 auto read16 = [&](int offset) {
                     return qFromLittleEndian<qint16>(reinterpret_cast<const uchar*>(payload.constData() + offset));
                 };
-                qDebug() << "Radar Range: X+:" << read16(6) << " X-:" << read16(8)
-                         << " Y+:" << read16(10) << " Y-:" << read16(12);
+                //qDebug() << "Radar Range: X+:" << read16(6) << " X-:" << read16(8) << " Y+:" << read16(10) << " Y-:" << read16(12);
             } else {
-                qDebug() << "Radar Range: Unknown subcmd" << QString::number(sub,16);
+                //qDebug() << "Radar Range: Unknown subcmd" << QString::number(sub,16);
             }
             break;
 
@@ -355,21 +352,21 @@ void PayloadProcessor::processQueue()
             case 0x00: {   // Set Presence Activated
                 quint8 val = static_cast<quint8>(payload[4]);
                 emit uiUpdate(m_id, "presence", val == 1 ? "ON" : "OFF");
-                emit debugMessage(m_id + " 80 00 Set Presence Activated = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 80 00 Set Presence Activated = " + payload.toHex(' '));
                 break;
             }
 
             case 0x01: {   // Presence Info
                 quint8 val = static_cast<quint8>(payload[4]);
                 emit uiUpdate(m_id, "motionStyle", val ? "presence" : "no_presence");
-                emit debugMessage(m_id + " 80 01 Presence Info = " + QString::number(static_cast<quint8>(payload[6])));
+                //emit debugMessage(m_id + " 80 01 Presence Info = " + QString::number(static_cast<quint8>(payload[6])));
                 break;
             }
 
             case 0x02: {   // Motion Info
                 quint8 val = static_cast<quint8>(payload[4]);
                 emit uiUpdate(m_id, "motionStyle", val ? "motion_high" : "motion_low");
-                emit debugMessage(m_id + " 80 02 Motion Info = " + QString::number(static_cast<quint8>(payload[6])));
+                //emit debugMessage(m_id + " 80 02 Motion Info = " + QString::number(static_cast<quint8>(payload[6])));
                 break;
             }
 
@@ -378,13 +375,13 @@ void PayloadProcessor::processQueue()
                     quint8 param = static_cast<quint8>(payload[4]);
                     emit uiUpdate(m_id, "motionValue", QString::number(param));
                     emit motionUpdate(m_id, QString::number(param));   // for drawRealTimeetsgram
-                    emit debugMessage(m_id + " 80 03 Motion Info = " + QString::number(param));
+                    //emit debugMessage(m_id + " 80 03 Motion Info = " + QString::number(param));
                 }
                 break;
             }
 
             default:
-                emit debugMessage(m_id + " 80 Presence: Unknown subcmd " + QString::number(sub,16));
+                //emit debugMessage(m_id + " 80 Presence: Unknown subcmd " + QString::number(sub,16));
                 break;
             }
             break;
@@ -399,14 +396,14 @@ void PayloadProcessor::processQueue()
             case 0x00: {  // command reply set trace tracking
                 quint8 val = static_cast<quint8>(payload[4]);
                 emit uiUpdate(m_id, "traceTracking", val == 1 ? "ON" : "OFF");
-                emit debugMessage(m_id + " 82 00 Reply of Trace Cmd = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 00 Reply of Trace Cmd = " + payload.toHex(' '));
                 break;
             }
 
             case 0x01: {  // trace number reply
                 quint8 val = static_cast<quint8>(payload[4]);
                 emit uiUpdate(m_id, "traceNumber", QString::number(val));
-                emit debugMessage(m_id + " 82 01 Trace Numbers of = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 01 Trace Numbers of = " + payload.toHex(' '));
                 break;
             }
 
@@ -417,12 +414,12 @@ void PayloadProcessor::processQueue()
                  frameCount++;
 
                  if(fpsTimer.elapsed() >= 1000){
-                     qDebug() << "Tracking FPS =" << frameCount;
+                     //qDebug() << "Tracking FPS =" << frameCount;
                      frameCount = 0;
                      fpsTimer.restart();
                  }
 
-                 qDebug() << "82 02 Trace Tracking Info =" << payload.toHex(' ');
+                 //qDebug() << "82 02 Trace Tracking Info =" << payload.toHex(' ');
 
                  auto read16u = [&](int offset) -> qint16 {
                      quint16 raw = (quint16(payload[offset]) << 8) |
@@ -448,8 +445,7 @@ void PayloadProcessor::processQueue()
 
                  int targetCount = len / targetSize;
 
-                 qDebug() << "Len =" << len
-                          << "Target Count =" << targetCount;
+                 //qDebug() << "Len =" << len<< "Target Count =" << targetCount;
 
                  //---------------------------------
                  // Parse semua target dalam frame
@@ -457,7 +453,7 @@ void PayloadProcessor::processQueue()
 
                  for (int i = 0; i < targetCount; i++){
                      if ((offset + targetSize) > payload.size()){
-                         qDebug() << "Payload too short";
+                         //qDebug() << "Payload too short";
                          break;
                      }
 
@@ -475,8 +471,7 @@ void PayloadProcessor::processQueue()
                      //---------------------------------
 
                      if ((qAbs(x) > 5000) || (qAbs(y) > 5000)){
-                         qDebug() << "Invalid coordinate received"
-                                  << x << y;
+                         //qDebug() << "Invalid coordinate received" << x << y;
 
                          offset += targetSize;
                          continue;
@@ -532,7 +527,7 @@ void PayloadProcessor::processQueue()
 
                                  t->lastSeenMs = QDateTime::currentMSecsSinceEpoch();
 
-                                 qDebug() << "New Target:" << trackId;
+                                 //qDebug() << "New Target:" << trackId;
 
                                  break;
                              }
@@ -544,7 +539,7 @@ void PayloadProcessor::processQueue()
                      //---------------------------------
 
                      if(t == nullptr){
-                         qDebug() << "No free target slot";
+                         //qDebug() << "No free target slot";
 
                          offset += targetSize;
                          continue;
@@ -591,16 +586,7 @@ void PayloadProcessor::processQueue()
                      //---------------------------------
                      // Debug
                      //---------------------------------
-                     qDebug()
-                         << "ID:"    << t->trackId
-                         << "X:"     << x
-                         << "Y:"     << y
-                         << "M:"     << movement
-                         << " H:"    << h
-                         << "Vel:"   << vel
-                         << "Move:"  << movement
-                         << "Score:" << t->fallScore
-                         << "State:" << t->state;
+                     //qDebug()<< "ID:" << t->trackId<< "X:" << x << "Y:" << y<< "M:" << movement<< " H:" << h<< "Vel:"   << vel << "Move:"  << movement<< "Score:" << t->fallScore<< "State:" << t->state;
 
                      //---------------------------------
                      // UI
@@ -628,9 +614,7 @@ void PayloadProcessor::processQueue()
                          // Hapus target
                          //---------------------------------
 
-                         qDebug()
-                         << "Target timeout:"
-                         << targets[i].trackId;
+                         //qDebug()<< "Target timeout:"<< targets[i].trackId;
 
                          resetFallState(targets[i]);
                          targets[i].valid = false;
@@ -639,9 +623,7 @@ void PayloadProcessor::processQueue()
                      }
 
                      int activity = 0;
-                     //qDebug()
-                     //    << "ID:" << targets[i].trackId
-                     //    << "Activity:" << activity;
+                     //qDebug() << "ID:" << targets[i].trackId << "Activity:" << activity;
 
                      for(int j=0; j<HISTORY_SIZE; j++){
                          activity += targets[i].motion[j];
@@ -672,22 +654,22 @@ void PayloadProcessor::processQueue()
              }
 
             case 0x80: {
-                emit debugMessage(m_id + " 82 80 Trace Tracking Info = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 80 Trace Tracking Info = " + payload.toHex(' '));
                 break;
             }
 
             case 0x81: {
-                emit debugMessage(m_id + " 82 81 Trace Numbers = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 81 Trace Numbers = " + payload.toHex(' '));
                 break;
             }
 
             case 0x82: {
-                emit debugMessage(m_id + " 82 82 Trace Info query = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 82 Trace Info query = " + payload.toHex(' '));
                 break;
             }
 
             default:
-                emit debugMessage(m_id + " 82 xx Trace Info query = " + payload.toHex(' '));
+                //emit debugMessage(m_id + " 82 xx Trace Info query = " + payload.toHex(' '));
                 break;
             }
             break;
@@ -712,7 +694,7 @@ void PayloadProcessor::processQueue()
                 emit uiUpdate(m_id, "fallStateText", val ? "FALLEN" : "NOT FALLEN");
                 emit uiUpdate(m_id, "fallStateColor", val ? "red" : "green");
 
-                qDebug() << "83 01 Fall =" << payload;
+                //qDebug() << "83 01 Fall =" << payload;
 
                 if (val == 1) {
                     emit fallDetected(m_id);  // UI thread will handle sound & socket
@@ -727,7 +709,7 @@ void PayloadProcessor::processQueue()
                 emit uiUpdate(m_id, "standStillText", val ? "EXIST" : "NO STAND STILL");
                 emit uiUpdate(m_id, "standStillColor", val ? "blue" : "grey");
 
-                qDebug() << "83 05 standstill =" << payload;
+                //qDebug() << "83 05 standstill =" << payload;
                 break;
             }
 
@@ -736,14 +718,14 @@ void PayloadProcessor::processQueue()
                 //radarFrame.standStillState = (val == 1);
 
                 emit uiUpdate(m_id, "getStandStill", val ? "ON" : "OFF");
-                qDebug() << "83 0B standstill setting =" << payload;
+                //qDebug() << "83 0B standstill setting =" << payload;
                 break;
             }
 
             case 0x0C: { // Fall duration (short)
                 if (payload.size() >= 8) {
                     quint8 duration = static_cast<quint8>(payload[7]);
-                    qDebug() << "0C Fall: Duration Setting =" << duration;
+                    //qDebug() << "0C Fall: Duration Setting =" << duration;
                 }
                 break;
             }
@@ -758,7 +740,7 @@ void PayloadProcessor::processQueue()
                         (static_cast<quint8>(durationBytes[3]));
 
                     emit uiUpdate(m_id, "fallDuration", QString::number(duration));
-                    qDebug() << "8C Fall: Duration Setting =" << duration;
+                    //qDebug() << "8C Fall: Duration Setting =" << duration;
                 }
                 break;
             }
@@ -778,7 +760,7 @@ void PayloadProcessor::processQueue()
                     emit uiUpdate(m_id, "fallPosY", QString::number(posY));
                     emit radarPoint(m_id, posX, posY);
 
-                    qDebug() << "Fall Position -> X:" << posX << "Y:" << posY;
+                    //qDebug() << "Fall Position -> X:" << posX << "Y:" << posY;
                 }
                 break;
             }
@@ -801,8 +783,8 @@ void PayloadProcessor::processQueue()
                     emit uiUpdate(m_id, "fallStateText", "FALLEN");
                     emit uiUpdate(m_id, "fallStateColor", "grey");
 
-                    qDebug() << "Fall Cancel Position -> X:" << posX << "Y:" << posY;
-                    qDebug() << "83 17 Fall Cancel=" << payload;
+                    //qDebug() << "Fall Cancel Position -> X:" << posX << "Y:" << posY;
+                    //qDebug() << "83 17 Fall Cancel=" << payload;
 
                     //emit fallDetected(m_id); // still trigger alert if needed
                     emit fallCancel(m_id);
@@ -811,7 +793,7 @@ void PayloadProcessor::processQueue()
             }
 
             default:
-                qDebug() << "Fall: Unknown subcmd" << QString::number(sub, 16);
+                //qDebug() << "Fall: Unknown subcmd" << QString::number(sub, 16);
                 break;
             }
             break;
@@ -874,7 +856,7 @@ void PayloadProcessor::setHeight(int height)
     cmd.append(static_cast<char>(lb));
 
     QByteArray frame = makeFrame(cmd);
-    qDebug() << "Sending frame cmd Height:" << toHexSpace(frame);
+    //qDebug() << "Sending frame cmd Height:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
 }
@@ -902,7 +884,7 @@ void PayloadProcessor::setFallDuraion(int duration)
 
     QByteArray frame = makeFrame(cmd);
 
-    qDebug() << "Sending frame cmd Set Fall Duration:" << toHexSpace(frame);
+    //qDebug() << "Sending frame cmd Set Fall Duration:" << toHexSpace(frame);
 
     m_serial->write(frame);
     m_serial->flush();
@@ -935,7 +917,7 @@ void PayloadProcessor::setAngle(int angle)
     // Generate full frame (prefix, length, checksum, suffix)
     QByteArray frame = makeFrame(cmd);
 
-    qDebug() << "Sending frame SetAngle:" << toHexSpace(frame);
+    //qDebug() << "Sending frame SetAngle:" << toHexSpace(frame);
 
     m_serial->write(frame);
     m_serial->flush();
@@ -947,7 +929,7 @@ void PayloadProcessor::setPresence(bool checked)
     if (!m_serial) return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_PRESENCE_ON) : makeFrame(CMD_SET_PRESENCE_OFF);
-    qDebug() << "Sending frame set Presence:" << toHexSpace(frame);
+    //qDebug() << "Sending frame set Presence:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
 }
@@ -958,7 +940,7 @@ void PayloadProcessor::setStandStill(bool checked)
     if (!m_serial) return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_STAND_STILLON) : makeFrame(CMD_SET_STAND_STILLOFF);
-    qDebug() << "Sending frame StandStill:" << toHexSpace(frame);
+    //qDebug() << "Sending frame StandStill:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
 }
@@ -969,7 +951,7 @@ void PayloadProcessor::setFallDetector(bool checked)
     if (!m_serial) return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_FALL_DETECTION_ON) : makeFrame(CMD_SET_FALL_DETECTION_OFF);
-    qDebug() << "Sending frame Set Fall Duration:" << toHexSpace(frame);
+    //qDebug() << "Sending frame Set Fall Duration:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
 }
@@ -980,7 +962,7 @@ void PayloadProcessor::setTraceTracking(bool checked)
     if (!m_serial) return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_TRACE_TRACKING_ON) : makeFrame(CMD_SET_TRACE_TRACKING_OFF);
-    qDebug() << "Sending frame Trace Tracking:" << toHexSpace(frame);
+    //qDebug() << "Sending frame Trace Tracking:" << toHexSpace(frame);
     m_serial->write(frame);
     m_serial->flush();
 }
@@ -988,19 +970,13 @@ void PayloadProcessor::setTraceTracking(bool checked)
 bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
 {
     if(t.historyCount < HISTORY_SIZE){
-        qDebug()
-             << "ID"
-             << t.trackId
-             << "History not full:"
-             << t.historyCount
-             << "/"
-             << HISTORY_SIZE;
+        //qDebug()<< "ID"<< t.trackId<< "History not full:"<< t.historyCount << "/"<< HISTORY_SIZE;
 
         return false;
     }
 
     /*
-    qDebug()
+    //qDebug()
         << "isFC ID:"     << t.trackId
         << "X:"      << historyToString(t.x)
         << "Y:"      << historyToString(t.y)
@@ -1022,10 +998,10 @@ bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
     qint16 hNew = t.height[HISTORY_SIZE - 1];
 
 
-    qDebug() << "hMax " << hMax << "hNew " << hNew;
+    //qDebug() << "hMax " << hMax << "hNew " << hNew;
 
     if((hMax <= 0) || (hNew <= 0)){
-        qDebug() << "hOld hnew negative";
+        //qDebug() << "hOld hnew negative";
         return false;
     }
 
@@ -1045,19 +1021,9 @@ bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
     bool fastMotion = (avgTotal > 5);
     bool movedEnough = (totalMovement > 2);
 
-   // qDebug() << "drop" << heightDrop <<
-   //             "vel" << avgVel <<
-   //             "move" << totalMovement;
+   // //qDebug() << "drop" << heightDrop <<"vel" << avgVel <<"move" << totalMovement;
 
-    qDebug()
-        << "EIC ID:" << t.trackId
-        << "hMax:" << hMax
-        << "hNew:" << hNew
-        << "drop:" << heightDrop
-        << "avgVel:" << avgTotal
-        << "totalMove:" << totalMovement
-        << "score:" << t.fallScore;
-
+    //qDebug()<< "EIC ID:" << t.trackId << "hMax:" << hMax<< "hNew:" << hNew<< "drop:" << heightDrop<< "avgVel:" << avgTota << "totalMove:" << totalMovement << "score:" << t.fallScore;
 
     return rapidHeightDrop &&
             (fastMotion || movedEnough);
@@ -1076,8 +1042,8 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
     const int idx = HISTORY_SIZE - 1;
 
     qint16 hNew = t.height[idx];
-    qint16 velLast = qAbs(t.velocity[idx]);
-    qint32 moveLast = qAbs(t.motion[idx]);
+    //qint16 velLast = qAbs(t.velocity[idx]);
+    //qint32 moveLast = qAbs(t.motion[idx]);
 
     bool normalCandidate = isFallCandidate(t);
     bool lowHeight = (hNew < 30);
@@ -1087,26 +1053,26 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
     //---------------------------------
 
     if(normalCandidate){
-        qDebug() << "Nearly down....";
+        //qDebug() << "Nearly down....";
         if(!t.fallCandidateActive){
             t.fallCandidateActive = true;
             t.fallTimer.restart();
-            qDebug() << "!t.fallCandidateActive";
+            //qDebug() << "!t.fallCandidateActive";
         }
         t.fallScore += 20;
         if(t.fallScore > 100){
             t.fallScore = 100;
-            qDebug() << "fallScore 100";
+            //qDebug() << "fallScore 100";
         }
         t.state = StateFalling;
     }else{
         if(t.fallScore > 0){
-            qDebug() << "fallScore -- " << t.fallScore;
+            //qDebug() << "fallScore -- " << t.fallScore;
             t.fallScore -= 2;
             if(t.fallScore < 0)
                t.fallScore = 0;
         }
-        qDebug() << "No Candidate...";
+        //qDebug() << "No Candidate...";
     }
 
     //---------------------------------
@@ -1114,16 +1080,16 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
     //---------------------------------
 
     if(lowHeight){
-        qDebug() << "lowHeight detected";
+        //qDebug() << "lowHeight detected";
         if(!t.lowHeightActive){
             t.lowHeightActive = true;
             t.lowHeightTimer.restart();
-            qDebug() << "lowHeight true";
+            //qDebug() << "lowHeight true";
         }
     }else{
         t.lowHeightActive = false;
         t.lowHeightTimer.invalidate();
-        qDebug() << "lowHeight false";
+        //qDebug() << "lowHeight false";
     }
 
     //---------------------------------
@@ -1136,7 +1102,7 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
        t.fallCandidateActive = false;
        t.fallTimer.invalidate();
 
-        qDebug() << "reset candidate";
+        //qDebug() << "reset candidate";
     }
 
     //---------------------------------
@@ -1152,17 +1118,13 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
         qint64 fallMs = t.fallTimer.elapsed();
         qint64 lowMs = t.lowHeightTimer.elapsed();
 
-        qDebug() << "konfirmasi hampir jatuh "
-                 << fallMs
-                 << "-"
-                 << lowMs;
+        //qDebug() << "konfirmasi hampir jatuh "<< fallMs<< "-"<< lowMs;
 
         if(fallMs > 300 &&
            lowMs > 5000){
             //emit fallAlarm(t.trackId);
             emit fallDetected(QString(t.trackId));  // UI thread will handle sound & socket
-            qDebug() << "FALL CONFIRMED "
-                     << t.trackId;
+            //qDebug() << "FALL CONFIRMED "<< t.trackId;
             resetFallState(t);
             t.state = StateLying;
             return;
@@ -1172,6 +1134,8 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
     //---------------------------------
     // Hidden Fall Detection
     //---------------------------------
+
+    /*
 
     bool hiddenTrigger = isLostAfterHeightDrop(t);
     bool stableHidden = (hNew < 50 &&
@@ -1184,11 +1148,11 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
         t.hiddenCandidateTimer.restart();
         t.hiddenStableTimer.invalidate();
 
-        qDebug() << "Hidden candidate started"
-                 << t.trackId
-                 << "hNew" << hNew
-                 << "vel" << velLast
-                 << "motion" << moveLast;
+        //qDebug() << "Hidden candidate started"
+                 //<< t.trackId
+                 //<< "hNew" << hNew
+                 //<< "vel" << velLast
+                 //<< "motion" << moveLast;
     }
 
     if(t.hiddenCandidateActive){
@@ -1203,25 +1167,24 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
             if(!t.hiddenStableTimer.isValid()){
                 t.hiddenStableTimer.restart();
 
-                qDebug() << "Hidden stable timer started"
-                         << t.trackId;
+                //qDebug() << "Hidden stable timer started" << t.trackId;
             }
 
             qint64 hiddenStableMs = t.hiddenStableTimer.elapsed();
 
-            qDebug() << "Hidden stable duration"
-                     << hiddenStableMs
-                     << "ms";
+            //qDebug() << "Hidden stable duration"
+                     //<< hiddenStableMs
+                    // << "ms";
 
             if(hiddenStableMs > HIDDEN_CONFIRM_MS){
                 //emit fallAlarm(t.trackId);
                 emit fallDetected(QString(t.trackId));  // UI thread will handle sound & socket
 
-                qDebug() << "FALL CONFIRMED HIDDEN"
-                         << t.trackId
-                         << "hNew" << hNew
-                         << "vel" << velLast
-                         << "motion" << moveLast;
+                //qDebug() << "FALL CONFIRMED HIDDEN"
+                         //<< t.trackId
+                        // << "hNew" << hNew
+                        // << "vel" << velLast
+                        // << "motion" << moveLast;
 
                 resetFallState(t);
                 t.state = StateLying;
@@ -1238,14 +1201,14 @@ void PayloadProcessor::decisionFall(TargetInfo &t)
             qint64 hiddenCandidateMs = t.hiddenCandidateTimer.elapsed();
 
             if(hiddenCandidateMs > HIDDEN_TIMEOUT_MS){
-                qDebug() << "Hidden fall cancelled by timeout"
-                        << t.trackId;
+                //qDebug() << "Hidden fall cancelled by timeout"   << t.trackId;
 
                 resetFallState(t);
                 return;
             }
         }
     }
+    */
 
     //---------------------------------
     // UI for debug
@@ -1435,14 +1398,7 @@ bool PayloadProcessor::isLostAfterHeightDrop(const TargetInfo &t)
     if(wasStandingBefore &&
         heightDropped)
     {
-        qDebug()
-        << "Hidden fall candidate detected"
-        << "trackId" << t.trackId
-        << "prevMaxHeight" << previousMaxHeight
-        << "hNew" << hNew
-        << "drop" << (previousMaxHeight - hNew)
-        << "vel" << velLast
-        << "motion" << motionLast;
+        //qDebug()<< "Hidden fall candidate detected"<< "trackId" << t.trackId<< "prevMaxHeight" << previousMaxHeight<< "hNew" << hNew<< "drop" << (previousMaxHeight - hNew)<< "vel" << velLast<< "motion" << motionLast;
 
         return true;
     }

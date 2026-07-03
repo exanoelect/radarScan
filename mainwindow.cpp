@@ -54,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
            this,&MainWindow::onWifiConnectFinished);
 
 
+    /*
     m_volumeMonitor = new VolumeMonitor(this);
 
     connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
@@ -109,6 +110,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //        this, &MainWindow::handleError);
 
     initAudioSystem();
+
+    */
 
     qDebug() << "Start monitoring";
     systemdymon = new systemdmonitorqt("ssh.service", this);
@@ -178,6 +181,7 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     fallEventAckReceived = false;
+    m_gpio->setColor(COLOR_WHITE);
     //fallReported = false;
 }
 
@@ -268,8 +272,8 @@ void MainWindow::initSocketIO()
                         this,&MainWindow::onIncidentIamOK);
     connect(m_worker, &SocketEventWorker::incidentFallEventDetected,
                       this,&::MainWindow::onIncidentFallEventDetected);
-    connect(m_worker, &SocketEventWorker::incidentFallAckFallEventDetected,
-                        this,&MainWindow::onIncidentFallAckFallEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentAckFallEventDetected,
+                        this,&MainWindow::onIncidentAckFallEventDetected);
     connect(m_worker, &SocketEventWorker::incidentFallWakeUpByFallDetection,
                         this,&MainWindow::onIncidentFallWakeUpByFallDetection);
     connect(m_worker, &SocketEventWorker::incidentFallNoResponse,
@@ -417,7 +421,7 @@ void MainWindow::initRadar()
 
                     if (client->isConnected()){
                         // soundPlay(SOUND_FALL_OCCUR);
-                        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+                        QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
                         QJsonObject obj;
                         obj["datetime"] = timestamp;
                         fallEventAckReceived = false;
@@ -443,13 +447,13 @@ void MainWindow::initRadar()
                     //sound.stop();
                     //sound.play();
 
-                    soundPlay(SOUND_FALL_OCCUR, lang);
+                    /*soundPlay(SOUND_FALL_OCCUR, lang);
                     if (client->isConnected()) {
                         //soundPlay(SOUND_FALL_OCCUR);
                         client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
                     } else {
                         qDebug() << "Socket DC";
-                    }
+                    }*/
                 });
 
         // =========================
@@ -2011,10 +2015,14 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::on_btnFallSimulation_clicked()
 {
     if(client->isConnected()){
-        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
         client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
+        fallEventAckReceived = false;
+        m_gpio->setColor(COLOR_RED);
+        timerSendFallevent->start(1000); //Aktifkan send fall event repeat
+        soundPlay(SOUND_FALL_OCCUR, lang);
     }else{
         qDebug() << " Socket DC";
     }
@@ -2294,7 +2302,7 @@ void MainWindow::onIncidentIamOK()
 //------------------------------------------------------------------------
 void MainWindow::onIncidentFallEventDetected()
 {
-    fallEventAckReceived = true;
+    //fallEventAckReceived = true;
 }
 
 //------------------------------------------------------------------------
@@ -2304,33 +2312,38 @@ void MainWindow::onIncidentFallWakeUpByFallDetection()
 }
 
 //------------------------------------------------------------------------
-void MainWindow::onIncidentFallAckFallEventDetected()
+void MainWindow::onIncidentAckFallEventDetected()
 {
     fallEventAckReceived = true;
+    qDebug() << "ACK_FALL_EVENT_DETECTED";
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onIncidentFallNoResponse()
 {
-    fallEventAckReceived = true;
+   // fallEventAckReceived = true;
+    soundPlay(SOUND_HELP,lang);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onIncidentFallHelpEventDetected()
 {
-    fallEventAckReceived = true;
+   // fallEventAckReceived = true;
+     soundPlay(SOUND_HELP,lang);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onIncidentFallOKEventDetected()
 {
-    fallEventAckReceived = true;
+   // fallEventAckReceived = true;
+     soundPlay(SOUND_IAM_OK,lang);
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onIncidentFallCompleted()
 {
     fallEventAckReceived = true;
+    m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
@@ -2339,10 +2352,10 @@ void MainWindow::slotTimerSendFallEvent()
     if(!fallEventAckReceived){ //Ack belum diterima, ulangi kirim event fall
         if (client->isConnected()) {
             // soundPlay(SOUND_FALL_OCCUR);
-            QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+            QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
             QJsonObject obj;
             obj["datetime"] = timestamp;
-            client->emitEventStringMsgJsoned("INCIDENT_FALL_DOWN_DETECTED",obj);
+            client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
         } else {
             qDebug() << "Socket DC";
         }
@@ -2760,7 +2773,7 @@ void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
 void MainWindow::onRpiRestart()
 {
     if (client->isConnected()) {
-        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
         client->emitEventStringMsgJsoned("device_restart",obj);
@@ -2772,7 +2785,7 @@ void MainWindow::onRpiRestart()
 void MainWindow::onRpiShutdown()
 {
     if (client->isConnected()) {
-        QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
         client->emitEventStringMsgJsoned("device_off",obj);
@@ -2930,7 +2943,7 @@ void MainWindow::on_btnEmitEvenwAck_clicked()
 void MainWindow::on_btnEmitListeningOn_clicked()
 {
     if(client->isConnected()){
-        //QString timestamp = QDateTime::currentDateTime().toString("MM/dd/yyyy HH:mm:ss");
+        //QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         //QJsonObject obj;
         //obj["datetime"] = timestamp;
         QString msg= "ON";

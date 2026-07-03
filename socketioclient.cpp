@@ -145,8 +145,8 @@ void SocketIOClient::constructWebSocketUrl()
 
     // Tambahkan timestamp untuk avoid cache
     query.addQueryItem("t", QString::number(QDateTime::currentMSecsSinceEpoch()));
-    //query.addQueryItem("auth", "{\"robotId\":\"TESTING-1\"}");
-    //query.addQueryItem("robotId","TESTING-1");
+    query.addQueryItem("auth", "{\"robotId\":\"TESTING-1\"}");
+    query.addQueryItem("robotId","TESTING-1");
 
     // Tambahkan namespace ke query jika bukan root namespace
     //if (m_namespace != "/") {
@@ -172,7 +172,7 @@ void SocketIOClient::onWebSocketConnected()
 
     qDebug() << "WebSocket connected, sending CONNECT with auth";
 
-    QString payload = "40{\"userId\":\"raspberry\"}";
+    QString payload = "40{\"robotId\":\"TESTING-1\"}";
     m_webSocket->sendTextMessage(payload);
 }
 
