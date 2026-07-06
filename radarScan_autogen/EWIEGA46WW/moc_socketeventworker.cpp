@@ -64,7 +64,7 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         "langAckSet",
         "incidentFallEventDetected",
         "incidentFallWakeUpByFallDetection",
-        "incidentFallAckFallEventDetected",
+        "incidentAckFallEventDetected",
         "incidentFallNoResponse",
         "incidentHelp",
         "incidentFallIamOK",
@@ -150,7 +150,7 @@ template <> constexpr inline auto SocketEventWorker::qt_create_metaobjectdata<qt
         QtMocHelpers::SignalData<void()>(24, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'incidentFallWakeUpByFallDetection'
         QtMocHelpers::SignalData<void()>(25, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'incidentFallAckFallEventDetected'
+        // Signal 'incidentAckFallEventDetected'
         QtMocHelpers::SignalData<void()>(26, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'incidentFallNoResponse'
         QtMocHelpers::SignalData<void()>(27, 2, QMC::AccessPublic, QMetaType::Void),
@@ -257,7 +257,7 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 19: _t->langAckSet(); break;
         case 20: _t->incidentFallEventDetected(); break;
         case 21: _t->incidentFallWakeUpByFallDetection(); break;
-        case 22: _t->incidentFallAckFallEventDetected(); break;
+        case 22: _t->incidentAckFallEventDetected(); break;
         case 23: _t->incidentFallNoResponse(); break;
         case 24: _t->incidentHelp(); break;
         case 25: _t->incidentFallIamOK(); break;
@@ -333,7 +333,7 @@ void SocketEventWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
             return;
         if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::incidentFallWakeUpByFallDetection, 21))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::incidentFallAckFallEventDetected, 22))
+        if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::incidentAckFallEventDetected, 22))
             return;
         if (QtMocHelpers::indexOfMethod<void (SocketEventWorker::*)()>(_a, &SocketEventWorker::incidentFallNoResponse, 23))
             return;
@@ -554,7 +554,7 @@ void SocketEventWorker::incidentFallWakeUpByFallDetection()
 }
 
 // SIGNAL 22
-void SocketEventWorker::incidentFallAckFallEventDetected()
+void SocketEventWorker::incidentAckFallEventDetected()
 {
     QMetaObject::activate(this, &staticMetaObject, 22, nullptr);
 }

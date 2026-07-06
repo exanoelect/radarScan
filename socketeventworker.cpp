@@ -163,7 +163,7 @@ void SocketEventWorker::process()
             emit incidentFallIamOK();
         }
 
-        //WIFI
+        //WIFI ori
         else if (eventName == "WIFI_ON") {
             qDebug() << "Wifi request:" << eventName;
             emit wifiOn();
@@ -194,6 +194,39 @@ void SocketEventWorker::process()
                   qDebug() << "Wifi request:" << eventName << obj;
                   emit wifiForget(ssid);
             }
+        }
+
+        //Wifi CAPITAL
+        else if (eventName == "DISCONNECT_WIFI") {
+                qDebug() << "Wifi disconnect from current ssid :" << eventName;
+                emit wifiDisconnectCurrentSsid();
+        }else if (eventName == "GET_WIFI_STATUS") {
+                  qDebug() << "Wifi request:" << eventName;
+                  emit wifiGetSsid();
+        }else if (eventName == "SCAN_WIFI_STREAM") {
+                  qDebug() << "Wifi scan re received:" << eventName;
+                  emit wifiScanSsidReqReceived();
+        }else if (eventName.startsWith("CONNECT_WIFI")) {
+                if (data.isObject()) {
+                    QJsonObject obj = data.toObject();
+                    QString ssid = obj["ssid"].toString();
+                    QString pwd = obj["password"].toString();
+                    qDebug() << "Wifi request:" << eventName << obj;
+                    emit wifiConnect(ssid,pwd);
+                }
+        }else if (eventName.startsWith("WIFI_SSID_FORGET")) {
+                if (data.isObject()) {
+                    QJsonObject obj = data.toObject();
+                    QString ssid = obj["ssid"].toString();
+                    qDebug() << "Wifi request:" << eventName << obj;
+                    emit wifiForget(ssid);
+                    }
+        } else if (eventName == "wifi_on") {
+                   qDebug() << "Wifi request:" << eventName;
+                   emit wifiOn();
+        }else if (eventName == "wifi_off") {
+            qDebug() << "Wifi request:" << eventName;
+            emit wifiOff();
         }
 
         //TimeZone

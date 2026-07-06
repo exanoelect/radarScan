@@ -2396,7 +2396,7 @@ void MainWindow::onwifiScanSsidReqReceived()
     QJsonObject obj;
     obj["timestamp"] = isoMs;
 
-    client->emitEventStringMsgJsoned("wifi_scan_started",obj);
+    client->emitEventStringMsgJsoned("WIFI_SCAN_STARTED",obj);
 
     qDebug() << "masuk cuk";
 
@@ -2477,12 +2477,12 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
         QJsonObject obj;
         obj["ssid"]      = ap.ssid;
         obj["signal"]    = ap.signalDbm;
-        obj["secured"]   = ap.security;
+        obj["secured"]   = true; //ap.security;
         obj["channel"]   = ap.channel;
         obj["frequency"] = ap.band;
 
         client->emitEventStringMsgJsoned(
-                        "wifi_network_found",
+                        "WIFI_NETWORK_FOUND",
                        obj
                         );
 
@@ -2498,7 +2498,7 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
     obj["timestamp"] = isoMs;
 
     client->emitEventStringMsgJsoned(
-                    "wifi_scan_completed",
+                    "WIFI_SCAN_COMPLETED",
                     obj
                     );
 }
@@ -2526,12 +2526,12 @@ void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
         QJsonObject obj;
         obj["ssid"] = ssid;
         obj["password"] = pwd;
-        client->emitEventStringMsgJsoned("wifi_connecting",obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTING",obj);
         qDebug() << "NMCLI connect wifi ssid " << ssid << " pwd " << pwd;
         m_utility->nmcliConnectToWiFi(ssid,pwd);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("wifi_connection_failed","socketio_closed");
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED","socketio_closed");
     }
 }
 
@@ -2565,7 +2565,7 @@ void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
     if (!client || !client->isConnected())
          return;
 
-    client->emitEventStringMsgJsoned("wifi_status", obj);
+    client->emitEventStringMsgJsoned("WIFI_STATUS", obj);
 }
 
 //------------------------------------------------------------------------
@@ -2573,7 +2573,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
     if (!success) {
         QJsonObject obj;
         obj["error"] = ssid;
-        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
         return;
     }
 
@@ -2584,7 +2584,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
         obj["ssid"] = ssid;
         obj["ip"] = ip;
         obj["gateway"] = gateway;
-        client->emitEventStringMsgJsoned("wifi_connected", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTED", obj);
     } else {
         qDebug() << "Socket DC";
     }
@@ -2610,12 +2610,12 @@ void MainWindow::onwifiDisconnectResult(bool success, QString ssid, QString mess
             QJsonObject obj;
             obj["ssid"] = ssid;
             obj["disconnectedBy"] = "user";
-            client->emitEventStringMsgJsoned("wifi_disconnected", obj);
+            client->emitEventStringMsgJsoned("WIFI_DISCONNECTED", obj);
         }
     } else {
         qDebug() << "Disconnect failed:" << message;
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("wifi_disconnected", message);
+            client->emitEventStringMsgJsoned("WIFI_DISCONNECTED", message);
         }
     }
 }
@@ -2625,10 +2625,10 @@ void MainWindow::onWifiEnabled(bool on)
 {
     if (on) {
         qDebug() << "Wifi Enable OK";
-        client->emitEventStringMsgJsoned("Wifi Enabled Success","");
+        client->emitEventStringMsgJsoned("WIFI_ENABLED_SUCCESS","");
     }else{
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("Wifi Enabled Fail","");
+        client->emitEventStringMsgJsoned("WIFI_ENABLED_FAIL","");
     }
 }
 
@@ -2637,10 +2637,10 @@ void MainWindow::onWifiDeleted(bool success, QString ssid, QString message)
 {
     if (success) {
         qDebug() << "SSID deleted " << ssid;
-        client->emitEventStringMsgJsoned("SSid deleted ok",ssid);
+        client->emitEventStringMsgJsoned("SSID_DELETED_OK",ssid);
     }else{
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("SSid deleted fail",ssid);
+        client->emitEventStringMsgJsoned("SSID_DELETED_FAIL",ssid);
     }
 }
 
@@ -2683,7 +2683,7 @@ void MainWindow::onWifiProgress(int state, QString stateText)
         obj["stage"] =  progressText;
         obj["progress"] = percent;
 
-        client->emitEventStringMsgJsoned("wifi_connection_progress", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_PROGRESS", obj);
         if(state == 100){
             qDebug() << "new wifi ssid, recon app....";
             QString serverIp = "203.194.114.21"; //ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
@@ -2712,7 +2712,7 @@ void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, Q
     obj["gateway"] = gateway;
 
     if (client->isConnected()) {
-        client->emitEventStringMsgJsoned("wifi_connect_result", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECT_RESULT", obj);
     }
 
     if (success)
@@ -2735,7 +2735,7 @@ void MainWindow::onMonitorWlan0Disconnected()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "Wlan0 Disconnected";
-        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2745,7 +2745,7 @@ void MainWindow::onMonitorWlan0WifiSignalLost()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "signal lost";
-        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2755,7 +2755,7 @@ void MainWindow::onMonitorWlan0networkInterfaceDown()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "NetworkInterfaceDown";
-        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2765,7 +2765,7 @@ void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = ip;
-        client->emitEventStringMsgJsoned("wifi_connection_failed", obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2776,7 +2776,7 @@ void MainWindow::onRpiRestart()
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("device_restart",obj);
+        client->emitEventStringMsgJsoned("DEVICE_RESTART",obj);
         m_utility->rpiRestart();
     }
 }
@@ -2788,7 +2788,7 @@ void MainWindow::onRpiShutdown()
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("device_off",obj);
+        client->emitEventStringMsgJsoned("DEVICE_OFF",obj);
         m_utility->rpiShutdown();
     }
 }
@@ -2800,7 +2800,7 @@ void MainWindow::onTzSetReq(QString tz)
     //if(m_utility->setTimezone("Europe/Stockholm")){
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("timezone",tz);
+            client->emitEventStringMsgJsoned("TIMEZONE",tz);
             m_utility->rpiShutdown();
         }
     }else{
@@ -2816,7 +2816,7 @@ void MainWindow::onTzGetReq()
     if(tz != ""){
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("timezone",tz);
+            client->emitEventStringMsgJsoned("TIMEZONE",tz);
             m_utility->getTimeZone();
         }
     }else{

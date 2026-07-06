@@ -104,6 +104,7 @@ private:
 
     //Fall algorithm
     bool isFallCandidate(const TargetInfo &t);
+    bool isHeightTrendDecreasing(const TargetInfo &t, int *dropOut);
     void decisionFall(TargetInfo &t);
     void shiftHistory(qint16 data[HISTORY_SIZE], qint16 value);
     void resetFallState(TargetInfo &t);

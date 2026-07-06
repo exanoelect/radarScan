@@ -131,13 +131,11 @@ printf '%s|%s|%s\n' "$SSID" "$DBM" "$IP"
 
         QJsonObject obj;
 
+        obj["connected"] = true;
         obj["ssid"] = parts[0];
-
-        obj["signal_dbm"] = parts[1].toInt();
-
+        obj["signal"] = parts[1].toInt();
         obj["ip"] = parts[2];
-
-        obj["uptime_sec"] = 0;
+        obj["uptime"] = 0;
 
         qDebug() << "WiFi info =" << obj;
 

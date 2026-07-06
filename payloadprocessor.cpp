@@ -970,63 +970,126 @@ void PayloadProcessor::setTraceTracking(bool checked)
 bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
 {
     if(t.historyCount < HISTORY_SIZE){
-        //qDebug()<< "ID"<< t.trackId<< "History not full:"<< t.historyCount << "/"<< HISTORY_SIZE;
-
         return false;
     }
 
-    /*
-    //qDebug()
-        << "isFC ID:"     << t.trackId
-        << "X:"      << historyToString(t.x)
-        << "Y:"      << historyToString(t.y)
-        << "H:"      << historyToString(t.height)
-        << "Vel:"    << historyToString(t.velocity)
-        << "Move:"   << historyToString(t.motion)
-        << "Hist:"   << t.historyCount
-        << "Score:"  << t.fallScore
-        << "State:"  << t.state;
-    */
+    int heightDrop = 0;
 
-    qint16 hMax = 0;
+    bool rapidHeightDrop = isHeightTrendDecreasing(t, &heightDrop);
 
-    for(int i=0; i<HISTORY_SIZE; i++){
-        if(t.height[i] > hMax)
-            hMax = t.height[i];
-    }
+    qint32 velocityTotal = 0;
+    qint32 totalMovement = 0;
 
-    qint16 hNew = t.height[HISTORY_SIZE - 1];
-
-
-    //qDebug() << "hMax " << hMax << "hNew " << hNew;
-
-    if((hMax <= 0) || (hNew <= 0)){
-        //qDebug() << "hOld hnew negative";
-        return false;
-    }
-
-    int heightDrop = hMax - hNew;
-
-    quint16 avgTotal = 0;
-    quint16 totalMovement = 0;
-
-    for(int i=0; i<HISTORY_SIZE; i++){
-        avgTotal += qAbs(t.velocity[i]);
+    for(int i = 0; i < HISTORY_SIZE; i++){
+        velocityTotal += qAbs(t.velocity[i]);
         totalMovement += t.motion[i];
     }
 
-    //avgVel /= HISTORY_SIZE;
-
-    bool rapidHeightDrop = (heightDrop > 50); //60
-    bool fastMotion = (avgTotal > 5);
+    bool fastMotion = (velocityTotal > 5);
     bool movedEnough = (totalMovement > 2);
 
-   // //qDebug() << "drop" << heightDrop <<"vel" << avgVel <<"move" << totalMovement;
-
-    //qDebug()<< "EIC ID:" << t.trackId << "hMax:" << hMax<< "hNew:" << hNew<< "drop:" << heightDrop<< "avgVel:" << avgTota << "totalMove:" << totalMovement << "score:" << t.fallScore;
-
     return rapidHeightDrop &&
-            (fastMotion || movedEnough);
+           (fastMotion || movedEnough);
+}
+
+//---------------------------------------------------------------------------------------
+bool PayloadProcessor::isHeightTrendDecreasing(const TargetInfo &t, int *dropOut)
+{
+    constexpr int N = HISTORY_SIZE;
+
+    constexpr int HEIGHT_DROP_THRESHOLD = 50;
+    constexpr int SEGMENT_WINDOW = 8;
+    constexpr int SEGMENT_TOLERANCE = 10;
+
+    constexpr double MIN_NEGATIVE_SLOPE = -0.7;
+    constexpr int MAX_UP_RATIO_PERCENT = 35;
+
+    if(t.historyCount < HISTORY_SIZE)
+        return false;
+
+    qint64 sumX = 0;
+    qint64 sumY = 0;
+    qint64 sumXY = 0;
+    qint64 sumX2 = 0;
+
+    qint32 downSum = 0;
+    qint32 upSum = 0;
+
+    for(int i = 0; i < N; i++){
+        const int h = t.height[i];
+
+        if(h <= 0)
+            return false;
+
+        sumX  += i;
+        sumY  += h;
+        sumXY += i * h;
+        sumX2 += i * i;
+
+        if(i > 0){
+            const int diff = t.height[i] - t.height[i - 1];
+
+            if(diff < 0)
+                downSum += -diff;
+            else if(diff > 0)
+                upSum += diff;
+        }
+    }
+
+    auto avgRange = [&](int start, int count) -> int {
+        qint32 sum = 0;
+
+        for(int i = start; i < start + count; i++){
+            if(t.height[i] <= 0)
+                return -1;
+
+            sum += t.height[i];
+        }
+
+        return sum / count;
+    };
+
+    const int earlyAvg = avgRange(0, SEGMENT_WINDOW);
+    const int midAvg   = avgRange((N - SEGMENT_WINDOW) / 2, SEGMENT_WINDOW);
+    const int lateAvg  = avgRange(N - SEGMENT_WINDOW, SEGMENT_WINDOW);
+
+    if(earlyAvg <= 0 || midAvg <= 0 || lateAvg <= 0)
+        return false;
+
+    const int heightDrop = earlyAvg - lateAvg;
+
+    if(dropOut)
+        *dropOut = heightDrop;
+
+    const double denominator =
+        static_cast<double>(N) * sumX2 -
+        static_cast<double>(sumX) * sumX;
+
+    if(denominator == 0)
+        return false;
+
+    const double slope =
+        (static_cast<double>(N) * sumXY -
+         static_cast<double>(sumX) * sumY) / denominator;
+
+    const bool enoughDrop =
+        heightDrop > HEIGHT_DROP_THRESHOLD;
+
+    const bool segmentTrendDown =
+        (earlyAvg + SEGMENT_TOLERANCE >= midAvg) &&
+        (midAvg   + SEGMENT_TOLERANCE >= lateAvg);
+
+    const bool dominantDownMovement =
+        (downSum > 0) &&
+        (upSum * 100 <= downSum * MAX_UP_RATIO_PERCENT);
+
+    const bool negativeSlope =
+        slope < MIN_NEGATIVE_SLOPE;
+
+    return enoughDrop &&
+           segmentTrendDown &&
+           dominantDownMovement &&
+           negativeSlope;
 }
 
 //---------------------------------------------------------------------------------------
