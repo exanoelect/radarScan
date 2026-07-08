@@ -52,6 +52,10 @@ set(SOURCES
     utilities.cpp
     systemdmonitorqt.h
     systemdmonitorqt.cpp
+    Pzem004Tv30Qt.h
+    Pzem004Tv30Qt.cpp
+    AudioHealthChecker.h
+    AudioHealthChecker.cpp
 )
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

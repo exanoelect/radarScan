@@ -20,8 +20,6 @@
 #include <QListWidget>
 #include <QQueue>
 #include <QtEndian>
-//#include <QtMultimedia/QSoundEffect>
-//QSoundEffect sound;
 #include <QScreen>   // Qt6 pengganti QDesktopWidget
 #include "qcustomplot.h"
 #include <QWebSocket>
@@ -47,37 +45,23 @@
 #include <QDebug>
 #include <QNetworkInformation>
 #include <VolumeMonitor.h>
-//#include <NetworkMonitorQt.h>
 #include <networkmonitor.h>
-
-//#include <QAudioSource>
 #include <QIODevice>
-//#include <QAudioFormat>
-//#include <QAudioDevice>
-//#include <QMediaDevices>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QtMath>
 #include <QDebug>
 #include <qdebug.h>
-
-//#include <QAudioSource>
 #include <QFile>
-//#include <QMediaPlayer>
-//#include <QAudioOutput>
-//#include <QAudioProbe>
-//#include <QAudioDecoder>
-//#include <QAudioSource>
-//#include <QAudioSink>
-//#include <QAudioFormat>
-//#include <QAudioDevice>
 #include <QBuffer>
 #include <QTimer>
 #include <QFile>
 #include <systemdmonitorqt.h>
+#include <QTimer>
+#include "Pzem004Tv30Qt.h"
+#include "AudioHealthChecker.h"
 
-#include <QMqttClient>
-//#include <systemd
+//#include <QMqttClient>
 
 //#define AUTOSTART_ONRPI 1
 //#define MQTT_FITUR 1
@@ -162,9 +146,9 @@ public:
 
 public slots:
     //void updatePlot(const QVector<double> &values);   //
-#ifdef MQTT_FITUR
-    void setClientPort(int p);
-#endif
+
+signals:
+    //void pzemDataReadyComplete(Pzem004Tv30Data powerData);
 
 private slots:
     void on_btnLoad_clicked();
@@ -345,27 +329,16 @@ private slots:
     void on_btnRec_pressed();
     void on_btnRec_released();
     void handleAudioData();
-    //void handleStateChanged(QAudio::State state);
 
     void on_btnPlayRec_clicked();
     void handleFinished();
 
-    //void handleError(QAudioDecoder::Error error);
 
     void on_btnRec_clicked();
+    void on_btnPing_clicked();
 
-#ifdef MQTT_FITUR
-    void updateLogStateChange();
-    void brokerDisconnected();
-
-    void on_buttonConnect_clicked();
-
-    void on_buttonSubscribe_clicked();
-
-    void on_buttonPublish_clicked();
-
-    void on_pubTest_clicked();
-#endif
+    //PZEM
+    void onPzemDataReadyComplete(Pzem004Tv30Data data);
 
 private:
     Ui::MainWindow *ui;
@@ -393,11 +366,6 @@ private:
     utilities *m_utility;
 #endif
 
-    //NetworkMonitorQt *monitor;
-    //QStringList ssidscanRet;
-    //NetworkMonitor *monitor;
-
-    //QString demoName2;
 
     int m_volCurrent;
     //int brightnessCurrent;
@@ -422,34 +390,14 @@ private:
     QSerialPort *m_serial2 = nullptr;
     QByteArray m_buffer2;
 
-    //QAudioSource *audio;
-    QIODevice *device;
-
     QTimer *timerSendFallevent = nullptr;
     bool fallEventAckReceived = false;
-
-    //QQueue<QByteArray> m_payloadQueue;
-    //QQueue<QPair<QString, QJsonValue>> m_eventQueue;
-
-    //QQueue<QByteArray> m_payloadQueue2;
-    //QQueue<quint8> m_socketQueue2;
-    //quint8 socketState2;
-
-    //QTimer *m_processTimer;
-    //QTimer *m_socketTimer;
-    //QTimer *m_initRadarTimer;
-
-    //QTimer *m_processTimer2;
-    //QTimer *m_socketTimer2;
-    //QTimer *m_initRadarTimer2;
 
 #ifdef Q_OS_LINUX
     gpiod_line *line17;
     gpiod_line *line27;
     gpiod_line *line22;
 #endif
-
-    //QCustomPlot *m_plot;
 
     FrameRadarData radarFrame;
     FrameRadarData radarFrame2;
@@ -461,9 +409,6 @@ private:
 
     QByteArray makeFrame(const QByteArray &body);
     QString toHexSpace(const QByteArray &data);
-
-    //QSoundEffect sound;
-    //QSoundEffect sound2;
 
     void initSound();
     void initGraphics();
@@ -487,14 +432,7 @@ private:
 
     //Wifi healthy
     QString runCommand(const QString &cmd);
-
-    //QAudioSource *audi;
-    QFile file;
-    QIODevice *ioDevice;
-
-    WavHeader header;
-    //QAudioDecoder *decoder;
-    //QAudioProbe
+    QString wifiState = "";
 
     void startRecording();
     void stopRecording();
@@ -504,27 +442,22 @@ private:
 
     // Audio
     QString lang;
-    //QAudioSink *audioSink = nullptr;
-    QFile audioFile;
-    QBuffer *audioBuffer = nullptr;
+    AudioHealthChecker m_audioCheck;
+   // AudioHealthChecker.Report mReport;
+    void runAudioHealthRecordTest();
 
-    // Timer untuk level meter
-    QTimer *levelTimer = nullptr;
-    qint64 recordedDataSize = 0;
 
     // Function hitung dB
     double calculateDb(const QByteArray &data);
     void initAudioSystem();
 
+    //PZEM
+    Pzem004Tv30Qt *m_pzem = nullptr;
+    void initPzem(void);
+
     //Monitoring system
 #ifdef Q_OS_LINUX
     systemdmonitorqt *systemdymon;
-#endif
-
-#ifdef MQTT_FITUR
-    QMqttClient *m_client;
-
-    bool publishMessage(QString topic, QString message);
 #endif
 
     void stopAllThreads();

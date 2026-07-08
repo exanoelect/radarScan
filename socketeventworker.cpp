@@ -187,7 +187,7 @@ void SocketEventWorker::process()
                 qDebug() << "Wifi request:" << eventName << obj;
                 emit wifiConnect(ssid,pwd);
             }
-        }else if (eventName.startsWith("WIFI_SSID_FORGET")) {
+        }else if (eventName.startsWith("FORGET_WIFI")) {
             if (data.isObject()) {
                   QJsonObject obj = data.toObject();
                   QString ssid = obj["ssid"].toString();

@@ -54,65 +54,6 @@ MainWindow::MainWindow(QWidget *parent) :
            this,&MainWindow::onWifiConnectFinished);
 
 
-    /*
-    m_volumeMonitor = new VolumeMonitor(this);
-
-    connect(m_volumeMonitor, &VolumeMonitor::volumeChanged,
-          this,&MainWindow::onVolumeChanged);
-
-    m_volCurrent = m_volume->getVolumePercent(); //init vol
-
-    qDebug() << "Start test mic";
-
-    // Default microphone
-    QAudioDevice inputDevice = QMediaDevices::defaultAudioInput();
-
-    for (auto dev : QMediaDevices::audioInputs()) {
-        qDebug() << dev.description();
-    }
-
-    //begin comment
-
-    QAudioFormat format;
-
-    format.setSampleRate(16000);
-    format.setChannelCount(1);
-    format.setSampleFormat(QAudioFormat::Int16);
-
-    if (!inputDevice.isFormatSupported(format)) {
-       qDebug() << "Format not supported!";
-       format = inputDevice.preferredFormat();
-    }
-
-    audio = new QAudioSource(inputDevice, format, this);
-
-    device = audio->start();
-
-    connect(device, &QIODevice::readyRead, this, &MainWindow::readMore);
-    connect(audio, &QAudioSource::stateChanged, [](QAudio::State state){
-        qDebug() << "Audio state:" << state;
-    });
-
-
-    //Audio decoder
-
-    decoder = new QAudioDecoder(this);
-
-    connect(decoder, &QAudioDecoder::bufferReady,
-            this, &MainWindow::processBuffer);
-
-    connect(decoder, &QAudioDecoder::finished,
-        this, &MainWindow::handleFinished);
-
-
-
-    //connect(decoder, &QAudioDecoder::errorOccurred,
-    //        this, &MainWindow::handleError);
-
-    initAudioSystem();
-
-    */
-
     qDebug() << "Start monitoring";
     systemdymon = new systemdmonitorqt("ssh.service", this);
     connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
@@ -130,59 +71,13 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << "LEave Monitring prepapere ";
 #endif
 
-    //MQTT Client setup
-#ifdef MQTT_FITUR
-    m_client = new QMqttClient(this);
-    m_client->setHostname(ui->lineEditHost->text());
-    m_client->setPort(ui->spinBoxPort->value());
-
-    connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
-    connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
-
-    connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
-        const QString content = QDateTime::currentDateTime().toString()
-                    + QLatin1String(" Received Topic: ")
-                    + topic.name()
-                    + QLatin1String(" Message: ")
-                    + message
-                    + QLatin1Char('\n');
-        ui->editLog->insertPlainText(content);
-    });
-
-    connect(m_client, &QMqttClient::pingResponseReceived, this, [this]() {
-        const QString content = QDateTime::currentDateTime().toString()
-                    + QLatin1String(" PingResponse")
-                    + QLatin1Char('\n');
-        ui->editLog->insertPlainText(content);
-    });
-
-    connect(ui->lineEditHost, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
-    connect(ui->spinBoxPort, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::setClientPort);
-    updateLogStateChange();
-
-    if(publishMessage("ledcolor","white")){
-        qDebug() << "white ok";
-    }else{
-        qDebug() << "white fail";
-    }
-
-    //connect mqtt broker
-    if (m_client->state() == QMqttClient::Disconnected) {
-        ui->lineEditHost->setEnabled(false);
-        ui->spinBoxPort->setEnabled(false);
-        ui->buttonConnect->setText(tr("Disconnect"));
-        m_client->connectToHost();
-    } else {
-        ui->lineEditHost->setEnabled(true);
-        ui->spinBoxPort->setEnabled(true);
-        ui->buttonConnect->setText(tr("Connect"));
-        m_client->disconnectFromHost();
-    }
-#endif
-
     fallEventAckReceived = false;
     m_gpio->setColor(COLOR_WHITE);
-    //fallReported = false;
+
+    //PZEM
+    m_pzem = new Pzem004Tv30Qt(this);
+    initPzem();
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -2490,11 +2385,12 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
         //array.append(obj);
     }
 
-    QString isoMs = QDateTime::currentDateTimeUtc()
-                        .toString(Qt::ISODateWithMs);
+    //QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
+
+    qint64 isoMs = QDateTime::currentMSecsSinceEpoch();
 
     QJsonObject obj;
-    obj["total"] = QString::number(ssidCountFound);
+    obj["total"] = ssidCountFound;
     obj["timestamp"] = isoMs;
 
     client->emitEventStringMsgJsoned(
@@ -2525,7 +2421,8 @@ void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
     if (client->isConnected()) {
         QJsonObject obj;
         obj["ssid"] = ssid;
-        obj["password"] = pwd;
+        //obj["password"] = pwd;
+        obj["status"] = "connecting";
         client->emitEventStringMsgJsoned("WIFI_CONNECTING",obj);
         qDebug() << "NMCLI connect wifi ssid " << ssid << " pwd " << pwd;
         m_utility->nmcliConnectToWiFi(ssid,pwd);
@@ -3138,144 +3035,50 @@ double MainWindow::calculateDb(const QByteArray &data)
 //------------------------------------------------------------------------
 void MainWindow::initAudioSystem()
 {
-    /*
-    qDebug() << "Init audio system...";
-
-    // =========================
-    // Load file
-    // =========================
-    //audioFile.setFileName("/home/pi/wav/i-am-ok.wav");
-
-    audioFile.setFileName("/home/pi/qtpro/test12/radarscan/record.wav");
-    //audioFile.setFileName("/home/pi/wav/stasiun.wav");
-    //audioFile.setFileName("/Volumes/DATA/wav/stasiun.wav");
-
-    if (!audioFile.open(QIODevice::ReadOnly)) {
-        qDebug() << "Failed to open file:" << audioFile.errorString();
-        return;
-    }
-
-    // =========================
-    // BACA HEADER WAV
-    // =========================
-    WavHeader header;
-
-    if (audioFile.read(reinterpret_cast<char*>(&header), sizeof(WavHeader)) != sizeof(WavHeader)) {
-        qDebug() << "Invalid WAV header!";
-        return;
-    }
-
-    // Debug info (PENTING)
-    qDebug() << "SampleRate:" << header.sampleRate;
-    qDebug() << "Channels:" << header.numChannels;
-    qDebug() << "Bits:" << header.bitsPerSample;
-
-    // =========================
-    // SET FORMAT SESUAI FILE
-    // =========================
-    QAudioFormat format;
-
-    format.setSampleRate(header.sampleRate);
-    format.setChannelCount(header.numChannels);
-
-    if (header.bitsPerSample == 16)
-        format.setSampleFormat(QAudioFormat::Int16);
-    else if (header.bitsPerSample == 8)
-        format.setSampleFormat(QAudioFormat::UInt8);
-    else {
-        qDebug() << "Unsupported bit depth!";
-        return;
-    }
-
-    QAudioDevice device = QMediaDevices::defaultAudioOutput();
-
-    if (!device.isFormatSupported(format)) {
-        qDebug() << "Format not supported!";
-        return; // ⚠️ jangan fallback sembarangan
-    }
-
-    // =========================
-    // BACA AUDIO DATA (SETELAH HEADER)
-    // =========================
-    QByteArray audioData = audioFile.readAll();
-
-    // =========================
-    // BUFFER
-    // =========================
-    audioBuffer = new QBuffer(this);
-    audioBuffer->setData(audioData);
-    audioBuffer->open(QIODevice::ReadOnly);
-
-    // =========================
-    // AUDIO SINK
-    // =========================
-    audioSink = new QAudioSink(device, format, this);
-
-    // =========================
-    // TIMER LEVEL
-    // =========================
-    levelTimer = new QTimer(this);
-
-    connect(levelTimer, &QTimer::timeout, this, [=]() {
-
-        if (!audioSink) return;
-
-        // posisi kira-kira (byte estimate)
-        qint64 bytePerSec = format.sampleRate() *
-                            format.channelCount() *
-                            (header.bitsPerSample / 8);
-
-        qint64 pos = (audioSink->processedUSecs() * bytePerSec) / 1000000;
-
-        QByteArray chunk = audioBuffer->data().mid(pos, 4096);
-
-        double db = calculateDb(chunk);
-
-        int level = qBound(0, int((db + 60) * 100 / 60), 100);
-
-        ui->speakerBar->setValue(level);
-        //ui->labelLevel->setText(QString::number(level));
-    });
-
-    // =========================
-    // HANDLE FINISH
-    // =========================
-    connect(audioSink, &QAudioSink::stateChanged, this, [=](QAudio::State state){
-        if (state == QAudio::IdleState) {
-            audioSink->stop();
-            audioBuffer->seek(0);
-            levelTimer->stop();
-            ui->btnPlayRec->setText("Play");
-        }
-    });
-
-    // =========================
-    // UI INIT
-    // =========================
-    ui->speakerBar->setRange(0, 200);
-    ui->btnPlayRec->setText("Play");
-*/
 }
 
-#ifdef MQTT_FITUR
 //------------------------------------------------------------------------
-bool MainWindow::publishMessage(QString topic, QString message)
+void MainWindow::initPzem()
 {
-    if (!m_client)
-         return false;
+    /*connect(m_pzem, &Pzem004Tv30Qt::dataReady,
+                 this,[this](const Pzem004Tv30Data &data) {
+                     //qDebug() << "========== PZEM DATA ==========";
+                     //qDebug() << "Voltage   :" << data.voltage << "V";
+                     //qDebug() << "Current   :" << data.current << "A";
+                     //qDebug() << "Power     :" << data.power << "W";
+                     //qDebug() << "Energy    :" << data.energy << "kWh";
+                     //qDebug() << "Frequency :" << data.frequency << "Hz";
+                     //qDebug() << "PF        :" << data.powerFactor;
+                     //qDebug() << "Alarm     :" << data.alarm;
 
-     if (m_client->state() != QMqttClient::Connected)
-         return false;
 
-     qint32 id = m_client->publish(topic, message.toUtf8());
+                     // Di sini bisa lanjut emit ke Socket.IO, update UI,
+                     // simpan log, atau masuk ke health monitoring robot.
+                     emit pzemDataReadyComplete(data);
+                 });
+                 */
 
-     if (id == -1)
-         return false;
+    connect(m_pzem, &Pzem004Tv30Qt::dataReady,
+            this, &MainWindow::onPzemDataReadyComplete);
 
-     return true;
+    connect(m_pzem,&Pzem004Tv30Qt::errorOccurred,
+                 this,[](const QString &error) {
+                     qDebug() << "PZEM error:" << error;
+                 });
 
+    //connect(this,&MainWindow::pzemDataReadyComplete,
+    //             this,&MainWindow::onPzemDataReadyComplete);
+
+    const QString portName = "/dev/ttyAMA2";
+
+    if (!m_pzem->open(portName, 0xF8, 1000)) {
+        qDebug() << "Failed to open PZEM:" << m_pzem->lastError();
+        return;
+    }
+
+    qDebug() << "PZEM serial opened on" << portName;
 }
-#endif
+
 
 //------------------------------------------------------------------------
 void MainWindow::stopAllThreads()
@@ -3346,72 +3149,182 @@ void MainWindow::on_btnRec_clicked()
 
 }
 
-#ifdef MQTT_FITUR
 //------------------------------------------------------------------------
-void MainWindow::setClientPort(int p)
+void MainWindow::on_btnPing_clicked()
 {
-    m_client->setPort(p);
+     //QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
+     //QString timestampMs = QString::number(QDateTime::currentMSecsSinceEpoch());
+
+     //qDebug() << timestampMs;
+     //qDebug() << "isooooocukkk " << timestampMs;
+    m_pzem->requestReadAll();
+    runAudioHealthRecordTest();
+
 }
 
 //------------------------------------------------------------------------
-void MainWindow::updateLogStateChange()
+void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
 {
-    const QString content = QDateTime::currentDateTime().toString()
-                    + QLatin1String(": State Change")
-                    + QString::number(m_client->state())
-                    + QLatin1Char('\n');
-    ui->editLog->insertPlainText(content);
+    qDebug() << "========== PZEM DATA ==========";
+    qDebug() << "Voltage   :" << data.voltage << "V";
+    qDebug() << "Current   :" << data.current << "A";
+    qDebug() << "Power     :" << data.power << "W";
+    qDebug() << "Energy    :" << data.energy << "kWh";
+    qDebug() << "Frequency :" << data.frequency << "Hz";
+    qDebug() << "PF        :" << data.powerFactor;
+    qDebug() << "Alarm     :" << data.alarm;
+
+    //Proses lebih lanjut, ke json, kirim ke socketio
 }
 
 //------------------------------------------------------------------------
-void MainWindow::brokerDisconnected()
+void MainWindow::runAudioHealthRecordTest()
 {
-    ui->lineEditHost->setEnabled(true);
-    ui->spinBoxPort->setEnabled(true);
-    ui->buttonConnect->setText(tr("Connect"));
-}
+    QProcess *recorder = new QProcess(this);
+    QProcess *player   = new QProcess(this);
 
-//------------------------------------------------------------------------
-void MainWindow::on_buttonConnect_clicked()
-{
-    if (m_client->state() == QMqttClient::Disconnected) {
-        ui->lineEditHost->setEnabled(false);
-        ui->spinBoxPort->setEnabled(false);
-        ui->buttonConnect->setText(tr("Disconnect"));
-        m_client->connectToHost();
-    } else {
-        ui->lineEditHost->setEnabled(true);
-        ui->spinBoxPort->setEnabled(true);
-        ui->buttonConnect->setText(tr("Connect"));
-        m_client->disconnectFromHost();
-    }
-}
+    QString micTarget =
+        "alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0";
 
-//------------------------------------------------------------------------
-void MainWindow::on_buttonSubscribe_clicked()
-{
-    auto subscription = m_client->subscribe(ui->lineEditTopic->text());
-    if (!subscription) {
-        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
+    // Folder WAV
+    QString wavDir = QDir::homePath() + "/wav";
+
+    // Sesuai request:
+    // paplay audio_health_test.wav
+    QString testFileName = wavDir + "/audio_health_test.wav";
+
+    // Sesuai request:
+    // ~/wav/respeaker_test7.wav
+    QString recordFile = wavDir + "/respeaker_testRec.wav";
+
+    // Pastikan folder ~/wav ada
+    QDir().mkpath(wavDir);
+
+    QString err;
+
+    if (!m_audioCheck.createTestWav(testFileName, &err)) {
+        qWarning() << "Create test WAV failed:" << err;
         return;
-    }
-}
-
-//------------------------------------------------------------------------
-void MainWindow::on_buttonPublish_clicked()
-{
-    if (m_client->publish(ui->lineEditTopic->text(), ui->lineEditMessage->text().toUtf8()) == -1)
-        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
-}
-
-//------------------------------------------------------------------------
-void MainWindow::on_pubTest_clicked()
-{
-    /*if(publishMessage("ledcolor","red")){
-       qDebug() << "sukses pub";
     }else{
-        qDebug() << "fail pub";
-    }*/
-    restartApp();
+        qDebug() << "generate wav test success " << testFileName;
+    }
+
+    // =========================
+    // RECORD COMMAND:
+    //
+    // timeout 10s pw-record \
+    //   --target alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0 \
+    //   --rate 16000 \
+    //   --channels 1 \
+    //   --format s16 \
+    //   ~/wav/respeaker_test7.wav
+    // =========================
+
+    QStringList recArgs;
+    recArgs << "10s"
+            << "pw-record"
+            << "--target" << micTarget
+            << "--rate" << "16000"
+            << "--channels" << "1"
+            << "--format" << "s16"
+            << recordFile;
+
+    recorder->setProgram("timeout");
+    recorder->setArguments(recArgs);
+
+    // Biar log error pw-record bisa kebaca
+    recorder->setProcessChannelMode(QProcess::MergedChannels);
+
+    connect(recorder, &QProcess::readyReadStandardOutput, this, [recorder]() {
+        qDebug().noquote() << "[REC]" << recorder->readAllStandardOutput();
+    });
+
+    connect(recorder, &QProcess::started, this, []() {
+        qDebug() << "Recorder started non-blocking";
+    });
+
+    connect(recorder, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
+        qWarning() << "Recorder process error:" << error;
+    });
+
+    connect(recorder,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
+            [=](int exitCode, QProcess::ExitStatus exitStatus) {
+                qDebug() << "Recorder finished. Exit code:" << exitCode
+                         << "Exit status:" << exitStatus;
+
+                qDebug() << "Recorded file:" << recordFile;
+
+                // Kalau timeout yang menghentikan proses, biasanya exitCode = 124.
+                // Itu tidak selalu error untuk kasus ini.
+                if (QFileInfo::exists(recordFile)) {
+                    qDebug() << "Recording file exists, ready to analyze.";
+
+                    // lanjutkan analyze di sini
+                    m_audioCheck.audioReport = m_audioCheck.analyzeRecording(recordFile);
+                    //maudiocek.printAudioHealthReport(maudiocek.audioReport);
+                    //maudiocek.printAudioHealthReportCompact(maudiocek.audioReport);
+                    QString reportResult =  m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
+                    qDebug() << reportResult;
+
+                    // qDebug() << "Report " << maudiocek.audioReport.notes;
+                    //qDebug() << "Report " << maudiocek.audioReport.diagnose;
+                } else {
+                    qWarning() << "Recording file not found:" << recordFile;
+                }
+
+                recorder->deleteLater();
+            });
+
+    // Start recorder NON-BLOCKING
+    recorder->start();
+
+    // =========================
+    // PLAY COMMAND:
+    //
+    // paplay audio_health_test.wav
+    // =========================
+
+    player->setProgram("paplay");
+    player->setArguments(QStringList() << testFileName);
+
+    // Ini penting supaya command-nya tetap:
+    // paplay audio_health_test.wav
+    //
+    // Tapi file dicari dari folder ~/wav
+    player->setWorkingDirectory(wavDir);
+
+    player->setProcessChannelMode(QProcess::MergedChannels);
+
+    connect(player, &QProcess::readyReadStandardOutput, this, [player]() {
+        qDebug().noquote() << "[PLAY]" << player->readAllStandardOutput();
+    });
+
+    connect(player, &QProcess::started, this, []() {
+        qDebug() << "Player started: paplay audio_health_test.wav";
+    });
+
+    connect(player, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
+        qWarning() << "Player process error:" << error;
+    });
+
+    connect(player,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
+            [=](int exitCode, QProcess::ExitStatus exitStatus) {
+                qDebug() << "Player finished. Exit code:" << exitCode
+                         << "Exit status:" << exitStatus;
+
+                player->deleteLater();
+
+                // Recorder tidak perlu distop manual,
+                // karena sudah dibatasi oleh:
+                // timeout 10s pw-record ...
+            });
+
+    // Delay supaya pw-record sudah mulai dulu sebelum paplay
+    QTimer::singleShot(300, this, [player]() {
+        player->start();
+    });
 }
-#endif
