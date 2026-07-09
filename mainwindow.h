@@ -60,6 +60,8 @@
 #include <QTimer>
 #include "Pzem004Tv30Qt.h"
 #include "AudioHealthChecker.h"
+#include <QRegularExpression>
+#include <functional>
 
 //#include <QMqttClient>
 
@@ -445,7 +447,25 @@ private:
     AudioHealthChecker m_audioCheck;
    // AudioHealthChecker.Report mReport;
     void runAudioHealthRecordTest();
+    void getMicTargetFromWpctlStatusAsync(
+        std::function<void(const QString &micTarget,
+                           const QString &err)> callback
+        );
 
+    QString parseMicTargetFromWpctlStatus(
+        const QString &output,
+        QString *err = nullptr) const;
+
+    void getAudioTargetsFromWpctlStatusAsync(
+        std::function<void(const QString &micTarget,
+                           const QString &speakerTarget,
+                           const QString &err)> callback
+        );
+
+    bool parseAudioTargetsFromWpctlStatus(const QString &output,
+                                          QString *micTarget,
+                                          QString *speakerTarget,
+                                          QString *err = nullptr) const;
 
     // Function hitung dB
     double calculateDb(const QByteArray &data);

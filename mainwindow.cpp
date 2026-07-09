@@ -3186,151 +3186,500 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
 //------------------------------------------------------------------------
 void MainWindow::runAudioHealthRecordTest()
 {
-    QProcess *recorder = new QProcess(this);
-    QProcess *player   = new QProcess(this);
+    getAudioTargetsFromWpctlStatusAsync(
+        [this](const QString &micTarget,
+               const QString &speakerTarget,
+               const QString &targetErr) {
 
-    QString micTarget =
-        "alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0";
+            if (micTarget.isEmpty() || speakerTarget.isEmpty()) {
+                qWarning().noquote()
+                << "Failed to get audio targets from wpctl status:\n"
+                << targetErr;
+                return;
+            }
 
-    // Folder WAV
-    QString wavDir = QDir::homePath() + "/wav";
+            qDebug() << "Using mic target:" << micTarget;
+            qDebug() << "Using speaker target KT USB:" << speakerTarget;
 
-    // Sesuai request:
-    // paplay audio_health_test.wav
-    QString testFileName = wavDir + "/audio_health_test.wav";
+            QProcess *recorder = new QProcess(this);
+            QProcess *player   = new QProcess(this);
 
-    // Sesuai request:
-    // ~/wav/respeaker_test7.wav
-    QString recordFile = wavDir + "/respeaker_testRec.wav";
+            QString wavDir = QDir::homePath() + "/wav";
 
-    // Pastikan folder ~/wav ada
-    QDir().mkpath(wavDir);
+            QString testFileName = wavDir + "/audio_health_test.wav";
+            QString recordFile   = wavDir + "/respeaker_testRec.wav";
 
-    QString err;
+            QDir().mkpath(wavDir);
 
-    if (!m_audioCheck.createTestWav(testFileName, &err)) {
-        qWarning() << "Create test WAV failed:" << err;
-        return;
-    }else{
-        qDebug() << "generate wav test success " << testFileName;
-    }
+            QString err;
 
-    // =========================
-    // RECORD COMMAND:
-    //
-    // timeout 10s pw-record \
-    //   --target alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0 \
-    //   --rate 16000 \
-    //   --channels 1 \
-    //   --format s16 \
-    //   ~/wav/respeaker_test7.wav
-    // =========================
-
-    QStringList recArgs;
-    recArgs << "10s"
-            << "pw-record"
-            << "--target" << micTarget
-            << "--rate" << "16000"
-            << "--channels" << "1"
-            << "--format" << "s16"
-            << recordFile;
-
-    recorder->setProgram("timeout");
-    recorder->setArguments(recArgs);
-
-    // Biar log error pw-record bisa kebaca
-    recorder->setProcessChannelMode(QProcess::MergedChannels);
-
-    connect(recorder, &QProcess::readyReadStandardOutput, this, [recorder]() {
-        qDebug().noquote() << "[REC]" << recorder->readAllStandardOutput();
-    });
-
-    connect(recorder, &QProcess::started, this, []() {
-        qDebug() << "Recorder started non-blocking";
-    });
-
-    connect(recorder, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
-        qWarning() << "Recorder process error:" << error;
-    });
-
-    connect(recorder,
-            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this,
-            [=](int exitCode, QProcess::ExitStatus exitStatus) {
-                qDebug() << "Recorder finished. Exit code:" << exitCode
-                         << "Exit status:" << exitStatus;
-
-                qDebug() << "Recorded file:" << recordFile;
-
-                // Kalau timeout yang menghentikan proses, biasanya exitCode = 124.
-                // Itu tidak selalu error untuk kasus ini.
-                if (QFileInfo::exists(recordFile)) {
-                    qDebug() << "Recording file exists, ready to analyze.";
-
-                    // lanjutkan analyze di sini
-                    m_audioCheck.audioReport = m_audioCheck.analyzeRecording(recordFile);
-                    //maudiocek.printAudioHealthReport(maudiocek.audioReport);
-                    //maudiocek.printAudioHealthReportCompact(maudiocek.audioReport);
-                    QString reportResult =  m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
-                    qDebug() << reportResult;
-
-                    // qDebug() << "Report " << maudiocek.audioReport.notes;
-                    //qDebug() << "Report " << maudiocek.audioReport.diagnose;
-                } else {
-                    qWarning() << "Recording file not found:" << recordFile;
-                }
+            if (!m_audioCheck.createTestWav(testFileName, &err)) {
+                qWarning() << "Create test WAV failed:" << err;
 
                 recorder->deleteLater();
+                player->deleteLater();
+                return;
+            } else {
+                qDebug() << "generate wav test success" << testFileName;
+            }
+
+            QStringList recArgs;
+            recArgs << "10s"
+                    << "pw-record"
+                    << "--target" << micTarget
+                    << "--rate" << "16000"
+                    << "--channels" << "1"
+                    << "--format" << "s16"
+                    << recordFile;
+
+            recorder->setProgram("timeout");
+            recorder->setArguments(recArgs);
+            recorder->setProcessChannelMode(QProcess::MergedChannels);
+
+            connect(recorder, &QProcess::readyReadStandardOutput, this, [recorder]() {
+                qDebug().noquote() << "[REC]" << recorder->readAllStandardOutput();
             });
 
-    // Start recorder NON-BLOCKING
-    recorder->start();
+            connect(recorder, &QProcess::started, this, []() {
+                qDebug() << "Recorder started non-blocking";
+            });
 
-    // =========================
-    // PLAY COMMAND:
-    //
-    // paplay audio_health_test.wav
-    // =========================
+            connect(recorder, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
+                qWarning() << "Recorder process error:" << error;
+            });
 
-    player->setProgram("paplay");
-    player->setArguments(QStringList() << testFileName);
+            connect(recorder,
+                    QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+                    this,
+                    [=](int exitCode, QProcess::ExitStatus exitStatus) {
+                        qDebug() << "Recorder finished. Exit code:" << exitCode
+                                 << "Exit status:" << exitStatus;
 
-    // Ini penting supaya command-nya tetap:
-    // paplay audio_health_test.wav
-    //
-    // Tapi file dicari dari folder ~/wav
-    player->setWorkingDirectory(wavDir);
+                        qDebug() << "Recorded file:" << recordFile;
 
-    player->setProcessChannelMode(QProcess::MergedChannels);
+                        if (QFileInfo::exists(recordFile)) {
+                            qDebug() << "Recording file exists, ready to analyze.";
 
-    connect(player, &QProcess::readyReadStandardOutput, this, [player]() {
-        qDebug().noquote() << "[PLAY]" << player->readAllStandardOutput();
+                            m_audioCheck.audioReport =
+                                m_audioCheck.analyzeRecording(recordFile);
+
+                            QString reportResult =
+                                m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
+
+                            qDebug().noquote() << reportResult;
+                        } else {
+                            qWarning() << "Recording file not found:" << recordFile;
+                        }
+
+                        recorder->deleteLater();
+                    });
+
+            recorder->start();
+
+            // =========================
+            // PLAY COMMAND:
+            //
+            // pw-play --target <KT_USB_SINK_ID> audio_health_test.wav
+            // =========================
+
+            player->setProgram("pw-play");
+
+            player->setArguments(QStringList()
+                                 << "--target" << speakerTarget
+                                 << "audio_health_test.wav");
+
+            player->setWorkingDirectory(wavDir);
+            player->setProcessChannelMode(QProcess::MergedChannels);
+
+            connect(player, &QProcess::readyReadStandardOutput, this, [player]() {
+                qDebug().noquote() << "[PLAY]" << player->readAllStandardOutput();
+            });
+
+            connect(player, &QProcess::started, this, [speakerTarget]() {
+                qDebug() << "Player started: pw-play --target"
+                         << speakerTarget
+                         << "audio_health_test.wav";
+            });
+
+            connect(player, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
+                qWarning() << "Player process error:" << error;
+            });
+
+            connect(player,
+                    QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+                    this,
+                    [player](int exitCode, QProcess::ExitStatus exitStatus) {
+                        qDebug() << "Player finished. Exit code:" << exitCode
+                                 << "Exit status:" << exitStatus;
+
+                        player->deleteLater();
+                    });
+
+            QTimer::singleShot(300, this, [player]() {
+                player->start();
+            });
+        });
+}
+
+//------------------------------------------------------------------------------------------
+void MainWindow::getMicTargetFromWpctlStatusAsync(
+    std::function<void(const QString &micTarget, const QString &err)> callback)
+{
+    QProcess *wpctl = new QProcess(this);
+    QByteArray *outputBuffer = new QByteArray();
+
+    wpctl->setProgram("wpctl");
+    wpctl->setArguments(QStringList() << "status");
+    wpctl->setProcessChannelMode(QProcess::MergedChannels);
+
+    connect(wpctl, &QProcess::readyRead, this, [wpctl, outputBuffer]() {
+        outputBuffer->append(wpctl->readAll());
     });
 
-    connect(player, &QProcess::started, this, []() {
-        qDebug() << "Player started: paplay audio_health_test.wav";
-    });
+    connect(wpctl, &QProcess::errorOccurred, this,
+            [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
+                QString err = QString("wpctl process error: %1").arg(error);
 
-    connect(player, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
-        qWarning() << "Player process error:" << error;
-    });
+                qWarning() << err;
 
-    connect(player,
+                callback(QString(), err);
+
+                delete outputBuffer;
+                wpctl->deleteLater();
+            });
+
+    connect(wpctl,
             QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             this,
-            [=](int exitCode, QProcess::ExitStatus exitStatus) {
-                qDebug() << "Player finished. Exit code:" << exitCode
-                         << "Exit status:" << exitStatus;
+            [this, wpctl, outputBuffer, callback](int exitCode, QProcess::ExitStatus exitStatus) {
+                outputBuffer->append(wpctl->readAll());
 
-                player->deleteLater();
+                QString output = QString::fromUtf8(*outputBuffer);
 
-                // Recorder tidak perlu distop manual,
-                // karena sudah dibatasi oleh:
-                // timeout 10s pw-record ...
+                if (exitStatus != QProcess::NormalExit || exitCode != 0) {
+                    QString err = "wpctl status failed:\n" + output;
+
+                    qWarning().noquote() << err;
+
+                    callback(QString(), err);
+
+                    delete outputBuffer;
+                    wpctl->deleteLater();
+                    return;
+                }
+
+                QString parseErr;
+                QString micTarget = parseMicTargetFromWpctlStatus(output, &parseErr);
+
+                callback(micTarget, parseErr);
+
+                delete outputBuffer;
+                wpctl->deleteLater();
             });
 
-    // Delay supaya pw-record sudah mulai dulu sebelum paplay
-    QTimer::singleShot(300, this, [player]() {
-        player->start();
+    wpctl->start();
+}
+
+//------------------------------------------------------------------------------------------
+QString MainWindow::parseMicTargetFromWpctlStatus(const QString &output, QString *err) const
+{
+    bool inSources = false;
+
+    QString defaultSourceId;
+    QString firstNonMonitorSourceId;
+    QStringList detectedSources;
+
+    // Bisa handle format:
+    // *   55. ReSpeaker ...
+    //     56. Monitor ...
+    QRegularExpression sourceRx(R"(^\*?\s*(\d+)\.\s+(.+?)(?:\s+\[|$))");
+
+    QStringList lines = output.split('\n');
+
+    for (const QString &rawLine : lines) {
+        QString line = rawLine.trimmed();
+
+        if (line.contains("Sources:")) {
+            inSources = true;
+            continue;
+        }
+
+        if (inSources &&
+            (line.contains("Sinks:") ||
+             line.contains("Filters:") ||
+             line.contains("Streams:") ||
+             line.contains("Video:") ||
+             line.contains("Devices:"))) {
+            break;
+        }
+
+        if (!inSources)
+            continue;
+
+        QRegularExpressionMatch match = sourceRx.match(line);
+        if (!match.hasMatch())
+            continue;
+
+        QString id = match.captured(1).trimmed();
+        QString name = match.captured(2).trimmed();
+
+        detectedSources << QString("%1. %2").arg(id, name);
+
+        bool isDefault = rawLine.contains("*");
+        bool isMonitor = name.contains("monitor", Qt::CaseInsensitive);
+
+        if (isDefault && !isMonitor) {
+            defaultSourceId = id;
+        }
+
+        if (firstNonMonitorSourceId.isEmpty() && !isMonitor) {
+            firstNonMonitorSourceId = id;
+        }
+
+        // Prioritas utama: ReSpeaker / SEEED
+        if (name.contains("respeaker", Qt::CaseInsensitive) ||
+            name.contains("seeed", Qt::CaseInsensitive) ||
+            name.contains("4 mic", Qt::CaseInsensitive) ||
+            name.contains("mic array", Qt::CaseInsensitive)) {
+
+            qDebug() << "Matched mic from wpctl status:" << id << name;
+            return id;
+        }
+    }
+
+    if (!defaultSourceId.isEmpty()) {
+        qWarning() << "ReSpeaker source not found. Using default source ID:" << defaultSourceId;
+        return defaultSourceId;
+    }
+
+    if (!firstNonMonitorSourceId.isEmpty()) {
+        qWarning() << "Default source not found. Using first non-monitor source ID:" << firstNonMonitorSourceId;
+        return firstNonMonitorSourceId;
+    }
+
+    if (err) {
+        *err = "No valid audio source found from wpctl status.\nDetected sources:\n"
+               + detectedSources.join('\n')
+               + "\n\nFull wpctl output:\n"
+               + output;
+    }
+
+    return {};
+}
+
+//------------------------------------------------------------------------------------------
+void MainWindow::getAudioTargetsFromWpctlStatusAsync(
+    std::function<void(const QString &micTarget,
+                       const QString &speakerTarget,
+                       const QString &err)> callback)
+{
+    QProcess *wpctl = new QProcess(this);
+    QByteArray *outputBuffer = new QByteArray();
+
+    wpctl->setProgram("wpctl");
+    wpctl->setArguments(QStringList() << "status");
+    wpctl->setProcessChannelMode(QProcess::MergedChannels);
+
+    connect(wpctl, &QProcess::readyRead, this, [wpctl, outputBuffer]() {
+        outputBuffer->append(wpctl->readAll());
     });
+
+    connect(wpctl, &QProcess::errorOccurred, this,
+            [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
+                if (error == QProcess::FailedToStart) {
+                    QString err = "Failed to start wpctl status";
+
+                    qWarning() << err;
+
+                    callback(QString(), QString(), err);
+
+                    delete outputBuffer;
+                    wpctl->deleteLater();
+                }
+            });
+
+    connect(wpctl,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
+            [this, wpctl, outputBuffer, callback](int exitCode,
+                                                  QProcess::ExitStatus exitStatus) {
+                outputBuffer->append(wpctl->readAll());
+
+                QString output = QString::fromUtf8(*outputBuffer);
+
+                if (exitStatus != QProcess::NormalExit || exitCode != 0) {
+                    QString err = "wpctl status failed:\n" + output;
+
+                    qWarning().noquote() << err;
+
+                    callback(QString(), QString(), err);
+
+                    delete outputBuffer;
+                    wpctl->deleteLater();
+                    return;
+                }
+
+                QString micTarget;
+                QString speakerTarget;
+                QString parseErr;
+
+                bool ok = parseAudioTargetsFromWpctlStatus(output,
+                                                           &micTarget,
+                                                           &speakerTarget,
+                                                           &parseErr);
+
+                if (!ok) {
+                    callback(QString(), QString(), parseErr);
+                } else {
+                    callback(micTarget, speakerTarget, QString());
+                }
+
+                delete outputBuffer;
+                wpctl->deleteLater();
+            });
+
+    wpctl->start();
+}
+
+//------------------------------------------------------------------------------------------
+bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
+                                                  QString *micTarget,
+                                                  QString *speakerTarget,
+                                                  QString *err) const
+{
+    enum class Section {
+        None,
+        Sinks,
+        Sources
+    };
+
+    Section section = Section::None;
+
+    QString foundMicId;
+    QString fallbackDefaultSourceId;
+    QString fallbackFirstSourceId;
+
+    QString foundSpeakerId;
+
+    QStringList detectedSources;
+    QStringList detectedSinks;
+
+    QRegularExpression nodeRx(R"((\*)?\s*(\d+)\.\s+(.+?)(?:\s+\[|$))");
+
+    const QStringList lines = output.split('\n');
+
+    for (const QString &rawLine : lines) {
+        QString line = rawLine.trimmed();
+
+        if (line.contains("Sinks:") && !line.contains("Sink endpoints:")) {
+            section = Section::Sinks;
+            continue;
+        }
+
+        if (line.contains("Sources:") && !line.contains("Source endpoints:")) {
+            section = Section::Sources;
+            continue;
+        }
+
+        if (line.contains("Devices:") ||
+            line.contains("Sink endpoints:") ||
+            line.contains("Source endpoints:") ||
+            line.contains("Filters:") ||
+            line.contains("Streams:") ||
+            line.contains("Video:")) {
+            section = Section::None;
+            continue;
+        }
+
+        if (section == Section::None)
+            continue;
+
+        QRegularExpressionMatch match = nodeRx.match(rawLine);
+
+        if (!match.hasMatch())
+            continue;
+
+        const bool isDefault = !match.captured(1).isEmpty();
+        const QString id = match.captured(2).trimmed();
+        const QString name = match.captured(3).trimmed();
+
+        if (section == Section::Sources) {
+            detectedSources << QString("%1. %2").arg(id, name);
+
+            const bool isMonitor =
+                name.contains("monitor", Qt::CaseInsensitive);
+
+            if (isDefault && !isMonitor) {
+                fallbackDefaultSourceId = id;
+            }
+
+            if (fallbackFirstSourceId.isEmpty() && !isMonitor) {
+                fallbackFirstSourceId = id;
+            }
+
+            if (name.contains("respeaker", Qt::CaseInsensitive) ||
+                name.contains("seeed", Qt::CaseInsensitive) ||
+                name.contains("4 mic", Qt::CaseInsensitive) ||
+                name.contains("mic array", Qt::CaseInsensitive)) {
+
+                foundMicId = id;
+                qDebug() << "Matched ReSpeaker source:" << id << name;
+            }
+        }
+
+        if (section == Section::Sinks) {
+            detectedSinks << QString("%1. %2").arg(id, name);
+
+            // Target speaker wajib KT USB
+            if (name.contains("kt usb", Qt::CaseInsensitive) ||
+                (name.contains("kt", Qt::CaseInsensitive) &&
+                 name.contains("usb", Qt::CaseInsensitive))) {
+
+                foundSpeakerId = id;
+                qDebug() << "Matched KT USB sink:" << id << name;
+            }
+        }
+    }
+
+    if (foundMicId.isEmpty()) {
+        if (!fallbackDefaultSourceId.isEmpty()) {
+            foundMicId = fallbackDefaultSourceId;
+            qWarning() << "ReSpeaker source not found. Using default source:" << foundMicId;
+        } else if (!fallbackFirstSourceId.isEmpty()) {
+            foundMicId = fallbackFirstSourceId;
+            qWarning() << "ReSpeaker source not found. Using first source:" << foundMicId;
+        }
+    }
+
+    QStringList errors;
+
+    if (foundMicId.isEmpty()) {
+        errors << "No valid microphone source found.";
+    }
+
+    if (foundSpeakerId.isEmpty()) {
+        errors << "KT USB speaker sink not found.";
+    }
+
+    if (!errors.isEmpty()) {
+        if (err) {
+            *err = errors.join('\n')
+            + "\n\nDetected Sources:\n"
+                + detectedSources.join('\n')
+                + "\n\nDetected Sinks:\n"
+                + detectedSinks.join('\n')
+                + "\n\nFull wpctl output:\n"
+                + output;
+        }
+
+        return false;
+    }
+
+    if (micTarget)
+        *micTarget = foundMicId;
+
+    if (speakerTarget)
+        *speakerTarget = foundSpeakerId;
+
+    return true;
 }
