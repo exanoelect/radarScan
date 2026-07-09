@@ -25,10 +25,11 @@ MainWindow::MainWindow(QWidget *parent) :
     initSocketIO();
     initRadar();
 
+
 #ifdef Q_OS_LINUX
-    //m_gpio = new gpio();
-    //m_gpio->setupGPIO();
-    //m_gpio->setColor(COLOR_WHITE);
+    m_gpio = new gpio();
+    m_gpio->setupGPIO();
+    m_gpio->setColor(COLOR_WHITE);
 
     m_volume = new volume();
     m_brightness = new brightness();
@@ -68,18 +69,19 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "SSH FAILED";
     });
 
-    qDebug() << "LEave Monitring prepapere ";
+    qDebug() << "LEave Monitring prepare ";
 #endif
 
     fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
-    m_gpio->setColor(COLOR_WHITE);
+    //m_gpio->setColor(COLOR_WHITE);
 #endif
 
     //PZEM
     m_pzem = new Pzem004Tv30Qt(this);
-    initPzem();
-
+    //initPzem();
+    qDebug() << "end setup";
+    lang = "en";
 }
 
 //---------------------------------------------------------------------------------------
@@ -185,6 +187,10 @@ void MainWindow::initSocketIO()
     //Get Language current
     connect(m_worker, &SocketEventWorker::langCurrent,
             this,&MainWindow::onlangCurrent);
+    connect(m_worker, &SocketEventWorker::langSet,
+            this,&MainWindow::onLangSet);
+    connect(m_worker, &SocketEventWorker::langGet,
+            this,&MainWindow::onLangGet);
 
     //Wifi
 #ifdef Q_OS_LINUX
@@ -2058,13 +2064,6 @@ void MainWindow::onSpeechModuleReady()
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
 #endif
-#ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","white")){
-        qDebug() << "white ok";
-    }else{
-        qDebug() << "white fail";
-    }
-#endif
 }
 
 //------------------------------------------------------------------------
@@ -2270,6 +2269,21 @@ void MainWindow::onlangCurrent(QString langstr)
 {
     lang = langstr;
     qDebug() << "Lang current info " << lang;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onLangSet(QString langstr)
+{
+    lang = langstr;
+    qDebug() << "Lang current info " << lang;
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onLangGet()
+{
+    QJsonObject obj;
+    obj["lang"] = lang;
+    client->emitEventStringMsgJsoned("LANGUAGE_CURRENT",obj);
 }
 
 
@@ -3163,7 +3177,7 @@ void MainWindow::on_btnPing_clicked()
 
      //qDebug() << timestampMs;
      //qDebug() << "isooooocukkk " << timestampMs;
-    m_pzem->requestReadAll();
+    //m_pzem->requestReadAll();
     runAudioHealthRecordTest();
 
 }
@@ -3223,6 +3237,8 @@ void MainWindow::runAudioHealthRecordTest()
                 qDebug() << "generate wav test success" << testFileName;
             }
 
+            //pw-record 10s --target alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0 --rate 16000 --channels 1 --format s16 test14.wav
+            //timeout 10s  pw-record 10s --target 62 --rate 16000 --channels 1 --format s16 test17.wav
             QStringList recArgs;
             recArgs << "10s"
                     << "pw-record"
@@ -3267,6 +3283,11 @@ void MainWindow::runAudioHealthRecordTest()
                                 m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
 
                             qDebug().noquote() << reportResult;
+
+                            QJsonObject obj;
+                            obj["audio_report"] = reportResult;
+                            client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO",obj);
+
                         } else {
                             qWarning() << "Recording file not found:" << recordFile;
                         }

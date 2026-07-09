@@ -82,6 +82,8 @@ signals:
     void rpiShutdown();
     void tzSetReq(QString tz);
     void tzGetReq();
+    void powerInfoRequest();
+    void audioRadarInfoRequest();
 
 public slots:
     void process();
