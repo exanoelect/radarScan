@@ -533,7 +533,105 @@
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "/Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "radarScan_autogen/timestamp",
-	"HEADERS" : [],
+	"HEADERS" : 
+	[
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/AudioHealthChecker.h",
+			"MU",
+			"EWIEGA46WW/moc_AudioHealthChecker.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/Pzem004Tv30Qt.h",
+			"MU",
+			"EWIEGA46WW/moc_Pzem004Tv30Qt.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.h",
+			"MU",
+			"EWIEGA46WW/moc_audioworker.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/brightness.h",
+			"MU",
+			"EWIEGA46WW/moc_brightness.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/configmanager.h",
+			"MU",
+			"EWIEGA46WW/moc_configmanager.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/gpio.h",
+			"MU",
+			"EWIEGA46WW/moc_gpio.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/mainwindow.h",
+			"MU",
+			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/networksetting.h",
+			"MU",
+			"EWIEGA46WW/moc_networksetting.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/payloadprocessor.h",
+			"MU",
+			"EWIEGA46WW/moc_payloadprocessor.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/qcustomplot.h",
+			"MU",
+			"EWIEGA46WW/moc_qcustomplot.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/radar.h",
+			"MU",
+			"EWIEGA46WW/moc_radar.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/socketeventworker.h",
+			"MU",
+			"EWIEGA46WW/moc_socketeventworker.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/socketioclient.h",
+			"MU",
+			"EWIEGA46WW/moc_socketioclient.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.h",
+			"MU",
+			"EWIEGA46WW/moc_systemdmonitorqt.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/utilities.h",
+			"MU",
+			"EWIEGA46WW/moc_utilities.cpp",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/volume.h",
+			"MU",
+			"EWIEGA46WW/moc_volume.cpp",
+			null
+		]
+	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/include",
 	"MOC_COMPILATION_FILE" : "/Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/mocs_compilation.cpp",
@@ -614,7 +712,65 @@
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 11,
 	"SETTINGS_FILE" : "/Volumes/DATA/qt6pro/radarScan/radarScan/CMakeFiles/radarScan_autogen.dir/AutogenUsed.txt",
-	"SOURCES" : [],
+	"SOURCES" : 
+	[
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/AudioHealthChecker.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/Pzem004Tv30Qt.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.cpp",
+			"MU",
+			null
+		],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/brightness.cpp", "MU", null ],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/configmanager.cpp",
+			"MU",
+			null
+		],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/gpio.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/main.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/mainwindow.cpp", "MU", null ],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/networksetting.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/payloadprocessor.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/qcustomplot.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/socketeventworker.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/socketioclient.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.cpp",
+			"MU",
+			null
+		],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/utilities.cpp", "MU", null ],
+		[ "/Volumes/DATA/qt6pro/radarScan/radarScan/volume.cpp", "MU", null ]
+	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : [],

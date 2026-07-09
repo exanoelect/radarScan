@@ -920,7 +920,6 @@
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QDir
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QElapsedTimer
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QEvent
- /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QExplicitlySharedDataPointer
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QFile
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QFlags
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QHash
@@ -967,6 +966,7 @@
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCoreDepends
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtEndian
+ /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtGlobal
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtMath
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtNumeric
  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h
@@ -1404,19 +1404,6 @@
  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h
  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindow.h
  /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/QMqttClient
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttauthenticationproperties.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttclient.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttconnectionproperties.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttglobal.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttmessage.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttpublishproperties.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscription.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscriptionproperties.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicfilter.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h
- /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h
  /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h
@@ -1427,7 +1414,6 @@
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QNetworkRequest
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QSslConfiguration
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QSslError
- /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QTcpSocket
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qabstractsocket.h
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qhostaddress.h
  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qhttpheaders.h
@@ -1915,9 +1901,13 @@
  /Volumes/DATA/qt6pro/radarScan/radarScan/.qtcreator/cmake-helper/maintenance_tool_provider.cmake
  /Volumes/DATA/qt6pro/radarScan/radarScan/.qtcreator/cmake-helper/package-manager.cmake
  /Volumes/DATA/qt6pro/radarScan/radarScan/.qtcreator/cmake-helper/qtcreator-project.cmake
+ /Volumes/DATA/qt6pro/radarScan/radarScan/AudioHealthChecker.cpp
+ /Volumes/DATA/qt6pro/radarScan/radarScan/AudioHealthChecker.h
  /Volumes/DATA/qt6pro/radarScan/radarScan/CMakeFiles/4.2.1/CMakeCXXCompiler.cmake
  /Volumes/DATA/qt6pro/radarScan/radarScan/CMakeFiles/4.2.1/CMakeSystem.cmake
  /Volumes/DATA/qt6pro/radarScan/radarScan/CMakeLists.txt
+ /Volumes/DATA/qt6pro/radarScan/radarScan/Pzem004Tv30Qt.cpp
+ /Volumes/DATA/qt6pro/radarScan/radarScan/Pzem004Tv30Qt.h
  /Volumes/DATA/qt6pro/radarScan/radarScan/VolumeMonitor.h
  /Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.cpp
  /Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.h

@@ -142,7 +142,10 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "handleAudioData",
         "on_btnPlayRec_clicked",
         "handleFinished",
-        "on_btnRec_clicked"
+        "on_btnRec_clicked",
+        "on_btnPing_clicked",
+        "onPzemDataReadyComplete",
+        "Pzem004Tv30Data"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -370,6 +373,12 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(101, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnRec_clicked'
         QtMocHelpers::SlotData<void()>(102, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPing_clicked'
+        QtMocHelpers::SlotData<void()>(103, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPzemDataReadyComplete'
+        QtMocHelpers::SlotData<void(Pzem004Tv30Data)>(104, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 105, 46 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -485,7 +494,21 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 89: _t->on_btnPlayRec_clicked(); break;
         case 90: _t->handleFinished(); break;
         case 91: _t->on_btnRec_clicked(); break;
+        case 92: _t->on_btnPing_clicked(); break;
+        case 93: _t->onPzemDataReadyComplete((*reinterpret_cast<std::add_pointer_t<Pzem004Tv30Data>>(_a[1]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 93:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Pzem004Tv30Data >(); break;
+            }
+            break;
         }
     }
 }
@@ -509,14 +532,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 92)
+        if (_id < 94)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 92;
+        _id -= 94;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 92)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 92;
+        if (_id < 94)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 94;
     }
     return _id;
 }

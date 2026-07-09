@@ -1689,19 +1689,7 @@ CMakeFiles/radarScan.dir/main.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtMath \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QBuffer \
   /Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/QMqttClient \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttclient.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttauthenticationproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttype.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttconnectionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttpublishproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttsubscription.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttmessage.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicname.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QExplicitlySharedDataPointer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicfilter.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttsubscriptionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/Pzem004Tv30Qt.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtGlobal \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/AudioHealthChecker.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/QApplication

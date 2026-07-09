@@ -26,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     initRadar();
 
 #ifdef Q_OS_LINUX
-    m_gpio = new gpio();
-    m_gpio->setupGPIO();
-    m_gpio->setColor(COLOR_WHITE);
+    //m_gpio = new gpio();
+    //m_gpio->setupGPIO();
+    //m_gpio->setColor(COLOR_WHITE);
 
     m_volume = new volume();
     m_brightness = new brightness();
@@ -72,7 +72,9 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     fallEventAckReceived = false;
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
+#endif
 
     //PZEM
     m_pzem = new Pzem004Tv30Qt(this);
@@ -1915,7 +1917,9 @@ void MainWindow::on_btnFallSimulation_clicked()
         obj["datetime"] = timestamp;
         client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
         fallEventAckReceived = false;
+#ifdef Q_OS_LINUX
         m_gpio->setColor(COLOR_RED);
+#endif
         timerSendFallevent->start(1000); //Aktifkan send fall event repeat
         soundPlay(SOUND_FALL_OCCUR, lang);
     }else{
@@ -1938,8 +1942,8 @@ void MainWindow::onListenStateChanged()
     }
 #endif
 
-    //if (state == "ON") m_gpio->setColor(COLOR_WHITE_BRIGHT);
-    //else if (state == "OFF") m_gpio->setColor(COLOR_WHITE);
+    //if (state == "ON") //m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    //else if (state == "OFF") //m_gpio->setColor(COLOR_WHITE);
 }
 
 //------------------------------------------------------------------------
@@ -1959,11 +1963,11 @@ void MainWindow::onTalkingStateChanged()
     /*
     if (state == "ON") {
         qDebug() << "Talking on:" << state;
-        m_gpio->setColor(COLOR_WHITE_BLINKY);
+        //m_gpio->setColor(COLOR_WHITE_BLINKY);
     }
     else if (state == "OFF") {
         qDebug() << "Talking off:" << state;
-        m_gpio->setColor(COLOR_WHITE);
+        //m_gpio->setColor(COLOR_WHITE);
     }
     */
 }
@@ -2238,7 +2242,9 @@ void MainWindow::onIncidentFallOKEventDetected()
 void MainWindow::onIncidentFallCompleted()
 {
     fallEventAckReceived = true;
+#ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
+#endif
 }
 
 //------------------------------------------------------------------------

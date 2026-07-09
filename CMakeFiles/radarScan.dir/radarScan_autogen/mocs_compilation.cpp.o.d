@@ -1,7 +1,7 @@
 CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/mocs_compilation.cpp \
-  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_audioworker.cpp \
-  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../audioworker.h \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_Pzem004Tv30Qt.cpp \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../Pzem004Tv30Qt.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QObject \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qobject.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qobjectdefs.h \
@@ -909,24 +909,27 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QQueue \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qqueue.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/QSerialPort \
+  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qserialport.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qproperty.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qshareddata.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qpropertyprivate.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/source_location \
+  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qserialportglobal.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qtserialportexports.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QByteArray \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QString \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QTimer \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtimer.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qabstracteventdispatcher.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qeventloop.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qdeadlinetimer.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QProcess \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qprocess.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qspan.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cassert \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20iterator.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qshareddata.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QRegularExpression \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qvariant.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtGlobal \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qdebug.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtextstream.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qcontiguouscache.h \
@@ -940,11 +943,20 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qhash.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qvarlengtharray.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qalloc.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q23utility.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20utility.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtmochelpers.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qtmocconstants.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20algorithm.h \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_audioworker.cpp \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../audioworker.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QQueue \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qqueue.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QProcess \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qprocess.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QRegularExpression \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qvariant.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q23utility.h \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/q20utility.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_brightness.cpp \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../brightness.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QFile \
@@ -1035,13 +1047,6 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qcursor.h \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/qbitmap.h \
   /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/QSerialPort \
-  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qserialport.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qproperty.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/qpropertyprivate.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/source_location \
-  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qserialportglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qtserialportexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/QSerialPortInfo \
   /Users/user/Qt/6.11.1/macos/lib/QtSerialPort.framework/Headers/qserialportinfo.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QVector \
@@ -1155,7 +1160,6 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QMouseEvent \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QWheelEvent \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Headers/QPixmap \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QString \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QMultiMap \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QFlags \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QStack \
@@ -1659,7 +1663,6 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Volumes/DATA/qt6pro/radarScan/radarScan/VolumeMonitor.h \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QMutexLocker \
   /Volumes/DATA/qt6pro/radarScan/radarScan/payloadprocessor.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QByteArray \
   /Volumes/DATA/qt6pro/radarScan/radarScan/audioworker.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/gpio.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/utilities.h \
@@ -1697,21 +1700,7 @@ CMakeFiles/radarScan.dir/radarScan_autogen/mocs_compilation.cpp.o: \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QtMath \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QBuffer \
   /Volumes/DATA/qt6pro/radarScan/radarScan/systemdmonitorqt.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/QMqttClient \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttclient.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qtmqttexports.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttauthenticationproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttype.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttconnectionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttpublishproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttsubscription.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttmessage.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicname.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Headers/QExplicitlySharedDataPointer \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqtttopicfilter.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Headers/qmqttsubscriptionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Headers/QTcpSocket \
+  /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../AudioHealthChecker.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_payloadprocessor.cpp \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/../../payloadprocessor.h \
   /Volumes/DATA/qt6pro/radarScan/radarScan/radarScan_autogen/EWIEGA46WW/moc_qcustomplot.cpp \

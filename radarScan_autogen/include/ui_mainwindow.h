@@ -219,7 +219,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(889, 545);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(143, 240, 164);"));
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(241, 149, 220);"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName("centralWidget");
         plottsgram = new QCustomPlot(centralWidget);
@@ -829,7 +829,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Radar Scan V1.4", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Radar Scan V2.0", nullptr));
         btnGetFallDuration->setText(QCoreApplication::translate("MainWindow", "Get Fall Duration", nullptr));
         btnGetHeightInst->setText(QCoreApplication::translate("MainWindow", "Get Height Inst", nullptr));
         btnGetAngleInst->setText(QCoreApplication::translate("MainWindow", "Get Angle Inst", nullptr));

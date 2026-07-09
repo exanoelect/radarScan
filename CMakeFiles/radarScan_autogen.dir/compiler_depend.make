@@ -919,7 +919,6 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QDir \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QElapsedTimer \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QEvent \
-  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QExplicitlySharedDataPointer \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QFile \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QFlags \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QHash \
@@ -966,6 +965,7 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCoreDepends \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtEndian \
+  /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtGlobal \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtMath \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtNumeric \
   /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
@@ -1403,19 +1403,6 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindow.h \
   /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/QMqttClient \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttauthenticationproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttclient.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttconnectionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttglobal.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttmessage.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttpublishproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscription.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscriptionproperties.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicfilter.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h \
-  /Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
   /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
@@ -1426,7 +1413,6 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QNetworkRequest \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QSslConfiguration \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QSslError \
-  /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QTcpSocket \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qabstractsocket.h \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qhostaddress.h \
   /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qhttpheaders.h \
@@ -1914,9 +1900,13 @@ radarScan_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platform
   .qtcreator/cmake-helper/maintenance_tool_provider.cmake \
   .qtcreator/cmake-helper/package-manager.cmake \
   .qtcreator/cmake-helper/qtcreator-project.cmake \
+  AudioHealthChecker.cpp \
+  AudioHealthChecker.h \
   CMakeFiles/4.2.1/CMakeCXXCompiler.cmake \
   CMakeFiles/4.2.1/CMakeSystem.cmake \
   CMakeLists.txt \
+  Pzem004Tv30Qt.cpp \
+  Pzem004Tv30Qt.h \
   VolumeMonitor.h \
   audioworker.cpp \
   audioworker.h \
@@ -2043,6 +2033,8 @@ utilities.h:
 
 utilities.cpp:
 
+systemdmonitorqt.cpp:
+
 socketeventworker.cpp:
 
 radarScan_autogen/moc_predefs.h:
@@ -2063,7 +2055,13 @@ audioworker.h:
 
 VolumeMonitor.h:
 
+Pzem004Tv30Qt.h:
+
 CMakeLists.txt:
+
+AudioHealthChecker.h:
+
+AudioHealthChecker.cpp:
 
 CMakeFiles/4.2.1/CMakeSystem.cmake:
 
@@ -2375,6 +2373,8 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginConfig.cmake:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginAdditionalTargetInfo.cmake:
+
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreTargetsPrecheck.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreTargets-relwithdebinfo.cmake:
@@ -2447,15 +2447,9 @@ payloadprocessor.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6TargetsPrecheck.cmake:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/empty.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigVersion.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/FindWrapAtomic.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidgetaction.h:
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Config.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h:
 
@@ -2533,9 +2527,9 @@ configmanager.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlayout.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Dependencies.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__assert:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Dependencies.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h:
 
@@ -2550,6 +2544,10 @@ configmanager.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsview.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicslinearlayout.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/i386/_types.h:
 
@@ -2583,8 +2581,6 @@ configmanager.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qdial.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qdatetimeedit.h:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcommonstyle.h:
@@ -2598,6 +2594,8 @@ configmanager.h:
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qcheckbox.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qaction.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h:
 
@@ -2727,8 +2725,6 @@ configmanager.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttmessage.h:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h:
@@ -2808,6 +2804,8 @@ configmanager.h:
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qpdfwriter.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qpdfoutputintent.h:
+
+Pzem004Tv30Qt.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h:
 
@@ -2910,8 +2908,6 @@ payloadprocessor.h:
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qaccessible.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qabstracttextdocumentlayout.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttglobal.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/QtGuiDepends:
 
@@ -3237,12 +3233,6 @@ networksetting.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qmessageauthenticationcode.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_partitioned.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512vlbwintrin.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttauthenticationproperties.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qsharedpointer_impl.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qmap.h:
@@ -3254,6 +3244,8 @@ networksetting.h:
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qlogging.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qlocale.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigVersion.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qlist.h:
 
@@ -3407,6 +3399,8 @@ configmanager.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h:
 
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidgetaction.h:
+
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/unique_copy.h:
@@ -3454,6 +3448,10 @@ configmanager.cpp:
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6DBusTools/Qt6DBusToolsVersionlessTargets.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qdatetimeedit.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtGlobal:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCoreDepends:
 
@@ -3613,8 +3611,6 @@ configmanager.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/serializeintrin.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QTcpSocket:
-
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qstandardpaths.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/common_type.h:
@@ -3735,6 +3731,10 @@ configmanager.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_partitioned.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512vlbwintrin.h:
+
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512vlbitalgintrin.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/QtFeatureCommon.cmake:
@@ -3757,19 +3757,17 @@ configmanager.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512cdintrin.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Targets.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_isset.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocator.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Targets.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_pid_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512bwintrin.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qnetworkinformation.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttclient.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512bitalgintrin.h:
 
@@ -3918,6 +3916,10 @@ configmanager.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_endian.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocation_guard.h:
+
+/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwhatsthis.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/ranges_copy.h:
 
@@ -4243,10 +4245,6 @@ networkmonitor.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ctime:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6Config.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/empty.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QByteArray:
@@ -4259,6 +4257,10 @@ networkmonitor.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/underlying_type.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/move.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/FindWrapOpenGL.cmake:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/utility:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/type_list.h:
@@ -4268,6 +4270,8 @@ networkmonitor.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/vector.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ctype.h:
+
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__cstddef/byte.h:
 
@@ -4653,8 +4657,6 @@ CMakeFiles/4.2.1/CMakeCXXCompiler.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__system_error/error_category.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttpublishproperties.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/find.h:
@@ -4782,8 +4784,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_init.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/geometric_distribution.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qtmqttexports.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake:
 
@@ -4955,10 +4955,6 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/variant.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwhatsthis.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/allocation_guard.h:
-
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Gui/Qt6QCocoaIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qevent.h:
@@ -4986,8 +4982,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_signed_integer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/exclusive_scan.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/QMqttClient:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/max_element.h:
 
@@ -5089,8 +5083,6 @@ qcustomplot.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttype.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/istreambuf_iterator.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QSslError:
@@ -5100,8 +5092,6 @@ qcustomplot.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/deque.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicfilter.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qvarlengtharray.h:
 
@@ -5347,6 +5337,8 @@ brightness.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory_resource/memory_resource.h:
 
+/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/FindWrapAtomic.cmake:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/concepts:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/container_compatible_range.h:
@@ -5425,8 +5417,6 @@ brightness.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qscroller.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscriptionproperties.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/maybe_const.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/weibull_distribution.h:
@@ -5440,10 +5430,6 @@ brightness.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__assertion_handler:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qstringconverter_base.h:
-
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginAdditionalTargetInfo.cmake:
-
-/Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/QExplicitlySharedDataPointer:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/reference_wrapper.h:
 
@@ -5525,10 +5511,6 @@ socketioclient.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qcbormap.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicslinearlayout.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/convert_to_timespec.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qfontmetrics.h:
@@ -5536,8 +5518,6 @@ socketioclient.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/rotate.h:
 
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qcompare.h:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqtttopicname.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/unwrap_ref.h:
 
@@ -5773,10 +5753,6 @@ audioworker.cpp:
 
 /Users/user/Qt/6.11.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextdocumentwriter.h:
 
-/Users/user/Qt/6.11.1/macos/lib/cmake/Qt6/FindWrapOpenGL.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/move.h:
-
 /usr/local/Cellar/cmake/4.2.1/share/cmake/Modules/Platform/UnixPaths.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list:
@@ -5877,8 +5853,6 @@ audioworker.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/stable_sort.h:
 
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttconnectionproperties.h:
-
 /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/Headers/qforeach.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/for_each.h:
@@ -5922,10 +5896,6 @@ audioworker.cpp:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/avx512dqintrin.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/fisher_f_distribution.h:
-
-systemdmonitorqt.cpp:
-
-/Users/user/Qt/6.11.1/macos/lib/QtMqtt.framework/Versions/A/Headers/qmqttsubscription.h:
 
 /Users/user/Qt/6.11.1/macos/lib/cmake/Qt6Mqtt/Qt6MqttTargets.cmake:
 
