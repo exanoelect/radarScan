@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "SSH FAILED";
     });
 
-    qDebug() << "LEave Monitring prepapere ";
+    qDebug() << "End Monitoring setup ";
 #endif
 
     fallEventAckReceived = false;
@@ -79,7 +79,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //PZEM
     m_pzem = new Pzem004Tv30Qt(this);
     initPzem();
-
 }
 
 //---------------------------------------------------------------------------------------
@@ -227,8 +226,8 @@ void MainWindow::initSocketIO()
 
     m_workerThread->start();
 
-    QString serverIp = "203.194.114.21"; //ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
-    int serverPort = 4000;//ConfigManager::getServerPort();
+    QString serverIp = ConfigManager::getServerIp(); //"203.194.114.21"; ////"https://elderly-care-socket-io-server.online";
+    int serverPort = ConfigManager::getServerPort(); //4000;//
 
     qDebug() << "Server IP:" << serverIp;
     qDebug() << "Server Port:" << serverPort;

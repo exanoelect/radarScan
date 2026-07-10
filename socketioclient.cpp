@@ -22,6 +22,8 @@ SocketIOClient::SocketIOClient(QObject *parent)
 {
     //m_webSocket = new QWebSocket();
 
+    getCpuSerialAsync();
+
     m_pingTimer->setInterval(25000);
     connect(m_pingTimer, &QTimer::timeout, this, &SocketIOClient::sendPing);
 
@@ -172,8 +174,20 @@ void SocketIOClient::onWebSocketConnected()
 
     qDebug() << "WebSocket connected, sending CONNECT with auth";
 
-    QString payload = "40{\"robotId\":\"TESTING-1\"}";
+    //QString payload = "40{\"robotId\":\"TESTING-1\"}";
+    //m_webSocket->sendTextMessage(payload);
+
+    QJsonObject authObject;
+    authObject.insert(QStringLiteral("robotId"),
+                      QStringLiteral("TESTING-1"));
+
+    authObject.insert(QStringLiteral("processor_id"), m_cpuSerial);
+    const QByteArray jsonData = QJsonDocument(authObject).toJson(QJsonDocument::Compact);
+    const QString payload = QStringLiteral("40") + QString::fromUtf8(jsonData);
+
     m_webSocket->sendTextMessage(payload);
+
+    qDebug() << "Socket.IO CONNECT payload:" << payload;
 }
 
 //------------------------------------------------------------------------
@@ -869,6 +883,79 @@ void SocketIOClient::attemptReconnect()
         qDebug() << "Attempting reconnect to" << m_host << ":" << m_port;
         constructWebSocketUrl();
     }
+}
+
+//------------------------------------------------------------------------
+void SocketIOClient::getCpuSerialAsync()
+{
+    // Hindari menjalankan proses yang sama secara bersamaan.
+    if (m_cpuSerialProcess && m_cpuSerialProcess->state() != QProcess::NotRunning) {
+        qWarning() << "CPU serial process masih berjalan";
+        return;
+    }
+
+    m_cpuSerialProcess = new QProcess(this);
+
+    connect( m_cpuSerialProcess, &QProcess::finished,this,
+        [this](int exitCode, QProcess::ExitStatus exitStatus){
+            const QString output =
+                QString::fromUtf8(
+                    m_cpuSerialProcess->readAllStandardOutput()
+                ).trimmed();
+
+            const QString errorOutput =
+                QString::fromUtf8(
+                    m_cpuSerialProcess->readAllStandardError()
+                ).trimmed();
+
+            if (exitStatus != QProcess::NormalExit || exitCode != 0) {
+                qWarning() << "Gagal membaca CPU serial:" << errorOutput;
+                m_cpuSerialProcess->deleteLater();
+                m_cpuSerialProcess = nullptr;
+                return;
+            }
+
+            // Contoh output:
+            // Serial      : 4ac69a4a6eac51d6
+            static const QRegularExpression serialRegex(
+                R"(Serial\s*:\s*([0-9A-Fa-f]+))"
+            );
+
+            const QRegularExpressionMatch match = serialRegex.match(output);
+
+            if (!match.hasMatch()) {
+                qWarning() << "Format CPU serial tidak dikenali:" << output;
+            } else {
+                m_cpuSerial = match.captured(1).trimmed();
+
+                qDebug() << "CPU Serial:" << m_cpuSerial;
+                // Hasil:
+                // "4ac69a4a6eac51d6"
+
+                // Lanjutkan proses yang membutuhkan serial di sini.
+            }
+
+            m_cpuSerialProcess->deleteLater();
+            m_cpuSerialProcess = nullptr;
+        }
+    );
+
+    connect(m_cpuSerialProcess,&QProcess::errorOccurred,this,
+            [this](QProcess::ProcessError error){
+            qWarning() << "QProcess CPU serial error:" << error
+                       << m_cpuSerialProcess->errorString();
+        }
+    );
+
+    // Setara dengan:
+    // cat /proc/cpuinfo | grep Serial
+    //
+    // Namun tidak memakai shell dan tidak blocking.
+        m_cpuSerialProcess->start( QStringLiteral("grep"),{
+            QStringLiteral("Serial"),
+            QStringLiteral("/proc/cpuinfo")
+        }
+    );
 }
 
 

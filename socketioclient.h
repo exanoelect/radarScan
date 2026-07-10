@@ -17,6 +17,7 @@
 #include <VolumeMonitor.h>
 #include <QMutexLocker>
 #include <QMutex>
+#include <QProcess>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -102,6 +103,14 @@ signals:
     void okEvent(const QString &timestamp);
     void notOkEvent(const QString &timestamp);
 
+private slots:
+    void onWebSocketConnected();
+    void onWebSocketDisconnected();
+    void onWebSocketTextMessage(const QString &message);
+    void onWebSocketError(QAbstractSocket::SocketError error);
+    void sendPing();
+    void attemptReconnect();
+
 private:
     QWebSocket *m_webSocket;
     QTimer *m_pingTimer;
@@ -134,6 +143,10 @@ private:
     //std::map<int, std::function<void(QJsonValue)>> m_ackCallbacks;
     std::map<quint64, std::function<void(bool, QJsonValue)>> m_ackCallbacks;
 
+    QProcess *m_cpuSerialProcess = nullptr;
+    QString m_cpuSerial;
+    void getCpuSerialAsync();
+
     void setupWebSocket();
     void constructWebSocketUrl();
     void parseSocketIOMessage(const QString &message);
@@ -151,11 +164,5 @@ private:
 
     void scheduleReconnect();
 
-private slots:
-    void onWebSocketConnected();
-    void onWebSocketDisconnected();
-    void onWebSocketTextMessage(const QString &message);
-    void onWebSocketError(QAbstractSocket::SocketError error);
-    void sendPing();
-    void attemptReconnect();
+
 };
