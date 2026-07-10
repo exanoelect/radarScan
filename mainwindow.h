@@ -44,6 +44,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QNetworkInformation>
+#include <VolumeMonitor.h>
 #include <networkmonitor.h>
 #include <QIODevice>
 #include <QVBoxLayout>
@@ -61,7 +62,6 @@
 #include "AudioHealthChecker.h"
 #include <QRegularExpression>
 #include <functional>
-#include <VolumeMonitor.h>
 
 //#include <QMqttClient>
 
@@ -264,8 +264,6 @@ private slots:
 
     //Language
     void onlangCurrent(QString langstr);
-    void onLangSet(QString langstr);
-    void onLangGet();
 
     //Wifi
 #ifdef Q_OS_LINUX
@@ -344,6 +342,10 @@ private slots:
     //PZEM
     void onPzemDataReadyComplete(Pzem004Tv30Data data);
 
+    //DEvice
+    void onPowerInfoReq();
+    void onAudioInfoReq();
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -363,12 +365,13 @@ private:
 
 #ifdef Q_OS_LINUX
     VolumeMonitor *m_volumeMonitor;
+
     gpio *m_gpio;
     volume *m_volume;
-
     brightness *m_brightness;
     utilities *m_utility;
 #endif
+
 
     int m_volCurrent;
     //int brightnessCurrent;
@@ -395,6 +398,8 @@ private:
 
     QTimer *timerSendFallevent = nullptr;
     bool fallEventAckReceived = false;
+
+    QString radarReportInfo;
 
 #ifdef Q_OS_LINUX
     gpiod_line *line17;

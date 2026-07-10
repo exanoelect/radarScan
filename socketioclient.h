@@ -14,7 +14,7 @@
 #include <radar.h>
 #include <volume.h>
 #include <brightness.h>
-//#include <VolumeMonitor.h>
+#include <VolumeMonitor.h>
 #include <QMutexLocker>
 #include <QMutex>
 

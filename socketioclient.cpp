@@ -74,7 +74,7 @@ void SocketIOClient::disconnectFromServer()
 void SocketIOClient::sendSocketIoConnectWithAuth()
 {
     QJsonObject auth;
-    auth["robotId"] = "TESTING-1";
+    auth["robotId"] = "TESTING-2";
 
     QString authJson = QString::fromUtf8(
         QJsonDocument(auth).toJson(QJsonDocument::Compact)

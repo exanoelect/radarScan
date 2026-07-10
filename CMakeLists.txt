@@ -60,8 +60,8 @@ set(SOURCES
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     list(APPEND SOURCES
-        VolumeMonitor.cpp
         VolumeMonitor.h
+        VolumeMonitor.cpp
         NetworkMonitorQt.h
         NetworkMonitorQt.cpp
         networkmonitor.h

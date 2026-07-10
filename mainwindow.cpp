@@ -25,7 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     initSocketIO();
     initRadar();
 
-
 #ifdef Q_OS_LINUX
     m_gpio = new gpio();
     m_gpio->setupGPIO();
@@ -69,19 +68,18 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug() << "SSH FAILED";
     });
 
-    qDebug() << "LEave Monitring prepare ";
+    qDebug() << "LEave Monitring prepapere ";
 #endif
 
     fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
-    //m_gpio->setColor(COLOR_WHITE);
+    m_gpio->setColor(COLOR_WHITE);
 #endif
 
     //PZEM
     m_pzem = new Pzem004Tv30Qt(this);
-    //initPzem();
-    qDebug() << "end setup";
-    lang = "en";
+    initPzem();
+
 }
 
 //---------------------------------------------------------------------------------------
@@ -187,10 +185,6 @@ void MainWindow::initSocketIO()
     //Get Language current
     connect(m_worker, &SocketEventWorker::langCurrent,
             this,&MainWindow::onlangCurrent);
-    connect(m_worker, &SocketEventWorker::langSet,
-            this,&MainWindow::onLangSet);
-    connect(m_worker, &SocketEventWorker::langGet,
-            this,&MainWindow::onLangGet);
 
     //Wifi
 #ifdef Q_OS_LINUX
@@ -223,6 +217,12 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onTzSetReq);
     connect(m_worker, &SocketEventWorker::tzGetReq,
             this, &MainWindow::onTzGetReq);
+
+    connect(m_worker, &SocketEventWorker::powerInfoRequest,
+            this, &MainWindow::onPowerInfoReq);
+    connect(m_worker, &SocketEventWorker::audioRadarInfoRequest,
+            this, &MainWindow::onAudioInfoReq);
+
 #endif
 
     m_workerThread->start();
@@ -282,10 +282,14 @@ void MainWindow::initRadar()
         // =========================
         connect(p, &PayloadProcessor::radarPoint, this,
                 [=](const QString &src, double x, double y){
-                    if (src == UART_PORT0)
+                    if (src == UART_PORT0){
                         updateRadarPoint(x, y);
-                    else if (src == UART_PORT1)
+                        radarReportInfo = "serialNormal";
+                    }
+                    else if (src == UART_PORT1){
                         updateRadarPoint2(x, y);
+                        radarReportInfo = "serialNormal";
+                    }
                 }, Qt::QueuedConnection);
 
         // =========================
@@ -293,10 +297,14 @@ void MainWindow::initRadar()
         // =========================
         connect(p, &PayloadProcessor::velocityUpdate, this,
                 [=](const QString &src, const QString &v){
-                    if (src == UART_PORT0)
+                    if (src == UART_PORT0){
                         drawRealTimeVelocity(v);
-                    else if (src == UART_PORT1)
+                        radarReportInfo = "serialNormal";
+                    }
+                    else if (src == UART_PORT1){
                         drawRealTimeVelocity2(v);
+                        radarReportInfo = "serialNormal";
+                    }
                 }, Qt::QueuedConnection);
 
         // =========================
@@ -304,10 +312,13 @@ void MainWindow::initRadar()
         // =========================
         connect(p, &PayloadProcessor::motionUpdate, this,
                 [=](const QString &src, const QString &motion){
-                    if (src == UART_PORT0)
+                    if (src == UART_PORT0){
                         drawRealTimeetsgram(motion);
-                    else if (src == UART_PORT1)
+                        radarReportInfo = "serialNormal";
+                    }else if (src == UART_PORT1){
                         drawRealTimeetsgram2(motion);
+                        radarReportInfo = "serialNormal";
+                    }
                 }, Qt::QueuedConnection);
 
         // =========================
@@ -320,6 +331,7 @@ void MainWindow::initRadar()
                     //sound.play();
 #ifdef Q_OS_LINUX
                     m_gpio->setColor(COLOR_RED);
+                    radarReportInfo = "serialNormal";
 #endif
 
                     if (client->isConnected()){
@@ -347,6 +359,8 @@ void MainWindow::initRadar()
         connect(p, &PayloadProcessor::fallCancel, this,
                 [=](const QString &src){
                     Q_UNUSED(src);
+                    radarReportInfo = "serialNormal";
+
                     //sound.stop();
                     //sound.play();
 
@@ -363,17 +377,22 @@ void MainWindow::initRadar()
         // Debug & serial state
         // =========================
         connect(p, &PayloadProcessor::debugMessage,
-                this, [](const QString &msg){ qDebug() << msg; });
+                this, [](const QString &msg){
+                    qDebug() << msg;
+                    //radarReportInfo = "serialNormal";
+        });
 
         connect(p, &PayloadProcessor::serialOpened,
                 this, [=](bool ok){
                     ui->btnOpenSerialPort->setEnabled(!ok);
                     ui->btnLoad->setEnabled(!ok);
+                    radarReportInfo = "serialNormal";
                 });
 
         connect(p, &PayloadProcessor::serialError,
                 this, [=](const QString &err){
                     qDebug() << "Serial error:" << err;
+                    radarReportInfo = "serialError";
                 });
 
         // =========================
@@ -2064,6 +2083,13 @@ void MainWindow::onSpeechModuleReady()
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
 #endif
+#ifdef MQTT_FITUR
+    if(publishMessage("ledcolor","white")){
+        qDebug() << "white ok";
+    }else{
+        qDebug() << "white fail";
+    }
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -2269,21 +2295,6 @@ void MainWindow::onlangCurrent(QString langstr)
 {
     lang = langstr;
     qDebug() << "Lang current info " << lang;
-}
-
-//------------------------------------------------------------------------
-void MainWindow::onLangSet(QString langstr)
-{
-    lang = langstr;
-    qDebug() << "Lang current info " << lang;
-}
-
-//------------------------------------------------------------------------
-void MainWindow::onLangGet()
-{
-    QJsonObject obj;
-    obj["lang"] = lang;
-    client->emitEventStringMsgJsoned("LANGUAGE_CURRENT",obj);
 }
 
 
@@ -3177,7 +3188,7 @@ void MainWindow::on_btnPing_clicked()
 
      //qDebug() << timestampMs;
      //qDebug() << "isooooocukkk " << timestampMs;
-    //m_pzem->requestReadAll();
+    m_pzem->requestReadAll();
     runAudioHealthRecordTest();
 
 }
@@ -3195,6 +3206,29 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
     qDebug() << "Alarm     :" << data.alarm;
 
     //Proses lebih lanjut, ke json, kirim ke socketio
+    if(client->isConnected()){
+       QJsonObject obj;
+       obj["voltage"] = data.voltage;
+       obj["current"] = data.current;
+       obj["power_cons"] = data.power;
+       obj["frquency"] = data.frequency;
+       obj["pf"] = data.powerFactor;
+       obj["energy"] = data.energy;
+
+       client->emitEventStringMsgJsoned("DEVICE_POWER_INFO",obj);
+    }
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onPowerInfoReq()
+{
+    m_pzem->requestReadAll();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onAudioInfoReq()
+{
+    runAudioHealthRecordTest();
 }
 
 //------------------------------------------------------------------------
@@ -3237,8 +3271,6 @@ void MainWindow::runAudioHealthRecordTest()
                 qDebug() << "generate wav test success" << testFileName;
             }
 
-            //pw-record 10s --target alsa_input.usb-SEEED_ReSpeaker_4_Mic_Array__UAC1.0_-00.pro-input-0 --rate 16000 --channels 1 --format s16 test14.wav
-            //timeout 10s  pw-record 10s --target 62 --rate 16000 --channels 1 --format s16 test17.wav
             QStringList recArgs;
             recArgs << "10s"
                     << "pw-record"
@@ -3276,18 +3308,17 @@ void MainWindow::runAudioHealthRecordTest()
                         if (QFileInfo::exists(recordFile)) {
                             qDebug() << "Recording file exists, ready to analyze.";
 
-                            m_audioCheck.audioReport =
-                                m_audioCheck.analyzeRecording(recordFile);
+                            m_audioCheck.audioReport = m_audioCheck.analyzeRecording(recordFile);
 
-                            QString reportResult =
-                                m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
+                            QString reportResult = m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
 
                             qDebug().noquote() << reportResult;
-
-                            QJsonObject obj;
-                            obj["audio_report"] = reportResult;
-                            client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO",obj);
-
+                            if(client->isConnected()){
+                                QJsonObject obj;
+                                obj["audio_report"] = reportResult;
+                                obj["radar_report"] = radarReportInfo;
+                                client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO",obj);
+                            }
                         } else {
                             qWarning() << "Recording file not found:" << recordFile;
                         }

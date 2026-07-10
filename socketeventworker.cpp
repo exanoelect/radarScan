@@ -133,7 +133,7 @@ void SocketEventWorker::process()
         }else if(eventName == "LANGUAGE_SET"){
             if (data.isObject()) {
                 QJsonObject obj = data.toObject();
-                //QString ret = obj["success"].toString();
+                QString ret = obj["success"].toString();
                 QString lang = obj["lang"].toString();
                 qDebug() << "lang current:" << eventName << obj;
                 emit langSet(lang);
@@ -255,12 +255,12 @@ void SocketEventWorker::process()
         }
 
         //Device Status health
-        else if (eventName == "DEVICE_STATUS_GET") {
-            qDebug() << "dev status get";
-            emit audioRadarInfoRequest();
-        }else if(eventName == "DEVICE_POWER_GET"){
-            qDebug() << "dev power get";
-            emit powerInfoRequest();
-        }
+         else if (eventName == "DEVICE_STATUS_GET") {
+             qDebug() << "dev status get";
+             emit audioRadarInfoRequest();
+         }else if(eventName == "DEVICE_POWER_GET"){
+             qDebug() << "dev power get";
+             emit powerInfoRequest();
+         }
     }
 }
