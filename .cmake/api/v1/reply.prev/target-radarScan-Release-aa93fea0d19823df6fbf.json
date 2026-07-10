@@ -47,7 +47,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 69,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
@@ -71,7 +71,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 104,
+				"line" : 108,
 				"parent" : 0
 			},
 			{
@@ -219,13 +219,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 100,
+				"line" : 104,
 				"parent" : 0
 			},
 			{
 				"command" : 12,
 				"file" : 1,
-				"line" : 78,
+				"line" : 82,
 				"parent" : 0
 			}
 		]
@@ -450,20 +450,22 @@
 				18,
 				20,
 				22,
-				25,
-				27,
-				29
+				24,
+				26,
+				29,
+				31,
+				33
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "radarScan::@6890427a1f51a3e7e1df",
@@ -605,9 +607,6 @@
 	"orderDependencies" : 
 	[
 		{
-			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"id" : "Qt6::moc::@6890427a1f51a3e7e1df"
 		},
 		{
@@ -616,6 +615,9 @@
 		{
 			"backtrace" : 0,
 			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
@@ -630,8 +632,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				30,
-				31
+				34,
+				35
 			]
 		},
 		{
@@ -649,9 +651,11 @@
 				18,
 				20,
 				22,
-				25,
-				27,
-				29
+				24,
+				26,
+				29,
+				31,
+				33
 			]
 		},
 		{
@@ -669,9 +673,11 @@
 				19,
 				21,
 				23,
-				24,
-				26,
-				28
+				25,
+				27,
+				28,
+				30,
+				32
 			]
 		},
 		{
@@ -685,7 +691,7 @@
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				32
+				36
 			]
 		}
 	],
@@ -817,6 +823,28 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "systemdmonitorqt.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "Pzem004Tv30Qt.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "Pzem004Tv30Qt.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "AudioHealthChecker.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "AudioHealthChecker.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
