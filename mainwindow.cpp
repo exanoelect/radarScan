@@ -134,6 +134,10 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onListenStateChanged);
     connect(m_worker, &SocketEventWorker::modeTalking,
             this, &MainWindow::onTalkingStateChanged);
+    connect(m_worker, &SocketEventWorker::modeWaiting,
+            this, &MainWindow::onWaiting);
+    connect(m_worker, &SocketEventWorker::modeRecording,
+            this, &MainWindow::onRecording);
     connect(m_worker, &SocketEventWorker::volumeGetRequested,
             this, &MainWindow::onVolumeGetRequested);
     connect(m_worker, &SocketEventWorker::volumeSetRequested,
@@ -1320,6 +1324,18 @@ void MainWindow::soundPlay(int request, const QString &lang)
         requestName = "SOUND_RECORD";
         break;
 
+    case SOUND_WAITING:
+        requestName = "SOUND_WAITING";
+        break;
+
+    case SOUND_HELPYOU:
+        requestName = "SOUND_HELPYOU";
+        break;
+
+    case SOUND_LOGIN:
+        requestName = "SOUND_LOGIN";
+        break;
+
     default:
         qDebug() << "Unknown sound request:" << request;
         return;
@@ -1784,7 +1800,8 @@ void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
 //------------------------------------------------------------------------
 void MainWindow::on_btnPlaySound_clicked()
 {
-    soundPlay(SOUND_FALL_OCCUR, lang);
+    //soundPlay(SOUND_FALL_OCCUR, lang);
+    soundPlay(SOUND_WAITING,lang);
 }
 
 //------------------------------------------------------------------------
@@ -1997,6 +2014,25 @@ void MainWindow::onTalkingStateChanged()
 }
 
 //------------------------------------------------------------------------
+void MainWindow::onWaiting()
+{
+    qDebug() << "UI Process Waiting";// << state;
+#ifdef Q_OS_LINUX
+    m_gpio->setColor(COLOR_WHITE_BLINKY);
+    soundPlay(SOUND_WAITING,lang);
+#endif
+}
+
+//------------------------------------------------------------------------
+void MainWindow::onRecording()
+{
+    qDebug() << "UI Process Waiting";// << state;
+#ifdef Q_OS_LINUX
+    m_gpio->setColor(COLOR_WHITE_BRIGHT);
+#endif
+}
+
+//------------------------------------------------------------------------
 void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
@@ -2041,11 +2077,13 @@ void MainWindow::onSleepRequested()
     client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
 
     //Reduce brightness
+    /*
     if(m_brightness->setBrightnessPercent(1)){
         qDebug() << "Success Set brightness " << 1;
     }else{
         qDebug() << "Fail Set brightness " << 1;
     }
+*/
 
     //Reduce Volume
    // m_volumeMonitor->setVolumePercent(30);
@@ -2059,6 +2097,8 @@ void MainWindow::onWakeUpRequested()
 {
     qDebug() << "UI Wakeup";
     #ifdef Q_OS_LINUX
+    soundPlay(SOUND_LOGIN,lang);
+
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("WAKE_UP", QString::number(getBright));
 
@@ -2068,6 +2108,9 @@ void MainWindow::onWakeUpRequested()
     }else{
         qDebug() << "Fail Set brightness " << 70;
     }
+
+    soundPlay(SOUND_HELPYOU,lang);
+
 #endif
 
     //increase Volume
@@ -3734,3 +3777,9 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
 
     return true;
 }
+
+void MainWindow::on_btnLogin_clicked()
+{
+    soundPlay(SOUND_LOGIN,lang);
+}
+

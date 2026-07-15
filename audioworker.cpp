@@ -75,6 +75,22 @@ QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
         return QString("/home/pi/wav/%1/record.wav").arg(langFolder);
 #else
 #endif
+    case SOUND_WAITING:
+#ifdef Q_OS_LINUX
+        return QString("/home/pi/wav/%1/wait.wav").arg(langFolder);
+#else
+#endif
+
+    case SOUND_HELPYOU:
+#ifdef Q_OS_LINUX
+        return QString("/home/pi/wav/%1/helpyou.wav").arg(langFolder);
+#else
+#endif
+    case SOUND_LOGIN:
+#ifdef Q_OS_LINUX
+        return QString("/home/pi/wav/%1/login.mp3").arg(langFolder);
+#else
+#endif
     default:
         return QString();
     }

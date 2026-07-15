@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Radar Scan V2.0</string>
+   <string>Radar Scan V2.4</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(241, 149, 220);</string>
+   <string notr="true">background-color: rgb(255, 239, 247);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCustomPlot" name="plottsgram" native="true">
@@ -1680,7 +1680,7 @@
      <widget class="QPushButton" name="btnPlaySound">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>60</x>
         <y>130</y>
         <width>71</width>
         <height>32</height>
@@ -1690,7 +1690,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>Play Alarm</string>
+       <string>waiting</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="leVol">
@@ -1834,7 +1834,7 @@
      <widget class="QPushButton" name="btnPlayHelp">
       <property name="geometry">
        <rect>
-        <x>170</x>
+        <x>140</x>
         <y>130</y>
         <width>71</width>
         <height>32</height>
@@ -1850,7 +1850,7 @@
      <widget class="QPushButton" name="btnPlayIamOK">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>220</x>
         <y>130</y>
         <width>81</width>
         <height>32</height>
@@ -1888,7 +1888,7 @@
        <rect>
         <x>10</x>
         <y>130</y>
-        <width>71</width>
+        <width>41</width>
         <height>32</height>
        </rect>
       </property>
@@ -1965,6 +1965,19 @@
       </property>
       <property name="value">
        <number>24</number>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnLogin">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>130</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
       </property>
      </widget>
     </widget>
@@ -2201,7 +2214,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>27</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>

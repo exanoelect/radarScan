@@ -54,6 +54,18 @@ void SocketEventWorker::process()
             emit modeListen();
         }else if (eventName == "TALKING") {
             emit modeTalking();
+        }else if (eventName == "PING_DEVICE_UP") {
+            emit pingDeviceUp();
+        }else if (eventName == "SLEEP") {
+            emit modeSleep();
+        }else if(eventName == "WAKE_UP"){
+            emit modeWakeUp();
+        }else if (eventName == "WAITING") {
+            emit modeWaiting();
+        }else if (eventName == "RECORDING") {
+            emit modeRecording();
+        }else if(eventName == "SPEECH_MODULE_READY"){
+            emit speechModuleReady();
         }
 
 
@@ -88,21 +100,6 @@ void SocketEventWorker::process()
             emit brightnessDecreaseReq();
         }else if(eventName == "SCREEN_BRIGHTNESS_REQUEST"){
             emit brightnessGetRequested();
-        }
-
-        //Robot mode
-        else if (eventName == "PING_DEVICE_UP") {
-            emit pingDeviceUp();
-        }else if (eventName == "SLEEP") {
-            emit modeSleep();
-        }else if(eventName == "WAKE_UP"){
-            emit modeWakeUp();
-        }else if (eventName == "WAITING") {
-            emit modeWaiting();
-        }else if (eventName == "RECORDING") {
-            emit modeRecording();
-        }else if(eventName == "SPEECH_MODULE_READY"){
-            emit speechModuleReady();
         }
 
         //ALARM

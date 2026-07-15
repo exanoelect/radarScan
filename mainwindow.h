@@ -231,6 +231,8 @@ private slots:
 
     void onListenStateChanged();
     void onTalkingStateChanged();
+    void onWaiting();
+    void onRecording();
     void onVolumeGetRequested();
     void onVolumeSetRequested(int value);
     void onPingDeviceUpRequested();
@@ -345,6 +347,8 @@ private slots:
     //DEvice
     void onPowerInfoReq();
     void onAudioInfoReq();
+
+    void on_btnLogin_clicked();
 
 private:
     Ui::MainWindow *ui;

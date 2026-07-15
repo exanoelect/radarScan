@@ -13,6 +13,9 @@
 #define SOUND_HELP       2
 #define SOUND_IAM_OK     3
 #define SOUND_RECORD     4
+#define SOUND_WAITING    5
+#define SOUND_HELPYOU    6
+#define SOUND_LOGIN      7
 
 struct SoundQueueItem
 {
