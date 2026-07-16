@@ -59,6 +59,7 @@ template <> constexpr inline auto PayloadProcessor::qt_create_metaobjectdata<qt_
         "err",
         "fallDetected",
         "fallCancel",
+        "heartBeat",
         "initPort",
         "portName",
         "readData",
@@ -105,21 +106,25 @@ template <> constexpr inline auto PayloadProcessor::qt_create_metaobjectdata<qt_
         QtMocHelpers::SignalData<void(const QString &)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 3 },
         }}),
+        // Signal 'heartBeat'
+        QtMocHelpers::SignalData<void(const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 3 },
+        }}),
         // Slot 'initPort'
-        QtMocHelpers::SlotData<void(const QString &)>(21, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 22 },
+        QtMocHelpers::SlotData<void(const QString &)>(22, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 23 },
         }}),
         // Slot 'readData'
-        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'closePort'
         QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'closePort'
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'enqueuePayload'
-        QtMocHelpers::SlotData<void(const QByteArray &)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QByteArray, 26 },
+        QtMocHelpers::SlotData<void(const QByteArray &)>(26, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QByteArray, 27 },
         }}),
         // Slot 'prepareRadar'
-        QtMocHelpers::SlotData<void(const QString)>(27, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 22 },
+        QtMocHelpers::SlotData<void(const QString)>(28, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 23 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -153,11 +158,12 @@ void PayloadProcessor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 6: _t->serialError((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 7: _t->fallDetected((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 8: _t->fallCancel((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->initPort((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 10: _t->readData(); break;
-        case 11: _t->closePort(); break;
-        case 12: _t->enqueuePayload((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
-        case 13: _t->prepareRadar((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->heartBeat((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->initPort((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 11: _t->readData(); break;
+        case 12: _t->closePort(); break;
+        case 13: _t->enqueuePayload((*reinterpret_cast<std::add_pointer_t<QByteArray>>(_a[1]))); break;
+        case 14: _t->prepareRadar((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -179,6 +185,8 @@ void PayloadProcessor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         if (QtMocHelpers::indexOfMethod<void (PayloadProcessor::*)(const QString & )>(_a, &PayloadProcessor::fallDetected, 7))
             return;
         if (QtMocHelpers::indexOfMethod<void (PayloadProcessor::*)(const QString & )>(_a, &PayloadProcessor::fallCancel, 8))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PayloadProcessor::*)(const QString & )>(_a, &PayloadProcessor::heartBeat, 9))
             return;
     }
 }
@@ -202,14 +210,14 @@ int PayloadProcessor::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 14;
+        _id -= 15;
     }
     return _id;
 }
@@ -266,5 +274,11 @@ void PayloadProcessor::fallDetected(const QString & _t1)
 void PayloadProcessor::fallCancel(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 8, nullptr, _t1);
+}
+
+// SIGNAL 9
+void PayloadProcessor::heartBeat(const QString & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 9, nullptr, _t1);
 }
 QT_WARNING_POP

@@ -134,6 +134,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onIncidentFallOKEventDetected",
         "onIncidentFallCompleted",
         "slotTimerSendFallEvent",
+        "slotTimerHeartBeat",
         "onlangCurrent",
         "langstr",
         "on_btnPlayFall_clicked",
@@ -154,9 +155,11 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onPowerInfoReq",
         "onAudioInfoReq",
         "on_btnLogin_clicked",
+        "onRadarHeartBeatDetected",
         "onSoundFinished",
         "onSoundFailed",
-        "errorMessage"
+        "errorMessage",
+        "onUploadFailed"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -364,54 +367,60 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(92, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'slotTimerSendFallEvent'
         QtMocHelpers::SlotData<void()>(93, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'slotTimerHeartBeat'
+        QtMocHelpers::SlotData<void()>(94, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onlangCurrent'
-        QtMocHelpers::SlotData<void(QString)>(94, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 95 },
+        QtMocHelpers::SlotData<void(QString)>(95, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 96 },
         }}),
         // Slot 'on_btnPlayFall_clicked'
-        QtMocHelpers::SlotData<void()>(96, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayHelp_clicked'
         QtMocHelpers::SlotData<void()>(97, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayIamOK_clicked'
+        // Slot 'on_btnPlayHelp_clicked'
         QtMocHelpers::SlotData<void()>(98, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnEmitEvenwAck_clicked'
+        // Slot 'on_btnPlayIamOK_clicked'
         QtMocHelpers::SlotData<void()>(99, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnEmitListeningOn_clicked'
+        // Slot 'on_btnEmitEvenwAck_clicked'
         QtMocHelpers::SlotData<void()>(100, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'readMore'
+        // Slot 'on_btnEmitListeningOn_clicked'
         QtMocHelpers::SlotData<void()>(101, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnRec_pressed'
+        // Slot 'readMore'
         QtMocHelpers::SlotData<void()>(102, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnRec_released'
+        // Slot 'on_btnRec_pressed'
         QtMocHelpers::SlotData<void()>(103, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'handleAudioData'
+        // Slot 'on_btnRec_released'
         QtMocHelpers::SlotData<void()>(104, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPlayRec_clicked'
+        // Slot 'handleAudioData'
         QtMocHelpers::SlotData<void()>(105, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'handleFinished'
+        // Slot 'on_btnPlayRec_clicked'
         QtMocHelpers::SlotData<void()>(106, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnRec_clicked'
+        // Slot 'handleFinished'
         QtMocHelpers::SlotData<void()>(107, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnPing_clicked'
+        // Slot 'on_btnRec_clicked'
         QtMocHelpers::SlotData<void()>(108, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPing_clicked'
+        QtMocHelpers::SlotData<void()>(109, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPzemDataReadyComplete'
-        QtMocHelpers::SlotData<void(Pzem004Tv30Data)>(109, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 110, 49 },
+        QtMocHelpers::SlotData<void(Pzem004Tv30Data)>(110, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 111, 49 },
         }}),
         // Slot 'onPowerInfoReq'
-        QtMocHelpers::SlotData<void()>(111, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onAudioInfoReq'
         QtMocHelpers::SlotData<void()>(112, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnLogin_clicked'
+        // Slot 'onAudioInfoReq'
         QtMocHelpers::SlotData<void()>(113, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnLogin_clicked'
+        QtMocHelpers::SlotData<void()>(114, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onRadarHeartBeatDetected'
+        QtMocHelpers::SlotData<void()>(115, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onSoundFinished'
-        QtMocHelpers::SlotData<void(int, QString)>(114, 2, QMC::AccessPrivate, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(int, QString)>(116, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
         }}),
         // Slot 'onSoundFailed'
-        QtMocHelpers::SlotData<void(int, QString, QString)>(115, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 3 }, { QMetaType::QString, 4 }, { QMetaType::QString, 116 },
+        QtMocHelpers::SlotData<void(int, QString, QString)>(117, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 }, { QMetaType::QString, 118 },
         }}),
+        // Slot 'onUploadFailed'
+        QtMocHelpers::SlotData<void()>(119, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -517,33 +526,36 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 79: _t->onIncidentFallOKEventDetected(); break;
         case 80: _t->onIncidentFallCompleted(); break;
         case 81: _t->slotTimerSendFallEvent(); break;
-        case 82: _t->onlangCurrent((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 83: _t->on_btnPlayFall_clicked(); break;
-        case 84: _t->on_btnPlayHelp_clicked(); break;
-        case 85: _t->on_btnPlayIamOK_clicked(); break;
-        case 86: _t->on_btnEmitEvenwAck_clicked(); break;
-        case 87: _t->on_btnEmitListeningOn_clicked(); break;
-        case 88: _t->readMore(); break;
-        case 89: _t->on_btnRec_pressed(); break;
-        case 90: _t->on_btnRec_released(); break;
-        case 91: _t->handleAudioData(); break;
-        case 92: _t->on_btnPlayRec_clicked(); break;
-        case 93: _t->handleFinished(); break;
-        case 94: _t->on_btnRec_clicked(); break;
-        case 95: _t->on_btnPing_clicked(); break;
-        case 96: _t->onPzemDataReadyComplete((*reinterpret_cast<std::add_pointer_t<Pzem004Tv30Data>>(_a[1]))); break;
-        case 97: _t->onPowerInfoReq(); break;
-        case 98: _t->onAudioInfoReq(); break;
-        case 99: _t->on_btnLogin_clicked(); break;
-        case 100: _t->onSoundFinished((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
-        case 101: _t->onSoundFailed((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3]))); break;
+        case 82: _t->slotTimerHeartBeat(); break;
+        case 83: _t->onlangCurrent((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 84: _t->on_btnPlayFall_clicked(); break;
+        case 85: _t->on_btnPlayHelp_clicked(); break;
+        case 86: _t->on_btnPlayIamOK_clicked(); break;
+        case 87: _t->on_btnEmitEvenwAck_clicked(); break;
+        case 88: _t->on_btnEmitListeningOn_clicked(); break;
+        case 89: _t->readMore(); break;
+        case 90: _t->on_btnRec_pressed(); break;
+        case 91: _t->on_btnRec_released(); break;
+        case 92: _t->handleAudioData(); break;
+        case 93: _t->on_btnPlayRec_clicked(); break;
+        case 94: _t->handleFinished(); break;
+        case 95: _t->on_btnRec_clicked(); break;
+        case 96: _t->on_btnPing_clicked(); break;
+        case 97: _t->onPzemDataReadyComplete((*reinterpret_cast<std::add_pointer_t<Pzem004Tv30Data>>(_a[1]))); break;
+        case 98: _t->onPowerInfoReq(); break;
+        case 99: _t->onAudioInfoReq(); break;
+        case 100: _t->on_btnLogin_clicked(); break;
+        case 101: _t->onRadarHeartBeatDetected(); break;
+        case 102: _t->onSoundFinished((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 103: _t->onSoundFailed((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3]))); break;
+        case 104: _t->onUploadFailed(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 96:
+        case 97:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -577,14 +589,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 102)
+        if (_id < 105)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 102;
+        _id -= 105;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 102)
+        if (_id < 105)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 102;
+        _id -= 105;
     }
     return _id;
 }

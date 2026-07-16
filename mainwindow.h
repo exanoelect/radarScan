@@ -267,6 +267,7 @@ private slots:
     void onIncidentFallCompleted();
 
     void slotTimerSendFallEvent();
+    void slotTimerHeartBeat();
 
     //Language
     void onlangCurrent(QString langstr);
@@ -350,8 +351,8 @@ private slots:
     //DEvice
     void onPowerInfoReq();
     void onAudioInfoReq();
-
     void on_btnLogin_clicked();
+    void onRadarHeartBeatDetected();
 
     //Sound
     void onSoundFinished(int sentenceIndex, QString langIndex);
@@ -415,7 +416,12 @@ private:
     QTimer *timerSendFallevent = nullptr;
     bool fallEventAckReceived = false;
 
-    QString radarReportInfo;
+    //QString radar1ReportInfo;
+    //QString radar2ReportInfo;
+
+    QTimer *timerHeartBeatCounter;
+    quint8 radar1UartHeartBeatCounter;
+    quint8 radar2UartHeartBeatCounter;
 
 #ifdef Q_OS_LINUX
     gpiod_line *line17;

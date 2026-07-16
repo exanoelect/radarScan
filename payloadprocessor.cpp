@@ -160,6 +160,7 @@ void PayloadProcessor::processQueue()
             switch (sub) {
             case 0x01:
                 //emit debugMessage("System: Heartbeat (reporting)");
+                emit heartBeat(m_id);
                 break;
             case 0x02:
                 //emit debugMessage("System: Module Reset (distribution/reporting)");

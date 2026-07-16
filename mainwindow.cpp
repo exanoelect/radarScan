@@ -367,8 +367,28 @@ void MainWindow::initRadar()
     timerSendFallevent = new QTimer(this);
     connect(timerSendFallevent, &QTimer::timeout, this, &MainWindow::slotTimerSendFallEvent);
 
+    //Timer counter heartbeat
+    timerHeartBeatCounter = new QTimer(this);
+    connect(timerHeartBeatCounter, &QTimer::timeout, this, &MainWindow::slotTimerHeartBeat);
+    timerHeartBeatCounter->start(60000);
+
     // Connect UI update (dipakai bersama)
     auto connectProcessor = [this](PayloadProcessor *p){
+
+        // =========================
+        // Radar Heart Beat
+        // =========================
+        connect(p, &PayloadProcessor::heartBeat, this,
+                [=](const QString &src){
+                    if (src == UART_PORT0){
+                        //radar1ReportInfo = "serialRadar1Normal";
+                        radar1UartHeartBeatCounter = 0;
+                    }
+                    else if (src == UART_PORT1){
+                        //radar2ReportInfo = "serialRadar2Normal";
+                        radar2UartHeartBeatCounter = 0;
+                    }
+                }, Qt::QueuedConnection);
 
         // =========================
         // Radar point (plot posisi)
@@ -377,11 +397,13 @@ void MainWindow::initRadar()
                 [=](const QString &src, double x, double y){
                     if (src == UART_PORT0){
                         updateRadarPoint(x, y);
-                        radarReportInfo = "serialNormal";
+                        radar1UartHeartBeatCounter = 0;
+                        //radar1ReportInfo = "serialRadar1Normal";
                     }
                     else if (src == UART_PORT1){
                         updateRadarPoint2(x, y);
-                        radarReportInfo = "serialNormal";
+                        radar2UartHeartBeatCounter = 0;
+                        //radar1ReportInfo = "serialRadar2Normal";
                     }
                 }, Qt::QueuedConnection);
 
@@ -392,11 +414,13 @@ void MainWindow::initRadar()
                 [=](const QString &src, const QString &v){
                     if (src == UART_PORT0){
                         drawRealTimeVelocity(v);
-                        radarReportInfo = "serialNormal";
+                        radar1UartHeartBeatCounter = 0;
+                        //radar1ReportInfo = "serialRadar1Normal";
                     }
                     else if (src == UART_PORT1){
                         drawRealTimeVelocity2(v);
-                        radarReportInfo = "serialNormal";
+                        radar2UartHeartBeatCounter = 0;
+                        //radar2ReportInfo = "serialRadar2Normal";
                     }
                 }, Qt::QueuedConnection);
 
@@ -407,10 +431,12 @@ void MainWindow::initRadar()
                 [=](const QString &src, const QString &motion){
                     if (src == UART_PORT0){
                         drawRealTimeetsgram(motion);
-                        radarReportInfo = "serialNormal";
+                        radar1UartHeartBeatCounter = 0;
+                        //radar1ReportInfo = "serialRadar1Normal";
                     }else if (src == UART_PORT1){
                         drawRealTimeetsgram2(motion);
-                        radarReportInfo = "serialNormal";
+                        radar2UartHeartBeatCounter = 0;
+                        //radar2ReportInfo = "serialRadar2Normal";
                     }
                 }, Qt::QueuedConnection);
 
@@ -424,7 +450,7 @@ void MainWindow::initRadar()
                     //sound.play();
 #ifdef Q_OS_LINUX
                     m_gpio->setColor(COLOR_RED);
-                    radarReportInfo = "serialNormal";
+                    //radar1ReportInfo = "serialNormal";
 #endif
 
                     if (client->isConnected()){
@@ -439,20 +465,12 @@ void MainWindow::initRadar()
                     }
                     timerSendFallevent->start(1000); //Aktifkan send fall event repeat
                     soundPlay(SOUND_FALL_OCCUR, lang);
-
-#ifdef MQTT_FITUR
-                    if(publishMessage("ledcolor","red")){
-                        qDebug() << "red ok";
-                    }else{
-                        qDebug() << "red fail";
-                    }
-#endif
                 });
 
         connect(p, &PayloadProcessor::fallCancel, this,
                 [=](const QString &src){
                     Q_UNUSED(src);
-                    radarReportInfo = "serialNormal";
+                    //radar1ReportInfo = "serialRadar1Normal";
 
                     //sound.stop();
                     //sound.play();
@@ -472,20 +490,20 @@ void MainWindow::initRadar()
         connect(p, &PayloadProcessor::debugMessage,
                 this, [](const QString &msg){
                     qDebug() << msg;
-                    //radarReportInfo = "serialNormal";
+                    //radar1ReportInfo = "serialNormal";
         });
 
         connect(p, &PayloadProcessor::serialOpened,
                 this, [=](bool ok){
                     ui->btnOpenSerialPort->setEnabled(!ok);
                     ui->btnLoad->setEnabled(!ok);
-                    radarReportInfo = "serialNormal";
+                    //radar1ReportInfo = "serialRadar1Normal";
                 });
 
         connect(p, &PayloadProcessor::serialError,
                 this, [=](const QString &err){
                     qDebug() << "Serial error:" << err;
-                    radarReportInfo = "serialError";
+                    //radar2ReportInfo = "serialRadar2Normal";
                 });
 
         // =========================
@@ -2464,6 +2482,13 @@ void MainWindow::slotTimerSendFallEvent()
 }
 
 //------------------------------------------------------------------------
+void MainWindow::slotTimerHeartBeat()
+{
+    radar1UartHeartBeatCounter++;
+    radar2UartHeartBeatCounter++;
+}
+
+//------------------------------------------------------------------------
 void MainWindow::onlangCurrent(QString langstr)
 {
     lang = langstr;
@@ -3487,9 +3512,15 @@ void MainWindow::runAudioHealthRecordTest()
 
                             qDebug().noquote() << reportResult;
                             if(client->isConnected()){
+                                QString radar1ReportInfo = "radar1Normal";
+                                QString radar2ReportInfo = "radar2Normal";
+
+                                if(radar1UartHeartBeatCounter > 5)radar1ReportInfo = "radar1Error";
+                                if(radar2UartHeartBeatCounter > 5)radar2ReportInfo = "radar2Error";
+
                                 QJsonObject obj;
                                 obj["audio_report"] = reportResult;
-                                obj["radar_report"] = radarReportInfo;
+                                obj["radar_report"] = radar1ReportInfo + "_" + radar2ReportInfo;
                                 client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO",obj);
                             }
                         } else {
@@ -3913,6 +3944,12 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
 void MainWindow::on_btnLogin_clicked()
 {
     soundPlay(SOUND_LOGIN,lang);
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onRadarHeartBeatDetected()
+{
+
 }
 
 //------------------------------------------------------------------------------

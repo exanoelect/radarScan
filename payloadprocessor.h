@@ -77,6 +77,7 @@ signals:
     void serialError(const QString &err);
     void fallDetected(const QString &source);   // trigger sound / socket
     void fallCancel(const QString &source);     //ga jadi fall
+    void heartBeat(const QString &source);
 
 private:
     void processQueue();
