@@ -1,0 +1,597 @@
+/****************************************************************************
+** Meta object code from reading C++ file 'mainwindow.h'
+**
+** Created by: The Qt Meta Object Compiler version 69 (Qt 6.11.1)
+**
+** WARNING! All changes made in this file will be lost!
+*****************************************************************************/
+
+#include "../../mainwindow.h"
+#include <QtGui/qtextcursor.h>
+#include <QtGui/qscreen.h>
+#include <QtCore/qmetatype.h>
+
+#include <QtCore/qtmochelpers.h>
+
+#include <memory>
+
+
+#include <QtCore/qxptype_traits.h>
+#if !defined(Q_MOC_OUTPUT_REVISION)
+#error "The header file 'mainwindow.h' doesn't include <QObject>."
+#elif Q_MOC_OUTPUT_REVISION != 69
+#error "This file was generated using the moc from 6.11.1. It"
+#error "cannot be used with the include files from this version of Qt."
+#error "(The moc has changed too much.)"
+#endif
+
+#ifndef Q_CONSTINIT
+#define Q_CONSTINIT
+#endif
+
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+struct qt_meta_tag_ZN10MainWindowE_t {};
+} // unnamed namespace
+
+template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_tag_ZN10MainWindowE_t>()
+{
+    namespace QMC = QtMocConstants;
+    QtMocHelpers::StringRefStorage qt_stringData {
+        "MainWindow",
+        "requestSound",
+        "",
+        "sentenceIndex",
+        "langIndex",
+        "on_btnLoad_clicked",
+        "on_btnOpenSerialPort_clicked",
+        "on_btnLoad2_clicked",
+        "on_btnOpenSerialPort2_clicked",
+        "on_btnGetProductID_clicked",
+        "on_btnGetProductModel_clicked",
+        "on_btnGetFirmwareVersion_clicked",
+        "on_btnGetProductID2_clicked",
+        "on_btnGetProductModel2_clicked",
+        "on_btnGetFirmwareVersion2_clicked",
+        "realtimeDataSlot",
+        "value",
+        "realtimeDataVelocity",
+        "realtimeDataSlot2",
+        "realtimeDataVelocity2",
+        "on_btnHWModel_clicked",
+        "on_btnCmdInitCompleteCek_clicked",
+        "on_btnHWModel2_clicked",
+        "on_btnCmdInitCompleteCek2_clicked",
+        "on_btnGetAngleInst_clicked",
+        "on_btnGetHeightInst_clicked",
+        "on_btnGetAngleInst2_clicked",
+        "on_btnGetHeightInst2_clicked",
+        "on_cbPresence_toggled",
+        "checked",
+        "on_cbFallDetection_toggled",
+        "on_btnGetFallDuration_clicked",
+        "on_cbStandStill_toggled",
+        "on_cbTraceTracking_toggled",
+        "on_cbPresence2_toggled",
+        "on_cbFallDetection2_toggled",
+        "on_btnGetFallDuration2_clicked",
+        "on_cbStandStill2_toggled",
+        "on_cbTraceTracking2_toggled",
+        "on_btnSetHeight_clicked",
+        "on_btnSetHeight2_clicked",
+        "on_btnSetFallDuration_clicked",
+        "on_btnSetAngle_clicked",
+        "on_btnSetFallDuration2_clicked",
+        "on_btnSetAngle2_clicked",
+        "on_btnPlaySound_clicked",
+        "onSocketEventReceived",
+        "eventName",
+        "QJsonValue",
+        "data",
+        "onDeviceReadyConnected",
+        "vol",
+        "bright",
+        "on_btnColor1_clicked",
+        "on_btnColor2_clicked",
+        "on_btnColor3_clicked",
+        "on_btnColor4_clicked",
+        "on_hsBrightness_valueChanged",
+        "on_btnGetBrightness_clicked",
+        "on_btnsetBrightness_clicked",
+        "on_btnGetVol_clicked",
+        "on_hsVol_valueChanged",
+        "on_btnsetVol_clicked",
+        "on_btnConnect_clicked",
+        "on_btnFallSimulation_clicked",
+        "onListenStateChanged",
+        "onTalkingStateChanged",
+        "onWaiting",
+        "onRecording",
+        "onVolumeGetRequested",
+        "onVolumeSetRequested",
+        "onPingDeviceUpRequested",
+        "onSleepRequested",
+        "onWakeUpRequested",
+        "onSpeechModuleReady",
+        "onBrightnessSetRequested",
+        "onBrightnessGetRequested",
+        "onVolumeIncreaseReq",
+        "onVolumeDecreaseReq",
+        "onVolumeChanged",
+        "percent",
+        "onBrihtnessIncreaseReq",
+        "onBrightnessDecreaseReq",
+        "onIncidentFallEventDetected",
+        "onIncidentFallCancel",
+        "onIncidentFallWakeUpByFallDetection",
+        "onIncidentAckFallEventDetected",
+        "onIncidentFallNoResponse",
+        "onIncidentIamnotOK",
+        "onIncidentIamOK",
+        "onIncidentFallHelpEventDetected",
+        "onIncidentFallOKEventDetected",
+        "onIncidentFallCompleted",
+        "slotTimerSendFallEvent",
+        "onlangCurrent",
+        "langstr",
+        "on_btnPlayFall_clicked",
+        "on_btnPlayHelp_clicked",
+        "on_btnPlayIamOK_clicked",
+        "on_btnEmitEvenwAck_clicked",
+        "on_btnEmitListeningOn_clicked",
+        "readMore",
+        "on_btnRec_pressed",
+        "on_btnRec_released",
+        "handleAudioData",
+        "on_btnPlayRec_clicked",
+        "handleFinished",
+        "on_btnRec_clicked",
+        "on_btnPing_clicked",
+        "onPzemDataReadyComplete",
+        "Pzem004Tv30Data",
+        "onPowerInfoReq",
+        "onAudioInfoReq",
+        "on_btnLogin_clicked",
+        "onSoundFinished",
+        "onSoundFailed",
+        "errorMessage"
+    };
+
+    QtMocHelpers::UintData qt_methods {
+        // Signal 'requestSound'
+        QtMocHelpers::SignalData<void(int, QString)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
+        }}),
+        // Slot 'on_btnLoad_clicked'
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnOpenSerialPort_clicked'
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnLoad2_clicked'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnOpenSerialPort2_clicked'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetProductID_clicked'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetProductModel_clicked'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetFirmwareVersion_clicked'
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetProductID2_clicked'
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetProductModel2_clicked'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetFirmwareVersion2_clicked'
+        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'realtimeDataSlot'
+        QtMocHelpers::SlotData<void(QString)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 16 },
+        }}),
+        // Slot 'realtimeDataVelocity'
+        QtMocHelpers::SlotData<void(QString)>(17, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 16 },
+        }}),
+        // Slot 'realtimeDataSlot2'
+        QtMocHelpers::SlotData<void(QString)>(18, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 16 },
+        }}),
+        // Slot 'realtimeDataVelocity2'
+        QtMocHelpers::SlotData<void(QString)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 16 },
+        }}),
+        // Slot 'on_btnHWModel_clicked'
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnCmdInitCompleteCek_clicked'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnHWModel2_clicked'
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnCmdInitCompleteCek2_clicked'
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetAngleInst_clicked'
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetHeightInst_clicked'
+        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetAngleInst2_clicked'
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetHeightInst2_clicked'
+        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cbPresence_toggled'
+        QtMocHelpers::SlotData<void(bool)>(28, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_cbFallDetection_toggled'
+        QtMocHelpers::SlotData<void(bool)>(30, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_btnGetFallDuration_clicked'
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cbStandStill_toggled'
+        QtMocHelpers::SlotData<void(bool)>(32, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_cbTraceTracking_toggled'
+        QtMocHelpers::SlotData<void(bool)>(33, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_cbPresence2_toggled'
+        QtMocHelpers::SlotData<void(bool)>(34, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_cbFallDetection2_toggled'
+        QtMocHelpers::SlotData<void(bool)>(35, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_btnGetFallDuration2_clicked'
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cbStandStill2_toggled'
+        QtMocHelpers::SlotData<void(bool)>(37, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_cbTraceTracking2_toggled'
+        QtMocHelpers::SlotData<void(bool)>(38, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 29 },
+        }}),
+        // Slot 'on_btnSetHeight_clicked'
+        QtMocHelpers::SlotData<void()>(39, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnSetHeight2_clicked'
+        QtMocHelpers::SlotData<void()>(40, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnSetFallDuration_clicked'
+        QtMocHelpers::SlotData<void()>(41, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnSetAngle_clicked'
+        QtMocHelpers::SlotData<void()>(42, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnSetFallDuration2_clicked'
+        QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnSetAngle2_clicked'
+        QtMocHelpers::SlotData<void()>(44, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlaySound_clicked'
+        QtMocHelpers::SlotData<void()>(45, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSocketEventReceived'
+        QtMocHelpers::SlotData<void(const QString &, const QJsonValue &)>(46, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 47 }, { 0x80000000 | 48, 49 },
+        }}),
+        // Slot 'onDeviceReadyConnected'
+        QtMocHelpers::SlotData<void(int, int)>(50, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 51 }, { QMetaType::Int, 52 },
+        }}),
+        // Slot 'on_btnColor1_clicked'
+        QtMocHelpers::SlotData<void()>(53, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnColor2_clicked'
+        QtMocHelpers::SlotData<void()>(54, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnColor3_clicked'
+        QtMocHelpers::SlotData<void()>(55, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnColor4_clicked'
+        QtMocHelpers::SlotData<void()>(56, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_hsBrightness_valueChanged'
+        QtMocHelpers::SlotData<void(int)>(57, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 16 },
+        }}),
+        // Slot 'on_btnGetBrightness_clicked'
+        QtMocHelpers::SlotData<void()>(58, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnsetBrightness_clicked'
+        QtMocHelpers::SlotData<void()>(59, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnGetVol_clicked'
+        QtMocHelpers::SlotData<void()>(60, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_hsVol_valueChanged'
+        QtMocHelpers::SlotData<void(int)>(61, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 16 },
+        }}),
+        // Slot 'on_btnsetVol_clicked'
+        QtMocHelpers::SlotData<void()>(62, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnConnect_clicked'
+        QtMocHelpers::SlotData<void()>(63, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnFallSimulation_clicked'
+        QtMocHelpers::SlotData<void()>(64, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onListenStateChanged'
+        QtMocHelpers::SlotData<void()>(65, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onTalkingStateChanged'
+        QtMocHelpers::SlotData<void()>(66, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onWaiting'
+        QtMocHelpers::SlotData<void()>(67, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onRecording'
+        QtMocHelpers::SlotData<void()>(68, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeGetRequested'
+        QtMocHelpers::SlotData<void()>(69, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeSetRequested'
+        QtMocHelpers::SlotData<void(int)>(70, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 16 },
+        }}),
+        // Slot 'onPingDeviceUpRequested'
+        QtMocHelpers::SlotData<void()>(71, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSleepRequested'
+        QtMocHelpers::SlotData<void()>(72, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onWakeUpRequested'
+        QtMocHelpers::SlotData<void()>(73, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSpeechModuleReady'
+        QtMocHelpers::SlotData<void()>(74, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrightnessSetRequested'
+        QtMocHelpers::SlotData<void(int)>(75, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 16 },
+        }}),
+        // Slot 'onBrightnessGetRequested'
+        QtMocHelpers::SlotData<void()>(76, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeIncreaseReq'
+        QtMocHelpers::SlotData<void()>(77, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeDecreaseReq'
+        QtMocHelpers::SlotData<void()>(78, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onVolumeChanged'
+        QtMocHelpers::SlotData<void(int)>(79, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 80 },
+        }}),
+        // Slot 'onBrihtnessIncreaseReq'
+        QtMocHelpers::SlotData<void()>(81, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onBrightnessDecreaseReq'
+        QtMocHelpers::SlotData<void()>(82, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallEventDetected'
+        QtMocHelpers::SlotData<void()>(83, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallCancel'
+        QtMocHelpers::SlotData<void()>(84, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallWakeUpByFallDetection'
+        QtMocHelpers::SlotData<void()>(85, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentAckFallEventDetected'
+        QtMocHelpers::SlotData<void()>(86, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallNoResponse'
+        QtMocHelpers::SlotData<void()>(87, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentIamnotOK'
+        QtMocHelpers::SlotData<void()>(88, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentIamOK'
+        QtMocHelpers::SlotData<void()>(89, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallHelpEventDetected'
+        QtMocHelpers::SlotData<void()>(90, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallOKEventDetected'
+        QtMocHelpers::SlotData<void()>(91, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onIncidentFallCompleted'
+        QtMocHelpers::SlotData<void()>(92, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'slotTimerSendFallEvent'
+        QtMocHelpers::SlotData<void()>(93, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onlangCurrent'
+        QtMocHelpers::SlotData<void(QString)>(94, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 95 },
+        }}),
+        // Slot 'on_btnPlayFall_clicked'
+        QtMocHelpers::SlotData<void()>(96, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayHelp_clicked'
+        QtMocHelpers::SlotData<void()>(97, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayIamOK_clicked'
+        QtMocHelpers::SlotData<void()>(98, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnEmitEvenwAck_clicked'
+        QtMocHelpers::SlotData<void()>(99, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnEmitListeningOn_clicked'
+        QtMocHelpers::SlotData<void()>(100, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'readMore'
+        QtMocHelpers::SlotData<void()>(101, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnRec_pressed'
+        QtMocHelpers::SlotData<void()>(102, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnRec_released'
+        QtMocHelpers::SlotData<void()>(103, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleAudioData'
+        QtMocHelpers::SlotData<void()>(104, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPlayRec_clicked'
+        QtMocHelpers::SlotData<void()>(105, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleFinished'
+        QtMocHelpers::SlotData<void()>(106, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnRec_clicked'
+        QtMocHelpers::SlotData<void()>(107, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnPing_clicked'
+        QtMocHelpers::SlotData<void()>(108, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onPzemDataReadyComplete'
+        QtMocHelpers::SlotData<void(Pzem004Tv30Data)>(109, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 110, 49 },
+        }}),
+        // Slot 'onPowerInfoReq'
+        QtMocHelpers::SlotData<void()>(111, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onAudioInfoReq'
+        QtMocHelpers::SlotData<void()>(112, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnLogin_clicked'
+        QtMocHelpers::SlotData<void()>(113, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSoundFinished'
+        QtMocHelpers::SlotData<void(int, QString)>(114, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 },
+        }}),
+        // Slot 'onSoundFailed'
+        QtMocHelpers::SlotData<void(int, QString, QString)>(115, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 3 }, { QMetaType::QString, 4 }, { QMetaType::QString, 116 },
+        }}),
+    };
+    QtMocHelpers::UintData qt_properties {
+    };
+    QtMocHelpers::UintData qt_enums {
+    };
+    return QtMocHelpers::metaObjectData<MainWindow, qt_meta_tag_ZN10MainWindowE_t>(QMC::MetaObjectFlag{}, qt_stringData,
+            qt_methods, qt_properties, qt_enums);
+}
+Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
+    QMetaObject::SuperData::link<QMainWindow::staticMetaObject>(),
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.stringdata,
+    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.data,
+    qt_static_metacall,
+    nullptr,
+    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN10MainWindowE_t>.metaTypes,
+    nullptr
+} };
+
+void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    auto *_t = static_cast<MainWindow *>(_o);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->requestSound((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 1: _t->on_btnLoad_clicked(); break;
+        case 2: _t->on_btnOpenSerialPort_clicked(); break;
+        case 3: _t->on_btnLoad2_clicked(); break;
+        case 4: _t->on_btnOpenSerialPort2_clicked(); break;
+        case 5: _t->on_btnGetProductID_clicked(); break;
+        case 6: _t->on_btnGetProductModel_clicked(); break;
+        case 7: _t->on_btnGetFirmwareVersion_clicked(); break;
+        case 8: _t->on_btnGetProductID2_clicked(); break;
+        case 9: _t->on_btnGetProductModel2_clicked(); break;
+        case 10: _t->on_btnGetFirmwareVersion2_clicked(); break;
+        case 11: _t->realtimeDataSlot((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 12: _t->realtimeDataVelocity((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 13: _t->realtimeDataSlot2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 14: _t->realtimeDataVelocity2((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 15: _t->on_btnHWModel_clicked(); break;
+        case 16: _t->on_btnCmdInitCompleteCek_clicked(); break;
+        case 17: _t->on_btnHWModel2_clicked(); break;
+        case 18: _t->on_btnCmdInitCompleteCek2_clicked(); break;
+        case 19: _t->on_btnGetAngleInst_clicked(); break;
+        case 20: _t->on_btnGetHeightInst_clicked(); break;
+        case 21: _t->on_btnGetAngleInst2_clicked(); break;
+        case 22: _t->on_btnGetHeightInst2_clicked(); break;
+        case 23: _t->on_cbPresence_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 24: _t->on_cbFallDetection_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 25: _t->on_btnGetFallDuration_clicked(); break;
+        case 26: _t->on_cbStandStill_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 27: _t->on_cbTraceTracking_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 28: _t->on_cbPresence2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 29: _t->on_cbFallDetection2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 30: _t->on_btnGetFallDuration2_clicked(); break;
+        case 31: _t->on_cbStandStill2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 32: _t->on_cbTraceTracking2_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 33: _t->on_btnSetHeight_clicked(); break;
+        case 34: _t->on_btnSetHeight2_clicked(); break;
+        case 35: _t->on_btnSetFallDuration_clicked(); break;
+        case 36: _t->on_btnSetAngle_clicked(); break;
+        case 37: _t->on_btnSetFallDuration2_clicked(); break;
+        case 38: _t->on_btnSetAngle2_clicked(); break;
+        case 39: _t->on_btnPlaySound_clicked(); break;
+        case 40: _t->onSocketEventReceived((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QJsonValue>>(_a[2]))); break;
+        case 41: _t->onDeviceReadyConnected((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2]))); break;
+        case 42: _t->on_btnColor1_clicked(); break;
+        case 43: _t->on_btnColor2_clicked(); break;
+        case 44: _t->on_btnColor3_clicked(); break;
+        case 45: _t->on_btnColor4_clicked(); break;
+        case 46: _t->on_hsBrightness_valueChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 47: _t->on_btnGetBrightness_clicked(); break;
+        case 48: _t->on_btnsetBrightness_clicked(); break;
+        case 49: _t->on_btnGetVol_clicked(); break;
+        case 50: _t->on_hsVol_valueChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 51: _t->on_btnsetVol_clicked(); break;
+        case 52: _t->on_btnConnect_clicked(); break;
+        case 53: _t->on_btnFallSimulation_clicked(); break;
+        case 54: _t->onListenStateChanged(); break;
+        case 55: _t->onTalkingStateChanged(); break;
+        case 56: _t->onWaiting(); break;
+        case 57: _t->onRecording(); break;
+        case 58: _t->onVolumeGetRequested(); break;
+        case 59: _t->onVolumeSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 60: _t->onPingDeviceUpRequested(); break;
+        case 61: _t->onSleepRequested(); break;
+        case 62: _t->onWakeUpRequested(); break;
+        case 63: _t->onSpeechModuleReady(); break;
+        case 64: _t->onBrightnessSetRequested((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 65: _t->onBrightnessGetRequested(); break;
+        case 66: _t->onVolumeIncreaseReq(); break;
+        case 67: _t->onVolumeDecreaseReq(); break;
+        case 68: _t->onVolumeChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 69: _t->onBrihtnessIncreaseReq(); break;
+        case 70: _t->onBrightnessDecreaseReq(); break;
+        case 71: _t->onIncidentFallEventDetected(); break;
+        case 72: _t->onIncidentFallCancel(); break;
+        case 73: _t->onIncidentFallWakeUpByFallDetection(); break;
+        case 74: _t->onIncidentAckFallEventDetected(); break;
+        case 75: _t->onIncidentFallNoResponse(); break;
+        case 76: _t->onIncidentIamnotOK(); break;
+        case 77: _t->onIncidentIamOK(); break;
+        case 78: _t->onIncidentFallHelpEventDetected(); break;
+        case 79: _t->onIncidentFallOKEventDetected(); break;
+        case 80: _t->onIncidentFallCompleted(); break;
+        case 81: _t->slotTimerSendFallEvent(); break;
+        case 82: _t->onlangCurrent((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 83: _t->on_btnPlayFall_clicked(); break;
+        case 84: _t->on_btnPlayHelp_clicked(); break;
+        case 85: _t->on_btnPlayIamOK_clicked(); break;
+        case 86: _t->on_btnEmitEvenwAck_clicked(); break;
+        case 87: _t->on_btnEmitListeningOn_clicked(); break;
+        case 88: _t->readMore(); break;
+        case 89: _t->on_btnRec_pressed(); break;
+        case 90: _t->on_btnRec_released(); break;
+        case 91: _t->handleAudioData(); break;
+        case 92: _t->on_btnPlayRec_clicked(); break;
+        case 93: _t->handleFinished(); break;
+        case 94: _t->on_btnRec_clicked(); break;
+        case 95: _t->on_btnPing_clicked(); break;
+        case 96: _t->onPzemDataReadyComplete((*reinterpret_cast<std::add_pointer_t<Pzem004Tv30Data>>(_a[1]))); break;
+        case 97: _t->onPowerInfoReq(); break;
+        case 98: _t->onAudioInfoReq(); break;
+        case 99: _t->on_btnLogin_clicked(); break;
+        case 100: _t->onSoundFinished((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2]))); break;
+        case 101: _t->onSoundFailed((*reinterpret_cast<std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QString>>(_a[3]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 96:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Pzem004Tv30Data >(); break;
+            }
+            break;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (MainWindow::*)(int , QString )>(_a, &MainWindow::requestSound, 0))
+            return;
+    }
+}
+
+const QMetaObject *MainWindow::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *MainWindow::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10MainWindowE_t>.strings))
+        return static_cast<void*>(this);
+    return QMainWindow::qt_metacast(_clname);
+}
+
+int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QMainWindow::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 102)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 102;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 102)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 102;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void MainWindow::requestSound(int _t1, QString _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
+}
+QT_WARNING_POP

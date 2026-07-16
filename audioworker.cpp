@@ -1,33 +1,56 @@
 #include "audioworker.h"
-#include <QUrl>
-#include <QDebug>
 
+#include <QDebug>
+#include <QFileInfo>
+
+//---------------------------------------------------------------------------------------
 AudioWorker::AudioWorker(QObject *parent)
     : QObject(parent)
 {
 }
 
+//---------------------------------------------------------------------------------------
 AudioWorker::~AudioWorker()
 {
+    if (m_playerProcess &&
+        m_playerProcess->state() != QProcess::NotRunning) {
+
+        m_playerProcess->kill();
+    }
 }
 
 //---------------------------------------------------------------------------------------
 void AudioWorker::init()
 {
-    m_timer = new QTimer(this);
-    m_timer->setSingleShot(true);
+    if (m_playerProcess) {
+        qWarning() << "AudioWorker has already been initialized";
+        return;
+    }
 
-    soundCardIdx = getKtUsbAudioDevice();
-    connect(m_timer, &QTimer::timeout, this, [this]() {
-        qDebug() << "Sound playback timer finished";
+    m_playerProcess = new QProcess(this);
 
-        m_isPlaying = false;
-        playNext();
-    });
+    connect(
+        m_playerProcess,
+        &QProcess::finished,
+        this,
+        &AudioWorker::onPlaybackFinished
+        );
+
+    connect(
+        m_playerProcess,
+        &QProcess::errorOccurred,
+        this,
+        &AudioWorker::onPlaybackError
+        );
+
+    qDebug() << "AudioWorker initialized";
 }
 
 //---------------------------------------------------------------------------------------
-void AudioWorker::enqueueSound(int sentenceIndex, QString langIndex)
+void AudioWorker::enqueueSound(
+    int sentenceIndex,
+    QString langIndex
+    )
 {
     qDebug() << "enqueueSound received:"
              << "sentenceIndex:" << sentenceIndex
@@ -45,196 +68,260 @@ void AudioWorker::enqueueSound(int sentenceIndex, QString langIndex)
 }
 
 //---------------------------------------------------------------------------------------
-QString AudioWorker::requestToFile(int sentenceIndex, QString langIndex)
+QString AudioWorker::requestToFile(
+    int sentenceIndex,
+    const QString &langIndex
+    ) const
 {
     QString langFolder;
 
-    if(langIndex == "sv") langFolder = "sv";
-    if(langIndex == "id") langFolder = "id";
-    if(langIndex == "en") langFolder = "en";
+    if (langIndex == "sv") {
+        langFolder = "sv";
+    } else if (langIndex == "id") {
+        langFolder = "id";
+    } else if (langIndex == "en") {
+        langFolder = "en";
+    } else {
+        qWarning() << "Unsupported language:" << langIndex;
+        return QString();
+    }
+
+#ifdef Q_OS_LINUX
+    const QString basePath =
+        QStringLiteral("/home/pi/wav/%1").arg(langFolder);
 
     switch (sentenceIndex) {
     case SOUND_FALL_OCCUR:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/fall.wav").arg(langFolder);
-#else
-#endif
-    case SOUND_HELP:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/help.wav").arg(langFolder);
-#else
-#endif
-    case SOUND_IAM_OK:
-#ifdef Q_OS_LINUX
+        return basePath + QStringLiteral("/fall.wav");
 
-        return QString("/home/pi/wav/%1/iam_ok.wav").arg(langFolder);
-#else
-#endif
+    case SOUND_HELP:
+        return basePath + QStringLiteral("/help.wav");
+
+    case SOUND_IAM_OK:
+        return basePath + QStringLiteral("/iam_ok.wav");
+
     case SOUND_RECORD:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/record.wav").arg(langFolder);
-#else
-#endif
+        return basePath + QStringLiteral("/record.wav");
+
     case SOUND_WAITING:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/wait.wav").arg(langFolder);
-#else
-#endif
+        return basePath + QStringLiteral("/wait.wav");
 
     case SOUND_HELPYOU:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/helpyou.wav").arg(langFolder);
-#else
-#endif
+        return basePath + QStringLiteral("/helpyou.wav");
+
     case SOUND_LOGIN:
-#ifdef Q_OS_LINUX
-        return QString("/home/pi/wav/%1/login.mp3").arg(langFolder);
-#else
-#endif
+        return basePath + QStringLiteral("/login.mp3");
+
     default:
+        qWarning() << "Unknown sentence index:" << sentenceIndex;
         return QString();
     }
+#else
+    Q_UNUSED(sentenceIndex);
+    return QString();
+#endif
 }
 
 //---------------------------------------------------------------------------------------
-QString AudioWorker::getKtUsbAudioDevice()
+void AudioWorker::playSoundFile(const QString &soundPath)
 {
-    QProcess process;
-    process.start("aplay", QStringList() << "-l");
+    if (!m_playerProcess) {
+        qWarning() << "AudioWorker has not been initialized";
 
-    if (!process.waitForFinished(3000)) {
-        qDebug() << "aplay -l timeout";
-        return "";
-    }
-
-    QString output = process.readAllStandardOutput();
-    QString error  = process.readAllStandardError();
-
-    if (!error.isEmpty()) {
-        qDebug() << "aplay error:" << error;
-    }
-
-    qDebug() << "aplay -l output:" << output;
-
-    /*
-     * Contoh line:
-     * card 2: Device [KT USB Audio], device 0: USB Audio [USB Audio]
-     *
-     * Ambil:
-     * card = 2
-     * device = 0
-     */
-
-    QRegularExpression re(
-        R"(card\s+(\d+):.*\[KT USB Audio\].*device\s+(\d+):)",
-        QRegularExpression::CaseInsensitiveOption
-        );
-
-    QRegularExpressionMatch match = re.match(output);
-
-    if (match.hasMatch()) {
-        QString cardIndex   = match.captured(1);
-        QString deviceIndex = match.captured(2);
-
-        QString hwDevice = QString("hw:%1,%2").arg(cardIndex, deviceIndex);
-
-        qDebug() << "KT USB Audio found:" << hwDevice;
-
-        return hwDevice;
-    }
-
-    qDebug() << "KT USB Audio not found";
-    return "";
-}
-
-//---------------------------------------------------------------------------------------
-void AudioWorker::playWavFile(const QString &wavPath)
-{
-    QTimer::singleShot(1000, this, [this, wavPath]() {
-
-        if (wavPath.isEmpty()) {
-            qDebug() << "WAV path is empty";
-            return;
-        }
-
-        /*if (soundCardIdx.isEmpty()) {
-            qDebug() << "KT USB Audio not found, using default audio";
-
-            QProcess::startDetached(
-                "paplay" //"aplay",
-                QStringList()
-                    << wavPath
-                );
-
-            return;
-        }*/
-
-        QProcess::startDetached(
-            "paplay",
-            QStringList()
-                //<< "-D"
-                //<< soundCardIdx
-                << wavPath
+        emit playbackFailed(
+            m_currentSound.sentenceIndex,
+            m_currentSound.langIndex,
+            QStringLiteral("AudioWorker belum diinisialisasi")
             );
-    });
-}
-//---------------------------------------------------------------------------------------
-void AudioWorker::playNext()
-{
-    if (m_queue.isEmpty()) {
+
         m_isPlaying = false;
-
-        m_currentSound.sentenceIndex = -1;
-        m_currentSound.langIndex = 0;
-
+        resetCurrentSound();
+        playNext();
         return;
     }
 
-    m_isPlaying = true;
+    if (soundPath.isEmpty()) {
+        qWarning() << "Sound path is empty";
+
+        emit playbackFailed(
+            m_currentSound.sentenceIndex,
+            m_currentSound.langIndex,
+            QStringLiteral("Path file audio kosong")
+            );
+
+        m_isPlaying = false;
+        resetCurrentSound();
+        playNext();
+        return;
+    }
+
+    QFileInfo fileInfo(soundPath);
+
+    if (!fileInfo.exists() || !fileInfo.isFile()) {
+        const QString errorMessage =
+            QStringLiteral("File audio tidak ditemukan: %1")
+                .arg(soundPath);
+
+        qWarning() << errorMessage;
+
+        emit playbackFailed(
+            m_currentSound.sentenceIndex,
+            m_currentSound.langIndex,
+            errorMessage
+            );
+
+        m_isPlaying = false;
+        resetCurrentSound();
+        playNext();
+        return;
+    }
+
+    qDebug() << "Starting paplay:" << soundPath;
+
+    // Jangan memakai startDetached karena event finished
+    // tidak bisa dipantau oleh QProcess ini.
+    m_playerProcess->setProgram(QStringLiteral("paplay"));
+    m_playerProcess->setArguments(
+        QStringList() << soundPath
+        );
+
+    m_playerProcess->start();
+}
+
+//---------------------------------------------------------------------------------------
+void AudioWorker::playNext()
+{
+    if (m_isPlaying) {
+        return;
+    }
+
+    if (m_queue.isEmpty()) {
+        resetCurrentSound();
+        return;
+    }
 
     m_currentSound = m_queue.dequeue();
+    m_isPlaying = true;
 
-    QString filePath = requestToFile(
+    const QString filePath = requestToFile(
         m_currentSound.sentenceIndex,
         m_currentSound.langIndex
         );
 
     if (filePath.isEmpty()) {
-        qDebug() << "Sound file path is empty for"
-                 << "sentenceIndex:" << m_currentSound.sentenceIndex
-                 << "langIndex:" << m_currentSound.langIndex;
+        qWarning() << "Sound file path is empty for"
+                   << "sentenceIndex:"
+                   << m_currentSound.sentenceIndex
+                   << "langIndex:"
+                   << m_currentSound.langIndex;
+
+        emit playbackFailed(
+            m_currentSound.sentenceIndex,
+            m_currentSound.langIndex,
+            QStringLiteral("File audio tidak terdaftar")
+            );
 
         m_isPlaying = false;
+        resetCurrentSound();
         playNext();
         return;
     }
 
     qDebug() << "Playing:"
              << filePath
-             << "sentenceIndex:" << m_currentSound.sentenceIndex
-             << "langIndex:" << m_currentSound.langIndex;
+             << "sentenceIndex:"
+             << m_currentSound.sentenceIndex
+             << "langIndex:"
+             << m_currentSound.langIndex;
 
-    playWavFile(filePath);
-
-    // Timer durasi playback manual
-    m_timer->start(4000);
+    playSoundFile(filePath);
 }
 
 //---------------------------------------------------------------------------------------
-void AudioWorker::onPlaybackTimeout()
+void AudioWorker::onPlaybackFinished(
+    int exitCode,
+    QProcess::ExitStatus exitStatus
+    )
 {
-    SoundQueueItem finishedSound = m_currentSound;
+    if (!m_isPlaying) {
+        return;
+    }
 
-    qDebug() << "Finished playing:"
-             << "sentenceIndex:" << finishedSound.sentenceIndex
-             << "langIndex:" << finishedSound.langIndex;
+    const SoundQueueItem finishedSound = m_currentSound;
+
+    const bool success =
+        exitStatus == QProcess::NormalExit &&
+        exitCode == 0;
+
+    if (success) {
+        qDebug() << "Sound playback finished:"
+                 << "sentenceIndex:"
+                 << finishedSound.sentenceIndex
+                 << "langIndex:"
+                 << finishedSound.langIndex;
+
+        emit finishedPlaying(
+            finishedSound.sentenceIndex,
+            finishedSound.langIndex
+            );
+    } else {
+        const QString errorMessage =
+            QStringLiteral(
+                "paplay berhenti dengan exitCode %1, exitStatus %2"
+                )
+                .arg(exitCode)
+                .arg(static_cast<int>(exitStatus));
+
+        qWarning() << errorMessage;
+
+        emit playbackFailed(
+            finishedSound.sentenceIndex,
+            finishedSound.langIndex,
+            errorMessage
+            );
+    }
 
     m_isPlaying = false;
+    resetCurrentSound();
 
-    emit finishedPlaying(
-        finishedSound.sentenceIndex,
-        finishedSound.langIndex
+    // Setelah audio benar-benar selesai,
+    // lanjutkan file berikutnya di dalam queue.
+    playNext();
+}
+
+//---------------------------------------------------------------------------------------
+void AudioWorker::onPlaybackError(QProcess::ProcessError error)
+{
+    qWarning() << "paplay process error:"
+               << error
+               << m_playerProcess->errorString();
+
+    /*
+     * CrashError biasanya tetap diikuti signal finished().
+     * FailedToStart tidak selalu menghasilkan finished(),
+     * sehingga harus diselesaikan di sini.
+     */
+    if (error != QProcess::FailedToStart || !m_isPlaying) {
+        return;
+    }
+
+    const SoundQueueItem failedSound = m_currentSound;
+    const QString errorMessage = m_playerProcess->errorString();
+
+    emit playbackFailed(
+        failedSound.sentenceIndex,
+        failedSound.langIndex,
+        errorMessage
         );
 
+    m_isPlaying = false;
+    resetCurrentSound();
     playNext();
+}
+
+//---------------------------------------------------------------------------------------
+void AudioWorker::resetCurrentSound()
+{
+    m_currentSound.sentenceIndex = -1;
+    m_currentSound.langIndex.clear();
 }

@@ -150,7 +150,11 @@ public slots:
     //void updatePlot(const QVector<double> &values);   //
 
 signals:
-    //void pzemDataReadyComplete(Pzem004Tv30Data powerData);
+    /*
+     * Signal ini dikirim dari GUI thread menuju AudioWorker thread.
+     * Karena memakai Qt::QueuedConnection, pemanggilannya non-blocking.
+     */
+    void requestSound(int sentenceIndex, QString langIndex);
 
 private slots:
     void on_btnLoad_clicked();
@@ -350,6 +354,14 @@ private slots:
 
     void on_btnLogin_clicked();
 
+    //Sound
+    void onSoundFinished(int sentenceIndex, QString langIndex);
+    void onSoundFailed(
+        int sentenceIndex,
+        QString langIndex,
+        QString errorMessage
+        );
+
 private:
     Ui::MainWindow *ui;
     QString demoName;
@@ -440,7 +452,7 @@ private:
     void drawRealTimeetsgram2(QString motion);
     void drawRealTimeVelocity2(QString velocity);
 
-    void soundPlay(int request, const QString &lang = "sw");
+    void soundPlay(int request, const QString &lang = "sv");
 
     //Wifi healthy
     QString runCommand(const QString &cmd);

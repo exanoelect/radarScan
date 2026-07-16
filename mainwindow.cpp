@@ -90,6 +90,52 @@ MainWindow::~MainWindow()
         m_serial = nullptr;
     }
 
+    if (m_audioThread) {
+        m_audioThread->quit();
+        m_audioThread->wait();
+    }
+
+    if(m_pzem){
+        m_pzem->deleteLater();
+        m_pzem = nullptr;
+    }
+
+    if(client){
+        client->deleteLater();
+        client =  nullptr;
+    }
+
+    if(m_worker){
+       m_worker->deleteLater();
+       m_worker = nullptr;
+    }
+
+    if(m_threadA){
+       m_threadA->deleteLater();
+       m_threadA = nullptr;
+    }
+
+    if(m_threadB){
+       m_threadB->deleteLater();
+       m_threadB = nullptr;
+    }
+
+    if(m_procA){
+       m_procA->deleteLater();
+       m_procA = nullptr;
+    }
+
+    if(m_procB){
+       m_procB->deleteLater();
+       m_procB = nullptr;
+    }
+
+    if(m_audioWorker){
+       m_audioWorker->deleteLater();
+       m_audioWorker = nullptr;
+    }
+
+
     //audio->stop();
     delete ui;
 }
@@ -99,13 +145,57 @@ void MainWindow::initSound()
 {
     m_audioThread = new QThread(this);
     m_audioWorker = new AudioWorker();
+
+    /*
+     * Setelah moveToThread(), slot milik m_audioWorker akan dieksekusi
+     * pada m_audioThread apabila dipanggil dengan QueuedConnection.
+     */
     m_audioWorker->moveToThread(m_audioThread);
 
-    connect(m_audioThread, &QThread::started,
-            m_audioWorker, &AudioWorker::init);   // <-- penting!
+    /*
+     * AudioWorker::init() dijalankan setelah audio thread mulai.
+     *
+     * Di dalam init(), QProcess dibuat. Karena dibuat dari audio thread,
+     * QProcess juga mempunyai thread affinity ke audio thread.
+     */
+    connect(m_audioThread,&QThread::started,
+            m_audioWorker,&AudioWorker::init);
 
-    connect(m_audioThread, &QThread::finished,
-            m_audioWorker, &QObject::deleteLater);
+    /*
+     * MainWindow -> AudioWorker.
+     *
+     * Explicit Qt::QueuedConnection memastikan soundPlay() tidak
+     * menjalankan enqueueSound() langsung di GUI thread.
+     */
+    connect(this,&MainWindow::requestSound,m_audioWorker,
+                &AudioWorker::enqueueSound,Qt::QueuedConnection);
+
+    /*
+     * AudioWorker -> MainWindow.
+     *
+     * Karena kedua object berada di thread berbeda, AutoConnection
+     * otomatis menjadi QueuedConnection.
+     */
+    connect(m_audioWorker,&AudioWorker::finishedPlaying,
+        this,&MainWindow::onSoundFinished);
+
+    connect(m_audioWorker,&AudioWorker::playbackFailed,
+                     this,&MainWindow::onSoundFailed);
+
+    /*
+     * Worker dihapus setelah audio thread selesai.
+     */
+    connect(m_audioThread,&QThread::finished,
+            m_audioWorker,&QObject::deleteLater);
+
+    /*
+     * Agar pointer tidak dipakai lagi setelah object dihancurkan.
+     */
+    connect(m_audioWorker,&QObject::destroyed,
+            this,[this]() {
+               m_audioWorker = nullptr;
+            }
+        );
 
     m_audioThread->start();
 }
@@ -1303,60 +1393,79 @@ void MainWindow::drawRealTimeVelocity2(QString velocity)
 }
 
 //---------------------------------------------------------------------------------------
-void MainWindow::soundPlay(int request, const QString &lang)
-{
+void MainWindow::soundPlay(int request,const QString &lang){
     QString requestName;
 
     switch (request) {
     case SOUND_FALL_OCCUR:
-        requestName = "SOUND_FALL_OCCUR";
+        requestName = QStringLiteral("SOUND_FALL_OCCUR");
         break;
 
     case SOUND_HELP:
-        requestName = "SOUND_HELP";
+        requestName = QStringLiteral("SOUND_HELP");
         break;
 
     case SOUND_IAM_OK:
-        requestName = "SOUND_IAM_OK";
+        requestName = QStringLiteral("SOUND_IAM_OK");
         break;
 
     case SOUND_RECORD:
-        requestName = "SOUND_RECORD";
+        requestName = QStringLiteral("SOUND_RECORD");
         break;
 
     case SOUND_WAITING:
-        requestName = "SOUND_WAITING";
+        requestName = QStringLiteral("SOUND_WAITING");
         break;
 
     case SOUND_HELPYOU:
-        requestName = "SOUND_HELPYOU";
+        requestName = QStringLiteral("SOUND_HELPYOU");
         break;
 
     case SOUND_LOGIN:
-        requestName = "SOUND_LOGIN";
+        requestName = QStringLiteral("SOUND_LOGIN");
         break;
 
     default:
-        qDebug() << "Unknown sound request:" << request;
+        qWarning() << "Unknown sound request:" << request;
         return;
     }
 
-    qDebug() << "Sound request received:" << requestName
+    /*
+     * requestToFile() hanya menerima:
+     * - sv
+     * - id
+     * - en
+     */
+    if (lang != "sv" &&
+        lang != "id" &&
+        lang != "en") {
+
+        qWarning() << "Unsupported audio language:" << lang;
+        return;
+    }
+
+    if (!m_audioThread ||
+        !m_audioThread->isRunning() ||
+        !m_audioWorker) {
+
+        qWarning() << "Audio worker is not running";
+        return;
+    }
+
+    qDebug() << "Sound request received:"
+             << requestName
              << "id:" << request
              << "lang:" << lang;
 
-    bool invoked = QMetaObject::invokeMethod(
-        m_audioWorker,
-        "enqueueSound",
-        Qt::QueuedConnection,
-        Q_ARG(int, request),
-        Q_ARG(QString, lang)
-        );
-
-    if (!invoked) {
-        qDebug() << "Failed to invoke AudioWorker::enqueueSound(int, QString)";
-    }
+    /*
+     * Non-blocking.
+     *
+     * Signal dimasukkan ke event queue milik m_audioThread.
+     * Fungsi soundPlay() langsung selesai tanpa menunggu audio.
+     */
+    emit requestSound(request, lang);
 }
+
 //---------------------------------------------------------------------------------------
 QString MainWindow::runCommand(const QString &cmd)
 {
@@ -3778,8 +3887,56 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
     return true;
 }
 
+//------------------------------------------------------------------------------
 void MainWindow::on_btnLogin_clicked()
 {
     soundPlay(SOUND_LOGIN,lang);
 }
 
+//------------------------------------------------------------------------------
+void MainWindow::onSoundFinished(int sentenceIndex,QString langIndex){
+    qDebug() << "Audio finished:"
+             << "sentenceIndex:" << sentenceIndex
+             << "language:" << langIndex;
+
+    switch (sentenceIndex){
+    case SOUND_FALL_OCCUR:
+        qDebug() << "SOUND_FALL_OCCUR selesai diputar";
+        break;
+
+    case SOUND_HELP:
+        qDebug() << "SOUND_HELP selesai diputar";
+        break;
+
+    case SOUND_IAM_OK:
+        qDebug() << "SOUND_IAM_OK selesai diputar";
+        break;
+
+    case SOUND_RECORD:
+        qDebug() << "SOUND_RECORD selesai diputar";
+        break;
+
+    case SOUND_WAITING:
+        qDebug() << "SOUND_WAITING selesai diputar";
+        break;
+
+    case SOUND_HELPYOU:
+        qDebug() << "SOUND_HELPYOU selesai diputar";
+        break;
+
+    case SOUND_LOGIN:
+        qDebug() << "SOUND_LOGIN selesai diputar";
+        break;
+
+    default:
+        break;
+    }
+}
+
+//-------------------------------------------------------------------
+void MainWindow::onSoundFailed(int sentenceIndex,QString langIndex,QString errorMessage){
+    qWarning() << "Audio playback failed:"
+               << "sentenceIndex:" << sentenceIndex
+               << "language:" << langIndex
+               << "error:" << errorMessage;
+}

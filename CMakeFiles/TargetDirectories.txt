@@ -1,0 +1,5 @@
+/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles/radarScan.dir
+/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles/edit_cache.dir
+/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles/rebuild_cache.dir
+/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles/radarScan_autogen_timestamp_deps.dir
+/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles/radarScan_autogen.dir

@@ -1,8 +1,8 @@
-# Install script for directory: /Volumes/DATA/qt6pro/radarScan/radarScan
+# Install script for directory: /Volumes/DATA/qt6pro/robot/radarScan
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/local")
+  set(CMAKE_INSTALL_PREFIX "/tmp")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,7 +40,7 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Volumes/DATA/qt6pro/radarScan/radarScan/install_local_manifest.txt"
+  file(WRITE "/Volumes/DATA/qt6pro/robot/radarScan/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/Volumes/DATA/qt6pro/radarScan/radarScan/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Volumes/DATA/qt6pro/robot/radarScan/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

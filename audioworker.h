@@ -3,11 +3,7 @@
 
 #include <QObject>
 #include <QQueue>
-//#include <QMediaPlayer>
-//#include <QAudioOutput>
-#include <QTimer>
 #include <QProcess>
-#include <QRegularExpression>
 
 #define SOUND_FALL_OCCUR 1
 #define SOUND_HELP       2
@@ -20,12 +16,13 @@
 struct SoundQueueItem
 {
     int sentenceIndex = -1;
-    QString langIndex = "sw";
+    QString langIndex = "sv";
 };
 
 class AudioWorker : public QObject
 {
     Q_OBJECT
+
 public:
     explicit AudioWorker(QObject *parent = nullptr);
     ~AudioWorker();
@@ -35,29 +32,40 @@ public slots:
     void enqueueSound(int sentenceIndex, QString langIndex);
 
 signals:
+    // Hanya di-emit jika paplay selesai dengan normal.
     void finishedPlaying(int sentenceIndex, QString langIndex);
+
+    // Opsional, agar kegagalan playback juga dapat diketahui.
+    void playbackFailed(
+        int sentenceIndex,
+        QString langIndex,
+        QString errorMessage
+        );
 
 private slots:
     void playNext();
-    void onPlaybackTimeout();
+
+    void onPlaybackFinished(
+        int exitCode,
+        QProcess::ExitStatus exitStatus
+        );
+
+    void onPlaybackError(QProcess::ProcessError error);
 
 private:
-    QString requestToFile(int sentenceIndex, QString langIndex);
-    QString getKtUsbAudioDevice();
-    void playWavFile(const QString &wavPath);
+    QString requestToFile(
+        int sentenceIndex,
+        const QString &langIndex
+        ) const;
 
-    //QQueue<int> m_queue;
-    //QMediaPlayer *m_player = nullptr;
-    //QAudioOutput *m_audioOutput = nullptr;
-    QTimer *m_timer = nullptr;
+    void playSoundFile(const QString &soundPath);
+    void resetCurrentSound();
 
-    //int m_currentRequestId = -1;   // <-- TARUH DI SINI
-
-    QString soundCardIdx;
+    QProcess *m_playerProcess = nullptr;
 
     QQueue<SoundQueueItem> m_queue;
+    SoundQueueItem m_currentSound;
 
-    SoundQueueItem m_currentSound;   // pengganti m_currentRequestId
     bool m_isPlaying = false;
 };
 
