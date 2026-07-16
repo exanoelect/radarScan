@@ -341,7 +341,6 @@ private slots:
     void on_btnPlayRec_clicked();
     void handleFinished();
 
-
     void on_btnRec_clicked();
     void on_btnPing_clicked();
 
@@ -361,6 +360,7 @@ private slots:
         QString langIndex,
         QString errorMessage
         );
+    void onUploadFailed();
 
 private:
     Ui::MainWindow *ui;

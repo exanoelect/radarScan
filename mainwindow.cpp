@@ -1425,6 +1425,10 @@ void MainWindow::soundPlay(int request,const QString &lang){
         requestName = QStringLiteral("SOUND_LOGIN");
         break;
 
+    case SOUND_UPLOAD_FAILED:
+        requestName = QStringLiteral("SOUND_UPLOAD_FAILED");
+        break;
+
     default:
         qWarning() << "Unknown sound request:" << request;
         return;
@@ -1436,34 +1440,52 @@ void MainWindow::soundPlay(int request,const QString &lang){
      * - id
      * - en
      */
-    if (lang != "sv" &&
-        lang != "id" &&
-        lang != "en") {
-
+    if ((lang != "sv") && (lang != "id") && (lang != "en")) {
         qWarning() << "Unsupported audio language:" << lang;
         return;
     }
 
-    if (!m_audioThread ||
-        !m_audioThread->isRunning() ||
-        !m_audioWorker) {
-
+    if (!m_audioThread || !m_audioThread->isRunning() || !m_audioWorker) {
         qWarning() << "Audio worker is not running";
         return;
     }
 
-    qDebug() << "Sound request received:"
-             << requestName
-             << "id:" << request
-             << "lang:" << lang;
+    qDebug() << "Sound request received:" << requestName << "id:" << request << "lang:" << lang;
+
+    //Emit event PLAYING_SOUND
+    if(client->isConnected()){
+       QJsonObject obj;
+       client->emitEventStringMsgJsoned("PLAYING_SOUND",obj);
+    }
 
     /*
-     * Non-blocking.
+     * Delay 500 ms secara non-blocking.
      *
-     * Signal dimasukkan ke event queue milik m_audioThread.
-     * Fungsi soundPlay() langsung selesai tanpa menunggu audio.
+     * Event loop Qt tetap berjalan.
+     * GUI tidak freeze dan thread tidak ditahan.
      */
-    emit requestSound(request, lang);
+    QTimer::singleShot(1000,this,[this, request, lang, requestName]() {
+            /*
+             * Periksa kembali karena selama delay 500 ms,
+             * thread atau worker mungkin sudah dihentikan.
+             */
+            if (!m_audioThread ||
+                !m_audioThread->isRunning() ||
+                !m_audioWorker) {
+
+                qWarning() << "Audio worker is no longer running:"
+                           << requestName;
+                return;
+            }
+
+            qDebug() << "Sending delayed sound request:"
+                     << requestName
+                     << "id:" << request
+                     << "lang:" << lang;
+
+            emit requestSound(request, lang);
+        }
+    );
 }
 
 //---------------------------------------------------------------------------------------
@@ -3899,6 +3921,11 @@ void MainWindow::onSoundFinished(int sentenceIndex,QString langIndex){
              << "sentenceIndex:" << sentenceIndex
              << "language:" << langIndex;
 
+    if(client->isConnected()){
+        QJsonObject obj;
+        client->emitEventStringMsgJsoned("SOUND_PLAYED",obj);
+    }
+
     switch (sentenceIndex){
     case SOUND_FALL_OCCUR:
         qDebug() << "SOUND_FALL_OCCUR selesai diputar";
@@ -3928,6 +3955,10 @@ void MainWindow::onSoundFinished(int sentenceIndex,QString langIndex){
         qDebug() << "SOUND_LOGIN selesai diputar";
         break;
 
+    case  SOUND_UPLOAD_FAILED:
+        qDebug() << "SOUND_UPLOAD_FAILED selesai diputar";
+        break;
+
     default:
         break;
     }
@@ -3939,4 +3970,10 @@ void MainWindow::onSoundFailed(int sentenceIndex,QString langIndex,QString error
                << "sentenceIndex:" << sentenceIndex
                << "language:" << langIndex
                << "error:" << errorMessage;
+}
+
+//-------------------------------------------------------------------
+void MainWindow::onUploadFailed()
+{
+
 }

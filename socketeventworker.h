@@ -39,6 +39,7 @@ signals:
     void modeWaiting();
     void modeTalking();
     void speechModuleReady();
+    void modeUploadFailed();
 
     //Language
     void langCurrent(QString lang); //LANGUAGE_CURRENT

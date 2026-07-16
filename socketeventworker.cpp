@@ -66,6 +66,8 @@ void SocketEventWorker::process()
             emit modeRecording();
         }else if(eventName == "SPEECH_MODULE_READY"){
             emit speechModuleReady();
+        }else if(eventName == "UPLOAD_FAILED"){
+            emit modeUploadFailed();
         }
 
 
@@ -252,12 +254,12 @@ void SocketEventWorker::process()
         }
 
         //Device Status health
-         else if (eventName == "DEVICE_STATUS_GET") {
-             qDebug() << "dev status get";
-             emit audioRadarInfoRequest();
-         }else if(eventName == "DEVICE_POWER_GET"){
-             qDebug() << "dev power get";
-             emit powerInfoRequest();
-         }
+        else if (eventName == "DEVICE_STATUS_GET") {
+            qDebug() << "dev status get";
+            emit audioRadarInfoRequest();
+        }else if(eventName == "DEVICE_POWER_GET"){
+            qDebug() << "dev power get";
+            emit powerInfoRequest();
+        }
     }
 }

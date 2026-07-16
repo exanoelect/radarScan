@@ -29,28 +29,14 @@ void AudioWorker::init()
 
     m_playerProcess = new QProcess(this);
 
-    connect(
-        m_playerProcess,
-        &QProcess::finished,
-        this,
-        &AudioWorker::onPlaybackFinished
-        );
-
-    connect(
-        m_playerProcess,
-        &QProcess::errorOccurred,
-        this,
-        &AudioWorker::onPlaybackError
-        );
+    connect(m_playerProcess,&QProcess::finished, this,&AudioWorker::onPlaybackFinished);
+    connect(m_playerProcess,&QProcess::errorOccurred, this,&AudioWorker::onPlaybackError);
 
     qDebug() << "AudioWorker initialized";
 }
 
 //---------------------------------------------------------------------------------------
-void AudioWorker::enqueueSound(
-    int sentenceIndex,
-    QString langIndex
-    )
+void AudioWorker::enqueueSound(int sentenceIndex,QString langIndex)
 {
     qDebug() << "enqueueSound received:"
              << "sentenceIndex:" << sentenceIndex
@@ -68,10 +54,7 @@ void AudioWorker::enqueueSound(
 }
 
 //---------------------------------------------------------------------------------------
-QString AudioWorker::requestToFile(
-    int sentenceIndex,
-    const QString &langIndex
-    ) const
+QString AudioWorker::requestToFile(int sentenceIndex,const QString &langIndex) const
 {
     QString langFolder;
 
@@ -112,6 +95,9 @@ QString AudioWorker::requestToFile(
     case SOUND_LOGIN:
         return basePath + QStringLiteral("/login.mp3");
 
+    case SOUND_UPLOAD_FAILED:
+        return basePath + QStringLiteral("/fail.wav");
+
     default:
         qWarning() << "Unknown sentence index:" << sentenceIndex;
         return QString();
@@ -119,6 +105,9 @@ QString AudioWorker::requestToFile(
 #else
     Q_UNUSED(sentenceIndex);
     return QString();
+#endif
+
+#ifdef Q_OS_MACOS
 #endif
 }
 
@@ -238,10 +227,7 @@ void AudioWorker::playNext()
 }
 
 //---------------------------------------------------------------------------------------
-void AudioWorker::onPlaybackFinished(
-    int exitCode,
-    QProcess::ExitStatus exitStatus
-    )
+void AudioWorker::onPlaybackFinished(int exitCode,QProcess::ExitStatus exitStatus)
 {
     if (!m_isPlaying) {
         return;
@@ -249,9 +235,7 @@ void AudioWorker::onPlaybackFinished(
 
     const SoundQueueItem finishedSound = m_currentSound;
 
-    const bool success =
-        exitStatus == QProcess::NormalExit &&
-        exitCode == 0;
+    const bool success = exitStatus == QProcess::NormalExit && exitCode == 0;
 
     if (success) {
         qDebug() << "Sound playback finished:"

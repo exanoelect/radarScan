@@ -12,6 +12,7 @@
 #define SOUND_WAITING    5
 #define SOUND_HELPYOU    6
 #define SOUND_LOGIN      7
+#define SOUND_UPLOAD_FAILED 8
 
 struct SoundQueueItem
 {
