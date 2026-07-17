@@ -62,6 +62,12 @@
 #include "AudioHealthChecker.h"
 #include <QRegularExpression>
 #include <functional>
+#include "bme280worker.h"
+#include "cputemperatureworker.h"
+
+class QThread;
+class Bme280Worker;
+class CpuTemperatureWorker;
 
 //#include <QMqttClient>
 
@@ -126,6 +132,12 @@ enum LED_STRIP_COLOR{
     //COLOR_BLUE_BLINKY
 };
 
+struct bme280Data{
+    double temperatureC;
+    double pressureHpa;
+    double humidityPercent;
+};
+
 namespace Ui {
 class MainWindow;
 }
@@ -155,6 +167,8 @@ signals:
      * Karena memakai Qt::QueuedConnection, pemanggilannya non-blocking.
      */
     void requestSound(int sentenceIndex, QString langIndex);
+    void requestBme280Read();
+    void requestCpuTemperature();
 
 private slots:
     void on_btnLoad_clicked();
@@ -353,6 +367,12 @@ private slots:
     void onAudioInfoReq();
     void on_btnLogin_clicked();
     void onRadarHeartBeatDetected();
+    void onBme280ReadingReady(double temperatureC, double pressureHpa,double humidityPercent);
+    void onBme280Error(const QString &message);
+
+    void onCpuTemperatureReady(double temperatureC);
+    void onCpuTemperatureError(const QString &message);
+
 
     //Sound
     void onSoundFinished(int sentenceIndex, QString langIndex);
@@ -514,6 +534,21 @@ private:
 
     //Language Info request
     void getLangCommand();
+
+    //BME280
+    QThread *m_bmeThread = nullptr;
+    Bme280Worker *m_bmeWorker = nullptr;
+    void initBME280();
+    bme280Data mbme280data;
+
+    void initCpuTemp();
+    void getCputemp();
+    double cpuTempC;
+    QThread *m_cpuTemperatureThread = nullptr;
+    CpuTemperatureWorker *m_cpuTemperatureWorker = nullptr;
+
+    void initUtility();
+
 };
 
 #endif // MAINWINDOW_H

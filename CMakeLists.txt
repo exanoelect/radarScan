@@ -56,6 +56,10 @@ set(SOURCES
     Pzem004Tv30Qt.cpp
     AudioHealthChecker.h
     AudioHealthChecker.cpp
+    bme280worker.cpp
+    bme280worker.h
+    cputemperatureworker.cpp
+    cputemperatureworker.h
 )
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

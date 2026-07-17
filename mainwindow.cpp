@@ -9,6 +9,11 @@
 #include "configmanager.h"
 #include <QtCore/QDateTime>
 #include <QtMqtt/QMqttClient>
+#include "bme280worker.h"
+
+#include <QDebug>
+#include <QThread>
+#include "cputemperatureworker.h"
 
 // Jika qcustomplot butuh include spesifik, sudah di header
 
@@ -24,61 +29,15 @@ MainWindow::MainWindow(QWidget *parent) :
     initGraphics();
     initSocketIO();
     initRadar();
-
-#ifdef Q_OS_LINUX
-    m_gpio = new gpio();
-    m_gpio->setupGPIO();
-    m_gpio->setColor(COLOR_WHITE);
-
-    m_volume = new volume();
-    m_brightness = new brightness();
-
-    m_utility = new utilities();
-
-    connect(m_utility, &utilities::wifiConnectResult,
-           this, &MainWindow::onWifiConnected);
-    connect(m_utility, &utilities::wifiRadioChanged,
-           this, &MainWindow::onWifiEnabled);
-    connect(m_utility, &utilities::wifiForgetResult,
-           this, &MainWindow::onWifiDeleted);
-    connect(m_utility, &utilities::wifiListReadyComplete,
-           this, &MainWindow::onWifiSSidListReadyComplete);
-    connect(m_utility, &utilities::wifiCurrentInfoReady,
-            this,&MainWindow::onCurrentWifiInfoReady);
-    connect(m_utility, &utilities::wifiDisconnectResult,
-            this, &MainWindow::onwifiDisconnectResult);
-
-    connect(m_utility,&utilities::wifiConnectProgress,
-            this,&MainWindow::onWifiProgress);
-    connect(m_utility,&utilities::wifiConnectResult,
-           this,&MainWindow::onWifiConnectFinished);
-
-
-    qDebug() << "Start monitoring";
-    systemdymon = new systemdmonitorqt("ssh.service", this);
-    connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
-        qDebug() << "SSH STARTED";
-    });
-
-    connect(systemdymon, &systemdmonitorqt::serviceStopped, [](){
-        qDebug() << "SSH STOPPED";
-    });
-
-    connect(systemdymon, &systemdmonitorqt::serviceFailed, [](){
-        qDebug() << "SSH FAILED";
-    });
-
-    qDebug() << "End Monitoring setup ";
-#endif
+    initBME280();
+    initCpuTemp();
+    initPzem();
+    initUtility();
 
     fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
 #endif
-
-    //PZEM
-    m_pzem = new Pzem004Tv30Qt(this);
-    initPzem();
 }
 
 //---------------------------------------------------------------------------------------
@@ -135,7 +94,15 @@ MainWindow::~MainWindow()
        m_audioWorker = nullptr;
     }
 
+    if (m_bmeThread) {
+        m_bmeThread->quit();
+        m_bmeThread->wait();
+    }
 
+    if(m_cpuTemperatureThread) {
+       m_cpuTemperatureThread->quit();
+       m_cpuTemperatureThread->wait();
+    }
     //audio->stop();
     delete ui;
 }
@@ -3289,6 +3256,8 @@ void MainWindow::initPzem()
                  });
                  */
 
+    m_pzem = new Pzem004Tv30Qt(this);
+
     connect(m_pzem, &Pzem004Tv30Qt::dataReady,
             this, &MainWindow::onPzemDataReadyComplete);
 
@@ -3375,6 +3344,107 @@ void MainWindow::getLangCommand()
 }
 
 //------------------------------------------------------------------------
+void MainWindow::initBME280()
+{
+    m_bmeThread = new QThread(this);
+
+    m_bmeWorker = new Bme280Worker(QStringLiteral("/dev/i2c-1"),0x76);
+    m_bmeWorker->moveToThread(m_bmeThread);
+
+    connect(this,&MainWindow::requestBme280Read,m_bmeWorker,&Bme280Worker::readSensor,Qt::QueuedConnection);
+    connect(m_bmeWorker,&Bme280Worker::readingReady,this,&MainWindow::onBme280ReadingReady);
+    connect(m_bmeWorker,&Bme280Worker::errorOccurred,this,&MainWindow::onBme280Error);
+    connect(m_bmeWorker,&Bme280Worker::readFinished,this,[this]() {});
+    connect(m_bmeThread,&QThread::finished,m_bmeWorker,&QObject::deleteLater);
+
+    m_bmeThread->start();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::initCpuTemp()
+{
+    //init cpu temp
+    m_cpuTemperatureThread = new QThread(this);
+    m_cpuTemperatureWorker = new CpuTemperatureWorker();
+
+    m_cpuTemperatureWorker->moveToThread(m_cpuTemperatureThread);
+
+    connect(this,&MainWindow::requestCpuTemperature,m_cpuTemperatureWorker,
+        &CpuTemperatureWorker::readTemperature,Qt::QueuedConnection);
+    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::temperatureReady,
+        this,&MainWindow::onCpuTemperatureReady);
+    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::errorOccurred,
+        this,&MainWindow::onCpuTemperatureError);
+    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::readFinished,
+        this,[this]() {
+           //ui->btngetcputemp->setEnabled(true);
+           qDebug() << "CPU ready finished ";
+        }
+    );
+
+    connect(m_cpuTemperatureThread,&QThread::finished,
+            m_cpuTemperatureWorker,&QObject::deleteLater);
+
+    m_cpuTemperatureThread->start();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::getCputemp()
+{
+    emit requestCpuTemperature();
+}
+
+//------------------------------------------------------------------------
+void MainWindow::initUtility()
+{
+#ifdef Q_OS_LINUX
+    m_gpio = new gpio();
+    m_gpio->setupGPIO();
+    m_gpio->setColor(COLOR_WHITE);
+
+    m_volume = new volume();
+    m_brightness = new brightness();
+
+    m_utility = new utilities();
+
+    connect(m_utility, &utilities::wifiConnectResult,
+           this, &MainWindow::onWifiConnected);
+    connect(m_utility, &utilities::wifiRadioChanged,
+           this, &MainWindow::onWifiEnabled);
+    connect(m_utility, &utilities::wifiForgetResult,
+           this, &MainWindow::onWifiDeleted);
+    connect(m_utility, &utilities::wifiListReadyComplete,
+           this, &MainWindow::onWifiSSidListReadyComplete);
+    connect(m_utility, &utilities::wifiCurrentInfoReady,
+            this,&MainWindow::onCurrentWifiInfoReady);
+    connect(m_utility, &utilities::wifiDisconnectResult,
+            this, &MainWindow::onwifiDisconnectResult);
+
+    connect(m_utility,&utilities::wifiConnectProgress,
+            this,&MainWindow::onWifiProgress);
+    connect(m_utility,&utilities::wifiConnectResult,
+           this,&MainWindow::onWifiConnectFinished);
+
+
+    qDebug() << "Start monitoring";
+    systemdymon = new systemdmonitorqt("ssh.service", this);
+    connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
+        qDebug() << "SSH STARTED";
+    });
+
+    connect(systemdymon, &systemdmonitorqt::serviceStopped, [](){
+        qDebug() << "SSH STOPPED";
+    });
+
+    connect(systemdymon, &systemdmonitorqt::serviceFailed, [](){
+        qDebug() << "SSH FAILED";
+    });
+
+    qDebug() << "End Monitoring setup ";
+#endif
+}
+
+//------------------------------------------------------------------------
 void MainWindow::on_btnRec_clicked()
 {
 
@@ -3408,6 +3478,11 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
     //Proses lebih lanjut, ke json, kirim ke socketio
     if(client->isConnected()){
        QJsonObject obj;
+       obj["temperature"] = mbme280data.temperatureC;
+       obj["pressure"] = mbme280data.pressureHpa;
+       obj["humidity"] = mbme280data.humidityPercent;
+       obj["cpu_temperature"] = cpuTempC;
+
        obj["voltage"] = data.voltage;
        obj["current"] = data.current;
        obj["power_cons"] = data.power;
@@ -3416,13 +3491,24 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
        obj["energy"] = data.energy;
 
        client->emitEventStringMsgJsoned("DEVICE_POWER_INFO",obj);
+
+       //clear
+       mbme280data.temperatureC = 0;
+       mbme280data.pressureHpa = 0;
+       mbme280data.humidityPercent = 0;
+       cpuTempC = 0;
     }
 }
 
 //------------------------------------------------------------------------
 void MainWindow::onPowerInfoReq()
 {
-    m_pzem->requestReadAll();
+    emit requestBme280Read();
+    emit requestCpuTemperature();
+
+    QTimer::singleShot(1000, this, [this]() {
+        m_pzem->requestReadAll();
+    });
 }
 
 //------------------------------------------------------------------------
@@ -3955,6 +4041,31 @@ void MainWindow::onRadarHeartBeatDetected()
 }
 
 //------------------------------------------------------------------------------
+void MainWindow::onBme280ReadingReady(double temperatureC, double pressureHpa, double humidityPercent)
+{
+    qDebug().noquote() << QStringLiteral(
+           "BME280 | Temperature: %1 °C | "
+           "Pressure: %2 hPa | "
+           "Humidity: %3 %RH"
+           )
+            .arg(temperatureC,0,'f',2)
+            .arg(pressureHpa,0,'f',2)
+            .arg(humidityPercent,0,'f',2);
+
+    mbme280data.temperatureC = temperatureC;
+    mbme280data.pressureHpa = pressureHpa;
+    mbme280data.humidityPercent = humidityPercent;
+}
+
+//------------------------------------------------------------------------------
+void MainWindow::onBme280Error(const QString &message)
+{
+    qWarning().noquote()
+    << "BME280 error:"
+    << message;
+}
+
+//------------------------------------------------------------------------------
 void MainWindow::onSoundFinished(int sentenceIndex,QString langIndex){
     qDebug() << "Audio finished:"
              << "sentenceIndex:" << sentenceIndex
@@ -4015,4 +4126,22 @@ void MainWindow::onSoundFailed(int sentenceIndex,QString langIndex,QString error
 void MainWindow::onUploadFailed()
 {
     soundPlay(SOUND_UPLOAD_FAILED,lang);
+}
+
+//-------------------------------------------------------------------
+void MainWindow::onCpuTemperatureReady(double temperatureC)
+{
+    qDebug().noquote() << QStringLiteral("CPU Temperature: %1 °C")
+               .arg(temperatureC, 0, 'f', 2);
+    cpuTempC = temperatureC;
+    //ui->editLog3->insertPlainText("Temperature " + QString::number(temperatureC,'f',2) + " °C\r\n");
+
+}
+
+//-------------------------------------------------------------------
+void MainWindow::onCpuTemperatureError(const QString &message)
+{
+    qWarning().noquote()
+        << "CPU temperature error:"
+        << message;
 }
