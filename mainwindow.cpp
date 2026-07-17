@@ -228,6 +228,8 @@ void MainWindow::initSocketIO()
             this, &MainWindow::onWaiting);
     connect(m_worker, &SocketEventWorker::modeRecording,
             this, &MainWindow::onRecording);
+    connect(m_worker, &SocketEventWorker::modeUploadFailed,
+            this, &MainWindow::onUploadFailed);
     connect(m_worker, &SocketEventWorker::volumeGetRequested,
             this, &MainWindow::onVolumeGetRequested);
     connect(m_worker, &SocketEventWorker::volumeSetRequested,
@@ -3943,7 +3945,7 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
 //------------------------------------------------------------------------------
 void MainWindow::on_btnLogin_clicked()
 {
-    soundPlay(SOUND_LOGIN,lang);
+    soundPlay(SOUND_UPLOAD_FAILED,lang);
 }
 
 //------------------------------------------------------------------------------
@@ -4012,5 +4014,5 @@ void MainWindow::onSoundFailed(int sentenceIndex,QString langIndex,QString error
 //-------------------------------------------------------------------
 void MainWindow::onUploadFailed()
 {
-
+    soundPlay(SOUND_UPLOAD_FAILED,lang);
 }

@@ -70,7 +70,6 @@ void SocketEventWorker::process()
             emit modeUploadFailed();
         }
 
-
         //Brightness, Volume
         else if (eventName == "VOLUME_SET_REQUEST") {
             emit volumeGetRequested();
