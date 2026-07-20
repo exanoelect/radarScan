@@ -275,10 +275,38 @@ CMakeFiles/radarScan.dir/AudioHealthChecker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/radarScan.dir/AudioHealthChecker.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/DATA/qt6pro/robot/radarScan/AudioHealthChecker.cpp -o CMakeFiles/radarScan.dir/AudioHealthChecker.cpp.s
 
+CMakeFiles/radarScan.dir/bme280worker.cpp.o: CMakeFiles/radarScan.dir/flags.make
+CMakeFiles/radarScan.dir/bme280worker.cpp.o: bme280worker.cpp
+CMakeFiles/radarScan.dir/bme280worker.cpp.o: CMakeFiles/radarScan.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/radarScan.dir/bme280worker.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/radarScan.dir/bme280worker.cpp.o -MF CMakeFiles/radarScan.dir/bme280worker.cpp.o.d -o CMakeFiles/radarScan.dir/bme280worker.cpp.o -c /Volumes/DATA/qt6pro/robot/radarScan/bme280worker.cpp
+
+CMakeFiles/radarScan.dir/bme280worker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/radarScan.dir/bme280worker.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/DATA/qt6pro/robot/radarScan/bme280worker.cpp > CMakeFiles/radarScan.dir/bme280worker.cpp.i
+
+CMakeFiles/radarScan.dir/bme280worker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/radarScan.dir/bme280worker.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/DATA/qt6pro/robot/radarScan/bme280worker.cpp -o CMakeFiles/radarScan.dir/bme280worker.cpp.s
+
+CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o: CMakeFiles/radarScan.dir/flags.make
+CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o: cputemperatureworker.cpp
+CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o: CMakeFiles/radarScan.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o -MF CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o.d -o CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o -c /Volumes/DATA/qt6pro/robot/radarScan/cputemperatureworker.cpp
+
+CMakeFiles/radarScan.dir/cputemperatureworker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/radarScan.dir/cputemperatureworker.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Volumes/DATA/qt6pro/robot/radarScan/cputemperatureworker.cpp > CMakeFiles/radarScan.dir/cputemperatureworker.cpp.i
+
+CMakeFiles/radarScan.dir/cputemperatureworker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/radarScan.dir/cputemperatureworker.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Volumes/DATA/qt6pro/robot/radarScan/cputemperatureworker.cpp -o CMakeFiles/radarScan.dir/cputemperatureworker.cpp.s
+
 CMakeFiles/radarScan.dir/gpio.cpp.o: CMakeFiles/radarScan.dir/flags.make
 CMakeFiles/radarScan.dir/gpio.cpp.o: gpio.cpp
 CMakeFiles/radarScan.dir/gpio.cpp.o: CMakeFiles/radarScan.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/radarScan.dir/gpio.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/radarScan.dir/gpio.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/radarScan.dir/gpio.cpp.o -MF CMakeFiles/radarScan.dir/gpio.cpp.o.d -o CMakeFiles/radarScan.dir/gpio.cpp.o -c /Volumes/DATA/qt6pro/robot/radarScan/gpio.cpp
 
 CMakeFiles/radarScan.dir/gpio.cpp.i: cmake_force
@@ -292,7 +320,7 @@ CMakeFiles/radarScan.dir/gpio.cpp.s: cmake_force
 CMakeFiles/radarScan.dir/volume.cpp.o: CMakeFiles/radarScan.dir/flags.make
 CMakeFiles/radarScan.dir/volume.cpp.o: volume.cpp
 CMakeFiles/radarScan.dir/volume.cpp.o: CMakeFiles/radarScan.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/radarScan.dir/volume.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/radarScan.dir/volume.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/radarScan.dir/volume.cpp.o -MF CMakeFiles/radarScan.dir/volume.cpp.o.d -o CMakeFiles/radarScan.dir/volume.cpp.o -c /Volumes/DATA/qt6pro/robot/radarScan/volume.cpp
 
 CMakeFiles/radarScan.dir/volume.cpp.i: cmake_force
@@ -306,7 +334,7 @@ CMakeFiles/radarScan.dir/volume.cpp.s: cmake_force
 CMakeFiles/radarScan.dir/brightness.cpp.o: CMakeFiles/radarScan.dir/flags.make
 CMakeFiles/radarScan.dir/brightness.cpp.o: brightness.cpp
 CMakeFiles/radarScan.dir/brightness.cpp.o: CMakeFiles/radarScan.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/radarScan.dir/brightness.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/radarScan.dir/brightness.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/radarScan.dir/brightness.cpp.o -MF CMakeFiles/radarScan.dir/brightness.cpp.o.d -o CMakeFiles/radarScan.dir/brightness.cpp.o -c /Volumes/DATA/qt6pro/robot/radarScan/brightness.cpp
 
 CMakeFiles/radarScan.dir/brightness.cpp.i: cmake_force
@@ -333,6 +361,8 @@ radarScan_OBJECTS = \
 "CMakeFiles/radarScan.dir/systemdmonitorqt.cpp.o" \
 "CMakeFiles/radarScan.dir/Pzem004Tv30Qt.cpp.o" \
 "CMakeFiles/radarScan.dir/AudioHealthChecker.cpp.o" \
+"CMakeFiles/radarScan.dir/bme280worker.cpp.o" \
+"CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o" \
 "CMakeFiles/radarScan.dir/gpio.cpp.o" \
 "CMakeFiles/radarScan.dir/volume.cpp.o" \
 "CMakeFiles/radarScan.dir/brightness.cpp.o"
@@ -354,6 +384,8 @@ radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/utilities.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/systemdmonitorqt.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/Pzem004Tv30Qt.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/AudioHealthChecker.cpp.o
+radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/bme280worker.cpp.o
+radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/gpio.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/volume.cpp.o
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/brightness.cpp.o
@@ -367,7 +399,7 @@ radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtWebSoc
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork
 radarScan.app/Contents/MacOS/radarScan: /Users/user/Qt/6.11.1/macos/lib/QtCore.framework/Versions/A/QtCore
 radarScan.app/Contents/MacOS/radarScan: CMakeFiles/radarScan.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable radarScan.app/Contents/MacOS/radarScan"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Volumes/DATA/qt6pro/robot/radarScan/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable radarScan.app/Contents/MacOS/radarScan"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/radarScan.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

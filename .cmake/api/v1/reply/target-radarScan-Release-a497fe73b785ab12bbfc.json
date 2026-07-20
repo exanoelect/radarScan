@@ -47,7 +47,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 73,
+				"line" : 77,
 				"parent" : 0
 			},
 			{
@@ -71,7 +71,7 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 108,
+				"line" : 112,
 				"parent" : 0
 			},
 			{
@@ -219,13 +219,13 @@
 			{
 				"command" : 11,
 				"file" : 1,
-				"line" : 104,
+				"line" : 108,
 				"parent" : 0
 			},
 			{
 				"command" : 12,
 				"file" : 1,
-				"line" : 82,
+				"line" : 86,
 				"parent" : 0
 			}
 		]
@@ -452,20 +452,22 @@
 				22,
 				24,
 				26,
+				27,
 				29,
-				31,
-				33
+				33,
+				35,
+				37
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "radarScan::@6890427a1f51a3e7e1df",
@@ -613,11 +615,11 @@
 			"id" : "Qt6::uic::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 0,
-			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
+			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "radarScan_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "radarScan_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"paths" : 
@@ -632,8 +634,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				34,
-				35
+				38,
+				39
 			]
 		},
 		{
@@ -653,9 +655,11 @@
 				22,
 				24,
 				26,
+				27,
 				29,
-				31,
-				33
+				33,
+				35,
+				37
 			]
 		},
 		{
@@ -674,10 +678,12 @@
 				21,
 				23,
 				25,
-				27,
 				28,
 				30,
-				32
+				31,
+				32,
+				34,
+				36
 			]
 		},
 		{
@@ -691,7 +697,7 @@
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				36
+				40
 			]
 		}
 	],
@@ -846,6 +852,28 @@
 			"compileGroupIndex" : 0,
 			"path" : "AudioHealthChecker.cpp",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "bme280worker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "bme280worker.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "cputemperatureworker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "cputemperatureworker.h",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 4,

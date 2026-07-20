@@ -227,6 +227,30 @@ audioworker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/audioworker.cpp.s
 .PHONY : audioworker.cpp.s
 
+bme280worker.o: bme280worker.cpp.o
+.PHONY : bme280worker.o
+
+# target to build an object file
+bme280worker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/bme280worker.cpp.o
+.PHONY : bme280worker.cpp.o
+
+bme280worker.i: bme280worker.cpp.i
+.PHONY : bme280worker.i
+
+# target to preprocess a source file
+bme280worker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/bme280worker.cpp.i
+.PHONY : bme280worker.cpp.i
+
+bme280worker.s: bme280worker.cpp.s
+.PHONY : bme280worker.s
+
+# target to generate assembly for a file
+bme280worker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/bme280worker.cpp.s
+.PHONY : bme280worker.cpp.s
+
 brightness.o: brightness.cpp.o
 .PHONY : brightness.o
 
@@ -274,6 +298,30 @@ configmanager.s: configmanager.cpp.s
 configmanager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/configmanager.cpp.s
 .PHONY : configmanager.cpp.s
+
+cputemperatureworker.o: cputemperatureworker.cpp.o
+.PHONY : cputemperatureworker.o
+
+# target to build an object file
+cputemperatureworker.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/cputemperatureworker.cpp.o
+.PHONY : cputemperatureworker.cpp.o
+
+cputemperatureworker.i: cputemperatureworker.cpp.i
+.PHONY : cputemperatureworker.i
+
+# target to preprocess a source file
+cputemperatureworker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/cputemperatureworker.cpp.i
+.PHONY : cputemperatureworker.cpp.i
+
+cputemperatureworker.s: cputemperatureworker.cpp.s
+.PHONY : cputemperatureworker.s
+
+# target to generate assembly for a file
+cputemperatureworker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/radarScan.dir/build.make CMakeFiles/radarScan.dir/cputemperatureworker.cpp.s
+.PHONY : cputemperatureworker.cpp.s
 
 gpio.o: gpio.cpp.o
 .PHONY : gpio.o
@@ -583,12 +631,18 @@ help:
 	@echo "... audioworker.o"
 	@echo "... audioworker.i"
 	@echo "... audioworker.s"
+	@echo "... bme280worker.o"
+	@echo "... bme280worker.i"
+	@echo "... bme280worker.s"
 	@echo "... brightness.o"
 	@echo "... brightness.i"
 	@echo "... brightness.s"
 	@echo "... configmanager.o"
 	@echo "... configmanager.i"
 	@echo "... configmanager.s"
+	@echo "... cputemperatureworker.o"
+	@echo "... cputemperatureworker.i"
+	@echo "... cputemperatureworker.s"
 	@echo "... gpio.o"
 	@echo "... gpio.i"
 	@echo "... gpio.s"

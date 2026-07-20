@@ -1,25 +1,28 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QtMultimedia/QSoundEffect>
-#include <QUrl>
-#include <QTime>
-#include <QElapsedTimer>
-#include <QSharedPointer>
-#include "configmanager.h"
-#include <QtCore/QDateTime>
-#include <QtMqtt/QMqttClient>
 #include "bme280worker.h"
+#include "configmanager.h"
+#include "cputemperatureworker.h"
 
 #include <QDebug>
+#include <QElapsedTimer>
+#include <QSharedPointer>
 #include <QThread>
-#include "cputemperatureworker.h"
+#include <QTime>
+#include <QUrl>
+#include <QtCore/QDateTime>
+#include <QtMqtt/QMqttClient>
+#include <QtMultimedia/QSoundEffect>
 
 // Jika qcustomplot butuh include spesifik, sudah di header
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+// =============================================================================
+// Application lifecycle
+// =============================================================================
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -40,11 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 MainWindow::~MainWindow()
 {
     if (m_serial) {
-        if (m_serial->isOpen()) m_serial->close();
+        if (m_serial->isOpen())
+            m_serial->close();
         m_serial->deleteLater();
         m_serial = nullptr;
     }
@@ -54,44 +58,44 @@ MainWindow::~MainWindow()
         m_audioThread->wait();
     }
 
-    if(m_pzem){
+    if (m_pzem) {
         m_pzem->deleteLater();
         m_pzem = nullptr;
     }
 
-    if(client){
+    if (client) {
         client->deleteLater();
-        client =  nullptr;
+        client = nullptr;
     }
 
-    if(m_worker){
-       m_worker->deleteLater();
-       m_worker = nullptr;
+    if (m_worker) {
+        m_worker->deleteLater();
+        m_worker = nullptr;
     }
 
-    if(m_threadA){
-       m_threadA->deleteLater();
-       m_threadA = nullptr;
+    if (m_threadA) {
+        m_threadA->deleteLater();
+        m_threadA = nullptr;
     }
 
-    if(m_threadB){
-       m_threadB->deleteLater();
-       m_threadB = nullptr;
+    if (m_threadB) {
+        m_threadB->deleteLater();
+        m_threadB = nullptr;
     }
 
-    if(m_procA){
-       m_procA->deleteLater();
-       m_procA = nullptr;
+    if (m_procA) {
+        m_procA->deleteLater();
+        m_procA = nullptr;
     }
 
-    if(m_procB){
-       m_procB->deleteLater();
-       m_procB = nullptr;
+    if (m_procB) {
+        m_procB->deleteLater();
+        m_procB = nullptr;
     }
 
-    if(m_audioWorker){
-       m_audioWorker->deleteLater();
-       m_audioWorker = nullptr;
+    if (m_audioWorker) {
+        m_audioWorker->deleteLater();
+        m_audioWorker = nullptr;
     }
 
     if (m_bmeThread) {
@@ -99,15 +103,17 @@ MainWindow::~MainWindow()
         m_bmeThread->wait();
     }
 
-    if(m_cpuTemperatureThread) {
-       m_cpuTemperatureThread->quit();
-       m_cpuTemperatureThread->wait();
+    if (m_cpuTemperatureThread) {
+        m_cpuTemperatureThread->quit();
+        m_cpuTemperatureThread->wait();
     }
-    //audio->stop();
+    // audio->stop();
     delete ui;
 }
 
-//---------------------------------------------------------------------------------------
+// =============================================================================
+// Audio playback worker
+// =============================================================================
 void MainWindow::initSound()
 {
     m_audioThread = new QThread(this);
@@ -125,8 +131,7 @@ void MainWindow::initSound()
      * Di dalam init(), QProcess dibuat. Karena dibuat dari audio thread,
      * QProcess juga mempunyai thread affinity ke audio thread.
      */
-    connect(m_audioThread,&QThread::started,
-            m_audioWorker,&AudioWorker::init);
+    connect(m_audioThread, &QThread::started, m_audioWorker, &AudioWorker::init);
 
     /*
      * MainWindow -> AudioWorker.
@@ -134,8 +139,7 @@ void MainWindow::initSound()
      * Explicit Qt::QueuedConnection memastikan soundPlay() tidak
      * menjalankan enqueueSound() langsung di GUI thread.
      */
-    connect(this,&MainWindow::requestSound,m_audioWorker,
-                &AudioWorker::enqueueSound,Qt::QueuedConnection);
+    connect(this, &MainWindow::requestSound, m_audioWorker, &AudioWorker::enqueueSound, Qt::QueuedConnection);
 
     /*
      * AudioWorker -> MainWindow.
@@ -143,169 +147,152 @@ void MainWindow::initSound()
      * Karena kedua object berada di thread berbeda, AutoConnection
      * otomatis menjadi QueuedConnection.
      */
-    connect(m_audioWorker,&AudioWorker::finishedPlaying,
-        this,&MainWindow::onSoundFinished);
+    connect(m_audioWorker, &AudioWorker::finishedPlaying, this, &MainWindow::onSoundFinished);
 
-    connect(m_audioWorker,&AudioWorker::playbackFailed,
-                     this,&MainWindow::onSoundFailed);
+    connect(m_audioWorker, &AudioWorker::playbackFailed, this, &MainWindow::onSoundFailed);
 
     /*
      * Worker dihapus setelah audio thread selesai.
      */
-    connect(m_audioThread,&QThread::finished,
-            m_audioWorker,&QObject::deleteLater);
+    connect(m_audioThread, &QThread::finished, m_audioWorker, &QObject::deleteLater);
 
     /*
      * Agar pointer tidak dipakai lagi setelah object dihancurkan.
      */
-    connect(m_audioWorker,&QObject::destroyed,
-            this,[this]() {
-               m_audioWorker = nullptr;
-            }
-        );
+    connect(m_audioWorker, &QObject::destroyed, this, [this]() {
+        m_audioWorker = nullptr;
+    });
 
     m_audioThread->start();
 }
 
-//---------------------------------------------------------------------------------------
+// =============================================================================
+// Socket.IO and event worker
+// =============================================================================
 void MainWindow::initSocketIO()
 {
     client = new SocketIOClient();
 
-    connect(client, &SocketIOClient::eventReceived,
-            this,   &MainWindow::onSocketEventReceived);
+    connect(client, &SocketIOClient::eventReceived, this, &MainWindow::onSocketEventReceived);
 
-    //connect(client, &SocketIOClient::deviceready,
-    //        this,   &SocketIOClient:sendDeviceReady);
+    // connect(client, &SocketIOClient::deviceready,
+    //         this,   &SocketIOClient:sendDeviceReady);
 
     // Worker setup
     m_workerThread = new QThread(this);
     m_worker = new SocketEventWorker();
     m_worker->moveToThread(m_workerThread);
 
-    connect(m_workerThread, &QThread::started,
-            m_worker, &SocketEventWorker::process);
+    connect(m_workerThread, &QThread::started, m_worker, &SocketEventWorker::process);
 
     // Hubungkan signal worker ke aksi UI / device
-    connect(m_worker, &SocketEventWorker::modeListen,
-            this, &MainWindow::onListenStateChanged);
-    connect(m_worker, &SocketEventWorker::modeTalking,
-            this, &MainWindow::onTalkingStateChanged);
-    connect(m_worker, &SocketEventWorker::modeWaiting,
-            this, &MainWindow::onWaiting);
-    connect(m_worker, &SocketEventWorker::modeRecording,
-            this, &MainWindow::onRecording);
-    connect(m_worker, &SocketEventWorker::modeUploadFailed,
-            this, &MainWindow::onUploadFailed);
-    connect(m_worker, &SocketEventWorker::volumeGetRequested,
-            this, &MainWindow::onVolumeGetRequested);
-    connect(m_worker, &SocketEventWorker::volumeSetRequested,
-            this, &MainWindow::onVolumeSetRequested);
-    connect(m_worker, &SocketEventWorker::pingDeviceUp,
-            this, &MainWindow::onPingDeviceUpRequested);
-    connect(m_worker, &SocketEventWorker::modeSleep,
-            this, &MainWindow::onSleepRequested);
-    connect(m_worker, &SocketEventWorker::modeWakeUp,
-            this, &MainWindow::onWakeUpRequested);
-    connect(m_worker, &SocketEventWorker::speechModuleReady,
-            this, &MainWindow::onSpeechModuleReady);
-    connect(m_worker, &SocketEventWorker::brightnessSetRequested,
-            this, &MainWindow::onBrightnessSetRequested);
+    connect(m_worker, &SocketEventWorker::modeListen, this, &MainWindow::onListenStateChanged);
+    connect(m_worker, &SocketEventWorker::modeTalking, this, &MainWindow::onTalkingStateChanged);
+    connect(m_worker, &SocketEventWorker::modeWaiting, this, &MainWindow::onWaiting);
+    connect(m_worker, &SocketEventWorker::modeRecording, this, &MainWindow::onRecording);
+    connect(m_worker, &SocketEventWorker::modeUploadFailed, this, &MainWindow::onUploadFailed);
+    connect(m_worker, &SocketEventWorker::volumeGetRequested, this, &MainWindow::onVolumeGetRequested);
+    connect(m_worker, &SocketEventWorker::volumeSetRequested, this, &MainWindow::onVolumeSetRequested);
+    connect(m_worker, &SocketEventWorker::pingDeviceUp, this, &MainWindow::onPingDeviceUpRequested);
+    connect(m_worker, &SocketEventWorker::modeSleep, this, &MainWindow::onSleepRequested);
+    connect(m_worker, &SocketEventWorker::modeWakeUp, this, &MainWindow::onWakeUpRequested);
+    connect(m_worker, &SocketEventWorker::speechModuleReady, this, &MainWindow::onSpeechModuleReady);
+    connect(
+        m_worker, &SocketEventWorker::brightnessSetRequested, this, &MainWindow::onBrightnessSetRequested);
 
-    //Add on
-    connect(m_worker, &SocketEventWorker::volumeIncreaseReq,
-            this, &MainWindow::onVolumeIncreaseReq);
-    connect(m_worker, &SocketEventWorker::volumeDecreaseReq,
-            this, &MainWindow::onVolumeDecreaseReq);
-    connect(m_worker, &SocketEventWorker::brightnessIncreaseReq,
-            this, &MainWindow::onBrihtnessIncreaseReq);
-    connect(m_worker, &SocketEventWorker::brightnessDecreaseReq,
-            this, &MainWindow::onBrightnessDecreaseReq);
-    connect(m_worker, &SocketEventWorker::brightnessGetRequested,
-            this, &MainWindow::onBrightnessGetRequested);
+    // Add on
+    connect(m_worker, &SocketEventWorker::volumeIncreaseReq, this, &MainWindow::onVolumeIncreaseReq);
+    connect(m_worker, &SocketEventWorker::volumeDecreaseReq, this, &MainWindow::onVolumeDecreaseReq);
+    connect(m_worker, &SocketEventWorker::brightnessIncreaseReq, this, &MainWindow::onBrihtnessIncreaseReq);
+    connect(m_worker, &SocketEventWorker::brightnessDecreaseReq, this, &MainWindow::onBrightnessDecreaseReq);
+    connect(
+        m_worker, &SocketEventWorker::brightnessGetRequested, this, &MainWindow::onBrightnessGetRequested);
 
-    //Fall
-    connect(m_worker, &SocketEventWorker::incidentHelp,
-                        this,&MainWindow::onIncidentIamnotOK);
-    connect(m_worker, &SocketEventWorker::incidentFallIamOK,
-                        this,&MainWindow::onIncidentIamOK);
-    connect(m_worker, &SocketEventWorker::incidentFallEventDetected,
-                      this,&::MainWindow::onIncidentFallEventDetected);
-    connect(m_worker, &SocketEventWorker::incidentAckFallEventDetected,
-                        this,&MainWindow::onIncidentAckFallEventDetected);
-    connect(m_worker, &SocketEventWorker::incidentFallWakeUpByFallDetection,
-                        this,&MainWindow::onIncidentFallWakeUpByFallDetection);
-    connect(m_worker, &SocketEventWorker::incidentFallNoResponse,
-                        this,&MainWindow::onIncidentFallNoResponse);
-    connect(m_worker, &SocketEventWorker::incidentFallHelpEventDetected,
-                        this,&MainWindow::onIncidentFallHelpEventDetected);
-    connect(m_worker, &SocketEventWorker::incidentFallOKEventDetected,
-                        this,&MainWindow::onIncidentFallOKEventDetected);
-    connect(m_worker, &SocketEventWorker::incidentFallCompleted,
-                        this,&MainWindow::onIncidentFallCompleted);
+    // Fall
+    connect(m_worker, &SocketEventWorker::incidentHelp, this, &MainWindow::onIncidentIamnotOK);
+    connect(m_worker, &SocketEventWorker::incidentFallIamOK, this, &MainWindow::onIncidentIamOK);
+    connect(m_worker,
+            &SocketEventWorker::incidentFallEventDetected,
+            this,
+            &::MainWindow::onIncidentFallEventDetected);
+    connect(m_worker,
+            &SocketEventWorker::incidentAckFallEventDetected,
+            this,
+            &MainWindow::onIncidentAckFallEventDetected);
+    connect(m_worker,
+            &SocketEventWorker::incidentFallWakeUpByFallDetection,
+            this,
+            &MainWindow::onIncidentFallWakeUpByFallDetection);
+    connect(
+        m_worker, &SocketEventWorker::incidentFallNoResponse, this, &MainWindow::onIncidentFallNoResponse);
+    connect(m_worker,
+            &SocketEventWorker::incidentFallHelpEventDetected,
+            this,
+            &MainWindow::onIncidentFallHelpEventDetected);
+    connect(m_worker,
+            &SocketEventWorker::incidentFallOKEventDetected,
+            this,
+            &MainWindow::onIncidentFallOKEventDetected);
+    connect(m_worker, &SocketEventWorker::incidentFallCompleted, this, &MainWindow::onIncidentFallCompleted);
 
-    //Get Language current
-    connect(m_worker, &SocketEventWorker::langCurrent,
-            this,&MainWindow::onlangCurrent);
+    // Get Language current
+    connect(m_worker, &SocketEventWorker::langCurrent, this, &MainWindow::onlangCurrent);
 
-    //Wifi
+    // Wifi
 #ifdef Q_OS_LINUX
-    connect(m_worker, &SocketEventWorker::wifiOn,
-            this, &MainWindow::onWifiOnRequest);    //Async
-    connect(m_worker, &SocketEventWorker::wifiOff,
-            this, &MainWindow::onWifiOffRequest);   //Async
-    connect(m_worker, &SocketEventWorker::wifiScanSsidReqReceived,
-            this, &MainWindow::onwifiScanSsidReqReceived);    //Async
+    connect(m_worker, &SocketEventWorker::wifiOn, this, &MainWindow::onWifiOnRequest);   // Async
+    connect(m_worker, &SocketEventWorker::wifiOff, this, &MainWindow::onWifiOffRequest); // Async
+    connect(m_worker,
+            &SocketEventWorker::wifiScanSsidReqReceived,
+            this,
+            &MainWindow::onwifiScanSsidReqReceived); // Async
 
-    //connect(m_worker, &SocketEventWorker::wifiGetSsid,
-    //        this, &MainWindow::onWifiGetSsidRequest);  //Async
-    connect(m_worker, &SocketEventWorker::wifiGetSsid,
-            this, &MainWindow::onWifiGetSsidRequest);  //Async
-    connect(m_worker, &SocketEventWorker::wifiSsidListComplete,
-            this, &MainWindow::onWifiSsidListRequestComplete);  //Async
-    connect(m_worker, &SocketEventWorker::wifiForget,
-            this, &MainWindow::onWifiForgetRequest);
-    connect(m_worker, &SocketEventWorker::wifiConnect,
-            this, &MainWindow::onWifiConnectRequest);  //Async
-    connect(m_worker, &SocketEventWorker::wifiDisconnectCurrentSsid,
-            this, &MainWindow::onWifiDisconnectRequest);  //Async
+    // connect(m_worker, &SocketEventWorker::wifiGetSsid,
+    //         this, &MainWindow::onWifiGetSsidRequest);  //Async
+    connect(m_worker, &SocketEventWorker::wifiGetSsid, this, &MainWindow::onWifiGetSsidRequest); // Async
+    connect(m_worker,
+            &SocketEventWorker::wifiSsidListComplete,
+            this,
+            &MainWindow::onWifiSsidListRequestComplete); // Async
+    connect(m_worker, &SocketEventWorker::wifiForget, this, &MainWindow::onWifiForgetRequest);
+    connect(m_worker, &SocketEventWorker::wifiConnect, this, &MainWindow::onWifiConnectRequest); // Async
+    connect(m_worker,
+            &SocketEventWorker::wifiDisconnectCurrentSsid,
+            this,
+            &MainWindow::onWifiDisconnectRequest); // Async
 
-    //Utility
-    connect(m_worker, &SocketEventWorker::rpiRestart,
-            this, &MainWindow::onRpiRestart);
-    connect(m_worker, &SocketEventWorker::rpiShutdown,
-            this, &MainWindow::onRpiShutdown);
-    connect(m_worker, &SocketEventWorker::tzSetReq,
-            this, &MainWindow::onTzSetReq);
-    connect(m_worker, &SocketEventWorker::tzGetReq,
-            this, &MainWindow::onTzGetReq);
+    // Utility
+    connect(m_worker, &SocketEventWorker::rpiRestart, this, &MainWindow::onRpiRestart);
+    connect(m_worker, &SocketEventWorker::rpiShutdown, this, &MainWindow::onRpiShutdown);
+    connect(m_worker, &SocketEventWorker::tzSetReq, this, &MainWindow::onTzSetReq);
+    connect(m_worker, &SocketEventWorker::tzGetReq, this, &MainWindow::onTzGetReq);
 
-    connect(m_worker, &SocketEventWorker::powerInfoRequest,
-            this, &MainWindow::onPowerInfoReq);
-    connect(m_worker, &SocketEventWorker::audioRadarInfoRequest,
-            this, &MainWindow::onAudioInfoReq);
+    connect(m_worker, &SocketEventWorker::powerInfoRequest, this, &MainWindow::onPowerInfoReq);
+    connect(m_worker, &SocketEventWorker::audioRadarInfoRequest, this, &MainWindow::onAudioInfoReq);
 
 #endif
 
     m_workerThread->start();
 
-    QString serverIp = ConfigManager::getServerIp(); //"203.194.114.21"; ////"https://elderly-care-socket-io-server.online";
-    int serverPort = ConfigManager::getServerPort(); //4000;//
+    QString serverIp =
+        ConfigManager::getServerIp(); //"203.194.114.21"; ////"https://elderly-care-socket-io-server.online";
+    int serverPort = ConfigManager::getServerPort(); // 4000;//
 
     qDebug() << "Server IP:" << serverIp;
     qDebug() << "Server Port:" << serverPort;
 
-    //client->connectToServer("192.168.1.27", 3000);
-    //client->connectToServer(serverIp);//, serverPort);
+    // client->connectToServer("192.168.1.27", 3000);
+    // client->connectToServer(serverIp);//, serverPort);
     client->connectToServer(serverIp, serverPort);
 
 #ifdef Q_OS_LINUX
-    connect(client, &SocketIOClient::connected,
-            this, &MainWindow::onCurrentSSidRequest);
+    connect(client, &SocketIOClient::connected, this, &MainWindow::onCurrentSSidRequest);
 #endif
 }
 
-//---------------------------------------------------------------------------------------
+// =============================================================================
+// Graphics initialization
+// =============================================================================
 void MainWindow::initGraphics()
 {
     setupRealtimeDataMotion(ui->plottsgram);
@@ -317,11 +304,13 @@ void MainWindow::initGraphics()
     setupPlotRadar2(ui->plotRadar2);
 }
 
-
-//---------------------------------------------------------------------------------------
-//#ifdef Q_OS_LINUX
+// -----------------------------------------------------------------------------
+// #ifdef Q_OS_LINUX
+// =============================================================================
+// Radar workers and UART processing
+// =============================================================================
 void MainWindow::initRadar()
-{    
+{
     // === Worker A ===
     m_threadA = new QThread(this);
     m_procA = new PayloadProcessor(UART_PORT0);
@@ -336,216 +325,238 @@ void MainWindow::initRadar()
     timerSendFallevent = new QTimer(this);
     connect(timerSendFallevent, &QTimer::timeout, this, &MainWindow::slotTimerSendFallEvent);
 
-    //Timer counter heartbeat
+    // Timer counter heartbeat
     timerHeartBeatCounter = new QTimer(this);
     connect(timerHeartBeatCounter, &QTimer::timeout, this, &MainWindow::slotTimerHeartBeat);
     timerHeartBeatCounter->start(60000);
 
     // Connect UI update (dipakai bersama)
-    auto connectProcessor = [this](PayloadProcessor *p){
-
+    auto connectProcessor = [this](PayloadProcessor *p) {
         // =========================
         // Radar Heart Beat
         // =========================
-        connect(p, &PayloadProcessor::heartBeat, this,
-                [=](const QString &src){
-                    if (src == UART_PORT0){
-                        //radar1ReportInfo = "serialRadar1Normal";
-                        radar1UartHeartBeatCounter = 0;
-                    }
-                    else if (src == UART_PORT1){
-                        //radar2ReportInfo = "serialRadar2Normal";
-                        radar2UartHeartBeatCounter = 0;
-                    }
-                }, Qt::QueuedConnection);
+        connect(
+            p,
+            &PayloadProcessor::heartBeat,
+            this,
+            [=](const QString &src) {
+                if (src == UART_PORT0) {
+                    // radar1ReportInfo = "serialRadar1Normal";
+                    radar1UartHeartBeatCounter = 0;
+                } else if (src == UART_PORT1) {
+                    // radar2ReportInfo = "serialRadar2Normal";
+                    radar2UartHeartBeatCounter = 0;
+                }
+            },
+            Qt::QueuedConnection);
 
         // =========================
         // Radar point (plot posisi)
         // =========================
-        connect(p, &PayloadProcessor::radarPoint, this,
-                [=](const QString &src, double x, double y){
-                    if (src == UART_PORT0){
-                        updateRadarPoint(x, y);
-                        radar1UartHeartBeatCounter = 0;
-                        //radar1ReportInfo = "serialRadar1Normal";
-                    }
-                    else if (src == UART_PORT1){
-                        updateRadarPoint2(x, y);
-                        radar2UartHeartBeatCounter = 0;
-                        //radar1ReportInfo = "serialRadar2Normal";
-                    }
-                }, Qt::QueuedConnection);
+        connect(
+            p,
+            &PayloadProcessor::radarPoint,
+            this,
+            [=](const QString &src, double x, double y) {
+                if (src == UART_PORT0) {
+                    updateRadarPoint(x, y);
+                    radar1UartHeartBeatCounter = 0;
+                    // radar1ReportInfo = "serialRadar1Normal";
+                } else if (src == UART_PORT1) {
+                    updateRadarPoint2(x, y);
+                    radar2UartHeartBeatCounter = 0;
+                    // radar1ReportInfo = "serialRadar2Normal";
+                }
+            },
+            Qt::QueuedConnection);
 
         // =========================
         // Velocity plot
         // =========================
-        connect(p, &PayloadProcessor::velocityUpdate, this,
-                [=](const QString &src, const QString &v){
-                    if (src == UART_PORT0){
-                        drawRealTimeVelocity(v);
-                        radar1UartHeartBeatCounter = 0;
-                        //radar1ReportInfo = "serialRadar1Normal";
-                    }
-                    else if (src == UART_PORT1){
-                        drawRealTimeVelocity2(v);
-                        radar2UartHeartBeatCounter = 0;
-                        //radar2ReportInfo = "serialRadar2Normal";
-                    }
-                }, Qt::QueuedConnection);
+        connect(
+            p,
+            &PayloadProcessor::velocityUpdate,
+            this,
+            [=](const QString &src, const QString &v) {
+                if (src == UART_PORT0) {
+                    drawRealTimeVelocity(v);
+                    radar1UartHeartBeatCounter = 0;
+                    // radar1ReportInfo = "serialRadar1Normal";
+                } else if (src == UART_PORT1) {
+                    drawRealTimeVelocity2(v);
+                    radar2UartHeartBeatCounter = 0;
+                    // radar2ReportInfo = "serialRadar2Normal";
+                }
+            },
+            Qt::QueuedConnection);
 
         // =========================
         // Motion / ETS gram plot
         // =========================
-        connect(p, &PayloadProcessor::motionUpdate, this,
-                [=](const QString &src, const QString &motion){
-                    if (src == UART_PORT0){
-                        drawRealTimeetsgram(motion);
-                        radar1UartHeartBeatCounter = 0;
-                        //radar1ReportInfo = "serialRadar1Normal";
-                    }else if (src == UART_PORT1){
-                        drawRealTimeetsgram2(motion);
-                        radar2UartHeartBeatCounter = 0;
-                        //radar2ReportInfo = "serialRadar2Normal";
-                    }
-                }, Qt::QueuedConnection);
+        connect(
+            p,
+            &PayloadProcessor::motionUpdate,
+            this,
+            [=](const QString &src, const QString &motion) {
+                if (src == UART_PORT0) {
+                    drawRealTimeetsgram(motion);
+                    radar1UartHeartBeatCounter = 0;
+                    // radar1ReportInfo = "serialRadar1Normal";
+                } else if (src == UART_PORT1) {
+                    drawRealTimeetsgram2(motion);
+                    radar2UartHeartBeatCounter = 0;
+                    // radar2ReportInfo = "serialRadar2Normal";
+                }
+            },
+            Qt::QueuedConnection);
 
         // =========================
         // Fall detected event
         // =========================
-        connect(p, &PayloadProcessor::fallDetected, this,
-                [=](const QString &src){
-                    Q_UNUSED(src);
-                    //sound.stop();
-                    //sound.play();
+        connect(p, &PayloadProcessor::fallDetected, this, [=](const QString &src) {
+            Q_UNUSED(src);
+            // sound.stop();
+            // sound.play();
 #ifdef Q_OS_LINUX
-                    m_gpio->setColor(COLOR_RED);
-                    //radar1ReportInfo = "serialNormal";
+            m_gpio->setColor(COLOR_RED);
+            // radar1ReportInfo = "serialNormal";
 #endif
 
-                    if (client->isConnected()){
-                        // soundPlay(SOUND_FALL_OCCUR);
-                        QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
-                        QJsonObject obj;
-                        obj["datetime"] = timestamp;
-                        fallEventAckReceived = false;
-                        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
-                    } else {
-                        qDebug() << "Socket DC";
-                    }
-                    timerSendFallevent->start(1000); //Aktifkan send fall event repeat
-                    soundPlay(SOUND_FALL_OCCUR, lang);
-                });
+            if (client->isConnected()) {
+                // soundPlay(SOUND_FALL_OCCUR);
+                QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
+                QJsonObject obj;
+                obj["datetime"] = timestamp;
+                fallEventAckReceived = false;
+                client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
+            } else {
+                qDebug() << "Socket DC";
+            }
+            timerSendFallevent->start(1000); // Aktifkan send fall event repeat
+            soundPlay(SOUND_FALL_OCCUR, lang);
+        });
 
-        connect(p, &PayloadProcessor::fallCancel, this,
-                [=](const QString &src){
-                    Q_UNUSED(src);
-                    //radar1ReportInfo = "serialRadar1Normal";
+        connect(p, &PayloadProcessor::fallCancel, this, [=](const QString &src) {
+            Q_UNUSED(src);
+            // radar1ReportInfo = "serialRadar1Normal";
 
-                    //sound.stop();
-                    //sound.play();
+            // sound.stop();
+            // sound.play();
 
-                    /*soundPlay(SOUND_FALL_OCCUR, lang);
-                    if (client->isConnected()) {
-                        //soundPlay(SOUND_FALL_OCCUR);
-                        client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
-                    } else {
-                        qDebug() << "Socket DC";
-                    }*/
-                });
+            /*soundPlay(SOUND_FALL_OCCUR, lang);
+            if (client->isConnected()) {
+                //soundPlay(SOUND_FALL_OCCUR);
+                client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
+            } else {
+                qDebug() << "Socket DC";
+            }*/
+        });
 
         // =========================
         // Debug & serial state
         // =========================
-        connect(p, &PayloadProcessor::debugMessage,
-                this, [](const QString &msg){
-                    qDebug() << msg;
-                    //radar1ReportInfo = "serialNormal";
+        connect(p, &PayloadProcessor::debugMessage, this, [](const QString &msg) {
+            qDebug() << msg;
+            // radar1ReportInfo = "serialNormal";
         });
 
-        connect(p, &PayloadProcessor::serialOpened,
-                this, [=](bool ok){
-                    ui->btnOpenSerialPort->setEnabled(!ok);
-                    ui->btnLoad->setEnabled(!ok);
-                    //radar1ReportInfo = "serialRadar1Normal";
-                });
+        connect(p, &PayloadProcessor::serialOpened, this, [=](bool ok) {
+            ui->btnOpenSerialPort->setEnabled(!ok);
+            ui->btnLoad->setEnabled(!ok);
+            // radar1ReportInfo = "serialRadar1Normal";
+        });
 
-        connect(p, &PayloadProcessor::serialError,
-                this, [=](const QString &err){
-                    qDebug() << "Serial error:" << err;
-                    //radar2ReportInfo = "serialRadar2Normal";
-                });
+        connect(p, &PayloadProcessor::serialError, this, [=](const QString &err) {
+            qDebug() << "Serial error:" << err;
+            // radar2ReportInfo = "serialRadar2Normal";
+        });
 
         // =========================
         // UI update berbasis key + src
         // =========================
-        connect(p, &PayloadProcessor::uiUpdate, this,
-                [=](const QString &src, const QString &key, const QString &value){
-
+        connect(p,
+                &PayloadProcessor::uiUpdate,
+                this,
+                [=](const QString &src, const QString &key, const QString &value) {
                     if (key == "fallDetection") {
-                        if (src == UART_PORT0) ui->leFallDetection->setText(value);
-                        else if (src == UART_PORT1) ui->leFallDetection2->setText(value);
-                    }
-                    else if (key == "fallStateText") {
-                        if (src == UART_PORT0) ui->leFallState->setText(value);
-                        else if (src == UART_PORT1) ui->leFallState2->setText(value);
-                    }
-                    else if (key == "fallStateColor") {
-                        QString style = (value == "red")
-                        ? "background-color: red; color: yellow;"
-                        : "background-color: green; color: black;";
+                        if (src == UART_PORT0)
+                            ui->leFallDetection->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leFallDetection2->setText(value);
+                    } else if (key == "fallStateText") {
+                        if (src == UART_PORT0)
+                            ui->leFallState->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leFallState2->setText(value);
+                    } else if (key == "fallStateColor") {
+                        QString style = (value == "red") ? "background-color: red; color: yellow;"
+                                                         : "background-color: green; color: black;";
 
-                        if (src == UART_PORT0) ui->leFallState->setStyleSheet(style);
-                        else if (src == UART_PORT1) ui->leFallState2->setStyleSheet(style);
-                    }
-                    else if (key == "fallPosX") {
-                        if (src == UART_PORT0) ui->leFallPosX->setText(value);
-                        else if (src == UART_PORT1) ui->leFallPosX2->setText(value);
-                    }
-                    else if (key == "fallPosY") {
-                        if (src == UART_PORT0) ui->leFallPosY->setText(value);
-                        else if (src == UART_PORT1) ui->leFallPosY2->setText(value);
-                    }
-                    else if (key == "fallDuration") {
-                        if (src == UART_PORT0) ui->leFallDuration->setText(value);
-                        else if (src == UART_PORT1) ui->leFallDuration2->setText(value);
-                    }
-                    else if (key == "initStatus") {
-                        if (src == UART_PORT0) ui->leInitComplete->setText("Inited");
-                        else if (src == UART_PORT1) ui->leInitComplete2->setText("Inited");
-                    }
-                    else if (key == "angleX") {
-                        if (src == UART_PORT0) ui->leAngleXInstallation->setText(value);
-                        else if (src == UART_PORT1) ui->leAngleXInstallation2->setText(value);
-                    }
-                    else if (key == "angleY") {
-                        if (src == UART_PORT0) ui->leAngleYInstallation->setText(value);
-                        else if (src == UART_PORT1) ui->leAngleYInstallation2->setText(value);
-                    }
-                    else if (key == "angleZ") {
-                        if (src == UART_PORT0) ui->leAngleZInstallation->setText(value);
-                        else if (src == UART_PORT1) ui->leAngleZInstallation2->setText(value);
-                    }
-                    else if (key == "height") {
-                        if (src == UART_PORT0) ui->leHeightInstallation->setText(value);
-                        else if (src == UART_PORT1) ui->leHeightInstallation2->setText(value);
-                    }
-                    else if (key == "traceTracking") {
-                        if (src == UART_PORT0) ui->leTraceTracking->setText(value);
-                        else if (src == UART_PORT1) ui->leTraceTracking2->setText(value);
-                    }
-                    else if (key == "traceNumber") {
-                        if (src == UART_PORT0) ui->leTraceNumber->setText(value);
-                        else if (src == UART_PORT1) ui->leTraceNumber2->setText(value);
-                    }
-                    else if (key == "velocity") {
-                        if (src == UART_PORT0) ui->leVelocity->setText(value);
-                        else if (src == UART_PORT1) ui->leVelocity2->setText(value);
-                    }
-                    else if (key == "presence") {
-                        if (src == UART_PORT0) ui->lePresence->setText(value);
-                        else if (src == UART_PORT1) ui->lePresence2->setText(value);
-                    }
-                    else if (key == "motionStyle") {
+                        if (src == UART_PORT0)
+                            ui->leFallState->setStyleSheet(style);
+                        else if (src == UART_PORT1)
+                            ui->leFallState2->setStyleSheet(style);
+                    } else if (key == "fallPosX") {
+                        if (src == UART_PORT0)
+                            ui->leFallPosX->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leFallPosX2->setText(value);
+                    } else if (key == "fallPosY") {
+                        if (src == UART_PORT0)
+                            ui->leFallPosY->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leFallPosY2->setText(value);
+                    } else if (key == "fallDuration") {
+                        if (src == UART_PORT0)
+                            ui->leFallDuration->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leFallDuration2->setText(value);
+                    } else if (key == "initStatus") {
+                        if (src == UART_PORT0)
+                            ui->leInitComplete->setText("Inited");
+                        else if (src == UART_PORT1)
+                            ui->leInitComplete2->setText("Inited");
+                    } else if (key == "angleX") {
+                        if (src == UART_PORT0)
+                            ui->leAngleXInstallation->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leAngleXInstallation2->setText(value);
+                    } else if (key == "angleY") {
+                        if (src == UART_PORT0)
+                            ui->leAngleYInstallation->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leAngleYInstallation2->setText(value);
+                    } else if (key == "angleZ") {
+                        if (src == UART_PORT0)
+                            ui->leAngleZInstallation->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leAngleZInstallation2->setText(value);
+                    } else if (key == "height") {
+                        if (src == UART_PORT0)
+                            ui->leHeightInstallation->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leHeightInstallation2->setText(value);
+                    } else if (key == "traceTracking") {
+                        if (src == UART_PORT0)
+                            ui->leTraceTracking->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leTraceTracking2->setText(value);
+                    } else if (key == "traceNumber") {
+                        if (src == UART_PORT0)
+                            ui->leTraceNumber->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leTraceNumber2->setText(value);
+                    } else if (key == "velocity") {
+                        if (src == UART_PORT0)
+                            ui->leVelocity->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leVelocity2->setText(value);
+                    } else if (key == "presence") {
+                        if (src == UART_PORT0)
+                            ui->lePresence->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->lePresence2->setText(value);
+                    } else if (key == "motionStyle") {
                         QString style;
                         if (value == "presence")
                             style = "background-color: blue; color: yellow;";
@@ -556,12 +567,15 @@ void MainWindow::initRadar()
                         else if (value == "motion_low")
                             style = "background-color: orange; color: black;";
 
-                        if (src == UART_PORT0) ui->leMotion->setStyleSheet(style);
-                        else if (src == UART_PORT1) ui->leMotion2->setStyleSheet(style);
-                    }
-                    else if (key == "motionValue") {
-                        if (src == UART_PORT0) ui->leMotion->setText(value);
-                        else if (src == UART_PORT1) ui->leMotion2->setText(value);
+                        if (src == UART_PORT0)
+                            ui->leMotion->setStyleSheet(style);
+                        else if (src == UART_PORT1)
+                            ui->leMotion2->setStyleSheet(style);
+                    } else if (key == "motionValue") {
+                        if (src == UART_PORT0)
+                            ui->leMotion->setText(value);
+                        else if (src == UART_PORT1)
+                            ui->leMotion2->setText(value);
                     }
                 });
     };
@@ -573,18 +587,17 @@ void MainWindow::initRadar()
     m_threadB->start();
 
 #ifdef Q_OS_LINUX
-    QMetaObject::invokeMethod(m_procA, "initPort",
-                              Qt::QueuedConnection,
-                              Q_ARG(QString, UART_PORT0));
+    QMetaObject::invokeMethod(m_procA, "initPort", Qt::QueuedConnection, Q_ARG(QString, UART_PORT0));
 
-    QMetaObject::invokeMethod(m_procB, "initPort",
-                              Qt::QueuedConnection,
-                              Q_ARG(QString, UART_PORT1));
+    QMetaObject::invokeMethod(m_procB, "initPort", Qt::QueuedConnection, Q_ARG(QString, UART_PORT1));
 #endif
 }
-//#endif
 
-//---------------------------------------------------------------------------------------
+// #endif
+
+// =============================================================================
+// Serial-port helpers and radar commands
+// =============================================================================
 void MainWindow::fillPortsInfo()
 {
     ui->serialPortInfoListBox->clear();
@@ -598,7 +611,7 @@ void MainWindow::fillPortsInfo()
     ui->serialPortInfoListBox->addItem(tr("Custom"));
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::fillPortsInfo2()
 {
     ui->serialPortInfoListBox2->clear();
@@ -612,11 +625,12 @@ void MainWindow::fillPortsInfo2()
     ui->serialPortInfoListBox2->addItem(tr("Custom"));
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 QByteArray MainWindow::makeFrame(const QByteArray &body)
 {
     int s = 0;
-    for (unsigned char c : body) s += c;
+    for (unsigned char c : body)
+        s += c;
     unsigned char sum = s & 0xFF;
     QByteArray frame = body;
     frame.append(static_cast<char>(sum));
@@ -625,66 +639,64 @@ QByteArray MainWindow::makeFrame(const QByteArray &body)
     return frame;
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 QString MainWindow::toHexSpace(const QByteArray &data)
 {
     QStringList parts;
-    for (auto b : data) parts << QString("%1").arg((unsigned char)b, 2, 16, QChar('0')).toUpper();
+    for (auto b : data)
+        parts << QString("%1").arg((unsigned char)b, 2, 16, QChar('0')).toUpper();
     return parts.join(' ');
 }
 
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnLoad_clicked()
 {
     fillPortsInfo();
     ui->btnOpenSerialPort->setEnabled(true);
 
-    //Test koordinat
-    //updateRadarPoint(30, -45);
+    // Test koordinat
+    // updateRadarPoint(30, -45);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnOpenSerialPort_clicked()
 {
-    if (ui->serialPortInfoListBox->currentText().isEmpty()) return;
+    if (ui->serialPortInfoListBox->currentText().isEmpty())
+        return;
 
     const QString portName = ui->serialPortInfoListBox->currentText();
-    QMetaObject::invokeMethod(m_procA, "initPort",
-                              Qt::QueuedConnection,
-                              Q_ARG(QString, portName));
+    QMetaObject::invokeMethod(m_procA, "initPort", Qt::QueuedConnection, Q_ARG(QString, portName));
 
-//#ifndef AUTOSTART_ONRPI
-    //init_port();
-//#endif
+    // #ifndef AUTOSTART_ONRPI
+    // init_port();
+    // #endif
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnLoad2_clicked()
 {
     fillPortsInfo2();
     ui->btnOpenSerialPort2->setEnabled(true);
 
-    //Test koordinat
-    //updateRadarPoint(30, -45);
+    // Test koordinat
+    // updateRadarPoint(30, -45);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnOpenSerialPort2_clicked()
 {
-    if (ui->serialPortInfoListBox2->currentText().isEmpty()) return;
+    if (ui->serialPortInfoListBox2->currentText().isEmpty())
+        return;
 
     const QString portName = ui->serialPortInfoListBox2->currentText();
-    QMetaObject::invokeMethod(m_procB, "initPort",
-                              Qt::QueuedConnection,
-                              Q_ARG(QString, portName));
+    QMetaObject::invokeMethod(m_procB, "initPort", Qt::QueuedConnection, Q_ARG(QString, portName));
 
-//#ifndef AUTOSTART_ONRPI
-//    init_port2();
-//#endif
+    // #ifndef AUTOSTART_ONRPI
+    //     init_port2();
+    // #endif
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 quint8 MainWindow::calcChecksum(const QByteArray &frame)
 {
     quint16 sum = 0;
@@ -693,10 +705,11 @@ quint8 MainWindow::calcChecksum(const QByteArray &frame)
     return static_cast<quint8>(sum & 0xFF);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetProductID_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_PRODUCT_ID);
     qDebug() << "Sending frame get Product Id:" << toHexSpace(frame);
@@ -704,10 +717,11 @@ void MainWindow::on_btnGetProductID_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetProductModel_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_PRODUCT_MODEL);
     qDebug() << "Sending frame get Production:" << toHexSpace(frame);
@@ -715,10 +729,11 @@ void MainWindow::on_btnGetProductModel_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetFirmwareVersion_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_FIRMWARE_VERSION);
     qDebug() << "Sending frame get Firmware:" << toHexSpace(frame);
@@ -726,10 +741,11 @@ void MainWindow::on_btnGetFirmwareVersion_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetProductID2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_PRODUCT_ID);
     qDebug() << "Sending frame get Product Id2:" << toHexSpace(frame);
@@ -737,10 +753,11 @@ void MainWindow::on_btnGetProductID2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetProductModel2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_PRODUCT_MODEL);
     qDebug() << "Sending frame get Production2:" << toHexSpace(frame);
@@ -748,10 +765,11 @@ void MainWindow::on_btnGetProductModel2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetFirmwareVersion2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_FIRMWARE_VERSION);
     qDebug() << "Sending frame get Firmware2:" << toHexSpace(frame);
@@ -759,10 +777,11 @@ void MainWindow::on_btnGetFirmwareVersion2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnHWModel_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_HARDWARE_MODEL);
     qDebug() << "Sending frame HW Model:" << toHexSpace(frame);
@@ -770,10 +789,11 @@ void MainWindow::on_btnHWModel_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnCmdInitCompleteCek_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_CEK_INITIALIZATION_COMPLETE);
     qDebug() << "Sending frame Cek Init Complete:" << toHexSpace(frame);
@@ -781,10 +801,11 @@ void MainWindow::on_btnCmdInitCompleteCek_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnHWModel2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_HARDWARE_MODEL);
     qDebug() << "Sending frame HW Model2:" << toHexSpace(frame);
@@ -792,10 +813,11 @@ void MainWindow::on_btnHWModel2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnCmdInitCompleteCek2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_CEK_INITIALIZATION_COMPLETE);
     qDebug() << "Sending frame Cek Init Complete2:" << toHexSpace(frame);
@@ -803,10 +825,11 @@ void MainWindow::on_btnCmdInitCompleteCek2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetAngleInst_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_ANGLE_INST_QUERY);
     qDebug() << "Sending frame get Angle:" << toHexSpace(frame);
@@ -814,10 +837,11 @@ void MainWindow::on_btnGetAngleInst_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetHeightInst_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_HEIGHT_INST_QUERY);
     qDebug() << "Sending frame Get Height:" << toHexSpace(frame);
@@ -825,10 +849,11 @@ void MainWindow::on_btnGetHeightInst_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetAngleInst2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_ANGLE_INST_QUERY);
     qDebug() << "Sending frame get Angle2:" << toHexSpace(frame);
@@ -836,10 +861,11 @@ void MainWindow::on_btnGetAngleInst2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetHeightInst2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_HEIGHT_INST_QUERY);
     qDebug() << "Sending frame Get Height:" << toHexSpace(frame);
@@ -847,10 +873,11 @@ void MainWindow::on_btnGetHeightInst2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbPresence_toggled(bool checked)
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_PRESENCE_ON) : makeFrame(CMD_SET_PRESENCE_OFF);
     qDebug() << "Sending frame set Presence:" << toHexSpace(frame);
@@ -858,10 +885,11 @@ void MainWindow::on_cbPresence_toggled(bool checked)
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbFallDetection_toggled(bool checked)
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_FALL_DETECTION_ON) : makeFrame(CMD_SET_FALL_DETECTION_OFF);
     qDebug() << "Sending frame Set Fall Duration:" << toHexSpace(frame);
@@ -869,10 +897,11 @@ void MainWindow::on_cbFallDetection_toggled(bool checked)
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetFallDuration_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_FALL_DURATION);
     qDebug() << "Sending frame Get Fall Duration:" << toHexSpace(frame);
@@ -880,10 +909,11 @@ void MainWindow::on_btnGetFallDuration_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbStandStill_toggled(bool checked)
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_STAND_STILLON) : makeFrame(CMD_SET_STAND_STILLOFF);
     qDebug() << "Sending frame StandStill:" << toHexSpace(frame);
@@ -891,10 +921,11 @@ void MainWindow::on_cbStandStill_toggled(bool checked)
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbTraceTracking_toggled(bool checked)
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_TRACE_TRACKING_ON) : makeFrame(CMD_SET_TRACE_TRACKING_OFF);
     qDebug() << "Sending frame Trace Tracking:" << toHexSpace(frame);
@@ -902,10 +933,11 @@ void MainWindow::on_cbTraceTracking_toggled(bool checked)
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbPresence2_toggled(bool checked)
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_PRESENCE_ON) : makeFrame(CMD_SET_PRESENCE_OFF);
     qDebug() << "Sending frame set Presence2:" << toHexSpace(frame);
@@ -913,10 +945,11 @@ void MainWindow::on_cbPresence2_toggled(bool checked)
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbFallDetection2_toggled(bool checked)
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_FALL_DETECTION_ON) : makeFrame(CMD_SET_FALL_DETECTION_OFF);
     qDebug() << "Sending frame Set Fall Duration2:" << toHexSpace(frame);
@@ -924,10 +957,11 @@ void MainWindow::on_cbFallDetection2_toggled(bool checked)
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetFallDuration2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = makeFrame(CMD_GET_FALL_DURATION);
     qDebug() << "Sending frame Get Fall Duration2:" << toHexSpace(frame);
@@ -935,10 +969,11 @@ void MainWindow::on_btnGetFallDuration2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbStandStill2_toggled(bool checked)
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_STAND_STILLON) : makeFrame(CMD_SET_STAND_STILLOFF);
     qDebug() << "Sending frame StandStill2:" << toHexSpace(frame);
@@ -946,10 +981,11 @@ void MainWindow::on_cbStandStill2_toggled(bool checked)
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_cbTraceTracking2_toggled(bool checked)
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
     QByteArray frame = checked ? makeFrame(CMD_SET_TRACE_TRACKING_ON) : makeFrame(CMD_SET_TRACE_TRACKING_OFF);
     qDebug() << "Sending frame Trace Tracking2:" << toHexSpace(frame);
@@ -957,10 +993,11 @@ void MainWindow::on_cbTraceTracking2_toggled(bool checked)
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetHeight_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
 
     int height = ui->leSetHeight->text().toInt();
@@ -978,10 +1015,11 @@ void MainWindow::on_btnSetHeight_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetHeight2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
 
     int height = ui->leSetHeight2->text().toInt();
@@ -999,10 +1037,11 @@ void MainWindow::on_btnSetHeight2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetFallDuration_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
 
     uint32_t duration = ui->leSetFallDuration->text().toUInt();
@@ -1028,21 +1067,22 @@ void MainWindow::on_btnSetFallDuration_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetAngle_clicked()
 {
-    if (!m_serial) return;
+    if (!m_serial)
+        return;
     m_serial->clear(QSerialPort::Input);
 
     uint16_t angleX = ui->leAngleX->text().toUInt();
     uint16_t angleY = ui->leAngleY->text().toUInt();
     uint16_t angleZ = ui->leAngleZ->text().toUInt();
 
-    QByteArray cmd = CMD_SET_ANGLE_INST;   // ini harus berisi 06 01 sesuai protokol kamu
+    QByteArray cmd = CMD_SET_ANGLE_INST; // ini harus berisi 06 01 sesuai protokol kamu
 
     // X axis (2 byte big-endian)
-    cmd.append(static_cast<char>((angleX >> 8) & 0xFF));   // HB
-    cmd.append(static_cast<char>(angleX & 0xFF));          // LB
+    cmd.append(static_cast<char>((angleX >> 8) & 0xFF)); // HB
+    cmd.append(static_cast<char>(angleX & 0xFF));        // LB
 
     // Y axis
     cmd.append(static_cast<char>((angleY >> 8) & 0xFF));
@@ -1061,10 +1101,11 @@ void MainWindow::on_btnSetAngle_clicked()
     m_serial->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetFallDuration2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
 
     uint32_t duration = ui->leSetFallDuration->text().toUInt();
@@ -1090,21 +1131,22 @@ void MainWindow::on_btnSetFallDuration2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetAngle2_clicked()
 {
-    if (!m_serial2) return;
+    if (!m_serial2)
+        return;
     m_serial2->clear(QSerialPort::Input);
 
     uint16_t angleX = ui->leAngleX2->text().toUInt();
     uint16_t angleY = ui->leAngleY2->text().toUInt();
     uint16_t angleZ = ui->leAngleZ2->text().toUInt();
 
-    QByteArray cmd = CMD_SET_ANGLE_INST;   // ini harus berisi 06 01 sesuai protokol kamu
+    QByteArray cmd = CMD_SET_ANGLE_INST; // ini harus berisi 06 01 sesuai protokol kamu
 
     // X axis (2 byte big-endian)
-    cmd.append(static_cast<char>((angleX >> 8) & 0xFF));   // HB
-    cmd.append(static_cast<char>(angleX & 0xFF));          // LB
+    cmd.append(static_cast<char>((angleX >> 8) & 0xFF)); // HB
+    cmd.append(static_cast<char>(angleX & 0xFF));        // LB
 
     // Y axis
     cmd.append(static_cast<char>((angleY >> 8) & 0xFF));
@@ -1123,33 +1165,32 @@ void MainWindow::on_btnSetAngle2_clicked()
     m_serial2->flush();
 }
 
-//---------------------------------------------------------------------------------------
+// =============================================================================
+// Radar and real-time plots
+// =============================================================================
 void MainWindow::updateRadarPoint(double x, double y)
 {
     radarPoint->data()->clear();
     radarPoint->addData(x, y);
 
-    //ui->plotRadar->rescaleAxes();
+    // ui->plotRadar->rescaleAxes();
     ui->plotRadar->replot();
 }
 
-//---------------------------------------------------------------------------------------
-void MainWindow::init_radar()
-{
+// -----------------------------------------------------------------------------
+void MainWindow::init_radar() {}
 
-}
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::updateRadarPoint2(double x, double y)
 {
     radarPoint2->data()->clear();
     radarPoint2->addData(x, y);
 
-    //ui->plotRadar2->rescaleAxes();
+    // ui->plotRadar2->rescaleAxes();
     ui->plotRadar2->replot();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotTs()
 {
     // Add two graphs and configure appearance
@@ -1173,10 +1214,9 @@ void MainWindow::setupPlotTs()
 
     // Enable interactions
     ui->plottsgram->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotTsVelocity()
 {
     // Add two graphs and configure appearance
@@ -1202,7 +1242,7 @@ void MainWindow::setupPlotTsVelocity()
     ui->plottsVelocity->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotTs2()
 {
     // Add two graphs and configure appearance
@@ -1226,10 +1266,9 @@ void MainWindow::setupPlotTs2()
 
     // Enable interactions
     ui->plottsgram2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotTsVelocity2()
 {
     // Add two graphs and configure appearance
@@ -1255,7 +1294,7 @@ void MainWindow::setupPlotTsVelocity2()
     ui->plottsVelocity->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::realtimeDataSlot(QString value)
 {
     static QTime timeStart = QTime::currentTime();
@@ -1272,7 +1311,8 @@ void MainWindow::realtimeDataSlot(QString value)
     ui->plottsgram->graph(0)->rescaleValueAxis(true);
 
     static QElapsedTimer replotTimer;
-    if (!replotTimer.isValid()) replotTimer.start();
+    if (!replotTimer.isValid())
+        replotTimer.start();
 
     if (replotTimer.elapsed() >= 50) { // Refresh setiap 50 ms
         ui->plottsgram->replot();
@@ -1280,7 +1320,7 @@ void MainWindow::realtimeDataSlot(QString value)
     }
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::realtimeDataVelocity(QString value)
 {
     static QTime timeStart = QTime::currentTime();
@@ -1297,7 +1337,8 @@ void MainWindow::realtimeDataVelocity(QString value)
     ui->plottsVelocity->graph(0)->rescaleValueAxis(true);
 
     static QElapsedTimer replotTimer;
-    if (!replotTimer.isValid()) replotTimer.start();
+    if (!replotTimer.isValid())
+        replotTimer.start();
 
     if (replotTimer.elapsed() >= 50) { // Refresh setiap 50 ms
         ui->plottsVelocity->replot();
@@ -1305,7 +1346,7 @@ void MainWindow::realtimeDataVelocity(QString value)
     }
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::realtimeDataSlot2(QString value)
 {
     static QTime timeStart = QTime::currentTime();
@@ -1322,7 +1363,8 @@ void MainWindow::realtimeDataSlot2(QString value)
     ui->plottsgram2->graph(0)->rescaleValueAxis(true);
 
     static QElapsedTimer replotTimer;
-    if (!replotTimer.isValid()) replotTimer.start();
+    if (!replotTimer.isValid())
+        replotTimer.start();
 
     if (replotTimer.elapsed() >= 50) { // Refresh setiap 50 ms
         ui->plottsgram2->replot();
@@ -1330,7 +1372,7 @@ void MainWindow::realtimeDataSlot2(QString value)
     }
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::realtimeDataVelocity2(QString value)
 {
     static QTime timeStart = QTime::currentTime();
@@ -1347,7 +1389,8 @@ void MainWindow::realtimeDataVelocity2(QString value)
     ui->plottsVelocity2->graph(0)->rescaleValueAxis(true);
 
     static QElapsedTimer replotTimer;
-    if (!replotTimer.isValid()) replotTimer.start();
+    if (!replotTimer.isValid())
+        replotTimer.start();
 
     if (replotTimer.elapsed() >= 50) { // Refresh setiap 50 ms
         ui->plottsVelocity2->replot();
@@ -1355,70 +1398,71 @@ void MainWindow::realtimeDataVelocity2(QString value)
     }
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::drawRealTimeetsgram(QString motion)
 {
     realtimeDataSlot(motion);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::drawRealTimeVelocity(QString velocity)
 {
     realtimeDataVelocity(velocity);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::drawRealTimeetsgram2(QString motion)
 {
     realtimeDataSlot2(motion);
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::drawRealTimeVelocity2(QString velocity)
 {
     realtimeDataVelocity2(velocity);
 }
 
-//---------------------------------------------------------------------------------------
-void MainWindow::soundPlay(int request,const QString &lang){
+// -----------------------------------------------------------------------------
+void MainWindow::soundPlay(int request, const QString &lang)
+{
     QString requestName;
 
     switch (request) {
-    case SOUND_FALL_OCCUR:
-        requestName = QStringLiteral("SOUND_FALL_OCCUR");
-        break;
+        case SOUND_FALL_OCCUR:
+            requestName = QStringLiteral("SOUND_FALL_OCCUR");
+            break;
 
-    case SOUND_HELP:
-        requestName = QStringLiteral("SOUND_HELP");
-        break;
+        case SOUND_HELP:
+            requestName = QStringLiteral("SOUND_HELP");
+            break;
 
-    case SOUND_IAM_OK:
-        requestName = QStringLiteral("SOUND_IAM_OK");
-        break;
+        case SOUND_IAM_OK:
+            requestName = QStringLiteral("SOUND_IAM_OK");
+            break;
 
-    case SOUND_RECORD:
-        requestName = QStringLiteral("SOUND_RECORD");
-        break;
+        case SOUND_RECORD:
+            requestName = QStringLiteral("SOUND_RECORD");
+            break;
 
-    case SOUND_WAITING:
-        requestName = QStringLiteral("SOUND_WAITING");
-        break;
+        case SOUND_WAITING:
+            requestName = QStringLiteral("SOUND_WAITING");
+            break;
 
-    case SOUND_HELPYOU:
-        requestName = QStringLiteral("SOUND_HELPYOU");
-        break;
+        case SOUND_HELPYOU:
+            requestName = QStringLiteral("SOUND_HELPYOU");
+            break;
 
-    case SOUND_LOGIN:
-        requestName = QStringLiteral("SOUND_LOGIN");
-        break;
+        case SOUND_LOGIN:
+            requestName = QStringLiteral("SOUND_LOGIN");
+            break;
 
-    case SOUND_UPLOAD_FAILED:
-        requestName = QStringLiteral("SOUND_UPLOAD_FAILED");
-        break;
+        case SOUND_UPLOAD_FAILED:
+            requestName = QStringLiteral("SOUND_UPLOAD_FAILED");
+            break;
 
-    default:
-        qWarning() << "Unknown sound request:" << request;
-        return;
+        default:
+            qWarning() << "Unknown sound request:" << request;
+            return;
     }
 
     /*
@@ -1439,10 +1483,10 @@ void MainWindow::soundPlay(int request,const QString &lang){
 
     qDebug() << "Sound request received:" << requestName << "id:" << request << "lang:" << lang;
 
-    //Emit event PLAYING_SOUND
-    if(client->isConnected()){
-       QJsonObject obj;
-       client->emitEventStringMsgJsoned("PLAYING_SOUND",obj);
+    // Emit event PLAYING_SOUND
+    if (client->isConnected()) {
+        QJsonObject obj;
+        client->emitEventStringMsgJsoned("PLAYING_SOUND", obj);
     }
 
     /*
@@ -1451,40 +1495,32 @@ void MainWindow::soundPlay(int request,const QString &lang){
      * Event loop Qt tetap berjalan.
      * GUI tidak freeze dan thread tidak ditahan.
      */
-    QTimer::singleShot(1000,this,[this, request, lang, requestName]() {
-            /*
-             * Periksa kembali karena selama delay 500 ms,
-             * thread atau worker mungkin sudah dihentikan.
-             */
-            if (!m_audioThread ||
-                !m_audioThread->isRunning() ||
-                !m_audioWorker) {
-
-                qWarning() << "Audio worker is no longer running:"
-                           << requestName;
-                return;
-            }
-
-            qDebug() << "Sending delayed sound request:"
-                     << requestName
-                     << "id:" << request
-                     << "lang:" << lang;
-
-            emit requestSound(request, lang);
+    QTimer::singleShot(1000, this, [this, request, lang, requestName]() {
+        /*
+         * Periksa kembali karena selama delay 500 ms,
+         * thread atau worker mungkin sudah dihentikan.
+         */
+        if (!m_audioThread || !m_audioThread->isRunning() || !m_audioWorker) {
+            qWarning() << "Audio worker is no longer running:" << requestName;
+            return;
         }
-    );
+
+        qDebug() << "Sending delayed sound request:" << requestName << "id:" << request << "lang:" << lang;
+
+        emit requestSound(request, lang);
+    });
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 QString MainWindow::runCommand(const QString &cmd)
 {
     QProcess process;
     process.start("bash", QStringList() << "-c" << cmd);
     process.waitForFinished();
-  //  connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
+    //  connect(proc, &QProcess::finished, proc, &QObject::deleteLater);
 
     QString output = process.readAllStandardOutput();
-    QString error  = process.readAllStandardError();
+    QString error = process.readAllStandardError();
 
     if (!error.isEmpty()) {
         qDebug() << "Error:" << error;
@@ -1493,7 +1529,7 @@ QString MainWindow::runCommand(const QString &cmd)
     return output.trimmed();
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::startRecording()
 {
     /*
@@ -1545,8 +1581,7 @@ void MainWindow::startRecording()
 */
 }
 
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 
 void MainWindow::handleAudioData()
 {
@@ -1559,8 +1594,7 @@ void MainWindow::handleAudioData()
 */
 }
 
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 /*
 void MainWindow::handleStateChanged(QAudio::State state)
 {
@@ -1574,7 +1608,7 @@ void MainWindow::handleStateChanged(QAudio::State state)
 }
 */
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::stopRecording()
 {
     /*
@@ -1603,9 +1637,7 @@ void MainWindow::stopRecording()
 */
 }
 
-
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
 {
     demoName = "Real Time Data Demo";
@@ -1648,16 +1680,16 @@ void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
     plottsgram->yAxis->setRange(0, 40);
 
     // Synchronize top/right axes with bottom/left
-    //connect(plottsgram->xAxis, &QCPAxis::rangeChanged, plottsgram->xAxis2, &QCPAxis::setRange);
-    //connect(plottsgram->yAxis, &QCPAxis::rangeChanged, plottsgram->yAxis2, &QCPAxis::setRange);
+    // connect(plottsgram->xAxis, &QCPAxis::rangeChanged, plottsgram->xAxis2, &QCPAxis::setRange);
+    // connect(plottsgram->yAxis, &QCPAxis::rangeChanged, plottsgram->yAxis2, &QCPAxis::setRange);
     // Synchronize top/right axes with bottom/left
-    //plottsgram->xAxis->setRangeReplotPolicy(QCPAxis::rpImmediate);
+    // plottsgram->xAxis->setRangeReplotPolicy(QCPAxis::rpImmediate);
     plottsgram->xAxis2->setRange(plottsgram->xAxis->range());
     plottsgram->yAxis2->setRange(plottsgram->yAxis->range());
 
     // Set update function saat plot direplot
     // Sinkronisasi top/right axes dengan bottom/left
-    connect(plottsgram, &QCustomPlot::afterReplot, [=](){
+    connect(plottsgram, &QCustomPlot::afterReplot, [=]() {
         plottsgram->xAxis2->setRange(plottsgram->xAxis->range());
         plottsgram->yAxis2->setRange(plottsgram->yAxis->range());
     });
@@ -1665,7 +1697,7 @@ void MainWindow::setupRealtimeDataMotion(QCustomPlot *plottsgram)
     // Vertical Text - left blank intentionally
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataVelocity(QCustomPlot *plottsVelocity)
 {
     demoName = "Real Time Data Demo";
@@ -1708,13 +1740,12 @@ void MainWindow::setupRealtimeDataVelocity(QCustomPlot *plottsVelocity)
     ui->plottsVelocity->axisRect()->setupFullAxesBox();
     ui->plottsVelocity->yAxis->setRange(0, 40);
 
-
     ui->plottsVelocity->xAxis2->setRange(ui->plottsVelocity->xAxis->range());
     ui->plottsVelocity->yAxis2->setRange(ui->plottsVelocity->yAxis->range());
 
     // Set update function saat plot direplot
     // Sinkronisasi top/right axes dengan bottom/left
-    connect(ui->plottsVelocity, &QCustomPlot::afterReplot, [=](){
+    connect(ui->plottsVelocity, &QCustomPlot::afterReplot, [=]() {
         ui->plottsVelocity->xAxis2->setRange(ui->plottsVelocity->xAxis->range());
         ui->plottsVelocity->yAxis2->setRange(ui->plottsVelocity->yAxis->range());
     });
@@ -1722,11 +1753,11 @@ void MainWindow::setupRealtimeDataVelocity(QCustomPlot *plottsVelocity)
     // Vertical Text - left blank intentionally
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotRadar(QCustomPlot *plotRadar)
 {
-    //-------------------------- Inisialisasi plotRadar --------------------------
-    ui->plotRadar->xAxis->setVisible(true);   // tampilkan axes
+    // ----------------------------------------------------------------------------- Inisialisasi plotRadar --------------------------
+    ui->plotRadar->xAxis->setVisible(true); // tampilkan axes
     ui->plotRadar->yAxis->setVisible(true);
     ui->plotRadar->xAxis->setRange(-500, 500);
     ui->plotRadar->yAxis->setRange(-500, 500);
@@ -1751,16 +1782,11 @@ void MainWindow::setupPlotRadar(QCustomPlot *plotRadar)
     // Bikin graph untuk titik radar
     radarPoint = ui->plotRadar->addGraph();
     radarPoint->setLineStyle(QCPGraph::lsNone);
-    radarPoint->setScatterStyle(QCPScatterStyle(
-        QCPScatterStyle::ssCircle,
-        QPen(Qt::red),
-        QBrush(Qt::red),
-        8
-        ));
+    radarPoint->setScatterStyle(
+        QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::red), QBrush(Qt::red), 8));
 }
 
-
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataMotion2(QCustomPlot *plottsgram2)
 {
     demoName = "Real Time Data Demo";
@@ -1803,16 +1829,16 @@ void MainWindow::setupRealtimeDataMotion2(QCustomPlot *plottsgram2)
     plottsgram2->yAxis->setRange(0, 40);
 
     // Synchronize top/right axes with bottom/left
-    //connect(plottsgram->xAxis, &QCPAxis::rangeChanged, plottsgram->xAxis2, &QCPAxis::setRange);
-    //connect(plottsgram->yAxis, &QCPAxis::rangeChanged, plottsgram->yAxis2, &QCPAxis::setRange);
+    // connect(plottsgram->xAxis, &QCPAxis::rangeChanged, plottsgram->xAxis2, &QCPAxis::setRange);
+    // connect(plottsgram->yAxis, &QCPAxis::rangeChanged, plottsgram->yAxis2, &QCPAxis::setRange);
     // Synchronize top/right axes with bottom/left
-    //plottsgram->xAxis->setRangeReplotPolicy(QCPAxis::rpImmediate);
+    // plottsgram->xAxis->setRangeReplotPolicy(QCPAxis::rpImmediate);
     plottsgram2->xAxis->setRange(plottsgram2->xAxis2->range());
     plottsgram2->yAxis->setRange(plottsgram2->yAxis2->range());
 
     // Set update function saat plot direplot
     // Sinkronisasi top/right axes dengan bottom/left
-    connect(plottsgram2, &QCustomPlot::afterReplot, [=](){
+    connect(plottsgram2, &QCustomPlot::afterReplot, [=]() {
         plottsgram2->xAxis->setRange(plottsgram2->xAxis->range());
         plottsgram2->yAxis->setRange(plottsgram2->yAxis->range());
     });
@@ -1820,7 +1846,7 @@ void MainWindow::setupRealtimeDataMotion2(QCustomPlot *plottsgram2)
     // Vertical Text - left blank intentionally
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupRealtimeDataVelocity2(QCustomPlot *plottsVelocity2)
 {
     demoName = "Real Time Data Demo";
@@ -1863,13 +1889,12 @@ void MainWindow::setupRealtimeDataVelocity2(QCustomPlot *plottsVelocity2)
     ui->plottsVelocity2->axisRect()->setupFullAxesBox();
     ui->plottsVelocity2->yAxis->setRange(0, 40);
 
-
     ui->plottsVelocity2->xAxis->setRange(ui->plottsVelocity2->xAxis->range());
     ui->plottsVelocity2->yAxis->setRange(ui->plottsVelocity2->yAxis->range());
 
     // Set update function saat plot direplot
     // Sinkronisasi top/right axes dengan bottom/left
-    connect(ui->plottsVelocity2, &QCustomPlot::afterReplot, [=](){
+    connect(ui->plottsVelocity2, &QCustomPlot::afterReplot, [=]() {
         ui->plottsVelocity2->xAxis->setRange(ui->plottsVelocity2->xAxis->range());
         ui->plottsVelocity2->yAxis->setRange(ui->plottsVelocity2->yAxis->range());
     });
@@ -1877,11 +1902,11 @@ void MainWindow::setupRealtimeDataVelocity2(QCustomPlot *plottsVelocity2)
     // Vertical Text - left blank intentionally
 }
 
-//---------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
 {
-    //-------------------------- Inisialisasi plotRadar --------------------------
-    ui->plotRadar2->xAxis->setVisible(true);   // tampilkan axes
+    // ----------------------------------------------------------------------------- Inisialisasi plotRadar --------------------------
+    ui->plotRadar2->xAxis->setVisible(true); // tampilkan axes
     ui->plotRadar2->yAxis->setVisible(true);
     ui->plotRadar2->xAxis->setRange(-500, 500);
     ui->plotRadar2->yAxis->setRange(-500, 500);
@@ -1906,144 +1931,138 @@ void MainWindow::setupPlotRadar2(QCustomPlot *plotRadar2)
     // Bikin graph untuk titik radar
     radarPoint2 = ui->plotRadar2->addGraph();
     radarPoint2->setLineStyle(QCPGraph::lsNone);
-    radarPoint2->setScatterStyle(QCPScatterStyle(
-        QCPScatterStyle::ssCircle,
-        QPen(Qt::red),
-        QBrush(Qt::red),
-        8
-        ));
+    radarPoint2->setScatterStyle(
+        QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::red), QBrush(Qt::red), 8));
 }
 
-
-//------------------------------------------------------------------------
+// =============================================================================
+// GUI controls and robot states
+// =============================================================================
 void MainWindow::on_btnPlaySound_clicked()
 {
-    //soundPlay(SOUND_FALL_OCCUR, lang);
-    soundPlay(SOUND_WAITING,lang);
+    // soundPlay(SOUND_FALL_OCCUR, lang);
+    soundPlay(SOUND_WAITING, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onSocketEventReceived(const QString &eventName, const QJsonValue &data)
 {
     qDebug() << "UI received event:" << eventName << "data:" << data;
-    //m_eventQueue.enqueue(qMakePair(eventName, data));
+    // m_eventQueue.enqueue(qMakePair(eventName, data));
 
     qDebug() << "UI received event:" << eventName << "data:" << data;
     m_worker->enqueue(eventName, data);
 }
 
-//------------------------------------------------------------------------
-void MainWindow::onDeviceReadyConnected(int vol, int bright)
-{
+// -----------------------------------------------------------------------------
+void MainWindow::onDeviceReadyConnected(int vol, int bright) {}
 
-}
-
-//------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnColor1_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","white")){
+    if (publishMessage("ledcolor", "white")) {
         qDebug() << "white ok";
-    }else{
+    } else {
         qDebug() << "white fail";
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnColor2_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","blinky")){
+    if (publishMessage("ledcolor", "blinky")) {
         qDebug() << "blinky ok";
-    }else{
+    } else {
         qDebug() << "blinky fail";
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnColor3_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","bright")){
+    if (publishMessage("ledcolor", "bright")) {
         qDebug() << "bright ok";
-    }else{
+    } else {
         qDebug() << "bright fail";
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnColor4_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_RED);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","red")){
+    if (publishMessage("ledcolor", "red")) {
         qDebug() << "red ok";
-    }else{
+    } else {
         qDebug() << "red fail";
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_hsBrightness_valueChanged(int value)
 {
     ui->lBrightness->setText(QString::number(value));
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetBrightness_clicked()
 {
-    //ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
-    #ifdef Q_OS_LINUX
-    ui->leBrightness->setText(QString::number(m_brightness->getBrightnessPercent()));
-    #endif
-}
-
-//------------------------------------------------------------------------
-void MainWindow::on_btnsetBrightness_clicked()
-{
+// ui->leBrightness->setText(QString::number(m_brightness->getBrightness()));
 #ifdef Q_OS_LINUX
-   if(m_brightness->setBrightnessPercent(ui->hsBrightness->value())){
-       qDebug() << "Success Set brightness " << ui->hsBrightness->value();
-   }else{
-       qDebug() << "Fail Set brightness " << ui->hsBrightness->value();
-   }
+    ui->leBrightness->setText(QString::number(m_brightness->getBrightnessPercent()));
 #endif
 }
 
-//------------------------------------------------------------------------
-void MainWindow::on_btnGetVol_clicked()
+// -----------------------------------------------------------------------------
+void MainWindow::on_btnsetBrightness_clicked()
 {
-    //ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
-    //QString volStr = QString::number(m_volume->getVolumePercent());
-    //ui->leVol->setText(volStr);
-    //ui->hsVol->setValue(volStr.toInt());
+#ifdef Q_OS_LINUX
+    if (m_brightness->setBrightnessPercent(ui->hsBrightness->value())) {
+        qDebug() << "Success Set brightness " << ui->hsBrightness->value();
+    } else {
+        qDebug() << "Fail Set brightness " << ui->hsBrightness->value();
+    }
+#endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+void MainWindow::on_btnGetVol_clicked()
+{
+    // ui->leVol->setText(QString::number(m_volume->getVolumePercent()));
+    // QString volStr = QString::number(m_volume->getVolumePercent());
+    // ui->leVol->setText(volStr);
+    // ui->hsVol->setValue(volStr.toInt());
+}
+
+// -----------------------------------------------------------------------------
 void MainWindow::on_hsVol_valueChanged(int value)
 {
     ui->lVol->setText(QString::number(value));
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnsetVol_clicked()
 {
-    //if(m_volume->setVolumePercent(ui->hsVol->value())){
+    // if(m_volume->setVolumePercent(ui->hsVol->value())){
     /*if(m_volumeMonitor->setVolumePercent(ui->hsVol->value())){
         qDebug() << "Success Set Volume " << ui->hsVol->value();
         ui->leVol->setText(QString::number(ui->hsVol->value()));
@@ -2058,64 +2077,61 @@ void MainWindow::on_btnsetVol_clicked()
 #endif
 }
 
-//------------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnConnect_clicked()
 {
     client->connectToServer("192.168.1.100", 3000);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnFallSimulation_clicked()
 {
-    if(client->isConnected()){
+    if (client->isConnected()) {
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
+        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
         fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
         m_gpio->setColor(COLOR_RED);
 #endif
-        timerSendFallevent->start(1000); //Aktifkan send fall event repeat
+        timerSendFallevent->start(1000); // Aktifkan send fall event repeat
         soundPlay(SOUND_FALL_OCCUR, lang);
-    }else{
+    } else {
         qDebug() << " Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onListenStateChanged()
 {
-    qDebug() << "UI Process LISTENING";// << state;
+    qDebug() << "UI Process LISTENING"; // << state;
 #ifdef Q_OS_LINUX
-    m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    m_gpio->setColor(COLOR_WHITE);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","bright")){
+    if (publishMessage("ledcolor", "bright")) {
         qDebug() << "bright ok";
-    }else{
+    } else {
         qDebug() << "bright fail";
     }
 #endif
 
-    //if (state == "ON") //m_gpio->setColor(COLOR_WHITE_BRIGHT);
-    //else if (state == "OFF") //m_gpio->setColor(COLOR_WHITE);
+    // if (state == "ON") //m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    // else if (state == "OFF") //m_gpio->setColor(COLOR_WHITE);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onTalkingStateChanged()
 {
-    qDebug() << "UI Process TALKING";// << state;
+    qDebug() << "UI Process TALKING"; // << state;
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","blinky")){
+    if (publishMessage("ledcolor", "blinky")) {
         qDebug() << "blinky ok";
-    }else{
+    } else {
         qDebug() << "blinky fail";
     }
 #endif
@@ -2131,41 +2147,41 @@ void MainWindow::onTalkingStateChanged()
     */
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWaiting()
 {
-    qDebug() << "UI Process Waiting";// << state;
+    qDebug() << "UI Process Waiting"; // << state;
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
-    soundPlay(SOUND_WAITING,lang);
+    soundPlay(SOUND_WAITING, lang);
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onRecording()
 {
-    qDebug() << "UI Process Waiting";// << state;
+    qDebug() << "UI Process Waiting"; // << state;
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
-    //int currentVol = m_volume->getVolumePercent();
-    client->emitEventStringMsgJsoned("VOLUME_SET_REQUEST",QString::number(m_volCurrent));// QString::number(currentVol));
-
+    // int currentVol = m_volume->getVolumePercent();
+    client->emitEventStringMsgJsoned("VOLUME_SET_REQUEST",
+                                     QString::number(m_volCurrent)); // QString::number(currentVol));
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onVolumeSetRequested(int vt)
 {
     qDebug() << "UI vol Set:" << vt;
-    //if (vt > 0 && m_volume->setVolumePercent(vt)) {
+    // if (vt > 0 && m_volume->setVolumePercent(vt)) {
 #ifdef Q_OS_LINUX
-    if (vt > 0){
+    if (vt > 0) {
         m_volumeMonitor->setVolumePercent(vt);
         qDebug() << "UI vol successfully set to" << vt;
     } else {
@@ -2174,27 +2190,27 @@ void MainWindow::onVolumeSetRequested(int vt)
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onPingDeviceUpRequested()
 {
     qDebug() << "UI PingDeviceUpReq";
-    #ifdef Q_OS_LINUX
+#ifdef Q_OS_LINUX
     int brightGet = m_brightness->setBrightnessPercent(80);
     client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
-    #else
+#else
     client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", "70");
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onSleepRequested()
 {
     qDebug() << "UI SleepReq";
-    #ifdef Q_OS_LINUX
+#ifdef Q_OS_LINUX
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
 
-    //Reduce brightness
+    // Reduce brightness
     /*
     if(m_brightness->setBrightnessPercent(1)){
         qDebug() << "Success Set brightness " << 1;
@@ -2203,40 +2219,39 @@ void MainWindow::onSleepRequested()
     }
 */
 
-    //Reduce Volume
-   // m_volumeMonitor->setVolumePercent(30);
-   // qDebug() << "Vol set to " << 30;
+    // Reduce Volume
+    // m_volumeMonitor->setVolumePercent(30);
+    // qDebug() << "Vol set to " << 30;
 #endif
 }
 
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWakeUpRequested()
 {
     qDebug() << "UI Wakeup";
-    #ifdef Q_OS_LINUX
-    soundPlay(SOUND_LOGIN,lang);
+#ifdef Q_OS_LINUX
+    soundPlay(SOUND_LOGIN, lang);
 
     int getBright = m_brightness->getBrightnessPercent();
     client->emitEventStringMsgJsoned("WAKE_UP", QString::number(getBright));
 
-    //increase brightness
-    if(m_brightness->setBrightnessPercent(70)){
+    // increase brightness
+    if (m_brightness->setBrightnessPercent(70)) {
         qDebug() << "Success Set brightness " << 70;
-    }else{
+    } else {
         qDebug() << "Fail Set brightness " << 70;
     }
 
-    soundPlay(SOUND_HELPYOU,lang);
+    soundPlay(SOUND_HELPYOU, lang);
 
 #endif
 
-    //increase Volume
-    //m_volumeMonitor->setVolumePercent(98);
-   // qDebug() << "Vol set to " << 98;
+    // increase Volume
+    // m_volumeMonitor->setVolumePercent(98);
+    // qDebug() << "Vol set to " << 98;
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onSpeechModuleReady()
 {
     qDebug() << "Speech Module Ready notify";
@@ -2244,66 +2259,66 @@ void MainWindow::onSpeechModuleReady()
     m_gpio->setColor(COLOR_WHITE);
 #endif
 #ifdef MQTT_FITUR
-    if(publishMessage("ledcolor","white")){
+    if (publishMessage("ledcolor", "white")) {
         qDebug() << "white ok";
-    }else{
+    } else {
         qDebug() << "white fail";
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
-    #ifdef Q_OS_LINUX
+#ifdef Q_OS_LINUX
     if (bst > 0 && m_brightness->setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
         bst = m_brightness->getBrightnessPercent();
         qDebug() << "prepare emit brightness set ack " << bst;
-        //client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
+        // client->emitEventStringMsg("BRIGHTNESS_GET_ACK",QString::number(bst));
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onBrightnessGetRequested()
 {
     qDebug() << "UI Brightness get";
 #ifdef Q_OS_LINUX
     int bst = m_brightness->getBrightnessPercent();
-    //if (bst > 0 && setBrightnessPercent(bst)) {
+    // if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
-    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST",QString::number(bst));
+    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST", QString::number(bst));
     qDebug() << "UI emit Brightness get end" << bst;
 #endif
-    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST","70");
+    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST", "70");
     //}
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onVolumeIncreaseReq()
 {
     qDebug() << "UI onVolumeIncreaseReq";
-    int currentVol = m_volCurrent; //m_volume->getVolumePercent();
+    int currentVol = m_volCurrent; // m_volume->getVolumePercent();
     currentVol = currentVol + 5;
-    if((currentVol > 20) && (currentVol <= 99)){
-        //if(m_volumeMonitor->setVolumePercent(currentVol)){
+    if ((currentVol > 20) && (currentVol <= 99)) {
+        // if(m_volumeMonitor->setVolumePercent(currentVol)){
 #ifdef Q_OS_LINUX
         m_volumeMonitor->setVolumePercent(currentVol);
-            qDebug() << "UI succes Inc Vol " << currentVol;
+        qDebug() << "UI succes Inc Vol " << currentVol;
 #endif
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onVolumeDecreaseReq()
 {
     qDebug() << "UI onVolumeDecreaseReq";
-    int currentVol = m_volCurrent;//m_volume->getVolumePercent();
+    int currentVol = m_volCurrent; // m_volume->getVolumePercent();
     currentVol = currentVol - 5;
-    if((currentVol > 20) && (currentVol <= 99)){
-        //if(m_volumeMonitor->setVolumePercent(currentVol)){
+    if ((currentVol > 20) && (currentVol <= 99)) {
+        // if(m_volumeMonitor->setVolumePercent(currentVol)){
 #ifdef Q_OS_LINUX
         m_volumeMonitor->setVolumePercent(currentVol);
 #endif
@@ -2311,7 +2326,7 @@ void MainWindow::onVolumeDecreaseReq()
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onVolumeChanged(int percent)
 {
     m_volCurrent = percent;
@@ -2319,7 +2334,7 @@ void MainWindow::onVolumeChanged(int percent)
     ui->leVol->setText(QString::number(percent));
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 /*void MainWindow::onVolumeChanged(int percent)
 {
     qDebug() << "Volume changed cuk:" << percent;
@@ -2327,103 +2342,99 @@ void MainWindow::onVolumeChanged(int percent)
 }
 */
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onBrihtnessIncreaseReq()
 {
     qDebug() << "UI onBrihtnessIncreaseReq";
 #ifdef Q_OS_LINUX
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness + 5;
-    if((currentBrightness > 20) && (currentBrightness <= 100)){
-        if(m_brightness->setBrightnessPercent(currentBrightness)){
+    if ((currentBrightness > 20) && (currentBrightness <= 100)) {
+        if (m_brightness->setBrightnessPercent(currentBrightness)) {
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
-        }else{
+        } else {
             qDebug() << "UI fail Inc  " << currentBrightness;
         }
-    }else{
+    } else {
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
 #endif
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onBrightnessDecreaseReq()
 {
     qDebug() << "UI onBrightnessDecreaseReq";
 #ifdef Q_OS_LINUX
     int currentBrightness = m_brightness->getBrightnessPercent();
     currentBrightness = currentBrightness - 5;
-    if((currentBrightness > 20) && (currentBrightness <= 100)){
-        if(m_brightness->setBrightnessPercent(currentBrightness)){
+    if ((currentBrightness > 20) && (currentBrightness <= 100)) {
+        if (m_brightness->setBrightnessPercent(currentBrightness)) {
             qDebug() << "UI succes Inc Brightness " << currentBrightness;
-        }else{
+        } else {
             qDebug() << "UI fail Inc v " << currentBrightness;
         }
-    }else{
+    } else {
         qDebug() << "UI fail Inc out of range  " << currentBrightness;
     }
 #endif
 }
 
-//------------------------------------------------------------------------
-void MainWindow::onIncidentFallCancel()
-{
+// =============================================================================
+// Fall-incident handling
+// =============================================================================
+void MainWindow::onIncidentFallCancel() {}
 
-}
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentIamnotOK()
 {
     soundPlay(SOUND_HELP, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentIamOK()
 {
     soundPlay(SOUND_IAM_OK, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentFallEventDetected()
 {
-    //fallEventAckReceived = true;
+    // fallEventAckReceived = true;
 }
 
-//------------------------------------------------------------------------
-void MainWindow::onIncidentFallWakeUpByFallDetection()
-{
+// -----------------------------------------------------------------------------
+void MainWindow::onIncidentFallWakeUpByFallDetection() {}
 
-}
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentAckFallEventDetected()
 {
     fallEventAckReceived = true;
     qDebug() << "ACK_FALL_EVENT_DETECTED";
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentFallNoResponse()
 {
-   // fallEventAckReceived = true;
-    soundPlay(SOUND_HELP,lang);
+    // fallEventAckReceived = true;
+    soundPlay(SOUND_HELP, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentFallHelpEventDetected()
 {
-   // fallEventAckReceived = true;
-     soundPlay(SOUND_HELP,lang);
+    // fallEventAckReceived = true;
+    soundPlay(SOUND_HELP, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentFallOKEventDetected()
 {
-   // fallEventAckReceived = true;
-     soundPlay(SOUND_IAM_OK,lang);
+    // fallEventAckReceived = true;
+    soundPlay(SOUND_IAM_OK, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onIncidentFallCompleted()
 {
     fallEventAckReceived = true;
@@ -2432,158 +2443,158 @@ void MainWindow::onIncidentFallCompleted()
 #endif
 }
 
-//------------------------------------------------------------------------
+// =============================================================================
+// Timers and language state
+// =============================================================================
 void MainWindow::slotTimerSendFallEvent()
 {
-    if(!fallEventAckReceived){ //Ack belum diterima, ulangi kirim event fall
+    if (!fallEventAckReceived) { // Ack belum diterima, ulangi kirim event fall
         if (client->isConnected()) {
             // soundPlay(SOUND_FALL_OCCUR);
             QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
             QJsonObject obj;
             obj["datetime"] = timestamp;
-            client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED",obj);
+            client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
         } else {
             qDebug() << "Socket DC";
         }
-    }else{
-        timerSendFallevent->stop();  //Ack sudah diterima, stop
+    } else {
+        timerSendFallevent->stop(); // Ack sudah diterima, stop
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::slotTimerHeartBeat()
 {
     radar1UartHeartBeatCounter++;
     radar2UartHeartBeatCounter++;
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onlangCurrent(QString langstr)
 {
     lang = langstr;
     qDebug() << "Lang current info " << lang;
 }
 
-
 #ifdef Q_OS_LINUX
-//------------------------------------------------------------------------
+// =============================================================================
+// Wi-Fi and Raspberry Pi controls
+// =============================================================================
 void MainWindow::onWifiOnRequest()
 {
     m_utility->nmcliWifiOn();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiOffRequest()
 {
     m_utility->nmcliWifiOff();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onwifiScanSsidReqReceived()
 {
-    if (!client || !client->isConnected()) return;
+    if (!client || !client->isConnected())
+        return;
 
-    QString isoMs = QDateTime::currentDateTimeUtc()
-                        .toString(Qt::ISODateWithMs);
+    QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
 
     QJsonObject obj;
     obj["timestamp"] = isoMs;
 
-    client->emitEventStringMsgJsoned("WIFI_SCAN_STARTED",obj);
+    client->emitEventStringMsgJsoned("WIFI_SCAN_STARTED", obj);
 
     qDebug() << "masuk cuk";
 
     m_utility->nmcliGetWifiListComplete();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiGetSsidRequest()
 {
     if (client->isConnected()) {
-        //m_utility->nmcliGetSSID();
+        // m_utility->nmcliGetSSID();
         qDebug() << "Get current wifi ssid status";
         m_utility->nmcliGetCurrentWifiInfo();
-        //qDebug() << "wifiCurrent ";
-        //client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
+        // qDebug() << "wifiCurrent ";
+        // client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
     } else {
         qDebug() << "Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiSsidListRequest()
 {
     if (client->isConnected()) {
-        //QStringList wifiList = m_utility->nmcliGetWifiList();
+        // QStringList wifiList = m_utility->nmcliGetWifiList();
         m_utility->nmcliGetWifiListSSid();
 
-        //qDebug() << "Wifi List " << wifiList;
-        //QJsonObject obj;
-        //obj["ssids"] = QJsonArray::fromStringList(wifiList);
-        //client->emitEventStringMsgJsoned("SSID_LIST",obj);
+        // qDebug() << "Wifi List " << wifiList;
+        // QJsonObject obj;
+        // obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        // client->emitEventStringMsgJsoned("SSID_LIST",obj);
     } else {
         qDebug() << "Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiSsidListRequestComplete()
 {
     if (client->isConnected()) {
-        //QStringList wifiList = m_utility->nmcliGetWifiList();
+        // QStringList wifiList = m_utility->nmcliGetWifiList();
         m_utility->nmcliGetWifiListComplete();
 
-        //qDebug() << "Wifi List " << wifiList;
-        //QJsonObject obj;
-        //obj["ssids"] = QJsonArray::fromStringList(wifiList);
-        //client->emitEventStringMsgJsoned("SSID_LIST",obj);
+        // qDebug() << "Wifi List " << wifiList;
+        // QJsonObject obj;
+        // obj["ssids"] = QJsonArray::fromStringList(wifiList);
+        // client->emitEventStringMsgJsoned("SSID_LIST",obj);
     } else {
         qDebug() << "Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiSSidListReady(QStringList ssidList)
 {
     if (client->isConnected()) {
-        //QStringList wifiList = m_utility->nmcliGetWifiList();
+        // QStringList wifiList = m_utility->nmcliGetWifiList();
 
         qDebug() << "Wifi List " << ssidList;
         QJsonObject obj;
         obj["ssids"] = QJsonArray::fromStringList(ssidList);
-        client->emitEventStringMsgJsoned("SSID_LIST",obj);
+        client->emitEventStringMsgJsoned("SSID_LIST", obj);
     } else {
         qDebug() << "Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
 {
     if (!client || !client->isConnected())
         return;
 
-    //QJsonArray array;
+    // QJsonArray array;
     int ssidCountFound = 0;
 
-    for (const WifiAP &ap : wifiList){
+    for (const WifiAP &ap : wifiList) {
         QJsonObject obj;
-        obj["ssid"]      = ap.ssid;
-        obj["signal"]    = ap.signalDbm;
-        obj["secured"]   = true; //ap.security;
-        obj["channel"]   = ap.channel;
+        obj["ssid"] = ap.ssid;
+        obj["signal"] = ap.signalDbm;
+        obj["secured"] = true; // ap.security;
+        obj["channel"] = ap.channel;
         obj["frequency"] = ap.band;
 
-        client->emitEventStringMsgJsoned(
-                        "WIFI_NETWORK_FOUND",
-                       obj
-                        );
+        client->emitEventStringMsgJsoned("WIFI_NETWORK_FOUND", obj);
 
         ssidCountFound++;
-        //array.append(obj);
+        // array.append(obj);
     }
 
-    //QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
+    // QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
 
     qint64 isoMs = QDateTime::currentMSecsSinceEpoch();
 
@@ -2591,13 +2602,10 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
     obj["total"] = ssidCountFound;
     obj["timestamp"] = isoMs;
 
-    client->emitEventStringMsgJsoned(
-                    "WIFI_SCAN_COMPLETED",
-                    obj
-                    );
+    client->emitEventStringMsgJsoned("WIFI_SCAN_COMPLETED", obj);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList)
 {
     if (!client || !client->isConnected())
@@ -2606,43 +2614,43 @@ void MainWindow::onWifiSSidListReadyCompleteRequest(QList<WifiAP> wifiList)
     m_utility->nmcliGetWifiListComplete();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onCurrentSSidRequest()
 {
     qDebug() << "reconnect, get current ssid.... ";
     m_worker->wifiGetSsid();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
 {
     if (client->isConnected()) {
         QJsonObject obj;
         obj["ssid"] = ssid;
-        //obj["password"] = pwd;
+        // obj["password"] = pwd;
         obj["status"] = "connecting";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTING",obj);
+        client->emitEventStringMsgJsoned("WIFI_CONNECTING", obj);
         qDebug() << "NMCLI connect wifi ssid " << ssid << " pwd " << pwd;
-        m_utility->nmcliConnectToWiFi(ssid,pwd);
+        m_utility->nmcliConnectToWiFi(ssid, pwd);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED","socketio_closed");
+        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", "socketio_closed");
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiForgetRequest(const QString &ssid)
 {
     if (client->isConnected()) {
         m_utility->nmcliForgetConnection(ssid);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("SIO DC","");
+        client->emitEventStringMsgJsoned("SIO DC", "");
     }
 }
 
 /*
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onSsidReady(QString ssid){
     qDebug() << "SSID aktif:" << ssid;
 
@@ -2654,17 +2662,18 @@ void MainWindow::onSsidReady(QString ssid){
     }
 }*/
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
 {
     if (!client || !client->isConnected())
-         return;
+        return;
 
     client->emitEventStringMsgJsoned("WIFI_STATUS", obj);
 }
 
-//------------------------------------------------------------------------
-void MainWindow::onWifiConnected(bool success, const QString &ssid, const QString &ip, const QString gateway){
+// -----------------------------------------------------------------------------
+void MainWindow::onWifiConnected(bool success, const QString &ssid, const QString &ip, const QString gateway)
+{
     if (!success) {
         QJsonObject obj;
         obj["error"] = ssid;
@@ -2672,7 +2681,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
         return;
     }
 
-    //QString msg = QString("%1 (%2)").arg(ssid, ip);
+    // QString msg = QString("%1 (%2)").arg(ssid, ip);
 
     if (client->isConnected()) {
         QJsonObject obj;
@@ -2685,7 +2694,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiDisconnectRequest()
 {
     if (client->isConnected()) {
@@ -2696,7 +2705,7 @@ void MainWindow::onWifiDisconnectRequest()
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onwifiDisconnectResult(bool success, QString ssid, QString message)
 {
     if (success) {
@@ -2715,88 +2724,102 @@ void MainWindow::onwifiDisconnectResult(bool success, QString ssid, QString mess
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiEnabled(bool on)
 {
     if (on) {
         qDebug() << "Wifi Enable OK";
-        client->emitEventStringMsgJsoned("WIFI_ENABLED_SUCCESS","");
-    }else{
+        client->emitEventStringMsgJsoned("WIFI_ENABLED_SUCCESS", "");
+    } else {
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("WIFI_ENABLED_FAIL","");
+        client->emitEventStringMsgJsoned("WIFI_ENABLED_FAIL", "");
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiDeleted(bool success, QString ssid, QString message)
 {
     if (success) {
         qDebug() << "SSID deleted " << ssid;
-        client->emitEventStringMsgJsoned("SSID_DELETED_OK",ssid);
-    }else{
+        client->emitEventStringMsgJsoned("SSID_DELETED_OK", ssid);
+    } else {
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("SSID_DELETED_FAIL",ssid);
+        client->emitEventStringMsgJsoned("SSID_DELETED_FAIL", ssid);
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiProgress(int state, QString stateText)
 {
-    qDebug() << "WiFi State:" << state
-              << stateText;
+    qDebug() << "WiFi State:" << state << stateText;
 
     if (client->isConnected()) {
         int percent = 0;
         QString progressText = m_utility->deviceStateToString(state);
 
         switch (state) {
-        case 30: percent = 0; break;
-        case 40: percent = 10; break;
-        case 50: percent = 25; break;
-        case 60: percent = 40; break;
-        case 70: percent = 60; break;
-        case 80: percent = 75; break;
-        case 90: percent = 90; break;
-        case 100:
-            percent = 100;
-            progressText = "connected";
-            break;
+            case 30:
+                percent = 0;
+                break;
+            case 40:
+                percent = 10;
+                break;
+            case 50:
+                percent = 25;
+                break;
+            case 60:
+                percent = 40;
+                break;
+            case 70:
+                percent = 60;
+                break;
+            case 80:
+                percent = 75;
+                break;
+            case 90:
+                percent = 90;
+                break;
+            case 100:
+                percent = 100;
+                progressText = "connected";
+                break;
 
-        case 120:   // Failed
-            percent = 0;
-            progressText = "failed";
-            break;
+            case 120: // Failed
+                percent = 0;
+                progressText = "failed";
+                break;
 
-        default:
-            percent = 0;
-            break;
+            default:
+                percent = 0;
+                break;
         }
 
-         // kirim ke frontend
+        // kirim ke frontend
 
         QJsonObject obj;
-        obj["stage"] =  progressText;
+        obj["stage"] = progressText;
         obj["progress"] = percent;
 
         client->emitEventStringMsgJsoned("WIFI_CONNECTION_PROGRESS", obj);
-        if(state == 100){
+        if (state == 100) {
             qDebug() << "new wifi ssid, recon app....";
-            QString serverIp = "203.194.114.21"; //ConfigManager::getServerIp(); //"https://elderly-care-socket-io-server.online";
-            int serverPort = 4000;//ConfigManager::getServerPort();
+            QString serverIp = "203.194.114.21"; // ConfigManager::getServerIp();
+                                                 // //"https://elderly-care-socket-io-server.online";
+            int serverPort = 4000; // ConfigManager::getServerPort();
 
             qDebug() << "Server IP:" << serverIp;
             qDebug() << "Server Port:" << serverPort;
 
-            //client->connectToServer("192.168.1.27", 3000);
-            //client->connectToServer(serverIp);//, serverPort);
+            // client->connectToServer("192.168.1.27", 3000);
+            // client->connectToServer(serverIp);//, serverPort);
             client->connectToServer(serverIp, serverPort);
-            //client->connectToServer("");//, serverPort);
-            //restartApp();
+            // client->connectToServer("");//, serverPort);
+            // restartApp();
         }
-     }
+    }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, QString gateway)
 {
     QJsonObject obj;
@@ -2811,20 +2834,15 @@ void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, Q
     }
 
     if (success)
-        qDebug() << "Connected to" << ssid
-                 << "IP:" << ip
-                 << "GW:" << gateway;
+        qDebug() << "Connected to" << ssid << "IP:" << ip << "GW:" << gateway;
     else
         qDebug() << "WiFi Connect Failed";
 }
 
-//------------------------------------------------------------------------
-void MainWindow::onMonitorWlan0Connected()
-{
+// -----------------------------------------------------------------------------
+void MainWindow::onMonitorWlan0Connected() {}
 
-}
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onMonitorWlan0Disconnected()
 {
     if (client->isConnected()) {
@@ -2834,7 +2852,7 @@ void MainWindow::onMonitorWlan0Disconnected()
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onMonitorWlan0WifiSignalLost()
 {
     if (client->isConnected()) {
@@ -2844,7 +2862,7 @@ void MainWindow::onMonitorWlan0WifiSignalLost()
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onMonitorWlan0networkInterfaceDown()
 {
     if (client->isConnected()) {
@@ -2854,7 +2872,7 @@ void MainWindow::onMonitorWlan0networkInterfaceDown()
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
 {
     if (client->isConnected()) {
@@ -2864,148 +2882,147 @@ void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onRpiRestart()
 {
     if (client->isConnected()) {
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("DEVICE_RESTART",obj);
+        client->emitEventStringMsgJsoned("DEVICE_RESTART", obj);
         m_utility->rpiRestart();
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onRpiShutdown()
 {
     if (client->isConnected()) {
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("DEVICE_OFF",obj);
+        client->emitEventStringMsgJsoned("DEVICE_OFF", obj);
         m_utility->rpiShutdown();
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onTzSetReq(QString tz)
 {
-    if(m_utility->setTimezone(tz)){
-    //if(m_utility->setTimezone("Europe/Stockholm")){
+    if (m_utility->setTimezone(tz)) {
+        // if(m_utility->setTimezone("Europe/Stockholm")){
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("TIMEZONE",tz);
+            client->emitEventStringMsgJsoned("TIMEZONE", tz);
             m_utility->rpiShutdown();
         }
-    }else{
+    } else {
         qDebug() << "Set TZ to SW Fail";
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onTzGetReq()
 {
     QString tz = m_utility->getTimeZone();
-    //if(m_utility->setTimezone("Europe/Stockholm")){
-    if(tz != ""){
+    // if(m_utility->setTimezone("Europe/Stockholm")){
+    if (tz != "") {
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("TIMEZONE",tz);
+            client->emitEventStringMsgJsoned("TIMEZONE", tz);
             m_utility->getTimeZone();
         }
-    }else{
+    } else {
         qDebug() << "TZ N/A";
     }
 }
 #endif
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnPlayFall_clicked()
 {
     soundPlay(SOUND_FALL_OCCUR, lang);
 }
 
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnPlayHelp_clicked()
 {
     soundPlay(SOUND_HELP, lang);
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnPlayIamOK_clicked()
 {
     soundPlay(SOUND_IAM_OK, lang);
 }
 
 #ifdef Q_OS_LINUX
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnScanWifiList_clicked()
 {
-   qDebug() << "SSID List ";
-   m_utility->nmcliGetWifiListSSid();
+    qDebug() << "SSID List ";
+    m_utility->nmcliGetWifiListSSid();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnGetSSID_clicked()
 {
     qDebug() << "SSID get ";
     m_utility->nmcliGetSSID();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnWifiCon_clicked()
 {
-    m_utility->nmcliConnectToWiFi("Parametrik 5G-01","tabassam");
+    m_utility->nmcliConnectToWiFi("Parametrik 5G-01", "tabassam");
     //    qDebug() << "Sukses";
     //}else{
     //    qDebug() << "Gagal ";
     //}
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnWifiOff_clicked()
 {
     m_utility->nmcliWifiOff();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnWifiOn_clicked()
 {
     m_utility->nmcliWifiOn();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnForget_clicked()
 {
-   m_utility->nmcliForgetConnection("Parametrik 5G-01");
+    m_utility->nmcliForgetConnection("Parametrik 5G-01");
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnRestart_clicked()
 {
-   m_utility->rpiRestart();
+    m_utility->rpiRestart();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnShutdown_clicked()
 {
     m_utility->rpiShutdown();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnSetTZ_clicked()
 {
-    if(m_utility->setTimezone("Asia/Jakarta")){
-    //if(m_utility->setTimezone("Europe/Stockholm")){
+    if (m_utility->setTimezone("Asia/Jakarta")) {
+        // if(m_utility->setTimezone("Europe/Stockholm")){
         qDebug() << "Set TZ to SW OK";
-    }else{
+    } else {
         qDebug() << "Set TZ to SW Fail";
     }
 }
 #endif
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnEmitEvenwAck_clicked()
 {
     QJsonObject data;
@@ -3015,8 +3032,7 @@ void MainWindow::on_btnEmitEvenwAck_clicked()
     client->emitEventWithAck(
         "login",
         data,
-        [](bool ok, QJsonValue response)
-        {
+        [](bool ok, QJsonValue response) {
             if (!ok) {
                 qDebug() << "ACK timeout or error:" << response;
                 return;
@@ -3031,24 +3047,25 @@ void MainWindow::on_btnEmitEvenwAck_clicked()
         },
         5000 // timeout 5 detik
     );
-
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnEmitListeningOn_clicked()
 {
-    if(client->isConnected()){
-        //QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
-        //QJsonObject obj;
-        //obj["datetime"] = timestamp;
-        QString msg= "ON";
-        client->emitEventStringMsgJsoned("LISTENING",msg);
-    }else{
+    if (client->isConnected()) {
+        // QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
+        // QJsonObject obj;
+        // obj["datetime"] = timestamp;
+        QString msg = "ON";
+        client->emitEventStringMsgJsoned("LISTENING", msg);
+    } else {
         qDebug() << " Socket DC";
     }
 }
 
-//------------------------------------------------------------------------
+// =============================================================================
+// Legacy audio recording helpers
+// =============================================================================
 void MainWindow::readMore()
 {
     /*
@@ -3095,19 +3112,19 @@ void MainWindow::readMore()
 */
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnRec_pressed()
 {
     startRecording();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnRec_released()
 {
-   stopRecording();
+    stopRecording();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnPlayRec_clicked()
 {
     /*
@@ -3140,10 +3157,9 @@ void MainWindow::on_btnPlayRec_clicked()
 
     ui->btnPlayRec->setText("Stop");
 */
-
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::handleFinished()
 {
     /*
@@ -3155,13 +3171,13 @@ void MainWindow::handleFinished()
 */
 }
 
-//------------------------------------------------------------------------
-//void MainWindow::handleError(QAudioDecoder::Error error)
+// -----------------------------------------------------------------------------
+// void MainWindow::handleError(QAudioDecoder::Error error)
 //{
 //    qDebug() << "Decoder error:" << error;
 //}
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::loadWav(const QString &path)
 {
     /*
@@ -3171,7 +3187,7 @@ void MainWindow::loadWav(const QString &path)
 */
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::processBuffer()
 {
     /*
@@ -3208,13 +3224,14 @@ void MainWindow::processBuffer()
 */
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 double MainWindow::calculateDb(const QByteArray &data)
 {
-    const int16_t *samples = reinterpret_cast<const int16_t*>(data.constData());
+    const int16_t *samples = reinterpret_cast<const int16_t *>(data.constData());
     int sampleCount = data.size() / 2;
 
-    if (sampleCount == 0) return -60.0;
+    if (sampleCount == 0)
+        return -60.0;
 
     double sum = 0.0;
 
@@ -3225,17 +3242,18 @@ double MainWindow::calculateDb(const QByteArray &data)
 
     double rms = sqrt(sum / sampleCount);
 
-    if (rms < 1e-6) return -60.0;
+    if (rms < 1e-6)
+        return -60.0;
 
     return 20.0 * log10(rms);
 }
 
-//------------------------------------------------------------------------
-void MainWindow::initAudioSystem()
-{
-}
+// -----------------------------------------------------------------------------
+void MainWindow::initAudioSystem() {}
 
-//------------------------------------------------------------------------
+// =============================================================================
+// PZEM and process management
+// =============================================================================
 void MainWindow::initPzem()
 {
     /*connect(m_pzem, &Pzem004Tv30Qt::dataReady,
@@ -3258,16 +3276,14 @@ void MainWindow::initPzem()
 
     m_pzem = new Pzem004Tv30Qt(this);
 
-    connect(m_pzem, &Pzem004Tv30Qt::dataReady,
-            this, &MainWindow::onPzemDataReadyComplete);
+    connect(m_pzem, &Pzem004Tv30Qt::dataReady, this, &MainWindow::onPzemDataReadyComplete);
 
-    connect(m_pzem,&Pzem004Tv30Qt::errorOccurred,
-                 this,[](const QString &error) {
-                     qDebug() << "PZEM error:" << error;
-                 });
+    connect(m_pzem, &Pzem004Tv30Qt::errorOccurred, this, [](const QString &error) {
+        qDebug() << "PZEM error:" << error;
+    });
 
-    //connect(this,&MainWindow::pzemDataReadyComplete,
-    //             this,&MainWindow::onPzemDataReadyComplete);
+    // connect(this,&MainWindow::pzemDataReadyComplete,
+    //              this,&MainWindow::onPzemDataReadyComplete);
 
     const QString portName = "/dev/ttyAMA2";
 
@@ -3279,16 +3295,13 @@ void MainWindow::initPzem()
     qDebug() << "PZEM serial opened on" << portName;
 }
 
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::stopAllThreads()
 {
-    QList<QThread*> threads =
-        qApp->findChildren<QThread*>();
+    QList<QThread *> threads = qApp->findChildren<QThread *>();
 
-    for(QThread *thread : threads)
-    {
-        if(thread == QThread::currentThread())
+    for (QThread *thread : threads) {
+        if (thread == QThread::currentThread())
             continue;
 
         qDebug() << "Stopping thread:" << thread;
@@ -3296,105 +3309,108 @@ void MainWindow::stopAllThreads()
         thread->requestInterruption();
         thread->quit();
 
-        if(!thread->wait(3000))
-        {
+        if (!thread->wait(3000)) {
             qWarning() << "Thread not stopped:" << thread;
         }
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::stopAllProcesses()
 {
-    QList<QProcess*> processes =
-         qApp->findChildren<QProcess*>();
+    QList<QProcess *> processes = qApp->findChildren<QProcess *>();
 
-     for(QProcess *p : processes)
-     {
-         p->terminate();
+    for (QProcess *p : processes) {
+        p->terminate();
 
-         if(!p->waitForFinished(3000))
-             p->kill();
-     }
-
+        if (!p->waitForFinished(3000))
+            p->kill();
+    }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::restartApp()
 {
     stopAllProcesses();
-     stopAllThreads();
+    stopAllThreads();
 
-     QString app = QCoreApplication::applicationFilePath();
+    QString app = QCoreApplication::applicationFilePath();
 
-     QProcess::startDetached(app);
+    QProcess::startDetached(app);
 
-     qApp->quit();
+    qApp->quit();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::getLangCommand()
 {
-    if(client->isConnected()){
+    if (client->isConnected()) {
         qDebug() << "Req lang info";
-        client->emitEventStringMsgJsoned("LANGUAGE_GET","");
-    }else{
+        client->emitEventStringMsgJsoned("LANGUAGE_GET", "");
+    } else {
         qDebug() << "Server IO Dc";
     }
 }
 
-//------------------------------------------------------------------------
+// =============================================================================
+// Sensor workers and utility initialization
+// =============================================================================
 void MainWindow::initBME280()
 {
     m_bmeThread = new QThread(this);
 
-    m_bmeWorker = new Bme280Worker(QStringLiteral("/dev/i2c-1"),0x76);
+    m_bmeWorker = new Bme280Worker(QStringLiteral("/dev/i2c-1"), 0x76);
     m_bmeWorker->moveToThread(m_bmeThread);
 
-    connect(this,&MainWindow::requestBme280Read,m_bmeWorker,&Bme280Worker::readSensor,Qt::QueuedConnection);
-    connect(m_bmeWorker,&Bme280Worker::readingReady,this,&MainWindow::onBme280ReadingReady);
-    connect(m_bmeWorker,&Bme280Worker::errorOccurred,this,&MainWindow::onBme280Error);
-    connect(m_bmeWorker,&Bme280Worker::readFinished,this,[this]() {});
-    connect(m_bmeThread,&QThread::finished,m_bmeWorker,&QObject::deleteLater);
+    connect(
+        this, &MainWindow::requestBme280Read, m_bmeWorker, &Bme280Worker::readSensor, Qt::QueuedConnection);
+    connect(m_bmeWorker, &Bme280Worker::readingReady, this, &MainWindow::onBme280ReadingReady);
+    connect(m_bmeWorker, &Bme280Worker::errorOccurred, this, &MainWindow::onBme280Error);
+    connect(m_bmeWorker, &Bme280Worker::readFinished, this, [this]() {});
+    connect(m_bmeThread, &QThread::finished, m_bmeWorker, &QObject::deleteLater);
 
     m_bmeThread->start();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::initCpuTemp()
 {
-    //init cpu temp
+    // init cpu temp
     m_cpuTemperatureThread = new QThread(this);
     m_cpuTemperatureWorker = new CpuTemperatureWorker();
 
     m_cpuTemperatureWorker->moveToThread(m_cpuTemperatureThread);
 
-    connect(this,&MainWindow::requestCpuTemperature,m_cpuTemperatureWorker,
-        &CpuTemperatureWorker::readTemperature,Qt::QueuedConnection);
-    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::temperatureReady,
-        this,&MainWindow::onCpuTemperatureReady);
-    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::errorOccurred,
-        this,&MainWindow::onCpuTemperatureError);
-    connect(m_cpuTemperatureWorker,&CpuTemperatureWorker::readFinished,
-        this,[this]() {
-           //ui->btngetcputemp->setEnabled(true);
-           qDebug() << "CPU ready finished ";
-        }
-    );
+    connect(this,
+            &MainWindow::requestCpuTemperature,
+            m_cpuTemperatureWorker,
+            &CpuTemperatureWorker::readTemperature,
+            Qt::QueuedConnection);
+    connect(m_cpuTemperatureWorker,
+            &CpuTemperatureWorker::temperatureReady,
+            this,
+            &MainWindow::onCpuTemperatureReady);
+    connect(m_cpuTemperatureWorker,
+            &CpuTemperatureWorker::errorOccurred,
+            this,
+            &MainWindow::onCpuTemperatureError);
+    connect(m_cpuTemperatureWorker, &CpuTemperatureWorker::readFinished, this, [this]() {
+        // ui->btngetcputemp->setEnabled(true);
+        qDebug() << "CPU ready finished ";
+    });
 
-    connect(m_cpuTemperatureThread,&QThread::finished,
-            m_cpuTemperatureWorker,&QObject::deleteLater);
+    connect(m_cpuTemperatureThread, &QThread::finished, m_cpuTemperatureWorker, &QObject::deleteLater);
 
     m_cpuTemperatureThread->start();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::getCputemp()
 {
     emit requestCpuTemperature();
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::initUtility()
 {
 #ifdef Q_OS_LINUX
@@ -3407,36 +3423,27 @@ void MainWindow::initUtility()
 
     m_utility = new utilities();
 
-    connect(m_utility, &utilities::wifiConnectResult,
-           this, &MainWindow::onWifiConnected);
-    connect(m_utility, &utilities::wifiRadioChanged,
-           this, &MainWindow::onWifiEnabled);
-    connect(m_utility, &utilities::wifiForgetResult,
-           this, &MainWindow::onWifiDeleted);
-    connect(m_utility, &utilities::wifiListReadyComplete,
-           this, &MainWindow::onWifiSSidListReadyComplete);
-    connect(m_utility, &utilities::wifiCurrentInfoReady,
-            this,&MainWindow::onCurrentWifiInfoReady);
-    connect(m_utility, &utilities::wifiDisconnectResult,
-            this, &MainWindow::onwifiDisconnectResult);
+    connect(m_utility, &utilities::wifiConnectResult, this, &MainWindow::onWifiConnected);
+    connect(m_utility, &utilities::wifiRadioChanged, this, &MainWindow::onWifiEnabled);
+    connect(m_utility, &utilities::wifiForgetResult, this, &MainWindow::onWifiDeleted);
+    connect(m_utility, &utilities::wifiListReadyComplete, this, &MainWindow::onWifiSSidListReadyComplete);
+    connect(m_utility, &utilities::wifiCurrentInfoReady, this, &MainWindow::onCurrentWifiInfoReady);
+    connect(m_utility, &utilities::wifiDisconnectResult, this, &MainWindow::onwifiDisconnectResult);
 
-    connect(m_utility,&utilities::wifiConnectProgress,
-            this,&MainWindow::onWifiProgress);
-    connect(m_utility,&utilities::wifiConnectResult,
-           this,&MainWindow::onWifiConnectFinished);
-
+    connect(m_utility, &utilities::wifiConnectProgress, this, &MainWindow::onWifiProgress);
+    connect(m_utility, &utilities::wifiConnectResult, this, &MainWindow::onWifiConnectFinished);
 
     qDebug() << "Start monitoring";
     systemdymon = new systemdmonitorqt("ssh.service", this);
-    connect(systemdymon, &systemdmonitorqt::serviceStarted, [](){
+    connect(systemdymon, &systemdmonitorqt::serviceStarted, []() {
         qDebug() << "SSH STARTED";
     });
 
-    connect(systemdymon, &systemdmonitorqt::serviceStopped, [](){
+    connect(systemdymon, &systemdmonitorqt::serviceStopped, []() {
         qDebug() << "SSH STOPPED";
     });
 
-    connect(systemdymon, &systemdmonitorqt::serviceFailed, [](){
+    connect(systemdymon, &systemdmonitorqt::serviceFailed, []() {
         qDebug() << "SSH FAILED";
     });
 
@@ -3444,26 +3451,22 @@ void MainWindow::initUtility()
 #endif
 }
 
-//------------------------------------------------------------------------
-void MainWindow::on_btnRec_clicked()
-{
+// -----------------------------------------------------------------------------
+void MainWindow::on_btnRec_clicked() {}
 
-}
-
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnPing_clicked()
 {
-     //QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
-     //QString timestampMs = QString::number(QDateTime::currentMSecsSinceEpoch());
+    // QString isoMs = QDateTime::currentDateTimeUtc().toString(Qt::ISODateWithMs);
+    // QString timestampMs = QString::number(QDateTime::currentMSecsSinceEpoch());
 
-     //qDebug() << timestampMs;
-     //qDebug() << "isooooocukkk " << timestampMs;
+    // qDebug() << timestampMs;
+    // qDebug() << "isooooocukkk " << timestampMs;
     m_pzem->requestReadAll();
     runAudioHealthRecordTest();
-
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
 {
     qDebug() << "========== PZEM DATA ==========";
@@ -3475,32 +3478,32 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
     qDebug() << "PF        :" << data.powerFactor;
     qDebug() << "Alarm     :" << data.alarm;
 
-    //Proses lebih lanjut, ke json, kirim ke socketio
-    if(client->isConnected()){
-       QJsonObject obj;
-       obj["temperature"] = mbme280data.temperatureC;
-       obj["pressure"] = mbme280data.pressureHpa;
-       obj["humidity"] = mbme280data.humidityPercent;
-       obj["cpu_temperature"] = cpuTempC;
+    // Proses lebih lanjut, ke json, kirim ke socketio
+    if (client->isConnected()) {
+        QJsonObject obj;
+        obj["temperature"] = mbme280data.temperatureC;
+        obj["pressure"] = mbme280data.pressureHpa;
+        obj["humidity"] = mbme280data.humidityPercent;
+        obj["cpu_temperature"] = cpuTempC;
 
-       obj["voltage"] = data.voltage;
-       obj["current"] = data.current;
-       obj["power_cons"] = data.power;
-       obj["frquency"] = data.frequency;
-       obj["pf"] = data.powerFactor;
-       obj["energy"] = data.energy;
+        obj["voltage"] = data.voltage;
+        obj["current"] = data.current;
+        obj["power_cons"] = data.power;
+        obj["frquency"] = data.frequency;
+        obj["pf"] = data.powerFactor;
+        obj["energy"] = data.energy;
 
-       client->emitEventStringMsgJsoned("DEVICE_POWER_INFO",obj);
+        client->emitEventStringMsgJsoned("DEVICE_POWER_INFO", obj);
 
-       //clear
-       mbme280data.temperatureC = 0;
-       mbme280data.pressureHpa = 0;
-       mbme280data.humidityPercent = 0;
-       cpuTempC = 0;
+        // clear
+        mbme280data.temperatureC = 0;
+        mbme280data.pressureHpa = 0;
+        mbme280data.humidityPercent = 0;
+        cpuTempC = 0;
     }
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onPowerInfoReq()
 {
     emit requestBme280Read();
@@ -3511,24 +3514,21 @@ void MainWindow::onPowerInfoReq()
     });
 }
 
-//------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onAudioInfoReq()
 {
     runAudioHealthRecordTest();
 }
 
-//------------------------------------------------------------------------
+// =============================================================================
+// Audio health test
+// =============================================================================
 void MainWindow::runAudioHealthRecordTest()
 {
     getAudioTargetsFromWpctlStatusAsync(
-        [this](const QString &micTarget,
-               const QString &speakerTarget,
-               const QString &targetErr) {
-
+        [this](const QString &micTarget, const QString &speakerTarget, const QString &targetErr) {
             if (micTarget.isEmpty() || speakerTarget.isEmpty()) {
-                qWarning().noquote()
-                << "Failed to get audio targets from wpctl status:\n"
-                << targetErr;
+                qWarning().noquote() << "Failed to get audio targets from wpctl status:\n" << targetErr;
                 return;
             }
 
@@ -3536,12 +3536,12 @@ void MainWindow::runAudioHealthRecordTest()
             qDebug() << "Using speaker target KT USB:" << speakerTarget;
 
             QProcess *recorder = new QProcess(this);
-            QProcess *player   = new QProcess(this);
+            QProcess *player = new QProcess(this);
 
             QString wavDir = QDir::homePath() + "/wav";
 
             QString testFileName = wavDir + "/audio_health_test.wav";
-            QString recordFile   = wavDir + "/respeaker_testRec.wav";
+            QString recordFile = wavDir + "/respeaker_testRec.wav";
 
             QDir().mkpath(wavDir);
 
@@ -3560,11 +3560,9 @@ void MainWindow::runAudioHealthRecordTest()
             QStringList recArgs;
             recArgs << "10s"
                     << "pw-record"
-                    << "--target" << micTarget
-                    << "--rate" << "16000"
+                    << "--target" << micTarget << "--rate" << "16000"
                     << "--channels" << "1"
-                    << "--format" << "s16"
-                    << recordFile;
+                    << "--format" << "s16" << recordFile;
 
             recorder->setProgram("timeout");
             recorder->setArguments(recArgs);
@@ -3599,17 +3597,19 @@ void MainWindow::runAudioHealthRecordTest()
                             QString reportResult = m_audioCheck.formatReportCompact(m_audioCheck.audioReport);
 
                             qDebug().noquote() << reportResult;
-                            if(client->isConnected()){
+                            if (client->isConnected()) {
                                 QString radar1ReportInfo = "radar1Normal";
                                 QString radar2ReportInfo = "radar2Normal";
 
-                                if(radar1UartHeartBeatCounter > 5)radar1ReportInfo = "radar1Error";
-                                if(radar2UartHeartBeatCounter > 5)radar2ReportInfo = "radar2Error";
+                                if (radar1UartHeartBeatCounter > 5)
+                                    radar1ReportInfo = "radar1Error";
+                                if (radar2UartHeartBeatCounter > 5)
+                                    radar2ReportInfo = "radar2Error";
 
                                 QJsonObject obj;
                                 obj["audio_report"] = reportResult;
                                 obj["radar_report"] = radar1ReportInfo + "_" + radar2ReportInfo;
-                                client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO",obj);
+                                client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO", obj);
                             }
                         } else {
                             qWarning() << "Recording file not found:" << recordFile;
@@ -3628,9 +3628,7 @@ void MainWindow::runAudioHealthRecordTest()
 
             player->setProgram("pw-play");
 
-            player->setArguments(QStringList()
-                                 << "--target" << speakerTarget
-                                 << "audio_health_test.wav");
+            player->setArguments(QStringList() << "--target" << speakerTarget << "audio_health_test.wav");
 
             player->setWorkingDirectory(wavDir);
             player->setProcessChannelMode(QProcess::MergedChannels);
@@ -3640,9 +3638,7 @@ void MainWindow::runAudioHealthRecordTest()
             });
 
             connect(player, &QProcess::started, this, [speakerTarget]() {
-                qDebug() << "Player started: pw-play --target"
-                         << speakerTarget
-                         << "audio_health_test.wav";
+                qDebug() << "Player started: pw-play --target" << speakerTarget << "audio_health_test.wav";
             });
 
             connect(player, &QProcess::errorOccurred, this, [](QProcess::ProcessError error) {
@@ -3653,8 +3649,7 @@ void MainWindow::runAudioHealthRecordTest()
                     QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
                     this,
                     [player](int exitCode, QProcess::ExitStatus exitStatus) {
-                        qDebug() << "Player finished. Exit code:" << exitCode
-                                 << "Exit status:" << exitStatus;
+                        qDebug() << "Player finished. Exit code:" << exitCode << "Exit status:" << exitStatus;
 
                         player->deleteLater();
                     });
@@ -3665,7 +3660,9 @@ void MainWindow::runAudioHealthRecordTest()
         });
 }
 
-//------------------------------------------------------------------------------------------
+// =============================================================================
+// PipeWire target discovery
+// =============================================================================
 void MainWindow::getMicTargetFromWpctlStatusAsync(
     std::function<void(const QString &micTarget, const QString &err)> callback)
 {
@@ -3680,17 +3677,17 @@ void MainWindow::getMicTargetFromWpctlStatusAsync(
         outputBuffer->append(wpctl->readAll());
     });
 
-    connect(wpctl, &QProcess::errorOccurred, this,
-            [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
-                QString err = QString("wpctl process error: %1").arg(error);
+    connect(
+        wpctl, &QProcess::errorOccurred, this, [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
+            QString err = QString("wpctl process error: %1").arg(error);
 
-                qWarning() << err;
+            qWarning() << err;
 
-                callback(QString(), err);
+            callback(QString(), err);
 
-                delete outputBuffer;
-                wpctl->deleteLater();
-            });
+            delete outputBuffer;
+            wpctl->deleteLater();
+        });
 
     connect(wpctl,
             QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
@@ -3724,7 +3721,7 @@ void MainWindow::getMicTargetFromWpctlStatusAsync(
     wpctl->start();
 }
 
-//------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 QString MainWindow::parseMicTargetFromWpctlStatus(const QString &output, QString *err) const
 {
     bool inSources = false;
@@ -3748,12 +3745,8 @@ QString MainWindow::parseMicTargetFromWpctlStatus(const QString &output, QString
             continue;
         }
 
-        if (inSources &&
-            (line.contains("Sinks:") ||
-             line.contains("Filters:") ||
-             line.contains("Streams:") ||
-             line.contains("Video:") ||
-             line.contains("Devices:"))) {
+        if (inSources && (line.contains("Sinks:") || line.contains("Filters:") || line.contains("Streams:") ||
+                          line.contains("Video:") || line.contains("Devices:"))) {
             break;
         }
 
@@ -3781,11 +3774,8 @@ QString MainWindow::parseMicTargetFromWpctlStatus(const QString &output, QString
         }
 
         // Prioritas utama: ReSpeaker / SEEED
-        if (name.contains("respeaker", Qt::CaseInsensitive) ||
-            name.contains("seeed", Qt::CaseInsensitive) ||
-            name.contains("4 mic", Qt::CaseInsensitive) ||
-            name.contains("mic array", Qt::CaseInsensitive)) {
-
+        if (name.contains("respeaker", Qt::CaseInsensitive) || name.contains("seeed", Qt::CaseInsensitive) ||
+            name.contains("4 mic", Qt::CaseInsensitive) || name.contains("mic array", Qt::CaseInsensitive)) {
             qDebug() << "Matched mic from wpctl status:" << id << name;
             return id;
         }
@@ -3797,25 +3787,22 @@ QString MainWindow::parseMicTargetFromWpctlStatus(const QString &output, QString
     }
 
     if (!firstNonMonitorSourceId.isEmpty()) {
-        qWarning() << "Default source not found. Using first non-monitor source ID:" << firstNonMonitorSourceId;
+        qWarning() << "Default source not found. Using first non-monitor source ID:"
+                   << firstNonMonitorSourceId;
         return firstNonMonitorSourceId;
     }
 
     if (err) {
-        *err = "No valid audio source found from wpctl status.\nDetected sources:\n"
-               + detectedSources.join('\n')
-               + "\n\nFull wpctl output:\n"
-               + output;
+        *err = "No valid audio source found from wpctl status.\nDetected sources:\n" +
+               detectedSources.join('\n') + "\n\nFull wpctl output:\n" + output;
     }
 
     return {};
 }
 
-//------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::getAudioTargetsFromWpctlStatusAsync(
-    std::function<void(const QString &micTarget,
-                       const QString &speakerTarget,
-                       const QString &err)> callback)
+    std::function<void(const QString &micTarget, const QString &speakerTarget, const QString &err)> callback)
 {
     QProcess *wpctl = new QProcess(this);
     QByteArray *outputBuffer = new QByteArray();
@@ -3828,25 +3815,24 @@ void MainWindow::getAudioTargetsFromWpctlStatusAsync(
         outputBuffer->append(wpctl->readAll());
     });
 
-    connect(wpctl, &QProcess::errorOccurred, this,
-            [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
-                if (error == QProcess::FailedToStart) {
-                    QString err = "Failed to start wpctl status";
+    connect(
+        wpctl, &QProcess::errorOccurred, this, [wpctl, outputBuffer, callback](QProcess::ProcessError error) {
+            if (error == QProcess::FailedToStart) {
+                QString err = "Failed to start wpctl status";
 
-                    qWarning() << err;
+                qWarning() << err;
 
-                    callback(QString(), QString(), err);
+                callback(QString(), QString(), err);
 
-                    delete outputBuffer;
-                    wpctl->deleteLater();
-                }
-            });
+                delete outputBuffer;
+                wpctl->deleteLater();
+            }
+        });
 
     connect(wpctl,
             QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             this,
-            [this, wpctl, outputBuffer, callback](int exitCode,
-                                                  QProcess::ExitStatus exitStatus) {
+            [this, wpctl, outputBuffer, callback](int exitCode, QProcess::ExitStatus exitStatus) {
                 outputBuffer->append(wpctl->readAll());
 
                 QString output = QString::fromUtf8(*outputBuffer);
@@ -3867,10 +3853,7 @@ void MainWindow::getAudioTargetsFromWpctlStatusAsync(
                 QString speakerTarget;
                 QString parseErr;
 
-                bool ok = parseAudioTargetsFromWpctlStatus(output,
-                                                           &micTarget,
-                                                           &speakerTarget,
-                                                           &parseErr);
+                bool ok = parseAudioTargetsFromWpctlStatus(output, &micTarget, &speakerTarget, &parseErr);
 
                 if (!ok) {
                     callback(QString(), QString(), parseErr);
@@ -3885,13 +3868,14 @@ void MainWindow::getAudioTargetsFromWpctlStatusAsync(
     wpctl->start();
 }
 
-//------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
                                                   QString *micTarget,
                                                   QString *speakerTarget,
                                                   QString *err) const
 {
-    enum class Section {
+    enum class Section
+    {
         None,
         Sinks,
         Sources
@@ -3925,11 +3909,8 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
             continue;
         }
 
-        if (line.contains("Devices:") ||
-            line.contains("Sink endpoints:") ||
-            line.contains("Source endpoints:") ||
-            line.contains("Filters:") ||
-            line.contains("Streams:") ||
+        if (line.contains("Devices:") || line.contains("Sink endpoints:") ||
+            line.contains("Source endpoints:") || line.contains("Filters:") || line.contains("Streams:") ||
             line.contains("Video:")) {
             section = Section::None;
             continue;
@@ -3950,8 +3931,7 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
         if (section == Section::Sources) {
             detectedSources << QString("%1. %2").arg(id, name);
 
-            const bool isMonitor =
-                name.contains("monitor", Qt::CaseInsensitive);
+            const bool isMonitor = name.contains("monitor", Qt::CaseInsensitive);
 
             if (isDefault && !isMonitor) {
                 fallbackDefaultSourceId = id;
@@ -3962,10 +3942,8 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
             }
 
             if (name.contains("respeaker", Qt::CaseInsensitive) ||
-                name.contains("seeed", Qt::CaseInsensitive) ||
-                name.contains("4 mic", Qt::CaseInsensitive) ||
+                name.contains("seeed", Qt::CaseInsensitive) || name.contains("4 mic", Qt::CaseInsensitive) ||
                 name.contains("mic array", Qt::CaseInsensitive)) {
-
                 foundMicId = id;
                 qDebug() << "Matched ReSpeaker source:" << id << name;
             }
@@ -3976,9 +3954,7 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
 
             // Target speaker wajib KT USB
             if (name.contains("kt usb", Qt::CaseInsensitive) ||
-                (name.contains("kt", Qt::CaseInsensitive) &&
-                 name.contains("usb", Qt::CaseInsensitive))) {
-
+                (name.contains("kt", Qt::CaseInsensitive) && name.contains("usb", Qt::CaseInsensitive))) {
                 foundSpeakerId = id;
                 qDebug() << "Matched KT USB sink:" << id << name;
             }
@@ -4007,13 +3983,8 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
 
     if (!errors.isEmpty()) {
         if (err) {
-            *err = errors.join('\n')
-            + "\n\nDetected Sources:\n"
-                + detectedSources.join('\n')
-                + "\n\nDetected Sinks:\n"
-                + detectedSinks.join('\n')
-                + "\n\nFull wpctl output:\n"
-                + output;
+            *err = errors.join('\n') + "\n\nDetected Sources:\n" + detectedSources.join('\n') +
+                   "\n\nDetected Sinks:\n" + detectedSinks.join('\n') + "\n\nFull wpctl output:\n" + output;
         }
 
         return false;
@@ -4028,120 +3999,110 @@ bool MainWindow::parseAudioTargetsFromWpctlStatus(const QString &output,
     return true;
 }
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnLogin_clicked()
 {
-    soundPlay(SOUND_UPLOAD_FAILED,lang);
+    soundPlay(SOUND_UPLOAD_FAILED, lang);
 }
 
-//------------------------------------------------------------------------------
-void MainWindow::onRadarHeartBeatDetected()
-{
+// -----------------------------------------------------------------------------
+void MainWindow::onRadarHeartBeatDetected() {}
 
-}
-
-//------------------------------------------------------------------------------
+// =============================================================================
+// Sensor and audio callbacks
+// =============================================================================
 void MainWindow::onBme280ReadingReady(double temperatureC, double pressureHpa, double humidityPercent)
 {
-    qDebug().noquote() << QStringLiteral(
-           "BME280 | Temperature: %1 °C | "
-           "Pressure: %2 hPa | "
-           "Humidity: %3 %RH"
-           )
-            .arg(temperatureC,0,'f',2)
-            .arg(pressureHpa,0,'f',2)
-            .arg(humidityPercent,0,'f',2);
+    qDebug().noquote() << QStringLiteral("BME280 | Temperature: %1 °C | "
+                                         "Pressure: %2 hPa | "
+                                         "Humidity: %3 %RH")
+                              .arg(temperatureC, 0, 'f', 2)
+                              .arg(pressureHpa, 0, 'f', 2)
+                              .arg(humidityPercent, 0, 'f', 2);
 
     mbme280data.temperatureC = temperatureC;
     mbme280data.pressureHpa = pressureHpa;
     mbme280data.humidityPercent = humidityPercent;
 }
 
-//------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onBme280Error(const QString &message)
 {
-    qWarning().noquote()
-    << "BME280 error:"
-    << message;
+    qWarning().noquote() << "BME280 error:" << message;
 }
 
-//------------------------------------------------------------------------------
-void MainWindow::onSoundFinished(int sentenceIndex,QString langIndex){
+// -----------------------------------------------------------------------------
+void MainWindow::onSoundFinished(int sentenceIndex, QString langIndex)
+{
     qDebug() << "Audio finished:"
-             << "sentenceIndex:" << sentenceIndex
-             << "language:" << langIndex;
+             << "sentenceIndex:" << sentenceIndex << "language:" << langIndex;
 
-    if(client->isConnected()){
+    if (client->isConnected()) {
         QJsonObject obj;
-        client->emitEventStringMsgJsoned("SOUND_PLAYED",obj);
+        client->emitEventStringMsgJsoned("SOUND_PLAYED", obj);
     }
 
-    switch (sentenceIndex){
-    case SOUND_FALL_OCCUR:
-        qDebug() << "SOUND_FALL_OCCUR selesai diputar";
-        break;
+    switch (sentenceIndex) {
+        case SOUND_FALL_OCCUR:
+            qDebug() << "SOUND_FALL_OCCUR selesai diputar";
+            break;
 
-    case SOUND_HELP:
-        qDebug() << "SOUND_HELP selesai diputar";
-        break;
+        case SOUND_HELP:
+            qDebug() << "SOUND_HELP selesai diputar";
+            break;
 
-    case SOUND_IAM_OK:
-        qDebug() << "SOUND_IAM_OK selesai diputar";
-        break;
+        case SOUND_IAM_OK:
+            qDebug() << "SOUND_IAM_OK selesai diputar";
+            break;
 
-    case SOUND_RECORD:
-        qDebug() << "SOUND_RECORD selesai diputar";
-        break;
+        case SOUND_RECORD:
+            qDebug() << "SOUND_RECORD selesai diputar";
+            break;
 
-    case SOUND_WAITING:
-        qDebug() << "SOUND_WAITING selesai diputar";
-        break;
+        case SOUND_WAITING:
+            qDebug() << "SOUND_WAITING selesai diputar";
+            break;
 
-    case SOUND_HELPYOU:
-        qDebug() << "SOUND_HELPYOU selesai diputar";
-        break;
+        case SOUND_HELPYOU:
+            qDebug() << "SOUND_HELPYOU selesai diputar";
+            break;
 
-    case SOUND_LOGIN:
-        qDebug() << "SOUND_LOGIN selesai diputar";
-        break;
+        case SOUND_LOGIN:
+            qDebug() << "SOUND_LOGIN selesai diputar";
+            break;
 
-    case  SOUND_UPLOAD_FAILED:
-        qDebug() << "SOUND_UPLOAD_FAILED selesai diputar";
-        break;
+        case SOUND_UPLOAD_FAILED:
+            qDebug() << "SOUND_UPLOAD_FAILED selesai diputar";
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }
 
-//-------------------------------------------------------------------
-void MainWindow::onSoundFailed(int sentenceIndex,QString langIndex,QString errorMessage){
+// -----------------------------------------------------------------------------
+void MainWindow::onSoundFailed(int sentenceIndex, QString langIndex, QString errorMessage)
+{
     qWarning() << "Audio playback failed:"
-               << "sentenceIndex:" << sentenceIndex
-               << "language:" << langIndex
-               << "error:" << errorMessage;
+               << "sentenceIndex:" << sentenceIndex << "language:" << langIndex << "error:" << errorMessage;
 }
 
-//-------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onUploadFailed()
 {
-    soundPlay(SOUND_UPLOAD_FAILED,lang);
+    soundPlay(SOUND_UPLOAD_FAILED, lang);
 }
 
-//-------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onCpuTemperatureReady(double temperatureC)
 {
-    qDebug().noquote() << QStringLiteral("CPU Temperature: %1 °C")
-               .arg(temperatureC, 0, 'f', 2);
+    qDebug().noquote() << QStringLiteral("CPU Temperature: %1 °C").arg(temperatureC, 0, 'f', 2);
     cpuTempC = temperatureC;
-    //ui->editLog3->insertPlainText("Temperature " + QString::number(temperatureC,'f',2) + " °C\r\n");
-
+    // ui->editLog3->insertPlainText("Temperature " + QString::number(temperatureC,'f',2) + " °C\r\n");
 }
 
-//-------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 void MainWindow::onCpuTemperatureError(const QString &message)
 {
-    qWarning().noquote()
-        << "CPU temperature error:"
-        << message;
+    qWarning().noquote() << "CPU temperature error:" << message;
 }
