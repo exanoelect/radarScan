@@ -18,6 +18,10 @@
 #include <QMutexLocker>
 #include <QMutex>
 #include <QProcess>
+#include <QObject>
+#include <QJsonObject>
+#include <QQueue>
+#include <QTimer>
 
 // Macro untuk kompatibilitas Qt version
 #if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
@@ -51,6 +55,9 @@ public:
     void disconnectFromServer();
     bool isConnected() const { return m_isConnected; }
     void sendSocketIoConnectWithAuth();
+
+    // Fungsi baru untuk memasukkan event ke queue
+    void enqueueEvent(const QString &eventName, const QJsonObject &data);
 
     //void emitEvent(const QString &eventName, const QJsonObject &data = QJsonObject());
     void emitEvent(const QString &eventName,const QJsonValue &data,std::function<void(QJsonValue)> ackCallback);
@@ -110,14 +117,28 @@ private slots:
     void onWebSocketError(QAbstractSocket::SocketError error);
     void sendPing();
     void attemptReconnect();
+    void processEventQueue();
 
 private:
+    struct QueuedEvent{
+        QString eventName;
+        QJsonObject data;
+    };
+
+    QQueue<QueuedEvent> m_eventQueue;
+    QTimer m_queueTimer;
+
+    bool m_processingQueue = false;
+    bool m_isConnected = false;
+
+    static constexpr int QUEUE_PROCESS_INTERVAL_MS = 100;
+    static constexpr int MAX_QUEUE_SIZE = 1000;
+
     QWebSocket *m_webSocket;
     QTimer *m_pingTimer;
     QTimer *m_reconnectTimer;
     QString m_socketId;
     QString m_namespace;
-    bool m_isConnected;
     int m_packetId;
     int m_reconnectAttempts;
     bool namespaceConnected = false;
@@ -163,6 +184,4 @@ private:
                             const QJsonValue &originalData);
 
     void scheduleReconnect();
-
-
 };

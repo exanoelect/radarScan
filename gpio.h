@@ -2,10 +2,9 @@
 #define GPIO_H
 
 #include <QObject>
-#include <qdebug.h>
+#include <QDebug>
 
 #ifdef Q_OS_LINUX
-
 extern "C" {
 #include <gpiod.h>
 }
@@ -14,21 +13,23 @@ extern "C" {
 class gpio : public QObject
 {
     Q_OBJECT
+
 public:
     explicit gpio(QObject *parent = nullptr);
     ~gpio();
 
-signals:
 public slots:
-    //GPIO LEd strip
     int setupGPIO();
     void setColor(qint8 color);
+    void setPin(quint8 pin, quint8 level);
 
 private:
 #ifdef Q_OS_LINUX
-    gpiod_line *line17;
-    gpiod_line *line27;
-    gpiod_line *line22;
+    gpiod_chip *m_chip = nullptr;
+
+    gpiod_line *line17 = nullptr;
+    gpiod_line *line27 = nullptr;
+    gpiod_line *line22 = nullptr;
 #endif
 };
 

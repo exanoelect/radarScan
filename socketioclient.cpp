@@ -30,6 +30,11 @@ SocketIOClient::SocketIOClient(QObject *parent)
     m_reconnectTimer->setSingleShot(true);
     connect(m_reconnectTimer, &QTimer::timeout, this, &SocketIOClient::attemptReconnect);
 
+    m_queueTimer.setInterval(QUEUE_PROCESS_INTERVAL_MS);
+    m_queueTimer.setSingleShot(false);
+
+    connect(&m_queueTimer,&QTimer::timeout,this,&SocketIOClient::processEventQueue);
+
     vol = sioVolume.getVolumePercent();
     britnes = sioBritness.getBrightnessPercent();
 }
@@ -96,6 +101,40 @@ void SocketIOClient::sendSocketIoConnectWithAuth()
 
     if (m_webSocket) {
         m_webSocket->sendTextMessage(packet);
+    }
+}
+
+void SocketIOClient::enqueueEvent(const QString &eventName, const QJsonObject &data)
+{
+    /*
+      * Queue tetap menerima event walaupun socket sedang disconnect.
+      * Event akan dikirim setelah socket kembali connected.
+      */
+
+     if (m_eventQueue.size() >= MAX_QUEUE_SIZE) {
+         qWarning() << "Event queue penuh. Event tertua dibuang:"
+                    << m_eventQueue.head().eventName;
+
+         m_eventQueue.dequeue();
+     }
+
+     QueuedEvent event;
+     event.eventName = eventName;
+     event.data = data;
+
+     m_eventQueue.enqueue(event);
+
+     qDebug() << "Event masuk queue:"
+              << eventName
+              << "| queue size:"
+              << m_eventQueue.size();
+
+     /*
+      * Jalankan pemrosesan secara asynchronous.
+      * Tidak langsung memanggil fungsi pengiriman pada call stack yang sama.
+      */
+    if (m_isConnected && !m_queueTimer.isActive()) {
+        m_queueTimer.start();
     }
 }
 
@@ -188,6 +227,13 @@ void SocketIOClient::onWebSocketConnected()
     m_webSocket->sendTextMessage(payload);
 
     qDebug() << "Socket.IO CONNECT payload:" << payload;
+
+    /*
+     * Kirim event-event yang sebelumnya tertahan.
+     */
+    if (!m_eventQueue.isEmpty() && !m_queueTimer.isActive()) {
+        m_queueTimer.start();
+    }
 }
 
 //------------------------------------------------------------------------
@@ -196,11 +242,10 @@ void SocketIOClient::onWebSocketDisconnected()
     m_isConnected = false;
     //m_pingTimer->stop();
     qDebug() << "WebSocket disconnected";
+    m_queueTimer.stop();
 
     m_ackCallbacks.clear();
-
     scheduleReconnect();
-
     emit disconnected();
 }
 
@@ -882,6 +927,49 @@ void SocketIOClient::attemptReconnect()
     if ((!m_webSocket) || (m_webSocket->state() == QAbstractSocket::UnconnectedState)) {
         qDebug() << "Attempting reconnect to" << m_host << ":" << m_port;
         constructWebSocketUrl();
+    }
+}
+
+//------------------------------------------------------------------------
+void SocketIOClient::processEventQueue()
+{
+    if (m_processingQueue) {
+        return;
+    }
+
+    if (!m_isConnected) {
+        m_queueTimer.stop();
+        return;
+    }
+
+    if (m_eventQueue.isEmpty()) {
+        m_queueTimer.stop();
+        return;
+    }
+
+    m_processingQueue = true;
+
+    /*
+     * Ambil event paling depan.
+     *
+     * Jangan langsung dequeue sebelum fungsi pengiriman dipanggil.
+     * Event baru dihapus dari queue setelah perintah pengiriman dijalankan.
+     */
+    const QueuedEvent event = m_eventQueue.head();
+
+    emitEventStringMsgJsoned(event.eventName, event.data);
+
+    m_eventQueue.dequeue();
+
+    qDebug() << "Event dikirim dari queue:"
+             << event.eventName
+             << "| queue tersisa:"
+             << m_eventQueue.size();
+
+    m_processingQueue = false;
+
+    if (m_eventQueue.isEmpty()) {
+        m_queueTimer.stop();
     }
 }
 

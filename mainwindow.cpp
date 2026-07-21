@@ -422,16 +422,16 @@ void MainWindow::initRadar()
             // radar1ReportInfo = "serialNormal";
 #endif
 
-            if (client->isConnected()) {
+            //if (client->isConnected()) {
                 // soundPlay(SOUND_FALL_OCCUR);
                 QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
                 QJsonObject obj;
                 obj["datetime"] = timestamp;
                 fallEventAckReceived = false;
                 client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
-            } else {
-                qDebug() << "Socket DC";
-            }
+            //} else {
+            //    qDebug() << "Socket DC";
+            //}
             timerSendFallevent->start(1000); // Aktifkan send fall event repeat
             soundPlay(SOUND_FALL_OCCUR, lang);
         });
@@ -1484,10 +1484,10 @@ void MainWindow::soundPlay(int request, const QString &lang)
     qDebug() << "Sound request received:" << requestName << "id:" << request << "lang:" << lang;
 
     // Emit event PLAYING_SOUND
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         QJsonObject obj;
         client->emitEventStringMsgJsoned("PLAYING_SOUND", obj);
-    }
+    //}
 
     /*
      * Delay 500 ms secara non-blocking.
@@ -1962,6 +1962,7 @@ void MainWindow::on_btnColor1_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE);
+    //requestPWM(10);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "white")) {
@@ -1977,6 +1978,7 @@ void MainWindow::on_btnColor2_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BLINKY);
+    //requestPWM(25);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "blinky")) {
@@ -1992,6 +1994,7 @@ void MainWindow::on_btnColor3_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_WHITE_BRIGHT);
+    //requestPWM(50);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "bright")) {
@@ -2007,6 +2010,7 @@ void MainWindow::on_btnColor4_clicked()
 {
 #ifdef Q_OS_LINUX
     m_gpio->setColor(COLOR_RED);
+   // requestPWM(75);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "red")) {
@@ -2086,7 +2090,7 @@ void MainWindow::on_btnConnect_clicked()
 // -----------------------------------------------------------------------------
 void MainWindow::on_btnFallSimulation_clicked()
 {
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
@@ -2097,9 +2101,9 @@ void MainWindow::on_btnFallSimulation_clicked()
 #endif
         timerSendFallevent->start(1000); // Aktifkan send fall event repeat
         soundPlay(SOUND_FALL_OCCUR, lang);
-    } else {
-        qDebug() << " Socket DC";
-    }
+    //} else {
+    //    qDebug() << " Socket DC";
+    //}
 }
 
 // -----------------------------------------------------------------------------
@@ -2381,6 +2385,37 @@ void MainWindow::onBrightnessDecreaseReq()
 }
 
 // =============================================================================
+//      GPIO TIMER
+// =============================================================================
+void MainWindow::slotGpioTimer()
+{
+    if (!m_gpio) {
+        return;
+    }
+
+    const qint64 elapsedUs = gpioElapsedTimer.nsecsElapsed() / 1000;
+
+    const qint64 positionUs = elapsedUs % PWM_PERIOD_US;
+
+    bool requestedState;
+
+    if(pwmDutyPercent == 0){
+        requestedState = false;
+    }else if(pwmDutyPercent >= 100){
+        requestedState = true;
+    }else{
+        requestedState = positionUs < pwmHighTimeUs;
+    }
+
+    if(requestedState == pwmOutputState){
+        return;
+    }
+
+    pwmOutputState = requestedState;
+    m_gpio->setPin(PWM_PIN, requestedState ? 1 : 0);
+}
+
+// =============================================================================
 // Fall-incident handling
 // =============================================================================
 void MainWindow::onIncidentFallCancel() {}
@@ -2449,15 +2484,15 @@ void MainWindow::onIncidentFallCompleted()
 void MainWindow::slotTimerSendFallEvent()
 {
     if (!fallEventAckReceived) { // Ack belum diterima, ulangi kirim event fall
-        if (client->isConnected()) {
+        //if (client->isConnected()) {
             // soundPlay(SOUND_FALL_OCCUR);
             QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
             QJsonObject obj;
             obj["datetime"] = timestamp;
             client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
-        } else {
-            qDebug() << "Socket DC";
-        }
+        //} else {
+        //    qDebug() << "Socket DC";
+        //}
     } else {
         timerSendFallevent->stop(); // Ack sudah diterima, stop
     }
@@ -2513,21 +2548,21 @@ void MainWindow::onwifiScanSsidReqReceived()
 // -----------------------------------------------------------------------------
 void MainWindow::onWifiGetSsidRequest()
 {
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         // m_utility->nmcliGetSSID();
         qDebug() << "Get current wifi ssid status";
         m_utility->nmcliGetCurrentWifiInfo();
         // qDebug() << "wifiCurrent ";
         // client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
-    } else {
-        qDebug() << "Socket DC";
-    }
+    //} else {
+    //    qDebug() << "Socket DC";
+    //}
 }
 
 // -----------------------------------------------------------------------------
 void MainWindow::onWifiSsidListRequest()
 {
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         // QStringList wifiList = m_utility->nmcliGetWifiList();
         m_utility->nmcliGetWifiListSSid();
 
@@ -2535,15 +2570,15 @@ void MainWindow::onWifiSsidListRequest()
         // QJsonObject obj;
         // obj["ssids"] = QJsonArray::fromStringList(wifiList);
         // client->emitEventStringMsgJsoned("SSID_LIST",obj);
-    } else {
-        qDebug() << "Socket DC";
-    }
+    //} else {
+    //    qDebug() << "Socket DC";
+    //}
 }
 
 // -----------------------------------------------------------------------------
 void MainWindow::onWifiSsidListRequestComplete()
 {
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         // QStringList wifiList = m_utility->nmcliGetWifiList();
         m_utility->nmcliGetWifiListComplete();
 
@@ -2551,24 +2586,24 @@ void MainWindow::onWifiSsidListRequestComplete()
         // QJsonObject obj;
         // obj["ssids"] = QJsonArray::fromStringList(wifiList);
         // client->emitEventStringMsgJsoned("SSID_LIST",obj);
-    } else {
+   // } else {
         qDebug() << "Socket DC";
-    }
+   // }
 }
 
 // -----------------------------------------------------------------------------
 void MainWindow::onWifiSSidListReady(QStringList ssidList)
 {
-    if (client->isConnected()) {
+    //if (client->isConnected()) {
         // QStringList wifiList = m_utility->nmcliGetWifiList();
 
         qDebug() << "Wifi List " << ssidList;
         QJsonObject obj;
         obj["ssids"] = QJsonArray::fromStringList(ssidList);
         client->emitEventStringMsgJsoned("SSID_LIST", obj);
-    } else {
-        qDebug() << "Socket DC";
-    }
+    //} else {
+    //    qDebug() << "Socket DC";
+    //}
 }
 
 // -----------------------------------------------------------------------------
@@ -3414,9 +3449,18 @@ void MainWindow::getCputemp()
 void MainWindow::initUtility()
 {
 #ifdef Q_OS_LINUX
-    m_gpio = new gpio();
-    m_gpio->setupGPIO();
+    m_gpio = new gpio();    
+    if (m_gpio->setupGPIO() < 0) {
+        qCritical() << "GPIO initialization failed.";
+    }
+
     m_gpio->setColor(COLOR_WHITE);
+    gpioTimer = new QTimer(this);
+    gpioTimer->setTimerType(Qt::PreciseTimer);
+    gpioTimer->setInterval(2);
+    connect(gpioTimer,&QTimer::timeout,this,&MainWindow::slotGpioTimer);
+    //gpioElapsedTimer.start();
+    //gpioTimer->start(2);
 
     m_volume = new volume();
     m_brightness = new brightness();
@@ -4091,6 +4135,36 @@ void MainWindow::onSoundFailed(int sentenceIndex, QString langIndex, QString err
 void MainWindow::onUploadFailed()
 {
     soundPlay(SOUND_UPLOAD_FAILED, lang);
+}
+
+// -----------------------------------------------------------------------------
+void MainWindow::requestPWM(quint8 persen)
+{
+    if (persen > 100) {
+        persen = 100;
+    }
+
+    pwmDutyPercent = persen;
+    pwmHighTimeUs = (PWM_PERIOD_US * static_cast<qint64>(pwmDutyPercent)) / 100;
+
+    /*
+     * Restart periode setiap duty cycle diubah agar perubahan duty cycle
+     * langsung diterapkan dari awal periode.
+     */
+    gpioElapsedTimer.restart();
+
+    if (pwmDutyPercent == 0) {
+        pwmOutputState = false;
+        m_gpio->setPin(PWM_PIN, 0);
+    }else{
+        /*
+         * Duty cycle 1–100% selalu dimulai dari kondisi HIGH.
+         */
+        pwmOutputState = true;
+        m_gpio->setPin(PWM_PIN, 1);
+    }
+
+    qDebug() << "PWM request:" << pwmDutyPercent << "%" << "high time:" << pwmHighTimeUs << "us";
 }
 
 // -----------------------------------------------------------------------------
