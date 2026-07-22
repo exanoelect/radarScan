@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Radar Scan V2.8</string>
+   <string>Radar Scan V3.0</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(255, 225, 221);</string>

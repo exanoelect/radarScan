@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 6.11.1
+** Created by: Qt User Interface Compiler version 6.4.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -220,13 +220,13 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(889, 545);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(239, 255, 243);"));
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 225, 221);"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName("centralWidget");
         plottsgram = new QCustomPlot(centralWidget);
         plottsgram->setObjectName("plottsgram");
         plottsgram->setGeometry(QRect(370, 10, 250, 150));
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::MinimumExpanding);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::MinimumExpanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(plottsgram->sizePolicy().hasHeightForWidth());
@@ -353,7 +353,7 @@ public:
         frame = new QFrame(tab_2);
         frame->setObjectName("frame");
         frame->setGeometry(QRect(20, 10, 120, 41));
-        frame->setFrameShape(QFrame::Shape::NoFrame);
+        frame->setFrameShape(QFrame::NoFrame);
         cbPresence = new QCheckBox(frame);
         cbPresence->setObjectName("cbPresence");
         cbPresence->setGeometry(QRect(10, 10, 86, 20));
@@ -363,28 +363,28 @@ public:
         frameFallDetection = new QFrame(tab_2);
         frameFallDetection->setObjectName("frameFallDetection");
         frameFallDetection->setGeometry(QRect(20, 50, 121, 41));
-        frameFallDetection->setFrameShape(QFrame::Shape::NoFrame);
+        frameFallDetection->setFrameShape(QFrame::NoFrame);
         cbFallDetection = new QCheckBox(frameFallDetection);
         cbFallDetection->setObjectName("cbFallDetection");
         cbFallDetection->setGeometry(QRect(10, 10, 111, 20));
         frameFallDetection_2 = new QFrame(frameFallDetection);
         frameFallDetection_2->setObjectName("frameFallDetection_2");
         frameFallDetection_2->setGeometry(QRect(70, 40, 121, 41));
-        frameFallDetection_2->setFrameShape(QFrame::Shape::NoFrame);
+        frameFallDetection_2->setFrameShape(QFrame::NoFrame);
         leFallDetection = new QLineEdit(tab_2);
         leFallDetection->setObjectName("leFallDetection");
         leFallDetection->setGeometry(QRect(150, 50, 101, 41));
         frame_2 = new QFrame(tab_2);
         frame_2->setObjectName("frame_2");
         frame_2->setGeometry(QRect(20, 90, 120, 41));
-        frame_2->setFrameShape(QFrame::Shape::NoFrame);
+        frame_2->setFrameShape(QFrame::NoFrame);
         cbStandStill = new QCheckBox(frame_2);
         cbStandStill->setObjectName("cbStandStill");
         cbStandStill->setGeometry(QRect(10, 10, 101, 20));
         frame_3 = new QFrame(frame_2);
         frame_3->setObjectName("frame_3");
         frame_3->setGeometry(QRect(60, 40, 120, 41));
-        frame_3->setFrameShape(QFrame::Shape::NoFrame);
+        frame_3->setFrameShape(QFrame::NoFrame);
         cbStandStill_2 = new QCheckBox(frame_3);
         cbStandStill_2->setObjectName("cbStandStill_2");
         cbStandStill_2->setGeometry(QRect(10, 10, 101, 20));
@@ -418,7 +418,7 @@ public:
         frame_4 = new QFrame(tab_2);
         frame_4->setObjectName("frame_4");
         frame_4->setGeometry(QRect(20, 130, 121, 41));
-        frame_4->setFrameShape(QFrame::Shape::NoFrame);
+        frame_4->setFrameShape(QFrame::NoFrame);
         cbTraceTracking = new QCheckBox(frame_4);
         cbTraceTracking->setObjectName("cbTraceTracking");
         cbTraceTracking->setGeometry(QRect(0, 10, 121, 20));
@@ -447,7 +447,7 @@ public:
         frame_9 = new QFrame(tab_4);
         frame_9->setObjectName("frame_9");
         frame_9->setGeometry(QRect(10, 120, 121, 41));
-        frame_9->setFrameShape(QFrame::Shape::NoFrame);
+        frame_9->setFrameShape(QFrame::NoFrame);
         cbTraceTracking2 = new QCheckBox(frame_9);
         cbTraceTracking2->setObjectName("cbTraceTracking2");
         cbTraceTracking2->setGeometry(QRect(0, 10, 121, 20));
@@ -486,7 +486,7 @@ public:
         frame_10 = new QFrame(tab_4);
         frame_10->setObjectName("frame_10");
         frame_10->setGeometry(QRect(10, 0, 120, 41));
-        frame_10->setFrameShape(QFrame::Shape::NoFrame);
+        frame_10->setFrameShape(QFrame::NoFrame);
         cbPresence2 = new QCheckBox(frame_10);
         cbPresence2->setObjectName("cbPresence2");
         cbPresence2->setGeometry(QRect(10, 10, 86, 20));
@@ -499,25 +499,25 @@ public:
         frameFallDetection_5 = new QFrame(tab_4);
         frameFallDetection_5->setObjectName("frameFallDetection_5");
         frameFallDetection_5->setGeometry(QRect(10, 40, 121, 41));
-        frameFallDetection_5->setFrameShape(QFrame::Shape::NoFrame);
+        frameFallDetection_5->setFrameShape(QFrame::NoFrame);
         cbFallDetection2 = new QCheckBox(frameFallDetection_5);
         cbFallDetection2->setObjectName("cbFallDetection2");
         cbFallDetection2->setGeometry(QRect(10, 10, 111, 20));
         frameFallDetection_6 = new QFrame(frameFallDetection_5);
         frameFallDetection_6->setObjectName("frameFallDetection_6");
         frameFallDetection_6->setGeometry(QRect(70, 40, 121, 41));
-        frameFallDetection_6->setFrameShape(QFrame::Shape::NoFrame);
+        frameFallDetection_6->setFrameShape(QFrame::NoFrame);
         frame_11 = new QFrame(tab_4);
         frame_11->setObjectName("frame_11");
         frame_11->setGeometry(QRect(10, 80, 120, 41));
-        frame_11->setFrameShape(QFrame::Shape::NoFrame);
+        frame_11->setFrameShape(QFrame::NoFrame);
         cbStandStill2 = new QCheckBox(frame_11);
         cbStandStill2->setObjectName("cbStandStill2");
         cbStandStill2->setGeometry(QRect(10, 10, 101, 20));
         frame_12 = new QFrame(frame_11);
         frame_12->setObjectName("frame_12");
         frame_12->setGeometry(QRect(60, 40, 120, 41));
-        frame_12->setFrameShape(QFrame::Shape::NoFrame);
+        frame_12->setFrameShape(QFrame::NoFrame);
         cbStandStill_6 = new QCheckBox(frame_12);
         cbStandStill_6->setObjectName("cbStandStill_6");
         cbStandStill_6->setGeometry(QRect(10, 10, 101, 20));
@@ -553,7 +553,7 @@ public:
         leFallState->setObjectName("leFallState");
         leFallState->setGeometry(QRect(150, 70, 101, 51));
         leFallState->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 255, 208);"));
-        leFallState->setFrameShape(QFrame::Shape::NoFrame);
+        leFallState->setFrameShape(QFrame::NoFrame);
         label_4 = new QLabel(tab_3);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(20, 130, 51, 16));
@@ -615,7 +615,7 @@ public:
         leFallState2->setObjectName("leFallState2");
         leFallState2->setGeometry(QRect(150, 80, 101, 51));
         leFallState2->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 255, 208);"));
-        leFallState2->setFrameShape(QFrame::Shape::NoFrame);
+        leFallState2->setFrameShape(QFrame::NoFrame);
         label_18 = new QLabel(tab_6);
         label_18->setObjectName("label_18");
         label_18->setGeometry(QRect(20, 140, 51, 16));
@@ -670,7 +670,7 @@ public:
         lBrightness = new QLabel(tab_7);
         lBrightness->setObjectName("lBrightness");
         lBrightness->setGeometry(QRect(306, 60, 21, 31));
-        lBrightness->setFrameShape(QFrame::Shape::NoFrame);
+        lBrightness->setFrameShape(QFrame::NoFrame);
         btnPlaySound = new QPushButton(tab_7);
         btnPlaySound->setObjectName("btnPlaySound");
         btnPlaySound->setGeometry(QRect(60, 130, 71, 32));
@@ -685,7 +685,7 @@ public:
         lVol = new QLabel(tab_7);
         lVol->setObjectName("lVol");
         lVol->setGeometry(QRect(306, 210, 21, 31));
-        lVol->setFrameShape(QFrame::Shape::NoFrame);
+        lVol->setFrameShape(QFrame::NoFrame);
         btnsetVol = new QPushButton(tab_7);
         btnsetVol->setObjectName("btnsetVol");
         btnsetVol->setGeometry(QRect(140, 250, 191, 32));
@@ -697,7 +697,7 @@ public:
         labelGetVolRequest = new QLabel(tab_7);
         labelGetVolRequest->setObjectName("labelGetVolRequest");
         labelGetVolRequest->setGeometry(QRect(110, 290, 57, 21));
-        labelGetVolRequest->setFrameShape(QFrame::Shape::NoFrame);
+        labelGetVolRequest->setFrameShape(QFrame::NoFrame);
         btnPing = new QPushButton(tab_7);
         btnPing->setObjectName("btnPing");
         btnPing->setGeometry(QRect(10, 320, 81, 32));
@@ -705,7 +705,7 @@ public:
         labelGetBrightnessRequest = new QLabel(tab_7);
         labelGetBrightnessRequest->setObjectName("labelGetBrightnessRequest");
         labelGetBrightnessRequest->setGeometry(QRect(110, 320, 57, 21));
-        labelGetBrightnessRequest->setFrameShape(QFrame::Shape::NoFrame);
+        labelGetBrightnessRequest->setFrameShape(QFrame::NoFrame);
         btnFallSimulation = new QPushButton(tab_7);
         btnFallSimulation->setObjectName("btnFallSimulation");
         btnFallSimulation->setGeometry(QRect(10, 350, 81, 32));
@@ -738,9 +738,11 @@ public:
         micBar->setValue(24);
         btnRec = new QPushButton(tab_7);
         btnRec->setObjectName("btnRec");
+        btnRec->setEnabled(false);
         btnRec->setGeometry(QRect(250, 320, 80, 22));
         btnPlayRec = new QPushButton(tab_7);
         btnPlayRec->setObjectName("btnPlayRec");
+        btnPlayRec->setEnabled(false);
         btnPlayRec->setGeometry(QRect(250, 290, 80, 22));
         speakerBar = new QProgressBar(tab_7);
         speakerBar->setObjectName("speakerBar");
@@ -814,11 +816,11 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
-        menuBar->setGeometry(QRect(0, 0, 889, 30));
+        menuBar->setGeometry(QRect(0, 0, 889, 19));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName("mainToolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, mainToolBar);
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName("statusBar");
         MainWindow->setStatusBar(statusBar);
@@ -833,7 +835,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Radar Scan V2.5", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Radar Scan V3.0", nullptr));
         btnGetFallDuration->setText(QCoreApplication::translate("MainWindow", "Get Fall Duration", nullptr));
         btnGetHeightInst->setText(QCoreApplication::translate("MainWindow", "Get Height Inst", nullptr));
         btnGetAngleInst->setText(QCoreApplication::translate("MainWindow", "Get Angle Inst", nullptr));

@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     qDebug() << "Begin Setup";
+    lang = "en";
+    fallEmergency = false;
 
     initSound();
     initGraphics();
@@ -175,6 +177,7 @@ void MainWindow::initSocketIO()
     client = new SocketIOClient();
 
     connect(client, &SocketIOClient::eventReceived, this, &MainWindow::onSocketEventReceived);
+    connect(client, &SocketIOClient::deviceready, this, &MainWindow::getLangCommand);
 
     // connect(client, &SocketIOClient::deviceready,
     //         this,   &SocketIOClient:sendDeviceReady);
@@ -286,6 +289,9 @@ void MainWindow::initSocketIO()
     // client->connectToServer(serverIp);//, serverPort);
     client->connectToServer(serverIp, serverPort);
 
+    //QJsonObject obj;
+    //client->enqueueEvent("LANGUAGE_GET", obj);
+    getLangCommand();
 #ifdef Q_OS_LINUX
     connect(client, &SocketIOClient::connected, this, &MainWindow::onCurrentSSidRequest);
 #endif
@@ -431,7 +437,7 @@ void MainWindow::initRadar()
                 QJsonObject obj;
                 obj["datetime"] = timestamp;
                 fallEventAckReceived = false;
-                client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
+                client->enqueueEvent("INCIDENT_FALL_EVENT_DETECTED", obj);
 
                 // increase brightness
                 if (m_brightness->setBrightnessPercent(90)) {
@@ -457,7 +463,7 @@ void MainWindow::initRadar()
             /*soundPlay(SOUND_FALL_OCCUR, lang);
             if (client->isConnected()) {
                 //soundPlay(SOUND_FALL_OCCUR);
-                client->emitEventStringMsgJsoned("INCIDENT_FALL_CANCEL", "");
+                client->enqueueEvent("INCIDENT_FALL_CANCEL", "");
             } else {
                 qDebug() << "Socket DC";
             }*/
@@ -1497,7 +1503,7 @@ void MainWindow::soundPlay(int request, const QString &lang)
     // Emit event PLAYING_SOUND
     //if (client->isConnected()) {
         QJsonObject obj;
-        client->emitEventStringMsgJsoned("PLAYING_SOUND", obj);
+        client->enqueueEvent("PLAYING_SOUND", obj);
     //}
 
     /*
@@ -2105,7 +2111,7 @@ void MainWindow::on_btnFallSimulation_clicked()
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
+        client->enqueueEvent("INCIDENT_FALL_EVENT_DETECTED", obj);
         fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
         //m_gpio->setColor(COLOR_RED);
@@ -2192,8 +2198,9 @@ void MainWindow::onVolumeGetRequested()
 {
     qDebug() << "UI Process VOL get req";
     // int currentVol = m_volume->getVolumePercent();
-    client->emitEventStringMsgJsoned("VOLUME_SET_REQUEST",
-                                     QString::number(m_volCurrent)); // QString::number(currentVol));
+    QJsonObject obj;
+    obj["level"] = QString::number(m_volCurrent);
+    client->enqueueEvent("VOLUME_SET_REQUEST",obj); // QString::number(currentVol));
 }
 
 // -----------------------------------------------------------------------------
@@ -2217,9 +2224,11 @@ void MainWindow::onPingDeviceUpRequested()
     qDebug() << "UI PingDeviceUpReq";
 #ifdef Q_OS_LINUX
     int brightGet = m_brightness->setBrightnessPercent(80);
-    client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", QString::number(brightGet));
+    QJsonObject obj;
+    obj["level"] = QString::number(brightGet);
+    client->enqueueEvent("PING_DEVICE_UP_FRONTEND", obj);
 #else
-    client->emitEventStringMsgJsoned("PING_DEVICE_UP_FRONTEND", "70");
+    client->enqueueEvent("PING_DEVICE_UP_FRONTEND", "70");
 #endif
 }
 
@@ -2229,7 +2238,9 @@ void MainWindow::onSleepRequested()
     qDebug() << "UI SleepReq";
 #ifdef Q_OS_LINUX
     int getBright = m_brightness->getBrightnessPercent();
-    client->emitEventStringMsgJsoned("SLEEP_FRONTEND", QString::number(getBright));
+    QJsonObject obj;
+    obj["level"] = QString::number(getBright);
+    client->enqueueEvent("SLEEP_FRONTEND", obj);
 
     // Reduce brightness
     if(m_brightness->setBrightnessPercent(10)){
@@ -2255,7 +2266,9 @@ void MainWindow::onWakeUpRequested()
     soundPlay(SOUND_LOGIN, lang);
 
     int getBright = m_brightness->getBrightnessPercent();
-    client->emitEventStringMsgJsoned("WAKE_UP", QString::number(getBright));
+    QJsonObject obj;
+    obj["level"] =  QString::number(getBright);
+    client->enqueueEvent("WAKE_UP", obj);
 
     // increase brightness
     if (m_brightness->setBrightnessPercent(90)) {
@@ -2315,10 +2328,12 @@ void MainWindow::onBrightnessGetRequested()
     int bst = m_brightness->getBrightnessPercent();
     // if (bst > 0 && setBrightnessPercent(bst)) {
     qDebug() << "UI emit Brightness get start" << bst;
-    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST", QString::number(bst));
+    QJsonObject obj;
+    obj["level"] = QString::number(bst);
+    client->enqueueEvent("SCREEN_BRIGHTNESS_REQUEST", obj);
     qDebug() << "UI emit Brightness get end" << bst;
 #endif
-    client->emitEventStringMsgJsoned("SCREEN_BRIGHTNESS_REQUEST", "70");
+    //client->enqueueEvent("SCREEN_BRIGHTNESS_REQUEST", "70");
     //}
 }
 
@@ -2526,7 +2541,7 @@ void MainWindow::slotTimerSendFallEvent()
             QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
             QJsonObject obj;
             obj["datetime"] = timestamp;
-            client->emitEventStringMsgJsoned("INCIDENT_FALL_EVENT_DETECTED", obj);
+            client->enqueueEvent("INCIDENT_FALL_EVENT_DETECTED", obj);
         //} else {
         //    qDebug() << "Socket DC";
         //}
@@ -2575,7 +2590,7 @@ void MainWindow::onwifiScanSsidReqReceived()
     QJsonObject obj;
     obj["timestamp"] = isoMs;
 
-    client->emitEventStringMsgJsoned("WIFI_SCAN_STARTED", obj);
+    client->enqueueEvent("WIFI_SCAN_STARTED", obj);
 
     qDebug() << "masuk cuk";
 
@@ -2590,7 +2605,7 @@ void MainWindow::onWifiGetSsidRequest()
         qDebug() << "Get current wifi ssid status";
         m_utility->nmcliGetCurrentWifiInfo();
         // qDebug() << "wifiCurrent ";
-        // client->emitEventStringMsgJsoned("SSID_GET",wifiCurrent);
+        // client->enqueueEvent("SSID_GET",wifiCurrent);
     //} else {
     //    qDebug() << "Socket DC";
     //}
@@ -2606,7 +2621,7 @@ void MainWindow::onWifiSsidListRequest()
         // qDebug() << "Wifi List " << wifiList;
         // QJsonObject obj;
         // obj["ssids"] = QJsonArray::fromStringList(wifiList);
-        // client->emitEventStringMsgJsoned("SSID_LIST",obj);
+        // client->enqueueEvent("SSID_LIST",obj);
     //} else {
     //    qDebug() << "Socket DC";
     //}
@@ -2622,7 +2637,7 @@ void MainWindow::onWifiSsidListRequestComplete()
         // qDebug() << "Wifi List " << wifiList;
         // QJsonObject obj;
         // obj["ssids"] = QJsonArray::fromStringList(wifiList);
-        // client->emitEventStringMsgJsoned("SSID_LIST",obj);
+        // client->enqueueEvent("SSID_LIST",obj);
    // } else {
         qDebug() << "Socket DC";
    // }
@@ -2637,7 +2652,7 @@ void MainWindow::onWifiSSidListReady(QStringList ssidList)
         qDebug() << "Wifi List " << ssidList;
         QJsonObject obj;
         obj["ssids"] = QJsonArray::fromStringList(ssidList);
-        client->emitEventStringMsgJsoned("SSID_LIST", obj);
+        client->enqueueEvent("SSID_LIST", obj);
     //} else {
     //    qDebug() << "Socket DC";
     //}
@@ -2660,7 +2675,7 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
         obj["channel"] = ap.channel;
         obj["frequency"] = ap.band;
 
-        client->emitEventStringMsgJsoned("WIFI_NETWORK_FOUND", obj);
+        client->enqueueEvent("WIFI_NETWORK_FOUND", obj);
 
         ssidCountFound++;
         // array.append(obj);
@@ -2674,7 +2689,7 @@ void MainWindow::onWifiSSidListReadyComplete(QList<WifiAP> wifiList)
     obj["total"] = ssidCountFound;
     obj["timestamp"] = isoMs;
 
-    client->emitEventStringMsgJsoned("WIFI_SCAN_COMPLETED", obj);
+    client->enqueueEvent("WIFI_SCAN_COMPLETED", obj);
 }
 
 // -----------------------------------------------------------------------------
@@ -2701,12 +2716,14 @@ void MainWindow::onWifiConnectRequest(const QString &ssid, const QString &pwd)
         obj["ssid"] = ssid;
         // obj["password"] = pwd;
         obj["status"] = "connecting";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTING", obj);
+        client->enqueueEvent("WIFI_CONNECTING", obj);
         qDebug() << "NMCLI connect wifi ssid " << ssid << " pwd " << pwd;
         m_utility->nmcliConnectToWiFi(ssid, pwd);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", "socketio_closed");
+        QJsonObject obj;
+        obj["message"] = "socketio_closed";
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2717,7 +2734,9 @@ void MainWindow::onWifiForgetRequest(const QString &ssid)
         m_utility->nmcliForgetConnection(ssid);
     } else {
         qDebug() << "Socket DC";
-        client->emitEventStringMsgJsoned("SIO DC", "");
+        QJsonObject obj;
+        obj["ssid"] = ssid;
+        client->enqueueEvent("SIO DC", obj);
     }
 }
 
@@ -2728,7 +2747,7 @@ void MainWindow::onSsidReady(QString ssid){
 
     // kirim ke socket di sini
     if (client->isConnected()) {
-        client->emitEventStringMsgJsoned("wifi_status",ssid);
+        client->enqueueEvent("wifi_status",ssid);
     } else {
         qDebug() << "Socket DC";
     }
@@ -2740,7 +2759,7 @@ void MainWindow::onCurrentWifiInfoReady(QJsonObject obj)
     if (!client || !client->isConnected())
         return;
 
-    client->emitEventStringMsgJsoned("WIFI_STATUS", obj);
+    client->enqueueEvent("WIFI_STATUS", obj);
 }
 
 // -----------------------------------------------------------------------------
@@ -2749,7 +2768,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
     if (!success) {
         QJsonObject obj;
         obj["error"] = ssid;
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
         return;
     }
 
@@ -2760,7 +2779,7 @@ void MainWindow::onWifiConnected(bool success, const QString &ssid, const QStrin
         obj["ssid"] = ssid;
         obj["ip"] = ip;
         obj["gateway"] = gateway;
-        client->emitEventStringMsgJsoned("WIFI_CONNECTED", obj);
+        client->enqueueEvent("WIFI_CONNECTED", obj);
     } else {
         qDebug() << "Socket DC";
     }
@@ -2786,12 +2805,13 @@ void MainWindow::onwifiDisconnectResult(bool success, QString ssid, QString mess
             QJsonObject obj;
             obj["ssid"] = ssid;
             obj["disconnectedBy"] = "user";
-            client->emitEventStringMsgJsoned("WIFI_DISCONNECTED", obj);
+            client->enqueueEvent("WIFI_DISCONNECTED", obj);
         }
     } else {
         qDebug() << "Disconnect failed:" << message;
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("WIFI_DISCONNECTED", message);
+            QJsonObject obj;
+            client->enqueueEvent("WIFI_DISCONNECTED", obj);
         }
     }
 }
@@ -2801,10 +2821,12 @@ void MainWindow::onWifiEnabled(bool on)
 {
     if (on) {
         qDebug() << "Wifi Enable OK";
-        client->emitEventStringMsgJsoned("WIFI_ENABLED_SUCCESS", "");
+        QJsonObject obj;
+        client->enqueueEvent("WIFI_ENABLED_SUCCESS", obj);
     } else {
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("WIFI_ENABLED_FAIL", "");
+        QJsonObject obj;
+        client->enqueueEvent("WIFI_ENABLED_FAIL", obj);
     }
 }
 
@@ -2813,10 +2835,16 @@ void MainWindow::onWifiDeleted(bool success, QString ssid, QString message)
 {
     if (success) {
         qDebug() << "SSID deleted " << ssid;
-        client->emitEventStringMsgJsoned("SSID_DELETED_OK", ssid);
+        QJsonObject obj;
+        obj["ssid"] = ssid;
+        obj["message"] = "ok";
+        client->enqueueEvent("SSID_DELETED_OK", obj);
     } else {
         qDebug() << "Wifi Enable Fail";
-        client->emitEventStringMsgJsoned("SSID_DELETED_FAIL", ssid);
+        QJsonObject obj;
+        obj["ssid"] = ssid;
+        obj["message"] = "fail";
+        client->enqueueEvent("SSID_DELETED_FAIL", obj);
     }
 }
 
@@ -2872,7 +2900,7 @@ void MainWindow::onWifiProgress(int state, QString stateText)
         obj["stage"] = progressText;
         obj["progress"] = percent;
 
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_PROGRESS", obj);
+        client->enqueueEvent("WIFI_CONNECTION_PROGRESS", obj);
         if (state == 100) {
             qDebug() << "new wifi ssid, recon app....";
             QString serverIp = "203.194.114.21"; // ConfigManager::getServerIp();
@@ -2902,7 +2930,7 @@ void MainWindow::onWifiConnectFinished(bool success, QString ssid, QString ip, Q
     obj["gateway"] = gateway;
 
     if (client->isConnected()) {
-        client->emitEventStringMsgJsoned("WIFI_CONNECT_RESULT", obj);
+        client->enqueueEvent("WIFI_CONNECT_RESULT", obj);
     }
 
     if (success)
@@ -2920,7 +2948,7 @@ void MainWindow::onMonitorWlan0Disconnected()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "Wlan0 Disconnected";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2930,7 +2958,7 @@ void MainWindow::onMonitorWlan0WifiSignalLost()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "signal lost";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2940,7 +2968,7 @@ void MainWindow::onMonitorWlan0networkInterfaceDown()
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = "NetworkInterfaceDown";
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2950,7 +2978,7 @@ void MainWindow::onMonitorWlan0ipAddressChanged(QString ip)
     if (client->isConnected()) {
         QJsonObject obj;
         obj["error"] = ip;
-        client->emitEventStringMsgJsoned("WIFI_CONNECTION_FAILED", obj);
+        client->enqueueEvent("WIFI_CONNECTION_FAILED", obj);
     }
 }
 
@@ -2961,7 +2989,7 @@ void MainWindow::onRpiRestart()
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("DEVICE_RESTART", obj);
+        client->enqueueEvent("DEVICE_RESTART", obj);
         m_utility->rpiRestart();
     }
 }
@@ -2973,7 +3001,7 @@ void MainWindow::onRpiShutdown()
         QString timestamp = QDateTime::currentDateTime().toString("dd/MM/yyyy HH:mm:ss");
         QJsonObject obj;
         obj["datetime"] = timestamp;
-        client->emitEventStringMsgJsoned("DEVICE_OFF", obj);
+        client->enqueueEvent("DEVICE_OFF", obj);
         m_utility->rpiShutdown();
     }
 }
@@ -2985,7 +3013,9 @@ void MainWindow::onTzSetReq(QString tz)
         // if(m_utility->setTimezone("Europe/Stockholm")){
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("TIMEZONE", tz);
+            QJsonObject obj;
+            obj["timezone"] = tz;
+            client->enqueueEvent("TIMEZONE", obj);
             m_utility->rpiShutdown();
         }
     } else {
@@ -3001,7 +3031,9 @@ void MainWindow::onTzGetReq()
     if (tz != "") {
         qDebug() << "Set TZ to SW OK";
         if (client->isConnected()) {
-            client->emitEventStringMsgJsoned("TIMEZONE", tz);
+            QJsonObject obj;
+            obj["timezone"] = tz;
+            client->enqueueEvent("TIMEZONE", obj);
             m_utility->getTimeZone();
         }
     } else {
@@ -3129,7 +3161,9 @@ void MainWindow::on_btnEmitListeningOn_clicked()
         // QJsonObject obj;
         // obj["datetime"] = timestamp;
         QString msg = "ON";
-        client->emitEventStringMsgJsoned("LISTENING", msg);
+        QJsonObject obj;
+        obj["msg"] = msg;
+        client->enqueueEvent("LISTENING", obj);
     } else {
         qDebug() << " Socket DC";
     }
@@ -3418,7 +3452,8 @@ void MainWindow::getLangCommand()
 {
     if (client->isConnected()) {
         qDebug() << "Req lang info";
-        client->emitEventStringMsgJsoned("LANGUAGE_GET", "");
+        QJsonObject obj;
+        client->enqueueEvent("LANGUAGE_GET",obj);
     } else {
         qDebug() << "Server IO Dc";
     }
@@ -3574,7 +3609,7 @@ void MainWindow::onPzemDataReadyComplete(Pzem004Tv30Data data)
         obj["pf"] = data.powerFactor;
         obj["energy"] = data.energy;
 
-        client->emitEventStringMsgJsoned("DEVICE_POWER_INFO", obj);
+        client->enqueueEvent("DEVICE_POWER_INFO", obj);
 
         // clear
         mbme280data.temperatureC = 0;
@@ -3690,7 +3725,7 @@ void MainWindow::runAudioHealthRecordTest()
                                 QJsonObject obj;
                                 obj["audio_report"] = reportResult;
                                 obj["radar_report"] = radar1ReportInfo + "_" + radar2ReportInfo;
-                                client->emitEventStringMsgJsoned("DEVICE_STATUS_INFO", obj);
+                                client->enqueueEvent("DEVICE_STATUS_INFO", obj);
                             }
                         } else {
                             qWarning() << "Recording file not found:" << recordFile;
@@ -4120,7 +4155,7 @@ void MainWindow::onSoundFinished(int sentenceIndex, QString langIndex)
 
     if (client->isConnected()) {
         QJsonObject obj;
-        client->emitEventStringMsgJsoned("SOUND_PLAYED", obj);
+        client->enqueueEvent("SOUND_PLAYED", obj);
     }
 
     switch (sentenceIndex) {

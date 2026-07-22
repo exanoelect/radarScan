@@ -1,28 +1,22 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'qcustomplot.h'
 **
-** Created by: The Qt Meta Object Compiler version 69 (Qt 6.11.1)
+** Created by: The Qt Meta Object Compiler version 68 (Qt 6.4.2)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
+#include <memory>
 #include "../../qcustomplot.h"
 #include <QtGui/qtextcursor.h>
-#include <QtGui/qscreen.h>
+#include <QScreen>
 #include <QtCore/qmetatype.h>
 #include <QtCore/QSharedPointer>
 #include <QtCore/QList>
-
-#include <QtCore/qtmochelpers.h>
-
-#include <memory>
-
-
-#include <QtCore/qxptype_traits.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'qcustomplot.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 69
-#error "This file was generated using the moc from 6.11.1. It"
+#elif Q_MOC_OUTPUT_REVISION != 68
+#error "This file was generated using the moc from 6.4.2. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -31,120 +25,193 @@
 #define Q_CONSTINIT
 #endif
 
+QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
-struct qt_meta_tag_ZN10QCPPainterE_t {};
+struct qt_meta_stringdata_QCPPainter_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[11];
+    char stringdata1[12];
+    char stringdata2[10];
+    char stringdata3[13];
+    char stringdata4[12];
+    char stringdata5[14];
+    char stringdata6[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPainter_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPainter_t qt_meta_stringdata_QCPPainter = {
+    {
+        QT_MOC_LITERAL(0, 10),  // "QCPPainter"
+        QT_MOC_LITERAL(11, 11),  // "PainterMode"
+        QT_MOC_LITERAL(23, 9),  // "pmDefault"
+        QT_MOC_LITERAL(33, 12),  // "pmVectorized"
+        QT_MOC_LITERAL(46, 11),  // "pmNoCaching"
+        QT_MOC_LITERAL(58, 13),  // "pmNonCosmetic"
+        QT_MOC_LITERAL(72, 12)   // "PainterModes"
+    },
+    "QCPPainter",
+    "PainterMode",
+    "pmDefault",
+    "pmVectorized",
+    "pmNoCaching",
+    "pmNonCosmetic",
+    "PainterModes"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPainter::qt_create_metaobjectdata<qt_meta_tag_ZN10QCPPainterE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPainter",
-        "PainterMode",
-        "pmDefault",
-        "pmVectorized",
-        "pmNoCaching",
-        "pmNonCosmetic",
-        "PainterModes"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPainter[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'PainterMode'
-        QtMocHelpers::EnumData<enum PainterMode>(1, 1, QMC::EnumFlags{}).add({
-            {    2, PainterMode::pmDefault },
-            {    3, PainterMode::pmVectorized },
-            {    4, PainterMode::pmNoCaching },
-            {    5, PainterMode::pmNonCosmetic },
-        }),
-        // flag 'PainterModes'
-        QtMocHelpers::EnumData<PainterModes>(6, 1, QMC::EnumIsFlag).add({
-            {    2, PainterMode::pmDefault },
-            {    3, PainterMode::pmVectorized },
-            {    4, PainterMode::pmNoCaching },
-            {    5, PainterMode::pmNonCosmetic },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPPainter, qt_meta_tag_ZN10QCPPainterE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       2,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    4,   24,
+       6,    1, 0x1,    4,   32,
+
+ // enum data: key, value
+       2, uint(QCPPainter::pmDefault),
+       3, uint(QCPPainter::pmVectorized),
+       4, uint(QCPPainter::pmNoCaching),
+       5, uint(QCPPainter::pmNonCosmetic),
+       2, uint(QCPPainter::pmDefault),
+       3, uint(QCPPainter::pmVectorized),
+       4, uint(QCPPainter::pmNoCaching),
+       5, uint(QCPPainter::pmNonCosmetic),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPainter::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QPainter>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10QCPPainterE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN10QCPPainterE_t>.data,
+    qt_meta_stringdata_QCPPainter.offsetsAndSizes,
+    qt_meta_data_QCPPainter,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN10QCPPainterE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPainter_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPainter, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN8QCPLayerE_t {};
+struct qt_meta_stringdata_QCPLayer_t {
+    uint offsetsAndSizes[24];
+    char stringdata0[9];
+    char stringdata1[11];
+    char stringdata2[13];
+    char stringdata3[5];
+    char stringdata4[6];
+    char stringdata5[9];
+    char stringdata6[21];
+    char stringdata7[8];
+    char stringdata8[5];
+    char stringdata9[10];
+    char stringdata10[10];
+    char stringdata11[11];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayer_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayer_t qt_meta_stringdata_QCPLayer = {
+    {
+        QT_MOC_LITERAL(0, 8),  // "QCPLayer"
+        QT_MOC_LITERAL(9, 10),  // "parentPlot"
+        QT_MOC_LITERAL(20, 12),  // "QCustomPlot*"
+        QT_MOC_LITERAL(33, 4),  // "name"
+        QT_MOC_LITERAL(38, 5),  // "index"
+        QT_MOC_LITERAL(44, 8),  // "children"
+        QT_MOC_LITERAL(53, 20),  // "QList<QCPLayerable*>"
+        QT_MOC_LITERAL(74, 7),  // "visible"
+        QT_MOC_LITERAL(82, 4),  // "mode"
+        QT_MOC_LITERAL(87, 9),  // "LayerMode"
+        QT_MOC_LITERAL(97, 9),  // "lmLogical"
+        QT_MOC_LITERAL(107, 10)   // "lmBuffered"
+    },
+    "QCPLayer",
+    "parentPlot",
+    "QCustomPlot*",
+    "name",
+    "index",
+    "children",
+    "QList<QCPLayerable*>",
+    "visible",
+    "mode",
+    "LayerMode",
+    "lmLogical",
+    "lmBuffered"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayer::qt_create_metaobjectdata<qt_meta_tag_ZN8QCPLayerE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayer",
-        "parentPlot",
-        "QCustomPlot*",
-        "name",
-        "index",
-        "children",
-        "QList<QCPLayerable*>",
-        "visible",
-        "mode",
-        "LayerMode",
-        "lmLogical",
-        "lmBuffered"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayer[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'parentPlot'
-        QtMocHelpers::PropertyData<QCustomPlot*>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'name'
-        QtMocHelpers::PropertyData<QString>(3, QMetaType::QString, QMC::DefaultPropertyFlags),
-        // property 'index'
-        QtMocHelpers::PropertyData<int>(4, QMetaType::Int, QMC::DefaultPropertyFlags),
-        // property 'children'
-        QtMocHelpers::PropertyData<QList<QCPLayerable*>>(5, 0x80000000 | 6, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'visible'
-        QtMocHelpers::PropertyData<bool>(7, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'mode'
-        QtMocHelpers::PropertyData<enum LayerMode>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'LayerMode'
-        QtMocHelpers::EnumData<enum LayerMode>(9, 9, QMC::EnumFlags{}).add({
-            {   10, LayerMode::lmLogical },
-            {   11, LayerMode::lmBuffered },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLayer, qt_meta_tag_ZN8QCPLayerE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       6,   14, // properties
+       1,   44, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x00015009, uint(-1), 0,
+       3, QMetaType::QString, 0x00015001, uint(-1), 0,
+       4, QMetaType::Int, 0x00015001, uint(-1), 0,
+       5, 0x80000000 | 6, 0x00015009, uint(-1), 0,
+       7, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       8, 0x80000000 | 9, 0x0001510b, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       9,    9, 0x0,    2,   49,
+
+ // enum data: key, value
+      10, uint(QCPLayer::lmLogical),
+      11, uint(QCPLayer::lmBuffered),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayer::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPLayerE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPLayerE_t>.data,
+    qt_meta_stringdata_QCPLayer.offsetsAndSizes,
+    qt_meta_data_QCPLayer,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN8QCPLayerE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayer_t,
+        // property 'parentPlot'
+        QtPrivate::TypeAndForceComplete<QCustomPlot*, std::true_type>,
+        // property 'name'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'index'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'children'
+        QtPrivate::TypeAndForceComplete<QList<QCPLayerable*>, std::true_type>,
+        // property 'visible'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'mode'
+        QtPrivate::TypeAndForceComplete<LayerMode, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayer, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPLayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayer *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -154,26 +221,32 @@ void QCPLayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<QCPLayerable*> >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPLayer *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCustomPlot**>(_v) = _t->parentPlot(); break;
-        case 1: *reinterpret_cast<QString*>(_v) = _t->name(); break;
-        case 2: *reinterpret_cast<int*>(_v) = _t->index(); break;
-        case 3: *reinterpret_cast<QList<QCPLayerable*>*>(_v) = _t->children(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->visible(); break;
-        case 5: *reinterpret_cast<enum LayerMode*>(_v) = _t->mode(); break;
+        case 0: *reinterpret_cast< QCustomPlot**>(_v) = _t->parentPlot(); break;
+        case 1: *reinterpret_cast< QString*>(_v) = _t->name(); break;
+        case 2: *reinterpret_cast< int*>(_v) = _t->index(); break;
+        case 3: *reinterpret_cast< QList<QCPLayerable*>*>(_v) = _t->children(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->visible(); break;
+        case 5: *reinterpret_cast< LayerMode*>(_v) = _t->mode(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPLayer *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 4: _t->setVisible(*reinterpret_cast<bool*>(_v)); break;
-        case 5: _t->setMode(*reinterpret_cast<enum LayerMode*>(_v)); break;
+        case 4: _t->setVisible(*reinterpret_cast< bool*>(_v)); break;
+        case 5: _t->setMode(*reinterpret_cast< LayerMode*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPLayer::metaObject() const
@@ -184,7 +257,7 @@ const QMetaObject *QCPLayer::metaObject() const
 void *QCPLayer::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPLayerE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayer.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
@@ -203,77 +276,133 @@ int QCPLayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN12QCPLayerableE_t {};
+struct qt_meta_stringdata_QCPLayerable_t {
+    uint offsetsAndSizes[26];
+    char stringdata0[13];
+    char stringdata1[13];
+    char stringdata2[1];
+    char stringdata3[10];
+    char stringdata4[9];
+    char stringdata5[9];
+    char stringdata6[6];
+    char stringdata7[8];
+    char stringdata8[11];
+    char stringdata9[13];
+    char stringdata10[16];
+    char stringdata11[14];
+    char stringdata12[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayerable_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayerable_t qt_meta_stringdata_QCPLayerable = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPLayerable"
+        QT_MOC_LITERAL(13, 12),  // "layerChanged"
+        QT_MOC_LITERAL(26, 0),  // ""
+        QT_MOC_LITERAL(27, 9),  // "QCPLayer*"
+        QT_MOC_LITERAL(37, 8),  // "newLayer"
+        QT_MOC_LITERAL(46, 8),  // "setLayer"
+        QT_MOC_LITERAL(55, 5),  // "layer"
+        QT_MOC_LITERAL(61, 7),  // "visible"
+        QT_MOC_LITERAL(69, 10),  // "parentPlot"
+        QT_MOC_LITERAL(80, 12),  // "QCustomPlot*"
+        QT_MOC_LITERAL(93, 15),  // "parentLayerable"
+        QT_MOC_LITERAL(109, 13),  // "QCPLayerable*"
+        QT_MOC_LITERAL(123, 11)   // "antialiased"
+    },
+    "QCPLayerable",
+    "layerChanged",
+    "",
+    "QCPLayer*",
+    "newLayer",
+    "setLayer",
+    "layer",
+    "visible",
+    "parentPlot",
+    "QCustomPlot*",
+    "parentLayerable",
+    "QCPLayerable*",
+    "antialiased"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayerable::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPLayerableE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayerable",
-        "layerChanged",
-        "",
-        "QCPLayer*",
-        "newLayer",
-        "setLayer",
-        "layer",
-        "visible",
-        "parentPlot",
-        "QCustomPlot*",
-        "parentLayerable",
-        "QCPLayerable*",
-        "antialiased"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayerable[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'layerChanged'
-        QtMocHelpers::SignalData<void(QCPLayer *)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'setLayer'
-        QtMocHelpers::SlotData<bool(QCPLayer *)>(5, 2, QMC::AccessPublic, QMetaType::Bool, {{
-            { 0x80000000 | 3, 6 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'visible'
-        QtMocHelpers::PropertyData<bool>(7, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'parentPlot'
-        QtMocHelpers::PropertyData<QCustomPlot*>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'parentLayerable'
-        QtMocHelpers::PropertyData<QCPLayerable*>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'layer'
-        QtMocHelpers::PropertyData<QCPLayer*>(6, 0x80000000 | 3, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'antialiased'
-        QtMocHelpers::PropertyData<bool>(12, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPLayerable, qt_meta_tag_ZN12QCPLayerableE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       2,   14, // methods
+       5,   32, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   26,    2, 0x06,    6 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       5,    1,   29,    2, 0x0a,    8 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+
+ // slots: parameters
+    QMetaType::Bool, 0x80000000 | 3,    6,
+
+ // properties: name, type, flags
+       7, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       8, 0x80000000 | 9, 0x00015009, uint(-1), 0,
+      10, 0x80000000 | 11, 0x00015009, uint(-1), 0,
+       6, 0x80000000 | 3, 0x0001510b, uint(0), 0,
+      12, QMetaType::Bool, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayerable::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPLayerableE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPLayerableE_t>.data,
+    qt_meta_stringdata_QCPLayerable.offsetsAndSizes,
+    qt_meta_data_QCPLayerable,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPLayerableE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayerable_t,
+        // property 'visible'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'parentPlot'
+        QtPrivate::TypeAndForceComplete<QCustomPlot*, std::true_type>,
+        // property 'parentLayerable'
+        QtPrivate::TypeAndForceComplete<QCPLayerable*, std::true_type>,
+        // property 'layer'
+        QtPrivate::TypeAndForceComplete<QCPLayer*, std::true_type>,
+        // property 'antialiased'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayerable, std::true_type>,
+        // method 'layerChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLayer *, std::false_type>,
+        // method 'setLayer'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLayer *, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPLayerable::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayerable *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPLayerable *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->layerChanged((*reinterpret_cast<std::add_pointer_t<QCPLayer*>>(_a[1]))); break;
-        case 1: { bool _r = _t->setLayer((*reinterpret_cast<std::add_pointer_t<QCPLayer*>>(_a[1])));
-            if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
+        case 0: _t->layerChanged((*reinterpret_cast< std::add_pointer_t<QCPLayer*>>(_a[1]))); break;
+        case 1: { bool _r = _t->setLayer((*reinterpret_cast< std::add_pointer_t<QCPLayer*>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 0:
@@ -291,12 +420,16 @@ void QCPLayerable::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPLayerable::*)(QCPLayer * )>(_a, &QCPLayerable::layerChanged, 0))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPLayerable::*)(QCPLayer * );
+            if (_t _q_method = &QCPLayerable::layerChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 3:
@@ -307,25 +440,30 @@ void QCPLayerable::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCustomPlot* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPLayerable *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<bool*>(_v) = _t->visible(); break;
-        case 1: *reinterpret_cast<QCustomPlot**>(_v) = _t->parentPlot(); break;
-        case 2: *reinterpret_cast<QCPLayerable**>(_v) = _t->parentLayerable(); break;
-        case 3: *reinterpret_cast<QCPLayer**>(_v) = _t->layer(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->antialiased(); break;
+        case 0: *reinterpret_cast< bool*>(_v) = _t->visible(); break;
+        case 1: *reinterpret_cast< QCustomPlot**>(_v) = _t->parentPlot(); break;
+        case 2: *reinterpret_cast< QCPLayerable**>(_v) = _t->parentLayerable(); break;
+        case 3: *reinterpret_cast< QCPLayer**>(_v) = _t->layer(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->antialiased(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPLayerable *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setVisible(*reinterpret_cast<bool*>(_v)); break;
-        case 3: _t->setLayer(*reinterpret_cast<QCPLayer**>(_v)); break;
-        case 4: _t->setAntialiased(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setVisible(*reinterpret_cast< bool*>(_v)); break;
+        case 3: _t->setLayer(*reinterpret_cast< QCPLayer**>(_v)); break;
+        case 4: _t->setAntialiased(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -337,7 +475,7 @@ const QMetaObject *QCPLayerable::metaObject() const
 void *QCPLayerable::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPLayerableE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayerable.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
@@ -351,13 +489,11 @@ int QCPLayerable::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 2;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 2;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -369,89 +505,162 @@ int QCPLayerable::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPLayerable::layerChanged(QCPLayer * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 namespace {
-struct qt_meta_tag_ZN16QCPSelectionRectE_t {};
+struct qt_meta_stringdata_QCPSelectionRect_t {
+    uint offsetsAndSizes[22];
+    char stringdata0[17];
+    char stringdata1[8];
+    char stringdata2[1];
+    char stringdata3[13];
+    char stringdata4[6];
+    char stringdata5[8];
+    char stringdata6[5];
+    char stringdata7[9];
+    char stringdata8[13];
+    char stringdata9[9];
+    char stringdata10[7];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPSelectionRect_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPSelectionRect_t qt_meta_stringdata_QCPSelectionRect = {
+    {
+        QT_MOC_LITERAL(0, 16),  // "QCPSelectionRect"
+        QT_MOC_LITERAL(17, 7),  // "started"
+        QT_MOC_LITERAL(25, 0),  // ""
+        QT_MOC_LITERAL(26, 12),  // "QMouseEvent*"
+        QT_MOC_LITERAL(39, 5),  // "event"
+        QT_MOC_LITERAL(45, 7),  // "changed"
+        QT_MOC_LITERAL(53, 4),  // "rect"
+        QT_MOC_LITERAL(58, 8),  // "canceled"
+        QT_MOC_LITERAL(67, 12),  // "QInputEvent*"
+        QT_MOC_LITERAL(80, 8),  // "accepted"
+        QT_MOC_LITERAL(89, 6)   // "cancel"
+    },
+    "QCPSelectionRect",
+    "started",
+    "",
+    "QMouseEvent*",
+    "event",
+    "changed",
+    "rect",
+    "canceled",
+    "QInputEvent*",
+    "accepted",
+    "cancel"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPSelectionRect::qt_create_metaobjectdata<qt_meta_tag_ZN16QCPSelectionRectE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPSelectionRect",
-        "started",
-        "",
-        "QMouseEvent*",
-        "event",
-        "changed",
-        "QRect",
-        "rect",
-        "canceled",
-        "QInputEvent*",
-        "accepted",
-        "cancel"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPSelectionRect[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'started'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'changed'
-        QtMocHelpers::SignalData<void(const QRect &, QMouseEvent *)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'canceled'
-        QtMocHelpers::SignalData<void(const QRect &, QInputEvent *)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 }, { 0x80000000 | 9, 4 },
-        }}),
-        // Signal 'accepted'
-        QtMocHelpers::SignalData<void(const QRect &, QMouseEvent *)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'cancel'
-        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPublic, QMetaType::Void),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPSelectionRect, qt_meta_tag_ZN16QCPSelectionRectE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       5,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       4,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   44,    2, 0x06,    1 /* Public */,
+       5,    2,   47,    2, 0x06,    3 /* Public */,
+       7,    2,   52,    2, 0x06,    6 /* Public */,
+       9,    2,   57,    2, 0x06,    9 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      10,    0,   62,    2, 0x0a,   12 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::QRect, 0x80000000 | 3,    6,    4,
+    QMetaType::Void, QMetaType::QRect, 0x80000000 | 8,    6,    4,
+    QMetaType::Void, QMetaType::QRect, 0x80000000 | 3,    6,    4,
+
+ // slots: parameters
+    QMetaType::Void,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPSelectionRect::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPSelectionRectE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPSelectionRectE_t>.data,
+    qt_meta_stringdata_QCPSelectionRect.offsetsAndSizes,
+    qt_meta_data_QCPSelectionRect,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN16QCPSelectionRectE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPSelectionRect_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPSelectionRect, std::true_type>,
+        // method 'started'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'changed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QRect &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'canceled'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QRect &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QInputEvent *, std::false_type>,
+        // method 'accepted'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QRect &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'cancel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPSelectionRect::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPSelectionRect *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPSelectionRect *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->started((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 1: _t->changed((*reinterpret_cast<std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
-        case 2: _t->canceled((*reinterpret_cast<std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QInputEvent*>>(_a[2]))); break;
-        case 3: _t->accepted((*reinterpret_cast<std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 0: _t->started((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 1: _t->changed((*reinterpret_cast< std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 2: _t->canceled((*reinterpret_cast< std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QInputEvent*>>(_a[2]))); break;
+        case 3: _t->accepted((*reinterpret_cast< std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
         case 4: _t->cancel(); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPSelectionRect::*)(QMouseEvent * )>(_a, &QCPSelectionRect::started, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPSelectionRect::*)(const QRect & , QMouseEvent * )>(_a, &QCPSelectionRect::changed, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPSelectionRect::*)(const QRect & , QInputEvent * )>(_a, &QCPSelectionRect::canceled, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPSelectionRect::*)(const QRect & , QMouseEvent * )>(_a, &QCPSelectionRect::accepted, 3))
-            return;
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPSelectionRect::*)(QMouseEvent * );
+            if (_t _q_method = &QCPSelectionRect::started; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPSelectionRect::*)(const QRect & , QMouseEvent * );
+            if (_t _q_method = &QCPSelectionRect::changed; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPSelectionRect::*)(const QRect & , QInputEvent * );
+            if (_t _q_method = &QCPSelectionRect::canceled; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPSelectionRect::*)(const QRect & , QMouseEvent * );
+            if (_t _q_method = &QCPSelectionRect::accepted; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
     }
 }
 
@@ -463,7 +672,7 @@ const QMetaObject *QCPSelectionRect::metaObject() const
 void *QCPSelectionRect::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPSelectionRectE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPSelectionRect.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -477,8 +686,7 @@ int QCPSelectionRect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 5;
@@ -489,62 +697,80 @@ int QCPSelectionRect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPSelectionRect::started(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPSelectionRect::changed(const QRect & _t1, QMouseEvent * _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPSelectionRect::canceled(const QRect & _t1, QInputEvent * _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCPSelectionRect::accepted(const QRect & _t1, QMouseEvent * _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 namespace {
-struct qt_meta_tag_ZN14QCPMarginGroupE_t {};
+struct qt_meta_stringdata_QCPMarginGroup_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[15];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPMarginGroup_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPMarginGroup_t qt_meta_stringdata_QCPMarginGroup = {
+    {
+        QT_MOC_LITERAL(0, 14)   // "QCPMarginGroup"
+    },
+    "QCPMarginGroup"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPMarginGroup::qt_create_metaobjectdata<qt_meta_tag_ZN14QCPMarginGroupE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPMarginGroup"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPMarginGroup[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPMarginGroup, qt_meta_tag_ZN14QCPMarginGroupE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPMarginGroup::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPMarginGroupE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPMarginGroupE_t>.data,
+    qt_meta_stringdata_QCPMarginGroup.offsetsAndSizes,
+    qt_meta_data_QCPMarginGroup,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN14QCPMarginGroupE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPMarginGroup_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPMarginGroup, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPMarginGroup::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPMarginGroup *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -556,7 +782,7 @@ const QMetaObject *QCPMarginGroup::metaObject() const
 void *QCPMarginGroup::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPMarginGroupE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPMarginGroup.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
@@ -567,84 +793,140 @@ int QCPMarginGroup::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN16QCPLayoutElementE_t {};
+struct qt_meta_stringdata_QCPLayoutElement_t {
+    uint offsetsAndSizes[36];
+    char stringdata0[17];
+    char stringdata1[7];
+    char stringdata2[11];
+    char stringdata3[5];
+    char stringdata4[10];
+    char stringdata5[8];
+    char stringdata6[9];
+    char stringdata7[15];
+    char stringdata8[12];
+    char stringdata9[12];
+    char stringdata10[19];
+    char stringdata11[19];
+    char stringdata12[12];
+    char stringdata13[14];
+    char stringdata14[10];
+    char stringdata15[9];
+    char stringdata16[13];
+    char stringdata17[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayoutElement_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayoutElement_t qt_meta_stringdata_QCPLayoutElement = {
+    {
+        QT_MOC_LITERAL(0, 16),  // "QCPLayoutElement"
+        QT_MOC_LITERAL(17, 6),  // "layout"
+        QT_MOC_LITERAL(24, 10),  // "QCPLayout*"
+        QT_MOC_LITERAL(35, 4),  // "rect"
+        QT_MOC_LITERAL(40, 9),  // "outerRect"
+        QT_MOC_LITERAL(50, 7),  // "margins"
+        QT_MOC_LITERAL(58, 8),  // "QMargins"
+        QT_MOC_LITERAL(67, 14),  // "minimumMargins"
+        QT_MOC_LITERAL(82, 11),  // "minimumSize"
+        QT_MOC_LITERAL(94, 11),  // "maximumSize"
+        QT_MOC_LITERAL(106, 18),  // "sizeConstraintRect"
+        QT_MOC_LITERAL(125, 18),  // "SizeConstraintRect"
+        QT_MOC_LITERAL(144, 11),  // "UpdatePhase"
+        QT_MOC_LITERAL(156, 13),  // "upPreparation"
+        QT_MOC_LITERAL(170, 9),  // "upMargins"
+        QT_MOC_LITERAL(180, 8),  // "upLayout"
+        QT_MOC_LITERAL(189, 12),  // "scrInnerRect"
+        QT_MOC_LITERAL(202, 12)   // "scrOuterRect"
+    },
+    "QCPLayoutElement",
+    "layout",
+    "QCPLayout*",
+    "rect",
+    "outerRect",
+    "margins",
+    "QMargins",
+    "minimumMargins",
+    "minimumSize",
+    "maximumSize",
+    "sizeConstraintRect",
+    "SizeConstraintRect",
+    "UpdatePhase",
+    "upPreparation",
+    "upMargins",
+    "upLayout",
+    "scrInnerRect",
+    "scrOuterRect"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayoutElement::qt_create_metaobjectdata<qt_meta_tag_ZN16QCPLayoutElementE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayoutElement",
-        "layout",
-        "QCPLayout*",
-        "rect",
-        "QRect",
-        "outerRect",
-        "margins",
-        "QMargins",
-        "minimumMargins",
-        "minimumSize",
-        "QSize",
-        "maximumSize",
-        "sizeConstraintRect",
-        "SizeConstraintRect",
-        "UpdatePhase",
-        "upPreparation",
-        "upMargins",
-        "upLayout",
-        "scrInnerRect",
-        "scrOuterRect"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayoutElement[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'layout'
-        QtMocHelpers::PropertyData<QCPLayout*>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'rect'
-        QtMocHelpers::PropertyData<QRect>(3, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'outerRect'
-        QtMocHelpers::PropertyData<QRect>(5, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'margins'
-        QtMocHelpers::PropertyData<QMargins>(6, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'minimumMargins'
-        QtMocHelpers::PropertyData<QMargins>(8, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'minimumSize'
-        QtMocHelpers::PropertyData<QSize>(9, 0x80000000 | 10, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'maximumSize'
-        QtMocHelpers::PropertyData<QSize>(11, 0x80000000 | 10, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'sizeConstraintRect'
-        QtMocHelpers::PropertyData<enum SizeConstraintRect>(12, 0x80000000 | 13, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'UpdatePhase'
-        QtMocHelpers::EnumData<enum UpdatePhase>(14, 14, QMC::EnumFlags{}).add({
-            {   15, UpdatePhase::upPreparation },
-            {   16, UpdatePhase::upMargins },
-            {   17, UpdatePhase::upLayout },
-        }),
-        // enum 'SizeConstraintRect'
-        QtMocHelpers::EnumData<enum SizeConstraintRect>(13, 13, QMC::EnumFlags{}).add({
-            {   18, SizeConstraintRect::scrInnerRect },
-            {   19, SizeConstraintRect::scrOuterRect },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLayoutElement, qt_meta_tag_ZN16QCPLayoutElementE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       8,   14, // properties
+       2,   54, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x00015009, uint(-1), 0,
+       3, QMetaType::QRect, 0x00015001, uint(-1), 0,
+       4, QMetaType::QRect, 0x00015103, uint(-1), 0,
+       5, 0x80000000 | 6, 0x0001510b, uint(-1), 0,
+       7, 0x80000000 | 6, 0x0001510b, uint(-1), 0,
+       8, QMetaType::QSize, 0x00015103, uint(-1), 0,
+       9, QMetaType::QSize, 0x00015103, uint(-1), 0,
+      10, 0x80000000 | 11, 0x0001510b, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+      12,   12, 0x0,    3,   64,
+      11,   11, 0x0,    2,   70,
+
+ // enum data: key, value
+      13, uint(QCPLayoutElement::upPreparation),
+      14, uint(QCPLayoutElement::upMargins),
+      15, uint(QCPLayoutElement::upLayout),
+      16, uint(QCPLayoutElement::scrInnerRect),
+      17, uint(QCPLayoutElement::scrOuterRect),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayoutElement::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPLayoutElementE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPLayoutElementE_t>.data,
+    qt_meta_stringdata_QCPLayoutElement.offsetsAndSizes,
+    qt_meta_data_QCPLayoutElement,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN16QCPLayoutElementE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayoutElement_t,
+        // property 'layout'
+        QtPrivate::TypeAndForceComplete<QCPLayout*, std::true_type>,
+        // property 'rect'
+        QtPrivate::TypeAndForceComplete<QRect, std::true_type>,
+        // property 'outerRect'
+        QtPrivate::TypeAndForceComplete<QRect, std::true_type>,
+        // property 'margins'
+        QtPrivate::TypeAndForceComplete<QMargins, std::true_type>,
+        // property 'minimumMargins'
+        QtPrivate::TypeAndForceComplete<QMargins, std::true_type>,
+        // property 'minimumSize'
+        QtPrivate::TypeAndForceComplete<QSize, std::true_type>,
+        // property 'maximumSize'
+        QtPrivate::TypeAndForceComplete<QSize, std::true_type>,
+        // property 'sizeConstraintRect'
+        QtPrivate::TypeAndForceComplete<SizeConstraintRect, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayoutElement, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPLayoutElement::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayoutElement *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -652,32 +934,38 @@ void QCPLayoutElement::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPLayout* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPLayoutElement *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCPLayout**>(_v) = _t->layout(); break;
-        case 1: *reinterpret_cast<QRect*>(_v) = _t->rect(); break;
-        case 2: *reinterpret_cast<QRect*>(_v) = _t->outerRect(); break;
-        case 3: *reinterpret_cast<QMargins*>(_v) = _t->margins(); break;
-        case 4: *reinterpret_cast<QMargins*>(_v) = _t->minimumMargins(); break;
-        case 5: *reinterpret_cast<QSize*>(_v) = _t->minimumSize(); break;
-        case 6: *reinterpret_cast<QSize*>(_v) = _t->maximumSize(); break;
-        case 7: *reinterpret_cast<enum SizeConstraintRect*>(_v) = _t->sizeConstraintRect(); break;
+        case 0: *reinterpret_cast< QCPLayout**>(_v) = _t->layout(); break;
+        case 1: *reinterpret_cast< QRect*>(_v) = _t->rect(); break;
+        case 2: *reinterpret_cast< QRect*>(_v) = _t->outerRect(); break;
+        case 3: *reinterpret_cast< QMargins*>(_v) = _t->margins(); break;
+        case 4: *reinterpret_cast< QMargins*>(_v) = _t->minimumMargins(); break;
+        case 5: *reinterpret_cast< QSize*>(_v) = _t->minimumSize(); break;
+        case 6: *reinterpret_cast< QSize*>(_v) = _t->maximumSize(); break;
+        case 7: *reinterpret_cast< SizeConstraintRect*>(_v) = _t->sizeConstraintRect(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPLayoutElement *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 2: _t->setOuterRect(*reinterpret_cast<QRect*>(_v)); break;
-        case 3: _t->setMargins(*reinterpret_cast<QMargins*>(_v)); break;
-        case 4: _t->setMinimumMargins(*reinterpret_cast<QMargins*>(_v)); break;
-        case 5: _t->setMinimumSize(*reinterpret_cast<QSize*>(_v)); break;
-        case 6: _t->setMaximumSize(*reinterpret_cast<QSize*>(_v)); break;
-        case 7: _t->setSizeConstraintRect(*reinterpret_cast<enum SizeConstraintRect*>(_v)); break;
+        case 2: _t->setOuterRect(*reinterpret_cast< QRect*>(_v)); break;
+        case 3: _t->setMargins(*reinterpret_cast< QMargins*>(_v)); break;
+        case 4: _t->setMinimumMargins(*reinterpret_cast< QMargins*>(_v)); break;
+        case 5: _t->setMinimumSize(*reinterpret_cast< QSize*>(_v)); break;
+        case 6: _t->setMaximumSize(*reinterpret_cast< QSize*>(_v)); break;
+        case 7: _t->setSizeConstraintRect(*reinterpret_cast< SizeConstraintRect*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPLayoutElement::metaObject() const
@@ -688,7 +976,7 @@ const QMetaObject *QCPLayoutElement::metaObject() const
 void *QCPLayoutElement::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPLayoutElementE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayoutElement.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -707,41 +995,55 @@ int QCPLayoutElement::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN9QCPLayoutE_t {};
+struct qt_meta_stringdata_QCPLayout_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayout_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayout_t qt_meta_stringdata_QCPLayout = {
+    {
+        QT_MOC_LITERAL(0, 9)   // "QCPLayout"
+    },
+    "QCPLayout"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayout::qt_create_metaobjectdata<qt_meta_tag_ZN9QCPLayoutE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayout"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayout[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPLayout, qt_meta_tag_ZN9QCPLayoutE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayout::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLayoutE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLayoutE_t>.data,
+    qt_meta_stringdata_QCPLayout.offsetsAndSizes,
+    qt_meta_data_QCPLayout,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN9QCPLayoutE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayout_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayout, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPLayout::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayout *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -753,7 +1055,7 @@ const QMetaObject *QCPLayout::metaObject() const
 void *QCPLayout::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLayoutE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayout.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -764,71 +1066,121 @@ int QCPLayout::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPLayoutGridE_t {};
+struct qt_meta_stringdata_QCPLayoutGrid_t {
+    uint offsetsAndSizes[26];
+    char stringdata0[14];
+    char stringdata1[9];
+    char stringdata2[12];
+    char stringdata3[21];
+    char stringdata4[14];
+    char stringdata5[18];
+    char stringdata6[14];
+    char stringdata7[11];
+    char stringdata8[10];
+    char stringdata9[10];
+    char stringdata10[5];
+    char stringdata11[12];
+    char stringdata12[15];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayoutGrid_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayoutGrid_t qt_meta_stringdata_QCPLayoutGrid = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPLayoutGrid"
+        QT_MOC_LITERAL(14, 8),  // "rowCount"
+        QT_MOC_LITERAL(23, 11),  // "columnCount"
+        QT_MOC_LITERAL(35, 20),  // "columnStretchFactors"
+        QT_MOC_LITERAL(56, 13),  // "QList<double>"
+        QT_MOC_LITERAL(70, 17),  // "rowStretchFactors"
+        QT_MOC_LITERAL(88, 13),  // "columnSpacing"
+        QT_MOC_LITERAL(102, 10),  // "rowSpacing"
+        QT_MOC_LITERAL(113, 9),  // "fillOrder"
+        QT_MOC_LITERAL(123, 9),  // "FillOrder"
+        QT_MOC_LITERAL(133, 4),  // "wrap"
+        QT_MOC_LITERAL(138, 11),  // "foRowsFirst"
+        QT_MOC_LITERAL(150, 14)   // "foColumnsFirst"
+    },
+    "QCPLayoutGrid",
+    "rowCount",
+    "columnCount",
+    "columnStretchFactors",
+    "QList<double>",
+    "rowStretchFactors",
+    "columnSpacing",
+    "rowSpacing",
+    "fillOrder",
+    "FillOrder",
+    "wrap",
+    "foRowsFirst",
+    "foColumnsFirst"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayoutGrid::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPLayoutGridE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayoutGrid",
-        "rowCount",
-        "columnCount",
-        "columnStretchFactors",
-        "QList<double>",
-        "rowStretchFactors",
-        "columnSpacing",
-        "rowSpacing",
-        "fillOrder",
-        "FillOrder",
-        "wrap",
-        "foRowsFirst",
-        "foColumnsFirst"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayoutGrid[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'rowCount'
-        QtMocHelpers::PropertyData<int>(1, QMetaType::Int, QMC::DefaultPropertyFlags),
-        // property 'columnCount'
-        QtMocHelpers::PropertyData<int>(2, QMetaType::Int, QMC::DefaultPropertyFlags),
-        // property 'columnStretchFactors'
-        QtMocHelpers::PropertyData<QList<double>>(3, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'rowStretchFactors'
-        QtMocHelpers::PropertyData<QList<double>>(5, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'columnSpacing'
-        QtMocHelpers::PropertyData<int>(6, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'rowSpacing'
-        QtMocHelpers::PropertyData<int>(7, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'fillOrder'
-        QtMocHelpers::PropertyData<enum FillOrder>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'wrap'
-        QtMocHelpers::PropertyData<int>(10, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'FillOrder'
-        QtMocHelpers::EnumData<enum FillOrder>(9, 9, QMC::EnumFlags{}).add({
-            {   11, FillOrder::foRowsFirst },
-            {   12, FillOrder::foColumnsFirst },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLayoutGrid, qt_meta_tag_ZN13QCPLayoutGridE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       8,   14, // properties
+       1,   54, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::Int, 0x00015001, uint(-1), 0,
+       2, QMetaType::Int, 0x00015001, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       6, QMetaType::Int, 0x00015103, uint(-1), 0,
+       7, QMetaType::Int, 0x00015103, uint(-1), 0,
+       8, 0x80000000 | 9, 0x0001510b, uint(-1), 0,
+      10, QMetaType::Int, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       9,    9, 0x0,    2,   59,
+
+ // enum data: key, value
+      11, uint(QCPLayoutGrid::foRowsFirst),
+      12, uint(QCPLayoutGrid::foColumnsFirst),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayoutGrid::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayout::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPLayoutGridE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPLayoutGridE_t>.data,
+    qt_meta_stringdata_QCPLayoutGrid.offsetsAndSizes,
+    qt_meta_data_QCPLayoutGrid,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPLayoutGridE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayoutGrid_t,
+        // property 'rowCount'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'columnCount'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'columnStretchFactors'
+        QtPrivate::TypeAndForceComplete<QList<double>, std::true_type>,
+        // property 'rowStretchFactors'
+        QtPrivate::TypeAndForceComplete<QList<double>, std::true_type>,
+        // property 'columnSpacing'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'rowSpacing'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'fillOrder'
+        QtPrivate::TypeAndForceComplete<FillOrder, std::true_type>,
+        // property 'wrap'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayoutGrid, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPLayoutGrid::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayoutGrid *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -837,32 +1189,38 @@ void QCPLayoutGrid::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QList<double> >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPLayoutGrid *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<int*>(_v) = _t->rowCount(); break;
-        case 1: *reinterpret_cast<int*>(_v) = _t->columnCount(); break;
-        case 2: *reinterpret_cast<QList<double>*>(_v) = _t->columnStretchFactors(); break;
-        case 3: *reinterpret_cast<QList<double>*>(_v) = _t->rowStretchFactors(); break;
-        case 4: *reinterpret_cast<int*>(_v) = _t->columnSpacing(); break;
-        case 5: *reinterpret_cast<int*>(_v) = _t->rowSpacing(); break;
-        case 6: *reinterpret_cast<enum FillOrder*>(_v) = _t->fillOrder(); break;
-        case 7: *reinterpret_cast<int*>(_v) = _t->wrap(); break;
+        case 0: *reinterpret_cast< int*>(_v) = _t->rowCount(); break;
+        case 1: *reinterpret_cast< int*>(_v) = _t->columnCount(); break;
+        case 2: *reinterpret_cast< QList<double>*>(_v) = _t->columnStretchFactors(); break;
+        case 3: *reinterpret_cast< QList<double>*>(_v) = _t->rowStretchFactors(); break;
+        case 4: *reinterpret_cast< int*>(_v) = _t->columnSpacing(); break;
+        case 5: *reinterpret_cast< int*>(_v) = _t->rowSpacing(); break;
+        case 6: *reinterpret_cast< FillOrder*>(_v) = _t->fillOrder(); break;
+        case 7: *reinterpret_cast< int*>(_v) = _t->wrap(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPLayoutGrid *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 2: _t->setColumnStretchFactors(*reinterpret_cast<QList<double>*>(_v)); break;
-        case 3: _t->setRowStretchFactors(*reinterpret_cast<QList<double>*>(_v)); break;
-        case 4: _t->setColumnSpacing(*reinterpret_cast<int*>(_v)); break;
-        case 5: _t->setRowSpacing(*reinterpret_cast<int*>(_v)); break;
-        case 6: _t->setFillOrder(*reinterpret_cast<enum FillOrder*>(_v)); break;
-        case 7: _t->setWrap(*reinterpret_cast<int*>(_v)); break;
+        case 2: _t->setColumnStretchFactors(*reinterpret_cast< QList<double>*>(_v)); break;
+        case 3: _t->setRowStretchFactors(*reinterpret_cast< QList<double>*>(_v)); break;
+        case 4: _t->setColumnSpacing(*reinterpret_cast< int*>(_v)); break;
+        case 5: _t->setRowSpacing(*reinterpret_cast< int*>(_v)); break;
+        case 6: _t->setFillOrder(*reinterpret_cast< FillOrder*>(_v)); break;
+        case 7: _t->setWrap(*reinterpret_cast< int*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPLayoutGrid::metaObject() const
@@ -873,7 +1231,7 @@ const QMetaObject *QCPLayoutGrid::metaObject() const
 void *QCPLayoutGrid::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPLayoutGridE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayoutGrid.stringdata0))
         return static_cast<void*>(this);
     return QCPLayout::qt_metacast(_clname);
 }
@@ -892,49 +1250,71 @@ int QCPLayoutGrid::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN14QCPLayoutInsetE_t {};
+struct qt_meta_stringdata_QCPLayoutInset_t {
+    uint offsetsAndSizes[8];
+    char stringdata0[15];
+    char stringdata1[15];
+    char stringdata2[7];
+    char stringdata3[16];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLayoutInset_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLayoutInset_t qt_meta_stringdata_QCPLayoutInset = {
+    {
+        QT_MOC_LITERAL(0, 14),  // "QCPLayoutInset"
+        QT_MOC_LITERAL(15, 14),  // "InsetPlacement"
+        QT_MOC_LITERAL(30, 6),  // "ipFree"
+        QT_MOC_LITERAL(37, 15)   // "ipBorderAligned"
+    },
+    "QCPLayoutInset",
+    "InsetPlacement",
+    "ipFree",
+    "ipBorderAligned"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLayoutInset::qt_create_metaobjectdata<qt_meta_tag_ZN14QCPLayoutInsetE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLayoutInset",
-        "InsetPlacement",
-        "ipFree",
-        "ipBorderAligned"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLayoutInset[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'InsetPlacement'
-        QtMocHelpers::EnumData<enum InsetPlacement>(1, 1, QMC::EnumFlags{}).add({
-            {    2, InsetPlacement::ipFree },
-            {    3, InsetPlacement::ipBorderAligned },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLayoutInset, qt_meta_tag_ZN14QCPLayoutInsetE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    2,   19,
+
+ // enum data: key, value
+       2, uint(QCPLayoutInset::ipFree),
+       3, uint(QCPLayoutInset::ipBorderAligned),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLayoutInset::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayout::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPLayoutInsetE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPLayoutInsetE_t>.data,
+    qt_meta_stringdata_QCPLayoutInset.offsetsAndSizes,
+    qt_meta_data_QCPLayoutInset,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN14QCPLayoutInsetE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLayoutInset_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLayoutInset, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPLayoutInset::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLayoutInset *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -946,7 +1326,7 @@ const QMetaObject *QCPLayoutInset::metaObject() const
 void *QCPLayoutInset::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPLayoutInsetE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLayoutInset.stringdata0))
         return static_cast<void*>(this);
     return QCPLayout::qt_metacast(_clname);
 }
@@ -957,365 +1337,593 @@ int QCPLayoutInset::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPLineEndingE_t {};
+struct qt_meta_stringdata_QCPLineEnding_t {
+    uint offsetsAndSizes[24];
+    char stringdata0[14];
+    char stringdata1[12];
+    char stringdata2[7];
+    char stringdata3[12];
+    char stringdata4[13];
+    char stringdata5[12];
+    char stringdata6[7];
+    char stringdata7[9];
+    char stringdata8[10];
+    char stringdata9[6];
+    char stringdata10[10];
+    char stringdata11[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLineEnding_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLineEnding_t qt_meta_stringdata_QCPLineEnding = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPLineEnding"
+        QT_MOC_LITERAL(14, 11),  // "EndingStyle"
+        QT_MOC_LITERAL(26, 6),  // "esNone"
+        QT_MOC_LITERAL(33, 11),  // "esFlatArrow"
+        QT_MOC_LITERAL(45, 12),  // "esSpikeArrow"
+        QT_MOC_LITERAL(58, 11),  // "esLineArrow"
+        QT_MOC_LITERAL(70, 6),  // "esDisc"
+        QT_MOC_LITERAL(77, 8),  // "esSquare"
+        QT_MOC_LITERAL(86, 9),  // "esDiamond"
+        QT_MOC_LITERAL(96, 5),  // "esBar"
+        QT_MOC_LITERAL(102, 9),  // "esHalfBar"
+        QT_MOC_LITERAL(112, 11)   // "esSkewedBar"
+    },
+    "QCPLineEnding",
+    "EndingStyle",
+    "esNone",
+    "esFlatArrow",
+    "esSpikeArrow",
+    "esLineArrow",
+    "esDisc",
+    "esSquare",
+    "esDiamond",
+    "esBar",
+    "esHalfBar",
+    "esSkewedBar"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLineEnding::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPLineEndingE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLineEnding",
-        "EndingStyle",
-        "esNone",
-        "esFlatArrow",
-        "esSpikeArrow",
-        "esLineArrow",
-        "esDisc",
-        "esSquare",
-        "esDiamond",
-        "esBar",
-        "esHalfBar",
-        "esSkewedBar"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLineEnding[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'EndingStyle'
-        QtMocHelpers::EnumData<enum EndingStyle>(1, 1, QMC::EnumFlags{}).add({
-            {    2, EndingStyle::esNone },
-            {    3, EndingStyle::esFlatArrow },
-            {    4, EndingStyle::esSpikeArrow },
-            {    5, EndingStyle::esLineArrow },
-            {    6, EndingStyle::esDisc },
-            {    7, EndingStyle::esSquare },
-            {    8, EndingStyle::esDiamond },
-            {    9, EndingStyle::esBar },
-            {   10, EndingStyle::esHalfBar },
-            {   11, EndingStyle::esSkewedBar },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLineEnding, qt_meta_tag_ZN13QCPLineEndingE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,   10,   19,
+
+ // enum data: key, value
+       2, uint(QCPLineEnding::esNone),
+       3, uint(QCPLineEnding::esFlatArrow),
+       4, uint(QCPLineEnding::esSpikeArrow),
+       5, uint(QCPLineEnding::esLineArrow),
+       6, uint(QCPLineEnding::esDisc),
+       7, uint(QCPLineEnding::esSquare),
+       8, uint(QCPLineEnding::esDiamond),
+       9, uint(QCPLineEnding::esBar),
+      10, uint(QCPLineEnding::esHalfBar),
+      11, uint(QCPLineEnding::esSkewedBar),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLineEnding::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPLineEndingE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPLineEndingE_t>.data,
+    qt_meta_stringdata_QCPLineEnding.offsetsAndSizes,
+    qt_meta_data_QCPLineEnding,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPLineEndingE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLineEnding_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN22QCPLabelPainterPrivateE_t {};
+struct qt_meta_stringdata_QCPLabelPainterPrivate_t {
+    uint offsetsAndSizes[34];
+    char stringdata0[23];
+    char stringdata1[11];
+    char stringdata2[14];
+    char stringdata3[16];
+    char stringdata4[16];
+    char stringdata5[20];
+    char stringdata6[10];
+    char stringdata7[11];
+    char stringdata8[11];
+    char stringdata9[7];
+    char stringdata10[8];
+    char stringdata11[6];
+    char stringdata12[9];
+    char stringdata13[10];
+    char stringdata14[11];
+    char stringdata15[14];
+    char stringdata16[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLabelPainterPrivate_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLabelPainterPrivate_t qt_meta_stringdata_QCPLabelPainterPrivate = {
+    {
+        QT_MOC_LITERAL(0, 22),  // "QCPLabelPainterPrivate"
+        QT_MOC_LITERAL(23, 10),  // "AnchorMode"
+        QT_MOC_LITERAL(34, 13),  // "amRectangular"
+        QT_MOC_LITERAL(48, 15),  // "amSkewedUpright"
+        QT_MOC_LITERAL(64, 15),  // "amSkewedRotated"
+        QT_MOC_LITERAL(80, 19),  // "AnchorReferenceType"
+        QT_MOC_LITERAL(100, 9),  // "artNormal"
+        QT_MOC_LITERAL(110, 10),  // "artTangent"
+        QT_MOC_LITERAL(121, 10),  // "AnchorSide"
+        QT_MOC_LITERAL(132, 6),  // "asLeft"
+        QT_MOC_LITERAL(139, 7),  // "asRight"
+        QT_MOC_LITERAL(147, 5),  // "asTop"
+        QT_MOC_LITERAL(153, 8),  // "asBottom"
+        QT_MOC_LITERAL(162, 9),  // "asTopLeft"
+        QT_MOC_LITERAL(172, 10),  // "asTopRight"
+        QT_MOC_LITERAL(183, 13),  // "asBottomRight"
+        QT_MOC_LITERAL(197, 12)   // "asBottomLeft"
+    },
+    "QCPLabelPainterPrivate",
+    "AnchorMode",
+    "amRectangular",
+    "amSkewedUpright",
+    "amSkewedRotated",
+    "AnchorReferenceType",
+    "artNormal",
+    "artTangent",
+    "AnchorSide",
+    "asLeft",
+    "asRight",
+    "asTop",
+    "asBottom",
+    "asTopLeft",
+    "asTopRight",
+    "asBottomRight",
+    "asBottomLeft"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLabelPainterPrivate::qt_create_metaobjectdata<qt_meta_tag_ZN22QCPLabelPainterPrivateE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLabelPainterPrivate",
-        "AnchorMode",
-        "amRectangular",
-        "amSkewedUpright",
-        "amSkewedRotated",
-        "AnchorReferenceType",
-        "artNormal",
-        "artTangent",
-        "AnchorSide",
-        "asLeft",
-        "asRight",
-        "asTop",
-        "asBottom",
-        "asTopLeft",
-        "asTopRight",
-        "asBottomRight",
-        "asBottomLeft"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLabelPainterPrivate[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'AnchorMode'
-        QtMocHelpers::EnumData<enum AnchorMode>(1, 1, QMC::EnumFlags{}).add({
-            {    2, AnchorMode::amRectangular },
-            {    3, AnchorMode::amSkewedUpright },
-            {    4, AnchorMode::amSkewedRotated },
-        }),
-        // enum 'AnchorReferenceType'
-        QtMocHelpers::EnumData<enum AnchorReferenceType>(5, 5, QMC::EnumFlags{}).add({
-            {    6, AnchorReferenceType::artNormal },
-            {    7, AnchorReferenceType::artTangent },
-        }),
-        // enum 'AnchorSide'
-        QtMocHelpers::EnumData<enum AnchorSide>(8, 8, QMC::EnumFlags{}).add({
-            {    9, AnchorSide::asLeft },
-            {   10, AnchorSide::asRight },
-            {   11, AnchorSide::asTop },
-            {   12, AnchorSide::asBottom },
-            {   13, AnchorSide::asTopLeft },
-            {   14, AnchorSide::asTopRight },
-            {   15, AnchorSide::asBottomRight },
-            {   16, AnchorSide::asBottomLeft },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLabelPainterPrivate, qt_meta_tag_ZN22QCPLabelPainterPrivateE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       3,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    3,   29,
+       5,    5, 0x0,    2,   35,
+       8,    8, 0x0,    8,   39,
+
+ // enum data: key, value
+       2, uint(QCPLabelPainterPrivate::amRectangular),
+       3, uint(QCPLabelPainterPrivate::amSkewedUpright),
+       4, uint(QCPLabelPainterPrivate::amSkewedRotated),
+       6, uint(QCPLabelPainterPrivate::artNormal),
+       7, uint(QCPLabelPainterPrivate::artTangent),
+       9, uint(QCPLabelPainterPrivate::asLeft),
+      10, uint(QCPLabelPainterPrivate::asRight),
+      11, uint(QCPLabelPainterPrivate::asTop),
+      12, uint(QCPLabelPainterPrivate::asBottom),
+      13, uint(QCPLabelPainterPrivate::asTopLeft),
+      14, uint(QCPLabelPainterPrivate::asTopRight),
+      15, uint(QCPLabelPainterPrivate::asBottomRight),
+      16, uint(QCPLabelPainterPrivate::asBottomLeft),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLabelPainterPrivate::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN22QCPLabelPainterPrivateE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN22QCPLabelPainterPrivateE_t>.data,
+    qt_meta_stringdata_QCPLabelPainterPrivate.offsetsAndSizes,
+    qt_meta_data_QCPLabelPainterPrivate,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN22QCPLabelPainterPrivateE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLabelPainterPrivate_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLabelPainterPrivate, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN13QCPAxisTickerE_t {};
+struct qt_meta_stringdata_QCPAxisTicker_t {
+    uint offsetsAndSizes[8];
+    char stringdata0[14];
+    char stringdata1[17];
+    char stringdata2[15];
+    char stringdata3[17];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxisTicker_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxisTicker_t qt_meta_stringdata_QCPAxisTicker = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPAxisTicker"
+        QT_MOC_LITERAL(14, 16),  // "TickStepStrategy"
+        QT_MOC_LITERAL(31, 14),  // "tssReadability"
+        QT_MOC_LITERAL(46, 16)   // "tssMeetTickCount"
+    },
+    "QCPAxisTicker",
+    "TickStepStrategy",
+    "tssReadability",
+    "tssMeetTickCount"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxisTicker::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPAxisTickerE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxisTicker",
-        "TickStepStrategy",
-        "tssReadability",
-        "tssMeetTickCount"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxisTicker[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'TickStepStrategy'
-        QtMocHelpers::EnumData<enum TickStepStrategy>(1, 1, QMC::EnumFlags{}).add({
-            {    2, TickStepStrategy::tssReadability },
-            {    3, TickStepStrategy::tssMeetTickCount },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPAxisTicker, qt_meta_tag_ZN13QCPAxisTickerE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    2,   19,
+
+ // enum data: key, value
+       2, uint(QCPAxisTicker::tssReadability),
+       3, uint(QCPAxisTicker::tssMeetTickCount),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxisTicker::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPAxisTickerE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPAxisTickerE_t>.data,
+    qt_meta_stringdata_QCPAxisTicker.offsetsAndSizes,
+    qt_meta_data_QCPAxisTicker,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPAxisTickerE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxisTicker_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxisTicker, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN17QCPAxisTickerTimeE_t {};
+struct qt_meta_stringdata_QCPAxisTickerTime_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[18];
+    char stringdata1[9];
+    char stringdata2[15];
+    char stringdata3[10];
+    char stringdata4[10];
+    char stringdata5[8];
+    char stringdata6[7];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxisTickerTime_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxisTickerTime_t qt_meta_stringdata_QCPAxisTickerTime = {
+    {
+        QT_MOC_LITERAL(0, 17),  // "QCPAxisTickerTime"
+        QT_MOC_LITERAL(18, 8),  // "TimeUnit"
+        QT_MOC_LITERAL(27, 14),  // "tuMilliseconds"
+        QT_MOC_LITERAL(42, 9),  // "tuSeconds"
+        QT_MOC_LITERAL(52, 9),  // "tuMinutes"
+        QT_MOC_LITERAL(62, 7),  // "tuHours"
+        QT_MOC_LITERAL(70, 6)   // "tuDays"
+    },
+    "QCPAxisTickerTime",
+    "TimeUnit",
+    "tuMilliseconds",
+    "tuSeconds",
+    "tuMinutes",
+    "tuHours",
+    "tuDays"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxisTickerTime::qt_create_metaobjectdata<qt_meta_tag_ZN17QCPAxisTickerTimeE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxisTickerTime",
-        "TimeUnit",
-        "tuMilliseconds",
-        "tuSeconds",
-        "tuMinutes",
-        "tuHours",
-        "tuDays"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxisTickerTime[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'TimeUnit'
-        QtMocHelpers::EnumData<enum TimeUnit>(1, 1, QMC::EnumFlags{}).add({
-            {    2, TimeUnit::tuMilliseconds },
-            {    3, TimeUnit::tuSeconds },
-            {    4, TimeUnit::tuMinutes },
-            {    5, TimeUnit::tuHours },
-            {    6, TimeUnit::tuDays },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPAxisTickerTime, qt_meta_tag_ZN17QCPAxisTickerTimeE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    5,   19,
+
+ // enum data: key, value
+       2, uint(QCPAxisTickerTime::tuMilliseconds),
+       3, uint(QCPAxisTickerTime::tuSeconds),
+       4, uint(QCPAxisTickerTime::tuMinutes),
+       5, uint(QCPAxisTickerTime::tuHours),
+       6, uint(QCPAxisTickerTime::tuDays),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxisTickerTime::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QCPAxisTicker>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17QCPAxisTickerTimeE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17QCPAxisTickerTimeE_t>.data,
+    qt_meta_stringdata_QCPAxisTickerTime.offsetsAndSizes,
+    qt_meta_data_QCPAxisTickerTime,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN17QCPAxisTickerTimeE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxisTickerTime_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxisTickerTime, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN18QCPAxisTickerFixedE_t {};
+struct qt_meta_stringdata_QCPAxisTickerFixed_t {
+    uint offsetsAndSizes[10];
+    char stringdata0[19];
+    char stringdata1[14];
+    char stringdata2[7];
+    char stringdata3[12];
+    char stringdata4[9];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxisTickerFixed_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxisTickerFixed_t qt_meta_stringdata_QCPAxisTickerFixed = {
+    {
+        QT_MOC_LITERAL(0, 18),  // "QCPAxisTickerFixed"
+        QT_MOC_LITERAL(19, 13),  // "ScaleStrategy"
+        QT_MOC_LITERAL(33, 6),  // "ssNone"
+        QT_MOC_LITERAL(40, 11),  // "ssMultiples"
+        QT_MOC_LITERAL(52, 8)   // "ssPowers"
+    },
+    "QCPAxisTickerFixed",
+    "ScaleStrategy",
+    "ssNone",
+    "ssMultiples",
+    "ssPowers"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxisTickerFixed::qt_create_metaobjectdata<qt_meta_tag_ZN18QCPAxisTickerFixedE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxisTickerFixed",
-        "ScaleStrategy",
-        "ssNone",
-        "ssMultiples",
-        "ssPowers"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxisTickerFixed[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'ScaleStrategy'
-        QtMocHelpers::EnumData<enum ScaleStrategy>(1, 1, QMC::EnumFlags{}).add({
-            {    2, ScaleStrategy::ssNone },
-            {    3, ScaleStrategy::ssMultiples },
-            {    4, ScaleStrategy::ssPowers },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPAxisTickerFixed, qt_meta_tag_ZN18QCPAxisTickerFixedE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    3,   19,
+
+ // enum data: key, value
+       2, uint(QCPAxisTickerFixed::ssNone),
+       3, uint(QCPAxisTickerFixed::ssMultiples),
+       4, uint(QCPAxisTickerFixed::ssPowers),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxisTickerFixed::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QCPAxisTicker>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPAxisTickerFixedE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPAxisTickerFixedE_t>.data,
+    qt_meta_stringdata_QCPAxisTickerFixed.offsetsAndSizes,
+    qt_meta_data_QCPAxisTickerFixed,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN18QCPAxisTickerFixedE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxisTickerFixed_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxisTickerFixed, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN15QCPAxisTickerPiE_t {};
+struct qt_meta_stringdata_QCPAxisTickerPi_t {
+    uint offsetsAndSizes[10];
+    char stringdata0[16];
+    char stringdata1[14];
+    char stringdata2[16];
+    char stringdata3[17];
+    char stringdata4[19];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxisTickerPi_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxisTickerPi_t qt_meta_stringdata_QCPAxisTickerPi = {
+    {
+        QT_MOC_LITERAL(0, 15),  // "QCPAxisTickerPi"
+        QT_MOC_LITERAL(16, 13),  // "FractionStyle"
+        QT_MOC_LITERAL(30, 15),  // "fsFloatingPoint"
+        QT_MOC_LITERAL(46, 16),  // "fsAsciiFractions"
+        QT_MOC_LITERAL(63, 18)   // "fsUnicodeFractions"
+    },
+    "QCPAxisTickerPi",
+    "FractionStyle",
+    "fsFloatingPoint",
+    "fsAsciiFractions",
+    "fsUnicodeFractions"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxisTickerPi::qt_create_metaobjectdata<qt_meta_tag_ZN15QCPAxisTickerPiE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxisTickerPi",
-        "FractionStyle",
-        "fsFloatingPoint",
-        "fsAsciiFractions",
-        "fsUnicodeFractions"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxisTickerPi[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'FractionStyle'
-        QtMocHelpers::EnumData<enum FractionStyle>(1, 1, QMC::EnumFlags{}).add({
-            {    2, FractionStyle::fsFloatingPoint },
-            {    3, FractionStyle::fsAsciiFractions },
-            {    4, FractionStyle::fsUnicodeFractions },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPAxisTickerPi, qt_meta_tag_ZN15QCPAxisTickerPiE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    3,   19,
+
+ // enum data: key, value
+       2, uint(QCPAxisTickerPi::fsFloatingPoint),
+       3, uint(QCPAxisTickerPi::fsAsciiFractions),
+       4, uint(QCPAxisTickerPi::fsUnicodeFractions),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxisTickerPi::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QCPAxisTicker>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPAxisTickerPiE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPAxisTickerPiE_t>.data,
+    qt_meta_stringdata_QCPAxisTickerPi.offsetsAndSizes,
+    qt_meta_data_QCPAxisTickerPi,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN15QCPAxisTickerPiE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxisTickerPi_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxisTickerPi, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN7QCPGridE_t {};
+struct qt_meta_stringdata_QCPGrid_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[8];
+    char stringdata1[15];
+    char stringdata2[19];
+    char stringdata3[20];
+    char stringdata4[4];
+    char stringdata5[11];
+    char stringdata6[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPGrid_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPGrid_t qt_meta_stringdata_QCPGrid = {
+    {
+        QT_MOC_LITERAL(0, 7),  // "QCPGrid"
+        QT_MOC_LITERAL(8, 14),  // "subGridVisible"
+        QT_MOC_LITERAL(23, 18),  // "antialiasedSubGrid"
+        QT_MOC_LITERAL(42, 19),  // "antialiasedZeroLine"
+        QT_MOC_LITERAL(62, 3),  // "pen"
+        QT_MOC_LITERAL(66, 10),  // "subGridPen"
+        QT_MOC_LITERAL(77, 11)   // "zeroLinePen"
+    },
+    "QCPGrid",
+    "subGridVisible",
+    "antialiasedSubGrid",
+    "antialiasedZeroLine",
+    "pen",
+    "subGridPen",
+    "zeroLinePen"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPGrid::qt_create_metaobjectdata<qt_meta_tag_ZN7QCPGridE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPGrid",
-        "subGridVisible",
-        "antialiasedSubGrid",
-        "antialiasedZeroLine",
-        "pen",
-        "QPen",
-        "subGridPen",
-        "zeroLinePen"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPGrid[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'subGridVisible'
-        QtMocHelpers::PropertyData<bool>(1, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'antialiasedSubGrid'
-        QtMocHelpers::PropertyData<bool>(2, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'antialiasedZeroLine'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'subGridPen'
-        QtMocHelpers::PropertyData<QPen>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'zeroLinePen'
-        QtMocHelpers::PropertyData<QPen>(7, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPGrid, qt_meta_tag_ZN7QCPGridE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       6,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       2, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       3, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       4, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       5, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       6, QMetaType::QPen, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPGrid::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPGridE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPGridE_t>.data,
+    qt_meta_stringdata_QCPGrid.offsetsAndSizes,
+    qt_meta_data_QCPGrid,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN7QCPGridE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPGrid_t,
+        // property 'subGridVisible'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'antialiasedSubGrid'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'antialiasedZeroLine'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'subGridPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'zeroLinePen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPGrid, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPGrid::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPGrid *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPGrid *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<bool*>(_v) = _t->subGridVisible(); break;
-        case 1: *reinterpret_cast<bool*>(_v) = _t->antialiasedSubGrid(); break;
-        case 2: *reinterpret_cast<bool*>(_v) = _t->antialiasedZeroLine(); break;
-        case 3: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 4: *reinterpret_cast<QPen*>(_v) = _t->subGridPen(); break;
-        case 5: *reinterpret_cast<QPen*>(_v) = _t->zeroLinePen(); break;
+        case 0: *reinterpret_cast< bool*>(_v) = _t->subGridVisible(); break;
+        case 1: *reinterpret_cast< bool*>(_v) = _t->antialiasedSubGrid(); break;
+        case 2: *reinterpret_cast< bool*>(_v) = _t->antialiasedZeroLine(); break;
+        case 3: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 4: *reinterpret_cast< QPen*>(_v) = _t->subGridPen(); break;
+        case 5: *reinterpret_cast< QPen*>(_v) = _t->zeroLinePen(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPGrid *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setSubGridVisible(*reinterpret_cast<bool*>(_v)); break;
-        case 1: _t->setAntialiasedSubGrid(*reinterpret_cast<bool*>(_v)); break;
-        case 2: _t->setAntialiasedZeroLine(*reinterpret_cast<bool*>(_v)); break;
-        case 3: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 4: _t->setSubGridPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 5: _t->setZeroLinePen(*reinterpret_cast<QPen*>(_v)); break;
+        case 0: _t->setSubGridVisible(*reinterpret_cast< bool*>(_v)); break;
+        case 1: _t->setAntialiasedSubGrid(*reinterpret_cast< bool*>(_v)); break;
+        case 2: _t->setAntialiasedZeroLine(*reinterpret_cast< bool*>(_v)); break;
+        case 3: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 4: _t->setSubGridPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 5: _t->setZeroLinePen(*reinterpret_cast< QPen*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPGrid::metaObject() const
@@ -1326,7 +1934,7 @@ const QMetaObject *QCPGrid::metaObject() const
 void *QCPGrid::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPGridE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPGrid.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -1345,298 +1953,529 @@ int QCPGrid::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN7QCPAxisE_t {};
+struct qt_meta_stringdata_QCPAxis_t {
+    uint offsetsAndSizes[166];
+    char stringdata0[8];
+    char stringdata1[13];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[9];
+    char stringdata5[9];
+    char stringdata6[17];
+    char stringdata7[19];
+    char stringdata8[10];
+    char stringdata9[17];
+    char stringdata10[25];
+    char stringdata11[6];
+    char stringdata12[18];
+    char stringdata13[13];
+    char stringdata14[5];
+    char stringdata15[9];
+    char stringdata16[6];
+    char stringdata17[19];
+    char stringdata18[16];
+    char stringdata19[17];
+    char stringdata20[14];
+    char stringdata21[9];
+    char stringdata22[9];
+    char stringdata23[9];
+    char stringdata24[13];
+    char stringdata25[10];
+    char stringdata26[14];
+    char stringdata27[7];
+    char stringdata28[30];
+    char stringdata29[6];
+    char stringdata30[11];
+    char stringdata31[17];
+    char stringdata32[14];
+    char stringdata33[15];
+    char stringdata34[18];
+    char stringdata35[14];
+    char stringdata36[10];
+    char stringdata37[13];
+    char stringdata38[16];
+    char stringdata39[11];
+    char stringdata40[14];
+    char stringdata41[17];
+    char stringdata42[13];
+    char stringdata43[14];
+    char stringdata44[9];
+    char stringdata45[16];
+    char stringdata46[17];
+    char stringdata47[8];
+    char stringdata48[8];
+    char stringdata49[11];
+    char stringdata50[10];
+    char stringdata51[11];
+    char stringdata52[6];
+    char stringdata53[13];
+    char stringdata54[8];
+    char stringdata55[7];
+    char stringdata56[16];
+    char stringdata57[22];
+    char stringdata58[18];
+    char stringdata59[23];
+    char stringdata60[19];
+    char stringdata61[16];
+    char stringdata62[16];
+    char stringdata63[19];
+    char stringdata64[12];
+    char stringdata65[14];
+    char stringdata66[12];
+    char stringdata67[5];
+    char stringdata68[9];
+    char stringdata69[7];
+    char stringdata70[8];
+    char stringdata71[6];
+    char stringdata72[9];
+    char stringdata73[10];
+    char stringdata74[9];
+    char stringdata75[10];
+    char stringdata76[9];
+    char stringdata77[14];
+    char stringdata78[15];
+    char stringdata79[7];
+    char stringdata80[7];
+    char stringdata81[13];
+    char stringdata82[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxis_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxis_t qt_meta_stringdata_QCPAxis = {
+    {
+        QT_MOC_LITERAL(0, 7),  // "QCPAxis"
+        QT_MOC_LITERAL(8, 12),  // "rangeChanged"
+        QT_MOC_LITERAL(21, 0),  // ""
+        QT_MOC_LITERAL(22, 8),  // "QCPRange"
+        QT_MOC_LITERAL(31, 8),  // "newRange"
+        QT_MOC_LITERAL(40, 8),  // "oldRange"
+        QT_MOC_LITERAL(49, 16),  // "scaleTypeChanged"
+        QT_MOC_LITERAL(66, 18),  // "QCPAxis::ScaleType"
+        QT_MOC_LITERAL(85, 9),  // "scaleType"
+        QT_MOC_LITERAL(95, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(112, 24),  // "QCPAxis::SelectableParts"
+        QT_MOC_LITERAL(137, 5),  // "parts"
+        QT_MOC_LITERAL(143, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(161, 12),  // "setScaleType"
+        QT_MOC_LITERAL(174, 4),  // "type"
+        QT_MOC_LITERAL(179, 8),  // "setRange"
+        QT_MOC_LITERAL(188, 5),  // "range"
+        QT_MOC_LITERAL(194, 18),  // "setSelectableParts"
+        QT_MOC_LITERAL(213, 15),  // "selectableParts"
+        QT_MOC_LITERAL(229, 16),  // "setSelectedParts"
+        QT_MOC_LITERAL(246, 13),  // "selectedParts"
+        QT_MOC_LITERAL(260, 8),  // "axisType"
+        QT_MOC_LITERAL(269, 8),  // "AxisType"
+        QT_MOC_LITERAL(278, 8),  // "axisRect"
+        QT_MOC_LITERAL(287, 12),  // "QCPAxisRect*"
+        QT_MOC_LITERAL(300, 9),  // "ScaleType"
+        QT_MOC_LITERAL(310, 13),  // "rangeReversed"
+        QT_MOC_LITERAL(324, 6),  // "ticker"
+        QT_MOC_LITERAL(331, 29),  // "QSharedPointer<QCPAxisTicker>"
+        QT_MOC_LITERAL(361, 5),  // "ticks"
+        QT_MOC_LITERAL(367, 10),  // "tickLabels"
+        QT_MOC_LITERAL(378, 16),  // "tickLabelPadding"
+        QT_MOC_LITERAL(395, 13),  // "tickLabelFont"
+        QT_MOC_LITERAL(409, 14),  // "tickLabelColor"
+        QT_MOC_LITERAL(424, 17),  // "tickLabelRotation"
+        QT_MOC_LITERAL(442, 13),  // "tickLabelSide"
+        QT_MOC_LITERAL(456, 9),  // "LabelSide"
+        QT_MOC_LITERAL(466, 12),  // "numberFormat"
+        QT_MOC_LITERAL(479, 15),  // "numberPrecision"
+        QT_MOC_LITERAL(495, 10),  // "tickVector"
+        QT_MOC_LITERAL(506, 13),  // "QList<double>"
+        QT_MOC_LITERAL(520, 16),  // "tickVectorLabels"
+        QT_MOC_LITERAL(537, 12),  // "tickLengthIn"
+        QT_MOC_LITERAL(550, 13),  // "tickLengthOut"
+        QT_MOC_LITERAL(564, 8),  // "subTicks"
+        QT_MOC_LITERAL(573, 15),  // "subTickLengthIn"
+        QT_MOC_LITERAL(589, 16),  // "subTickLengthOut"
+        QT_MOC_LITERAL(606, 7),  // "basePen"
+        QT_MOC_LITERAL(614, 7),  // "tickPen"
+        QT_MOC_LITERAL(622, 10),  // "subTickPen"
+        QT_MOC_LITERAL(633, 9),  // "labelFont"
+        QT_MOC_LITERAL(643, 10),  // "labelColor"
+        QT_MOC_LITERAL(654, 5),  // "label"
+        QT_MOC_LITERAL(660, 12),  // "labelPadding"
+        QT_MOC_LITERAL(673, 7),  // "padding"
+        QT_MOC_LITERAL(681, 6),  // "offset"
+        QT_MOC_LITERAL(688, 15),  // "SelectableParts"
+        QT_MOC_LITERAL(704, 21),  // "selectedTickLabelFont"
+        QT_MOC_LITERAL(726, 17),  // "selectedLabelFont"
+        QT_MOC_LITERAL(744, 22),  // "selectedTickLabelColor"
+        QT_MOC_LITERAL(767, 18),  // "selectedLabelColor"
+        QT_MOC_LITERAL(786, 15),  // "selectedBasePen"
+        QT_MOC_LITERAL(802, 15),  // "selectedTickPen"
+        QT_MOC_LITERAL(818, 18),  // "selectedSubTickPen"
+        QT_MOC_LITERAL(837, 11),  // "lowerEnding"
+        QT_MOC_LITERAL(849, 13),  // "QCPLineEnding"
+        QT_MOC_LITERAL(863, 11),  // "upperEnding"
+        QT_MOC_LITERAL(875, 4),  // "grid"
+        QT_MOC_LITERAL(880, 8),  // "QCPGrid*"
+        QT_MOC_LITERAL(889, 6),  // "atLeft"
+        QT_MOC_LITERAL(896, 7),  // "atRight"
+        QT_MOC_LITERAL(904, 5),  // "atTop"
+        QT_MOC_LITERAL(910, 8),  // "atBottom"
+        QT_MOC_LITERAL(919, 9),  // "AxisTypes"
+        QT_MOC_LITERAL(929, 8),  // "lsInside"
+        QT_MOC_LITERAL(938, 9),  // "lsOutside"
+        QT_MOC_LITERAL(948, 8),  // "stLinear"
+        QT_MOC_LITERAL(957, 13),  // "stLogarithmic"
+        QT_MOC_LITERAL(971, 14),  // "SelectablePart"
+        QT_MOC_LITERAL(986, 6),  // "spNone"
+        QT_MOC_LITERAL(993, 6),  // "spAxis"
+        QT_MOC_LITERAL(1000, 12),  // "spTickLabels"
+        QT_MOC_LITERAL(1013, 11)   // "spAxisLabel"
+    },
+    "QCPAxis",
+    "rangeChanged",
+    "",
+    "QCPRange",
+    "newRange",
+    "oldRange",
+    "scaleTypeChanged",
+    "QCPAxis::ScaleType",
+    "scaleType",
+    "selectionChanged",
+    "QCPAxis::SelectableParts",
+    "parts",
+    "selectableChanged",
+    "setScaleType",
+    "type",
+    "setRange",
+    "range",
+    "setSelectableParts",
+    "selectableParts",
+    "setSelectedParts",
+    "selectedParts",
+    "axisType",
+    "AxisType",
+    "axisRect",
+    "QCPAxisRect*",
+    "ScaleType",
+    "rangeReversed",
+    "ticker",
+    "QSharedPointer<QCPAxisTicker>",
+    "ticks",
+    "tickLabels",
+    "tickLabelPadding",
+    "tickLabelFont",
+    "tickLabelColor",
+    "tickLabelRotation",
+    "tickLabelSide",
+    "LabelSide",
+    "numberFormat",
+    "numberPrecision",
+    "tickVector",
+    "QList<double>",
+    "tickVectorLabels",
+    "tickLengthIn",
+    "tickLengthOut",
+    "subTicks",
+    "subTickLengthIn",
+    "subTickLengthOut",
+    "basePen",
+    "tickPen",
+    "subTickPen",
+    "labelFont",
+    "labelColor",
+    "label",
+    "labelPadding",
+    "padding",
+    "offset",
+    "SelectableParts",
+    "selectedTickLabelFont",
+    "selectedLabelFont",
+    "selectedTickLabelColor",
+    "selectedLabelColor",
+    "selectedBasePen",
+    "selectedTickPen",
+    "selectedSubTickPen",
+    "lowerEnding",
+    "QCPLineEnding",
+    "upperEnding",
+    "grid",
+    "QCPGrid*",
+    "atLeft",
+    "atRight",
+    "atTop",
+    "atBottom",
+    "AxisTypes",
+    "lsInside",
+    "lsOutside",
+    "stLinear",
+    "stLogarithmic",
+    "SelectablePart",
+    "spNone",
+    "spAxis",
+    "spTickLabels",
+    "spAxisLabel"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxis::qt_create_metaobjectdata<qt_meta_tag_ZN7QCPAxisE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxis",
-        "rangeChanged",
-        "",
-        "QCPRange",
-        "newRange",
-        "oldRange",
-        "scaleTypeChanged",
-        "QCPAxis::ScaleType",
-        "scaleType",
-        "selectionChanged",
-        "QCPAxis::SelectableParts",
-        "parts",
-        "selectableChanged",
-        "setScaleType",
-        "type",
-        "setRange",
-        "range",
-        "setSelectableParts",
-        "selectableParts",
-        "setSelectedParts",
-        "selectedParts",
-        "axisType",
-        "AxisType",
-        "axisRect",
-        "QCPAxisRect*",
-        "ScaleType",
-        "rangeReversed",
-        "ticker",
-        "QSharedPointer<QCPAxisTicker>",
-        "ticks",
-        "tickLabels",
-        "tickLabelPadding",
-        "tickLabelFont",
-        "QFont",
-        "tickLabelColor",
-        "QColor",
-        "tickLabelRotation",
-        "tickLabelSide",
-        "LabelSide",
-        "numberFormat",
-        "numberPrecision",
-        "tickVector",
-        "QList<double>",
-        "tickVectorLabels",
-        "tickLengthIn",
-        "tickLengthOut",
-        "subTicks",
-        "subTickLengthIn",
-        "subTickLengthOut",
-        "basePen",
-        "QPen",
-        "tickPen",
-        "subTickPen",
-        "labelFont",
-        "labelColor",
-        "label",
-        "labelPadding",
-        "padding",
-        "offset",
-        "SelectableParts",
-        "selectedTickLabelFont",
-        "selectedLabelFont",
-        "selectedTickLabelColor",
-        "selectedLabelColor",
-        "selectedBasePen",
-        "selectedTickPen",
-        "selectedSubTickPen",
-        "lowerEnding",
-        "QCPLineEnding",
-        "upperEnding",
-        "grid",
-        "QCPGrid*",
-        "atLeft",
-        "atRight",
-        "atTop",
-        "atBottom",
-        "AxisTypes",
-        "lsInside",
-        "lsOutside",
-        "stLinear",
-        "stLogarithmic",
-        "SelectablePart",
-        "spNone",
-        "spAxis",
-        "spTickLabels",
-        "spAxisLabel"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxis[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &, const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 }, { 0x80000000 | 3, 5 },
-        }}),
-        // Signal 'scaleTypeChanged'
-        QtMocHelpers::SignalData<void(QCPAxis::ScaleType)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(const QCPAxis::SelectableParts &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(const QCPAxis::SelectableParts &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
-        }}),
-        // Slot 'setScaleType'
-        QtMocHelpers::SlotData<void(QCPAxis::ScaleType)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 14 },
-        }}),
-        // Slot 'setRange'
-        QtMocHelpers::SlotData<void(const QCPRange &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 16 },
-        }}),
-        // Slot 'setSelectableParts'
-        QtMocHelpers::SlotData<void(const QCPAxis::SelectableParts &)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 18 },
-        }}),
-        // Slot 'setSelectedParts'
-        QtMocHelpers::SlotData<void(const QCPAxis::SelectableParts &)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 20 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'axisType'
-        QtMocHelpers::PropertyData<enum AxisType>(21, 0x80000000 | 22, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'axisRect'
-        QtMocHelpers::PropertyData<QCPAxisRect*>(23, 0x80000000 | 24, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'scaleType'
-        QtMocHelpers::PropertyData<enum ScaleType>(8, 0x80000000 | 25, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 2),
-        // property 'range'
-        QtMocHelpers::PropertyData<QCPRange>(16, 0x80000000 | 3, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'rangeReversed'
-        QtMocHelpers::PropertyData<bool>(26, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'ticker'
-        QtMocHelpers::PropertyData<QSharedPointer<QCPAxisTicker>>(27, 0x80000000 | 28, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'ticks'
-        QtMocHelpers::PropertyData<bool>(29, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickLabels'
-        QtMocHelpers::PropertyData<bool>(30, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickLabelPadding'
-        QtMocHelpers::PropertyData<int>(31, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickLabelFont'
-        QtMocHelpers::PropertyData<QFont>(32, 0x80000000 | 33, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'tickLabelColor'
-        QtMocHelpers::PropertyData<QColor>(34, 0x80000000 | 35, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'tickLabelRotation'
-        QtMocHelpers::PropertyData<double>(36, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickLabelSide'
-        QtMocHelpers::PropertyData<enum LabelSide>(37, 0x80000000 | 38, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'numberFormat'
-        QtMocHelpers::PropertyData<QString>(39, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'numberPrecision'
-        QtMocHelpers::PropertyData<int>(40, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickVector'
-        QtMocHelpers::PropertyData<QList<double>>(41, 0x80000000 | 42, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'tickVectorLabels'
-        QtMocHelpers::PropertyData<QList<QString>>(43, QMetaType::QStringList, QMC::DefaultPropertyFlags),
-        // property 'tickLengthIn'
-        QtMocHelpers::PropertyData<int>(44, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tickLengthOut'
-        QtMocHelpers::PropertyData<int>(45, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'subTicks'
-        QtMocHelpers::PropertyData<bool>(46, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'subTickLengthIn'
-        QtMocHelpers::PropertyData<int>(47, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'subTickLengthOut'
-        QtMocHelpers::PropertyData<int>(48, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'basePen'
-        QtMocHelpers::PropertyData<QPen>(49, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'tickPen'
-        QtMocHelpers::PropertyData<QPen>(51, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'subTickPen'
-        QtMocHelpers::PropertyData<QPen>(52, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'labelFont'
-        QtMocHelpers::PropertyData<QFont>(53, 0x80000000 | 33, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'labelColor'
-        QtMocHelpers::PropertyData<QColor>(54, 0x80000000 | 35, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'label'
-        QtMocHelpers::PropertyData<QString>(55, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'labelPadding'
-        QtMocHelpers::PropertyData<int>(56, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'padding'
-        QtMocHelpers::PropertyData<int>(57, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'offset'
-        QtMocHelpers::PropertyData<int>(58, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'selectedParts'
-        QtMocHelpers::PropertyData<SelectableParts>(20, 0x80000000 | 59, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 3),
-        // property 'selectableParts'
-        QtMocHelpers::PropertyData<SelectableParts>(18, 0x80000000 | 59, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 4),
-        // property 'selectedTickLabelFont'
-        QtMocHelpers::PropertyData<QFont>(60, 0x80000000 | 33, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedLabelFont'
-        QtMocHelpers::PropertyData<QFont>(61, 0x80000000 | 33, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedTickLabelColor'
-        QtMocHelpers::PropertyData<QColor>(62, 0x80000000 | 35, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedLabelColor'
-        QtMocHelpers::PropertyData<QColor>(63, 0x80000000 | 35, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBasePen'
-        QtMocHelpers::PropertyData<QPen>(64, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedTickPen'
-        QtMocHelpers::PropertyData<QPen>(65, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedSubTickPen'
-        QtMocHelpers::PropertyData<QPen>(66, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'lowerEnding'
-        QtMocHelpers::PropertyData<QCPLineEnding>(67, 0x80000000 | 68, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'upperEnding'
-        QtMocHelpers::PropertyData<QCPLineEnding>(69, 0x80000000 | 68, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'grid'
-        QtMocHelpers::PropertyData<QCPGrid*>(70, 0x80000000 | 71, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'AxisType'
-        QtMocHelpers::EnumData<enum AxisType>(22, 22, QMC::EnumFlags{}).add({
-            {   72, AxisType::atLeft },
-            {   73, AxisType::atRight },
-            {   74, AxisType::atTop },
-            {   75, AxisType::atBottom },
-        }),
-        // flag 'AxisTypes'
-        QtMocHelpers::EnumData<AxisTypes>(76, 22, QMC::EnumIsFlag).add({
-            {   72, AxisType::atLeft },
-            {   73, AxisType::atRight },
-            {   74, AxisType::atTop },
-            {   75, AxisType::atBottom },
-        }),
-        // enum 'LabelSide'
-        QtMocHelpers::EnumData<enum LabelSide>(38, 38, QMC::EnumFlags{}).add({
-            {   77, LabelSide::lsInside },
-            {   78, LabelSide::lsOutside },
-        }),
-        // enum 'ScaleType'
-        QtMocHelpers::EnumData<enum ScaleType>(25, 25, QMC::EnumFlags{}).add({
-            {   79, ScaleType::stLinear },
-            {   80, ScaleType::stLogarithmic },
-        }),
-        // enum 'SelectablePart'
-        QtMocHelpers::EnumData<enum SelectablePart>(81, 81, QMC::EnumFlags{}).add({
-            {   82, SelectablePart::spNone },
-            {   83, SelectablePart::spAxis },
-            {   84, SelectablePart::spTickLabels },
-            {   85, SelectablePart::spAxisLabel },
-        }),
-        // flag 'SelectableParts'
-        QtMocHelpers::EnumData<SelectableParts>(59, 81, QMC::EnumIsFlag).add({
-            {   82, SelectablePart::spNone },
-            {   83, SelectablePart::spAxis },
-            {   84, SelectablePart::spTickLabels },
-            {   85, SelectablePart::spAxisLabel },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPAxis, qt_meta_tag_ZN7QCPAxisE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       9,   14, // methods
+      43,   97, // properties
+       6,  312, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       5,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   68,    2, 0x06,   44 /* Public */,
+       1,    2,   71,    2, 0x06,   46 /* Public */,
+       6,    1,   76,    2, 0x06,   49 /* Public */,
+       9,    1,   79,    2, 0x06,   51 /* Public */,
+      12,    1,   82,    2, 0x06,   53 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      13,    1,   85,    2, 0x0a,   55 /* Public */,
+      15,    1,   88,    2, 0x0a,   57 /* Public */,
+      17,    1,   91,    2, 0x0a,   59 /* Public */,
+      19,    1,   94,    2, 0x0a,   61 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, 0x80000000 | 10,   11,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 7,   14,
+    QMetaType::Void, 0x80000000 | 3,   16,
+    QMetaType::Void, 0x80000000 | 10,   18,
+    QMetaType::Void, 0x80000000 | 10,   20,
+
+ // properties: name, type, flags
+      21, 0x80000000 | 22, 0x00015009, uint(-1), 0,
+      23, 0x80000000 | 24, 0x00015009, uint(-1), 0,
+       8, 0x80000000 | 25, 0x0001510b, uint(2), 0,
+      16, 0x80000000 | 3, 0x0001510b, uint(0), 0,
+      26, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      27, 0x80000000 | 28, 0x0001510b, uint(-1), 0,
+      29, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      30, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      31, QMetaType::Int, 0x00015103, uint(-1), 0,
+      32, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      33, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      34, QMetaType::Double, 0x00015103, uint(-1), 0,
+      35, 0x80000000 | 36, 0x0001510b, uint(-1), 0,
+      37, QMetaType::QString, 0x00015103, uint(-1), 0,
+      38, QMetaType::Int, 0x00015103, uint(-1), 0,
+      39, 0x80000000 | 40, 0x00015009, uint(-1), 0,
+      41, QMetaType::QStringList, 0x00015001, uint(-1), 0,
+      42, QMetaType::Int, 0x00015103, uint(-1), 0,
+      43, QMetaType::Int, 0x00015103, uint(-1), 0,
+      44, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      45, QMetaType::Int, 0x00015103, uint(-1), 0,
+      46, QMetaType::Int, 0x00015103, uint(-1), 0,
+      47, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      48, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      49, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      50, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      51, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      52, QMetaType::QString, 0x00015103, uint(-1), 0,
+      53, QMetaType::Int, 0x00015103, uint(-1), 0,
+      54, QMetaType::Int, 0x00015103, uint(-1), 0,
+      55, QMetaType::Int, 0x00015103, uint(-1), 0,
+      20, 0x80000000 | 56, 0x0001510b, uint(3), 0,
+      18, 0x80000000 | 56, 0x0001510b, uint(4), 0,
+      57, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      58, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      59, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      60, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      61, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      62, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      63, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      64, 0x80000000 | 65, 0x0001510b, uint(-1), 0,
+      66, 0x80000000 | 65, 0x0001510b, uint(-1), 0,
+      67, 0x80000000 | 68, 0x00015009, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+      22,   22, 0x0,    4,  342,
+      73,   22, 0x1,    4,  350,
+      36,   36, 0x0,    2,  358,
+      25,   25, 0x0,    2,  362,
+      78,   78, 0x0,    4,  366,
+      56,   78, 0x1,    4,  374,
+
+ // enum data: key, value
+      69, uint(QCPAxis::atLeft),
+      70, uint(QCPAxis::atRight),
+      71, uint(QCPAxis::atTop),
+      72, uint(QCPAxis::atBottom),
+      69, uint(QCPAxis::atLeft),
+      70, uint(QCPAxis::atRight),
+      71, uint(QCPAxis::atTop),
+      72, uint(QCPAxis::atBottom),
+      74, uint(QCPAxis::lsInside),
+      75, uint(QCPAxis::lsOutside),
+      76, uint(QCPAxis::stLinear),
+      77, uint(QCPAxis::stLogarithmic),
+      79, uint(QCPAxis::spNone),
+      80, uint(QCPAxis::spAxis),
+      81, uint(QCPAxis::spTickLabels),
+      82, uint(QCPAxis::spAxisLabel),
+      79, uint(QCPAxis::spNone),
+      80, uint(QCPAxis::spAxis),
+      81, uint(QCPAxis::spTickLabels),
+      82, uint(QCPAxis::spAxisLabel),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxis::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPAxisE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPAxisE_t>.data,
+    qt_meta_stringdata_QCPAxis.offsetsAndSizes,
+    qt_meta_data_QCPAxis,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN7QCPAxisE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxis_t,
+        // property 'axisType'
+        QtPrivate::TypeAndForceComplete<AxisType, std::true_type>,
+        // property 'axisRect'
+        QtPrivate::TypeAndForceComplete<QCPAxisRect*, std::true_type>,
+        // property 'scaleType'
+        QtPrivate::TypeAndForceComplete<ScaleType, std::true_type>,
+        // property 'range'
+        QtPrivate::TypeAndForceComplete<QCPRange, std::true_type>,
+        // property 'rangeReversed'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'ticker'
+        QtPrivate::TypeAndForceComplete<QSharedPointer<QCPAxisTicker>, std::true_type>,
+        // property 'ticks'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'tickLabels'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'tickLabelPadding'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'tickLabelFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'tickLabelColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'tickLabelRotation'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'tickLabelSide'
+        QtPrivate::TypeAndForceComplete<LabelSide, std::true_type>,
+        // property 'numberFormat'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'numberPrecision'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'tickVector'
+        QtPrivate::TypeAndForceComplete<QList<double>, std::true_type>,
+        // property 'tickVectorLabels'
+        QtPrivate::TypeAndForceComplete<QList<QString>, std::true_type>,
+        // property 'tickLengthIn'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'tickLengthOut'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'subTicks'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'subTickLengthIn'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'subTickLengthOut'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'basePen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'tickPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'subTickPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'labelFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'labelColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'label'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'labelPadding'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'padding'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'offset'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'selectedParts'
+        QtPrivate::TypeAndForceComplete<SelectableParts, std::true_type>,
+        // property 'selectableParts'
+        QtPrivate::TypeAndForceComplete<SelectableParts, std::true_type>,
+        // property 'selectedTickLabelFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedLabelFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedTickLabelColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectedLabelColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectedBasePen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedTickPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedSubTickPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'lowerEnding'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // property 'upperEnding'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // property 'grid'
+        QtPrivate::TypeAndForceComplete<QCPGrid*, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxis, std::true_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'scaleTypeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPAxis::SelectableParts &, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPAxis::SelectableParts &, std::false_type>,
+        // method 'setScaleType'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'setRange'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'setSelectableParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPAxis::SelectableParts &, std::false_type>,
+        // method 'setSelectedParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPAxis::SelectableParts &, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPAxis::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPAxis *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPAxis *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 1: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[2]))); break;
-        case 2: _t->scaleTypeChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 3: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
-        case 4: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
-        case 5: _t->setScaleType((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 6: _t->setRange((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 7: _t->setSelectableParts((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
-        case 8: _t->setSelectedParts((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 0: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 1: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[2]))); break;
+        case 2: _t->scaleTypeChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 3: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 4: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 5: _t->setScaleType((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 6: _t->setRange((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 7: _t->setSelectableParts((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 8: _t->setSelectedParts((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 2:
@@ -1654,20 +2493,44 @@ void QCPAxis::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPAxis::*)(const QCPRange & )>(_a, &QCPAxis::rangeChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAxis::*)(const QCPRange & , const QCPRange & )>(_a, &QCPAxis::rangeChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAxis::*)(QCPAxis::ScaleType )>(_a, &QCPAxis::scaleTypeChanged, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAxis::*)(const QCPAxis::SelectableParts & )>(_a, &QCPAxis::selectionChanged, 3))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAxis::*)(const QCPAxis::SelectableParts & )>(_a, &QCPAxis::selectableChanged, 4))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPAxis::*)(const QCPRange & );
+            if (_t _q_method = &QCPAxis::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAxis::*)(const QCPRange & , const QCPRange & );
+            if (_t _q_method = &QCPAxis::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAxis::*)(QCPAxis::ScaleType );
+            if (_t _q_method = &QCPAxis::scaleTypeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAxis::*)(const QCPAxis::SelectableParts & );
+            if (_t _q_method = &QCPAxis::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAxis::*)(const QCPAxis::SelectableParts & );
+            if (_t _q_method = &QCPAxis::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 1:
@@ -1680,98 +2543,103 @@ void QCPAxis::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QSharedPointer<QCPAxisTicker> >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPAxis *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<enum AxisType*>(_v) = _t->axisType(); break;
-        case 1: *reinterpret_cast<QCPAxisRect**>(_v) = _t->axisRect(); break;
-        case 2: *reinterpret_cast<enum ScaleType*>(_v) = _t->scaleType(); break;
-        case 3: *reinterpret_cast<QCPRange*>(_v) = _t->range(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->rangeReversed(); break;
-        case 5: *reinterpret_cast<QSharedPointer<QCPAxisTicker>*>(_v) = _t->ticker(); break;
-        case 6: *reinterpret_cast<bool*>(_v) = _t->ticks(); break;
-        case 7: *reinterpret_cast<bool*>(_v) = _t->tickLabels(); break;
-        case 8: *reinterpret_cast<int*>(_v) = _t->tickLabelPadding(); break;
-        case 9: *reinterpret_cast<QFont*>(_v) = _t->tickLabelFont(); break;
-        case 10: *reinterpret_cast<QColor*>(_v) = _t->tickLabelColor(); break;
-        case 11: *reinterpret_cast<double*>(_v) = _t->tickLabelRotation(); break;
-        case 12: *reinterpret_cast<enum LabelSide*>(_v) = _t->tickLabelSide(); break;
-        case 13: *reinterpret_cast<QString*>(_v) = _t->numberFormat(); break;
-        case 14: *reinterpret_cast<int*>(_v) = _t->numberPrecision(); break;
-        case 15: *reinterpret_cast<QList<double>*>(_v) = _t->tickVector(); break;
-        case 16: *reinterpret_cast<QList<QString>*>(_v) = _t->tickVectorLabels(); break;
-        case 17: *reinterpret_cast<int*>(_v) = _t->tickLengthIn(); break;
-        case 18: *reinterpret_cast<int*>(_v) = _t->tickLengthOut(); break;
-        case 19: *reinterpret_cast<bool*>(_v) = _t->subTicks(); break;
-        case 20: *reinterpret_cast<int*>(_v) = _t->subTickLengthIn(); break;
-        case 21: *reinterpret_cast<int*>(_v) = _t->subTickLengthOut(); break;
-        case 22: *reinterpret_cast<QPen*>(_v) = _t->basePen(); break;
-        case 23: *reinterpret_cast<QPen*>(_v) = _t->tickPen(); break;
-        case 24: *reinterpret_cast<QPen*>(_v) = _t->subTickPen(); break;
-        case 25: *reinterpret_cast<QFont*>(_v) = _t->labelFont(); break;
-        case 26: *reinterpret_cast<QColor*>(_v) = _t->labelColor(); break;
-        case 27: *reinterpret_cast<QString*>(_v) = _t->label(); break;
-        case 28: *reinterpret_cast<int*>(_v) = _t->labelPadding(); break;
-        case 29: *reinterpret_cast<int*>(_v) = _t->padding(); break;
-        case 30: *reinterpret_cast<int*>(_v) = _t->offset(); break;
-        case 31: QtMocHelpers::assignFlags<SelectableParts>(_v, _t->selectedParts()); break;
-        case 32: QtMocHelpers::assignFlags<SelectableParts>(_v, _t->selectableParts()); break;
-        case 33: *reinterpret_cast<QFont*>(_v) = _t->selectedTickLabelFont(); break;
-        case 34: *reinterpret_cast<QFont*>(_v) = _t->selectedLabelFont(); break;
-        case 35: *reinterpret_cast<QColor*>(_v) = _t->selectedTickLabelColor(); break;
-        case 36: *reinterpret_cast<QColor*>(_v) = _t->selectedLabelColor(); break;
-        case 37: *reinterpret_cast<QPen*>(_v) = _t->selectedBasePen(); break;
-        case 38: *reinterpret_cast<QPen*>(_v) = _t->selectedTickPen(); break;
-        case 39: *reinterpret_cast<QPen*>(_v) = _t->selectedSubTickPen(); break;
-        case 40: *reinterpret_cast<QCPLineEnding*>(_v) = _t->lowerEnding(); break;
-        case 41: *reinterpret_cast<QCPLineEnding*>(_v) = _t->upperEnding(); break;
-        case 42: *reinterpret_cast<QCPGrid**>(_v) = _t->grid(); break;
+        case 0: *reinterpret_cast< AxisType*>(_v) = _t->axisType(); break;
+        case 1: *reinterpret_cast< QCPAxisRect**>(_v) = _t->axisRect(); break;
+        case 2: *reinterpret_cast< ScaleType*>(_v) = _t->scaleType(); break;
+        case 3: *reinterpret_cast< QCPRange*>(_v) = _t->range(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->rangeReversed(); break;
+        case 5: *reinterpret_cast< QSharedPointer<QCPAxisTicker>*>(_v) = _t->ticker(); break;
+        case 6: *reinterpret_cast< bool*>(_v) = _t->ticks(); break;
+        case 7: *reinterpret_cast< bool*>(_v) = _t->tickLabels(); break;
+        case 8: *reinterpret_cast< int*>(_v) = _t->tickLabelPadding(); break;
+        case 9: *reinterpret_cast< QFont*>(_v) = _t->tickLabelFont(); break;
+        case 10: *reinterpret_cast< QColor*>(_v) = _t->tickLabelColor(); break;
+        case 11: *reinterpret_cast< double*>(_v) = _t->tickLabelRotation(); break;
+        case 12: *reinterpret_cast< LabelSide*>(_v) = _t->tickLabelSide(); break;
+        case 13: *reinterpret_cast< QString*>(_v) = _t->numberFormat(); break;
+        case 14: *reinterpret_cast< int*>(_v) = _t->numberPrecision(); break;
+        case 15: *reinterpret_cast< QList<double>*>(_v) = _t->tickVector(); break;
+        case 16: *reinterpret_cast< QList<QString>*>(_v) = _t->tickVectorLabels(); break;
+        case 17: *reinterpret_cast< int*>(_v) = _t->tickLengthIn(); break;
+        case 18: *reinterpret_cast< int*>(_v) = _t->tickLengthOut(); break;
+        case 19: *reinterpret_cast< bool*>(_v) = _t->subTicks(); break;
+        case 20: *reinterpret_cast< int*>(_v) = _t->subTickLengthIn(); break;
+        case 21: *reinterpret_cast< int*>(_v) = _t->subTickLengthOut(); break;
+        case 22: *reinterpret_cast< QPen*>(_v) = _t->basePen(); break;
+        case 23: *reinterpret_cast< QPen*>(_v) = _t->tickPen(); break;
+        case 24: *reinterpret_cast< QPen*>(_v) = _t->subTickPen(); break;
+        case 25: *reinterpret_cast< QFont*>(_v) = _t->labelFont(); break;
+        case 26: *reinterpret_cast< QColor*>(_v) = _t->labelColor(); break;
+        case 27: *reinterpret_cast< QString*>(_v) = _t->label(); break;
+        case 28: *reinterpret_cast< int*>(_v) = _t->labelPadding(); break;
+        case 29: *reinterpret_cast< int*>(_v) = _t->padding(); break;
+        case 30: *reinterpret_cast< int*>(_v) = _t->offset(); break;
+        case 31: *reinterpret_cast<int*>(_v) = QFlag(_t->selectedParts()); break;
+        case 32: *reinterpret_cast<int*>(_v) = QFlag(_t->selectableParts()); break;
+        case 33: *reinterpret_cast< QFont*>(_v) = _t->selectedTickLabelFont(); break;
+        case 34: *reinterpret_cast< QFont*>(_v) = _t->selectedLabelFont(); break;
+        case 35: *reinterpret_cast< QColor*>(_v) = _t->selectedTickLabelColor(); break;
+        case 36: *reinterpret_cast< QColor*>(_v) = _t->selectedLabelColor(); break;
+        case 37: *reinterpret_cast< QPen*>(_v) = _t->selectedBasePen(); break;
+        case 38: *reinterpret_cast< QPen*>(_v) = _t->selectedTickPen(); break;
+        case 39: *reinterpret_cast< QPen*>(_v) = _t->selectedSubTickPen(); break;
+        case 40: *reinterpret_cast< QCPLineEnding*>(_v) = _t->lowerEnding(); break;
+        case 41: *reinterpret_cast< QCPLineEnding*>(_v) = _t->upperEnding(); break;
+        case 42: *reinterpret_cast< QCPGrid**>(_v) = _t->grid(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPAxis *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 2: _t->setScaleType(*reinterpret_cast<enum ScaleType*>(_v)); break;
-        case 3: _t->setRange(*reinterpret_cast<QCPRange*>(_v)); break;
-        case 4: _t->setRangeReversed(*reinterpret_cast<bool*>(_v)); break;
-        case 5: _t->setTicker(*reinterpret_cast<QSharedPointer<QCPAxisTicker>*>(_v)); break;
-        case 6: _t->setTicks(*reinterpret_cast<bool*>(_v)); break;
-        case 7: _t->setTickLabels(*reinterpret_cast<bool*>(_v)); break;
-        case 8: _t->setTickLabelPadding(*reinterpret_cast<int*>(_v)); break;
-        case 9: _t->setTickLabelFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 10: _t->setTickLabelColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 11: _t->setTickLabelRotation(*reinterpret_cast<double*>(_v)); break;
-        case 12: _t->setTickLabelSide(*reinterpret_cast<enum LabelSide*>(_v)); break;
-        case 13: _t->setNumberFormat(*reinterpret_cast<QString*>(_v)); break;
-        case 14: _t->setNumberPrecision(*reinterpret_cast<int*>(_v)); break;
-        case 17: _t->setTickLengthIn(*reinterpret_cast<int*>(_v)); break;
-        case 18: _t->setTickLengthOut(*reinterpret_cast<int*>(_v)); break;
-        case 19: _t->setSubTicks(*reinterpret_cast<bool*>(_v)); break;
-        case 20: _t->setSubTickLengthIn(*reinterpret_cast<int*>(_v)); break;
-        case 21: _t->setSubTickLengthOut(*reinterpret_cast<int*>(_v)); break;
-        case 22: _t->setBasePen(*reinterpret_cast<QPen*>(_v)); break;
-        case 23: _t->setTickPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 24: _t->setSubTickPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 25: _t->setLabelFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 26: _t->setLabelColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 27: _t->setLabel(*reinterpret_cast<QString*>(_v)); break;
-        case 28: _t->setLabelPadding(*reinterpret_cast<int*>(_v)); break;
-        case 29: _t->setPadding(*reinterpret_cast<int*>(_v)); break;
-        case 30: _t->setOffset(*reinterpret_cast<int*>(_v)); break;
-        case 31: _t->setSelectedParts(*reinterpret_cast<SelectableParts*>(_v)); break;
-        case 32: _t->setSelectableParts(*reinterpret_cast<SelectableParts*>(_v)); break;
-        case 33: _t->setSelectedTickLabelFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 34: _t->setSelectedLabelFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 35: _t->setSelectedTickLabelColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 36: _t->setSelectedLabelColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 37: _t->setSelectedBasePen(*reinterpret_cast<QPen*>(_v)); break;
-        case 38: _t->setSelectedTickPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 39: _t->setSelectedSubTickPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 40: _t->setLowerEnding(*reinterpret_cast<QCPLineEnding*>(_v)); break;
-        case 41: _t->setUpperEnding(*reinterpret_cast<QCPLineEnding*>(_v)); break;
+        case 2: _t->setScaleType(*reinterpret_cast< ScaleType*>(_v)); break;
+        case 3: _t->setRange(*reinterpret_cast< QCPRange*>(_v)); break;
+        case 4: _t->setRangeReversed(*reinterpret_cast< bool*>(_v)); break;
+        case 5: _t->setTicker(*reinterpret_cast< QSharedPointer<QCPAxisTicker>*>(_v)); break;
+        case 6: _t->setTicks(*reinterpret_cast< bool*>(_v)); break;
+        case 7: _t->setTickLabels(*reinterpret_cast< bool*>(_v)); break;
+        case 8: _t->setTickLabelPadding(*reinterpret_cast< int*>(_v)); break;
+        case 9: _t->setTickLabelFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 10: _t->setTickLabelColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 11: _t->setTickLabelRotation(*reinterpret_cast< double*>(_v)); break;
+        case 12: _t->setTickLabelSide(*reinterpret_cast< LabelSide*>(_v)); break;
+        case 13: _t->setNumberFormat(*reinterpret_cast< QString*>(_v)); break;
+        case 14: _t->setNumberPrecision(*reinterpret_cast< int*>(_v)); break;
+        case 17: _t->setTickLengthIn(*reinterpret_cast< int*>(_v)); break;
+        case 18: _t->setTickLengthOut(*reinterpret_cast< int*>(_v)); break;
+        case 19: _t->setSubTicks(*reinterpret_cast< bool*>(_v)); break;
+        case 20: _t->setSubTickLengthIn(*reinterpret_cast< int*>(_v)); break;
+        case 21: _t->setSubTickLengthOut(*reinterpret_cast< int*>(_v)); break;
+        case 22: _t->setBasePen(*reinterpret_cast< QPen*>(_v)); break;
+        case 23: _t->setTickPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 24: _t->setSubTickPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 25: _t->setLabelFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 26: _t->setLabelColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 27: _t->setLabel(*reinterpret_cast< QString*>(_v)); break;
+        case 28: _t->setLabelPadding(*reinterpret_cast< int*>(_v)); break;
+        case 29: _t->setPadding(*reinterpret_cast< int*>(_v)); break;
+        case 30: _t->setOffset(*reinterpret_cast< int*>(_v)); break;
+        case 31: _t->setSelectedParts(QFlag(*reinterpret_cast<int*>(_v))); break;
+        case 32: _t->setSelectableParts(QFlag(*reinterpret_cast<int*>(_v))); break;
+        case 33: _t->setSelectedTickLabelFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 34: _t->setSelectedLabelFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 35: _t->setSelectedTickLabelColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 36: _t->setSelectedLabelColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 37: _t->setSelectedBasePen(*reinterpret_cast< QPen*>(_v)); break;
+        case 38: _t->setSelectedTickPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 39: _t->setSelectedSubTickPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 40: _t->setLowerEnding(*reinterpret_cast< QCPLineEnding*>(_v)); break;
+        case 41: _t->setUpperEnding(*reinterpret_cast< QCPLineEnding*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -1783,7 +2651,7 @@ const QMetaObject *QCPAxis::metaObject() const
 void *QCPAxis::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPAxisE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPAxis.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -1797,13 +2665,11 @@ int QCPAxis::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -1815,269 +2681,434 @@ int QCPAxis::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPAxis::rangeChanged(const QCPRange & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPAxis::rangeChanged(const QCPRange & _t1, const QCPRange & _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPAxis::scaleTypeChanged(QCPAxis::ScaleType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCPAxis::selectionChanged(const QCPAxis::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
 void QCPAxis::selectableChanged(const QCPAxis::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 namespace {
-struct qt_meta_tag_ZN15QCPScatterStyleE_t {};
+struct qt_meta_stringdata_QCPScatterStyle_t {
+    uint offsetsAndSizes[56];
+    char stringdata0[16];
+    char stringdata1[16];
+    char stringdata2[7];
+    char stringdata3[6];
+    char stringdata4[8];
+    char stringdata5[7];
+    char stringdata6[8];
+    char stringdata7[6];
+    char stringdata8[18];
+    char stringdata9[13];
+    char stringdata10[7];
+    char stringdata11[6];
+    char stringdata12[8];
+    char stringdata13[7];
+    char stringdata14[9];
+    char stringdata15[7];
+    char stringdata16[9];
+    char stringdata17[10];
+    char stringdata18[7];
+    char stringdata19[11];
+    char stringdata20[19];
+    char stringdata21[14];
+    char stringdata22[13];
+    char stringdata23[14];
+    char stringdata24[13];
+    char stringdata25[8];
+    char stringdata26[9];
+    char stringdata27[9];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPScatterStyle_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPScatterStyle_t qt_meta_stringdata_QCPScatterStyle = {
+    {
+        QT_MOC_LITERAL(0, 15),  // "QCPScatterStyle"
+        QT_MOC_LITERAL(16, 15),  // "ScatterProperty"
+        QT_MOC_LITERAL(32, 6),  // "spNone"
+        QT_MOC_LITERAL(39, 5),  // "spPen"
+        QT_MOC_LITERAL(45, 7),  // "spBrush"
+        QT_MOC_LITERAL(53, 6),  // "spSize"
+        QT_MOC_LITERAL(60, 7),  // "spShape"
+        QT_MOC_LITERAL(68, 5),  // "spAll"
+        QT_MOC_LITERAL(74, 17),  // "ScatterProperties"
+        QT_MOC_LITERAL(92, 12),  // "ScatterShape"
+        QT_MOC_LITERAL(105, 6),  // "ssNone"
+        QT_MOC_LITERAL(112, 5),  // "ssDot"
+        QT_MOC_LITERAL(118, 7),  // "ssCross"
+        QT_MOC_LITERAL(126, 6),  // "ssPlus"
+        QT_MOC_LITERAL(133, 8),  // "ssCircle"
+        QT_MOC_LITERAL(142, 6),  // "ssDisc"
+        QT_MOC_LITERAL(149, 8),  // "ssSquare"
+        QT_MOC_LITERAL(158, 9),  // "ssDiamond"
+        QT_MOC_LITERAL(168, 6),  // "ssStar"
+        QT_MOC_LITERAL(175, 10),  // "ssTriangle"
+        QT_MOC_LITERAL(186, 18),  // "ssTriangleInverted"
+        QT_MOC_LITERAL(205, 13),  // "ssCrossSquare"
+        QT_MOC_LITERAL(219, 12),  // "ssPlusSquare"
+        QT_MOC_LITERAL(232, 13),  // "ssCrossCircle"
+        QT_MOC_LITERAL(246, 12),  // "ssPlusCircle"
+        QT_MOC_LITERAL(259, 7),  // "ssPeace"
+        QT_MOC_LITERAL(267, 8),  // "ssPixmap"
+        QT_MOC_LITERAL(276, 8)   // "ssCustom"
+    },
+    "QCPScatterStyle",
+    "ScatterProperty",
+    "spNone",
+    "spPen",
+    "spBrush",
+    "spSize",
+    "spShape",
+    "spAll",
+    "ScatterProperties",
+    "ScatterShape",
+    "ssNone",
+    "ssDot",
+    "ssCross",
+    "ssPlus",
+    "ssCircle",
+    "ssDisc",
+    "ssSquare",
+    "ssDiamond",
+    "ssStar",
+    "ssTriangle",
+    "ssTriangleInverted",
+    "ssCrossSquare",
+    "ssPlusSquare",
+    "ssCrossCircle",
+    "ssPlusCircle",
+    "ssPeace",
+    "ssPixmap",
+    "ssCustom"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPScatterStyle::qt_create_metaobjectdata<qt_meta_tag_ZN15QCPScatterStyleE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPScatterStyle",
-        "ScatterProperty",
-        "spNone",
-        "spPen",
-        "spBrush",
-        "spSize",
-        "spShape",
-        "spAll",
-        "ScatterProperties",
-        "ScatterShape",
-        "ssNone",
-        "ssDot",
-        "ssCross",
-        "ssPlus",
-        "ssCircle",
-        "ssDisc",
-        "ssSquare",
-        "ssDiamond",
-        "ssStar",
-        "ssTriangle",
-        "ssTriangleInverted",
-        "ssCrossSquare",
-        "ssPlusSquare",
-        "ssCrossCircle",
-        "ssPlusCircle",
-        "ssPeace",
-        "ssPixmap",
-        "ssCustom"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPScatterStyle[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'ScatterProperty'
-        QtMocHelpers::EnumData<enum ScatterProperty>(1, 1, QMC::EnumFlags{}).add({
-            {    2, ScatterProperty::spNone },
-            {    3, ScatterProperty::spPen },
-            {    4, ScatterProperty::spBrush },
-            {    5, ScatterProperty::spSize },
-            {    6, ScatterProperty::spShape },
-            {    7, ScatterProperty::spAll },
-        }),
-        // flag 'ScatterProperties'
-        QtMocHelpers::EnumData<ScatterProperties>(8, 1, QMC::EnumIsFlag).add({
-            {    2, ScatterProperty::spNone },
-            {    3, ScatterProperty::spPen },
-            {    4, ScatterProperty::spBrush },
-            {    5, ScatterProperty::spSize },
-            {    6, ScatterProperty::spShape },
-            {    7, ScatterProperty::spAll },
-        }),
-        // enum 'ScatterShape'
-        QtMocHelpers::EnumData<enum ScatterShape>(9, 9, QMC::EnumFlags{}).add({
-            {   10, ScatterShape::ssNone },
-            {   11, ScatterShape::ssDot },
-            {   12, ScatterShape::ssCross },
-            {   13, ScatterShape::ssPlus },
-            {   14, ScatterShape::ssCircle },
-            {   15, ScatterShape::ssDisc },
-            {   16, ScatterShape::ssSquare },
-            {   17, ScatterShape::ssDiamond },
-            {   18, ScatterShape::ssStar },
-            {   19, ScatterShape::ssTriangle },
-            {   20, ScatterShape::ssTriangleInverted },
-            {   21, ScatterShape::ssCrossSquare },
-            {   22, ScatterShape::ssPlusSquare },
-            {   23, ScatterShape::ssCrossCircle },
-            {   24, ScatterShape::ssPlusCircle },
-            {   25, ScatterShape::ssPeace },
-            {   26, ScatterShape::ssPixmap },
-            {   27, ScatterShape::ssCustom },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPScatterStyle, qt_meta_tag_ZN15QCPScatterStyleE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       3,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    6,   29,
+       8,    1, 0x1,    6,   41,
+       9,    9, 0x0,   18,   53,
+
+ // enum data: key, value
+       2, uint(QCPScatterStyle::spNone),
+       3, uint(QCPScatterStyle::spPen),
+       4, uint(QCPScatterStyle::spBrush),
+       5, uint(QCPScatterStyle::spSize),
+       6, uint(QCPScatterStyle::spShape),
+       7, uint(QCPScatterStyle::spAll),
+       2, uint(QCPScatterStyle::spNone),
+       3, uint(QCPScatterStyle::spPen),
+       4, uint(QCPScatterStyle::spBrush),
+       5, uint(QCPScatterStyle::spSize),
+       6, uint(QCPScatterStyle::spShape),
+       7, uint(QCPScatterStyle::spAll),
+      10, uint(QCPScatterStyle::ssNone),
+      11, uint(QCPScatterStyle::ssDot),
+      12, uint(QCPScatterStyle::ssCross),
+      13, uint(QCPScatterStyle::ssPlus),
+      14, uint(QCPScatterStyle::ssCircle),
+      15, uint(QCPScatterStyle::ssDisc),
+      16, uint(QCPScatterStyle::ssSquare),
+      17, uint(QCPScatterStyle::ssDiamond),
+      18, uint(QCPScatterStyle::ssStar),
+      19, uint(QCPScatterStyle::ssTriangle),
+      20, uint(QCPScatterStyle::ssTriangleInverted),
+      21, uint(QCPScatterStyle::ssCrossSquare),
+      22, uint(QCPScatterStyle::ssPlusSquare),
+      23, uint(QCPScatterStyle::ssCrossCircle),
+      24, uint(QCPScatterStyle::ssPlusCircle),
+      25, uint(QCPScatterStyle::ssPeace),
+      26, uint(QCPScatterStyle::ssPixmap),
+      27, uint(QCPScatterStyle::ssCustom),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPScatterStyle::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPScatterStyleE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPScatterStyleE_t>.data,
+    qt_meta_stringdata_QCPScatterStyle.offsetsAndSizes,
+    qt_meta_data_QCPScatterStyle,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN15QCPScatterStyleE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPScatterStyle_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPScatterStyle, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN21QCPSelectionDecoratorE_t {};
+struct qt_meta_stringdata_QCPSelectionDecorator_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[22];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPSelectionDecorator_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPSelectionDecorator_t qt_meta_stringdata_QCPSelectionDecorator = {
+    {
+        QT_MOC_LITERAL(0, 21)   // "QCPSelectionDecorator"
+    },
+    "QCPSelectionDecorator"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPSelectionDecorator::qt_create_metaobjectdata<qt_meta_tag_ZN21QCPSelectionDecoratorE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPSelectionDecorator"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPSelectionDecorator[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPSelectionDecorator, qt_meta_tag_ZN21QCPSelectionDecoratorE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPSelectionDecorator::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21QCPSelectionDecoratorE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21QCPSelectionDecoratorE_t>.data,
+    qt_meta_stringdata_QCPSelectionDecorator.offsetsAndSizes,
+    qt_meta_data_QCPSelectionDecorator,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN21QCPSelectionDecoratorE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPSelectionDecorator_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPSelectionDecorator, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN20QCPAbstractPlottableE_t {};
+struct qt_meta_stringdata_QCPAbstractPlottable_t {
+    uint offsetsAndSizes[42];
+    char stringdata0[21];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[17];
+    char stringdata5[10];
+    char stringdata6[18];
+    char stringdata7[19];
+    char stringdata8[11];
+    char stringdata9[14];
+    char stringdata10[13];
+    char stringdata11[5];
+    char stringdata12[16];
+    char stringdata13[20];
+    char stringdata14[4];
+    char stringdata15[6];
+    char stringdata16[8];
+    char stringdata17[9];
+    char stringdata18[10];
+    char stringdata19[19];
+    char stringdata20[23];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAbstractPlottable_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAbstractPlottable_t qt_meta_stringdata_QCPAbstractPlottable = {
+    {
+        QT_MOC_LITERAL(0, 20),  // "QCPAbstractPlottable"
+        QT_MOC_LITERAL(21, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(38, 0),  // ""
+        QT_MOC_LITERAL(39, 8),  // "selected"
+        QT_MOC_LITERAL(48, 16),  // "QCPDataSelection"
+        QT_MOC_LITERAL(65, 9),  // "selection"
+        QT_MOC_LITERAL(75, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(93, 18),  // "QCP::SelectionType"
+        QT_MOC_LITERAL(112, 10),  // "selectable"
+        QT_MOC_LITERAL(123, 13),  // "setSelectable"
+        QT_MOC_LITERAL(137, 12),  // "setSelection"
+        QT_MOC_LITERAL(150, 4),  // "name"
+        QT_MOC_LITERAL(155, 15),  // "antialiasedFill"
+        QT_MOC_LITERAL(171, 19),  // "antialiasedScatters"
+        QT_MOC_LITERAL(191, 3),  // "pen"
+        QT_MOC_LITERAL(195, 5),  // "brush"
+        QT_MOC_LITERAL(201, 7),  // "keyAxis"
+        QT_MOC_LITERAL(209, 8),  // "QCPAxis*"
+        QT_MOC_LITERAL(218, 9),  // "valueAxis"
+        QT_MOC_LITERAL(228, 18),  // "selectionDecorator"
+        QT_MOC_LITERAL(247, 22)   // "QCPSelectionDecorator*"
+    },
+    "QCPAbstractPlottable",
+    "selectionChanged",
+    "",
+    "selected",
+    "QCPDataSelection",
+    "selection",
+    "selectableChanged",
+    "QCP::SelectionType",
+    "selectable",
+    "setSelectable",
+    "setSelection",
+    "name",
+    "antialiasedFill",
+    "antialiasedScatters",
+    "pen",
+    "brush",
+    "keyAxis",
+    "QCPAxis*",
+    "valueAxis",
+    "selectionDecorator",
+    "QCPSelectionDecorator*"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAbstractPlottable::qt_create_metaobjectdata<qt_meta_tag_ZN20QCPAbstractPlottableE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAbstractPlottable",
-        "selectionChanged",
-        "",
-        "selected",
-        "QCPDataSelection",
-        "selection",
-        "selectableChanged",
-        "QCP::SelectionType",
-        "selectable",
-        "setSelectable",
-        "setSelection",
-        "name",
-        "antialiasedFill",
-        "antialiasedScatters",
-        "pen",
-        "QPen",
-        "brush",
-        "QBrush",
-        "keyAxis",
-        "QCPAxis*",
-        "valueAxis",
-        "selectionDecorator",
-        "QCPSelectionDecorator*"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAbstractPlottable[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(const QCPDataSelection &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 4, 5 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(QCP::SelectionType)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelectable'
-        QtMocHelpers::SlotData<void(QCP::SelectionType)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelection'
-        QtMocHelpers::SlotData<void(QCPDataSelection)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 4, 5 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'name'
-        QtMocHelpers::PropertyData<QString>(11, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'antialiasedFill'
-        QtMocHelpers::PropertyData<bool>(12, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'antialiasedScatters'
-        QtMocHelpers::PropertyData<bool>(13, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(14, 0x80000000 | 15, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(16, 0x80000000 | 17, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'keyAxis'
-        QtMocHelpers::PropertyData<QCPAxis*>(18, 0x80000000 | 19, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'valueAxis'
-        QtMocHelpers::PropertyData<QCPAxis*>(20, 0x80000000 | 19, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectable'
-        QtMocHelpers::PropertyData<QCP::SelectionType>(8, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 2),
-        // property 'selection'
-        QtMocHelpers::PropertyData<QCPDataSelection>(5, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'selectionDecorator'
-        QtMocHelpers::PropertyData<QCPSelectionDecorator*>(21, 0x80000000 | 22, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPAbstractPlottable, qt_meta_tag_ZN20QCPAbstractPlottableE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
-Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_ZN20QCPAbstractPlottableE[] = {
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       5,   14, // methods
+      10,   59, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   44,    2, 0x06,   11 /* Public */,
+       1,    1,   47,    2, 0x06,   13 /* Public */,
+       6,    1,   50,    2, 0x06,   15 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       9,    1,   53,    2, 0x0a,   17 /* Public */,
+      10,    1,   56,    2, 0x0a,   19 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 4,    5,
+
+ // properties: name, type, flags
+      11, QMetaType::QString, 0x00015103, uint(-1), 0,
+      12, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      13, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      14, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      15, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+      16, 0x80000000 | 17, 0x0001510b, uint(-1), 0,
+      18, 0x80000000 | 17, 0x0001510b, uint(-1), 0,
+       8, 0x80000000 | 7, 0x0001510b, uint(2), 0,
+       5, 0x80000000 | 4, 0x0001510b, uint(0), 0,
+      19, 0x80000000 | 20, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
+Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_QCPAbstractPlottable[] = {
     QMetaObject::SuperData::link<QCP::staticMetaObject>(),
     nullptr
 };
 
 Q_CONSTINIT const QMetaObject QCPAbstractPlottable::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN20QCPAbstractPlottableE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN20QCPAbstractPlottableE_t>.data,
+    qt_meta_stringdata_QCPAbstractPlottable.offsetsAndSizes,
+    qt_meta_data_QCPAbstractPlottable,
     qt_static_metacall,
-    qt_meta_extradata_ZN20QCPAbstractPlottableE,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN20QCPAbstractPlottableE_t>.metaTypes,
+    qt_meta_extradata_QCPAbstractPlottable,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAbstractPlottable_t,
+        // property 'name'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'antialiasedFill'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'antialiasedScatters'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'keyAxis'
+        QtPrivate::TypeAndForceComplete<QCPAxis*, std::true_type>,
+        // property 'valueAxis'
+        QtPrivate::TypeAndForceComplete<QCPAxis*, std::true_type>,
+        // property 'selectable'
+        QtPrivate::TypeAndForceComplete<QCP::SelectionType, std::true_type>,
+        // property 'selection'
+        QtPrivate::TypeAndForceComplete<QCPDataSelection, std::true_type>,
+        // property 'selectionDecorator'
+        QtPrivate::TypeAndForceComplete<QCPSelectionDecorator*, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAbstractPlottable, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPDataSelection &, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCP::SelectionType, std::false_type>,
+        // method 'setSelectable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCP::SelectionType, std::false_type>,
+        // method 'setSelection'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPDataSelection, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPAbstractPlottable::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPAbstractPlottable *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPAbstractPlottable *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
-        case 2: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
-        case 3: _t->setSelectable((*reinterpret_cast<std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
-        case 4: _t->setSelection((*reinterpret_cast<std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
+        case 2: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
+        case 3: _t->setSelectable((*reinterpret_cast< std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
+        case 4: _t->setSelection((*reinterpret_cast< std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 1:
@@ -2095,16 +3126,30 @@ void QCPAbstractPlottable::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractPlottable::*)(bool )>(_a, &QCPAbstractPlottable::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractPlottable::*)(const QCPDataSelection & )>(_a, &QCPAbstractPlottable::selectionChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractPlottable::*)(QCP::SelectionType )>(_a, &QCPAbstractPlottable::selectableChanged, 2))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPAbstractPlottable::*)(bool );
+            if (_t _q_method = &QCPAbstractPlottable::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAbstractPlottable::*)(const QCPDataSelection & );
+            if (_t _q_method = &QCPAbstractPlottable::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAbstractPlottable::*)(QCP::SelectionType );
+            if (_t _q_method = &QCPAbstractPlottable::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 6:
@@ -2116,37 +3161,42 @@ void QCPAbstractPlottable::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPSelectionDecorator* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPAbstractPlottable *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QString*>(_v) = _t->name(); break;
-        case 1: *reinterpret_cast<bool*>(_v) = _t->antialiasedFill(); break;
-        case 2: *reinterpret_cast<bool*>(_v) = _t->antialiasedScatters(); break;
-        case 3: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 4: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 5: *reinterpret_cast<QCPAxis**>(_v) = _t->keyAxis(); break;
-        case 6: *reinterpret_cast<QCPAxis**>(_v) = _t->valueAxis(); break;
-        case 7: *reinterpret_cast<QCP::SelectionType*>(_v) = _t->selectable(); break;
-        case 8: *reinterpret_cast<QCPDataSelection*>(_v) = _t->selection(); break;
-        case 9: *reinterpret_cast<QCPSelectionDecorator**>(_v) = _t->selectionDecorator(); break;
+        case 0: *reinterpret_cast< QString*>(_v) = _t->name(); break;
+        case 1: *reinterpret_cast< bool*>(_v) = _t->antialiasedFill(); break;
+        case 2: *reinterpret_cast< bool*>(_v) = _t->antialiasedScatters(); break;
+        case 3: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 4: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 5: *reinterpret_cast< QCPAxis**>(_v) = _t->keyAxis(); break;
+        case 6: *reinterpret_cast< QCPAxis**>(_v) = _t->valueAxis(); break;
+        case 7: *reinterpret_cast< QCP::SelectionType*>(_v) = _t->selectable(); break;
+        case 8: *reinterpret_cast< QCPDataSelection*>(_v) = _t->selection(); break;
+        case 9: *reinterpret_cast< QCPSelectionDecorator**>(_v) = _t->selectionDecorator(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPAbstractPlottable *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setName(*reinterpret_cast<QString*>(_v)); break;
-        case 1: _t->setAntialiasedFill(*reinterpret_cast<bool*>(_v)); break;
-        case 2: _t->setAntialiasedScatters(*reinterpret_cast<bool*>(_v)); break;
-        case 3: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 4: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 5: _t->setKeyAxis(*reinterpret_cast<QCPAxis**>(_v)); break;
-        case 6: _t->setValueAxis(*reinterpret_cast<QCPAxis**>(_v)); break;
-        case 7: _t->setSelectable(*reinterpret_cast<QCP::SelectionType*>(_v)); break;
-        case 8: _t->setSelection(*reinterpret_cast<QCPDataSelection*>(_v)); break;
-        case 9: _t->setSelectionDecorator(*reinterpret_cast<QCPSelectionDecorator**>(_v)); break;
+        case 0: _t->setName(*reinterpret_cast< QString*>(_v)); break;
+        case 1: _t->setAntialiasedFill(*reinterpret_cast< bool*>(_v)); break;
+        case 2: _t->setAntialiasedScatters(*reinterpret_cast< bool*>(_v)); break;
+        case 3: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 4: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 5: _t->setKeyAxis(*reinterpret_cast< QCPAxis**>(_v)); break;
+        case 6: _t->setValueAxis(*reinterpret_cast< QCPAxis**>(_v)); break;
+        case 7: _t->setSelectable(*reinterpret_cast< QCP::SelectionType*>(_v)); break;
+        case 8: _t->setSelection(*reinterpret_cast< QCPDataSelection*>(_v)); break;
+        case 9: _t->setSelectionDecorator(*reinterpret_cast< QCPSelectionDecorator**>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -2158,7 +3208,7 @@ const QMetaObject *QCPAbstractPlottable::metaObject() const
 void *QCPAbstractPlottable::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN20QCPAbstractPlottableE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPAbstractPlottable.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -2172,13 +3222,11 @@ int QCPAbstractPlottable::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -2190,200 +3238,313 @@ int QCPAbstractPlottable::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPAbstractPlottable::selectionChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPAbstractPlottable::selectionChanged(const QCPDataSelection & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPAbstractPlottable::selectableChanged(QCP::SelectionType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 namespace {
-struct qt_meta_tag_ZN13QCPItemAnchorE_t {};
+struct qt_meta_stringdata_QCPItemAnchor_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[14];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemAnchor_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemAnchor_t qt_meta_stringdata_QCPItemAnchor = {
+    {
+        QT_MOC_LITERAL(0, 13)   // "QCPItemAnchor"
+    },
+    "QCPItemAnchor"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemAnchor::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPItemAnchorE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemAnchor"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemAnchor[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemAnchor, qt_meta_tag_ZN13QCPItemAnchorE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemAnchor::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemAnchorE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemAnchorE_t>.data,
+    qt_meta_stringdata_QCPItemAnchor.offsetsAndSizes,
+    qt_meta_data_QCPItemAnchor,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPItemAnchorE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemAnchor_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemAnchor, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN15QCPItemPositionE_t {};
+struct qt_meta_stringdata_QCPItemPosition_t {
+    uint offsetsAndSizes[12];
+    char stringdata0[16];
+    char stringdata1[13];
+    char stringdata2[11];
+    char stringdata3[16];
+    char stringdata4[16];
+    char stringdata5[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemPosition_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemPosition_t qt_meta_stringdata_QCPItemPosition = {
+    {
+        QT_MOC_LITERAL(0, 15),  // "QCPItemPosition"
+        QT_MOC_LITERAL(16, 12),  // "PositionType"
+        QT_MOC_LITERAL(29, 10),  // "ptAbsolute"
+        QT_MOC_LITERAL(40, 15),  // "ptViewportRatio"
+        QT_MOC_LITERAL(56, 15),  // "ptAxisRectRatio"
+        QT_MOC_LITERAL(72, 12)   // "ptPlotCoords"
+    },
+    "QCPItemPosition",
+    "PositionType",
+    "ptAbsolute",
+    "ptViewportRatio",
+    "ptAxisRectRatio",
+    "ptPlotCoords"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemPosition::qt_create_metaobjectdata<qt_meta_tag_ZN15QCPItemPositionE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemPosition",
-        "PositionType",
-        "ptAbsolute",
-        "ptViewportRatio",
-        "ptAxisRectRatio",
-        "ptPlotCoords"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemPosition[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'PositionType'
-        QtMocHelpers::EnumData<enum PositionType>(1, 1, QMC::EnumFlags{}).add({
-            {    2, PositionType::ptAbsolute },
-            {    3, PositionType::ptViewportRatio },
-            {    4, PositionType::ptAxisRectRatio },
-            {    5, PositionType::ptPlotCoords },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPItemPosition, qt_meta_tag_ZN15QCPItemPositionE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    4,   19,
+
+ // enum data: key, value
+       2, uint(QCPItemPosition::ptAbsolute),
+       3, uint(QCPItemPosition::ptViewportRatio),
+       4, uint(QCPItemPosition::ptAxisRectRatio),
+       5, uint(QCPItemPosition::ptPlotCoords),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemPosition::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QCPItemAnchor>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPItemPositionE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPItemPositionE_t>.data,
+    qt_meta_stringdata_QCPItemPosition.offsetsAndSizes,
+    qt_meta_data_QCPItemPosition,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN15QCPItemPositionE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemPosition_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemPosition, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN15QCPAbstractItemE_t {};
+struct qt_meta_stringdata_QCPAbstractItem_t {
+    uint offsetsAndSizes[22];
+    char stringdata0[16];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[18];
+    char stringdata5[11];
+    char stringdata6[14];
+    char stringdata7[12];
+    char stringdata8[15];
+    char stringdata9[13];
+    char stringdata10[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAbstractItem_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAbstractItem_t qt_meta_stringdata_QCPAbstractItem = {
+    {
+        QT_MOC_LITERAL(0, 15),  // "QCPAbstractItem"
+        QT_MOC_LITERAL(16, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(33, 0),  // ""
+        QT_MOC_LITERAL(34, 8),  // "selected"
+        QT_MOC_LITERAL(43, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(61, 10),  // "selectable"
+        QT_MOC_LITERAL(72, 13),  // "setSelectable"
+        QT_MOC_LITERAL(86, 11),  // "setSelected"
+        QT_MOC_LITERAL(98, 14),  // "clipToAxisRect"
+        QT_MOC_LITERAL(113, 12),  // "clipAxisRect"
+        QT_MOC_LITERAL(126, 12)   // "QCPAxisRect*"
+    },
+    "QCPAbstractItem",
+    "selectionChanged",
+    "",
+    "selected",
+    "selectableChanged",
+    "selectable",
+    "setSelectable",
+    "setSelected",
+    "clipToAxisRect",
+    "clipAxisRect",
+    "QCPAxisRect*"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAbstractItem::qt_create_metaobjectdata<qt_meta_tag_ZN15QCPAbstractItemE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAbstractItem",
-        "selectionChanged",
-        "",
-        "selected",
-        "selectableChanged",
-        "selectable",
-        "setSelectable",
-        "setSelected",
-        "clipToAxisRect",
-        "clipAxisRect",
-        "QCPAxisRect*"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAbstractItem[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(bool)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Slot 'setSelectable'
-        QtMocHelpers::SlotData<void(bool)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Slot 'setSelected'
-        QtMocHelpers::SlotData<void(bool)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'clipToAxisRect'
-        QtMocHelpers::PropertyData<bool>(8, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'clipAxisRect'
-        QtMocHelpers::PropertyData<QCPAxisRect*>(9, 0x80000000 | 10, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectable'
-        QtMocHelpers::PropertyData<bool>(5, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
-        // property 'selected'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPAbstractItem, qt_meta_tag_ZN15QCPAbstractItemE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       4,   14, // methods
+       4,   50, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   38,    2, 0x06,    5 /* Public */,
+       4,    1,   41,    2, 0x06,    7 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       6,    1,   44,    2, 0x0a,    9 /* Public */,
+       7,    1,   47,    2, 0x0a,   11 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool,    5,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    3,
+
+ // properties: name, type, flags
+       8, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       9, 0x80000000 | 10, 0x0001510b, uint(-1), 0,
+       5, QMetaType::Bool, 0x00015103, uint(1), 0,
+       3, QMetaType::Bool, 0x00015103, uint(0), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAbstractItem::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPAbstractItemE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPAbstractItemE_t>.data,
+    qt_meta_stringdata_QCPAbstractItem.offsetsAndSizes,
+    qt_meta_data_QCPAbstractItem,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN15QCPAbstractItemE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAbstractItem_t,
+        // property 'clipToAxisRect'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'clipAxisRect'
+        QtPrivate::TypeAndForceComplete<QCPAxisRect*, std::true_type>,
+        // property 'selectable'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'selected'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAbstractItem, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'setSelectable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'setSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPAbstractItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPAbstractItem *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPAbstractItem *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->setSelectable((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 3: _t->setSelected((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->setSelectable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 3: _t->setSelected((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractItem::*)(bool )>(_a, &QCPAbstractItem::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractItem::*)(bool )>(_a, &QCPAbstractItem::selectableChanged, 1))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPAbstractItem::*)(bool );
+            if (_t _q_method = &QCPAbstractItem::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAbstractItem::*)(bool );
+            if (_t _q_method = &QCPAbstractItem::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 1:
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPAxisRect* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPAbstractItem *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<bool*>(_v) = _t->clipToAxisRect(); break;
-        case 1: *reinterpret_cast<QCPAxisRect**>(_v) = _t->clipAxisRect(); break;
-        case 2: *reinterpret_cast<bool*>(_v) = _t->selectable(); break;
-        case 3: *reinterpret_cast<bool*>(_v) = _t->selected(); break;
+        case 0: *reinterpret_cast< bool*>(_v) = _t->clipToAxisRect(); break;
+        case 1: *reinterpret_cast< QCPAxisRect**>(_v) = _t->clipAxisRect(); break;
+        case 2: *reinterpret_cast< bool*>(_v) = _t->selectable(); break;
+        case 3: *reinterpret_cast< bool*>(_v) = _t->selected(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPAbstractItem *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setClipToAxisRect(*reinterpret_cast<bool*>(_v)); break;
-        case 1: _t->setClipAxisRect(*reinterpret_cast<QCPAxisRect**>(_v)); break;
-        case 2: _t->setSelectable(*reinterpret_cast<bool*>(_v)); break;
-        case 3: _t->setSelected(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setClipToAxisRect(*reinterpret_cast< bool*>(_v)); break;
+        case 1: _t->setClipAxisRect(*reinterpret_cast< QCPAxisRect**>(_v)); break;
+        case 2: _t->setSelectable(*reinterpret_cast< bool*>(_v)); break;
+        case 3: _t->setSelected(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -2395,7 +3556,7 @@ const QMetaObject *QCPAbstractItem::metaObject() const
 void *QCPAbstractItem::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN15QCPAbstractItemE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPAbstractItem.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -2409,13 +3570,11 @@ int QCPAbstractItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 4;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 4;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -2427,262 +3586,473 @@ int QCPAbstractItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPAbstractItem::selectionChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPAbstractItem::selectableChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 namespace {
-struct qt_meta_tag_ZN11QCustomPlotE_t {};
+struct qt_meta_stringdata_QCustomPlot_t {
+    uint offsetsAndSizes[130];
+    char stringdata0[12];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[13];
+    char stringdata4[6];
+    char stringdata5[11];
+    char stringdata6[10];
+    char stringdata7[13];
+    char stringdata8[11];
+    char stringdata9[13];
+    char stringdata10[15];
+    char stringdata11[22];
+    char stringdata12[10];
+    char stringdata13[10];
+    char stringdata14[21];
+    char stringdata15[10];
+    char stringdata16[17];
+    char stringdata17[5];
+    char stringdata18[16];
+    char stringdata19[10];
+    char stringdata20[9];
+    char stringdata21[5];
+    char stringdata22[24];
+    char stringdata23[5];
+    char stringdata24[16];
+    char stringdata25[12];
+    char stringdata26[11];
+    char stringdata27[7];
+    char stringdata28[23];
+    char stringdata29[18];
+    char stringdata30[23];
+    char stringdata31[13];
+    char stringdata32[12];
+    char stringdata33[12];
+    char stringdata34[12];
+    char stringdata35[22];
+    char stringdata36[12];
+    char stringdata37[7];
+    char stringdata38[29];
+    char stringdata39[16];
+    char stringdata40[21];
+    char stringdata41[5];
+    char stringdata42[16];
+    char stringdata43[22];
+    char stringdata44[9];
+    char stringdata45[11];
+    char stringdata46[17];
+    char stringdata47[21];
+    char stringdata48[20];
+    char stringdata49[11];
+    char stringdata50[15];
+    char stringdata51[25];
+    char stringdata52[19];
+    char stringdata53[21];
+    char stringdata54[20];
+    char stringdata55[21];
+    char stringdata56[7];
+    char stringdata57[16];
+    char stringdata58[9];
+    char stringdata59[9];
+    char stringdata60[16];
+    char stringdata61[19];
+    char stringdata62[16];
+    char stringdata63[14];
+    char stringdata64[15];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCustomPlot_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCustomPlot_t qt_meta_stringdata_QCustomPlot = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCustomPlot"
+        QT_MOC_LITERAL(12, 16),  // "mouseDoubleClick"
+        QT_MOC_LITERAL(29, 0),  // ""
+        QT_MOC_LITERAL(30, 12),  // "QMouseEvent*"
+        QT_MOC_LITERAL(43, 5),  // "event"
+        QT_MOC_LITERAL(49, 10),  // "mousePress"
+        QT_MOC_LITERAL(60, 9),  // "mouseMove"
+        QT_MOC_LITERAL(70, 12),  // "mouseRelease"
+        QT_MOC_LITERAL(83, 10),  // "mouseWheel"
+        QT_MOC_LITERAL(94, 12),  // "QWheelEvent*"
+        QT_MOC_LITERAL(107, 14),  // "plottableClick"
+        QT_MOC_LITERAL(122, 21),  // "QCPAbstractPlottable*"
+        QT_MOC_LITERAL(144, 9),  // "plottable"
+        QT_MOC_LITERAL(154, 9),  // "dataIndex"
+        QT_MOC_LITERAL(164, 20),  // "plottableDoubleClick"
+        QT_MOC_LITERAL(185, 9),  // "itemClick"
+        QT_MOC_LITERAL(195, 16),  // "QCPAbstractItem*"
+        QT_MOC_LITERAL(212, 4),  // "item"
+        QT_MOC_LITERAL(217, 15),  // "itemDoubleClick"
+        QT_MOC_LITERAL(233, 9),  // "axisClick"
+        QT_MOC_LITERAL(243, 8),  // "QCPAxis*"
+        QT_MOC_LITERAL(252, 4),  // "axis"
+        QT_MOC_LITERAL(257, 23),  // "QCPAxis::SelectablePart"
+        QT_MOC_LITERAL(281, 4),  // "part"
+        QT_MOC_LITERAL(286, 15),  // "axisDoubleClick"
+        QT_MOC_LITERAL(302, 11),  // "legendClick"
+        QT_MOC_LITERAL(314, 10),  // "QCPLegend*"
+        QT_MOC_LITERAL(325, 6),  // "legend"
+        QT_MOC_LITERAL(332, 22),  // "QCPAbstractLegendItem*"
+        QT_MOC_LITERAL(355, 17),  // "legendDoubleClick"
+        QT_MOC_LITERAL(373, 22),  // "selectionChangedByUser"
+        QT_MOC_LITERAL(396, 12),  // "beforeReplot"
+        QT_MOC_LITERAL(409, 11),  // "afterLayout"
+        QT_MOC_LITERAL(421, 11),  // "afterReplot"
+        QT_MOC_LITERAL(433, 11),  // "rescaleAxes"
+        QT_MOC_LITERAL(445, 21),  // "onlyVisiblePlottables"
+        QT_MOC_LITERAL(467, 11),  // "deselectAll"
+        QT_MOC_LITERAL(479, 6),  // "replot"
+        QT_MOC_LITERAL(486, 28),  // "QCustomPlot::RefreshPriority"
+        QT_MOC_LITERAL(515, 15),  // "refreshPriority"
+        QT_MOC_LITERAL(531, 20),  // "processRectSelection"
+        QT_MOC_LITERAL(552, 4),  // "rect"
+        QT_MOC_LITERAL(557, 15),  // "processRectZoom"
+        QT_MOC_LITERAL(573, 21),  // "processPointSelection"
+        QT_MOC_LITERAL(595, 8),  // "viewport"
+        QT_MOC_LITERAL(604, 10),  // "background"
+        QT_MOC_LITERAL(615, 16),  // "backgroundScaled"
+        QT_MOC_LITERAL(632, 20),  // "backgroundScaledMode"
+        QT_MOC_LITERAL(653, 19),  // "Qt::AspectRatioMode"
+        QT_MOC_LITERAL(673, 10),  // "plotLayout"
+        QT_MOC_LITERAL(684, 14),  // "QCPLayoutGrid*"
+        QT_MOC_LITERAL(699, 24),  // "autoAddPlottableToLegend"
+        QT_MOC_LITERAL(724, 18),  // "selectionTolerance"
+        QT_MOC_LITERAL(743, 20),  // "noAntialiasingOnDrag"
+        QT_MOC_LITERAL(764, 19),  // "multiSelectModifier"
+        QT_MOC_LITERAL(784, 20),  // "Qt::KeyboardModifier"
+        QT_MOC_LITERAL(805, 6),  // "openGl"
+        QT_MOC_LITERAL(812, 15),  // "LayerInsertMode"
+        QT_MOC_LITERAL(828, 8),  // "limBelow"
+        QT_MOC_LITERAL(837, 8),  // "limAbove"
+        QT_MOC_LITERAL(846, 15),  // "RefreshPriority"
+        QT_MOC_LITERAL(862, 18),  // "rpImmediateRefresh"
+        QT_MOC_LITERAL(881, 15),  // "rpQueuedRefresh"
+        QT_MOC_LITERAL(897, 13),  // "rpRefreshHint"
+        QT_MOC_LITERAL(911, 14)   // "rpQueuedReplot"
+    },
+    "QCustomPlot",
+    "mouseDoubleClick",
+    "",
+    "QMouseEvent*",
+    "event",
+    "mousePress",
+    "mouseMove",
+    "mouseRelease",
+    "mouseWheel",
+    "QWheelEvent*",
+    "plottableClick",
+    "QCPAbstractPlottable*",
+    "plottable",
+    "dataIndex",
+    "plottableDoubleClick",
+    "itemClick",
+    "QCPAbstractItem*",
+    "item",
+    "itemDoubleClick",
+    "axisClick",
+    "QCPAxis*",
+    "axis",
+    "QCPAxis::SelectablePart",
+    "part",
+    "axisDoubleClick",
+    "legendClick",
+    "QCPLegend*",
+    "legend",
+    "QCPAbstractLegendItem*",
+    "legendDoubleClick",
+    "selectionChangedByUser",
+    "beforeReplot",
+    "afterLayout",
+    "afterReplot",
+    "rescaleAxes",
+    "onlyVisiblePlottables",
+    "deselectAll",
+    "replot",
+    "QCustomPlot::RefreshPriority",
+    "refreshPriority",
+    "processRectSelection",
+    "rect",
+    "processRectZoom",
+    "processPointSelection",
+    "viewport",
+    "background",
+    "backgroundScaled",
+    "backgroundScaledMode",
+    "Qt::AspectRatioMode",
+    "plotLayout",
+    "QCPLayoutGrid*",
+    "autoAddPlottableToLegend",
+    "selectionTolerance",
+    "noAntialiasingOnDrag",
+    "multiSelectModifier",
+    "Qt::KeyboardModifier",
+    "openGl",
+    "LayerInsertMode",
+    "limBelow",
+    "limAbove",
+    "RefreshPriority",
+    "rpImmediateRefresh",
+    "rpQueuedRefresh",
+    "rpRefreshHint",
+    "rpQueuedReplot"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCustomPlot::qt_create_metaobjectdata<qt_meta_tag_ZN11QCustomPlotE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCustomPlot",
-        "mouseDoubleClick",
-        "",
-        "QMouseEvent*",
-        "event",
-        "mousePress",
-        "mouseMove",
-        "mouseRelease",
-        "mouseWheel",
-        "QWheelEvent*",
-        "plottableClick",
-        "QCPAbstractPlottable*",
-        "plottable",
-        "dataIndex",
-        "plottableDoubleClick",
-        "itemClick",
-        "QCPAbstractItem*",
-        "item",
-        "itemDoubleClick",
-        "axisClick",
-        "QCPAxis*",
-        "axis",
-        "QCPAxis::SelectablePart",
-        "part",
-        "axisDoubleClick",
-        "legendClick",
-        "QCPLegend*",
-        "legend",
-        "QCPAbstractLegendItem*",
-        "legendDoubleClick",
-        "selectionChangedByUser",
-        "beforeReplot",
-        "afterLayout",
-        "afterReplot",
-        "rescaleAxes",
-        "onlyVisiblePlottables",
-        "deselectAll",
-        "replot",
-        "QCustomPlot::RefreshPriority",
-        "refreshPriority",
-        "processRectSelection",
-        "QRect",
-        "rect",
-        "processRectZoom",
-        "processPointSelection",
-        "viewport",
-        "background",
-        "QPixmap",
-        "backgroundScaled",
-        "backgroundScaledMode",
-        "Qt::AspectRatioMode",
-        "plotLayout",
-        "QCPLayoutGrid*",
-        "autoAddPlottableToLegend",
-        "selectionTolerance",
-        "noAntialiasingOnDrag",
-        "multiSelectModifier",
-        "Qt::KeyboardModifier",
-        "openGl",
-        "LayerInsertMode",
-        "limBelow",
-        "limAbove",
-        "RefreshPriority",
-        "rpImmediateRefresh",
-        "rpQueuedRefresh",
-        "rpRefreshHint",
-        "rpQueuedReplot"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCustomPlot[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'mouseDoubleClick'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'mousePress'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'mouseMove'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'mouseRelease'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'mouseWheel'
-        QtMocHelpers::SignalData<void(QWheelEvent *)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 9, 4 },
-        }}),
-        // Signal 'plottableClick'
-        QtMocHelpers::SignalData<void(QCPAbstractPlottable *, int, QMouseEvent *)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 11, 12 }, { QMetaType::Int, 13 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'plottableDoubleClick'
-        QtMocHelpers::SignalData<void(QCPAbstractPlottable *, int, QMouseEvent *)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 11, 12 }, { QMetaType::Int, 13 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'itemClick'
-        QtMocHelpers::SignalData<void(QCPAbstractItem *, QMouseEvent *)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 16, 17 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'itemDoubleClick'
-        QtMocHelpers::SignalData<void(QCPAbstractItem *, QMouseEvent *)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 16, 17 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'axisClick'
-        QtMocHelpers::SignalData<void(QCPAxis *, QCPAxis::SelectablePart, QMouseEvent *)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 20, 21 }, { 0x80000000 | 22, 23 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'axisDoubleClick'
-        QtMocHelpers::SignalData<void(QCPAxis *, QCPAxis::SelectablePart, QMouseEvent *)>(24, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 20, 21 }, { 0x80000000 | 22, 23 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'legendClick'
-        QtMocHelpers::SignalData<void(QCPLegend *, QCPAbstractLegendItem *, QMouseEvent *)>(25, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 26, 27 }, { 0x80000000 | 28, 17 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'legendDoubleClick'
-        QtMocHelpers::SignalData<void(QCPLegend *, QCPAbstractLegendItem *, QMouseEvent *)>(29, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 26, 27 }, { 0x80000000 | 28, 17 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'selectionChangedByUser'
-        QtMocHelpers::SignalData<void()>(30, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'beforeReplot'
-        QtMocHelpers::SignalData<void()>(31, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'afterLayout'
-        QtMocHelpers::SignalData<void()>(32, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'afterReplot'
-        QtMocHelpers::SignalData<void()>(33, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'rescaleAxes'
-        QtMocHelpers::SlotData<void(bool)>(34, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 35 },
-        }}),
-        // Slot 'rescaleAxes'
-        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
-        // Slot 'deselectAll'
-        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'replot'
-        QtMocHelpers::SlotData<void(QCustomPlot::RefreshPriority)>(37, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 38, 39 },
-        }}),
-        // Slot 'replot'
-        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
-        // Slot 'processRectSelection'
-        QtMocHelpers::SlotData<void(QRect, QMouseEvent *)>(40, 2, QMC::AccessProtected, QMetaType::Void, {{
-            { 0x80000000 | 41, 42 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'processRectZoom'
-        QtMocHelpers::SlotData<void(QRect, QMouseEvent *)>(43, 2, QMC::AccessProtected, QMetaType::Void, {{
-            { 0x80000000 | 41, 42 }, { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'processPointSelection'
-        QtMocHelpers::SlotData<void(QMouseEvent *)>(44, 2, QMC::AccessProtected, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'viewport'
-        QtMocHelpers::PropertyData<QRect>(45, 0x80000000 | 41, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'background'
-        QtMocHelpers::PropertyData<QPixmap>(46, 0x80000000 | 47, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'backgroundScaled'
-        QtMocHelpers::PropertyData<bool>(48, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'backgroundScaledMode'
-        QtMocHelpers::PropertyData<Qt::AspectRatioMode>(49, 0x80000000 | 50, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'plotLayout'
-        QtMocHelpers::PropertyData<QCPLayoutGrid*>(51, 0x80000000 | 52, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'autoAddPlottableToLegend'
-        QtMocHelpers::PropertyData<bool>(53, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'selectionTolerance'
-        QtMocHelpers::PropertyData<int>(54, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'noAntialiasingOnDrag'
-        QtMocHelpers::PropertyData<bool>(55, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'multiSelectModifier'
-        QtMocHelpers::PropertyData<Qt::KeyboardModifier>(56, 0x80000000 | 57, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'openGl'
-        QtMocHelpers::PropertyData<bool>(58, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'LayerInsertMode'
-        QtMocHelpers::EnumData<enum LayerInsertMode>(59, 59, QMC::EnumFlags{}).add({
-            {   60, LayerInsertMode::limBelow },
-            {   61, LayerInsertMode::limAbove },
-        }),
-        // enum 'RefreshPriority'
-        QtMocHelpers::EnumData<enum RefreshPriority>(62, 62, QMC::EnumFlags{}).add({
-            {   63, RefreshPriority::rpImmediateRefresh },
-            {   64, RefreshPriority::rpQueuedRefresh },
-            {   65, RefreshPriority::rpRefreshHint },
-            {   66, RefreshPriority::rpQueuedReplot },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCustomPlot, qt_meta_tag_ZN11QCustomPlotE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+      25,   14, // methods
+      10,  257, // properties
+       2,  307, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+      17,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,  164,    2, 0x06,   11 /* Public */,
+       5,    1,  167,    2, 0x06,   13 /* Public */,
+       6,    1,  170,    2, 0x06,   15 /* Public */,
+       7,    1,  173,    2, 0x06,   17 /* Public */,
+       8,    1,  176,    2, 0x06,   19 /* Public */,
+      10,    3,  179,    2, 0x06,   21 /* Public */,
+      14,    3,  186,    2, 0x06,   25 /* Public */,
+      15,    2,  193,    2, 0x06,   29 /* Public */,
+      18,    2,  198,    2, 0x06,   32 /* Public */,
+      19,    3,  203,    2, 0x06,   35 /* Public */,
+      24,    3,  210,    2, 0x06,   39 /* Public */,
+      25,    3,  217,    2, 0x06,   43 /* Public */,
+      29,    3,  224,    2, 0x06,   47 /* Public */,
+      30,    0,  231,    2, 0x06,   51 /* Public */,
+      31,    0,  232,    2, 0x06,   52 /* Public */,
+      32,    0,  233,    2, 0x06,   53 /* Public */,
+      33,    0,  234,    2, 0x06,   54 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      34,    1,  235,    2, 0x0a,   55 /* Public */,
+      34,    0,  238,    2, 0x2a,   57 /* Public | MethodCloned */,
+      36,    0,  239,    2, 0x0a,   58 /* Public */,
+      37,    1,  240,    2, 0x0a,   59 /* Public */,
+      37,    0,  243,    2, 0x2a,   61 /* Public | MethodCloned */,
+      40,    2,  244,    2, 0x09,   62 /* Protected */,
+      42,    2,  249,    2, 0x09,   65 /* Protected */,
+      43,    1,  254,    2, 0x09,   68 /* Protected */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 9,    4,
+    QMetaType::Void, 0x80000000 | 11, QMetaType::Int, 0x80000000 | 3,   12,   13,    4,
+    QMetaType::Void, 0x80000000 | 11, QMetaType::Int, 0x80000000 | 3,   12,   13,    4,
+    QMetaType::Void, 0x80000000 | 16, 0x80000000 | 3,   17,    4,
+    QMetaType::Void, 0x80000000 | 16, 0x80000000 | 3,   17,    4,
+    QMetaType::Void, 0x80000000 | 20, 0x80000000 | 22, 0x80000000 | 3,   21,   23,    4,
+    QMetaType::Void, 0x80000000 | 20, 0x80000000 | 22, 0x80000000 | 3,   21,   23,    4,
+    QMetaType::Void, 0x80000000 | 26, 0x80000000 | 28, 0x80000000 | 3,   27,   17,    4,
+    QMetaType::Void, 0x80000000 | 26, 0x80000000 | 28, 0x80000000 | 3,   27,   17,    4,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Bool,   35,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 38,   39,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QRect, 0x80000000 | 3,   41,    4,
+    QMetaType::Void, QMetaType::QRect, 0x80000000 | 3,   41,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+
+ // properties: name, type, flags
+      44, QMetaType::QRect, 0x00015103, uint(-1), 0,
+      45, QMetaType::QPixmap, 0x00015103, uint(-1), 0,
+      46, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      47, 0x80000000 | 48, 0x0001510b, uint(-1), 0,
+      49, 0x80000000 | 50, 0x00015009, uint(-1), 0,
+      51, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      52, QMetaType::Int, 0x00015103, uint(-1), 0,
+      53, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      54, 0x80000000 | 55, 0x0001510b, uint(-1), 0,
+      56, QMetaType::Bool, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+      57,   57, 0x0,    2,  317,
+      60,   60, 0x0,    4,  321,
+
+ // enum data: key, value
+      58, uint(QCustomPlot::limBelow),
+      59, uint(QCustomPlot::limAbove),
+      61, uint(QCustomPlot::rpImmediateRefresh),
+      62, uint(QCustomPlot::rpQueuedRefresh),
+      63, uint(QCustomPlot::rpRefreshHint),
+      64, uint(QCustomPlot::rpQueuedReplot),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCustomPlot::staticMetaObject = { {
     QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCustomPlotE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCustomPlotE_t>.data,
+    qt_meta_stringdata_QCustomPlot.offsetsAndSizes,
+    qt_meta_data_QCustomPlot,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCustomPlotE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCustomPlot_t,
+        // property 'viewport'
+        QtPrivate::TypeAndForceComplete<QRect, std::true_type>,
+        // property 'background'
+        QtPrivate::TypeAndForceComplete<QPixmap, std::true_type>,
+        // property 'backgroundScaled'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'backgroundScaledMode'
+        QtPrivate::TypeAndForceComplete<Qt::AspectRatioMode, std::true_type>,
+        // property 'plotLayout'
+        QtPrivate::TypeAndForceComplete<QCPLayoutGrid*, std::true_type>,
+        // property 'autoAddPlottableToLegend'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'selectionTolerance'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'noAntialiasingOnDrag'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'multiSelectModifier'
+        QtPrivate::TypeAndForceComplete<Qt::KeyboardModifier, std::true_type>,
+        // property 'openGl'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCustomPlot, std::true_type>,
+        // method 'mouseDoubleClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'mousePress'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'mouseMove'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'mouseRelease'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'mouseWheel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QWheelEvent *, std::false_type>,
+        // method 'plottableClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractPlottable *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'plottableDoubleClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractPlottable *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'itemClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractItem *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'itemDoubleClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractItem *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'axisClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::SelectablePart, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'axisDoubleClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::SelectablePart, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'legendClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLegend *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractLegendItem *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'legendDoubleClick'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLegend *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAbstractLegendItem *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'selectionChangedByUser'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'beforeReplot'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'afterLayout'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'afterReplot'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'rescaleAxes'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'rescaleAxes'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'deselectAll'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'replot'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCustomPlot::RefreshPriority, std::false_type>,
+        // method 'replot'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'processRectSelection'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QRect, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'processRectZoom'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QRect, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'processPointSelection'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>
+    >,
     nullptr
 } };
 
 void QCustomPlot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCustomPlot *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCustomPlot *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->mouseDoubleClick((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 1: _t->mousePress((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 2: _t->mouseMove((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 3: _t->mouseRelease((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 4: _t->mouseWheel((*reinterpret_cast<std::add_pointer_t<QWheelEvent*>>(_a[1]))); break;
-        case 5: _t->plottableClick((*reinterpret_cast<std::add_pointer_t<QCPAbstractPlottable*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
-        case 6: _t->plottableDoubleClick((*reinterpret_cast<std::add_pointer_t<QCPAbstractPlottable*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
-        case 7: _t->itemClick((*reinterpret_cast<std::add_pointer_t<QCPAbstractItem*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
-        case 8: _t->itemDoubleClick((*reinterpret_cast<std::add_pointer_t<QCPAbstractItem*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
-        case 9: _t->axisClick((*reinterpret_cast<std::add_pointer_t<QCPAxis*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectablePart>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
-        case 10: _t->axisDoubleClick((*reinterpret_cast<std::add_pointer_t<QCPAxis*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectablePart>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
-        case 11: _t->legendClick((*reinterpret_cast<std::add_pointer_t<QCPLegend*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPAbstractLegendItem*>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
-        case 12: _t->legendDoubleClick((*reinterpret_cast<std::add_pointer_t<QCPLegend*>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPAbstractLegendItem*>>(_a[2])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 0: _t->mouseDoubleClick((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 1: _t->mousePress((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 2: _t->mouseMove((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 3: _t->mouseRelease((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 4: _t->mouseWheel((*reinterpret_cast< std::add_pointer_t<QWheelEvent*>>(_a[1]))); break;
+        case 5: _t->plottableClick((*reinterpret_cast< std::add_pointer_t<QCPAbstractPlottable*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 6: _t->plottableDoubleClick((*reinterpret_cast< std::add_pointer_t<QCPAbstractPlottable*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 7: _t->itemClick((*reinterpret_cast< std::add_pointer_t<QCPAbstractItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 8: _t->itemDoubleClick((*reinterpret_cast< std::add_pointer_t<QCPAbstractItem*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 9: _t->axisClick((*reinterpret_cast< std::add_pointer_t<QCPAxis*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectablePart>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 10: _t->axisDoubleClick((*reinterpret_cast< std::add_pointer_t<QCPAxis*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectablePart>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 11: _t->legendClick((*reinterpret_cast< std::add_pointer_t<QCPLegend*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPAbstractLegendItem*>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
+        case 12: _t->legendDoubleClick((*reinterpret_cast< std::add_pointer_t<QCPLegend*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPAbstractLegendItem*>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[3]))); break;
         case 13: _t->selectionChangedByUser(); break;
         case 14: _t->beforeReplot(); break;
         case 15: _t->afterLayout(); break;
         case 16: _t->afterReplot(); break;
-        case 17: _t->rescaleAxes((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 17: _t->rescaleAxes((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 18: _t->rescaleAxes(); break;
         case 19: _t->deselectAll(); break;
-        case 20: _t->replot((*reinterpret_cast<std::add_pointer_t<QCustomPlot::RefreshPriority>>(_a[1]))); break;
+        case 20: _t->replot((*reinterpret_cast< std::add_pointer_t<QCustomPlot::RefreshPriority>>(_a[1]))); break;
         case 21: _t->replot(); break;
-        case 22: _t->processRectSelection((*reinterpret_cast<std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
-        case 23: _t->processRectZoom((*reinterpret_cast<std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
-        case 24: _t->processPointSelection((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 22: _t->processRectSelection((*reinterpret_cast< std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 23: _t->processRectZoom((*reinterpret_cast< std::add_pointer_t<QRect>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[2]))); break;
+        case 24: _t->processPointSelection((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 5:
@@ -2757,80 +4127,169 @@ void QCustomPlot::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QMouseEvent * )>(_a, &QCustomPlot::mouseDoubleClick, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QMouseEvent * )>(_a, &QCustomPlot::mousePress, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QMouseEvent * )>(_a, &QCustomPlot::mouseMove, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QMouseEvent * )>(_a, &QCustomPlot::mouseRelease, 3))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QWheelEvent * )>(_a, &QCustomPlot::mouseWheel, 4))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAbstractPlottable * , int , QMouseEvent * )>(_a, &QCustomPlot::plottableClick, 5))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAbstractPlottable * , int , QMouseEvent * )>(_a, &QCustomPlot::plottableDoubleClick, 6))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAbstractItem * , QMouseEvent * )>(_a, &QCustomPlot::itemClick, 7))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAbstractItem * , QMouseEvent * )>(_a, &QCustomPlot::itemDoubleClick, 8))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAxis * , QCPAxis::SelectablePart , QMouseEvent * )>(_a, &QCustomPlot::axisClick, 9))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPAxis * , QCPAxis::SelectablePart , QMouseEvent * )>(_a, &QCustomPlot::axisDoubleClick, 10))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPLegend * , QCPAbstractLegendItem * , QMouseEvent * )>(_a, &QCustomPlot::legendClick, 11))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)(QCPLegend * , QCPAbstractLegendItem * , QMouseEvent * )>(_a, &QCustomPlot::legendDoubleClick, 12))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)()>(_a, &QCustomPlot::selectionChangedByUser, 13))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)()>(_a, &QCustomPlot::beforeReplot, 14))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)()>(_a, &QCustomPlot::afterLayout, 15))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCustomPlot::*)()>(_a, &QCustomPlot::afterReplot, 16))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCustomPlot::*)(QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::mouseDoubleClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::mousePress; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::mouseMove; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::mouseRelease; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QWheelEvent * );
+            if (_t _q_method = &QCustomPlot::mouseWheel; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAbstractPlottable * , int , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::plottableClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 5;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAbstractPlottable * , int , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::plottableDoubleClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 6;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAbstractItem * , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::itemClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 7;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAbstractItem * , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::itemDoubleClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAxis * , QCPAxis::SelectablePart , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::axisClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 9;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPAxis * , QCPAxis::SelectablePart , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::axisDoubleClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 10;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPLegend * , QCPAbstractLegendItem * , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::legendClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 11;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)(QCPLegend * , QCPAbstractLegendItem * , QMouseEvent * );
+            if (_t _q_method = &QCustomPlot::legendDoubleClick; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 12;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)();
+            if (_t _q_method = &QCustomPlot::selectionChangedByUser; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 13;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)();
+            if (_t _q_method = &QCustomPlot::beforeReplot; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 14;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)();
+            if (_t _q_method = &QCustomPlot::afterLayout; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 15;
+                return;
+            }
+        }
+        {
+            using _t = void (QCustomPlot::*)();
+            if (_t _q_method = &QCustomPlot::afterReplot; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 16;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 4:
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPLayoutGrid* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCustomPlot *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QRect*>(_v) = _t->viewport(); break;
-        case 1: *reinterpret_cast<QPixmap*>(_v) = _t->background(); break;
-        case 2: *reinterpret_cast<bool*>(_v) = _t->backgroundScaled(); break;
-        case 3: *reinterpret_cast<Qt::AspectRatioMode*>(_v) = _t->backgroundScaledMode(); break;
-        case 4: *reinterpret_cast<QCPLayoutGrid**>(_v) = _t->plotLayout(); break;
-        case 5: *reinterpret_cast<bool*>(_v) = _t->autoAddPlottableToLegend(); break;
-        case 6: *reinterpret_cast<int*>(_v) = _t->selectionTolerance(); break;
-        case 7: *reinterpret_cast<bool*>(_v) = _t->noAntialiasingOnDrag(); break;
-        case 8: *reinterpret_cast<Qt::KeyboardModifier*>(_v) = _t->multiSelectModifier(); break;
-        case 9: *reinterpret_cast<bool*>(_v) = _t->openGl(); break;
+        case 0: *reinterpret_cast< QRect*>(_v) = _t->viewport(); break;
+        case 1: *reinterpret_cast< QPixmap*>(_v) = _t->background(); break;
+        case 2: *reinterpret_cast< bool*>(_v) = _t->backgroundScaled(); break;
+        case 3: *reinterpret_cast< Qt::AspectRatioMode*>(_v) = _t->backgroundScaledMode(); break;
+        case 4: *reinterpret_cast< QCPLayoutGrid**>(_v) = _t->plotLayout(); break;
+        case 5: *reinterpret_cast< bool*>(_v) = _t->autoAddPlottableToLegend(); break;
+        case 6: *reinterpret_cast< int*>(_v) = _t->selectionTolerance(); break;
+        case 7: *reinterpret_cast< bool*>(_v) = _t->noAntialiasingOnDrag(); break;
+        case 8: *reinterpret_cast< Qt::KeyboardModifier*>(_v) = _t->multiSelectModifier(); break;
+        case 9: *reinterpret_cast< bool*>(_v) = _t->openGl(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCustomPlot *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setViewport(*reinterpret_cast<QRect*>(_v)); break;
-        case 1: _t->setBackground(*reinterpret_cast<QPixmap*>(_v)); break;
-        case 2: _t->setBackgroundScaled(*reinterpret_cast<bool*>(_v)); break;
-        case 3: _t->setBackgroundScaledMode(*reinterpret_cast<Qt::AspectRatioMode*>(_v)); break;
-        case 5: _t->setAutoAddPlottableToLegend(*reinterpret_cast<bool*>(_v)); break;
-        case 6: _t->setSelectionTolerance(*reinterpret_cast<int*>(_v)); break;
-        case 7: _t->setNoAntialiasingOnDrag(*reinterpret_cast<bool*>(_v)); break;
-        case 8: _t->setMultiSelectModifier(*reinterpret_cast<Qt::KeyboardModifier*>(_v)); break;
-        case 9: _t->setOpenGl(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setViewport(*reinterpret_cast< QRect*>(_v)); break;
+        case 1: _t->setBackground(*reinterpret_cast< QPixmap*>(_v)); break;
+        case 2: _t->setBackgroundScaled(*reinterpret_cast< bool*>(_v)); break;
+        case 3: _t->setBackgroundScaledMode(*reinterpret_cast< Qt::AspectRatioMode*>(_v)); break;
+        case 5: _t->setAutoAddPlottableToLegend(*reinterpret_cast< bool*>(_v)); break;
+        case 6: _t->setSelectionTolerance(*reinterpret_cast< int*>(_v)); break;
+        case 7: _t->setNoAntialiasingOnDrag(*reinterpret_cast< bool*>(_v)); break;
+        case 8: _t->setMultiSelectModifier(*reinterpret_cast< Qt::KeyboardModifier*>(_v)); break;
+        case 9: _t->setOpenGl(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -2842,7 +4301,7 @@ const QMetaObject *QCustomPlot::metaObject() const
 void *QCustomPlot::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCustomPlotE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCustomPlot.stringdata0))
         return static_cast<void*>(this);
     return QWidget::qt_metacast(_clname);
 }
@@ -2856,13 +4315,11 @@ int QCustomPlot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 25;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 25;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -2874,79 +4331,92 @@ int QCustomPlot::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCustomPlot::mouseDoubleClick(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCustomPlot::mousePress(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCustomPlot::mouseMove(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCustomPlot::mouseRelease(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
 void QCustomPlot::mouseWheel(QWheelEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
 void QCustomPlot::plottableClick(QCPAbstractPlottable * _t1, int _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 5, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
 void QCustomPlot::plottableDoubleClick(QCPAbstractPlottable * _t1, int _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 6, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
 void QCustomPlot::itemClick(QCPAbstractItem * _t1, QMouseEvent * _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 7, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
 void QCustomPlot::itemDoubleClick(QCPAbstractItem * _t1, QMouseEvent * _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 8, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
 }
 
 // SIGNAL 9
 void QCustomPlot::axisClick(QCPAxis * _t1, QCPAxis::SelectablePart _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 9, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 
 // SIGNAL 10
 void QCustomPlot::axisDoubleClick(QCPAxis * _t1, QCPAxis::SelectablePart _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 10, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 10, _a);
 }
 
 // SIGNAL 11
 void QCustomPlot::legendClick(QCPLegend * _t1, QCPAbstractLegendItem * _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 11, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 11, _a);
 }
 
 // SIGNAL 12
 void QCustomPlot::legendDoubleClick(QCPLegend * _t1, QCPAbstractLegendItem * _t2, QMouseEvent * _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 12, nullptr, _t1, _t2, _t3);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    QMetaObject::activate(this, &staticMetaObject, 12, _a);
 }
 
 // SIGNAL 13
@@ -2973,202 +4443,331 @@ void QCustomPlot::afterReplot()
     QMetaObject::activate(this, &staticMetaObject, 16, nullptr);
 }
 namespace {
-struct qt_meta_tag_ZN16QCPColorGradientE_t {};
+struct qt_meta_stringdata_QCPColorGradient_t {
+    uint offsetsAndSizes[46];
+    char stringdata0[17];
+    char stringdata1[19];
+    char stringdata2[6];
+    char stringdata3[6];
+    char stringdata4[12];
+    char stringdata5[7];
+    char stringdata6[14];
+    char stringdata7[15];
+    char stringdata8[14];
+    char stringdata9[11];
+    char stringdata10[15];
+    char stringdata11[12];
+    char stringdata12[6];
+    char stringdata13[7];
+    char stringdata14[8];
+    char stringdata15[8];
+    char stringdata16[12];
+    char stringdata17[6];
+    char stringdata18[10];
+    char stringdata19[8];
+    char stringdata20[11];
+    char stringdata21[6];
+    char stringdata22[7];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPColorGradient_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPColorGradient_t qt_meta_stringdata_QCPColorGradient = {
+    {
+        QT_MOC_LITERAL(0, 16),  // "QCPColorGradient"
+        QT_MOC_LITERAL(17, 18),  // "ColorInterpolation"
+        QT_MOC_LITERAL(36, 5),  // "ciRGB"
+        QT_MOC_LITERAL(42, 5),  // "ciHSV"
+        QT_MOC_LITERAL(48, 11),  // "NanHandling"
+        QT_MOC_LITERAL(60, 6),  // "nhNone"
+        QT_MOC_LITERAL(67, 13),  // "nhLowestColor"
+        QT_MOC_LITERAL(81, 14),  // "nhHighestColor"
+        QT_MOC_LITERAL(96, 13),  // "nhTransparent"
+        QT_MOC_LITERAL(110, 10),  // "nhNanColor"
+        QT_MOC_LITERAL(121, 14),  // "GradientPreset"
+        QT_MOC_LITERAL(136, 11),  // "gpGrayscale"
+        QT_MOC_LITERAL(148, 5),  // "gpHot"
+        QT_MOC_LITERAL(154, 6),  // "gpCold"
+        QT_MOC_LITERAL(161, 7),  // "gpNight"
+        QT_MOC_LITERAL(169, 7),  // "gpCandy"
+        QT_MOC_LITERAL(177, 11),  // "gpGeography"
+        QT_MOC_LITERAL(189, 5),  // "gpIon"
+        QT_MOC_LITERAL(195, 9),  // "gpThermal"
+        QT_MOC_LITERAL(205, 7),  // "gpPolar"
+        QT_MOC_LITERAL(213, 10),  // "gpSpectrum"
+        QT_MOC_LITERAL(224, 5),  // "gpJet"
+        QT_MOC_LITERAL(230, 6)   // "gpHues"
+    },
+    "QCPColorGradient",
+    "ColorInterpolation",
+    "ciRGB",
+    "ciHSV",
+    "NanHandling",
+    "nhNone",
+    "nhLowestColor",
+    "nhHighestColor",
+    "nhTransparent",
+    "nhNanColor",
+    "GradientPreset",
+    "gpGrayscale",
+    "gpHot",
+    "gpCold",
+    "gpNight",
+    "gpCandy",
+    "gpGeography",
+    "gpIon",
+    "gpThermal",
+    "gpPolar",
+    "gpSpectrum",
+    "gpJet",
+    "gpHues"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPColorGradient::qt_create_metaobjectdata<qt_meta_tag_ZN16QCPColorGradientE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPColorGradient",
-        "ColorInterpolation",
-        "ciRGB",
-        "ciHSV",
-        "NanHandling",
-        "nhNone",
-        "nhLowestColor",
-        "nhHighestColor",
-        "nhTransparent",
-        "nhNanColor",
-        "GradientPreset",
-        "gpGrayscale",
-        "gpHot",
-        "gpCold",
-        "gpNight",
-        "gpCandy",
-        "gpGeography",
-        "gpIon",
-        "gpThermal",
-        "gpPolar",
-        "gpSpectrum",
-        "gpJet",
-        "gpHues"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPColorGradient[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'ColorInterpolation'
-        QtMocHelpers::EnumData<enum ColorInterpolation>(1, 1, QMC::EnumFlags{}).add({
-            {    2, ColorInterpolation::ciRGB },
-            {    3, ColorInterpolation::ciHSV },
-        }),
-        // enum 'NanHandling'
-        QtMocHelpers::EnumData<enum NanHandling>(4, 4, QMC::EnumFlags{}).add({
-            {    5, NanHandling::nhNone },
-            {    6, NanHandling::nhLowestColor },
-            {    7, NanHandling::nhHighestColor },
-            {    8, NanHandling::nhTransparent },
-            {    9, NanHandling::nhNanColor },
-        }),
-        // enum 'GradientPreset'
-        QtMocHelpers::EnumData<enum GradientPreset>(10, 10, QMC::EnumFlags{}).add({
-            {   11, GradientPreset::gpGrayscale },
-            {   12, GradientPreset::gpHot },
-            {   13, GradientPreset::gpCold },
-            {   14, GradientPreset::gpNight },
-            {   15, GradientPreset::gpCandy },
-            {   16, GradientPreset::gpGeography },
-            {   17, GradientPreset::gpIon },
-            {   18, GradientPreset::gpThermal },
-            {   19, GradientPreset::gpPolar },
-            {   20, GradientPreset::gpSpectrum },
-            {   21, GradientPreset::gpJet },
-            {   22, GradientPreset::gpHues },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPColorGradient, qt_meta_tag_ZN16QCPColorGradientE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       3,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    2,   29,
+       4,    4, 0x0,    5,   33,
+      10,   10, 0x0,   12,   43,
+
+ // enum data: key, value
+       2, uint(QCPColorGradient::ciRGB),
+       3, uint(QCPColorGradient::ciHSV),
+       5, uint(QCPColorGradient::nhNone),
+       6, uint(QCPColorGradient::nhLowestColor),
+       7, uint(QCPColorGradient::nhHighestColor),
+       8, uint(QCPColorGradient::nhTransparent),
+       9, uint(QCPColorGradient::nhNanColor),
+      11, uint(QCPColorGradient::gpGrayscale),
+      12, uint(QCPColorGradient::gpHot),
+      13, uint(QCPColorGradient::gpCold),
+      14, uint(QCPColorGradient::gpNight),
+      15, uint(QCPColorGradient::gpCandy),
+      16, uint(QCPColorGradient::gpGeography),
+      17, uint(QCPColorGradient::gpIon),
+      18, uint(QCPColorGradient::gpThermal),
+      19, uint(QCPColorGradient::gpPolar),
+      20, uint(QCPColorGradient::gpSpectrum),
+      21, uint(QCPColorGradient::gpJet),
+      22, uint(QCPColorGradient::gpHues),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPColorGradient::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPColorGradientE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN16QCPColorGradientE_t>.data,
+    qt_meta_stringdata_QCPColorGradient.offsetsAndSizes,
+    qt_meta_data_QCPColorGradient,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN16QCPColorGradientE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPColorGradient_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPColorGradient, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t {};
+struct qt_meta_stringdata_QCPSelectionDecoratorBracket_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[29];
+    char stringdata1[13];
+    char stringdata2[16];
+    char stringdata3[14];
+    char stringdata4[10];
+    char stringdata5[7];
+    char stringdata6[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPSelectionDecoratorBracket_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPSelectionDecoratorBracket_t qt_meta_stringdata_QCPSelectionDecoratorBracket = {
+    {
+        QT_MOC_LITERAL(0, 28),  // "QCPSelectionDecoratorBracket"
+        QT_MOC_LITERAL(29, 12),  // "BracketStyle"
+        QT_MOC_LITERAL(42, 15),  // "bsSquareBracket"
+        QT_MOC_LITERAL(58, 13),  // "bsHalfEllipse"
+        QT_MOC_LITERAL(72, 9),  // "bsEllipse"
+        QT_MOC_LITERAL(82, 6),  // "bsPlus"
+        QT_MOC_LITERAL(89, 11)   // "bsUserStyle"
+    },
+    "QCPSelectionDecoratorBracket",
+    "BracketStyle",
+    "bsSquareBracket",
+    "bsHalfEllipse",
+    "bsEllipse",
+    "bsPlus",
+    "bsUserStyle"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPSelectionDecoratorBracket::qt_create_metaobjectdata<qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPSelectionDecoratorBracket",
-        "BracketStyle",
-        "bsSquareBracket",
-        "bsHalfEllipse",
-        "bsEllipse",
-        "bsPlus",
-        "bsUserStyle"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPSelectionDecoratorBracket[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'BracketStyle'
-        QtMocHelpers::EnumData<enum BracketStyle>(1, 1, QMC::EnumFlags{}).add({
-            {    2, BracketStyle::bsSquareBracket },
-            {    3, BracketStyle::bsHalfEllipse },
-            {    4, BracketStyle::bsEllipse },
-            {    5, BracketStyle::bsPlus },
-            {    6, BracketStyle::bsUserStyle },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPSelectionDecoratorBracket, qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       1,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    5,   19,
+
+ // enum data: key, value
+       2, uint(QCPSelectionDecoratorBracket::bsSquareBracket),
+       3, uint(QCPSelectionDecoratorBracket::bsHalfEllipse),
+       4, uint(QCPSelectionDecoratorBracket::bsEllipse),
+       5, uint(QCPSelectionDecoratorBracket::bsPlus),
+       6, uint(QCPSelectionDecoratorBracket::bsUserStyle),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPSelectionDecoratorBracket::staticMetaObject = { {
     QtPrivate::MetaObjectForType<QCPSelectionDecorator>::value,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t>.data,
+    qt_meta_stringdata_QCPSelectionDecoratorBracket.offsetsAndSizes,
+    qt_meta_data_QCPSelectionDecoratorBracket,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN28QCPSelectionDecoratorBracketE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPSelectionDecoratorBracket_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPSelectionDecoratorBracket, std::true_type>
+    >,
     nullptr
 } };
 
 namespace {
-struct qt_meta_tag_ZN11QCPAxisRectE_t {};
+struct qt_meta_stringdata_QCPAxisRect_t {
+    uint offsetsAndSizes[16];
+    char stringdata0[12];
+    char stringdata1[11];
+    char stringdata2[17];
+    char stringdata3[21];
+    char stringdata4[20];
+    char stringdata5[10];
+    char stringdata6[17];
+    char stringdata7[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAxisRect_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAxisRect_t qt_meta_stringdata_QCPAxisRect = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCPAxisRect"
+        QT_MOC_LITERAL(12, 10),  // "background"
+        QT_MOC_LITERAL(23, 16),  // "backgroundScaled"
+        QT_MOC_LITERAL(40, 20),  // "backgroundScaledMode"
+        QT_MOC_LITERAL(61, 19),  // "Qt::AspectRatioMode"
+        QT_MOC_LITERAL(81, 9),  // "rangeDrag"
+        QT_MOC_LITERAL(91, 16),  // "Qt::Orientations"
+        QT_MOC_LITERAL(108, 9)   // "rangeZoom"
+    },
+    "QCPAxisRect",
+    "background",
+    "backgroundScaled",
+    "backgroundScaledMode",
+    "Qt::AspectRatioMode",
+    "rangeDrag",
+    "Qt::Orientations",
+    "rangeZoom"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAxisRect::qt_create_metaobjectdata<qt_meta_tag_ZN11QCPAxisRectE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAxisRect",
-        "background",
-        "QPixmap",
-        "backgroundScaled",
-        "backgroundScaledMode",
-        "Qt::AspectRatioMode",
-        "rangeDrag",
-        "Qt::Orientations",
-        "rangeZoom"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAxisRect[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'background'
-        QtMocHelpers::PropertyData<QPixmap>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'backgroundScaled'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'backgroundScaledMode'
-        QtMocHelpers::PropertyData<Qt::AspectRatioMode>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'rangeDrag'
-        QtMocHelpers::PropertyData<Qt::Orientations>(6, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'rangeZoom'
-        QtMocHelpers::PropertyData<Qt::Orientations>(8, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPAxisRect, qt_meta_tag_ZN11QCPAxisRectE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       5,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPixmap, 0x00015103, uint(-1), 0,
+       2, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, 0x80000000 | 6, 0x0001510b, uint(-1), 0,
+       7, 0x80000000 | 6, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAxisRect::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPAxisRectE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPAxisRectE_t>.data,
+    qt_meta_stringdata_QCPAxisRect.offsetsAndSizes,
+    qt_meta_data_QCPAxisRect,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCPAxisRectE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAxisRect_t,
+        // property 'background'
+        QtPrivate::TypeAndForceComplete<QPixmap, std::true_type>,
+        // property 'backgroundScaled'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'backgroundScaledMode'
+        QtPrivate::TypeAndForceComplete<Qt::AspectRatioMode, std::true_type>,
+        // property 'rangeDrag'
+        QtPrivate::TypeAndForceComplete<Qt::Orientations, std::true_type>,
+        // property 'rangeZoom'
+        QtPrivate::TypeAndForceComplete<Qt::Orientations, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAxisRect, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPAxisRect::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPAxisRect *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPAxisRect *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPixmap*>(_v) = _t->background(); break;
-        case 1: *reinterpret_cast<bool*>(_v) = _t->backgroundScaled(); break;
-        case 2: *reinterpret_cast<Qt::AspectRatioMode*>(_v) = _t->backgroundScaledMode(); break;
-        case 3: *reinterpret_cast<Qt::Orientations*>(_v) = _t->rangeDrag(); break;
-        case 4: *reinterpret_cast<Qt::Orientations*>(_v) = _t->rangeZoom(); break;
+        case 0: *reinterpret_cast< QPixmap*>(_v) = _t->background(); break;
+        case 1: *reinterpret_cast< bool*>(_v) = _t->backgroundScaled(); break;
+        case 2: *reinterpret_cast< Qt::AspectRatioMode*>(_v) = _t->backgroundScaledMode(); break;
+        case 3: *reinterpret_cast< Qt::Orientations*>(_v) = _t->rangeDrag(); break;
+        case 4: *reinterpret_cast< Qt::Orientations*>(_v) = _t->rangeZoom(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPAxisRect *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setBackground(*reinterpret_cast<QPixmap*>(_v)); break;
-        case 1: _t->setBackgroundScaled(*reinterpret_cast<bool*>(_v)); break;
-        case 2: _t->setBackgroundScaledMode(*reinterpret_cast<Qt::AspectRatioMode*>(_v)); break;
-        case 3: _t->setRangeDrag(*reinterpret_cast<Qt::Orientations*>(_v)); break;
-        case 4: _t->setRangeZoom(*reinterpret_cast<Qt::Orientations*>(_v)); break;
+        case 0: _t->setBackground(*reinterpret_cast< QPixmap*>(_v)); break;
+        case 1: _t->setBackgroundScaled(*reinterpret_cast< bool*>(_v)); break;
+        case 2: _t->setBackgroundScaledMode(*reinterpret_cast< Qt::AspectRatioMode*>(_v)); break;
+        case 3: _t->setRangeDrag(*reinterpret_cast< Qt::Orientations*>(_v)); break;
+        case 4: _t->setRangeZoom(*reinterpret_cast< Qt::Orientations*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPAxisRect::metaObject() const
@@ -3179,7 +4778,7 @@ const QMetaObject *QCPAxisRect::metaObject() const
 void *QCPAxisRect::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPAxisRectE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPAxisRect.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -3198,129 +4797,204 @@ int QCPAxisRect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN21QCPAbstractLegendItemE_t {};
+struct qt_meta_stringdata_QCPAbstractLegendItem_t {
+    uint offsetsAndSizes[28];
+    char stringdata0[22];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[18];
+    char stringdata5[11];
+    char stringdata6[14];
+    char stringdata7[12];
+    char stringdata8[13];
+    char stringdata9[11];
+    char stringdata10[5];
+    char stringdata11[10];
+    char stringdata12[13];
+    char stringdata13[18];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPAbstractLegendItem_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPAbstractLegendItem_t qt_meta_stringdata_QCPAbstractLegendItem = {
+    {
+        QT_MOC_LITERAL(0, 21),  // "QCPAbstractLegendItem"
+        QT_MOC_LITERAL(22, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(39, 0),  // ""
+        QT_MOC_LITERAL(40, 8),  // "selected"
+        QT_MOC_LITERAL(49, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(67, 10),  // "selectable"
+        QT_MOC_LITERAL(78, 13),  // "setSelectable"
+        QT_MOC_LITERAL(92, 11),  // "setSelected"
+        QT_MOC_LITERAL(104, 12),  // "parentLegend"
+        QT_MOC_LITERAL(117, 10),  // "QCPLegend*"
+        QT_MOC_LITERAL(128, 4),  // "font"
+        QT_MOC_LITERAL(133, 9),  // "textColor"
+        QT_MOC_LITERAL(143, 12),  // "selectedFont"
+        QT_MOC_LITERAL(156, 17)   // "selectedTextColor"
+    },
+    "QCPAbstractLegendItem",
+    "selectionChanged",
+    "",
+    "selected",
+    "selectableChanged",
+    "selectable",
+    "setSelectable",
+    "setSelected",
+    "parentLegend",
+    "QCPLegend*",
+    "font",
+    "textColor",
+    "selectedFont",
+    "selectedTextColor"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPAbstractLegendItem::qt_create_metaobjectdata<qt_meta_tag_ZN21QCPAbstractLegendItemE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPAbstractLegendItem",
-        "selectionChanged",
-        "",
-        "selected",
-        "selectableChanged",
-        "selectable",
-        "setSelectable",
-        "setSelected",
-        "parentLegend",
-        "QCPLegend*",
-        "font",
-        "QFont",
-        "textColor",
-        "QColor",
-        "selectedFont",
-        "selectedTextColor"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPAbstractLegendItem[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(bool)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Slot 'setSelectable'
-        QtMocHelpers::SlotData<void(bool)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Slot 'setSelected'
-        QtMocHelpers::SlotData<void(bool)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'parentLegend'
-        QtMocHelpers::PropertyData<QCPLegend*>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'font'
-        QtMocHelpers::PropertyData<QFont>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'textColor'
-        QtMocHelpers::PropertyData<QColor>(12, 0x80000000 | 13, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedFont'
-        QtMocHelpers::PropertyData<QFont>(14, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedTextColor'
-        QtMocHelpers::PropertyData<QColor>(15, 0x80000000 | 13, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectable'
-        QtMocHelpers::PropertyData<bool>(5, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
-        // property 'selected'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPAbstractLegendItem, qt_meta_tag_ZN21QCPAbstractLegendItemE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       4,   14, // methods
+       7,   50, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   38,    2, 0x06,    8 /* Public */,
+       4,    1,   41,    2, 0x06,   10 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       6,    1,   44,    2, 0x0a,   12 /* Public */,
+       7,    1,   47,    2, 0x0a,   14 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool,    5,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    3,
+
+ // properties: name, type, flags
+       8, 0x80000000 | 9, 0x00015009, uint(-1), 0,
+      10, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      11, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      12, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      13, QMetaType::QColor, 0x00015103, uint(-1), 0,
+       5, QMetaType::Bool, 0x00015103, uint(0), 0,
+       3, QMetaType::Bool, 0x00015103, uint(1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPAbstractLegendItem::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21QCPAbstractLegendItemE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21QCPAbstractLegendItemE_t>.data,
+    qt_meta_stringdata_QCPAbstractLegendItem.offsetsAndSizes,
+    qt_meta_data_QCPAbstractLegendItem,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN21QCPAbstractLegendItemE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPAbstractLegendItem_t,
+        // property 'parentLegend'
+        QtPrivate::TypeAndForceComplete<QCPLegend*, std::true_type>,
+        // property 'font'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'textColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectedFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedTextColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectable'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'selected'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPAbstractLegendItem, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'setSelectable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'setSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPAbstractLegendItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPAbstractLegendItem *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPAbstractLegendItem *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->setSelectable((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 3: _t->setSelected((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->setSelectable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 3: _t->setSelected((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractLegendItem::*)(bool )>(_a, &QCPAbstractLegendItem::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPAbstractLegendItem::*)(bool )>(_a, &QCPAbstractLegendItem::selectableChanged, 1))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPAbstractLegendItem::*)(bool );
+            if (_t _q_method = &QCPAbstractLegendItem::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPAbstractLegendItem::*)(bool );
+            if (_t _q_method = &QCPAbstractLegendItem::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 0:
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPLegend* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPAbstractLegendItem *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCPLegend**>(_v) = _t->parentLegend(); break;
-        case 1: *reinterpret_cast<QFont*>(_v) = _t->font(); break;
-        case 2: *reinterpret_cast<QColor*>(_v) = _t->textColor(); break;
-        case 3: *reinterpret_cast<QFont*>(_v) = _t->selectedFont(); break;
-        case 4: *reinterpret_cast<QColor*>(_v) = _t->selectedTextColor(); break;
-        case 5: *reinterpret_cast<bool*>(_v) = _t->selectable(); break;
-        case 6: *reinterpret_cast<bool*>(_v) = _t->selected(); break;
+        case 0: *reinterpret_cast< QCPLegend**>(_v) = _t->parentLegend(); break;
+        case 1: *reinterpret_cast< QFont*>(_v) = _t->font(); break;
+        case 2: *reinterpret_cast< QColor*>(_v) = _t->textColor(); break;
+        case 3: *reinterpret_cast< QFont*>(_v) = _t->selectedFont(); break;
+        case 4: *reinterpret_cast< QColor*>(_v) = _t->selectedTextColor(); break;
+        case 5: *reinterpret_cast< bool*>(_v) = _t->selectable(); break;
+        case 6: *reinterpret_cast< bool*>(_v) = _t->selected(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPAbstractLegendItem *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 1: _t->setFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 2: _t->setTextColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 3: _t->setSelectedFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 4: _t->setSelectedTextColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 5: _t->setSelectable(*reinterpret_cast<bool*>(_v)); break;
-        case 6: _t->setSelected(*reinterpret_cast<bool*>(_v)); break;
+        case 1: _t->setFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 2: _t->setTextColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 3: _t->setSelectedFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 4: _t->setSelectedTextColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 5: _t->setSelectable(*reinterpret_cast< bool*>(_v)); break;
+        case 6: _t->setSelected(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -3332,7 +5006,7 @@ const QMetaObject *QCPAbstractLegendItem::metaObject() const
 void *QCPAbstractLegendItem::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN21QCPAbstractLegendItemE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPAbstractLegendItem.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -3346,13 +5020,11 @@ int QCPAbstractLegendItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 4;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 4;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -3364,50 +5036,66 @@ int QCPAbstractLegendItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPAbstractLegendItem::selectionChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPAbstractLegendItem::selectableChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 namespace {
-struct qt_meta_tag_ZN22QCPPlottableLegendItemE_t {};
+struct qt_meta_stringdata_QCPPlottableLegendItem_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[23];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPlottableLegendItem_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPlottableLegendItem_t qt_meta_stringdata_QCPPlottableLegendItem = {
+    {
+        QT_MOC_LITERAL(0, 22)   // "QCPPlottableLegendItem"
+    },
+    "QCPPlottableLegendItem"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPlottableLegendItem::qt_create_metaobjectdata<qt_meta_tag_ZN22QCPPlottableLegendItemE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPlottableLegendItem"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPlottableLegendItem[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPPlottableLegendItem, qt_meta_tag_ZN22QCPPlottableLegendItemE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPlottableLegendItem::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractLegendItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN22QCPPlottableLegendItemE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN22QCPPlottableLegendItemE_t>.data,
+    qt_meta_stringdata_QCPPlottableLegendItem.offsetsAndSizes,
+    qt_meta_data_QCPPlottableLegendItem,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN22QCPPlottableLegendItemE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPlottableLegendItem_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPlottableLegendItem, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPPlottableLegendItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPlottableLegendItem *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -3419,7 +5107,7 @@ const QMetaObject *QCPPlottableLegendItem::metaObject() const
 void *QCPPlottableLegendItem::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN22QCPPlottableLegendItemE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPlottableLegendItem.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractLegendItem::qt_metacast(_clname);
 }
@@ -3430,179 +5118,284 @@ int QCPPlottableLegendItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN9QCPLegendE_t {};
+struct qt_meta_stringdata_QCPLegend_t {
+    uint offsetsAndSizes[54];
+    char stringdata0[10];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[27];
+    char stringdata4[6];
+    char stringdata5[18];
+    char stringdata6[19];
+    char stringdata7[16];
+    char stringdata8[16];
+    char stringdata9[17];
+    char stringdata10[14];
+    char stringdata11[10];
+    char stringdata12[6];
+    char stringdata13[5];
+    char stringdata14[10];
+    char stringdata15[9];
+    char stringdata16[16];
+    char stringdata17[14];
+    char stringdata18[18];
+    char stringdata19[22];
+    char stringdata20[14];
+    char stringdata21[13];
+    char stringdata22[18];
+    char stringdata23[15];
+    char stringdata24[7];
+    char stringdata25[12];
+    char stringdata26[8];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPLegend_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPLegend_t qt_meta_stringdata_QCPLegend = {
+    {
+        QT_MOC_LITERAL(0, 9),  // "QCPLegend"
+        QT_MOC_LITERAL(10, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(27, 0),  // ""
+        QT_MOC_LITERAL(28, 26),  // "QCPLegend::SelectableParts"
+        QT_MOC_LITERAL(55, 5),  // "parts"
+        QT_MOC_LITERAL(61, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(79, 18),  // "setSelectableParts"
+        QT_MOC_LITERAL(98, 15),  // "SelectableParts"
+        QT_MOC_LITERAL(114, 15),  // "selectableParts"
+        QT_MOC_LITERAL(130, 16),  // "setSelectedParts"
+        QT_MOC_LITERAL(147, 13),  // "selectedParts"
+        QT_MOC_LITERAL(161, 9),  // "borderPen"
+        QT_MOC_LITERAL(171, 5),  // "brush"
+        QT_MOC_LITERAL(177, 4),  // "font"
+        QT_MOC_LITERAL(182, 9),  // "textColor"
+        QT_MOC_LITERAL(192, 8),  // "iconSize"
+        QT_MOC_LITERAL(201, 15),  // "iconTextPadding"
+        QT_MOC_LITERAL(217, 13),  // "iconBorderPen"
+        QT_MOC_LITERAL(231, 17),  // "selectedBorderPen"
+        QT_MOC_LITERAL(249, 21),  // "selectedIconBorderPen"
+        QT_MOC_LITERAL(271, 13),  // "selectedBrush"
+        QT_MOC_LITERAL(285, 12),  // "selectedFont"
+        QT_MOC_LITERAL(298, 17),  // "selectedTextColor"
+        QT_MOC_LITERAL(316, 14),  // "SelectablePart"
+        QT_MOC_LITERAL(331, 6),  // "spNone"
+        QT_MOC_LITERAL(338, 11),  // "spLegendBox"
+        QT_MOC_LITERAL(350, 7)   // "spItems"
+    },
+    "QCPLegend",
+    "selectionChanged",
+    "",
+    "QCPLegend::SelectableParts",
+    "parts",
+    "selectableChanged",
+    "setSelectableParts",
+    "SelectableParts",
+    "selectableParts",
+    "setSelectedParts",
+    "selectedParts",
+    "borderPen",
+    "brush",
+    "font",
+    "textColor",
+    "iconSize",
+    "iconTextPadding",
+    "iconBorderPen",
+    "selectedBorderPen",
+    "selectedIconBorderPen",
+    "selectedBrush",
+    "selectedFont",
+    "selectedTextColor",
+    "SelectablePart",
+    "spNone",
+    "spLegendBox",
+    "spItems"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPLegend::qt_create_metaobjectdata<qt_meta_tag_ZN9QCPLegendE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPLegend",
-        "selectionChanged",
-        "",
-        "QCPLegend::SelectableParts",
-        "parts",
-        "selectableChanged",
-        "setSelectableParts",
-        "SelectableParts",
-        "selectableParts",
-        "setSelectedParts",
-        "selectedParts",
-        "borderPen",
-        "QPen",
-        "brush",
-        "QBrush",
-        "font",
-        "QFont",
-        "textColor",
-        "QColor",
-        "iconSize",
-        "QSize",
-        "iconTextPadding",
-        "iconBorderPen",
-        "selectedBorderPen",
-        "selectedIconBorderPen",
-        "selectedBrush",
-        "selectedFont",
-        "selectedTextColor",
-        "SelectablePart",
-        "spNone",
-        "spLegendBox",
-        "spItems"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPLegend[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(QCPLegend::SelectableParts)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(QCPLegend::SelectableParts)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'setSelectableParts'
-        QtMocHelpers::SlotData<void(const SelectableParts &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelectedParts'
-        QtMocHelpers::SlotData<void(const SelectableParts &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 10 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'borderPen'
-        QtMocHelpers::PropertyData<QPen>(11, 0x80000000 | 12, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(13, 0x80000000 | 14, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'font'
-        QtMocHelpers::PropertyData<QFont>(15, 0x80000000 | 16, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'textColor'
-        QtMocHelpers::PropertyData<QColor>(17, 0x80000000 | 18, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'iconSize'
-        QtMocHelpers::PropertyData<QSize>(19, 0x80000000 | 20, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'iconTextPadding'
-        QtMocHelpers::PropertyData<int>(21, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'iconBorderPen'
-        QtMocHelpers::PropertyData<QPen>(22, 0x80000000 | 12, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectableParts'
-        QtMocHelpers::PropertyData<SelectableParts>(8, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'selectedParts'
-        QtMocHelpers::PropertyData<SelectableParts>(10, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 1),
-        // property 'selectedBorderPen'
-        QtMocHelpers::PropertyData<QPen>(23, 0x80000000 | 12, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedIconBorderPen'
-        QtMocHelpers::PropertyData<QPen>(24, 0x80000000 | 12, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBrush'
-        QtMocHelpers::PropertyData<QBrush>(25, 0x80000000 | 14, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedFont'
-        QtMocHelpers::PropertyData<QFont>(26, 0x80000000 | 16, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedTextColor'
-        QtMocHelpers::PropertyData<QColor>(27, 0x80000000 | 18, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'SelectablePart'
-        QtMocHelpers::EnumData<enum SelectablePart>(28, 28, QMC::EnumFlags{}).add({
-            {   29, SelectablePart::spNone },
-            {   30, SelectablePart::spLegendBox },
-            {   31, SelectablePart::spItems },
-        }),
-        // flag 'SelectableParts'
-        QtMocHelpers::EnumData<SelectableParts>(7, 28, QMC::EnumIsFlag).add({
-            {   29, SelectablePart::spNone },
-            {   30, SelectablePart::spLegendBox },
-            {   31, SelectablePart::spItems },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPLegend, qt_meta_tag_ZN9QCPLegendE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       4,   14, // methods
+      14,   50, // properties
+       2,  120, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   38,    2, 0x06,   15 /* Public */,
+       5,    1,   41,    2, 0x06,   17 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       6,    1,   44,    2, 0x0a,   19 /* Public */,
+       9,    1,   47,    2, 0x0a,   21 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    4,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 7,   10,
+
+ // properties: name, type, flags
+      11, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      12, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+      13, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      14, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      15, QMetaType::QSize, 0x00015103, uint(-1), 0,
+      16, QMetaType::Int, 0x00015103, uint(-1), 0,
+      17, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       8, 0x80000000 | 7, 0x0001510b, uint(0), 0,
+      10, 0x80000000 | 7, 0x0001510b, uint(1), 0,
+      18, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      19, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      20, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+      21, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      22, QMetaType::QColor, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+      23,   23, 0x0,    3,  130,
+       7,   23, 0x1,    3,  136,
+
+ // enum data: key, value
+      24, uint(QCPLegend::spNone),
+      25, uint(QCPLegend::spLegendBox),
+      26, uint(QCPLegend::spItems),
+      24, uint(QCPLegend::spNone),
+      25, uint(QCPLegend::spLegendBox),
+      26, uint(QCPLegend::spItems),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPLegend::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutGrid::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLegendE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLegendE_t>.data,
+    qt_meta_stringdata_QCPLegend.offsetsAndSizes,
+    qt_meta_data_QCPLegend,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN9QCPLegendE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPLegend_t,
+        // property 'borderPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'font'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'textColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'iconSize'
+        QtPrivate::TypeAndForceComplete<QSize, std::true_type>,
+        // property 'iconTextPadding'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'iconBorderPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectableParts'
+        QtPrivate::TypeAndForceComplete<SelectableParts, std::true_type>,
+        // property 'selectedParts'
+        QtPrivate::TypeAndForceComplete<SelectableParts, std::true_type>,
+        // property 'selectedBorderPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedIconBorderPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedBrush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'selectedFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedTextColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPLegend, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLegend::SelectableParts, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPLegend::SelectableParts, std::false_type>,
+        // method 'setSelectableParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const SelectableParts &, std::false_type>,
+        // method 'setSelectedParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const SelectableParts &, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPLegend::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPLegend *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPLegend *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPLegend::SelectableParts>>(_a[1]))); break;
-        case 1: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCPLegend::SelectableParts>>(_a[1]))); break;
-        case 2: _t->setSelectableParts((*reinterpret_cast<std::add_pointer_t<SelectableParts>>(_a[1]))); break;
-        case 3: _t->setSelectedParts((*reinterpret_cast<std::add_pointer_t<SelectableParts>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPLegend::SelectableParts>>(_a[1]))); break;
+        case 1: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCPLegend::SelectableParts>>(_a[1]))); break;
+        case 2: _t->setSelectableParts((*reinterpret_cast< std::add_pointer_t<SelectableParts>>(_a[1]))); break;
+        case 3: _t->setSelectedParts((*reinterpret_cast< std::add_pointer_t<SelectableParts>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPLegend::*)(QCPLegend::SelectableParts )>(_a, &QCPLegend::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPLegend::*)(QCPLegend::SelectableParts )>(_a, &QCPLegend::selectableChanged, 1))
-            return;
-    }
-    if (_c == QMetaObject::ReadProperty) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPLegend::*)(QCPLegend::SelectableParts );
+            if (_t _q_method = &QCPLegend::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPLegend::*)(QCPLegend::SelectableParts );
+            if (_t _q_method = &QCPLegend::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+    }else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPLegend *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->borderPen(); break;
-        case 1: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 2: *reinterpret_cast<QFont*>(_v) = _t->font(); break;
-        case 3: *reinterpret_cast<QColor*>(_v) = _t->textColor(); break;
-        case 4: *reinterpret_cast<QSize*>(_v) = _t->iconSize(); break;
-        case 5: *reinterpret_cast<int*>(_v) = _t->iconTextPadding(); break;
-        case 6: *reinterpret_cast<QPen*>(_v) = _t->iconBorderPen(); break;
-        case 7: QtMocHelpers::assignFlags<SelectableParts>(_v, _t->selectableParts()); break;
-        case 8: QtMocHelpers::assignFlags<SelectableParts>(_v, _t->selectedParts()); break;
-        case 9: *reinterpret_cast<QPen*>(_v) = _t->selectedBorderPen(); break;
-        case 10: *reinterpret_cast<QPen*>(_v) = _t->selectedIconBorderPen(); break;
-        case 11: *reinterpret_cast<QBrush*>(_v) = _t->selectedBrush(); break;
-        case 12: *reinterpret_cast<QFont*>(_v) = _t->selectedFont(); break;
-        case 13: *reinterpret_cast<QColor*>(_v) = _t->selectedTextColor(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->borderPen(); break;
+        case 1: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 2: *reinterpret_cast< QFont*>(_v) = _t->font(); break;
+        case 3: *reinterpret_cast< QColor*>(_v) = _t->textColor(); break;
+        case 4: *reinterpret_cast< QSize*>(_v) = _t->iconSize(); break;
+        case 5: *reinterpret_cast< int*>(_v) = _t->iconTextPadding(); break;
+        case 6: *reinterpret_cast< QPen*>(_v) = _t->iconBorderPen(); break;
+        case 7: *reinterpret_cast<int*>(_v) = QFlag(_t->selectableParts()); break;
+        case 8: *reinterpret_cast<int*>(_v) = QFlag(_t->selectedParts()); break;
+        case 9: *reinterpret_cast< QPen*>(_v) = _t->selectedBorderPen(); break;
+        case 10: *reinterpret_cast< QPen*>(_v) = _t->selectedIconBorderPen(); break;
+        case 11: *reinterpret_cast< QBrush*>(_v) = _t->selectedBrush(); break;
+        case 12: *reinterpret_cast< QFont*>(_v) = _t->selectedFont(); break;
+        case 13: *reinterpret_cast< QColor*>(_v) = _t->selectedTextColor(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPLegend *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setBorderPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 2: _t->setFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 3: _t->setTextColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 4: _t->setIconSize(*reinterpret_cast<QSize*>(_v)); break;
-        case 5: _t->setIconTextPadding(*reinterpret_cast<int*>(_v)); break;
-        case 6: _t->setIconBorderPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 7: _t->setSelectableParts(*reinterpret_cast<SelectableParts*>(_v)); break;
-        case 8: _t->setSelectedParts(*reinterpret_cast<SelectableParts*>(_v)); break;
-        case 9: _t->setSelectedBorderPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 10: _t->setSelectedIconBorderPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 11: _t->setSelectedBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 12: _t->setSelectedFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 13: _t->setSelectedTextColor(*reinterpret_cast<QColor*>(_v)); break;
+        case 0: _t->setBorderPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 2: _t->setFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 3: _t->setTextColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 4: _t->setIconSize(*reinterpret_cast< QSize*>(_v)); break;
+        case 5: _t->setIconTextPadding(*reinterpret_cast< int*>(_v)); break;
+        case 6: _t->setIconBorderPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 7: _t->setSelectableParts(QFlag(*reinterpret_cast<int*>(_v))); break;
+        case 8: _t->setSelectedParts(QFlag(*reinterpret_cast<int*>(_v))); break;
+        case 9: _t->setSelectedBorderPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 10: _t->setSelectedIconBorderPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 11: _t->setSelectedBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 12: _t->setSelectedFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 13: _t->setSelectedTextColor(*reinterpret_cast< QColor*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -3614,7 +5407,7 @@ const QMetaObject *QCPLegend::metaObject() const
 void *QCPLegend::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN9QCPLegendE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPLegend.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutGrid::qt_metacast(_clname);
 }
@@ -3628,13 +5421,11 @@ int QCPLegend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 4;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 4;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -3646,149 +5437,244 @@ int QCPLegend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPLegend::selectionChanged(QCPLegend::SelectableParts _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPLegend::selectableChanged(QCPLegend::SelectableParts _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 namespace {
-struct qt_meta_tag_ZN14QCPTextElementE_t {};
+struct qt_meta_stringdata_QCPTextElement_t {
+    uint offsetsAndSizes[34];
+    char stringdata0[15];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[18];
+    char stringdata5[11];
+    char stringdata6[8];
+    char stringdata7[13];
+    char stringdata8[6];
+    char stringdata9[14];
+    char stringdata10[14];
+    char stringdata11[12];
+    char stringdata12[5];
+    char stringdata13[5];
+    char stringdata14[10];
+    char stringdata15[13];
+    char stringdata16[18];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPTextElement_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPTextElement_t qt_meta_stringdata_QCPTextElement = {
+    {
+        QT_MOC_LITERAL(0, 14),  // "QCPTextElement"
+        QT_MOC_LITERAL(15, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(32, 0),  // ""
+        QT_MOC_LITERAL(33, 8),  // "selected"
+        QT_MOC_LITERAL(42, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(60, 10),  // "selectable"
+        QT_MOC_LITERAL(71, 7),  // "clicked"
+        QT_MOC_LITERAL(79, 12),  // "QMouseEvent*"
+        QT_MOC_LITERAL(92, 5),  // "event"
+        QT_MOC_LITERAL(98, 13),  // "doubleClicked"
+        QT_MOC_LITERAL(112, 13),  // "setSelectable"
+        QT_MOC_LITERAL(126, 11),  // "setSelected"
+        QT_MOC_LITERAL(138, 4),  // "text"
+        QT_MOC_LITERAL(143, 4),  // "font"
+        QT_MOC_LITERAL(148, 9),  // "textColor"
+        QT_MOC_LITERAL(158, 12),  // "selectedFont"
+        QT_MOC_LITERAL(171, 17)   // "selectedTextColor"
+    },
+    "QCPTextElement",
+    "selectionChanged",
+    "",
+    "selected",
+    "selectableChanged",
+    "selectable",
+    "clicked",
+    "QMouseEvent*",
+    "event",
+    "doubleClicked",
+    "setSelectable",
+    "setSelected",
+    "text",
+    "font",
+    "textColor",
+    "selectedFont",
+    "selectedTextColor"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPTextElement::qt_create_metaobjectdata<qt_meta_tag_ZN14QCPTextElementE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPTextElement",
-        "selectionChanged",
-        "",
-        "selected",
-        "selectableChanged",
-        "selectable",
-        "clicked",
-        "QMouseEvent*",
-        "event",
-        "doubleClicked",
-        "setSelectable",
-        "setSelected",
-        "text",
-        "font",
-        "QFont",
-        "textColor",
-        "QColor",
-        "selectedFont",
-        "selectedTextColor"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPTextElement[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(bool)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Signal 'clicked'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Signal 'doubleClicked'
-        QtMocHelpers::SignalData<void(QMouseEvent *)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelectable'
-        QtMocHelpers::SlotData<void(bool)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 5 },
-        }}),
-        // Slot 'setSelected'
-        QtMocHelpers::SlotData<void(bool)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'text'
-        QtMocHelpers::PropertyData<QString>(12, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'font'
-        QtMocHelpers::PropertyData<QFont>(13, 0x80000000 | 14, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'textColor'
-        QtMocHelpers::PropertyData<QColor>(15, 0x80000000 | 16, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedFont'
-        QtMocHelpers::PropertyData<QFont>(17, 0x80000000 | 14, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedTextColor'
-        QtMocHelpers::PropertyData<QColor>(18, 0x80000000 | 16, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectable'
-        QtMocHelpers::PropertyData<bool>(5, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
-        // property 'selected'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPTextElement, qt_meta_tag_ZN14QCPTextElementE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       6,   14, // methods
+       7,   68, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       4,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   50,    2, 0x06,    8 /* Public */,
+       4,    1,   53,    2, 0x06,   10 /* Public */,
+       6,    1,   56,    2, 0x06,   12 /* Public */,
+       9,    1,   59,    2, 0x06,   14 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      10,    1,   62,    2, 0x0a,   16 /* Public */,
+      11,    1,   65,    2, 0x0a,   18 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 7,    8,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void, QMetaType::Bool,    3,
+
+ // properties: name, type, flags
+      12, QMetaType::QString, 0x00015103, uint(-1), 0,
+      13, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      14, QMetaType::QColor, 0x00015103, uint(-1), 0,
+      15, QMetaType::QFont, 0x00015103, uint(-1), 0,
+      16, QMetaType::QColor, 0x00015103, uint(-1), 0,
+       5, QMetaType::Bool, 0x00015103, uint(1), 0,
+       3, QMetaType::Bool, 0x00015103, uint(0), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPTextElement::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPTextElementE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPTextElementE_t>.data,
+    qt_meta_stringdata_QCPTextElement.offsetsAndSizes,
+    qt_meta_data_QCPTextElement,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN14QCPTextElementE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPTextElement_t,
+        // property 'text'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'font'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'textColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectedFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedTextColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectable'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'selected'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPTextElement, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'doubleClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'setSelectable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'setSelected'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPTextElement::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPTextElement *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPTextElement *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->clicked((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 3: _t->doubleClicked((*reinterpret_cast<std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 4: _t->setSelectable((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 5: _t->setSelected((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->clicked((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 3: _t->doubleClicked((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 4: _t->setSelectable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 5: _t->setSelected((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPTextElement::*)(bool )>(_a, &QCPTextElement::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPTextElement::*)(bool )>(_a, &QCPTextElement::selectableChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPTextElement::*)(QMouseEvent * )>(_a, &QCPTextElement::clicked, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPTextElement::*)(QMouseEvent * )>(_a, &QCPTextElement::doubleClicked, 3))
-            return;
-    }
-    if (_c == QMetaObject::ReadProperty) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPTextElement::*)(bool );
+            if (_t _q_method = &QCPTextElement::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPTextElement::*)(bool );
+            if (_t _q_method = &QCPTextElement::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPTextElement::*)(QMouseEvent * );
+            if (_t _q_method = &QCPTextElement::clicked; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPTextElement::*)(QMouseEvent * );
+            if (_t _q_method = &QCPTextElement::doubleClicked; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+    }else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPTextElement *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QString*>(_v) = _t->text(); break;
-        case 1: *reinterpret_cast<QFont*>(_v) = _t->font(); break;
-        case 2: *reinterpret_cast<QColor*>(_v) = _t->textColor(); break;
-        case 3: *reinterpret_cast<QFont*>(_v) = _t->selectedFont(); break;
-        case 4: *reinterpret_cast<QColor*>(_v) = _t->selectedTextColor(); break;
-        case 5: *reinterpret_cast<bool*>(_v) = _t->selectable(); break;
-        case 6: *reinterpret_cast<bool*>(_v) = _t->selected(); break;
+        case 0: *reinterpret_cast< QString*>(_v) = _t->text(); break;
+        case 1: *reinterpret_cast< QFont*>(_v) = _t->font(); break;
+        case 2: *reinterpret_cast< QColor*>(_v) = _t->textColor(); break;
+        case 3: *reinterpret_cast< QFont*>(_v) = _t->selectedFont(); break;
+        case 4: *reinterpret_cast< QColor*>(_v) = _t->selectedTextColor(); break;
+        case 5: *reinterpret_cast< bool*>(_v) = _t->selectable(); break;
+        case 6: *reinterpret_cast< bool*>(_v) = _t->selected(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPTextElement *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setText(*reinterpret_cast<QString*>(_v)); break;
-        case 1: _t->setFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 2: _t->setTextColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 3: _t->setSelectedFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 4: _t->setSelectedTextColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 5: _t->setSelectable(*reinterpret_cast<bool*>(_v)); break;
-        case 6: _t->setSelected(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setText(*reinterpret_cast< QString*>(_v)); break;
+        case 1: _t->setFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 2: _t->setTextColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 3: _t->setSelectedFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 4: _t->setSelectedTextColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 5: _t->setSelectable(*reinterpret_cast< bool*>(_v)); break;
+        case 6: _t->setSelected(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -3800,7 +5686,7 @@ const QMetaObject *QCPTextElement::metaObject() const
 void *QCPTextElement::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPTextElementE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPTextElement.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -3814,13 +5700,11 @@ int QCPTextElement::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 6;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 6;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -3832,77 +5716,115 @@ int QCPTextElement::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPTextElement::selectionChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPTextElement::selectableChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPTextElement::clicked(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCPTextElement::doubleClicked(QMouseEvent * _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 namespace {
-struct qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t {};
+struct qt_meta_stringdata_QCPColorScaleAxisRectPrivate_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[29];
+    char stringdata1[21];
+    char stringdata2[1];
+    char stringdata3[25];
+    char stringdata4[14];
+    char stringdata5[22];
+    char stringdata6[16];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPColorScaleAxisRectPrivate_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPColorScaleAxisRectPrivate_t qt_meta_stringdata_QCPColorScaleAxisRectPrivate = {
+    {
+        QT_MOC_LITERAL(0, 28),  // "QCPColorScaleAxisRectPrivate"
+        QT_MOC_LITERAL(29, 20),  // "axisSelectionChanged"
+        QT_MOC_LITERAL(50, 0),  // ""
+        QT_MOC_LITERAL(51, 24),  // "QCPAxis::SelectableParts"
+        QT_MOC_LITERAL(76, 13),  // "selectedParts"
+        QT_MOC_LITERAL(90, 21),  // "axisSelectableChanged"
+        QT_MOC_LITERAL(112, 15)   // "selectableParts"
+    },
+    "QCPColorScaleAxisRectPrivate",
+    "axisSelectionChanged",
+    "",
+    "QCPAxis::SelectableParts",
+    "selectedParts",
+    "axisSelectableChanged",
+    "selectableParts"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPColorScaleAxisRectPrivate::qt_create_metaobjectdata<qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPColorScaleAxisRectPrivate",
-        "axisSelectionChanged",
-        "",
-        "QCPAxis::SelectableParts",
-        "selectedParts",
-        "axisSelectableChanged",
-        "selectableParts"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPColorScaleAxisRectPrivate[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Slot 'axisSelectionChanged'
-        QtMocHelpers::SlotData<void(QCPAxis::SelectableParts)>(1, 2, QMC::AccessProtected, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Slot 'axisSelectableChanged'
-        QtMocHelpers::SlotData<void(QCPAxis::SelectableParts)>(5, 2, QMC::AccessProtected, QMetaType::Void, {{
-            { 0x80000000 | 3, 6 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPColorScaleAxisRectPrivate, qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       2,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   26,    2, 0x09,    1 /* Protected */,
+       5,    1,   29,    2, 0x09,    3 /* Protected */,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3,    6,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPColorScaleAxisRectPrivate::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAxisRect::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>.data,
+    qt_meta_stringdata_QCPColorScaleAxisRectPrivate.offsetsAndSizes,
+    qt_meta_data_QCPColorScaleAxisRectPrivate,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPColorScaleAxisRectPrivate_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPColorScaleAxisRectPrivate, std::true_type>,
+        // method 'axisSelectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::SelectableParts, std::false_type>,
+        // method 'axisSelectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::SelectableParts, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPColorScaleAxisRectPrivate::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPColorScaleAxisRectPrivate *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPColorScaleAxisRectPrivate *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->axisSelectionChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
-        case 1: _t->axisSelectableChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 0: _t->axisSelectionChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
+        case 1: _t->axisSelectableChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::SelectableParts>>(_a[1]))); break;
         default: ;
         }
     }
@@ -3916,7 +5838,7 @@ const QMetaObject *QCPColorScaleAxisRectPrivate::metaObject() const
 void *QCPColorScaleAxisRectPrivate::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN28QCPColorScaleAxisRectPrivateE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPColorScaleAxisRectPrivate.stringdata0))
         return static_cast<void*>(this);
     return QCPAxisRect::qt_metacast(_clname);
 }
@@ -3930,8 +5852,7 @@ int QCPColorScaleAxisRectPrivate::qt_metacall(QMetaObject::Call _c, int _id, voi
         if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 2;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 2;
@@ -3939,117 +5860,200 @@ int QCPColorScaleAxisRectPrivate::qt_metacall(QMetaObject::Call _c, int _id, voi
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPColorScaleE_t {};
+struct qt_meta_stringdata_QCPColorScale_t {
+    uint offsetsAndSizes[46];
+    char stringdata0[14];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[9];
+    char stringdata5[21];
+    char stringdata6[19];
+    char stringdata7[10];
+    char stringdata8[16];
+    char stringdata9[17];
+    char stringdata10[12];
+    char stringdata11[13];
+    char stringdata12[10];
+    char stringdata13[17];
+    char stringdata14[12];
+    char stringdata15[9];
+    char stringdata16[5];
+    char stringdata17[18];
+    char stringdata18[14];
+    char stringdata19[6];
+    char stringdata20[9];
+    char stringdata21[10];
+    char stringdata22[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPColorScale_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPColorScale_t qt_meta_stringdata_QCPColorScale = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPColorScale"
+        QT_MOC_LITERAL(14, 16),  // "dataRangeChanged"
+        QT_MOC_LITERAL(31, 0),  // ""
+        QT_MOC_LITERAL(32, 8),  // "QCPRange"
+        QT_MOC_LITERAL(41, 8),  // "newRange"
+        QT_MOC_LITERAL(50, 20),  // "dataScaleTypeChanged"
+        QT_MOC_LITERAL(71, 18),  // "QCPAxis::ScaleType"
+        QT_MOC_LITERAL(90, 9),  // "scaleType"
+        QT_MOC_LITERAL(100, 15),  // "gradientChanged"
+        QT_MOC_LITERAL(116, 16),  // "QCPColorGradient"
+        QT_MOC_LITERAL(133, 11),  // "newGradient"
+        QT_MOC_LITERAL(145, 12),  // "setDataRange"
+        QT_MOC_LITERAL(158, 9),  // "dataRange"
+        QT_MOC_LITERAL(168, 16),  // "setDataScaleType"
+        QT_MOC_LITERAL(185, 11),  // "setGradient"
+        QT_MOC_LITERAL(197, 8),  // "gradient"
+        QT_MOC_LITERAL(206, 4),  // "type"
+        QT_MOC_LITERAL(211, 17),  // "QCPAxis::AxisType"
+        QT_MOC_LITERAL(229, 13),  // "dataScaleType"
+        QT_MOC_LITERAL(243, 5),  // "label"
+        QT_MOC_LITERAL(249, 8),  // "barWidth"
+        QT_MOC_LITERAL(258, 9),  // "rangeDrag"
+        QT_MOC_LITERAL(268, 9)   // "rangeZoom"
+    },
+    "QCPColorScale",
+    "dataRangeChanged",
+    "",
+    "QCPRange",
+    "newRange",
+    "dataScaleTypeChanged",
+    "QCPAxis::ScaleType",
+    "scaleType",
+    "gradientChanged",
+    "QCPColorGradient",
+    "newGradient",
+    "setDataRange",
+    "dataRange",
+    "setDataScaleType",
+    "setGradient",
+    "gradient",
+    "type",
+    "QCPAxis::AxisType",
+    "dataScaleType",
+    "label",
+    "barWidth",
+    "rangeDrag",
+    "rangeZoom"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPColorScale::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPColorScaleE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPColorScale",
-        "dataRangeChanged",
-        "",
-        "QCPRange",
-        "newRange",
-        "dataScaleTypeChanged",
-        "QCPAxis::ScaleType",
-        "scaleType",
-        "gradientChanged",
-        "QCPColorGradient",
-        "newGradient",
-        "setDataRange",
-        "dataRange",
-        "setDataScaleType",
-        "setGradient",
-        "gradient",
-        "type",
-        "QCPAxis::AxisType",
-        "dataScaleType",
-        "label",
-        "barWidth",
-        "rangeDrag",
-        "rangeZoom"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPColorScale[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'dataRangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'dataScaleTypeChanged'
-        QtMocHelpers::SignalData<void(QCPAxis::ScaleType)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
-        }}),
-        // Signal 'gradientChanged'
-        QtMocHelpers::SignalData<void(const QCPColorGradient &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 9, 10 },
-        }}),
-        // Slot 'setDataRange'
-        QtMocHelpers::SlotData<void(const QCPRange &)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 12 },
-        }}),
-        // Slot 'setDataScaleType'
-        QtMocHelpers::SlotData<void(QCPAxis::ScaleType)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
-        }}),
-        // Slot 'setGradient'
-        QtMocHelpers::SlotData<void(const QCPColorGradient &)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 9, 15 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'type'
-        QtMocHelpers::PropertyData<QCPAxis::AxisType>(16, 0x80000000 | 17, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'dataRange'
-        QtMocHelpers::PropertyData<QCPRange>(12, 0x80000000 | 3, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'dataScaleType'
-        QtMocHelpers::PropertyData<QCPAxis::ScaleType>(18, 0x80000000 | 6, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 1),
-        // property 'gradient'
-        QtMocHelpers::PropertyData<QCPColorGradient>(15, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 2),
-        // property 'label'
-        QtMocHelpers::PropertyData<QString>(19, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'barWidth'
-        QtMocHelpers::PropertyData<int>(20, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'rangeDrag'
-        QtMocHelpers::PropertyData<bool>(21, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'rangeZoom'
-        QtMocHelpers::PropertyData<bool>(22, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPColorScale, qt_meta_tag_ZN13QCPColorScaleE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
-Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_ZN13QCPColorScaleE[] = {
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       6,   14, // methods
+       8,   68, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   50,    2, 0x06,    9 /* Public */,
+       5,    1,   53,    2, 0x06,   11 /* Public */,
+       8,    1,   56,    2, 0x06,   13 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      11,    1,   59,    2, 0x0a,   15 /* Public */,
+      13,    1,   62,    2, 0x0a,   17 /* Public */,
+      14,    1,   65,    2, 0x0a,   19 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 9,   10,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 3,   12,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 9,   15,
+
+ // properties: name, type, flags
+      16, 0x80000000 | 17, 0x0001510b, uint(-1), 0,
+      12, 0x80000000 | 3, 0x0001510b, uint(0), 0,
+      18, 0x80000000 | 6, 0x0001510b, uint(1), 0,
+      15, 0x80000000 | 9, 0x0001510b, uint(2), 0,
+      19, QMetaType::QString, 0x00015103, uint(-1), 0,
+      20, QMetaType::Int, 0x00015103, uint(-1), 0,
+      21, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      22, QMetaType::Bool, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
+Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_QCPColorScale[] = {
     QMetaObject::SuperData::link<QCPAxis::staticMetaObject>(),
     nullptr
 };
 
 Q_CONSTINIT const QMetaObject QCPColorScale::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPColorScaleE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPColorScaleE_t>.data,
+    qt_meta_stringdata_QCPColorScale.offsetsAndSizes,
+    qt_meta_data_QCPColorScale,
     qt_static_metacall,
-    qt_meta_extradata_ZN13QCPColorScaleE,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPColorScaleE_t>.metaTypes,
+    qt_meta_extradata_QCPColorScale,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPColorScale_t,
+        // property 'type'
+        QtPrivate::TypeAndForceComplete<QCPAxis::AxisType, std::true_type>,
+        // property 'dataRange'
+        QtPrivate::TypeAndForceComplete<QCPRange, std::true_type>,
+        // property 'dataScaleType'
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::true_type>,
+        // property 'gradient'
+        QtPrivate::TypeAndForceComplete<QCPColorGradient, std::true_type>,
+        // property 'label'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'barWidth'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'rangeDrag'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'rangeZoom'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPColorScale, std::true_type>,
+        // method 'dataRangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'dataScaleTypeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'gradientChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPColorGradient &, std::false_type>,
+        // method 'setDataRange'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'setDataScaleType'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'setGradient'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPColorGradient &, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPColorScale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPColorScale *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPColorScale *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->dataRangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 1: _t->dataScaleTypeChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 2: _t->gradientChanged((*reinterpret_cast<std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
-        case 3: _t->setDataRange((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 4: _t->setDataScaleType((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 5: _t->setGradient((*reinterpret_cast<std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
+        case 0: _t->dataRangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 1: _t->dataScaleTypeChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 2: _t->gradientChanged((*reinterpret_cast< std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
+        case 3: _t->setDataRange((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 4: _t->setDataScaleType((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 5: _t->setGradient((*reinterpret_cast< std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 1:
@@ -4067,16 +6071,30 @@ void QCPColorScale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPColorScale::*)(const QCPRange & )>(_a, &QCPColorScale::dataRangeChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPColorScale::*)(QCPAxis::ScaleType )>(_a, &QCPColorScale::dataScaleTypeChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPColorScale::*)(const QCPColorGradient & )>(_a, &QCPColorScale::gradientChanged, 2))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPColorScale::*)(const QCPRange & );
+            if (_t _q_method = &QCPColorScale::dataRangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPColorScale::*)(QCPAxis::ScaleType );
+            if (_t _q_method = &QCPColorScale::dataScaleTypeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPColorScale::*)(const QCPColorGradient & );
+            if (_t _q_method = &QCPColorScale::gradientChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 0:
@@ -4085,33 +6103,38 @@ void QCPColorScale::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPAxis::ScaleType >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPColorScale *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCPAxis::AxisType*>(_v) = _t->type(); break;
-        case 1: *reinterpret_cast<QCPRange*>(_v) = _t->dataRange(); break;
-        case 2: *reinterpret_cast<QCPAxis::ScaleType*>(_v) = _t->dataScaleType(); break;
-        case 3: *reinterpret_cast<QCPColorGradient*>(_v) = _t->gradient(); break;
-        case 4: *reinterpret_cast<QString*>(_v) = _t->label(); break;
-        case 5: *reinterpret_cast<int*>(_v) = _t->barWidth(); break;
-        case 6: *reinterpret_cast<bool*>(_v) = _t->rangeDrag(); break;
-        case 7: *reinterpret_cast<bool*>(_v) = _t->rangeZoom(); break;
+        case 0: *reinterpret_cast< QCPAxis::AxisType*>(_v) = _t->type(); break;
+        case 1: *reinterpret_cast< QCPRange*>(_v) = _t->dataRange(); break;
+        case 2: *reinterpret_cast< QCPAxis::ScaleType*>(_v) = _t->dataScaleType(); break;
+        case 3: *reinterpret_cast< QCPColorGradient*>(_v) = _t->gradient(); break;
+        case 4: *reinterpret_cast< QString*>(_v) = _t->label(); break;
+        case 5: *reinterpret_cast< int*>(_v) = _t->barWidth(); break;
+        case 6: *reinterpret_cast< bool*>(_v) = _t->rangeDrag(); break;
+        case 7: *reinterpret_cast< bool*>(_v) = _t->rangeZoom(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPColorScale *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setType(*reinterpret_cast<QCPAxis::AxisType*>(_v)); break;
-        case 1: _t->setDataRange(*reinterpret_cast<QCPRange*>(_v)); break;
-        case 2: _t->setDataScaleType(*reinterpret_cast<QCPAxis::ScaleType*>(_v)); break;
-        case 3: _t->setGradient(*reinterpret_cast<QCPColorGradient*>(_v)); break;
-        case 4: _t->setLabel(*reinterpret_cast<QString*>(_v)); break;
-        case 5: _t->setBarWidth(*reinterpret_cast<int*>(_v)); break;
-        case 6: _t->setRangeDrag(*reinterpret_cast<bool*>(_v)); break;
-        case 7: _t->setRangeZoom(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setType(*reinterpret_cast< QCPAxis::AxisType*>(_v)); break;
+        case 1: _t->setDataRange(*reinterpret_cast< QCPRange*>(_v)); break;
+        case 2: _t->setDataScaleType(*reinterpret_cast< QCPAxis::ScaleType*>(_v)); break;
+        case 3: _t->setGradient(*reinterpret_cast< QCPColorGradient*>(_v)); break;
+        case 4: _t->setLabel(*reinterpret_cast< QString*>(_v)); break;
+        case 5: _t->setBarWidth(*reinterpret_cast< int*>(_v)); break;
+        case 6: _t->setRangeDrag(*reinterpret_cast< bool*>(_v)); break;
+        case 7: _t->setRangeZoom(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -4123,7 +6146,7 @@ const QMetaObject *QCPColorScale::metaObject() const
 void *QCPColorScale::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPColorScaleE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPColorScale.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -4137,13 +6160,11 @@ int QCPColorScale::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 6;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 6;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -4155,86 +6176,140 @@ int QCPColorScale::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPColorScale::dataRangeChanged(const QCPRange & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPColorScale::dataScaleTypeChanged(QCPAxis::ScaleType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPColorScale::gradientChanged(const QCPColorGradient & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 namespace {
-struct qt_meta_tag_ZN8QCPGraphE_t {};
+struct qt_meta_stringdata_QCPGraph_t {
+    uint offsetsAndSizes[30];
+    char stringdata0[9];
+    char stringdata1[10];
+    char stringdata2[10];
+    char stringdata3[13];
+    char stringdata4[16];
+    char stringdata5[12];
+    char stringdata6[17];
+    char stringdata7[10];
+    char stringdata8[17];
+    char stringdata9[7];
+    char stringdata10[7];
+    char stringdata11[11];
+    char stringdata12[12];
+    char stringdata13[13];
+    char stringdata14[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPGraph_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPGraph_t qt_meta_stringdata_QCPGraph = {
+    {
+        QT_MOC_LITERAL(0, 8),  // "QCPGraph"
+        QT_MOC_LITERAL(9, 9),  // "lineStyle"
+        QT_MOC_LITERAL(19, 9),  // "LineStyle"
+        QT_MOC_LITERAL(29, 12),  // "scatterStyle"
+        QT_MOC_LITERAL(42, 15),  // "QCPScatterStyle"
+        QT_MOC_LITERAL(58, 11),  // "scatterSkip"
+        QT_MOC_LITERAL(70, 16),  // "channelFillGraph"
+        QT_MOC_LITERAL(87, 9),  // "QCPGraph*"
+        QT_MOC_LITERAL(97, 16),  // "adaptiveSampling"
+        QT_MOC_LITERAL(114, 6),  // "lsNone"
+        QT_MOC_LITERAL(121, 6),  // "lsLine"
+        QT_MOC_LITERAL(128, 10),  // "lsStepLeft"
+        QT_MOC_LITERAL(139, 11),  // "lsStepRight"
+        QT_MOC_LITERAL(151, 12),  // "lsStepCenter"
+        QT_MOC_LITERAL(164, 9)   // "lsImpulse"
+    },
+    "QCPGraph",
+    "lineStyle",
+    "LineStyle",
+    "scatterStyle",
+    "QCPScatterStyle",
+    "scatterSkip",
+    "channelFillGraph",
+    "QCPGraph*",
+    "adaptiveSampling",
+    "lsNone",
+    "lsLine",
+    "lsStepLeft",
+    "lsStepRight",
+    "lsStepCenter",
+    "lsImpulse"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPGraph::qt_create_metaobjectdata<qt_meta_tag_ZN8QCPGraphE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPGraph",
-        "lineStyle",
-        "LineStyle",
-        "scatterStyle",
-        "QCPScatterStyle",
-        "scatterSkip",
-        "channelFillGraph",
-        "QCPGraph*",
-        "adaptiveSampling",
-        "lsNone",
-        "lsLine",
-        "lsStepLeft",
-        "lsStepRight",
-        "lsStepCenter",
-        "lsImpulse"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPGraph[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'lineStyle'
-        QtMocHelpers::PropertyData<enum LineStyle>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'scatterStyle'
-        QtMocHelpers::PropertyData<QCPScatterStyle>(3, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'scatterSkip'
-        QtMocHelpers::PropertyData<int>(5, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'channelFillGraph'
-        QtMocHelpers::PropertyData<QCPGraph*>(6, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'adaptiveSampling'
-        QtMocHelpers::PropertyData<bool>(8, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'LineStyle'
-        QtMocHelpers::EnumData<enum LineStyle>(2, 2, QMC::EnumFlags{}).add({
-            {    9, LineStyle::lsNone },
-            {   10, LineStyle::lsLine },
-            {   11, LineStyle::lsStepLeft },
-            {   12, LineStyle::lsStepRight },
-            {   13, LineStyle::lsStepCenter },
-            {   14, LineStyle::lsImpulse },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPGraph, qt_meta_tag_ZN8QCPGraphE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       5,   14, // properties
+       1,   39, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x0001510b, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, QMetaType::Int, 0x00015103, uint(-1), 0,
+       6, 0x80000000 | 7, 0x0001510b, uint(-1), 0,
+       8, QMetaType::Bool, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       2,    2, 0x0,    6,   44,
+
+ // enum data: key, value
+       9, uint(QCPGraph::lsNone),
+      10, uint(QCPGraph::lsLine),
+      11, uint(QCPGraph::lsStepLeft),
+      12, uint(QCPGraph::lsStepRight),
+      13, uint(QCPGraph::lsStepCenter),
+      14, uint(QCPGraph::lsImpulse),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPGraph::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable1D<QCPGraphData>::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPGraphE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPGraphE_t>.data,
+    qt_meta_stringdata_QCPGraph.offsetsAndSizes,
+    qt_meta_data_QCPGraph,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN8QCPGraphE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPGraph_t,
+        // property 'lineStyle'
+        QtPrivate::TypeAndForceComplete<LineStyle, std::true_type>,
+        // property 'scatterStyle'
+        QtPrivate::TypeAndForceComplete<QCPScatterStyle, std::true_type>,
+        // property 'scatterSkip'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'channelFillGraph'
+        QtPrivate::TypeAndForceComplete<QCPGraph*, std::true_type>,
+        // property 'adaptiveSampling'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPGraph, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPGraph::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPGraph *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -4242,28 +6317,34 @@ void QCPGraph::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPGraph* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPGraph *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<enum LineStyle*>(_v) = _t->lineStyle(); break;
-        case 1: *reinterpret_cast<QCPScatterStyle*>(_v) = _t->scatterStyle(); break;
-        case 2: *reinterpret_cast<int*>(_v) = _t->scatterSkip(); break;
-        case 3: *reinterpret_cast<QCPGraph**>(_v) = _t->channelFillGraph(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->adaptiveSampling(); break;
+        case 0: *reinterpret_cast< LineStyle*>(_v) = _t->lineStyle(); break;
+        case 1: *reinterpret_cast< QCPScatterStyle*>(_v) = _t->scatterStyle(); break;
+        case 2: *reinterpret_cast< int*>(_v) = _t->scatterSkip(); break;
+        case 3: *reinterpret_cast< QCPGraph**>(_v) = _t->channelFillGraph(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->adaptiveSampling(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPGraph *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setLineStyle(*reinterpret_cast<enum LineStyle*>(_v)); break;
-        case 1: _t->setScatterStyle(*reinterpret_cast<QCPScatterStyle*>(_v)); break;
-        case 2: _t->setScatterSkip(*reinterpret_cast<int*>(_v)); break;
-        case 3: _t->setChannelFillGraph(*reinterpret_cast<QCPGraph**>(_v)); break;
-        case 4: _t->setAdaptiveSampling(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setLineStyle(*reinterpret_cast< LineStyle*>(_v)); break;
+        case 1: _t->setScatterStyle(*reinterpret_cast< QCPScatterStyle*>(_v)); break;
+        case 2: _t->setScatterSkip(*reinterpret_cast< int*>(_v)); break;
+        case 3: _t->setChannelFillGraph(*reinterpret_cast< QCPGraph**>(_v)); break;
+        case 4: _t->setAdaptiveSampling(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPGraph::metaObject() const
@@ -4274,7 +6355,7 @@ const QMetaObject *QCPGraph::metaObject() const
 void *QCPGraph::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPGraphE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPGraph.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable1D<QCPGraphData>::qt_metacast(_clname);
 }
@@ -4293,74 +6374,118 @@ int QCPGraph::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN8QCPCurveE_t {};
+struct qt_meta_stringdata_QCPCurve_t {
+    uint offsetsAndSizes[16];
+    char stringdata0[9];
+    char stringdata1[13];
+    char stringdata2[16];
+    char stringdata3[12];
+    char stringdata4[10];
+    char stringdata5[10];
+    char stringdata6[7];
+    char stringdata7[7];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPCurve_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPCurve_t qt_meta_stringdata_QCPCurve = {
+    {
+        QT_MOC_LITERAL(0, 8),  // "QCPCurve"
+        QT_MOC_LITERAL(9, 12),  // "scatterStyle"
+        QT_MOC_LITERAL(22, 15),  // "QCPScatterStyle"
+        QT_MOC_LITERAL(38, 11),  // "scatterSkip"
+        QT_MOC_LITERAL(50, 9),  // "lineStyle"
+        QT_MOC_LITERAL(60, 9),  // "LineStyle"
+        QT_MOC_LITERAL(70, 6),  // "lsNone"
+        QT_MOC_LITERAL(77, 6)   // "lsLine"
+    },
+    "QCPCurve",
+    "scatterStyle",
+    "QCPScatterStyle",
+    "scatterSkip",
+    "lineStyle",
+    "LineStyle",
+    "lsNone",
+    "lsLine"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPCurve::qt_create_metaobjectdata<qt_meta_tag_ZN8QCPCurveE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPCurve",
-        "scatterStyle",
-        "QCPScatterStyle",
-        "scatterSkip",
-        "lineStyle",
-        "LineStyle",
-        "lsNone",
-        "lsLine"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPCurve[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'scatterStyle'
-        QtMocHelpers::PropertyData<QCPScatterStyle>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'scatterSkip'
-        QtMocHelpers::PropertyData<int>(3, QMetaType::Int, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'lineStyle'
-        QtMocHelpers::PropertyData<enum LineStyle>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'LineStyle'
-        QtMocHelpers::EnumData<enum LineStyle>(5, 5, QMC::EnumFlags{}).add({
-            {    6, LineStyle::lsNone },
-            {    7, LineStyle::lsLine },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPCurve, qt_meta_tag_ZN8QCPCurveE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       3,   14, // properties
+       1,   29, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x0001510b, uint(-1), 0,
+       3, QMetaType::Int, 0x00015103, uint(-1), 0,
+       4, 0x80000000 | 5, 0x0001510b, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       5,    5, 0x0,    2,   34,
+
+ // enum data: key, value
+       6, uint(QCPCurve::lsNone),
+       7, uint(QCPCurve::lsLine),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPCurve::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable1D<QCPCurveData>::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPCurveE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPCurveE_t>.data,
+    qt_meta_stringdata_QCPCurve.offsetsAndSizes,
+    qt_meta_data_QCPCurve,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN8QCPCurveE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPCurve_t,
+        // property 'scatterStyle'
+        QtPrivate::TypeAndForceComplete<QCPScatterStyle, std::true_type>,
+        // property 'scatterSkip'
+        QtPrivate::TypeAndForceComplete<int, std::true_type>,
+        // property 'lineStyle'
+        QtPrivate::TypeAndForceComplete<LineStyle, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPCurve, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPCurve::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPCurve *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPCurve *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCPScatterStyle*>(_v) = _t->scatterStyle(); break;
-        case 1: *reinterpret_cast<int*>(_v) = _t->scatterSkip(); break;
-        case 2: *reinterpret_cast<enum LineStyle*>(_v) = _t->lineStyle(); break;
+        case 0: *reinterpret_cast< QCPScatterStyle*>(_v) = _t->scatterStyle(); break;
+        case 1: *reinterpret_cast< int*>(_v) = _t->scatterSkip(); break;
+        case 2: *reinterpret_cast< LineStyle*>(_v) = _t->lineStyle(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPCurve *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setScatterStyle(*reinterpret_cast<QCPScatterStyle*>(_v)); break;
-        case 1: _t->setScatterSkip(*reinterpret_cast<int*>(_v)); break;
-        case 2: _t->setLineStyle(*reinterpret_cast<enum LineStyle*>(_v)); break;
+        case 0: _t->setScatterStyle(*reinterpret_cast< QCPScatterStyle*>(_v)); break;
+        case 1: _t->setScatterSkip(*reinterpret_cast< int*>(_v)); break;
+        case 2: _t->setLineStyle(*reinterpret_cast< LineStyle*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPCurve::metaObject() const
@@ -4371,7 +6496,7 @@ const QMetaObject *QCPCurve::metaObject() const
 void *QCPCurve::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN8QCPCurveE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPCurve.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable1D<QCPCurveData>::qt_metacast(_clname);
 }
@@ -4390,70 +6515,111 @@ int QCPCurve::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN12QCPBarsGroupE_t {};
+struct qt_meta_stringdata_QCPBarsGroup_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[13];
+    char stringdata1[12];
+    char stringdata2[12];
+    char stringdata3[8];
+    char stringdata4[11];
+    char stringdata5[16];
+    char stringdata6[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPBarsGroup_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPBarsGroup_t qt_meta_stringdata_QCPBarsGroup = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPBarsGroup"
+        QT_MOC_LITERAL(13, 11),  // "spacingType"
+        QT_MOC_LITERAL(25, 11),  // "SpacingType"
+        QT_MOC_LITERAL(37, 7),  // "spacing"
+        QT_MOC_LITERAL(45, 10),  // "stAbsolute"
+        QT_MOC_LITERAL(56, 15),  // "stAxisRectRatio"
+        QT_MOC_LITERAL(72, 12)   // "stPlotCoords"
+    },
+    "QCPBarsGroup",
+    "spacingType",
+    "SpacingType",
+    "spacing",
+    "stAbsolute",
+    "stAxisRectRatio",
+    "stPlotCoords"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPBarsGroup::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPBarsGroupE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPBarsGroup",
-        "spacingType",
-        "SpacingType",
-        "spacing",
-        "stAbsolute",
-        "stAxisRectRatio",
-        "stPlotCoords"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPBarsGroup[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'spacingType'
-        QtMocHelpers::PropertyData<enum SpacingType>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'spacing'
-        QtMocHelpers::PropertyData<double>(3, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'SpacingType'
-        QtMocHelpers::EnumData<enum SpacingType>(2, 2, QMC::EnumFlags{}).add({
-            {    4, SpacingType::stAbsolute },
-            {    5, SpacingType::stAxisRectRatio },
-            {    6, SpacingType::stPlotCoords },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPBarsGroup, qt_meta_tag_ZN12QCPBarsGroupE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       2,   14, // properties
+       1,   24, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x0001510b, uint(-1), 0,
+       3, QMetaType::Double, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       2,    2, 0x0,    3,   29,
+
+ // enum data: key, value
+       4, uint(QCPBarsGroup::stAbsolute),
+       5, uint(QCPBarsGroup::stAxisRectRatio),
+       6, uint(QCPBarsGroup::stPlotCoords),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPBarsGroup::staticMetaObject = { {
     QMetaObject::SuperData::link<QObject::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPBarsGroupE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPBarsGroupE_t>.data,
+    qt_meta_stringdata_QCPBarsGroup.offsetsAndSizes,
+    qt_meta_data_QCPBarsGroup,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPBarsGroupE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPBarsGroup_t,
+        // property 'spacingType'
+        QtPrivate::TypeAndForceComplete<SpacingType, std::true_type>,
+        // property 'spacing'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPBarsGroup, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPBarsGroup::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPBarsGroup *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPBarsGroup *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<enum SpacingType*>(_v) = _t->spacingType(); break;
-        case 1: *reinterpret_cast<double*>(_v) = _t->spacing(); break;
+        case 0: *reinterpret_cast< SpacingType*>(_v) = _t->spacingType(); break;
+        case 1: *reinterpret_cast< double*>(_v) = _t->spacing(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPBarsGroup *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setSpacingType(*reinterpret_cast<enum SpacingType*>(_v)); break;
-        case 1: _t->setSpacing(*reinterpret_cast<double*>(_v)); break;
+        case 0: _t->setSpacingType(*reinterpret_cast< SpacingType*>(_v)); break;
+        case 1: _t->setSpacing(*reinterpret_cast< double*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPBarsGroup::metaObject() const
@@ -4464,7 +6630,7 @@ const QMetaObject *QCPBarsGroup::metaObject() const
 void *QCPBarsGroup::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPBarsGroupE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPBarsGroup.stringdata0))
         return static_cast<void*>(this);
     return QObject::qt_metacast(_clname);
 }
@@ -4483,71 +6649,122 @@ int QCPBarsGroup::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN7QCPBarsE_t {};
+struct qt_meta_stringdata_QCPBars_t {
+    uint offsetsAndSizes[28];
+    char stringdata0[8];
+    char stringdata1[6];
+    char stringdata2[10];
+    char stringdata3[10];
+    char stringdata4[10];
+    char stringdata5[14];
+    char stringdata6[10];
+    char stringdata7[12];
+    char stringdata8[9];
+    char stringdata9[9];
+    char stringdata10[9];
+    char stringdata11[11];
+    char stringdata12[16];
+    char stringdata13[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPBars_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPBars_t qt_meta_stringdata_QCPBars = {
+    {
+        QT_MOC_LITERAL(0, 7),  // "QCPBars"
+        QT_MOC_LITERAL(8, 5),  // "width"
+        QT_MOC_LITERAL(14, 9),  // "widthType"
+        QT_MOC_LITERAL(24, 9),  // "WidthType"
+        QT_MOC_LITERAL(34, 9),  // "barsGroup"
+        QT_MOC_LITERAL(44, 13),  // "QCPBarsGroup*"
+        QT_MOC_LITERAL(58, 9),  // "baseValue"
+        QT_MOC_LITERAL(68, 11),  // "stackingGap"
+        QT_MOC_LITERAL(80, 8),  // "barBelow"
+        QT_MOC_LITERAL(89, 8),  // "QCPBars*"
+        QT_MOC_LITERAL(98, 8),  // "barAbove"
+        QT_MOC_LITERAL(107, 10),  // "wtAbsolute"
+        QT_MOC_LITERAL(118, 15),  // "wtAxisRectRatio"
+        QT_MOC_LITERAL(134, 12)   // "wtPlotCoords"
+    },
+    "QCPBars",
+    "width",
+    "widthType",
+    "WidthType",
+    "barsGroup",
+    "QCPBarsGroup*",
+    "baseValue",
+    "stackingGap",
+    "barBelow",
+    "QCPBars*",
+    "barAbove",
+    "wtAbsolute",
+    "wtAxisRectRatio",
+    "wtPlotCoords"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPBars::qt_create_metaobjectdata<qt_meta_tag_ZN7QCPBarsE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPBars",
-        "width",
-        "widthType",
-        "WidthType",
-        "barsGroup",
-        "QCPBarsGroup*",
-        "baseValue",
-        "stackingGap",
-        "barBelow",
-        "QCPBars*",
-        "barAbove",
-        "wtAbsolute",
-        "wtAxisRectRatio",
-        "wtPlotCoords"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPBars[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'width'
-        QtMocHelpers::PropertyData<double>(1, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'widthType'
-        QtMocHelpers::PropertyData<enum WidthType>(2, 0x80000000 | 3, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'barsGroup'
-        QtMocHelpers::PropertyData<QCPBarsGroup*>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'baseValue'
-        QtMocHelpers::PropertyData<double>(6, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'stackingGap'
-        QtMocHelpers::PropertyData<double>(7, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'barBelow'
-        QtMocHelpers::PropertyData<QCPBars*>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'barAbove'
-        QtMocHelpers::PropertyData<QCPBars*>(10, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'WidthType'
-        QtMocHelpers::EnumData<enum WidthType>(3, 3, QMC::EnumFlags{}).add({
-            {   11, WidthType::wtAbsolute },
-            {   12, WidthType::wtAxisRectRatio },
-            {   13, WidthType::wtPlotCoords },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPBars, qt_meta_tag_ZN7QCPBarsE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       7,   14, // properties
+       1,   49, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::Double, 0x00015103, uint(-1), 0,
+       2, 0x80000000 | 3, 0x0001510b, uint(-1), 0,
+       4, 0x80000000 | 5, 0x0001510b, uint(-1), 0,
+       6, QMetaType::Double, 0x00015103, uint(-1), 0,
+       7, QMetaType::Double, 0x00015103, uint(-1), 0,
+       8, 0x80000000 | 9, 0x00015009, uint(-1), 0,
+      10, 0x80000000 | 9, 0x00015009, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       3,    3, 0x0,    3,   54,
+
+ // enum data: key, value
+      11, uint(QCPBars::wtAbsolute),
+      12, uint(QCPBars::wtAxisRectRatio),
+      13, uint(QCPBars::wtPlotCoords),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPBars::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable1D<QCPBarsData>::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPBarsE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPBarsE_t>.data,
+    qt_meta_stringdata_QCPBars.offsetsAndSizes,
+    qt_meta_data_QCPBars,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN7QCPBarsE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPBars_t,
+        // property 'width'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'widthType'
+        QtPrivate::TypeAndForceComplete<WidthType, std::true_type>,
+        // property 'barsGroup'
+        QtPrivate::TypeAndForceComplete<QCPBarsGroup*, std::true_type>,
+        // property 'baseValue'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'stackingGap'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'barBelow'
+        QtPrivate::TypeAndForceComplete<QCPBars*, std::true_type>,
+        // property 'barAbove'
+        QtPrivate::TypeAndForceComplete<QCPBars*, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPBars, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPBars::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPBars *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -4558,30 +6775,36 @@ void QCPBars::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPBarsGroup* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPBars *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<double*>(_v) = _t->width(); break;
-        case 1: *reinterpret_cast<enum WidthType*>(_v) = _t->widthType(); break;
-        case 2: *reinterpret_cast<QCPBarsGroup**>(_v) = _t->barsGroup(); break;
-        case 3: *reinterpret_cast<double*>(_v) = _t->baseValue(); break;
-        case 4: *reinterpret_cast<double*>(_v) = _t->stackingGap(); break;
-        case 5: *reinterpret_cast<QCPBars**>(_v) = _t->barBelow(); break;
-        case 6: *reinterpret_cast<QCPBars**>(_v) = _t->barAbove(); break;
+        case 0: *reinterpret_cast< double*>(_v) = _t->width(); break;
+        case 1: *reinterpret_cast< WidthType*>(_v) = _t->widthType(); break;
+        case 2: *reinterpret_cast< QCPBarsGroup**>(_v) = _t->barsGroup(); break;
+        case 3: *reinterpret_cast< double*>(_v) = _t->baseValue(); break;
+        case 4: *reinterpret_cast< double*>(_v) = _t->stackingGap(); break;
+        case 5: *reinterpret_cast< QCPBars**>(_v) = _t->barBelow(); break;
+        case 6: *reinterpret_cast< QCPBars**>(_v) = _t->barAbove(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPBars *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setWidth(*reinterpret_cast<double*>(_v)); break;
-        case 1: _t->setWidthType(*reinterpret_cast<enum WidthType*>(_v)); break;
-        case 2: _t->setBarsGroup(*reinterpret_cast<QCPBarsGroup**>(_v)); break;
-        case 3: _t->setBaseValue(*reinterpret_cast<double*>(_v)); break;
-        case 4: _t->setStackingGap(*reinterpret_cast<double*>(_v)); break;
+        case 0: _t->setWidth(*reinterpret_cast< double*>(_v)); break;
+        case 1: _t->setWidthType(*reinterpret_cast< WidthType*>(_v)); break;
+        case 2: _t->setBarsGroup(*reinterpret_cast< QCPBarsGroup**>(_v)); break;
+        case 3: _t->setBaseValue(*reinterpret_cast< double*>(_v)); break;
+        case 4: _t->setStackingGap(*reinterpret_cast< double*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPBars::metaObject() const
@@ -4592,7 +6815,7 @@ const QMetaObject *QCPBars::metaObject() const
 void *QCPBars::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN7QCPBarsE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPBars.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable1D<QCPBarsData>::qt_metacast(_clname);
 }
@@ -4611,87 +6834,134 @@ int QCPBars::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN17QCPStatisticalBoxE_t {};
+struct qt_meta_stringdata_QCPStatisticalBox_t {
+    uint offsetsAndSizes[18];
+    char stringdata0[18];
+    char stringdata1[6];
+    char stringdata2[13];
+    char stringdata3[11];
+    char stringdata4[14];
+    char stringdata5[19];
+    char stringdata6[10];
+    char stringdata7[13];
+    char stringdata8[16];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPStatisticalBox_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPStatisticalBox_t qt_meta_stringdata_QCPStatisticalBox = {
+    {
+        QT_MOC_LITERAL(0, 17),  // "QCPStatisticalBox"
+        QT_MOC_LITERAL(18, 5),  // "width"
+        QT_MOC_LITERAL(24, 12),  // "whiskerWidth"
+        QT_MOC_LITERAL(37, 10),  // "whiskerPen"
+        QT_MOC_LITERAL(48, 13),  // "whiskerBarPen"
+        QT_MOC_LITERAL(62, 18),  // "whiskerAntialiased"
+        QT_MOC_LITERAL(81, 9),  // "medianPen"
+        QT_MOC_LITERAL(91, 12),  // "outlierStyle"
+        QT_MOC_LITERAL(104, 15)   // "QCPScatterStyle"
+    },
+    "QCPStatisticalBox",
+    "width",
+    "whiskerWidth",
+    "whiskerPen",
+    "whiskerBarPen",
+    "whiskerAntialiased",
+    "medianPen",
+    "outlierStyle",
+    "QCPScatterStyle"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPStatisticalBox::qt_create_metaobjectdata<qt_meta_tag_ZN17QCPStatisticalBoxE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPStatisticalBox",
-        "width",
-        "whiskerWidth",
-        "whiskerPen",
-        "QPen",
-        "whiskerBarPen",
-        "whiskerAntialiased",
-        "medianPen",
-        "outlierStyle",
-        "QCPScatterStyle"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPStatisticalBox[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'width'
-        QtMocHelpers::PropertyData<double>(1, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'whiskerWidth'
-        QtMocHelpers::PropertyData<double>(2, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'whiskerPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'whiskerBarPen'
-        QtMocHelpers::PropertyData<QPen>(5, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'whiskerAntialiased'
-        QtMocHelpers::PropertyData<bool>(6, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'medianPen'
-        QtMocHelpers::PropertyData<QPen>(7, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'outlierStyle'
-        QtMocHelpers::PropertyData<QCPScatterStyle>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPStatisticalBox, qt_meta_tag_ZN17QCPStatisticalBoxE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       7,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::Double, 0x00015103, uint(-1), 0,
+       2, QMetaType::Double, 0x00015103, uint(-1), 0,
+       3, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       4, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       5, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       6, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       7, 0x80000000 | 8, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPStatisticalBox::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable1D<QCPStatisticalBoxData>::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17QCPStatisticalBoxE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17QCPStatisticalBoxE_t>.data,
+    qt_meta_stringdata_QCPStatisticalBox.offsetsAndSizes,
+    qt_meta_data_QCPStatisticalBox,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN17QCPStatisticalBoxE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPStatisticalBox_t,
+        // property 'width'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'whiskerWidth'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'whiskerPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'whiskerBarPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'whiskerAntialiased'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'medianPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'outlierStyle'
+        QtPrivate::TypeAndForceComplete<QCPScatterStyle, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPStatisticalBox, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPStatisticalBox::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPStatisticalBox *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPStatisticalBox *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<double*>(_v) = _t->width(); break;
-        case 1: *reinterpret_cast<double*>(_v) = _t->whiskerWidth(); break;
-        case 2: *reinterpret_cast<QPen*>(_v) = _t->whiskerPen(); break;
-        case 3: *reinterpret_cast<QPen*>(_v) = _t->whiskerBarPen(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->whiskerAntialiased(); break;
-        case 5: *reinterpret_cast<QPen*>(_v) = _t->medianPen(); break;
-        case 6: *reinterpret_cast<QCPScatterStyle*>(_v) = _t->outlierStyle(); break;
+        case 0: *reinterpret_cast< double*>(_v) = _t->width(); break;
+        case 1: *reinterpret_cast< double*>(_v) = _t->whiskerWidth(); break;
+        case 2: *reinterpret_cast< QPen*>(_v) = _t->whiskerPen(); break;
+        case 3: *reinterpret_cast< QPen*>(_v) = _t->whiskerBarPen(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->whiskerAntialiased(); break;
+        case 5: *reinterpret_cast< QPen*>(_v) = _t->medianPen(); break;
+        case 6: *reinterpret_cast< QCPScatterStyle*>(_v) = _t->outlierStyle(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPStatisticalBox *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setWidth(*reinterpret_cast<double*>(_v)); break;
-        case 1: _t->setWhiskerWidth(*reinterpret_cast<double*>(_v)); break;
-        case 2: _t->setWhiskerPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 3: _t->setWhiskerBarPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 4: _t->setWhiskerAntialiased(*reinterpret_cast<bool*>(_v)); break;
-        case 5: _t->setMedianPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 6: _t->setOutlierStyle(*reinterpret_cast<QCPScatterStyle*>(_v)); break;
+        case 0: _t->setWidth(*reinterpret_cast< double*>(_v)); break;
+        case 1: _t->setWhiskerWidth(*reinterpret_cast< double*>(_v)); break;
+        case 2: _t->setWhiskerPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 3: _t->setWhiskerBarPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 4: _t->setWhiskerAntialiased(*reinterpret_cast< bool*>(_v)); break;
+        case 5: _t->setMedianPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 6: _t->setOutlierStyle(*reinterpret_cast< QCPScatterStyle*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPStatisticalBox::metaObject() const
@@ -4702,7 +6972,7 @@ const QMetaObject *QCPStatisticalBox::metaObject() const
 void *QCPStatisticalBox::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN17QCPStatisticalBoxE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPStatisticalBox.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable1D<QCPStatisticalBoxData>::qt_metacast(_clname);
 }
@@ -4721,129 +6991,218 @@ int QCPStatisticalBox::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN11QCPColorMapE_t {};
+struct qt_meta_stringdata_QCPColorMap_t {
+    uint offsetsAndSizes[50];
+    char stringdata0[12];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[9];
+    char stringdata5[21];
+    char stringdata6[19];
+    char stringdata7[10];
+    char stringdata8[16];
+    char stringdata9[17];
+    char stringdata10[12];
+    char stringdata11[13];
+    char stringdata12[10];
+    char stringdata13[17];
+    char stringdata14[12];
+    char stringdata15[9];
+    char stringdata16[17];
+    char stringdata17[23];
+    char stringdata18[14];
+    char stringdata19[10];
+    char stringdata20[14];
+    char stringdata21[12];
+    char stringdata22[14];
+    char stringdata23[11];
+    char stringdata24[15];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPColorMap_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPColorMap_t qt_meta_stringdata_QCPColorMap = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCPColorMap"
+        QT_MOC_LITERAL(12, 16),  // "dataRangeChanged"
+        QT_MOC_LITERAL(29, 0),  // ""
+        QT_MOC_LITERAL(30, 8),  // "QCPRange"
+        QT_MOC_LITERAL(39, 8),  // "newRange"
+        QT_MOC_LITERAL(48, 20),  // "dataScaleTypeChanged"
+        QT_MOC_LITERAL(69, 18),  // "QCPAxis::ScaleType"
+        QT_MOC_LITERAL(88, 9),  // "scaleType"
+        QT_MOC_LITERAL(98, 15),  // "gradientChanged"
+        QT_MOC_LITERAL(114, 16),  // "QCPColorGradient"
+        QT_MOC_LITERAL(131, 11),  // "newGradient"
+        QT_MOC_LITERAL(143, 12),  // "setDataRange"
+        QT_MOC_LITERAL(156, 9),  // "dataRange"
+        QT_MOC_LITERAL(166, 16),  // "setDataScaleType"
+        QT_MOC_LITERAL(183, 11),  // "setGradient"
+        QT_MOC_LITERAL(195, 8),  // "gradient"
+        QT_MOC_LITERAL(204, 16),  // "updateLegendIcon"
+        QT_MOC_LITERAL(221, 22),  // "Qt::TransformationMode"
+        QT_MOC_LITERAL(244, 13),  // "transformMode"
+        QT_MOC_LITERAL(258, 9),  // "thumbSize"
+        QT_MOC_LITERAL(268, 13),  // "dataScaleType"
+        QT_MOC_LITERAL(282, 11),  // "interpolate"
+        QT_MOC_LITERAL(294, 13),  // "tightBoundary"
+        QT_MOC_LITERAL(308, 10),  // "colorScale"
+        QT_MOC_LITERAL(319, 14)   // "QCPColorScale*"
+    },
+    "QCPColorMap",
+    "dataRangeChanged",
+    "",
+    "QCPRange",
+    "newRange",
+    "dataScaleTypeChanged",
+    "QCPAxis::ScaleType",
+    "scaleType",
+    "gradientChanged",
+    "QCPColorGradient",
+    "newGradient",
+    "setDataRange",
+    "dataRange",
+    "setDataScaleType",
+    "setGradient",
+    "gradient",
+    "updateLegendIcon",
+    "Qt::TransformationMode",
+    "transformMode",
+    "thumbSize",
+    "dataScaleType",
+    "interpolate",
+    "tightBoundary",
+    "colorScale",
+    "QCPColorScale*"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPColorMap::qt_create_metaobjectdata<qt_meta_tag_ZN11QCPColorMapE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPColorMap",
-        "dataRangeChanged",
-        "",
-        "QCPRange",
-        "newRange",
-        "dataScaleTypeChanged",
-        "QCPAxis::ScaleType",
-        "scaleType",
-        "gradientChanged",
-        "QCPColorGradient",
-        "newGradient",
-        "setDataRange",
-        "dataRange",
-        "setDataScaleType",
-        "setGradient",
-        "gradient",
-        "updateLegendIcon",
-        "Qt::TransformationMode",
-        "transformMode",
-        "QSize",
-        "thumbSize",
-        "dataScaleType",
-        "interpolate",
-        "tightBoundary",
-        "colorScale",
-        "QCPColorScale*"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPColorMap[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'dataRangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'dataScaleTypeChanged'
-        QtMocHelpers::SignalData<void(QCPAxis::ScaleType)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
-        }}),
-        // Signal 'gradientChanged'
-        QtMocHelpers::SignalData<void(const QCPColorGradient &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 9, 10 },
-        }}),
-        // Slot 'setDataRange'
-        QtMocHelpers::SlotData<void(const QCPRange &)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 12 },
-        }}),
-        // Slot 'setDataScaleType'
-        QtMocHelpers::SlotData<void(QCPAxis::ScaleType)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 6, 7 },
-        }}),
-        // Slot 'setGradient'
-        QtMocHelpers::SlotData<void(const QCPColorGradient &)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 9, 15 },
-        }}),
-        // Slot 'updateLegendIcon'
-        QtMocHelpers::SlotData<void(Qt::TransformationMode, const QSize &)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 17, 18 }, { 0x80000000 | 19, 20 },
-        }}),
-        // Slot 'updateLegendIcon'
-        QtMocHelpers::SlotData<void(Qt::TransformationMode)>(16, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
-            { 0x80000000 | 17, 18 },
-        }}),
-        // Slot 'updateLegendIcon'
-        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void),
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'dataRange'
-        QtMocHelpers::PropertyData<QCPRange>(12, 0x80000000 | 3, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 0),
-        // property 'dataScaleType'
-        QtMocHelpers::PropertyData<QCPAxis::ScaleType>(21, 0x80000000 | 6, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 1),
-        // property 'gradient'
-        QtMocHelpers::PropertyData<QCPColorGradient>(15, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet, 2),
-        // property 'interpolate'
-        QtMocHelpers::PropertyData<bool>(22, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'tightBoundary'
-        QtMocHelpers::PropertyData<bool>(23, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'colorScale'
-        QtMocHelpers::PropertyData<QCPColorScale*>(24, 0x80000000 | 25, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPColorMap, qt_meta_tag_ZN11QCPColorMapE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
-Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_ZN11QCPColorMapE[] = {
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       9,   14, // methods
+       6,   95, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   68,    2, 0x06,    7 /* Public */,
+       5,    1,   71,    2, 0x06,    9 /* Public */,
+       8,    1,   74,    2, 0x06,   11 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      11,    1,   77,    2, 0x0a,   13 /* Public */,
+      13,    1,   80,    2, 0x0a,   15 /* Public */,
+      14,    1,   83,    2, 0x0a,   17 /* Public */,
+      16,    2,   86,    2, 0x0a,   19 /* Public */,
+      16,    1,   91,    2, 0x2a,   22 /* Public | MethodCloned */,
+      16,    0,   94,    2, 0x2a,   24 /* Public | MethodCloned */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 9,   10,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 3,   12,
+    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void, 0x80000000 | 9,   15,
+    QMetaType::Void, 0x80000000 | 17, QMetaType::QSize,   18,   19,
+    QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void,
+
+ // properties: name, type, flags
+      12, 0x80000000 | 3, 0x0001510b, uint(0), 0,
+      20, 0x80000000 | 6, 0x0001510b, uint(1), 0,
+      15, 0x80000000 | 9, 0x0001510b, uint(2), 0,
+      21, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      22, QMetaType::Bool, 0x00015103, uint(-1), 0,
+      23, 0x80000000 | 24, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
+Q_CONSTINIT static const QMetaObject::SuperData qt_meta_extradata_QCPColorMap[] = {
     QMetaObject::SuperData::link<QCPAxis::staticMetaObject>(),
     nullptr
 };
 
 Q_CONSTINIT const QMetaObject QCPColorMap::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPColorMapE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPColorMapE_t>.data,
+    qt_meta_stringdata_QCPColorMap.offsetsAndSizes,
+    qt_meta_data_QCPColorMap,
     qt_static_metacall,
-    qt_meta_extradata_ZN11QCPColorMapE,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCPColorMapE_t>.metaTypes,
+    qt_meta_extradata_QCPColorMap,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPColorMap_t,
+        // property 'dataRange'
+        QtPrivate::TypeAndForceComplete<QCPRange, std::true_type>,
+        // property 'dataScaleType'
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::true_type>,
+        // property 'gradient'
+        QtPrivate::TypeAndForceComplete<QCPColorGradient, std::true_type>,
+        // property 'interpolate'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'tightBoundary'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'colorScale'
+        QtPrivate::TypeAndForceComplete<QCPColorScale*, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPColorMap, std::true_type>,
+        // method 'dataRangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'dataScaleTypeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'gradientChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPColorGradient &, std::false_type>,
+        // method 'setDataRange'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'setDataScaleType'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPAxis::ScaleType, std::false_type>,
+        // method 'setGradient'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPColorGradient &, std::false_type>,
+        // method 'updateLegendIcon'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Qt::TransformationMode, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QSize &, std::false_type>,
+        // method 'updateLegendIcon'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Qt::TransformationMode, std::false_type>,
+        // method 'updateLegendIcon'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPColorMap::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPColorMap *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPColorMap *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->dataRangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 1: _t->dataScaleTypeChanged((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 2: _t->gradientChanged((*reinterpret_cast<std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
-        case 3: _t->setDataRange((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 4: _t->setDataScaleType((*reinterpret_cast<std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
-        case 5: _t->setGradient((*reinterpret_cast<std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
-        case 6: _t->updateLegendIcon((*reinterpret_cast<std::add_pointer_t<Qt::TransformationMode>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QSize>>(_a[2]))); break;
-        case 7: _t->updateLegendIcon((*reinterpret_cast<std::add_pointer_t<Qt::TransformationMode>>(_a[1]))); break;
+        case 0: _t->dataRangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 1: _t->dataScaleTypeChanged((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 2: _t->gradientChanged((*reinterpret_cast< std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
+        case 3: _t->setDataRange((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 4: _t->setDataScaleType((*reinterpret_cast< std::add_pointer_t<QCPAxis::ScaleType>>(_a[1]))); break;
+        case 5: _t->setGradient((*reinterpret_cast< std::add_pointer_t<QCPColorGradient>>(_a[1]))); break;
+        case 6: _t->updateLegendIcon((*reinterpret_cast< std::add_pointer_t<Qt::TransformationMode>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QSize>>(_a[2]))); break;
+        case 7: _t->updateLegendIcon((*reinterpret_cast< std::add_pointer_t<Qt::TransformationMode>>(_a[1]))); break;
         case 8: _t->updateLegendIcon(); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 1:
@@ -4861,16 +7220,30 @@ void QCPColorMap::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPColorMap::*)(const QCPRange & )>(_a, &QCPColorMap::dataRangeChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPColorMap::*)(QCPAxis::ScaleType )>(_a, &QCPColorMap::dataScaleTypeChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPColorMap::*)(const QCPColorGradient & )>(_a, &QCPColorMap::gradientChanged, 2))
-            return;
-    }
-    if (_c == QMetaObject::RegisterPropertyMetaType) {
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPColorMap::*)(const QCPRange & );
+            if (_t _q_method = &QCPColorMap::dataRangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPColorMap::*)(QCPAxis::ScaleType );
+            if (_t _q_method = &QCPColorMap::dataScaleTypeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPColorMap::*)(const QCPColorGradient & );
+            if (_t _q_method = &QCPColorMap::gradientChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+    } else if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
         case 1:
@@ -4879,29 +7252,34 @@ void QCPColorMap::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPColorScale* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPColorMap *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QCPRange*>(_v) = _t->dataRange(); break;
-        case 1: *reinterpret_cast<QCPAxis::ScaleType*>(_v) = _t->dataScaleType(); break;
-        case 2: *reinterpret_cast<QCPColorGradient*>(_v) = _t->gradient(); break;
-        case 3: *reinterpret_cast<bool*>(_v) = _t->interpolate(); break;
-        case 4: *reinterpret_cast<bool*>(_v) = _t->tightBoundary(); break;
-        case 5: *reinterpret_cast<QCPColorScale**>(_v) = _t->colorScale(); break;
+        case 0: *reinterpret_cast< QCPRange*>(_v) = _t->dataRange(); break;
+        case 1: *reinterpret_cast< QCPAxis::ScaleType*>(_v) = _t->dataScaleType(); break;
+        case 2: *reinterpret_cast< QCPColorGradient*>(_v) = _t->gradient(); break;
+        case 3: *reinterpret_cast< bool*>(_v) = _t->interpolate(); break;
+        case 4: *reinterpret_cast< bool*>(_v) = _t->tightBoundary(); break;
+        case 5: *reinterpret_cast< QCPColorScale**>(_v) = _t->colorScale(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPColorMap *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setDataRange(*reinterpret_cast<QCPRange*>(_v)); break;
-        case 1: _t->setDataScaleType(*reinterpret_cast<QCPAxis::ScaleType*>(_v)); break;
-        case 2: _t->setGradient(*reinterpret_cast<QCPColorGradient*>(_v)); break;
-        case 3: _t->setInterpolate(*reinterpret_cast<bool*>(_v)); break;
-        case 4: _t->setTightBoundary(*reinterpret_cast<bool*>(_v)); break;
-        case 5: _t->setColorScale(*reinterpret_cast<QCPColorScale**>(_v)); break;
+        case 0: _t->setDataRange(*reinterpret_cast< QCPRange*>(_v)); break;
+        case 1: _t->setDataScaleType(*reinterpret_cast< QCPAxis::ScaleType*>(_v)); break;
+        case 2: _t->setGradient(*reinterpret_cast< QCPColorGradient*>(_v)); break;
+        case 3: _t->setInterpolate(*reinterpret_cast< bool*>(_v)); break;
+        case 4: _t->setTightBoundary(*reinterpret_cast< bool*>(_v)); break;
+        case 5: _t->setColorScale(*reinterpret_cast< QCPColorScale**>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
 }
 
@@ -4913,7 +7291,7 @@ const QMetaObject *QCPColorMap::metaObject() const
 void *QCPColorMap::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPColorMapE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPColorMap.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable::qt_metacast(_clname);
 }
@@ -4927,13 +7305,11 @@ int QCPColorMap::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
-    }
-    if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
+    }else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
@@ -4945,125 +7321,189 @@ int QCPColorMap::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPColorMap::dataRangeChanged(const QCPRange & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPColorMap::dataScaleTypeChanged(QCPAxis::ScaleType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPColorMap::gradientChanged(const QCPColorGradient & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 namespace {
-struct qt_meta_tag_ZN12QCPFinancialE_t {};
+struct qt_meta_stringdata_QCPFinancial_t {
+    uint offsetsAndSizes[32];
+    char stringdata0[13];
+    char stringdata1[11];
+    char stringdata2[11];
+    char stringdata3[6];
+    char stringdata4[10];
+    char stringdata5[10];
+    char stringdata6[11];
+    char stringdata7[14];
+    char stringdata8[14];
+    char stringdata9[12];
+    char stringdata10[12];
+    char stringdata11[11];
+    char stringdata12[16];
+    char stringdata13[13];
+    char stringdata14[7];
+    char stringdata15[14];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPFinancial_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPFinancial_t qt_meta_stringdata_QCPFinancial = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPFinancial"
+        QT_MOC_LITERAL(13, 10),  // "chartStyle"
+        QT_MOC_LITERAL(24, 10),  // "ChartStyle"
+        QT_MOC_LITERAL(35, 5),  // "width"
+        QT_MOC_LITERAL(41, 9),  // "widthType"
+        QT_MOC_LITERAL(51, 9),  // "WidthType"
+        QT_MOC_LITERAL(61, 10),  // "twoColored"
+        QT_MOC_LITERAL(72, 13),  // "brushPositive"
+        QT_MOC_LITERAL(86, 13),  // "brushNegative"
+        QT_MOC_LITERAL(100, 11),  // "penPositive"
+        QT_MOC_LITERAL(112, 11),  // "penNegative"
+        QT_MOC_LITERAL(124, 10),  // "wtAbsolute"
+        QT_MOC_LITERAL(135, 15),  // "wtAxisRectRatio"
+        QT_MOC_LITERAL(151, 12),  // "wtPlotCoords"
+        QT_MOC_LITERAL(164, 6),  // "csOhlc"
+        QT_MOC_LITERAL(171, 13)   // "csCandlestick"
+    },
+    "QCPFinancial",
+    "chartStyle",
+    "ChartStyle",
+    "width",
+    "widthType",
+    "WidthType",
+    "twoColored",
+    "brushPositive",
+    "brushNegative",
+    "penPositive",
+    "penNegative",
+    "wtAbsolute",
+    "wtAxisRectRatio",
+    "wtPlotCoords",
+    "csOhlc",
+    "csCandlestick"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPFinancial::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPFinancialE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPFinancial",
-        "chartStyle",
-        "ChartStyle",
-        "width",
-        "widthType",
-        "WidthType",
-        "twoColored",
-        "brushPositive",
-        "QBrush",
-        "brushNegative",
-        "penPositive",
-        "QPen",
-        "penNegative",
-        "wtAbsolute",
-        "wtAxisRectRatio",
-        "wtPlotCoords",
-        "csOhlc",
-        "csCandlestick"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPFinancial[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'chartStyle'
-        QtMocHelpers::PropertyData<enum ChartStyle>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'width'
-        QtMocHelpers::PropertyData<double>(3, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'widthType'
-        QtMocHelpers::PropertyData<enum WidthType>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'twoColored'
-        QtMocHelpers::PropertyData<bool>(6, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'brushPositive'
-        QtMocHelpers::PropertyData<QBrush>(7, 0x80000000 | 8, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brushNegative'
-        QtMocHelpers::PropertyData<QBrush>(9, 0x80000000 | 8, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'penPositive'
-        QtMocHelpers::PropertyData<QPen>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'penNegative'
-        QtMocHelpers::PropertyData<QPen>(12, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'WidthType'
-        QtMocHelpers::EnumData<enum WidthType>(5, 5, QMC::EnumFlags{}).add({
-            {   13, WidthType::wtAbsolute },
-            {   14, WidthType::wtAxisRectRatio },
-            {   15, WidthType::wtPlotCoords },
-        }),
-        // enum 'ChartStyle'
-        QtMocHelpers::EnumData<enum ChartStyle>(2, 2, QMC::EnumFlags{}).add({
-            {   16, ChartStyle::csOhlc },
-            {   17, ChartStyle::csCandlestick },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPFinancial, qt_meta_tag_ZN12QCPFinancialE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       8,   14, // properties
+       2,   54, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x0001510b, uint(-1), 0,
+       3, QMetaType::Double, 0x00015103, uint(-1), 0,
+       4, 0x80000000 | 5, 0x0001510b, uint(-1), 0,
+       6, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       7, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       8, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       9, QMetaType::QPen, 0x00015103, uint(-1), 0,
+      10, QMetaType::QPen, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       5,    5, 0x0,    3,   64,
+       2,    2, 0x0,    2,   70,
+
+ // enum data: key, value
+      11, uint(QCPFinancial::wtAbsolute),
+      12, uint(QCPFinancial::wtAxisRectRatio),
+      13, uint(QCPFinancial::wtPlotCoords),
+      14, uint(QCPFinancial::csOhlc),
+      15, uint(QCPFinancial::csCandlestick),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPFinancial::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable1D<QCPFinancialData>::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPFinancialE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPFinancialE_t>.data,
+    qt_meta_stringdata_QCPFinancial.offsetsAndSizes,
+    qt_meta_data_QCPFinancial,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPFinancialE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPFinancial_t,
+        // property 'chartStyle'
+        QtPrivate::TypeAndForceComplete<ChartStyle, std::true_type>,
+        // property 'width'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'widthType'
+        QtPrivate::TypeAndForceComplete<WidthType, std::true_type>,
+        // property 'twoColored'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'brushPositive'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'brushNegative'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'penPositive'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'penNegative'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPFinancial, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPFinancial::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPFinancial *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPFinancial *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<enum ChartStyle*>(_v) = _t->chartStyle(); break;
-        case 1: *reinterpret_cast<double*>(_v) = _t->width(); break;
-        case 2: *reinterpret_cast<enum WidthType*>(_v) = _t->widthType(); break;
-        case 3: *reinterpret_cast<bool*>(_v) = _t->twoColored(); break;
-        case 4: *reinterpret_cast<QBrush*>(_v) = _t->brushPositive(); break;
-        case 5: *reinterpret_cast<QBrush*>(_v) = _t->brushNegative(); break;
-        case 6: *reinterpret_cast<QPen*>(_v) = _t->penPositive(); break;
-        case 7: *reinterpret_cast<QPen*>(_v) = _t->penNegative(); break;
+        case 0: *reinterpret_cast< ChartStyle*>(_v) = _t->chartStyle(); break;
+        case 1: *reinterpret_cast< double*>(_v) = _t->width(); break;
+        case 2: *reinterpret_cast< WidthType*>(_v) = _t->widthType(); break;
+        case 3: *reinterpret_cast< bool*>(_v) = _t->twoColored(); break;
+        case 4: *reinterpret_cast< QBrush*>(_v) = _t->brushPositive(); break;
+        case 5: *reinterpret_cast< QBrush*>(_v) = _t->brushNegative(); break;
+        case 6: *reinterpret_cast< QPen*>(_v) = _t->penPositive(); break;
+        case 7: *reinterpret_cast< QPen*>(_v) = _t->penNegative(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPFinancial *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setChartStyle(*reinterpret_cast<enum ChartStyle*>(_v)); break;
-        case 1: _t->setWidth(*reinterpret_cast<double*>(_v)); break;
-        case 2: _t->setWidthType(*reinterpret_cast<enum WidthType*>(_v)); break;
-        case 3: _t->setTwoColored(*reinterpret_cast<bool*>(_v)); break;
-        case 4: _t->setBrushPositive(*reinterpret_cast<QBrush*>(_v)); break;
-        case 5: _t->setBrushNegative(*reinterpret_cast<QBrush*>(_v)); break;
-        case 6: _t->setPenPositive(*reinterpret_cast<QPen*>(_v)); break;
-        case 7: _t->setPenNegative(*reinterpret_cast<QPen*>(_v)); break;
+        case 0: _t->setChartStyle(*reinterpret_cast< ChartStyle*>(_v)); break;
+        case 1: _t->setWidth(*reinterpret_cast< double*>(_v)); break;
+        case 2: _t->setWidthType(*reinterpret_cast< WidthType*>(_v)); break;
+        case 3: _t->setTwoColored(*reinterpret_cast< bool*>(_v)); break;
+        case 4: _t->setBrushPositive(*reinterpret_cast< QBrush*>(_v)); break;
+        case 5: _t->setBrushNegative(*reinterpret_cast< QBrush*>(_v)); break;
+        case 6: _t->setPenPositive(*reinterpret_cast< QPen*>(_v)); break;
+        case 7: _t->setPenNegative(*reinterpret_cast< QPen*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPFinancial::metaObject() const
@@ -5074,7 +7514,7 @@ const QMetaObject *QCPFinancial::metaObject() const
 void *QCPFinancial::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPFinancialE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPFinancial.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractPlottable1D<QCPFinancialData>::qt_metacast(_clname);
 }
@@ -5093,63 +7533,106 @@ int QCPFinancial::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN12QCPErrorBarsE_t {};
+struct qt_meta_stringdata_QCPErrorBars_t {
+    uint offsetsAndSizes[22];
+    char stringdata0[13];
+    char stringdata1[5];
+    char stringdata2[42];
+    char stringdata3[14];
+    char stringdata4[22];
+    char stringdata5[10];
+    char stringdata6[10];
+    char stringdata7[13];
+    char stringdata8[10];
+    char stringdata9[11];
+    char stringdata10[13];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPErrorBars_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPErrorBars_t qt_meta_stringdata_QCPErrorBars = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPErrorBars"
+        QT_MOC_LITERAL(13, 4),  // "data"
+        QT_MOC_LITERAL(18, 41),  // "QSharedPointer<QCPErrorBarsDa..."
+        QT_MOC_LITERAL(60, 13),  // "dataPlottable"
+        QT_MOC_LITERAL(74, 21),  // "QCPAbstractPlottable*"
+        QT_MOC_LITERAL(96, 9),  // "errorType"
+        QT_MOC_LITERAL(106, 9),  // "ErrorType"
+        QT_MOC_LITERAL(116, 12),  // "whiskerWidth"
+        QT_MOC_LITERAL(129, 9),  // "symbolGap"
+        QT_MOC_LITERAL(139, 10),  // "etKeyError"
+        QT_MOC_LITERAL(150, 12)   // "etValueError"
+    },
+    "QCPErrorBars",
+    "data",
+    "QSharedPointer<QCPErrorBarsDataContainer>",
+    "dataPlottable",
+    "QCPAbstractPlottable*",
+    "errorType",
+    "ErrorType",
+    "whiskerWidth",
+    "symbolGap",
+    "etKeyError",
+    "etValueError"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPErrorBars::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPErrorBarsE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPErrorBars",
-        "data",
-        "QSharedPointer<QCPErrorBarsDataContainer>",
-        "dataPlottable",
-        "QCPAbstractPlottable*",
-        "errorType",
-        "ErrorType",
-        "whiskerWidth",
-        "symbolGap",
-        "etKeyError",
-        "etValueError"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPErrorBars[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'data'
-        QtMocHelpers::PropertyData<QSharedPointer<QCPErrorBarsDataContainer>>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'dataPlottable'
-        QtMocHelpers::PropertyData<QCPAbstractPlottable*>(3, 0x80000000 | 4, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'errorType'
-        QtMocHelpers::PropertyData<enum ErrorType>(5, 0x80000000 | 6, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'whiskerWidth'
-        QtMocHelpers::PropertyData<double>(7, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'symbolGap'
-        QtMocHelpers::PropertyData<double>(8, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'ErrorType'
-        QtMocHelpers::EnumData<enum ErrorType>(6, 6, QMC::EnumFlags{}).add({
-            {    9, ErrorType::etKeyError },
-            {   10, ErrorType::etValueError },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPErrorBars, qt_meta_tag_ZN12QCPErrorBarsE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       5,   14, // properties
+       1,   39, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, 0x80000000 | 2, 0x0001510b, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, 0x80000000 | 6, 0x0001510b, uint(-1), 0,
+       7, QMetaType::Double, 0x00015103, uint(-1), 0,
+       8, QMetaType::Double, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       6,    6, 0x0,    2,   44,
+
+ // enum data: key, value
+       9, uint(QCPErrorBars::etKeyError),
+      10, uint(QCPErrorBars::etValueError),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPErrorBars::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractPlottable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPErrorBarsE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPErrorBarsE_t>.data,
+    qt_meta_stringdata_QCPErrorBars.offsetsAndSizes,
+    qt_meta_data_QCPErrorBars,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPErrorBarsE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPErrorBars_t,
+        // property 'data'
+        QtPrivate::TypeAndForceComplete<QSharedPointer<QCPErrorBarsDataContainer>, std::true_type>,
+        // property 'dataPlottable'
+        QtPrivate::TypeAndForceComplete<QCPAbstractPlottable*, std::true_type>,
+        // property 'errorType'
+        QtPrivate::TypeAndForceComplete<ErrorType, std::true_type>,
+        // property 'whiskerWidth'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'symbolGap'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPErrorBars, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPErrorBars::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPErrorBars *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -5157,28 +7640,34 @@ void QCPErrorBars::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPAbstractPlottable* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPErrorBars *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QSharedPointer<QCPErrorBarsDataContainer>*>(_v) = _t->data(); break;
-        case 1: *reinterpret_cast<QCPAbstractPlottable**>(_v) = _t->dataPlottable(); break;
-        case 2: *reinterpret_cast<enum ErrorType*>(_v) = _t->errorType(); break;
-        case 3: *reinterpret_cast<double*>(_v) = _t->whiskerWidth(); break;
-        case 4: *reinterpret_cast<double*>(_v) = _t->symbolGap(); break;
+        case 0: *reinterpret_cast< QSharedPointer<QCPErrorBarsDataContainer>*>(_v) = _t->data(); break;
+        case 1: *reinterpret_cast< QCPAbstractPlottable**>(_v) = _t->dataPlottable(); break;
+        case 2: *reinterpret_cast< ErrorType*>(_v) = _t->errorType(); break;
+        case 3: *reinterpret_cast< double*>(_v) = _t->whiskerWidth(); break;
+        case 4: *reinterpret_cast< double*>(_v) = _t->symbolGap(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPErrorBars *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setData(*reinterpret_cast<QSharedPointer<QCPErrorBarsDataContainer>*>(_v)); break;
-        case 1: _t->setDataPlottable(*reinterpret_cast<QCPAbstractPlottable**>(_v)); break;
-        case 2: _t->setErrorType(*reinterpret_cast<enum ErrorType*>(_v)); break;
-        case 3: _t->setWhiskerWidth(*reinterpret_cast<double*>(_v)); break;
-        case 4: _t->setSymbolGap(*reinterpret_cast<double*>(_v)); break;
+        case 0: _t->setData(*reinterpret_cast< QSharedPointer<QCPErrorBarsDataContainer>*>(_v)); break;
+        case 1: _t->setDataPlottable(*reinterpret_cast< QCPAbstractPlottable**>(_v)); break;
+        case 2: _t->setErrorType(*reinterpret_cast< ErrorType*>(_v)); break;
+        case 3: _t->setWhiskerWidth(*reinterpret_cast< double*>(_v)); break;
+        case 4: _t->setSymbolGap(*reinterpret_cast< double*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPErrorBars::metaObject() const
@@ -5189,7 +7678,7 @@ const QMetaObject *QCPErrorBars::metaObject() const
 void *QCPErrorBars::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPErrorBarsE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPErrorBars.stringdata0))
         return static_cast<void*>(this);
     if (!strcmp(_clname, "QCPPlottableInterface1D"))
         return static_cast< QCPPlottableInterface1D*>(this);
@@ -5210,61 +7699,91 @@ int QCPErrorBars::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN19QCPItemStraightLineE_t {};
+struct qt_meta_stringdata_QCPItemStraightLine_t {
+    uint offsetsAndSizes[6];
+    char stringdata0[20];
+    char stringdata1[4];
+    char stringdata2[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemStraightLine_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemStraightLine_t qt_meta_stringdata_QCPItemStraightLine = {
+    {
+        QT_MOC_LITERAL(0, 19),  // "QCPItemStraightLine"
+        QT_MOC_LITERAL(20, 3),  // "pen"
+        QT_MOC_LITERAL(24, 11)   // "selectedPen"
+    },
+    "QCPItemStraightLine",
+    "pen",
+    "selectedPen"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemStraightLine::qt_create_metaobjectdata<qt_meta_tag_ZN19QCPItemStraightLineE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemStraightLine",
-        "pen",
-        "QPen",
-        "selectedPen"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemStraightLine[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemStraightLine, qt_meta_tag_ZN19QCPItemStraightLineE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       2,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemStraightLine::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPItemStraightLineE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPItemStraightLineE_t>.data,
+    qt_meta_stringdata_QCPItemStraightLine.offsetsAndSizes,
+    qt_meta_data_QCPItemStraightLine,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN19QCPItemStraightLineE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemStraightLine_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemStraightLine, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemStraightLine::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemStraightLine *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemStraightLine *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemStraightLine *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemStraightLine::metaObject() const
@@ -5275,7 +7794,7 @@ const QMetaObject *QCPItemStraightLine::metaObject() const
 void *QCPItemStraightLine::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPItemStraightLineE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemStraightLine.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5294,72 +7813,110 @@ int QCPItemStraightLine::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN11QCPItemLineE_t {};
+struct qt_meta_stringdata_QCPItemLine_t {
+    uint offsetsAndSizes[12];
+    char stringdata0[12];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[5];
+    char stringdata4[14];
+    char stringdata5[5];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemLine_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemLine_t qt_meta_stringdata_QCPItemLine = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCPItemLine"
+        QT_MOC_LITERAL(12, 3),  // "pen"
+        QT_MOC_LITERAL(16, 11),  // "selectedPen"
+        QT_MOC_LITERAL(28, 4),  // "head"
+        QT_MOC_LITERAL(33, 13),  // "QCPLineEnding"
+        QT_MOC_LITERAL(47, 4)   // "tail"
+    },
+    "QCPItemLine",
+    "pen",
+    "selectedPen",
+    "head",
+    "QCPLineEnding",
+    "tail"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemLine::qt_create_metaobjectdata<qt_meta_tag_ZN11QCPItemLineE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemLine",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "head",
-        "QCPLineEnding",
-        "tail"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemLine[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'head'
-        QtMocHelpers::PropertyData<QCPLineEnding>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'tail'
-        QtMocHelpers::PropertyData<QCPLineEnding>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemLine, qt_meta_tag_ZN11QCPItemLineE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       4,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemLine::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemLineE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemLineE_t>.data,
+    qt_meta_stringdata_QCPItemLine.offsetsAndSizes,
+    qt_meta_data_QCPItemLine,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCPItemLineE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemLine_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'head'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // property 'tail'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemLine, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemLine::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemLine *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemLine *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<QCPLineEnding*>(_v) = _t->head(); break;
-        case 3: *reinterpret_cast<QCPLineEnding*>(_v) = _t->tail(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< QCPLineEnding*>(_v) = _t->head(); break;
+        case 3: *reinterpret_cast< QCPLineEnding*>(_v) = _t->tail(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemLine *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setHead(*reinterpret_cast<QCPLineEnding*>(_v)); break;
-        case 3: _t->setTail(*reinterpret_cast<QCPLineEnding*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setHead(*reinterpret_cast< QCPLineEnding*>(_v)); break;
+        case 3: _t->setTail(*reinterpret_cast< QCPLineEnding*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemLine::metaObject() const
@@ -5370,7 +7927,7 @@ const QMetaObject *QCPItemLine::metaObject() const
 void *QCPItemLine::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemLineE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemLine.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5389,72 +7946,110 @@ int QCPItemLine::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN12QCPItemCurveE_t {};
+struct qt_meta_stringdata_QCPItemCurve_t {
+    uint offsetsAndSizes[12];
+    char stringdata0[13];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[5];
+    char stringdata4[14];
+    char stringdata5[5];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemCurve_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemCurve_t qt_meta_stringdata_QCPItemCurve = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPItemCurve"
+        QT_MOC_LITERAL(13, 3),  // "pen"
+        QT_MOC_LITERAL(17, 11),  // "selectedPen"
+        QT_MOC_LITERAL(29, 4),  // "head"
+        QT_MOC_LITERAL(34, 13),  // "QCPLineEnding"
+        QT_MOC_LITERAL(48, 4)   // "tail"
+    },
+    "QCPItemCurve",
+    "pen",
+    "selectedPen",
+    "head",
+    "QCPLineEnding",
+    "tail"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemCurve::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPItemCurveE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemCurve",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "head",
-        "QCPLineEnding",
-        "tail"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemCurve[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'head'
-        QtMocHelpers::PropertyData<QCPLineEnding>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'tail'
-        QtMocHelpers::PropertyData<QCPLineEnding>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemCurve, qt_meta_tag_ZN12QCPItemCurveE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       4,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+       5, 0x80000000 | 4, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemCurve::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPItemCurveE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPItemCurveE_t>.data,
+    qt_meta_stringdata_QCPItemCurve.offsetsAndSizes,
+    qt_meta_data_QCPItemCurve,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPItemCurveE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemCurve_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'head'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // property 'tail'
+        QtPrivate::TypeAndForceComplete<QCPLineEnding, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemCurve, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemCurve::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemCurve *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemCurve *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<QCPLineEnding*>(_v) = _t->head(); break;
-        case 3: *reinterpret_cast<QCPLineEnding*>(_v) = _t->tail(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< QCPLineEnding*>(_v) = _t->head(); break;
+        case 3: *reinterpret_cast< QCPLineEnding*>(_v) = _t->tail(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemCurve *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setHead(*reinterpret_cast<QCPLineEnding*>(_v)); break;
-        case 3: _t->setTail(*reinterpret_cast<QCPLineEnding*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setHead(*reinterpret_cast< QCPLineEnding*>(_v)); break;
+        case 3: _t->setTail(*reinterpret_cast< QCPLineEnding*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemCurve::metaObject() const
@@ -5465,7 +8060,7 @@ const QMetaObject *QCPItemCurve::metaObject() const
 void *QCPItemCurve::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPItemCurveE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemCurve.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5484,72 +8079,107 @@ int QCPItemCurve::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN11QCPItemRectE_t {};
+struct qt_meta_stringdata_QCPItemRect_t {
+    uint offsetsAndSizes[10];
+    char stringdata0[12];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[6];
+    char stringdata4[14];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemRect_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemRect_t qt_meta_stringdata_QCPItemRect = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCPItemRect"
+        QT_MOC_LITERAL(12, 3),  // "pen"
+        QT_MOC_LITERAL(16, 11),  // "selectedPen"
+        QT_MOC_LITERAL(28, 5),  // "brush"
+        QT_MOC_LITERAL(34, 13)   // "selectedBrush"
+    },
+    "QCPItemRect",
+    "pen",
+    "selectedPen",
+    "brush",
+    "selectedBrush"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemRect::qt_create_metaobjectdata<qt_meta_tag_ZN11QCPItemRectE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemRect",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "brush",
-        "QBrush",
-        "selectedBrush"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemRect[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBrush'
-        QtMocHelpers::PropertyData<QBrush>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemRect, qt_meta_tag_ZN11QCPItemRectE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       4,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       4, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemRect::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemRectE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemRectE_t>.data,
+    qt_meta_stringdata_QCPItemRect.offsetsAndSizes,
+    qt_meta_data_QCPItemRect,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCPItemRectE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemRect_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'selectedBrush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemRect, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemRect::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemRect *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemRect *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 3: *reinterpret_cast<QBrush*>(_v) = _t->selectedBrush(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 3: *reinterpret_cast< QBrush*>(_v) = _t->selectedBrush(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemRect *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 3: _t->setSelectedBrush(*reinterpret_cast<QBrush*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 3: _t->setSelectedBrush(*reinterpret_cast< QBrush*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemRect::metaObject() const
@@ -5560,7 +8190,7 @@ const QMetaObject *QCPItemRect::metaObject() const
 void *QCPItemRect::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemRectE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemRect.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5579,121 +8209,185 @@ int QCPItemRect::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN11QCPItemTextE_t {};
+struct qt_meta_stringdata_QCPItemText_t {
+    uint offsetsAndSizes[32];
+    char stringdata0[12];
+    char stringdata1[6];
+    char stringdata2[14];
+    char stringdata3[4];
+    char stringdata4[12];
+    char stringdata5[6];
+    char stringdata6[14];
+    char stringdata7[5];
+    char stringdata8[13];
+    char stringdata9[5];
+    char stringdata10[18];
+    char stringdata11[14];
+    char stringdata12[14];
+    char stringdata13[9];
+    char stringdata14[8];
+    char stringdata15[9];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemText_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemText_t qt_meta_stringdata_QCPItemText = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "QCPItemText"
+        QT_MOC_LITERAL(12, 5),  // "color"
+        QT_MOC_LITERAL(18, 13),  // "selectedColor"
+        QT_MOC_LITERAL(32, 3),  // "pen"
+        QT_MOC_LITERAL(36, 11),  // "selectedPen"
+        QT_MOC_LITERAL(48, 5),  // "brush"
+        QT_MOC_LITERAL(54, 13),  // "selectedBrush"
+        QT_MOC_LITERAL(68, 4),  // "font"
+        QT_MOC_LITERAL(73, 12),  // "selectedFont"
+        QT_MOC_LITERAL(86, 4),  // "text"
+        QT_MOC_LITERAL(91, 17),  // "positionAlignment"
+        QT_MOC_LITERAL(109, 13),  // "Qt::Alignment"
+        QT_MOC_LITERAL(123, 13),  // "textAlignment"
+        QT_MOC_LITERAL(137, 8),  // "rotation"
+        QT_MOC_LITERAL(146, 7),  // "padding"
+        QT_MOC_LITERAL(154, 8)   // "QMargins"
+    },
+    "QCPItemText",
+    "color",
+    "selectedColor",
+    "pen",
+    "selectedPen",
+    "brush",
+    "selectedBrush",
+    "font",
+    "selectedFont",
+    "text",
+    "positionAlignment",
+    "Qt::Alignment",
+    "textAlignment",
+    "rotation",
+    "padding",
+    "QMargins"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemText::qt_create_metaobjectdata<qt_meta_tag_ZN11QCPItemTextE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemText",
-        "color",
-        "QColor",
-        "selectedColor",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "brush",
-        "QBrush",
-        "selectedBrush",
-        "font",
-        "QFont",
-        "selectedFont",
-        "text",
-        "positionAlignment",
-        "Qt::Alignment",
-        "textAlignment",
-        "rotation",
-        "padding",
-        "QMargins"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemText[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'color'
-        QtMocHelpers::PropertyData<QColor>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedColor'
-        QtMocHelpers::PropertyData<QColor>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(7, 0x80000000 | 8, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBrush'
-        QtMocHelpers::PropertyData<QBrush>(9, 0x80000000 | 8, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'font'
-        QtMocHelpers::PropertyData<QFont>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedFont'
-        QtMocHelpers::PropertyData<QFont>(12, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'text'
-        QtMocHelpers::PropertyData<QString>(13, QMetaType::QString, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'positionAlignment'
-        QtMocHelpers::PropertyData<Qt::Alignment>(14, 0x80000000 | 15, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'textAlignment'
-        QtMocHelpers::PropertyData<Qt::Alignment>(16, 0x80000000 | 15, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'rotation'
-        QtMocHelpers::PropertyData<double>(17, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'padding'
-        QtMocHelpers::PropertyData<QMargins>(18, 0x80000000 | 19, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemText, qt_meta_tag_ZN11QCPItemTextE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+      13,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QColor, 0x00015103, uint(-1), 0,
+       2, QMetaType::QColor, 0x00015103, uint(-1), 0,
+       3, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       4, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       5, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       6, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       7, QMetaType::QFont, 0x00015103, uint(-1), 0,
+       8, QMetaType::QFont, 0x00015103, uint(-1), 0,
+       9, QMetaType::QString, 0x00015103, uint(-1), 0,
+      10, 0x80000000 | 11, 0x0001510b, uint(-1), 0,
+      12, 0x80000000 | 11, 0x0001510b, uint(-1), 0,
+      13, QMetaType::Double, 0x00015103, uint(-1), 0,
+      14, 0x80000000 | 15, 0x0001510b, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemText::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemTextE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemTextE_t>.data,
+    qt_meta_stringdata_QCPItemText.offsetsAndSizes,
+    qt_meta_data_QCPItemText,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN11QCPItemTextE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemText_t,
+        // property 'color'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'selectedColor'
+        QtPrivate::TypeAndForceComplete<QColor, std::true_type>,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'selectedBrush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'font'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'selectedFont'
+        QtPrivate::TypeAndForceComplete<QFont, std::true_type>,
+        // property 'text'
+        QtPrivate::TypeAndForceComplete<QString, std::true_type>,
+        // property 'positionAlignment'
+        QtPrivate::TypeAndForceComplete<Qt::Alignment, std::true_type>,
+        // property 'textAlignment'
+        QtPrivate::TypeAndForceComplete<Qt::Alignment, std::true_type>,
+        // property 'rotation'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'padding'
+        QtPrivate::TypeAndForceComplete<QMargins, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemText, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemText::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemText *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemText *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QColor*>(_v) = _t->color(); break;
-        case 1: *reinterpret_cast<QColor*>(_v) = _t->selectedColor(); break;
-        case 2: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 3: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 4: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 5: *reinterpret_cast<QBrush*>(_v) = _t->selectedBrush(); break;
-        case 6: *reinterpret_cast<QFont*>(_v) = _t->font(); break;
-        case 7: *reinterpret_cast<QFont*>(_v) = _t->selectedFont(); break;
-        case 8: *reinterpret_cast<QString*>(_v) = _t->text(); break;
-        case 9: *reinterpret_cast<Qt::Alignment*>(_v) = _t->positionAlignment(); break;
-        case 10: *reinterpret_cast<Qt::Alignment*>(_v) = _t->textAlignment(); break;
-        case 11: *reinterpret_cast<double*>(_v) = _t->rotation(); break;
-        case 12: *reinterpret_cast<QMargins*>(_v) = _t->padding(); break;
+        case 0: *reinterpret_cast< QColor*>(_v) = _t->color(); break;
+        case 1: *reinterpret_cast< QColor*>(_v) = _t->selectedColor(); break;
+        case 2: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 3: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 4: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 5: *reinterpret_cast< QBrush*>(_v) = _t->selectedBrush(); break;
+        case 6: *reinterpret_cast< QFont*>(_v) = _t->font(); break;
+        case 7: *reinterpret_cast< QFont*>(_v) = _t->selectedFont(); break;
+        case 8: *reinterpret_cast< QString*>(_v) = _t->text(); break;
+        case 9: *reinterpret_cast< Qt::Alignment*>(_v) = _t->positionAlignment(); break;
+        case 10: *reinterpret_cast< Qt::Alignment*>(_v) = _t->textAlignment(); break;
+        case 11: *reinterpret_cast< double*>(_v) = _t->rotation(); break;
+        case 12: *reinterpret_cast< QMargins*>(_v) = _t->padding(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemText *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 1: _t->setSelectedColor(*reinterpret_cast<QColor*>(_v)); break;
-        case 2: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 3: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 4: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 5: _t->setSelectedBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 6: _t->setFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 7: _t->setSelectedFont(*reinterpret_cast<QFont*>(_v)); break;
-        case 8: _t->setText(*reinterpret_cast<QString*>(_v)); break;
-        case 9: _t->setPositionAlignment(*reinterpret_cast<Qt::Alignment*>(_v)); break;
-        case 10: _t->setTextAlignment(*reinterpret_cast<Qt::Alignment*>(_v)); break;
-        case 11: _t->setRotation(*reinterpret_cast<double*>(_v)); break;
-        case 12: _t->setPadding(*reinterpret_cast<QMargins*>(_v)); break;
+        case 0: _t->setColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 1: _t->setSelectedColor(*reinterpret_cast< QColor*>(_v)); break;
+        case 2: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 3: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 4: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 5: _t->setSelectedBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 6: _t->setFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 7: _t->setSelectedFont(*reinterpret_cast< QFont*>(_v)); break;
+        case 8: _t->setText(*reinterpret_cast< QString*>(_v)); break;
+        case 9: _t->setPositionAlignment(*reinterpret_cast< Qt::Alignment*>(_v)); break;
+        case 10: _t->setTextAlignment(*reinterpret_cast< Qt::Alignment*>(_v)); break;
+        case 11: _t->setRotation(*reinterpret_cast< double*>(_v)); break;
+        case 12: _t->setPadding(*reinterpret_cast< QMargins*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemText::metaObject() const
@@ -5704,7 +8398,7 @@ const QMetaObject *QCPItemText::metaObject() const
 void *QCPItemText::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN11QCPItemTextE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemText.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5723,72 +8417,107 @@ int QCPItemText::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN14QCPItemEllipseE_t {};
+struct qt_meta_stringdata_QCPItemEllipse_t {
+    uint offsetsAndSizes[10];
+    char stringdata0[15];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[6];
+    char stringdata4[14];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemEllipse_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemEllipse_t qt_meta_stringdata_QCPItemEllipse = {
+    {
+        QT_MOC_LITERAL(0, 14),  // "QCPItemEllipse"
+        QT_MOC_LITERAL(15, 3),  // "pen"
+        QT_MOC_LITERAL(19, 11),  // "selectedPen"
+        QT_MOC_LITERAL(31, 5),  // "brush"
+        QT_MOC_LITERAL(37, 13)   // "selectedBrush"
+    },
+    "QCPItemEllipse",
+    "pen",
+    "selectedPen",
+    "brush",
+    "selectedBrush"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemEllipse::qt_create_metaobjectdata<qt_meta_tag_ZN14QCPItemEllipseE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemEllipse",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "brush",
-        "QBrush",
-        "selectedBrush"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemEllipse[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBrush'
-        QtMocHelpers::PropertyData<QBrush>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemEllipse, qt_meta_tag_ZN14QCPItemEllipseE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       4,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       4, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemEllipse::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemEllipseE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemEllipseE_t>.data,
+    qt_meta_stringdata_QCPItemEllipse.offsetsAndSizes,
+    qt_meta_data_QCPItemEllipse,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN14QCPItemEllipseE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemEllipse_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'selectedBrush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemEllipse, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemEllipse::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemEllipse *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemEllipse *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 3: *reinterpret_cast<QBrush*>(_v) = _t->selectedBrush(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 3: *reinterpret_cast< QBrush*>(_v) = _t->selectedBrush(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemEllipse *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 3: _t->setSelectedBrush(*reinterpret_cast<QBrush*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 3: _t->setSelectedBrush(*reinterpret_cast< QBrush*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemEllipse::metaObject() const
@@ -5799,7 +8528,7 @@ const QMetaObject *QCPItemEllipse::metaObject() const
 void *QCPItemEllipse::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemEllipseE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemEllipse.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5818,82 +8547,127 @@ int QCPItemEllipse::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPItemPixmapE_t {};
+struct qt_meta_stringdata_QCPItemPixmap_t {
+    uint offsetsAndSizes[18];
+    char stringdata0[14];
+    char stringdata1[7];
+    char stringdata2[7];
+    char stringdata3[16];
+    char stringdata4[20];
+    char stringdata5[19];
+    char stringdata6[23];
+    char stringdata7[4];
+    char stringdata8[12];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemPixmap_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemPixmap_t qt_meta_stringdata_QCPItemPixmap = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPItemPixmap"
+        QT_MOC_LITERAL(14, 6),  // "pixmap"
+        QT_MOC_LITERAL(21, 6),  // "scaled"
+        QT_MOC_LITERAL(28, 15),  // "aspectRatioMode"
+        QT_MOC_LITERAL(44, 19),  // "Qt::AspectRatioMode"
+        QT_MOC_LITERAL(64, 18),  // "transformationMode"
+        QT_MOC_LITERAL(83, 22),  // "Qt::TransformationMode"
+        QT_MOC_LITERAL(106, 3),  // "pen"
+        QT_MOC_LITERAL(110, 11)   // "selectedPen"
+    },
+    "QCPItemPixmap",
+    "pixmap",
+    "scaled",
+    "aspectRatioMode",
+    "Qt::AspectRatioMode",
+    "transformationMode",
+    "Qt::TransformationMode",
+    "pen",
+    "selectedPen"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemPixmap::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPItemPixmapE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemPixmap",
-        "pixmap",
-        "QPixmap",
-        "scaled",
-        "aspectRatioMode",
-        "Qt::AspectRatioMode",
-        "transformationMode",
-        "Qt::TransformationMode",
-        "pen",
-        "QPen",
-        "selectedPen"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemPixmap[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pixmap'
-        QtMocHelpers::PropertyData<QPixmap>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'scaled'
-        QtMocHelpers::PropertyData<bool>(3, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'aspectRatioMode'
-        QtMocHelpers::PropertyData<Qt::AspectRatioMode>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'transformationMode'
-        QtMocHelpers::PropertyData<Qt::TransformationMode>(6, 0x80000000 | 7, QMC::DefaultPropertyFlags | QMC::EnumOrFlag),
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(10, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPItemPixmap, qt_meta_tag_ZN13QCPItemPixmapE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       6,   14, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPixmap, 0x00015103, uint(-1), 0,
+       2, QMetaType::Bool, 0x00015103, uint(-1), 0,
+       3, 0x80000000 | 4, 0x00015009, uint(-1), 0,
+       5, 0x80000000 | 6, 0x00015009, uint(-1), 0,
+       7, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       8, QMetaType::QPen, 0x00015103, uint(-1), 0,
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemPixmap::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemPixmapE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemPixmapE_t>.data,
+    qt_meta_stringdata_QCPItemPixmap.offsetsAndSizes,
+    qt_meta_data_QCPItemPixmap,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPItemPixmapE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemPixmap_t,
+        // property 'pixmap'
+        QtPrivate::TypeAndForceComplete<QPixmap, std::true_type>,
+        // property 'scaled'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // property 'aspectRatioMode'
+        QtPrivate::TypeAndForceComplete<Qt::AspectRatioMode, std::true_type>,
+        // property 'transformationMode'
+        QtPrivate::TypeAndForceComplete<Qt::TransformationMode, std::true_type>,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemPixmap, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemPixmap::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemPixmap *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemPixmap *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPixmap*>(_v) = _t->pixmap(); break;
-        case 1: *reinterpret_cast<bool*>(_v) = _t->scaled(); break;
-        case 2: *reinterpret_cast<Qt::AspectRatioMode*>(_v) = _t->aspectRatioMode(); break;
-        case 3: *reinterpret_cast<Qt::TransformationMode*>(_v) = _t->transformationMode(); break;
-        case 4: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 5: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
+        case 0: *reinterpret_cast< QPixmap*>(_v) = _t->pixmap(); break;
+        case 1: *reinterpret_cast< bool*>(_v) = _t->scaled(); break;
+        case 2: *reinterpret_cast< Qt::AspectRatioMode*>(_v) = _t->aspectRatioMode(); break;
+        case 3: *reinterpret_cast< Qt::TransformationMode*>(_v) = _t->transformationMode(); break;
+        case 4: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 5: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemPixmap *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPixmap(*reinterpret_cast<QPixmap*>(_v)); break;
-        case 1: _t->setScaled(*reinterpret_cast<bool*>(_v)); break;
-        case 4: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 5: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
+        case 0: _t->setPixmap(*reinterpret_cast< QPixmap*>(_v)); break;
+        case 1: _t->setScaled(*reinterpret_cast< bool*>(_v)); break;
+        case 4: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 5: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemPixmap::metaObject() const
@@ -5904,7 +8678,7 @@ const QMetaObject *QCPItemPixmap::metaObject() const
 void *QCPItemPixmap::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemPixmapE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemPixmap.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -5923,82 +8697,139 @@ int QCPItemPixmap::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPItemTracerE_t {};
+struct qt_meta_stringdata_QCPItemTracer_t {
+    uint offsetsAndSizes[34];
+    char stringdata0[14];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[6];
+    char stringdata4[14];
+    char stringdata5[5];
+    char stringdata6[6];
+    char stringdata7[12];
+    char stringdata8[6];
+    char stringdata9[10];
+    char stringdata10[9];
+    char stringdata11[14];
+    char stringdata12[7];
+    char stringdata13[7];
+    char stringdata14[12];
+    char stringdata15[9];
+    char stringdata16[9];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemTracer_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemTracer_t qt_meta_stringdata_QCPItemTracer = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPItemTracer"
+        QT_MOC_LITERAL(14, 3),  // "pen"
+        QT_MOC_LITERAL(18, 11),  // "selectedPen"
+        QT_MOC_LITERAL(30, 5),  // "brush"
+        QT_MOC_LITERAL(36, 13),  // "selectedBrush"
+        QT_MOC_LITERAL(50, 4),  // "size"
+        QT_MOC_LITERAL(55, 5),  // "style"
+        QT_MOC_LITERAL(61, 11),  // "TracerStyle"
+        QT_MOC_LITERAL(73, 5),  // "graph"
+        QT_MOC_LITERAL(79, 9),  // "QCPGraph*"
+        QT_MOC_LITERAL(89, 8),  // "graphKey"
+        QT_MOC_LITERAL(98, 13),  // "interpolating"
+        QT_MOC_LITERAL(112, 6),  // "tsNone"
+        QT_MOC_LITERAL(119, 6),  // "tsPlus"
+        QT_MOC_LITERAL(126, 11),  // "tsCrosshair"
+        QT_MOC_LITERAL(138, 8),  // "tsCircle"
+        QT_MOC_LITERAL(147, 8)   // "tsSquare"
+    },
+    "QCPItemTracer",
+    "pen",
+    "selectedPen",
+    "brush",
+    "selectedBrush",
+    "size",
+    "style",
+    "TracerStyle",
+    "graph",
+    "QCPGraph*",
+    "graphKey",
+    "interpolating",
+    "tsNone",
+    "tsPlus",
+    "tsCrosshair",
+    "tsCircle",
+    "tsSquare"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemTracer::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPItemTracerE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemTracer",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "brush",
-        "QBrush",
-        "selectedBrush",
-        "size",
-        "style",
-        "TracerStyle",
-        "graph",
-        "QCPGraph*",
-        "graphKey",
-        "interpolating",
-        "tsNone",
-        "tsPlus",
-        "tsCrosshair",
-        "tsCircle",
-        "tsSquare"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemTracer[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'brush'
-        QtMocHelpers::PropertyData<QBrush>(4, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedBrush'
-        QtMocHelpers::PropertyData<QBrush>(6, 0x80000000 | 5, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'size'
-        QtMocHelpers::PropertyData<double>(7, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'style'
-        QtMocHelpers::PropertyData<enum TracerStyle>(8, 0x80000000 | 9, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'graph'
-        QtMocHelpers::PropertyData<QCPGraph*>(10, 0x80000000 | 11, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'graphKey'
-        QtMocHelpers::PropertyData<double>(12, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'interpolating'
-        QtMocHelpers::PropertyData<bool>(13, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'TracerStyle'
-        QtMocHelpers::EnumData<enum TracerStyle>(9, 9, QMC::EnumFlags{}).add({
-            {   14, TracerStyle::tsNone },
-            {   15, TracerStyle::tsPlus },
-            {   16, TracerStyle::tsCrosshair },
-            {   17, TracerStyle::tsCircle },
-            {   18, TracerStyle::tsSquare },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPItemTracer, qt_meta_tag_ZN13QCPItemTracerE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       9,   14, // properties
+       1,   59, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       4, QMetaType::QBrush, 0x00015103, uint(-1), 0,
+       5, QMetaType::Double, 0x00015103, uint(-1), 0,
+       6, 0x80000000 | 7, 0x0001510b, uint(-1), 0,
+       8, 0x80000000 | 9, 0x0001510b, uint(-1), 0,
+      10, QMetaType::Double, 0x00015103, uint(-1), 0,
+      11, QMetaType::Bool, 0x00015103, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       7,    7, 0x0,    5,   64,
+
+ // enum data: key, value
+      12, uint(QCPItemTracer::tsNone),
+      13, uint(QCPItemTracer::tsPlus),
+      14, uint(QCPItemTracer::tsCrosshair),
+      15, uint(QCPItemTracer::tsCircle),
+      16, uint(QCPItemTracer::tsSquare),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemTracer::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemTracerE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemTracerE_t>.data,
+    qt_meta_stringdata_QCPItemTracer.offsetsAndSizes,
+    qt_meta_data_QCPItemTracer,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPItemTracerE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemTracer_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'brush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'selectedBrush'
+        QtPrivate::TypeAndForceComplete<QBrush, std::true_type>,
+        // property 'size'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'style'
+        QtPrivate::TypeAndForceComplete<TracerStyle, std::true_type>,
+        // property 'graph'
+        QtPrivate::TypeAndForceComplete<QCPGraph*, std::true_type>,
+        // property 'graphKey'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'interpolating'
+        QtPrivate::TypeAndForceComplete<bool, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemTracer, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemTracer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemTracer *>(_o);
     if (_c == QMetaObject::RegisterPropertyMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -6006,36 +8837,42 @@ void QCPItemTracer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QCPGraph* >(); break;
         }
     }
-    if (_c == QMetaObject::ReadProperty) {
+else if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemTracer *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<QBrush*>(_v) = _t->brush(); break;
-        case 3: *reinterpret_cast<QBrush*>(_v) = _t->selectedBrush(); break;
-        case 4: *reinterpret_cast<double*>(_v) = _t->size(); break;
-        case 5: *reinterpret_cast<enum TracerStyle*>(_v) = _t->style(); break;
-        case 6: *reinterpret_cast<QCPGraph**>(_v) = _t->graph(); break;
-        case 7: *reinterpret_cast<double*>(_v) = _t->graphKey(); break;
-        case 8: *reinterpret_cast<bool*>(_v) = _t->interpolating(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< QBrush*>(_v) = _t->brush(); break;
+        case 3: *reinterpret_cast< QBrush*>(_v) = _t->selectedBrush(); break;
+        case 4: *reinterpret_cast< double*>(_v) = _t->size(); break;
+        case 5: *reinterpret_cast< TracerStyle*>(_v) = _t->style(); break;
+        case 6: *reinterpret_cast< QCPGraph**>(_v) = _t->graph(); break;
+        case 7: *reinterpret_cast< double*>(_v) = _t->graphKey(); break;
+        case 8: *reinterpret_cast< bool*>(_v) = _t->interpolating(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemTracer *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 3: _t->setSelectedBrush(*reinterpret_cast<QBrush*>(_v)); break;
-        case 4: _t->setSize(*reinterpret_cast<double*>(_v)); break;
-        case 5: _t->setStyle(*reinterpret_cast<enum TracerStyle*>(_v)); break;
-        case 6: _t->setGraph(*reinterpret_cast<QCPGraph**>(_v)); break;
-        case 7: _t->setGraphKey(*reinterpret_cast<double*>(_v)); break;
-        case 8: _t->setInterpolating(*reinterpret_cast<bool*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 3: _t->setSelectedBrush(*reinterpret_cast< QBrush*>(_v)); break;
+        case 4: _t->setSize(*reinterpret_cast< double*>(_v)); break;
+        case 5: _t->setStyle(*reinterpret_cast< TracerStyle*>(_v)); break;
+        case 6: _t->setGraph(*reinterpret_cast< QCPGraph**>(_v)); break;
+        case 7: _t->setGraphKey(*reinterpret_cast< double*>(_v)); break;
+        case 8: _t->setInterpolating(*reinterpret_cast< bool*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
 }
 
 const QMetaObject *QCPItemTracer::metaObject() const
@@ -6046,7 +8883,7 @@ const QMetaObject *QCPItemTracer::metaObject() const
 void *QCPItemTracer::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPItemTracerE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemTracer.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -6065,83 +8902,131 @@ int QCPItemTracer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN14QCPItemBracketE_t {};
+struct qt_meta_stringdata_QCPItemBracket_t {
+    uint offsetsAndSizes[20];
+    char stringdata0[15];
+    char stringdata1[4];
+    char stringdata2[12];
+    char stringdata3[7];
+    char stringdata4[6];
+    char stringdata5[13];
+    char stringdata6[9];
+    char stringdata7[8];
+    char stringdata8[8];
+    char stringdata9[15];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPItemBracket_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPItemBracket_t qt_meta_stringdata_QCPItemBracket = {
+    {
+        QT_MOC_LITERAL(0, 14),  // "QCPItemBracket"
+        QT_MOC_LITERAL(15, 3),  // "pen"
+        QT_MOC_LITERAL(19, 11),  // "selectedPen"
+        QT_MOC_LITERAL(31, 6),  // "length"
+        QT_MOC_LITERAL(38, 5),  // "style"
+        QT_MOC_LITERAL(44, 12),  // "BracketStyle"
+        QT_MOC_LITERAL(57, 8),  // "bsSquare"
+        QT_MOC_LITERAL(66, 7),  // "bsRound"
+        QT_MOC_LITERAL(74, 7),  // "bsCurly"
+        QT_MOC_LITERAL(82, 14)   // "bsCalligraphic"
+    },
+    "QCPItemBracket",
+    "pen",
+    "selectedPen",
+    "length",
+    "style",
+    "BracketStyle",
+    "bsSquare",
+    "bsRound",
+    "bsCurly",
+    "bsCalligraphic"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPItemBracket::qt_create_metaobjectdata<qt_meta_tag_ZN14QCPItemBracketE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPItemBracket",
-        "pen",
-        "QPen",
-        "selectedPen",
-        "length",
-        "style",
-        "BracketStyle",
-        "bsSquare",
-        "bsRound",
-        "bsCurly",
-        "bsCalligraphic"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPItemBracket[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-        // property 'pen'
-        QtMocHelpers::PropertyData<QPen>(1, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'selectedPen'
-        QtMocHelpers::PropertyData<QPen>(3, 0x80000000 | 2, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-        // property 'length'
-        QtMocHelpers::PropertyData<double>(4, QMetaType::Double, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet),
-        // property 'style'
-        QtMocHelpers::PropertyData<enum BracketStyle>(5, 0x80000000 | 6, QMC::DefaultPropertyFlags | QMC::Writable | QMC::EnumOrFlag | QMC::StdCppSet),
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'BracketStyle'
-        QtMocHelpers::EnumData<enum BracketStyle>(6, 6, QMC::EnumFlags{}).add({
-            {    7, BracketStyle::bsSquare },
-            {    8, BracketStyle::bsRound },
-            {    9, BracketStyle::bsCurly },
-            {   10, BracketStyle::bsCalligraphic },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPItemBracket, qt_meta_tag_ZN14QCPItemBracketE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       4,   14, // properties
+       1,   34, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // properties: name, type, flags
+       1, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       2, QMetaType::QPen, 0x00015103, uint(-1), 0,
+       3, QMetaType::Double, 0x00015103, uint(-1), 0,
+       4, 0x80000000 | 5, 0x0001510b, uint(-1), 0,
+
+ // enums: name, alias, flags, count, data
+       5,    5, 0x0,    4,   39,
+
+ // enum data: key, value
+       6, uint(QCPItemBracket::bsSquare),
+       7, uint(QCPItemBracket::bsRound),
+       8, uint(QCPItemBracket::bsCurly),
+       9, uint(QCPItemBracket::bsCalligraphic),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPItemBracket::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemBracketE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemBracketE_t>.data,
+    qt_meta_stringdata_QCPItemBracket.offsetsAndSizes,
+    qt_meta_data_QCPItemBracket,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN14QCPItemBracketE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPItemBracket_t,
+        // property 'pen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'selectedPen'
+        QtPrivate::TypeAndForceComplete<QPen, std::true_type>,
+        // property 'length'
+        QtPrivate::TypeAndForceComplete<double, std::true_type>,
+        // property 'style'
+        QtPrivate::TypeAndForceComplete<BracketStyle, std::true_type>,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPItemBracket, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPItemBracket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPItemBracket *>(_o);
-    if (_c == QMetaObject::ReadProperty) {
+if (_c == QMetaObject::ReadProperty) {
+        auto *_t = static_cast<QCPItemBracket *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast<QPen*>(_v) = _t->pen(); break;
-        case 1: *reinterpret_cast<QPen*>(_v) = _t->selectedPen(); break;
-        case 2: *reinterpret_cast<double*>(_v) = _t->length(); break;
-        case 3: *reinterpret_cast<enum BracketStyle*>(_v) = _t->style(); break;
+        case 0: *reinterpret_cast< QPen*>(_v) = _t->pen(); break;
+        case 1: *reinterpret_cast< QPen*>(_v) = _t->selectedPen(); break;
+        case 2: *reinterpret_cast< double*>(_v) = _t->length(); break;
+        case 3: *reinterpret_cast< BracketStyle*>(_v) = _t->style(); break;
         default: break;
         }
-    }
-    if (_c == QMetaObject::WriteProperty) {
+    } else if (_c == QMetaObject::WriteProperty) {
+        auto *_t = static_cast<QCPItemBracket *>(_o);
+        (void)_t;
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 1: _t->setSelectedPen(*reinterpret_cast<QPen*>(_v)); break;
-        case 2: _t->setLength(*reinterpret_cast<double*>(_v)); break;
-        case 3: _t->setStyle(*reinterpret_cast<enum BracketStyle*>(_v)); break;
+        case 0: _t->setPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 1: _t->setSelectedPen(*reinterpret_cast< QPen*>(_v)); break;
+        case 2: _t->setLength(*reinterpret_cast< double*>(_v)); break;
+        case 3: _t->setStyle(*reinterpret_cast< BracketStyle*>(_v)); break;
         default: break;
         }
+    } else if (_c == QMetaObject::ResetProperty) {
+    } else if (_c == QMetaObject::BindableProperty) {
     }
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
 }
 
 const QMetaObject *QCPItemBracket::metaObject() const
@@ -6152,7 +9037,7 @@ const QMetaObject *QCPItemBracket::metaObject() const
 void *QCPItemBracket::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN14QCPItemBracketE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPItemBracket.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractItem::qt_metacast(_clname);
 }
@@ -6171,153 +9056,250 @@ int QCPItemBracket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN18QCPPolarAxisRadialE_t {};
+struct qt_meta_stringdata_QCPPolarAxisRadial_t {
+    uint offsetsAndSizes[72];
+    char stringdata0[19];
+    char stringdata1[13];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[9];
+    char stringdata5[9];
+    char stringdata6[17];
+    char stringdata7[30];
+    char stringdata8[10];
+    char stringdata9[17];
+    char stringdata10[36];
+    char stringdata11[6];
+    char stringdata12[18];
+    char stringdata13[13];
+    char stringdata14[5];
+    char stringdata15[9];
+    char stringdata16[6];
+    char stringdata17[19];
+    char stringdata18[16];
+    char stringdata19[17];
+    char stringdata20[14];
+    char stringdata21[15];
+    char stringdata22[11];
+    char stringdata23[14];
+    char stringdata24[10];
+    char stringdata25[9];
+    char stringdata26[14];
+    char stringdata27[15];
+    char stringdata28[7];
+    char stringdata29[7];
+    char stringdata30[13];
+    char stringdata31[12];
+    char stringdata32[16];
+    char stringdata33[10];
+    char stringdata34[10];
+    char stringdata35[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPolarAxisRadial_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPolarAxisRadial_t qt_meta_stringdata_QCPPolarAxisRadial = {
+    {
+        QT_MOC_LITERAL(0, 18),  // "QCPPolarAxisRadial"
+        QT_MOC_LITERAL(19, 12),  // "rangeChanged"
+        QT_MOC_LITERAL(32, 0),  // ""
+        QT_MOC_LITERAL(33, 8),  // "QCPRange"
+        QT_MOC_LITERAL(42, 8),  // "newRange"
+        QT_MOC_LITERAL(51, 8),  // "oldRange"
+        QT_MOC_LITERAL(60, 16),  // "scaleTypeChanged"
+        QT_MOC_LITERAL(77, 29),  // "QCPPolarAxisRadial::ScaleType"
+        QT_MOC_LITERAL(107, 9),  // "scaleType"
+        QT_MOC_LITERAL(117, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(134, 35),  // "QCPPolarAxisRadial::Selectabl..."
+        QT_MOC_LITERAL(170, 5),  // "parts"
+        QT_MOC_LITERAL(176, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(194, 12),  // "setScaleType"
+        QT_MOC_LITERAL(207, 4),  // "type"
+        QT_MOC_LITERAL(212, 8),  // "setRange"
+        QT_MOC_LITERAL(221, 5),  // "range"
+        QT_MOC_LITERAL(227, 18),  // "setSelectableParts"
+        QT_MOC_LITERAL(246, 15),  // "selectableParts"
+        QT_MOC_LITERAL(262, 16),  // "setSelectedParts"
+        QT_MOC_LITERAL(279, 13),  // "selectedParts"
+        QT_MOC_LITERAL(293, 14),  // "AngleReference"
+        QT_MOC_LITERAL(308, 10),  // "arAbsolute"
+        QT_MOC_LITERAL(319, 13),  // "arAngularAxis"
+        QT_MOC_LITERAL(333, 9),  // "ScaleType"
+        QT_MOC_LITERAL(343, 8),  // "stLinear"
+        QT_MOC_LITERAL(352, 13),  // "stLogarithmic"
+        QT_MOC_LITERAL(366, 14),  // "SelectablePart"
+        QT_MOC_LITERAL(381, 6),  // "spNone"
+        QT_MOC_LITERAL(388, 6),  // "spAxis"
+        QT_MOC_LITERAL(395, 12),  // "spTickLabels"
+        QT_MOC_LITERAL(408, 11),  // "spAxisLabel"
+        QT_MOC_LITERAL(420, 15),  // "SelectableParts"
+        QT_MOC_LITERAL(436, 9),  // "LabelMode"
+        QT_MOC_LITERAL(446, 9),  // "lmUpright"
+        QT_MOC_LITERAL(456, 9)   // "lmRotated"
+    },
+    "QCPPolarAxisRadial",
+    "rangeChanged",
+    "",
+    "QCPRange",
+    "newRange",
+    "oldRange",
+    "scaleTypeChanged",
+    "QCPPolarAxisRadial::ScaleType",
+    "scaleType",
+    "selectionChanged",
+    "QCPPolarAxisRadial::SelectableParts",
+    "parts",
+    "selectableChanged",
+    "setScaleType",
+    "type",
+    "setRange",
+    "range",
+    "setSelectableParts",
+    "selectableParts",
+    "setSelectedParts",
+    "selectedParts",
+    "AngleReference",
+    "arAbsolute",
+    "arAngularAxis",
+    "ScaleType",
+    "stLinear",
+    "stLogarithmic",
+    "SelectablePart",
+    "spNone",
+    "spAxis",
+    "spTickLabels",
+    "spAxisLabel",
+    "SelectableParts",
+    "LabelMode",
+    "lmUpright",
+    "lmRotated"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPolarAxisRadial::qt_create_metaobjectdata<qt_meta_tag_ZN18QCPPolarAxisRadialE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPolarAxisRadial",
-        "rangeChanged",
-        "",
-        "QCPRange",
-        "newRange",
-        "oldRange",
-        "scaleTypeChanged",
-        "QCPPolarAxisRadial::ScaleType",
-        "scaleType",
-        "selectionChanged",
-        "QCPPolarAxisRadial::SelectableParts",
-        "parts",
-        "selectableChanged",
-        "setScaleType",
-        "type",
-        "setRange",
-        "range",
-        "setSelectableParts",
-        "selectableParts",
-        "setSelectedParts",
-        "selectedParts",
-        "AngleReference",
-        "arAbsolute",
-        "arAngularAxis",
-        "ScaleType",
-        "stLinear",
-        "stLogarithmic",
-        "SelectablePart",
-        "spNone",
-        "spAxis",
-        "spTickLabels",
-        "spAxisLabel",
-        "SelectableParts",
-        "LabelMode",
-        "lmUpright",
-        "lmRotated"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPolarAxisRadial[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &, const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 }, { 0x80000000 | 3, 5 },
-        }}),
-        // Signal 'scaleTypeChanged'
-        QtMocHelpers::SignalData<void(QCPPolarAxisRadial::ScaleType)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(const QCPPolarAxisRadial::SelectableParts &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(const QCPPolarAxisRadial::SelectableParts &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 11 },
-        }}),
-        // Slot 'setScaleType'
-        QtMocHelpers::SlotData<void(QCPPolarAxisRadial::ScaleType)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 14 },
-        }}),
-        // Slot 'setRange'
-        QtMocHelpers::SlotData<void(const QCPRange &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 16 },
-        }}),
-        // Slot 'setSelectableParts'
-        QtMocHelpers::SlotData<void(const QCPPolarAxisRadial::SelectableParts &)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 18 },
-        }}),
-        // Slot 'setSelectedParts'
-        QtMocHelpers::SlotData<void(const QCPPolarAxisRadial::SelectableParts &)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 10, 20 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'AngleReference'
-        QtMocHelpers::EnumData<enum AngleReference>(21, 21, QMC::EnumFlags{}).add({
-            {   22, AngleReference::arAbsolute },
-            {   23, AngleReference::arAngularAxis },
-        }),
-        // enum 'ScaleType'
-        QtMocHelpers::EnumData<enum ScaleType>(24, 24, QMC::EnumFlags{}).add({
-            {   25, ScaleType::stLinear },
-            {   26, ScaleType::stLogarithmic },
-        }),
-        // enum 'SelectablePart'
-        QtMocHelpers::EnumData<enum SelectablePart>(27, 27, QMC::EnumFlags{}).add({
-            {   28, SelectablePart::spNone },
-            {   29, SelectablePart::spAxis },
-            {   30, SelectablePart::spTickLabels },
-            {   31, SelectablePart::spAxisLabel },
-        }),
-        // flag 'SelectableParts'
-        QtMocHelpers::EnumData<SelectableParts>(32, 27, QMC::EnumIsFlag).add({
-            {   28, SelectablePart::spNone },
-            {   29, SelectablePart::spAxis },
-            {   30, SelectablePart::spTickLabels },
-            {   31, SelectablePart::spAxisLabel },
-        }),
-        // enum 'LabelMode'
-        QtMocHelpers::EnumData<enum LabelMode>(33, 33, QMC::EnumFlags{}).add({
-            {   34, LabelMode::lmUpright },
-            {   35, LabelMode::lmRotated },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPPolarAxisRadial, qt_meta_tag_ZN18QCPPolarAxisRadialE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       9,   14, // methods
+       0,    0, // properties
+       5,   97, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       5,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   68,    2, 0x06,    1 /* Public */,
+       1,    2,   71,    2, 0x06,    3 /* Public */,
+       6,    1,   76,    2, 0x06,    6 /* Public */,
+       9,    1,   79,    2, 0x06,    8 /* Public */,
+      12,    1,   82,    2, 0x06,   10 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      13,    1,   85,    2, 0x0a,   12 /* Public */,
+      15,    1,   88,    2, 0x0a,   14 /* Public */,
+      17,    1,   91,    2, 0x0a,   16 /* Public */,
+      19,    1,   94,    2, 0x0a,   18 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 10,   11,
+    QMetaType::Void, 0x80000000 | 10,   11,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 7,   14,
+    QMetaType::Void, 0x80000000 | 3,   16,
+    QMetaType::Void, 0x80000000 | 10,   18,
+    QMetaType::Void, 0x80000000 | 10,   20,
+
+ // enums: name, alias, flags, count, data
+      21,   21, 0x0,    2,  122,
+      24,   24, 0x0,    2,  126,
+      27,   27, 0x0,    4,  130,
+      32,   27, 0x1,    4,  138,
+      33,   33, 0x0,    2,  146,
+
+ // enum data: key, value
+      22, uint(QCPPolarAxisRadial::arAbsolute),
+      23, uint(QCPPolarAxisRadial::arAngularAxis),
+      25, uint(QCPPolarAxisRadial::stLinear),
+      26, uint(QCPPolarAxisRadial::stLogarithmic),
+      28, uint(QCPPolarAxisRadial::spNone),
+      29, uint(QCPPolarAxisRadial::spAxis),
+      30, uint(QCPPolarAxisRadial::spTickLabels),
+      31, uint(QCPPolarAxisRadial::spAxisLabel),
+      28, uint(QCPPolarAxisRadial::spNone),
+      29, uint(QCPPolarAxisRadial::spAxis),
+      30, uint(QCPPolarAxisRadial::spTickLabels),
+      31, uint(QCPPolarAxisRadial::spAxisLabel),
+      34, uint(QCPPolarAxisRadial::lmUpright),
+      35, uint(QCPPolarAxisRadial::lmRotated),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPolarAxisRadial::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarAxisRadialE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarAxisRadialE_t>.data,
+    qt_meta_stringdata_QCPPolarAxisRadial.offsetsAndSizes,
+    qt_meta_data_QCPPolarAxisRadial,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN18QCPPolarAxisRadialE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPolarAxisRadial_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPolarAxisRadial, std::true_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'scaleTypeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPPolarAxisRadial::ScaleType, std::false_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisRadial::SelectableParts &, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisRadial::SelectableParts &, std::false_type>,
+        // method 'setScaleType'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPPolarAxisRadial::ScaleType, std::false_type>,
+        // method 'setRange'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'setSelectableParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisRadial::SelectableParts &, std::false_type>,
+        // method 'setSelectedParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisRadial::SelectableParts &, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPPolarAxisRadial::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPolarAxisRadial *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPPolarAxisRadial *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 1: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[2]))); break;
-        case 2: _t->scaleTypeChanged((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::ScaleType>>(_a[1]))); break;
-        case 3: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
-        case 4: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
-        case 5: _t->setScaleType((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::ScaleType>>(_a[1]))); break;
-        case 6: _t->setRange((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 7: _t->setSelectableParts((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
-        case 8: _t->setSelectedParts((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
+        case 0: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 1: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[2]))); break;
+        case 2: _t->scaleTypeChanged((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::ScaleType>>(_a[1]))); break;
+        case 3: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
+        case 4: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
+        case 5: _t->setScaleType((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::ScaleType>>(_a[1]))); break;
+        case 6: _t->setRange((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 7: _t->setSelectableParts((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
+        case 8: _t->setSelectedParts((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisRadial::SelectableParts>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 2:
@@ -6335,18 +9317,43 @@ void QCPPolarAxisRadial::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisRadial::*)(const QCPRange & )>(_a, &QCPPolarAxisRadial::rangeChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisRadial::*)(const QCPRange & , const QCPRange & )>(_a, &QCPPolarAxisRadial::rangeChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisRadial::*)(QCPPolarAxisRadial::ScaleType )>(_a, &QCPPolarAxisRadial::scaleTypeChanged, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisRadial::*)(const QCPPolarAxisRadial::SelectableParts & )>(_a, &QCPPolarAxisRadial::selectionChanged, 3))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisRadial::*)(const QCPPolarAxisRadial::SelectableParts & )>(_a, &QCPPolarAxisRadial::selectableChanged, 4))
-            return;
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPPolarAxisRadial::*)(const QCPRange & );
+            if (_t _q_method = &QCPPolarAxisRadial::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisRadial::*)(const QCPRange & , const QCPRange & );
+            if (_t _q_method = &QCPPolarAxisRadial::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisRadial::*)(QCPPolarAxisRadial::ScaleType );
+            if (_t _q_method = &QCPPolarAxisRadial::scaleTypeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisRadial::*)(const QCPPolarAxisRadial::SelectableParts & );
+            if (_t _q_method = &QCPPolarAxisRadial::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisRadial::*)(const QCPPolarAxisRadial::SelectableParts & );
+            if (_t _q_method = &QCPPolarAxisRadial::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
     }
 }
 
@@ -6358,7 +9365,7 @@ const QMetaObject *QCPPolarAxisRadial::metaObject() const
 void *QCPPolarAxisRadial::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarAxisRadialE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPolarAxisRadial.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -6372,8 +9379,7 @@ int QCPPolarAxisRadial::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 9;
@@ -6384,157 +9390,260 @@ int QCPPolarAxisRadial::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPPolarAxisRadial::rangeChanged(const QCPRange & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPPolarAxisRadial::rangeChanged(const QCPRange & _t1, const QCPRange & _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPPolarAxisRadial::scaleTypeChanged(QCPPolarAxisRadial::ScaleType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCPPolarAxisRadial::selectionChanged(const QCPPolarAxisRadial::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 
 // SIGNAL 4
 void QCPPolarAxisRadial::selectableChanged(const QCPPolarAxisRadial::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 namespace {
-struct qt_meta_tag_ZN19QCPPolarAxisAngularE_t {};
+struct qt_meta_stringdata_QCPPolarAxisAngular_t {
+    uint offsetsAndSizes[50];
+    char stringdata0[20];
+    char stringdata1[13];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[9];
+    char stringdata5[9];
+    char stringdata6[17];
+    char stringdata7[37];
+    char stringdata8[6];
+    char stringdata9[18];
+    char stringdata10[9];
+    char stringdata11[6];
+    char stringdata12[19];
+    char stringdata13[16];
+    char stringdata14[17];
+    char stringdata15[14];
+    char stringdata16[15];
+    char stringdata17[7];
+    char stringdata18[7];
+    char stringdata19[13];
+    char stringdata20[12];
+    char stringdata21[16];
+    char stringdata22[10];
+    char stringdata23[10];
+    char stringdata24[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPolarAxisAngular_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPolarAxisAngular_t qt_meta_stringdata_QCPPolarAxisAngular = {
+    {
+        QT_MOC_LITERAL(0, 19),  // "QCPPolarAxisAngular"
+        QT_MOC_LITERAL(20, 12),  // "rangeChanged"
+        QT_MOC_LITERAL(33, 0),  // ""
+        QT_MOC_LITERAL(34, 8),  // "QCPRange"
+        QT_MOC_LITERAL(43, 8),  // "newRange"
+        QT_MOC_LITERAL(52, 8),  // "oldRange"
+        QT_MOC_LITERAL(61, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(78, 36),  // "QCPPolarAxisAngular::Selectab..."
+        QT_MOC_LITERAL(115, 5),  // "parts"
+        QT_MOC_LITERAL(121, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(139, 8),  // "setRange"
+        QT_MOC_LITERAL(148, 5),  // "range"
+        QT_MOC_LITERAL(154, 18),  // "setSelectableParts"
+        QT_MOC_LITERAL(173, 15),  // "selectableParts"
+        QT_MOC_LITERAL(189, 16),  // "setSelectedParts"
+        QT_MOC_LITERAL(206, 13),  // "selectedParts"
+        QT_MOC_LITERAL(220, 14),  // "SelectablePart"
+        QT_MOC_LITERAL(235, 6),  // "spNone"
+        QT_MOC_LITERAL(242, 6),  // "spAxis"
+        QT_MOC_LITERAL(249, 12),  // "spTickLabels"
+        QT_MOC_LITERAL(262, 11),  // "spAxisLabel"
+        QT_MOC_LITERAL(274, 15),  // "SelectableParts"
+        QT_MOC_LITERAL(290, 9),  // "LabelMode"
+        QT_MOC_LITERAL(300, 9),  // "lmUpright"
+        QT_MOC_LITERAL(310, 9)   // "lmRotated"
+    },
+    "QCPPolarAxisAngular",
+    "rangeChanged",
+    "",
+    "QCPRange",
+    "newRange",
+    "oldRange",
+    "selectionChanged",
+    "QCPPolarAxisAngular::SelectableParts",
+    "parts",
+    "selectableChanged",
+    "setRange",
+    "range",
+    "setSelectableParts",
+    "selectableParts",
+    "setSelectedParts",
+    "selectedParts",
+    "SelectablePart",
+    "spNone",
+    "spAxis",
+    "spTickLabels",
+    "spAxisLabel",
+    "SelectableParts",
+    "LabelMode",
+    "lmUpright",
+    "lmRotated"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPolarAxisAngular::qt_create_metaobjectdata<qt_meta_tag_ZN19QCPPolarAxisAngularE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPolarAxisAngular",
-        "rangeChanged",
-        "",
-        "QCPRange",
-        "newRange",
-        "oldRange",
-        "selectionChanged",
-        "QCPPolarAxisAngular::SelectableParts",
-        "parts",
-        "selectableChanged",
-        "setRange",
-        "range",
-        "setSelectableParts",
-        "selectableParts",
-        "setSelectedParts",
-        "selectedParts",
-        "SelectablePart",
-        "spNone",
-        "spAxis",
-        "spTickLabels",
-        "spAxisLabel",
-        "SelectableParts",
-        "LabelMode",
-        "lmUpright",
-        "lmRotated"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPolarAxisAngular[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
-        }}),
-        // Signal 'rangeChanged'
-        QtMocHelpers::SignalData<void(const QCPRange &, const QCPRange &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 }, { 0x80000000 | 3, 5 },
-        }}),
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(const QCPPolarAxisAngular::SelectableParts &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(const QCPPolarAxisAngular::SelectableParts &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setRange'
-        QtMocHelpers::SlotData<void(const QCPRange &)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 11 },
-        }}),
-        // Slot 'setSelectableParts'
-        QtMocHelpers::SlotData<void(const QCPPolarAxisAngular::SelectableParts &)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 13 },
-        }}),
-        // Slot 'setSelectedParts'
-        QtMocHelpers::SlotData<void(const QCPPolarAxisAngular::SelectableParts &)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 15 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'SelectablePart'
-        QtMocHelpers::EnumData<enum SelectablePart>(16, 16, QMC::EnumFlags{}).add({
-            {   17, SelectablePart::spNone },
-            {   18, SelectablePart::spAxis },
-            {   19, SelectablePart::spTickLabels },
-            {   20, SelectablePart::spAxisLabel },
-        }),
-        // flag 'SelectableParts'
-        QtMocHelpers::EnumData<SelectableParts>(21, 16, QMC::EnumIsFlag).add({
-            {   17, SelectablePart::spNone },
-            {   18, SelectablePart::spAxis },
-            {   19, SelectablePart::spTickLabels },
-            {   20, SelectablePart::spAxisLabel },
-        }),
-        // enum 'LabelMode'
-        QtMocHelpers::EnumData<enum LabelMode>(22, 22, QMC::EnumFlags{}).add({
-            {   23, LabelMode::lmUpright },
-            {   24, LabelMode::lmRotated },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPPolarAxisAngular, qt_meta_tag_ZN19QCPPolarAxisAngularE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       7,   14, // methods
+       0,    0, // properties
+       3,   79, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       4,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   56,    2, 0x06,    1 /* Public */,
+       1,    2,   59,    2, 0x06,    3 /* Public */,
+       6,    1,   64,    2, 0x06,    6 /* Public */,
+       9,    1,   67,    2, 0x06,    8 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+      10,    1,   70,    2, 0x0a,   10 /* Public */,
+      12,    1,   73,    2, 0x0a,   12 /* Public */,
+      14,    1,   76,    2, 0x0a,   14 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 7,    8,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 3,   11,
+    QMetaType::Void, 0x80000000 | 7,   13,
+    QMetaType::Void, 0x80000000 | 7,   15,
+
+ // enums: name, alias, flags, count, data
+      16,   16, 0x0,    4,   94,
+      21,   16, 0x1,    4,  102,
+      22,   22, 0x0,    2,  110,
+
+ // enum data: key, value
+      17, uint(QCPPolarAxisAngular::spNone),
+      18, uint(QCPPolarAxisAngular::spAxis),
+      19, uint(QCPPolarAxisAngular::spTickLabels),
+      20, uint(QCPPolarAxisAngular::spAxisLabel),
+      17, uint(QCPPolarAxisAngular::spNone),
+      18, uint(QCPPolarAxisAngular::spAxis),
+      19, uint(QCPPolarAxisAngular::spTickLabels),
+      20, uint(QCPPolarAxisAngular::spAxisLabel),
+      23, uint(QCPPolarAxisAngular::lmUpright),
+      24, uint(QCPPolarAxisAngular::lmRotated),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPolarAxisAngular::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayoutElement::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPPolarAxisAngularE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPPolarAxisAngularE_t>.data,
+    qt_meta_stringdata_QCPPolarAxisAngular.offsetsAndSizes,
+    qt_meta_data_QCPPolarAxisAngular,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN19QCPPolarAxisAngularE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPolarAxisAngular_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPolarAxisAngular, std::true_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'rangeChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisAngular::SelectableParts &, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisAngular::SelectableParts &, std::false_type>,
+        // method 'setRange'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPRange &, std::false_type>,
+        // method 'setSelectableParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisAngular::SelectableParts &, std::false_type>,
+        // method 'setSelectedParts'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPPolarAxisAngular::SelectableParts &, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPPolarAxisAngular::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPolarAxisAngular *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPPolarAxisAngular *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 1: _t->rangeChanged((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[2]))); break;
-        case 2: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
-        case 3: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
-        case 4: _t->setRange((*reinterpret_cast<std::add_pointer_t<QCPRange>>(_a[1]))); break;
-        case 5: _t->setSelectableParts((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
-        case 6: _t->setSelectedParts((*reinterpret_cast<std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
+        case 0: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 1: _t->rangeChanged((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[2]))); break;
+        case 2: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
+        case 3: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
+        case 4: _t->setRange((*reinterpret_cast< std::add_pointer_t<QCPRange>>(_a[1]))); break;
+        case 5: _t->setSelectableParts((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
+        case 6: _t->setSelectedParts((*reinterpret_cast< std::add_pointer_t<QCPPolarAxisAngular::SelectableParts>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisAngular::*)(const QCPRange & )>(_a, &QCPPolarAxisAngular::rangeChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisAngular::*)(const QCPRange & , const QCPRange & )>(_a, &QCPPolarAxisAngular::rangeChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisAngular::*)(const QCPPolarAxisAngular::SelectableParts & )>(_a, &QCPPolarAxisAngular::selectionChanged, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarAxisAngular::*)(const QCPPolarAxisAngular::SelectableParts & )>(_a, &QCPPolarAxisAngular::selectableChanged, 3))
-            return;
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPPolarAxisAngular::*)(const QCPRange & );
+            if (_t _q_method = &QCPPolarAxisAngular::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisAngular::*)(const QCPRange & , const QCPRange & );
+            if (_t _q_method = &QCPPolarAxisAngular::rangeChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisAngular::*)(const QCPPolarAxisAngular::SelectableParts & );
+            if (_t _q_method = &QCPPolarAxisAngular::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarAxisAngular::*)(const QCPPolarAxisAngular::SelectableParts & );
+            if (_t _q_method = &QCPPolarAxisAngular::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
     }
 }
 
@@ -6546,7 +9655,7 @@ const QMetaObject *QCPPolarAxisAngular::metaObject() const
 void *QCPPolarAxisAngular::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN19QCPPolarAxisAngularE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPolarAxisAngular.stringdata0))
         return static_cast<void*>(this);
     return QCPLayoutElement::qt_metacast(_clname);
 }
@@ -6560,8 +9669,7 @@ int QCPPolarAxisAngular::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 7;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
         _id -= 7;
@@ -6572,82 +9680,112 @@ int QCPPolarAxisAngular::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPPolarAxisAngular::rangeChanged(const QCPRange & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPPolarAxisAngular::rangeChanged(const QCPRange & _t1, const QCPRange & _t2)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPPolarAxisAngular::selectionChanged(const QCPPolarAxisAngular::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 
 // SIGNAL 3
 void QCPPolarAxisAngular::selectableChanged(const QCPPolarAxisAngular::SelectableParts & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 namespace {
-struct qt_meta_tag_ZN12QCPPolarGridE_t {};
+struct qt_meta_stringdata_QCPPolarGrid_t {
+    uint offsetsAndSizes[14];
+    char stringdata0[13];
+    char stringdata1[9];
+    char stringdata2[10];
+    char stringdata3[9];
+    char stringdata4[6];
+    char stringdata5[7];
+    char stringdata6[10];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPolarGrid_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPolarGrid_t qt_meta_stringdata_QCPPolarGrid = {
+    {
+        QT_MOC_LITERAL(0, 12),  // "QCPPolarGrid"
+        QT_MOC_LITERAL(13, 8),  // "GridType"
+        QT_MOC_LITERAL(22, 9),  // "gtAngular"
+        QT_MOC_LITERAL(32, 8),  // "gtRadial"
+        QT_MOC_LITERAL(41, 5),  // "gtAll"
+        QT_MOC_LITERAL(47, 6),  // "gtNone"
+        QT_MOC_LITERAL(54, 9)   // "GridTypes"
+    },
+    "QCPPolarGrid",
+    "GridType",
+    "gtAngular",
+    "gtRadial",
+    "gtAll",
+    "gtNone",
+    "GridTypes"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPolarGrid::qt_create_metaobjectdata<qt_meta_tag_ZN12QCPPolarGridE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPolarGrid",
-        "GridType",
-        "gtAngular",
-        "gtRadial",
-        "gtAll",
-        "gtNone",
-        "GridTypes"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPolarGrid[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'GridType'
-        QtMocHelpers::EnumData<enum GridType>(1, 1, QMC::EnumFlags{}).add({
-            {    2, GridType::gtAngular },
-            {    3, GridType::gtRadial },
-            {    4, GridType::gtAll },
-            {    5, GridType::gtNone },
-        }),
-        // flag 'GridTypes'
-        QtMocHelpers::EnumData<GridTypes>(6, 1, QMC::EnumIsFlag).add({
-            {    2, GridType::gtAngular },
-            {    3, GridType::gtRadial },
-            {    4, GridType::gtAll },
-            {    5, GridType::gtNone },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPPolarGrid, qt_meta_tag_ZN12QCPPolarGridE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       2,   14, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    4,   24,
+       6,    1, 0x1,    4,   32,
+
+ // enum data: key, value
+       2, uint(QCPPolarGrid::gtAngular),
+       3, uint(QCPPolarGrid::gtRadial),
+       4, uint(QCPPolarGrid::gtAll),
+       5, uint(QCPPolarGrid::gtNone),
+       2, uint(QCPPolarGrid::gtAngular),
+       3, uint(QCPPolarGrid::gtRadial),
+       4, uint(QCPPolarGrid::gtAll),
+       5, uint(QCPPolarGrid::gtNone),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPolarGrid::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPPolarGridE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPPolarGridE_t>.data,
+    qt_meta_stringdata_QCPPolarGrid.offsetsAndSizes,
+    qt_meta_data_QCPPolarGrid,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN12QCPPolarGridE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPolarGrid_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPolarGrid, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPPolarGrid::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPolarGrid *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -6659,7 +9797,7 @@ const QMetaObject *QCPPolarGrid::metaObject() const
 void *QCPPolarGrid::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN12QCPPolarGridE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPolarGrid.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -6670,41 +9808,55 @@ int QCPPolarGrid::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN18QCPPolarLegendItemE_t {};
+struct qt_meta_stringdata_QCPPolarLegendItem_t {
+    uint offsetsAndSizes[2];
+    char stringdata0[19];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPolarLegendItem_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPolarLegendItem_t qt_meta_stringdata_QCPPolarLegendItem = {
+    {
+        QT_MOC_LITERAL(0, 18)   // "QCPPolarLegendItem"
+    },
+    "QCPPolarLegendItem"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPolarLegendItem::qt_create_metaobjectdata<qt_meta_tag_ZN18QCPPolarLegendItemE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPolarLegendItem"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPolarLegendItem[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-    };
-    return QtMocHelpers::metaObjectData<QCPPolarLegendItem, qt_meta_tag_ZN18QCPPolarLegendItemE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPolarLegendItem::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPAbstractLegendItem::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarLegendItemE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarLegendItemE_t>.data,
+    qt_meta_stringdata_QCPPolarLegendItem.offsetsAndSizes,
+    qt_meta_data_QCPPolarLegendItem,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN18QCPPolarLegendItemE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPolarLegendItem_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPolarLegendItem, std::true_type>
+    >,
     nullptr
 } };
 
 void QCPPolarLegendItem::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPolarLegendItem *>(_o);
-    (void)_t;
-    (void)_c;
+    (void)_o;
     (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -6716,7 +9868,7 @@ const QMetaObject *QCPPolarLegendItem::metaObject() const
 void *QCPPolarLegendItem::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN18QCPPolarLegendItemE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPolarLegendItem.stringdata0))
         return static_cast<void*>(this);
     return QCPAbstractLegendItem::qt_metacast(_clname);
 }
@@ -6727,87 +9879,143 @@ int QCPPolarLegendItem::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 namespace {
-struct qt_meta_tag_ZN13QCPPolarGraphE_t {};
+struct qt_meta_stringdata_QCPPolarGraph_t {
+    uint offsetsAndSizes[28];
+    char stringdata0[14];
+    char stringdata1[17];
+    char stringdata2[1];
+    char stringdata3[9];
+    char stringdata4[17];
+    char stringdata5[10];
+    char stringdata6[18];
+    char stringdata7[19];
+    char stringdata8[11];
+    char stringdata9[14];
+    char stringdata10[13];
+    char stringdata11[10];
+    char stringdata12[7];
+    char stringdata13[7];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCPPolarGraph_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCPPolarGraph_t qt_meta_stringdata_QCPPolarGraph = {
+    {
+        QT_MOC_LITERAL(0, 13),  // "QCPPolarGraph"
+        QT_MOC_LITERAL(14, 16),  // "selectionChanged"
+        QT_MOC_LITERAL(31, 0),  // ""
+        QT_MOC_LITERAL(32, 8),  // "selected"
+        QT_MOC_LITERAL(41, 16),  // "QCPDataSelection"
+        QT_MOC_LITERAL(58, 9),  // "selection"
+        QT_MOC_LITERAL(68, 17),  // "selectableChanged"
+        QT_MOC_LITERAL(86, 18),  // "QCP::SelectionType"
+        QT_MOC_LITERAL(105, 10),  // "selectable"
+        QT_MOC_LITERAL(116, 13),  // "setSelectable"
+        QT_MOC_LITERAL(130, 12),  // "setSelection"
+        QT_MOC_LITERAL(143, 9),  // "LineStyle"
+        QT_MOC_LITERAL(153, 6),  // "lsNone"
+        QT_MOC_LITERAL(160, 6)   // "lsLine"
+    },
+    "QCPPolarGraph",
+    "selectionChanged",
+    "",
+    "selected",
+    "QCPDataSelection",
+    "selection",
+    "selectableChanged",
+    "QCP::SelectionType",
+    "selectable",
+    "setSelectable",
+    "setSelection",
+    "LineStyle",
+    "lsNone",
+    "lsLine"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCPPolarGraph::qt_create_metaobjectdata<qt_meta_tag_ZN13QCPPolarGraphE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCPPolarGraph",
-        "selectionChanged",
-        "",
-        "selected",
-        "QCPDataSelection",
-        "selection",
-        "selectableChanged",
-        "QCP::SelectionType",
-        "selectable",
-        "setSelectable",
-        "setSelection",
-        "LineStyle",
-        "lsNone",
-        "lsLine"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCPPolarGraph[] = {
 
-    QtMocHelpers::UintData qt_methods {
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 3 },
-        }}),
-        // Signal 'selectionChanged'
-        QtMocHelpers::SignalData<void(const QCPDataSelection &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 4, 5 },
-        }}),
-        // Signal 'selectableChanged'
-        QtMocHelpers::SignalData<void(QCP::SelectionType)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelectable'
-        QtMocHelpers::SlotData<void(QCP::SelectionType)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
-        }}),
-        // Slot 'setSelection'
-        QtMocHelpers::SlotData<void(QCPDataSelection)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 4, 5 },
-        }}),
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'LineStyle'
-        QtMocHelpers::EnumData<enum LineStyle>(11, 11, QMC::EnumFlags{}).add({
-            {   12, LineStyle::lsNone },
-            {   13, LineStyle::lsLine },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<QCPPolarGraph, qt_meta_tag_ZN13QCPPolarGraphE_t>(QMC::MetaObjectFlag{}, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       5,   14, // methods
+       0,    0, // properties
+       1,   59, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       3,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   44,    2, 0x06,    1 /* Public */,
+       1,    1,   47,    2, 0x06,    3 /* Public */,
+       6,    1,   50,    2, 0x06,    5 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       9,    1,   53,    2, 0x0a,    7 /* Public */,
+      10,    1,   56,    2, 0x0a,    9 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, 0x80000000 | 4,    5,
+    QMetaType::Void, 0x80000000 | 7,    8,
+
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 4,    5,
+
+ // enums: name, alias, flags, count, data
+      11,   11, 0x0,    2,   64,
+
+ // enum data: key, value
+      12, uint(QCPPolarGraph::lsNone),
+      13, uint(QCPPolarGraph::lsLine),
+
+       0        // eod
+};
+
 Q_CONSTINIT const QMetaObject QCPPolarGraph::staticMetaObject = { {
     QMetaObject::SuperData::link<QCPLayerable::staticMetaObject>(),
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPPolarGraphE_t>.stringdata,
-    qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPPolarGraphE_t>.data,
+    qt_meta_stringdata_QCPPolarGraph.offsetsAndSizes,
+    qt_meta_data_QCPPolarGraph,
     qt_static_metacall,
     nullptr,
-    qt_staticMetaObjectRelocatingContent<qt_meta_tag_ZN13QCPPolarGraphE_t>.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCPPolarGraph_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<QCPPolarGraph, std::true_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'selectionChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QCPDataSelection &, std::false_type>,
+        // method 'selectableChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCP::SelectionType, std::false_type>,
+        // method 'setSelectable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCP::SelectionType, std::false_type>,
+        // method 'setSelection'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCPDataSelection, std::false_type>
+    >,
     nullptr
 } };
 
 void QCPPolarGraph::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    auto *_t = static_cast<QCPPolarGraph *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<QCPPolarGraph *>(_o);
+        (void)_t;
         switch (_id) {
-        case 0: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->selectionChanged((*reinterpret_cast<std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
-        case 2: _t->selectableChanged((*reinterpret_cast<std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
-        case 3: _t->setSelectable((*reinterpret_cast<std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
-        case 4: _t->setSelection((*reinterpret_cast<std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
+        case 0: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->selectionChanged((*reinterpret_cast< std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
+        case 2: _t->selectableChanged((*reinterpret_cast< std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
+        case 3: _t->setSelectable((*reinterpret_cast< std::add_pointer_t<QCP::SelectionType>>(_a[1]))); break;
+        case 4: _t->setSelection((*reinterpret_cast< std::add_pointer_t<QCPDataSelection>>(_a[1]))); break;
         default: ;
         }
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
         case 1:
@@ -6825,14 +10033,29 @@ void QCPPolarGraph::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
             break;
         }
-    }
-    if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarGraph::*)(bool )>(_a, &QCPPolarGraph::selectionChanged, 0))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarGraph::*)(const QCPDataSelection & )>(_a, &QCPPolarGraph::selectionChanged, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (QCPPolarGraph::*)(QCP::SelectionType )>(_a, &QCPPolarGraph::selectableChanged, 2))
-            return;
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (QCPPolarGraph::*)(bool );
+            if (_t _q_method = &QCPPolarGraph::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarGraph::*)(const QCPDataSelection & );
+            if (_t _q_method = &QCPPolarGraph::selectionChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (QCPPolarGraph::*)(QCP::SelectionType );
+            if (_t _q_method = &QCPPolarGraph::selectableChanged; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
     }
 }
 
@@ -6844,7 +10067,7 @@ const QMetaObject *QCPPolarGraph::metaObject() const
 void *QCPPolarGraph::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_staticMetaObjectStaticContent<qt_meta_tag_ZN13QCPPolarGraphE_t>.strings))
+    if (!strcmp(_clname, qt_meta_stringdata_QCPPolarGraph.stringdata0))
         return static_cast<void*>(this);
     return QCPLayerable::qt_metacast(_clname);
 }
@@ -6858,8 +10081,7 @@ int QCPPolarGraph::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
-    }
-    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 5;
@@ -6870,241 +10092,356 @@ int QCPPolarGraph::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void QCPPolarGraph::selectionChanged(bool _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 
 // SIGNAL 1
 void QCPPolarGraph::selectionChanged(const QCPDataSelection & _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void QCPPolarGraph::selectableChanged(QCP::SelectionType _t1)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 namespace {
-struct qt_meta_tag_ZN3QCPE_t {};
+struct qt_meta_stringdata_QCP_t {
+    uint offsetsAndSizes[128];
+    char stringdata0[4];
+    char stringdata1[15];
+    char stringdata2[15];
+    char stringdata3[20];
+    char stringdata4[14];
+    char stringdata5[10];
+    char stringdata6[13];
+    char stringdata7[16];
+    char stringdata8[11];
+    char stringdata9[11];
+    char stringdata10[7];
+    char stringdata11[11];
+    char stringdata12[11];
+    char stringdata13[7];
+    char stringdata14[8];
+    char stringdata15[6];
+    char stringdata16[9];
+    char stringdata17[6];
+    char stringdata18[7];
+    char stringdata19[12];
+    char stringdata20[19];
+    char stringdata21[7];
+    char stringdata22[7];
+    char stringdata23[10];
+    char stringdata24[9];
+    char stringdata25[14];
+    char stringdata26[13];
+    char stringdata27[8];
+    char stringdata28[11];
+    char stringdata29[8];
+    char stringdata30[11];
+    char stringdata31[8];
+    char stringdata32[6];
+    char stringdata33[7];
+    char stringdata34[20];
+    char stringdata35[13];
+    char stringdata36[7];
+    char stringdata37[16];
+    char stringdata38[19];
+    char stringdata39[14];
+    char stringdata40[14];
+    char stringdata41[12];
+    char stringdata42[6];
+    char stringdata43[11];
+    char stringdata44[11];
+    char stringdata45[13];
+    char stringdata46[18];
+    char stringdata47[12];
+    char stringdata48[14];
+    char stringdata49[13];
+    char stringdata50[13];
+    char stringdata51[32];
+    char stringdata52[13];
+    char stringdata53[18];
+    char stringdata54[8];
+    char stringdata55[8];
+    char stringdata56[10];
+    char stringdata57[10];
+    char stringdata58[14];
+    char stringdata59[7];
+    char stringdata60[8];
+    char stringdata61[13];
+    char stringdata62[12];
+    char stringdata63[21];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_QCP_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_QCP_t qt_meta_stringdata_QCP = {
+    {
+        QT_MOC_LITERAL(0, 3),  // "QCP"
+        QT_MOC_LITERAL(4, 14),  // "ResolutionUnit"
+        QT_MOC_LITERAL(19, 14),  // "ruDotsPerMeter"
+        QT_MOC_LITERAL(34, 19),  // "ruDotsPerCentimeter"
+        QT_MOC_LITERAL(54, 13),  // "ruDotsPerInch"
+        QT_MOC_LITERAL(68, 9),  // "ExportPen"
+        QT_MOC_LITERAL(78, 12),  // "epNoCosmetic"
+        QT_MOC_LITERAL(91, 15),  // "epAllowCosmetic"
+        QT_MOC_LITERAL(107, 10),  // "SignDomain"
+        QT_MOC_LITERAL(118, 10),  // "sdNegative"
+        QT_MOC_LITERAL(129, 6),  // "sdBoth"
+        QT_MOC_LITERAL(136, 10),  // "sdPositive"
+        QT_MOC_LITERAL(147, 10),  // "MarginSide"
+        QT_MOC_LITERAL(158, 6),  // "msLeft"
+        QT_MOC_LITERAL(165, 7),  // "msRight"
+        QT_MOC_LITERAL(173, 5),  // "msTop"
+        QT_MOC_LITERAL(179, 8),  // "msBottom"
+        QT_MOC_LITERAL(188, 5),  // "msAll"
+        QT_MOC_LITERAL(194, 6),  // "msNone"
+        QT_MOC_LITERAL(201, 11),  // "MarginSides"
+        QT_MOC_LITERAL(213, 18),  // "AntialiasedElement"
+        QT_MOC_LITERAL(232, 6),  // "aeAxes"
+        QT_MOC_LITERAL(239, 6),  // "aeGrid"
+        QT_MOC_LITERAL(246, 9),  // "aeSubGrid"
+        QT_MOC_LITERAL(256, 8),  // "aeLegend"
+        QT_MOC_LITERAL(265, 13),  // "aeLegendItems"
+        QT_MOC_LITERAL(279, 12),  // "aePlottables"
+        QT_MOC_LITERAL(292, 7),  // "aeItems"
+        QT_MOC_LITERAL(300, 10),  // "aeScatters"
+        QT_MOC_LITERAL(311, 7),  // "aeFills"
+        QT_MOC_LITERAL(319, 10),  // "aeZeroLine"
+        QT_MOC_LITERAL(330, 7),  // "aeOther"
+        QT_MOC_LITERAL(338, 5),  // "aeAll"
+        QT_MOC_LITERAL(344, 6),  // "aeNone"
+        QT_MOC_LITERAL(351, 19),  // "AntialiasedElements"
+        QT_MOC_LITERAL(371, 12),  // "PlottingHint"
+        QT_MOC_LITERAL(384, 6),  // "phNone"
+        QT_MOC_LITERAL(391, 15),  // "phFastPolylines"
+        QT_MOC_LITERAL(407, 18),  // "phImmediateRefresh"
+        QT_MOC_LITERAL(426, 13),  // "phCacheLabels"
+        QT_MOC_LITERAL(440, 13),  // "PlottingHints"
+        QT_MOC_LITERAL(454, 11),  // "Interaction"
+        QT_MOC_LITERAL(466, 5),  // "iNone"
+        QT_MOC_LITERAL(472, 10),  // "iRangeDrag"
+        QT_MOC_LITERAL(483, 10),  // "iRangeZoom"
+        QT_MOC_LITERAL(494, 12),  // "iMultiSelect"
+        QT_MOC_LITERAL(507, 17),  // "iSelectPlottables"
+        QT_MOC_LITERAL(525, 11),  // "iSelectAxes"
+        QT_MOC_LITERAL(537, 13),  // "iSelectLegend"
+        QT_MOC_LITERAL(551, 12),  // "iSelectItems"
+        QT_MOC_LITERAL(564, 12),  // "iSelectOther"
+        QT_MOC_LITERAL(577, 31),  // "iSelectPlottablesBeyondAxisRect"
+        QT_MOC_LITERAL(609, 12),  // "Interactions"
+        QT_MOC_LITERAL(622, 17),  // "SelectionRectMode"
+        QT_MOC_LITERAL(640, 7),  // "srmNone"
+        QT_MOC_LITERAL(648, 7),  // "srmZoom"
+        QT_MOC_LITERAL(656, 9),  // "srmSelect"
+        QT_MOC_LITERAL(666, 9),  // "srmCustom"
+        QT_MOC_LITERAL(676, 13),  // "SelectionType"
+        QT_MOC_LITERAL(690, 6),  // "stNone"
+        QT_MOC_LITERAL(697, 7),  // "stWhole"
+        QT_MOC_LITERAL(705, 12),  // "stSingleData"
+        QT_MOC_LITERAL(718, 11),  // "stDataRange"
+        QT_MOC_LITERAL(730, 20)   // "stMultipleDataRanges"
+    },
+    "QCP",
+    "ResolutionUnit",
+    "ruDotsPerMeter",
+    "ruDotsPerCentimeter",
+    "ruDotsPerInch",
+    "ExportPen",
+    "epNoCosmetic",
+    "epAllowCosmetic",
+    "SignDomain",
+    "sdNegative",
+    "sdBoth",
+    "sdPositive",
+    "MarginSide",
+    "msLeft",
+    "msRight",
+    "msTop",
+    "msBottom",
+    "msAll",
+    "msNone",
+    "MarginSides",
+    "AntialiasedElement",
+    "aeAxes",
+    "aeGrid",
+    "aeSubGrid",
+    "aeLegend",
+    "aeLegendItems",
+    "aePlottables",
+    "aeItems",
+    "aeScatters",
+    "aeFills",
+    "aeZeroLine",
+    "aeOther",
+    "aeAll",
+    "aeNone",
+    "AntialiasedElements",
+    "PlottingHint",
+    "phNone",
+    "phFastPolylines",
+    "phImmediateRefresh",
+    "phCacheLabels",
+    "PlottingHints",
+    "Interaction",
+    "iNone",
+    "iRangeDrag",
+    "iRangeZoom",
+    "iMultiSelect",
+    "iSelectPlottables",
+    "iSelectAxes",
+    "iSelectLegend",
+    "iSelectItems",
+    "iSelectOther",
+    "iSelectPlottablesBeyondAxisRect",
+    "Interactions",
+    "SelectionRectMode",
+    "srmNone",
+    "srmZoom",
+    "srmSelect",
+    "srmCustom",
+    "SelectionType",
+    "stNone",
+    "stWhole",
+    "stSingleData",
+    "stDataRange",
+    "stMultipleDataRanges"
+};
+#undef QT_MOC_LITERAL
 } // unnamed namespace
 
-template <> constexpr inline auto QCP::qt_create_metaobjectdata<qt_meta_tag_ZN3QCPE_t>()
-{
-    namespace QMC = QtMocConstants;
-    QtMocHelpers::StringRefStorage qt_stringData {
-        "QCP",
-        "ResolutionUnit",
-        "ruDotsPerMeter",
-        "ruDotsPerCentimeter",
-        "ruDotsPerInch",
-        "ExportPen",
-        "epNoCosmetic",
-        "epAllowCosmetic",
-        "SignDomain",
-        "sdNegative",
-        "sdBoth",
-        "sdPositive",
-        "MarginSide",
-        "msLeft",
-        "msRight",
-        "msTop",
-        "msBottom",
-        "msAll",
-        "msNone",
-        "MarginSides",
-        "AntialiasedElement",
-        "aeAxes",
-        "aeGrid",
-        "aeSubGrid",
-        "aeLegend",
-        "aeLegendItems",
-        "aePlottables",
-        "aeItems",
-        "aeScatters",
-        "aeFills",
-        "aeZeroLine",
-        "aeOther",
-        "aeAll",
-        "aeNone",
-        "AntialiasedElements",
-        "PlottingHint",
-        "phNone",
-        "phFastPolylines",
-        "phImmediateRefresh",
-        "phCacheLabels",
-        "PlottingHints",
-        "Interaction",
-        "iNone",
-        "iRangeDrag",
-        "iRangeZoom",
-        "iMultiSelect",
-        "iSelectPlottables",
-        "iSelectAxes",
-        "iSelectLegend",
-        "iSelectItems",
-        "iSelectOther",
-        "iSelectPlottablesBeyondAxisRect",
-        "Interactions",
-        "SelectionRectMode",
-        "srmNone",
-        "srmZoom",
-        "srmSelect",
-        "srmCustom",
-        "SelectionType",
-        "stNone",
-        "stWhole",
-        "stSingleData",
-        "stDataRange",
-        "stMultipleDataRanges"
-    };
+Q_CONSTINIT static const uint qt_meta_data_QCP[] = {
 
-    QtMocHelpers::UintData qt_methods {
-    };
-    QtMocHelpers::UintData qt_properties {
-    };
-    QtMocHelpers::UintData qt_enums {
-        // enum 'ResolutionUnit'
-        QtMocHelpers::EnumData<ResolutionUnit>(1, 1, QMC::EnumFlags{}).add({
-            {    2, ResolutionUnit::ruDotsPerMeter },
-            {    3, ResolutionUnit::ruDotsPerCentimeter },
-            {    4, ResolutionUnit::ruDotsPerInch },
-        }),
-        // enum 'ExportPen'
-        QtMocHelpers::EnumData<ExportPen>(5, 5, QMC::EnumFlags{}).add({
-            {    6, ExportPen::epNoCosmetic },
-            {    7, ExportPen::epAllowCosmetic },
-        }),
-        // enum 'SignDomain'
-        QtMocHelpers::EnumData<SignDomain>(8, 8, QMC::EnumFlags{}).add({
-            {    9, SignDomain::sdNegative },
-            {   10, SignDomain::sdBoth },
-            {   11, SignDomain::sdPositive },
-        }),
-        // enum 'MarginSide'
-        QtMocHelpers::EnumData<MarginSide>(12, 12, QMC::EnumFlags{}).add({
-            {   13, MarginSide::msLeft },
-            {   14, MarginSide::msRight },
-            {   15, MarginSide::msTop },
-            {   16, MarginSide::msBottom },
-            {   17, MarginSide::msAll },
-            {   18, MarginSide::msNone },
-        }),
-        // flag 'MarginSides'
-        QtMocHelpers::EnumData<MarginSides>(19, 12, QMC::EnumIsFlag).add({
-            {   13, MarginSide::msLeft },
-            {   14, MarginSide::msRight },
-            {   15, MarginSide::msTop },
-            {   16, MarginSide::msBottom },
-            {   17, MarginSide::msAll },
-            {   18, MarginSide::msNone },
-        }),
-        // enum 'AntialiasedElement'
-        QtMocHelpers::EnumData<AntialiasedElement>(20, 20, QMC::EnumFlags{}).add({
-            {   21, AntialiasedElement::aeAxes },
-            {   22, AntialiasedElement::aeGrid },
-            {   23, AntialiasedElement::aeSubGrid },
-            {   24, AntialiasedElement::aeLegend },
-            {   25, AntialiasedElement::aeLegendItems },
-            {   26, AntialiasedElement::aePlottables },
-            {   27, AntialiasedElement::aeItems },
-            {   28, AntialiasedElement::aeScatters },
-            {   29, AntialiasedElement::aeFills },
-            {   30, AntialiasedElement::aeZeroLine },
-            {   31, AntialiasedElement::aeOther },
-            {   32, AntialiasedElement::aeAll },
-            {   33, AntialiasedElement::aeNone },
-        }),
-        // flag 'AntialiasedElements'
-        QtMocHelpers::EnumData<AntialiasedElements>(34, 20, QMC::EnumIsFlag).add({
-            {   21, AntialiasedElement::aeAxes },
-            {   22, AntialiasedElement::aeGrid },
-            {   23, AntialiasedElement::aeSubGrid },
-            {   24, AntialiasedElement::aeLegend },
-            {   25, AntialiasedElement::aeLegendItems },
-            {   26, AntialiasedElement::aePlottables },
-            {   27, AntialiasedElement::aeItems },
-            {   28, AntialiasedElement::aeScatters },
-            {   29, AntialiasedElement::aeFills },
-            {   30, AntialiasedElement::aeZeroLine },
-            {   31, AntialiasedElement::aeOther },
-            {   32, AntialiasedElement::aeAll },
-            {   33, AntialiasedElement::aeNone },
-        }),
-        // enum 'PlottingHint'
-        QtMocHelpers::EnumData<PlottingHint>(35, 35, QMC::EnumFlags{}).add({
-            {   36, PlottingHint::phNone },
-            {   37, PlottingHint::phFastPolylines },
-            {   38, PlottingHint::phImmediateRefresh },
-            {   39, PlottingHint::phCacheLabels },
-        }),
-        // flag 'PlottingHints'
-        QtMocHelpers::EnumData<PlottingHints>(40, 35, QMC::EnumIsFlag).add({
-            {   36, PlottingHint::phNone },
-            {   37, PlottingHint::phFastPolylines },
-            {   38, PlottingHint::phImmediateRefresh },
-            {   39, PlottingHint::phCacheLabels },
-        }),
-        // enum 'Interaction'
-        QtMocHelpers::EnumData<Interaction>(41, 41, QMC::EnumFlags{}).add({
-            {   42, Interaction::iNone },
-            {   43, Interaction::iRangeDrag },
-            {   44, Interaction::iRangeZoom },
-            {   45, Interaction::iMultiSelect },
-            {   46, Interaction::iSelectPlottables },
-            {   47, Interaction::iSelectAxes },
-            {   48, Interaction::iSelectLegend },
-            {   49, Interaction::iSelectItems },
-            {   50, Interaction::iSelectOther },
-            {   51, Interaction::iSelectPlottablesBeyondAxisRect },
-        }),
-        // flag 'Interactions'
-        QtMocHelpers::EnumData<Interactions>(52, 41, QMC::EnumIsFlag).add({
-            {   42, Interaction::iNone },
-            {   43, Interaction::iRangeDrag },
-            {   44, Interaction::iRangeZoom },
-            {   45, Interaction::iMultiSelect },
-            {   46, Interaction::iSelectPlottables },
-            {   47, Interaction::iSelectAxes },
-            {   48, Interaction::iSelectLegend },
-            {   49, Interaction::iSelectItems },
-            {   50, Interaction::iSelectOther },
-            {   51, Interaction::iSelectPlottablesBeyondAxisRect },
-        }),
-        // enum 'SelectionRectMode'
-        QtMocHelpers::EnumData<SelectionRectMode>(53, 53, QMC::EnumFlags{}).add({
-            {   54, SelectionRectMode::srmNone },
-            {   55, SelectionRectMode::srmZoom },
-            {   56, SelectionRectMode::srmSelect },
-            {   57, SelectionRectMode::srmCustom },
-        }),
-        // enum 'SelectionType'
-        QtMocHelpers::EnumData<SelectionType>(58, 58, QMC::EnumFlags{}).add({
-            {   59, SelectionType::stNone },
-            {   60, SelectionType::stWhole },
-            {   61, SelectionType::stSingleData },
-            {   62, SelectionType::stDataRange },
-            {   63, SelectionType::stMultipleDataRanges },
-        }),
-    };
-    return QtMocHelpers::metaObjectData<void, qt_meta_tag_ZN3QCPE_t>(QMC::PropertyAccessInStaticMetaCall, qt_stringData,
-            qt_methods, qt_properties, qt_enums);
-}
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+      13,   14, // enums/sets
+       0,    0, // constructors
+       4,       // flags
+       0,       // signalCount
 
-static constexpr auto qt_staticMetaObjectContent_ZN3QCPE =
-    QCP::qt_create_metaobjectdata<qt_meta_tag_ZN3QCPE_t>();
-static constexpr auto qt_staticMetaObjectStaticContent_ZN3QCPE =
-    qt_staticMetaObjectContent_ZN3QCPE.staticData;
-static constexpr auto qt_staticMetaObjectRelocatingContent_ZN3QCPE =
-    qt_staticMetaObjectContent_ZN3QCPE.relocatingData;
+ // enums: name, alias, flags, count, data
+       1,    1, 0x0,    3,   79,
+       5,    5, 0x0,    2,   85,
+       8,    8, 0x0,    3,   89,
+      12,   12, 0x0,    6,   95,
+      19,   12, 0x1,    6,  107,
+      20,   20, 0x0,   13,  119,
+      34,   20, 0x1,   13,  145,
+      35,   35, 0x0,    4,  171,
+      40,   35, 0x1,    4,  179,
+      41,   41, 0x0,   10,  187,
+      52,   41, 0x1,   10,  207,
+      53,   53, 0x0,    4,  227,
+      58,   58, 0x0,    5,  235,
+
+ // enum data: key, value
+       2, uint(QCP::ruDotsPerMeter),
+       3, uint(QCP::ruDotsPerCentimeter),
+       4, uint(QCP::ruDotsPerInch),
+       6, uint(QCP::epNoCosmetic),
+       7, uint(QCP::epAllowCosmetic),
+       9, uint(QCP::sdNegative),
+      10, uint(QCP::sdBoth),
+      11, uint(QCP::sdPositive),
+      13, uint(QCP::msLeft),
+      14, uint(QCP::msRight),
+      15, uint(QCP::msTop),
+      16, uint(QCP::msBottom),
+      17, uint(QCP::msAll),
+      18, uint(QCP::msNone),
+      13, uint(QCP::msLeft),
+      14, uint(QCP::msRight),
+      15, uint(QCP::msTop),
+      16, uint(QCP::msBottom),
+      17, uint(QCP::msAll),
+      18, uint(QCP::msNone),
+      21, uint(QCP::aeAxes),
+      22, uint(QCP::aeGrid),
+      23, uint(QCP::aeSubGrid),
+      24, uint(QCP::aeLegend),
+      25, uint(QCP::aeLegendItems),
+      26, uint(QCP::aePlottables),
+      27, uint(QCP::aeItems),
+      28, uint(QCP::aeScatters),
+      29, uint(QCP::aeFills),
+      30, uint(QCP::aeZeroLine),
+      31, uint(QCP::aeOther),
+      32, uint(QCP::aeAll),
+      33, uint(QCP::aeNone),
+      21, uint(QCP::aeAxes),
+      22, uint(QCP::aeGrid),
+      23, uint(QCP::aeSubGrid),
+      24, uint(QCP::aeLegend),
+      25, uint(QCP::aeLegendItems),
+      26, uint(QCP::aePlottables),
+      27, uint(QCP::aeItems),
+      28, uint(QCP::aeScatters),
+      29, uint(QCP::aeFills),
+      30, uint(QCP::aeZeroLine),
+      31, uint(QCP::aeOther),
+      32, uint(QCP::aeAll),
+      33, uint(QCP::aeNone),
+      36, uint(QCP::phNone),
+      37, uint(QCP::phFastPolylines),
+      38, uint(QCP::phImmediateRefresh),
+      39, uint(QCP::phCacheLabels),
+      36, uint(QCP::phNone),
+      37, uint(QCP::phFastPolylines),
+      38, uint(QCP::phImmediateRefresh),
+      39, uint(QCP::phCacheLabels),
+      42, uint(QCP::iNone),
+      43, uint(QCP::iRangeDrag),
+      44, uint(QCP::iRangeZoom),
+      45, uint(QCP::iMultiSelect),
+      46, uint(QCP::iSelectPlottables),
+      47, uint(QCP::iSelectAxes),
+      48, uint(QCP::iSelectLegend),
+      49, uint(QCP::iSelectItems),
+      50, uint(QCP::iSelectOther),
+      51, uint(QCP::iSelectPlottablesBeyondAxisRect),
+      42, uint(QCP::iNone),
+      43, uint(QCP::iRangeDrag),
+      44, uint(QCP::iRangeZoom),
+      45, uint(QCP::iMultiSelect),
+      46, uint(QCP::iSelectPlottables),
+      47, uint(QCP::iSelectAxes),
+      48, uint(QCP::iSelectLegend),
+      49, uint(QCP::iSelectItems),
+      50, uint(QCP::iSelectOther),
+      51, uint(QCP::iSelectPlottablesBeyondAxisRect),
+      54, uint(QCP::srmNone),
+      55, uint(QCP::srmZoom),
+      56, uint(QCP::srmSelect),
+      57, uint(QCP::srmCustom),
+      59, uint(QCP::stNone),
+      60, uint(QCP::stWhole),
+      61, uint(QCP::stSingleData),
+      62, uint(QCP::stDataRange),
+      63, uint(QCP::stMultipleDataRanges),
+
+       0        // eod
+};
 
 Q_CONSTINIT const QMetaObject QCP::staticMetaObject = { {
     nullptr,
-    qt_staticMetaObjectStaticContent_ZN3QCPE.stringdata,
-    qt_staticMetaObjectStaticContent_ZN3QCPE.data,
+    qt_meta_stringdata_QCP.offsetsAndSizes,
+    qt_meta_data_QCP,
     nullptr,
     nullptr,
-    qt_staticMetaObjectRelocatingContent_ZN3QCPE.metaTypes,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_QCP_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<void, std::true_type>
+    >,
     nullptr
 } };
 
 QT_WARNING_POP
+QT_END_MOC_NAMESPACE

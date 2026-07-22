@@ -1,5 +1,5 @@
-#define ARCHITECTURE_ID "x86_64"
-#define PLATFORM_MACOS 1
+#define ABI_ID "ELF"
+#define PLATFORM_LINUX 1
 #define QT_CORE_LIB 1
 #define QT_DBUS_LIB 1
 #define QT_GUI_LIB 1
@@ -10,32 +10,32 @@
 #define QT_WEBSOCKETS_LIB 1
 #define QT_WIDGETS_LIB 1
 #define SIZEOF_DPTR (sizeof(void*))
-#define TARGET_IPHONE_SIMULATOR 0
-#define TARGET_OS_ARROW 0
-#define TARGET_OS_BRIDGE 0
-#define TARGET_OS_DRIVERKIT 0
-#define TARGET_OS_EMBEDDED 0
-#define TARGET_OS_IOS 0
-#define TARGET_OS_IOSMAC 0
-#define TARGET_OS_IPHONE 0
-#define TARGET_OS_LINUX 0
-#define TARGET_OS_MAC 1
-#define TARGET_OS_MACCATALYST 0
-#define TARGET_OS_NANO 0
-#define TARGET_OS_OSX 1
-#define TARGET_OS_SIMULATOR 0
-#define TARGET_OS_TV 0
-#define TARGET_OS_UIKITFORMAC 0
-#define TARGET_OS_UNIX 0
-#define TARGET_OS_VISION 0
-#define TARGET_OS_WATCH 0
-#define TARGET_OS_WIN32 0
-#define TARGET_OS_WINDOWS 0
-#define TARGET_OS_XR 0
-#define _HAS_BUILTIN_AVAILABLE_FEATS 1
+#define _GNU_SOURCE 1
 #define _LP64 1
-#define __APPLE_CC__ 6000
-#define __APPLE__ 1
+#define __AARCH64EL__ 1
+#define __AARCH64_CMODEL_SMALL__ 1
+#define __ARM_64BIT_STATE 1
+#define __ARM_ACLE 200
+#define __ARM_ALIGN_MAX_STACK_PWR 4
+#define __ARM_ARCH 8
+#define __ARM_ARCH_ISA_A64 1
+#define __ARM_ARCH_PROFILE 'A'
+#define __ARM_FEATURE_CLZ 1
+#define __ARM_FEATURE_DIRECTED_ROUNDING 1
+#define __ARM_FEATURE_DIV 1
+#define __ARM_FEATURE_FMA 1
+#define __ARM_FEATURE_IDIV 1
+#define __ARM_FEATURE_LDREX 0xF
+#define __ARM_FEATURE_NUMERIC_MAXMIN 1
+#define __ARM_FEATURE_UNALIGNED 1
+#define __ARM_FP 0xE
+#define __ARM_FP16_ARGS 1
+#define __ARM_FP16_FORMAT_IEEE 1
+#define __ARM_NEON 1
+#define __ARM_NEON_FP 0xE
+#define __ARM_PCS_AAPCS64 1
+#define __ARM_SIZEOF_MINIMAL_ENUM 4
+#define __ARM_SIZEOF_WCHAR_T 4
 #define __ATOMIC_ACQUIRE 2
 #define __ATOMIC_ACQ_REL 4
 #define __ATOMIC_CONSUME 1
@@ -43,13 +43,13 @@
 #define __ATOMIC_RELEASE 3
 #define __ATOMIC_SEQ_CST 5
 #define __BIGGEST_ALIGNMENT__ 16
-#define __BITINT_MAXWIDTH__ 8388608
-#define __BLOCKS__ 1
+#define __BITINT_MAXWIDTH__ 128
 #define __BOOL_WIDTH__ 8
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
 #define __CHAR16_TYPE__ unsigned short
 #define __CHAR32_TYPE__ unsigned int
 #define __CHAR_BIT__ 8
+#define __CHAR_UNSIGNED__ 1
 #define __CLANG_ATOMIC_BOOL_LOCK_FREE 2
 #define __CLANG_ATOMIC_CHAR16_T_LOCK_FREE 2
 #define __CLANG_ATOMIC_CHAR32_T_LOCK_FREE 2
@@ -75,12 +75,9 @@
 #define __DBL_MIN_10_EXP__ (-307)
 #define __DBL_MIN_EXP__ (-1021)
 #define __DBL_MIN__ 2.2250738585072014e-308
-#define __DBL_NORM_MAX__ 1.7976931348623157e+308
 #define __DECIMAL_DIG__ __LDBL_DECIMAL_DIG__
 #define __DEPRECATED 1
-#define __DYNAMIC__ 1
-#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 260000
-#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 260000
+#define __ELF__ 1
 #define __EXCEPTIONS 1
 #define __FINITE_MATH_ONLY__ 0
 #define __FLT16_DECIMAL_DIG__ 5
@@ -97,11 +94,11 @@
 #define __FLT16_MIN_10_EXP__ (-4)
 #define __FLT16_MIN_EXP__ (-13)
 #define __FLT16_MIN__ 6.103515625e-5F16
-#define __FLT16_NORM_MAX__ 6.5504e+4F16
 #define __FLT_DECIMAL_DIG__ 9
 #define __FLT_DENORM_MIN__ 1.40129846e-45F
 #define __FLT_DIG__ 6
 #define __FLT_EPSILON__ 1.19209290e-7F
+#define __FLT_EVAL_METHOD__ 0
 #define __FLT_HAS_DENORM__ 1
 #define __FLT_HAS_INFINITY__ 1
 #define __FLT_HAS_QUIET_NAN__ 1
@@ -112,20 +109,7 @@
 #define __FLT_MIN_10_EXP__ (-37)
 #define __FLT_MIN_EXP__ (-125)
 #define __FLT_MIN__ 1.17549435e-38F
-#define __FLT_NORM_MAX__ 3.40282347e+38F
 #define __FLT_RADIX__ 2
-#define __FPCLASS_NEGINF 0x0004
-#define __FPCLASS_NEGNORMAL 0x0008
-#define __FPCLASS_NEGSUBNORMAL 0x0010
-#define __FPCLASS_NEGZERO 0x0020
-#define __FPCLASS_POSINF 0x0200
-#define __FPCLASS_POSNORMAL 0x0100
-#define __FPCLASS_POSSUBNORMAL 0x0080
-#define __FPCLASS_POSZERO 0x0040
-#define __FPCLASS_QNAN 0x0002
-#define __FPCLASS_SNAN 0x0001
-#define __FXSR__ 1
-#define __GCC_ASM_FLAG_OUTPUTS__ 1
 #define __GCC_ATOMIC_BOOL_LOCK_FREE 2
 #define __GCC_ATOMIC_CHAR16_T_LOCK_FREE 2
 #define __GCC_ATOMIC_CHAR32_T_LOCK_FREE 2
@@ -137,11 +121,8 @@
 #define __GCC_ATOMIC_SHORT_LOCK_FREE 2
 #define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
-#define __GCC_CONSTRUCTIVE_SIZE 64
-#define __GCC_DESTRUCTIVE_SIZE 64
 #define __GCC_HAVE_DWARF2_CFI_ASM 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
-#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_16 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8 1
@@ -166,11 +147,11 @@
 #define __INT32_FMTi__ "i"
 #define __INT32_MAX__ 2147483647
 #define __INT32_TYPE__ int
-#define __INT64_C_SUFFIX__ LL
-#define __INT64_FMTd__ "lld"
-#define __INT64_FMTi__ "lli"
-#define __INT64_MAX__ 9223372036854775807LL
-#define __INT64_TYPE__ long long int
+#define __INT64_C_SUFFIX__ L
+#define __INT64_FMTd__ "ld"
+#define __INT64_FMTi__ "li"
+#define __INT64_MAX__ 9223372036854775807L
+#define __INT64_TYPE__ long int
 #define __INT8_C_SUFFIX__ 
 #define __INT8_FMTd__ "hhd"
 #define __INT8_FMTi__ "hhi"
@@ -197,10 +178,10 @@
 #define __INT_FAST32_MAX__ 2147483647
 #define __INT_FAST32_TYPE__ int
 #define __INT_FAST32_WIDTH__ 32
-#define __INT_FAST64_FMTd__ "lld"
-#define __INT_FAST64_FMTi__ "lli"
-#define __INT_FAST64_MAX__ 9223372036854775807LL
-#define __INT_FAST64_TYPE__ long long int
+#define __INT_FAST64_FMTd__ "ld"
+#define __INT_FAST64_FMTi__ "li"
+#define __INT_FAST64_MAX__ 9223372036854775807L
+#define __INT_FAST64_TYPE__ long int
 #define __INT_FAST64_WIDTH__ 64
 #define __INT_FAST8_FMTd__ "hhd"
 #define __INT_FAST8_FMTi__ "hhi"
@@ -217,10 +198,10 @@
 #define __INT_LEAST32_MAX__ 2147483647
 #define __INT_LEAST32_TYPE__ int
 #define __INT_LEAST32_WIDTH__ 32
-#define __INT_LEAST64_FMTd__ "lld"
-#define __INT_LEAST64_FMTi__ "lli"
-#define __INT_LEAST64_MAX__ 9223372036854775807LL
-#define __INT_LEAST64_TYPE__ long long int
+#define __INT_LEAST64_FMTd__ "ld"
+#define __INT_LEAST64_FMTi__ "li"
+#define __INT_LEAST64_MAX__ 9223372036854775807L
+#define __INT_LEAST64_TYPE__ long int
 #define __INT_LEAST64_WIDTH__ 64
 #define __INT_LEAST8_FMTd__ "hhd"
 #define __INT_LEAST8_FMTi__ "hhi"
@@ -229,38 +210,27 @@
 #define __INT_LEAST8_WIDTH__ 8
 #define __INT_MAX__ 2147483647
 #define __INT_WIDTH__ 32
-#define __LAHF_SAHF__ 1
-#define __LDBL_DECIMAL_DIG__ 21
-#define __LDBL_DENORM_MIN__ 3.64519953188247460253e-4951L
-#define __LDBL_DIG__ 18
-#define __LDBL_EPSILON__ 1.08420217248550443401e-19L
+#define __LDBL_DECIMAL_DIG__ 36
+#define __LDBL_DENORM_MIN__ 6.47517511943802511092443895822764655e-4966L
+#define __LDBL_DIG__ 33
+#define __LDBL_EPSILON__ 1.92592994438723585305597794258492732e-34L
 #define __LDBL_HAS_DENORM__ 1
 #define __LDBL_HAS_INFINITY__ 1
 #define __LDBL_HAS_QUIET_NAN__ 1
-#define __LDBL_MANT_DIG__ 64
+#define __LDBL_MANT_DIG__ 113
 #define __LDBL_MAX_10_EXP__ 4932
 #define __LDBL_MAX_EXP__ 16384
-#define __LDBL_MAX__ 1.18973149535723176502e+4932L
+#define __LDBL_MAX__ 1.18973149535723176508575932662800702e+4932L
 #define __LDBL_MIN_10_EXP__ (-4931)
 #define __LDBL_MIN_EXP__ (-16381)
-#define __LDBL_MIN__ 3.36210314311209350626e-4932L
-#define __LDBL_NORM_MAX__ 1.18973149535723176502e+4932L
+#define __LDBL_MIN__ 3.36210314311209350626267781732175260e-4932L
 #define __LITTLE_ENDIAN__ 1
 #define __LLONG_WIDTH__ 64
 #define __LONG_LONG_MAX__ 9223372036854775807LL
 #define __LONG_MAX__ 9223372036854775807L
 #define __LONG_WIDTH__ 64
 #define __LP64__ 1
-#define __MACH__ 1
-#define __MEMORY_SCOPE_DEVICE 1
-#define __MEMORY_SCOPE_SINGLE 4
-#define __MEMORY_SCOPE_SYSTEM 0
-#define __MEMORY_SCOPE_WRKGRP 2
-#define __MEMORY_SCOPE_WVFRNT 3
-#define __MMX__ 1
 #define __NO_INLINE__ 1
-#define __NO_MATH_ERRNO__ 1
-#define __NO_MATH_INLINES 1
 #define __OBJC_BOOL_IS_BOOL 0
 #define __OPENCL_MEMORY_SCOPE_ALL_SVM_DEVICES 3
 #define __OPENCL_MEMORY_SCOPE_DEVICE 2
@@ -271,6 +241,7 @@
 #define __ORDER_LITTLE_ENDIAN__ 1234
 #define __ORDER_PDP_ENDIAN__ 3412
 #define __PIC__ 2
+#define __PIE__ 2
 #define __POINTER_WIDTH__ 64
 #define __PRAGMA_REDEFINE_EXTNAME 1
 #define __PTRDIFF_FMTd__ "ld"
@@ -278,10 +249,7 @@
 #define __PTRDIFF_MAX__ 9223372036854775807L
 #define __PTRDIFF_TYPE__ long int
 #define __PTRDIFF_WIDTH__ 64
-#define __REGISTER_PREFIX__ 
 #define __SCHAR_MAX__ 127
-#define __SEG_FS 1
-#define __SEG_GS 1
 #define __SHRT_MAX__ 32767
 #define __SHRT_WIDTH__ 16
 #define __SIG_ATOMIC_MAX__ 2147483647
@@ -306,21 +274,9 @@
 #define __SIZE_MAX__ 18446744073709551615UL
 #define __SIZE_TYPE__ long unsigned int
 #define __SIZE_WIDTH__ 64
-#define __SSE2_MATH__ 1
-#define __SSE2__ 1
-#define __SSE3__ 1
-#define __SSE4_1__ 1
-#define __SSE_MATH__ 1
-#define __SSE__ 1
-#define __SSP__ 1
-#define __SSSE3__ 1
 #define __STDCPP_DEFAULT_NEW_ALIGNMENT__ 16UL
 #define __STDCPP_THREADS__ 1
-#define __STDC_EMBED_EMPTY__ 2
-#define __STDC_EMBED_FOUND__ 1
-#define __STDC_EMBED_NOT_FOUND__ 0
 #define __STDC_HOSTED__ 1
-#define __STDC_NO_THREADS__ 1
 #define __STDC_UTF_16__ 1
 #define __STDC_UTF_32__ 1
 #define __STDC__ 1
@@ -338,13 +294,13 @@
 #define __UINT32_FMTx__ "x"
 #define __UINT32_MAX__ 4294967295U
 #define __UINT32_TYPE__ unsigned int
-#define __UINT64_C_SUFFIX__ ULL
-#define __UINT64_FMTX__ "llX"
-#define __UINT64_FMTo__ "llo"
-#define __UINT64_FMTu__ "llu"
-#define __UINT64_FMTx__ "llx"
-#define __UINT64_MAX__ 18446744073709551615ULL
-#define __UINT64_TYPE__ long long unsigned int
+#define __UINT64_C_SUFFIX__ UL
+#define __UINT64_FMTX__ "lX"
+#define __UINT64_FMTo__ "lo"
+#define __UINT64_FMTu__ "lu"
+#define __UINT64_FMTx__ "lx"
+#define __UINT64_MAX__ 18446744073709551615UL
+#define __UINT64_TYPE__ long unsigned int
 #define __UINT8_C_SUFFIX__ 
 #define __UINT8_FMTX__ "hhX"
 #define __UINT8_FMTo__ "hho"
@@ -379,12 +335,12 @@
 #define __UINT_FAST32_FMTx__ "x"
 #define __UINT_FAST32_MAX__ 4294967295U
 #define __UINT_FAST32_TYPE__ unsigned int
-#define __UINT_FAST64_FMTX__ "llX"
-#define __UINT_FAST64_FMTo__ "llo"
-#define __UINT_FAST64_FMTu__ "llu"
-#define __UINT_FAST64_FMTx__ "llx"
-#define __UINT_FAST64_MAX__ 18446744073709551615ULL
-#define __UINT_FAST64_TYPE__ long long unsigned int
+#define __UINT_FAST64_FMTX__ "lX"
+#define __UINT_FAST64_FMTo__ "lo"
+#define __UINT_FAST64_FMTu__ "lu"
+#define __UINT_FAST64_FMTx__ "lx"
+#define __UINT_FAST64_MAX__ 18446744073709551615UL
+#define __UINT_FAST64_TYPE__ long unsigned int
 #define __UINT_FAST8_FMTX__ "hhX"
 #define __UINT_FAST8_FMTo__ "hho"
 #define __UINT_FAST8_FMTu__ "hhu"
@@ -403,107 +359,76 @@
 #define __UINT_LEAST32_FMTx__ "x"
 #define __UINT_LEAST32_MAX__ 4294967295U
 #define __UINT_LEAST32_TYPE__ unsigned int
-#define __UINT_LEAST64_FMTX__ "llX"
-#define __UINT_LEAST64_FMTo__ "llo"
-#define __UINT_LEAST64_FMTu__ "llu"
-#define __UINT_LEAST64_FMTx__ "llx"
-#define __UINT_LEAST64_MAX__ 18446744073709551615ULL
-#define __UINT_LEAST64_TYPE__ long long unsigned int
+#define __UINT_LEAST64_FMTX__ "lX"
+#define __UINT_LEAST64_FMTo__ "lo"
+#define __UINT_LEAST64_FMTu__ "lu"
+#define __UINT_LEAST64_FMTx__ "lx"
+#define __UINT_LEAST64_MAX__ 18446744073709551615UL
+#define __UINT_LEAST64_TYPE__ long unsigned int
 #define __UINT_LEAST8_FMTX__ "hhX"
 #define __UINT_LEAST8_FMTo__ "hho"
 #define __UINT_LEAST8_FMTu__ "hhu"
 #define __UINT_LEAST8_FMTx__ "hhx"
 #define __UINT_LEAST8_MAX__ 255
 #define __UINT_LEAST8_TYPE__ unsigned char
-#define __USER_LABEL_PREFIX__ _
-#define __VERSION__ "Apple LLVM 17.0.0 (clang-1700.4.4.1)"
-#define __WCHAR_MAX__ 2147483647
-#define __WCHAR_TYPE__ int
+#define __USER_LABEL_PREFIX__ 
+#define __VERSION__ "Debian Clang 14.0.6"
+#define __WCHAR_MAX__ 4294967295U
+#define __WCHAR_TYPE__ unsigned int
+#define __WCHAR_UNSIGNED__ 1
 #define __WCHAR_WIDTH__ 32
-#define __WINT_MAX__ 2147483647
-#define __WINT_TYPE__ int
+#define __WINT_MAX__ 4294967295U
+#define __WINT_TYPE__ unsigned int
+#define __WINT_UNSIGNED__ 1
 #define __WINT_WIDTH__ 32
-#define __amd64 1
-#define __amd64__ 1
-#define __apple_build_version__ 17000404
-#define __block __attribute__((__blocks__(byref)))
+#define __aarch64__ 1
 #define __clang__ 1
 #define __clang_literal_encoding__ "UTF-8"
-#define __clang_major__ 17
+#define __clang_major__ 14
 #define __clang_minor__ 0
-#define __clang_patchlevel__ 0
-#define __clang_version__ "17.0.0 (clang-1700.4.4.1)"
+#define __clang_patchlevel__ 6
+#define __clang_version__ "14.0.6 "
 #define __clang_wide_literal_encoding__ "UTF-32"
-#define __code_model_small__ 1
-#define __core2 1
-#define __core2__ 1
-#define __cplusplus 201703L
-#define __cpp_aggregate_bases 201603L
+#define __cplusplus 201402L
 #define __cpp_aggregate_nsdmi 201304L
 #define __cpp_alias_templates 200704L
-#define __cpp_aligned_new 201606L
 #define __cpp_attributes 200809L
 #define __cpp_binary_literals 201304L
-#define __cpp_capture_star_this 201603L
-#define __cpp_constexpr 201603L
+#define __cpp_constexpr 201304L
 #define __cpp_constexpr_in_decltype 201711L
 #define __cpp_decltype 200707L
 #define __cpp_decltype_auto 201304L
-#define __cpp_deduction_guides 201703L
 #define __cpp_delegating_constructors 200604L
-#define __cpp_deleted_function 202403L
 #define __cpp_digit_separators 201309L
-#define __cpp_enumerator_attributes 201411L
 #define __cpp_exceptions 199711L
-#define __cpp_fold_expressions 201603L
 #define __cpp_generic_lambdas 201304L
-#define __cpp_guaranteed_copy_elision 201606L
-#define __cpp_hex_float 201603L
-#define __cpp_if_constexpr 201606L
 #define __cpp_impl_destroying_delete 201806L
 #define __cpp_inheriting_constructors 201511L
 #define __cpp_init_captures 201304L
 #define __cpp_initializer_lists 200806L
-#define __cpp_inline_variables 201606L
 #define __cpp_lambdas 200907L
-#define __cpp_named_character_escapes 202207L
-#define __cpp_namespace_attributes 201411L
-#define __cpp_nested_namespace_definitions 201411L
-#define __cpp_noexcept_function_type 201510L
-#define __cpp_nontype_template_args 201411L
-#define __cpp_nontype_template_parameter_auto 201606L
 #define __cpp_nsdmi 200809L
-#define __cpp_pack_indexing 202311L
-#define __cpp_placeholder_variables 202306L
-#define __cpp_range_based_for 201603L
+#define __cpp_range_based_for 200907
 #define __cpp_raw_strings 200710L
 #define __cpp_ref_qualifiers 200710L
 #define __cpp_return_type_deduction 201304L
 #define __cpp_rtti 199711L
 #define __cpp_rvalue_references 200610L
-#define __cpp_static_assert 201411L
-#define __cpp_static_call_operator 202207L
-#define __cpp_structured_bindings 202403L
-#define __cpp_template_auto 201606L
-#define __cpp_template_template_args 201611L
+#define __cpp_static_assert 200410
 #define __cpp_threadsafe_static_init 200806L
 #define __cpp_unicode_characters 200704L
 #define __cpp_unicode_literals 200710L
 #define __cpp_user_defined_literals 200809L
 #define __cpp_variable_templates 201304L
 #define __cpp_variadic_templates 200704L
-#define __cpp_variadic_using 201611L
+#define __gnu_linux__ 1
+#define __linux 1
+#define __linux__ 1
 #define __llvm__ 1
-#define __nonnull _Nonnull
-#define __null_unspecified _Null_unspecified
-#define __nullable _Nullable
 #define __pic__ 2
+#define __pie__ 2
 #define __private_extern__ extern
-#define __seg_fs __attribute__((address_space(257)))
-#define __seg_gs __attribute__((address_space(256)))
-#define __strong 
-#define __tune_core2__ 1
-#define __unsafe_unretained 
-#define __weak __attribute__((objc_gc(weak)))
-#define __x86_64 1
-#define __x86_64__ 1
+#define __unix 1
+#define __unix__ 1
+#define linux 1
+#define unix 1

@@ -279,6 +279,8 @@ private slots:
     // Language
     // ---------------------------------------------------------------------
     void onlangCurrent(QString langstr);
+    void getLangCommand();
+
 
 #ifdef Q_OS_LINUX
     // ---------------------------------------------------------------------
@@ -547,7 +549,7 @@ private:
     void stopAllThreads();
     void stopAllProcesses();
     void restartApp();
-    void getLangCommand();
+   // void getLangCommand();
     void getCputemp();
 };
 
