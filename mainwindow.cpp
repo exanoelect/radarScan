@@ -12,7 +12,6 @@
 #include <QTime>
 #include <QUrl>
 #include <QtCore/QDateTime>
-#include <QtMqtt/QMqttClient>
 #include <QtMultimedia/QSoundEffect>
 
 // Jika qcustomplot butuh include spesifik, sudah di header
@@ -439,13 +438,14 @@ void MainWindow::initRadar()
                 fallEventAckReceived = false;
                 client->enqueueEvent("INCIDENT_FALL_EVENT_DETECTED", obj);
 
+#ifdef Q_OS_LINUX
                 // increase brightness
                 if (m_brightness->setBrightnessPercent(90)) {
                     qDebug() << "Success Set brightness " << 70;
                 } else {
                     qDebug() << "Fail Set brightness " << 70;
                 }
-
+#endif
             //} else {
             //    qDebug() << "Socket DC";
             //}
@@ -1981,13 +1981,6 @@ void MainWindow::on_btnColor1_clicked()
     //m_gpio->setColor(COLOR_WHITE);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "white")) {
-        qDebug() << "white ok";
-    } else {
-        qDebug() << "white fail";
-    }
-#endif
 }
 
 // -----------------------------------------------------------------------------
@@ -1996,13 +1989,6 @@ void MainWindow::on_btnColor2_clicked()
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BLINKY);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BLINKY); //requestPWM(25);
-#endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "blinky")) {
-        qDebug() << "blinky ok";
-    } else {
-        qDebug() << "blinky fail";
-    }
 #endif
 }
 
@@ -2013,13 +1999,6 @@ void MainWindow::on_btnColor3_clicked()
     //m_gpio->setColor(COLOR_WHITE_BRIGHT);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BRIGHT); //requestPWM(35);
 #endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "bright")) {
-        qDebug() << "bright ok";
-    } else {
-        qDebug() << "bright fail";
-    }
-#endif
 }
 
 // -----------------------------------------------------------------------------
@@ -2028,13 +2007,6 @@ void MainWindow::on_btnColor4_clicked()
 #ifdef Q_OS_LINUX
    // m_gpio->setColor(COLOR_RED);
     if(!fallEmergency) m_gpio->setColor(COLOR_RED); //requestPWM(45);
-#endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "red")) {
-        qDebug() << "red ok";
-    } else {
-        qDebug() << "red fail";
-    }
 #endif
 }
 
@@ -2133,14 +2105,6 @@ void MainWindow::onListenStateChanged()
     //m_gpio->setColor(COLOR_WHITE);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "bright")) {
-        qDebug() << "bright ok";
-    } else {
-        qDebug() << "bright fail";
-    }
-#endif
-
     // if (state == "ON") //m_gpio->setColor(COLOR_WHITE_BRIGHT);
     // else if (state == "OFF") //m_gpio->setColor(COLOR_WHITE);
 }
@@ -2152,13 +2116,6 @@ void MainWindow::onTalkingStateChanged()
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BLINKY);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BLINKY); //requestPWM(35);
-#endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "blinky")) {
-        qDebug() << "blinky ok";
-    } else {
-        qDebug() << "blinky fail";
-    }
 #endif
     /*
     if (state == "ON") {
@@ -2210,6 +2167,8 @@ void MainWindow::onVolumeSetRequested(int vt)
     // if (vt > 0 && m_volume->setVolumePercent(vt)) {
 #ifdef Q_OS_LINUX
     if (vt > 0) {
+        vt = (vt*20)/3;
+        if(vt < 15) vt = 15;
         m_volumeMonitor->setVolumePercent(vt);
         qDebug() << "UI vol successfully set to" << vt;
     } else {
@@ -2297,13 +2256,6 @@ void MainWindow::onSpeechModuleReady()
    // m_gpio->setColor(COLOR_WHITE);
     if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
-#ifdef MQTT_FITUR
-    if (publishMessage("ledcolor", "white")) {
-        qDebug() << "white ok";
-    } else {
-        qDebug() << "white fail";
-    }
-#endif
 }
 
 // -----------------------------------------------------------------------------
@@ -2311,6 +2263,8 @@ void MainWindow::onBrightnessSetRequested(int bst)
 {
     qDebug() << "Brightness Set:" << bst;
 #ifdef Q_OS_LINUX
+    bst = (bst*20)/3;
+    if(bst < 15) bst = 15;
     if (bst > 0 && m_brightness->setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
         bst = m_brightness->getBrightnessPercent();
