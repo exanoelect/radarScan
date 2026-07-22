@@ -1,4 +1,4 @@
-/* #include "mainwindow.h"
+#include "mainwindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -8,9 +8,8 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
-*/
 
-
+/*
 #include <QApplication>
 #include <QDebug>
 #include <QIcon>
@@ -59,3 +58,4 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
+*/

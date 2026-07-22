@@ -412,7 +412,9 @@ private:
     QTimer *gpioTimer;
     QElapsedTimer gpioElapsedTimer;
 
-    static constexpr quint8 PWM_PIN = 2;       // GPIO22
+    //static constexpr quint8 PWM_PIN = 2;       // GPIO22
+    static constexpr quint8 PWM_PIN = 1;       // GPIO17
+
     static constexpr qint64 PWM_PERIOD_US = 1000000; // 1 Hz
 
     quint8 pwmDutyPercent = 0;
@@ -445,6 +447,7 @@ private:
 
     FrameRadarData radarFrame;
     FrameRadarData radarFrame2;
+    bool fallEmergency = false;
 
     // ---------------------------------------------------------------------
     // Timers and heartbeat state
