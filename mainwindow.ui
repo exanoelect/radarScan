@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Radar Scan V3.0</string>
+   <string>Radar Scan V3.1</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 225, 221);</string>
+   <string notr="true">background-color: rgb(248, 255, 231);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QCustomPlot" name="plottsgram" native="true">

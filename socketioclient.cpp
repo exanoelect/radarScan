@@ -81,7 +81,7 @@ void SocketIOClient::disconnectFromServer()
 void SocketIOClient::sendSocketIoConnectWithAuth()
 {
     QJsonObject auth;
-    auth["robotId"] = "TESTING-4";
+    auth["robotId"] = "TESTING-1";
 
     QString authJson = QString::fromUtf8(
         QJsonDocument(auth).toJson(QJsonDocument::Compact)
@@ -186,8 +186,8 @@ void SocketIOClient::constructWebSocketUrl()
 
     // Tambahkan timestamp untuk avoid cache
     query.addQueryItem("t", QString::number(QDateTime::currentMSecsSinceEpoch()));
-    query.addQueryItem("auth", "{\"robotId\":\"TESTING-4\"}");
-    query.addQueryItem("robotId","TESTING-4");
+    query.addQueryItem("auth", "{\"robotId\":\"TESTING-1\"}");
+    query.addQueryItem("robotId","TESTING-1");
 
     // Tambahkan namespace ke query jika bukan root namespace
     //if (m_namespace != "/") {
@@ -218,7 +218,7 @@ void SocketIOClient::onWebSocketConnected()
 
     QJsonObject authObject;
     authObject.insert(QStringLiteral("robotId"),
-                      QStringLiteral("TESTING-4"));
+                      QStringLiteral("TESTING-1"));
 
     authObject.insert(QStringLiteral("processor_id"), m_cpuSerial);
     const QByteArray jsonData = QJsonDocument(authObject).toJson(QJsonDocument::Compact);
@@ -873,7 +873,7 @@ void SocketIOClient::sendDeviceReady()
     QJsonObject payload{
         //{"device_id", deviceId},
         //{"device_id", "ST-2026-04-IND-PRD-V1-000001"}, //"raspberry"},
-        {"robotId", "TESTING-4"}, //"raspberry"},
+        {"robotId", "TESTING-1"}, //"raspberry"},
         {"brightness", QString::number(britnes)},
         {"volume", QString::number(vol)}
     };
