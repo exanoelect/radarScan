@@ -39,8 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
-    //m_gpio->setColor(COLOR_WHITE);
-    requestPWM(15);
+    m_gpio->setColor(COLOR_WHITE);
+    //requestPWM(15);
 #endif
 }
 
@@ -419,8 +419,8 @@ void MainWindow::initRadar()
             // sound.stop();
             // sound.play();
 #ifdef Q_OS_LINUX
-            //m_gpio->setColor(COLOR_RED);
-            requestPWM(45);
+            m_gpio->setColor(COLOR_RED);
+            //requestPWM(45);
             fallEmergency = true;
             // radar1ReportInfo = "serialNormal";
 #endif
@@ -1973,7 +1973,7 @@ void MainWindow::on_btnColor1_clicked()
 {
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE);
-    if(!fallEmergency) requestPWM(15);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "white")) {
@@ -1989,7 +1989,7 @@ void MainWindow::on_btnColor2_clicked()
 {
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BLINKY);
-    if(!fallEmergency) requestPWM(25);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BLINKY); //requestPWM(25);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "blinky")) {
@@ -2005,7 +2005,7 @@ void MainWindow::on_btnColor3_clicked()
 {
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BRIGHT);
-    if(!fallEmergency) requestPWM(35);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BRIGHT); //requestPWM(35);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "bright")) {
@@ -2021,7 +2021,7 @@ void MainWindow::on_btnColor4_clicked()
 {
 #ifdef Q_OS_LINUX
    // m_gpio->setColor(COLOR_RED);
-    if(!fallEmergency) requestPWM(45);
+    if(!fallEmergency) m_gpio->setColor(COLOR_RED); //requestPWM(45);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "red")) {
@@ -2109,7 +2109,7 @@ void MainWindow::on_btnFallSimulation_clicked()
         fallEventAckReceived = false;
 #ifdef Q_OS_LINUX
         //m_gpio->setColor(COLOR_RED);
-        requestPWM(45);
+        m_gpio->setColor(COLOR_RED); //requestPWM(45);
 #endif
         fallEmergency = true;
         timerSendFallevent->start(1000); // Aktifkan send fall event repeat
@@ -2125,7 +2125,7 @@ void MainWindow::onListenStateChanged()
     qDebug() << "UI Process LISTENING"; // << state;
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE);
-    if(!fallEmergency) requestPWM(15);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "bright")) {
@@ -2145,7 +2145,7 @@ void MainWindow::onTalkingStateChanged()
     qDebug() << "UI Process TALKING"; // << state;
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BLINKY);
-    if(!fallEmergency) requestPWM(35);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BLINKY); //requestPWM(35);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "blinky")) {
@@ -2172,7 +2172,7 @@ void MainWindow::onWaiting()
     qDebug() << "UI Process Waiting"; // << state;
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BLINKY);
-    if(!fallEmergency) requestPWM(35);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BLINKY); //requestPWM(35);
     soundPlay(SOUND_WAITING, lang);
 #endif
 }
@@ -2183,7 +2183,7 @@ void MainWindow::onRecording()
     qDebug() << "UI Process Waiting"; // << state;
 #ifdef Q_OS_LINUX
     //m_gpio->setColor(COLOR_WHITE_BRIGHT);
-    if(!fallEmergency) requestPWM(25);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE_BRIGHT); //requestPWM(25);
 #endif
 }
 
@@ -2239,7 +2239,7 @@ void MainWindow::onSleepRequested()
     }
 
     //REduce led
-    if(!fallEmergency) requestPWM(0);
+    //if(!fallEmergency) requestPWM(0);
 
     // Reduce Volume
     // m_volumeMonitor->setVolumePercent(30);
@@ -2267,7 +2267,7 @@ void MainWindow::onWakeUpRequested()
     soundPlay(SOUND_HELPYOU, lang);
 
     //increase led
-    if(!fallEmergency) requestPWM(15);
+    //if(!fallEmergency) requestPWM(15);
 
 #endif
 
@@ -2282,7 +2282,7 @@ void MainWindow::onSpeechModuleReady()
     qDebug() << "Speech Module Ready notify";
 #ifdef Q_OS_LINUX
    // m_gpio->setColor(COLOR_WHITE);
-    if(!fallEmergency) requestPWM(15);
+    if(!fallEmergency) m_gpio->setColor(COLOR_WHITE); //requestPWM(15);
 #endif
 #ifdef MQTT_FITUR
     if (publishMessage("ledcolor", "white")) {
@@ -2472,7 +2472,8 @@ void MainWindow::onIncidentFallWakeUpByFallDetection()
     }
 
     //LEd red
-    requestPWM(45);
+    //requestPWM(45);
+    m_gpio->setColor(COLOR_RED);
 }
 
 // -----------------------------------------------------------------------------
@@ -2509,8 +2510,8 @@ void MainWindow::onIncidentFallCompleted()
     fallEventAckReceived = true;
     fallEmergency = false;
 #ifdef Q_OS_LINUX
-    //m_gpio->setColor(COLOR_WHITE);
-    requestPWM(15);
+    m_gpio->setColor(COLOR_WHITE);
+    //requestPWM(15);
 #endif
 }
 
@@ -3491,12 +3492,12 @@ void MainWindow::initUtility()
     }
 
     //m_gpio->setColor(COLOR_WHITE);
-    gpioTimer = new QTimer(this);
-    gpioTimer->setTimerType(Qt::PreciseTimer);
-    gpioTimer->setInterval(2);
-    connect(gpioTimer,&QTimer::timeout,this,&MainWindow::slotGpioTimer);
-    gpioElapsedTimer.start();
-    gpioTimer->start(2);
+    //gpioTimer = new QTimer(this);
+    //gpioTimer->setTimerType(Qt::PreciseTimer);
+    //gpioTimer->setInterval(2);
+    //connect(gpioTimer,&QTimer::timeout,this,&MainWindow::slotGpioTimer);
+    //gpioElapsedTimer.start();
+    //gpioTimer->start(2);
 
     m_volume = new volume();
     m_brightness = new brightness();
