@@ -64,6 +64,7 @@
 #include "systemdmonitorqt.h"
 #include "utilities.h"
 #include "volume.h"
+#include "microphonecontrol.h"
 
 #ifdef Q_OS_LINUX
 extern "C" {
@@ -488,6 +489,7 @@ private:
     void initBME280();
     void initCpuTemp();
     void initUtility();
+    void initMicControl();
 
     // ---------------------------------------------------------------------
     // Radar and plot helpers
@@ -551,6 +553,10 @@ private:
     void restartApp();
    // void getLangCommand();
     void getCputemp();
+
+    //Microphone control
+    MicrophoneControl *m_microphoneControl = nullptr;
+
 };
 
 #endif // MAINWINDOW_H

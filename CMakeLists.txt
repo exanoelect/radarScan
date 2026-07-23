@@ -60,6 +60,8 @@ set(SOURCES
     bme280worker.h
     cputemperatureworker.cpp
     cputemperatureworker.h
+    microphonecontrol.cpp
+    microphonecontrol.h
 )
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")

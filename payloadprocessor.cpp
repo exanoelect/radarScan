@@ -967,6 +967,81 @@ void PayloadProcessor::setTraceTracking(bool checked)
     m_serial->write(frame);
     m_serial->flush();
 }
+
+//---------------------------------------------------------------------------------------
+bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
+{
+    if(t.historyCount < HISTORY_SIZE){
+        //qDebug() << "ID" << t.trackId << "History not full:" << t.historyCount<< "/"<< HISTORY_SIZE;
+
+        return false;
+    }
+
+    /*
+    qDebug()
+        << "isFC ID:"     << t.trackId
+        << "X:"      << historyToString(t.x)
+        << "Y:"      << historyToString(t.y)
+        << "H:"      << historyToString(t.height)
+        << "Vel:"    << historyToString(t.velocity)
+        << "Move:"   << historyToString(t.motion)
+        << "Hist:"   << t.historyCount
+        << "Score:"  << t.fallScore
+        << "State:"  << t.state;
+    */
+
+    qint16 hMax = 0;
+
+    for(int i=0; i<HISTORY_SIZE; i++){
+        if(t.height[i] > hMax)
+            hMax = t.height[i];
+    }
+
+    qint16 hNew = t.height[HISTORY_SIZE - 1];
+
+
+   //qDebug() << "hMax " << hMax << "hNew " << hNew;
+
+    if((hMax <= 0) || (hNew <= 0)){
+        //qDebug() << "hOld hnew negative";
+        return false;
+    }
+
+    int heightDrop = hMax - hNew;
+
+    quint16 avgTotal = 0;
+    quint16 totalMovement = 0;
+
+    for(int i=0; i<HISTORY_SIZE; i++){
+        avgTotal += qAbs(t.velocity[i]);
+        totalMovement += t.motion[i];
+    }
+
+    //avgVel /= HISTORY_SIZE;
+
+    bool rapidHeightDrop = (heightDrop > 50); //60
+    bool fastMotion = (avgTotal > 5);
+    bool movedEnough = (totalMovement > 2);
+
+   // qDebug() << "drop" << heightDrop <<
+   //             "vel" << avgVel <<
+   //             "move" << totalMovement;
+
+    /*qDebug()
+        << "EIC ID:" << t.trackId
+        << "hMax:" << hMax
+        << "hNew:" << hNew
+        << "drop:" << heightDrop
+        << "avgVel:" << avgTotal
+        << "totalMove:" << totalMovement
+        << "score:" << t.fallScore;
+*/
+
+    return rapidHeightDrop &&
+            (fastMotion || movedEnough);
+}
+
+/*
 //---------------------------------------------------------------------------------------
 bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
 {
@@ -992,6 +1067,7 @@ bool PayloadProcessor::isFallCandidate(const TargetInfo &t)
     return rapidHeightDrop &&
            (fastMotion || movedEnough);
 }
+*/
 
 //---------------------------------------------------------------------------------------
 bool PayloadProcessor::isHeightTrendDecreasing(const TargetInfo &t, int *dropOut)

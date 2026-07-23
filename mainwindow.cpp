@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     fallEmergency = false;
 
     initSound();
+    initMicControl();
     initGraphics();
     initSocketIO();
     initRadar();
@@ -1445,6 +1446,7 @@ void MainWindow::drawRealTimeVelocity2(QString velocity)
 // -----------------------------------------------------------------------------
 void MainWindow::soundPlay(int request, const QString &lang)
 {
+    m_microphoneControl->mute();
     QString requestName;
 
     switch (request) {
@@ -2216,6 +2218,8 @@ void MainWindow::onVolumeSetRequested(int vt)
     // if (vt > 0 && m_volume->setVolumePercent(vt)) {
 #ifdef Q_OS_LINUX
     vt = (vt*20)/3;
+    if(vt < 10) vt = 10;
+    if(vt > 95) vt = 95;
     if (vt > 0) {
         m_volumeMonitor->setVolumePercent(vt);
         qDebug() << "UI vol successfully set to" << vt;
@@ -2321,6 +2325,7 @@ void MainWindow::onBrightnessSetRequested(int bst)
     //konversi ke skala 0 - 100
     bst = (bst*20)/3;
     if(bst < 15) bst = 15;
+    if(bst > 90) bst = 90;
     if (bst > 0 && m_brightness->setBrightnessPercent(bst)) {
         qDebug() << "Brightness successfully set to" << bst;
         bst = m_brightness->getBrightnessPercent();
@@ -3583,6 +3588,36 @@ void MainWindow::initUtility()
 }
 
 // -----------------------------------------------------------------------------
+void MainWindow::initMicControl()
+{
+    m_microphoneControl = new MicrophoneControl(this);
+
+    connect(m_microphoneControl,
+            &MicrophoneControl::statusReceived,
+            this,
+            [](double volume, bool muted) {
+                qDebug() << "Mic volume:" << qRound(volume * 100.0) << "%";
+                qDebug() << "Mic muted:" << muted;
+            });
+
+    connect(m_microphoneControl,
+            &MicrophoneControl::muteChanged,
+            this,
+            [](bool muted) {
+                qDebug() << "Microphone muted:" << muted;
+            });
+
+    connect(m_microphoneControl,
+            &MicrophoneControl::commandFailed,
+            this,
+            [](const QString &command, const QString &error) {
+                qWarning() << "Command failed:" << command;
+                qWarning() << "Error:" << error;
+            });
+
+}
+
+// -----------------------------------------------------------------------------
 void MainWindow::on_btnRec_clicked() {}
 
 // -----------------------------------------------------------------------------
@@ -4209,6 +4244,8 @@ void MainWindow::onSoundFinished(int sentenceIndex, QString langIndex)
         default:
             break;
     }
+
+    m_microphoneControl->unmute();
 }
 
 // -----------------------------------------------------------------------------
